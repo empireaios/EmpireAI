@@ -1,0 +1,40 @@
+{
+  "classification": "LOCAL_SOURCE_CONTRACT_CORRECTION_NOT_HOSTED_PASS",
+  "failedRun": 40493059386,
+  "backendSource": "98970018d579e5a7c720d25293cdddbe294856c0",
+  "frontendSource": "42dfd0aa9d69a74d237f17555e6a1aeb343c59b9",
+  "runtimeEvidence": {
+    "readiness": "PASS retained unchanged",
+    "authenticatedFrontendBackend": "PASS retained unchanged",
+    "failureStage": "synthetic-fixture",
+    "actualFailureStatusAndCode": "NOT_CAPTURED",
+    "actualRuntimeRootCause": "NOT_PROVEN",
+    "nativeDeferAndLaterCriteria": "NOT_REACHED"
+  },
+  "demonstrableMismatch": {
+    "runner": "HOSTNAME=0.0.0.0 with browser origin http://localhost:43117",
+    "nextVersion": "16.2.9",
+    "nextSource": "next-server.ts attachRequestMeta uses configured fetchHostname and port for initURL; NextRequestAdapter.fromNodeNextRequest constructs the request URL from initURL",
+    "bffSource": "lib/owner/advisor-handler.ts requires POST Origin exactly equal new URL(request.url).origin",
+    "interpretation": "Source-contract mismatch consistent with fixture-stage failure. Missing response evidence prevents attribution of the actual failure to this mismatch.",
+    "correction": "Set standalone HOSTNAME=localhost. Browser already shares frontend network namespace. Do not rewrite headers, cookies or application source."
+  },
+  "reconciledContracts": [
+    {"boundary":"fixture write", "source":"backend/src/institutional-memory/store.ts experienceSchema and ownerMemoryCommand", "decision":"Synthetic request fields satisfy strict schema; no fixture content correction needed."},
+    {"boundary":"fixture result", "source":"backend/src/advisor/routes.ts POST memory and InstitutionalMemory.insert", "decision":"Expected result.id, result.created=true and grantsAuthority=false match source."},
+    {"boundary":"history read", "source":"backend/src/advisor/read-model.ts domain memory and InstitutionalMemory.get", "decision":"Envelope data contains record, events and version. Fresh version0/events0 then version1/events1 match source."},
+    {"boundary":"native DEFER", "source":"OwnerJourneys.tsx DecisionCard", "decision":"Button sends owner_decision with work7-decision UUID, target, expectedVersion, DEFER and note; receipt check matches."},
+    {"boundary":"replay", "source":"InstitutionalMemory.append", "decision":"Identical ID/content returns200 created:false; conflicting ID content and new stale version fail400 without mutation."},
+    {"boundary":"executive projection", "source":"institutional-memory/executive.ts", "decision":"Version1, SYNTHETIC, DEFERRED, NOT_EXECUTED, ownerDecision and locked fences match source."},
+    {"boundary":"native UI route and selectors", "source":"app/(cockpit)/cockpit/approvals/page.tsx; ProductDecisionCentre.tsx; OwnerJourneys.tsx; TechnicalEvidence.tsx", "decision":"Approvals starts decisions view; recommendation-detail is inside closed details opened by direct summary. Exact dialog exposes ownerDecision and executionStatus. Fill valid reason before each disabled assertion to avoid empty-note false positive."},
+    {"boundary":"authenticated wrong owner", "source":"auth/seed-users.ts and advisor/routes.ts owner prehandler", "decision":"Existing synthetic admin authenticates but role admin fails named founder gate; exact owner403 plus unchanged record required."},
+    {"boundary":"restart", "source":"InstitutionalMemory.get and runner same-container/same-bind restart", "decision":"Fresh authentication and full synthetic record digest compare are valid. Same-image restart is not rollback."}
+  ],
+  "diagnostics": "Allowlisted operation, HTTP status, parse success, response field types, bounded version/event counts and exact known error categories only; no body values, URLs, headers, credentials or arbitrary exception text.",
+  "scope": "Synthetic technical examination only; no complete-row, genuine product, genuine CEO assessment, finance outcome, Assurance or production claim.",
+  "acceptedExaminationsRepeated": false,
+  "applicationChanges": false,
+  "rebuilds": false,
+  "ciDispatched": false,
+  "published": false
+}

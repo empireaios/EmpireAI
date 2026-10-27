@@ -1,0 +1,16 @@
+{
+  "approvedCommit": "72af1b28cdeef6af236a21ce9cfc37f51f5971bc",
+  "publishedCommit": "90c405f9e1f700fa930f6359e72304b235bc0376",
+  "completeTree": "f44eb9aea07c48b78d33b93ba93d8f0dc9b65e04",
+  "parent": "645612d8ed04802dda038936b64b30e47eba9afe",
+  "destination": "work8/owner-execution-20261027b",
+  "reviewedFiles": 16,
+  "metadataOnlyCommitChange": true,
+  "run": 40493059386,
+  "attempt": 1,
+  "runNumber": 1,
+  "repeatedApprovalCreatesNoAdditionalAuthority": true,
+  "retries": 0,
+  "maximumMinutes": 20,
+  "postpublicationVerification": "PASS complete tree,direct parent,all16reviewed blobs"
+}

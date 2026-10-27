@@ -1,0 +1,264 @@
+{
+  "classification": "LOCAL_SOURCE_CONTRACT_CORRECTION_NOT_HOSTED_PASS",
+  "failedRun": 40493059386,
+  "backendSource": "98970018d579e5a7c720d25293cdddbe294856c0",
+  "frontendSource": "42dfd0aa9d69a74d237f17555e6a1aeb343c59b9",
+  "runtimeEvidence": {
+    "readiness": "PASS retained unchanged",
+    "authenticatedFrontendBackend": "PASS retained unchanged",
+    "failureStage": "synthetic-fixture",
+    "actualFailureStatusAndCode": "NOT_CAPTURED",
+    "actualRuntimeRootCause": "NOT_PROVEN",
+    "nativeDeferAndLaterCriteria": "NOT_REACHED"
+  },
+  "demonstrableMismatch": {
+    "runner": "HOSTNAME=0.0.0.0 with browser origin http://localhost:43117",
+    "nextVersion": "16.2.9",
+    "nextSource": "next-server.ts attachRequestMeta uses configured fetchHostname and port for initURL; NextRequestAdapter.fromNodeNextRequest constructs the request URL from initURL",
+    "bffSource": "lib/owner/advisor-handler.ts requires POST Origin exactly equal new URL(request.url).origin",
+    "interpretation": "Source-contract mismatch consistent with fixture-stage failure. Missing response evidence prevents attribution of the actual failure to this mismatch.",
+    "correction": "Set standalone HOSTNAME=localhost. Browser already shares frontend network namespace. Do not rewrite headers, cookies or application source."
+  },
+  "reconciledContracts": [
+    {
+      "boundary": "fixture write",
+      "source": "backend/src/institutional-memory/store.ts experienceSchema and ownerMemoryCommand",
+      "decision": "Synthetic request fields satisfy strict schema; no fixture content correction needed."
+    },
+    {
+      "boundary": "fixture result",
+      "source": "backend/src/advisor/routes.ts POST memory and InstitutionalMemory.insert",
+      "decision": "Expected result.id, result.created=true and grantsAuthority=false match source."
+    },
+    {
+      "boundary": "history read",
+      "source": "backend/src/advisor/read-model.ts domain memory and InstitutionalMemory.get",
+      "decision": "Envelope data contains record, events and version. Fresh version0/events0 then version1/events1 match source."
+    },
+    {
+      "boundary": "native DEFER",
+      "source": "OwnerJourneys.tsx DecisionCard",
+      "decision": "Button sends owner_decision with work7-decision UUID, target, expectedVersion, DEFER and note; receipt check matches."
+    },
+    {
+      "boundary": "replay",
+      "source": "InstitutionalMemory.append",
+      "decision": "Identical ID/content returns200 created:false; conflicting ID content and new stale version fail400 without mutation."
+    },
+    {
+      "boundary": "executive projection",
+      "source": "institutional-memory/executive.ts",
+      "decision": "Version1, SYNTHETIC, DEFERRED, NOT_EXECUTED, ownerDecision and locked fences match source."
+    },
+    {
+      "boundary": "native UI route and selectors",
+      "source": "app/(cockpit)/cockpit/approvals/page.tsx; ProductDecisionCentre.tsx; OwnerJourneys.tsx; TechnicalEvidence.tsx",
+      "decision": "Approvals starts decisions view; recommendation-detail is inside closed details opened by direct summary. Exact dialog exposes ownerDecision and executionStatus. Fill valid reason before each disabled assertion to avoid empty-note false positive."
+    },
+    {
+      "boundary": "authenticated wrong owner",
+      "source": "auth/seed-users.ts and advisor/routes.ts owner prehandler",
+      "decision": "Existing synthetic admin authenticates but role admin fails named founder gate; exact owner403 plus unchanged record required."
+    },
+    {
+      "boundary": "restart",
+      "source": "InstitutionalMemory.get and runner same-container/same-bind restart",
+      "decision": "Fresh authentication and full synthetic record digest compare are valid. Same-image restart is not rollback."
+    }
+  ],
+  "diagnostics": "Allowlisted operation, HTTP status, parse success, response field types, bounded version/event counts and exact known error categories only; no body values, URLs, headers, credentials or arbitrary exception text.",
+  "scope": "Synthetic technical examination only; no complete-row, genuine product, genuine CEO assessment, finance outcome, Assurance or production claim.",
+  "acceptedExaminationsRepeated": false,
+  "applicationChanges": false,
+  "rebuilds": false,
+  "ciDispatched": false,
+  "published": false,
+  "sourceReferences": [
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/backend_src_advisor_read-model.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/98970018d579e5a7c720d25293cdddbe294856c0/backend/src/advisor/read-model.ts",
+      "sha256": "1f85eb73ed4316e15a62df844ef97ce8f008d3a9454b2c9f2d6c76a23773a562"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/backend_src_advisor_routes.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/98970018d579e5a7c720d25293cdddbe294856c0/backend/src/advisor/routes.ts",
+      "sha256": "a998bb02b20b8de55a9e070c4320bbc09089d7588e28171da1b7192b01aea592"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/backend_src_advisor_store.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/98970018d579e5a7c720d25293cdddbe294856c0/backend/src/advisor/store.ts",
+      "sha256": "4d831961faf588e6cded594185f0aace89726fa763d193c1bdea707410195bcc"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/backend_src_app.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/98970018d579e5a7c720d25293cdddbe294856c0/backend/src/app.ts",
+      "sha256": "d540e79e1193c9853c70e78dae21e95a70d6292a4b569cfed1ff45f552b0cf3e"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/backend_src_auth_routes.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/98970018d579e5a7c720d25293cdddbe294856c0/backend/src/auth/routes.ts",
+      "sha256": "b5b8206a4038c3a773522f081e5969dfd850863af076896ae8b9d1690aaf049c"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/backend_src_auth_seed-users.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/98970018d579e5a7c720d25293cdddbe294856c0/backend/src/auth/seed-users.ts",
+      "sha256": "b4faed35bd7f361e1c4bd49313b5a030e008fba7503523dcaf1f5287d72e4ed0"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/backend_src_institutional-memory_executive.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/98970018d579e5a7c720d25293cdddbe294856c0/backend/src/institutional-memory/executive.ts",
+      "sha256": "3ddff5dbc6ed068e8cfa92487449ba22ccdfd798c1d461259f7d21d9c3dac7fe"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/backend_src_institutional-memory_store.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/98970018d579e5a7c720d25293cdddbe294856c0/backend/src/institutional-memory/store.ts",
+      "sha256": "63dda09dd7f9bae5d6c090fa808b0c1bf700374e0e81c41f8dc02f0872b744a1"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/backend_src_runtime_tier0-isolated-primary.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/98970018d579e5a7c720d25293cdddbe294856c0/backend/src/runtime/tier0-isolated-primary.ts",
+      "sha256": "5c5e3053aafbbabcf9dbb7bcfe69cbb886de81ea4e81d0ddc25e6f0a9ab016fb"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/empireai-web_app_(cockpit)_cockpit_approvals_page.tsx",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/42dfd0aa9d69a74d237f17555e6a1aeb343c59b9/empireai-web/app/(cockpit)/cockpit/approvals/page.tsx",
+      "sha256": "1af62ef9fbbefffa39343b56d4e117fc94d50f27f92223c66c8f5e9113af4863"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/empireai-web_app_api_auth_login_route.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/42dfd0aa9d69a74d237f17555e6a1aeb343c59b9/empireai-web/app/api/auth/login/route.ts",
+      "sha256": "7eb6cca1fe341a0eed32b3ed38aaff601a97c4f3c167e9c2e079b29a91f7dbfa"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/empireai-web_app_api_auth_me_route.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/42dfd0aa9d69a74d237f17555e6a1aeb343c59b9/empireai-web/app/api/auth/me/route.ts",
+      "sha256": "d0568f4cefbb94ec5fe148fe004a0d05b2136eeede340e2e0170b08a1abe88f5"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/empireai-web_app_api_owner_advisor_[...path]_route.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/42dfd0aa9d69a74d237f17555e6a1aeb343c59b9/empireai-web/app/api/owner/advisor/[...path]/route.ts",
+      "sha256": "534c5196713a616fcb81b1a57759fef2d6556e0fa41f9738c6e2a22623828c2f"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/empireai-web_components_owner_OwnerAdvisor.tsx",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/42dfd0aa9d69a74d237f17555e6a1aeb343c59b9/empireai-web/components/owner/OwnerAdvisor.tsx",
+      "sha256": "1ef10dbfa6936855c5b3eb6aa139d780b64b6ec036f8f7d91b099141c2a475a7"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/empireai-web_components_owner_work7_OwnerJourneys.tsx",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/42dfd0aa9d69a74d237f17555e6a1aeb343c59b9/empireai-web/components/owner/work7/OwnerJourneys.tsx",
+      "sha256": "c064ea698e83a9e4e749a111345666c94d24d70536ac6c74439e260ce519ec9c"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/empireai-web_components_owner_work7_ProductDecisionCentre.tsx",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/42dfd0aa9d69a74d237f17555e6a1aeb343c59b9/empireai-web/components/owner/work7/ProductDecisionCentre.tsx",
+      "sha256": "4840ccfae8baef224ea5e1194f2c4e33a36d9e28082f531f1b7569ed23df6e22"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/empireai-web_components_owner_work7_TechnicalEvidence.tsx",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/42dfd0aa9d69a74d237f17555e6a1aeb343c59b9/empireai-web/components/owner/work7/TechnicalEvidence.tsx",
+      "sha256": "e147cb2ee76427879db01b36f6002d7e93b36b38661d4f7d62defc0851a791b6"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/empireai-web_lib_brain_server-proxy.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/42dfd0aa9d69a74d237f17555e6a1aeb343c59b9/empireai-web/lib/brain/server-proxy.ts",
+      "sha256": "ea41e61fd5e7f215cc6b1e85732f220f93eb0e647dfa5c85ff5deceb03477ab5"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/empireai-web_lib_owner_advisor-handler.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/42dfd0aa9d69a74d237f17555e6a1aeb343c59b9/empireai-web/lib/owner/advisor-handler.ts",
+      "sha256": "04c623e3ac5f14503fb95af426e33be04efcc9dad55bba291a998c06c4cf754c"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/empireai-web_next.config.ts",
+      "url": "https://raw.githubusercontent.com/empireaios/EmpireAI/42dfd0aa9d69a74d237f17555e6a1aeb343c59b9/empireai-web/next.config.ts",
+      "sha256": "a74a037d51e9c7456be00c7089bac7326d385fa2ed48ce28bcd2fcded9b60f93"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/next16.2.9_packages_next_src_build_utils.ts",
+      "url": "https://raw.githubusercontent.com/vercel/next.js/v16.2.9/packages/next/src/build/utils.ts",
+      "sha256": "94ebf651a4d052001859f30804175e1b3907386e4620668f6dfb13c806ca7af8"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/next16.2.9_packages_next_src_server_base-server.ts",
+      "url": "https://raw.githubusercontent.com/vercel/next.js/v16.2.9/packages/next/src/server/base-server.ts",
+      "sha256": "5d8db572bbc6658e12931b6490b30fa96e8af96bc01a94a7809438771d856cd8"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/next16.2.9_packages_next_src_server_lib_format-hostname.ts",
+      "url": "https://raw.githubusercontent.com/vercel/next.js/v16.2.9/packages/next/src/server/lib/format-hostname.ts",
+      "sha256": "7bd839f54836293eee49d63679c981506d46fea854def446199baa06929b6781"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/next16.2.9_packages_next_src_server_lib_router-server.ts",
+      "url": "https://raw.githubusercontent.com/vercel/next.js/v16.2.9/packages/next/src/server/lib/router-server.ts",
+      "sha256": "58abb523e1056ead3b04fe39ef44465b5de191260f1cafc6862dc0fd6012a47b"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/next16.2.9_packages_next_src_server_lib_start-server.ts",
+      "url": "https://raw.githubusercontent.com/vercel/next.js/v16.2.9/packages/next/src/server/lib/start-server.ts",
+      "sha256": "8b1d40701acaf29ff65ed9c24357028a209b830c76ebfa5fe2c45c2f5927e2bc"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/next16.2.9_packages_next_src_server_next-server.ts",
+      "url": "https://raw.githubusercontent.com/vercel/next.js/v16.2.9/packages/next/src/server/next-server.ts",
+      "sha256": "6e3dae94c2f570b388b79726ab77530100e13e1ae9f000832a71594eb1272ae3"
+    },
+    {
+      "path": "/workspace/scratch/1af8b717f332/checks-reference/next16.2.9_packages_next_src_server_web_spec-extension_adapters_next-request.ts",
+      "url": "https://raw.githubusercontent.com/vercel/next.js/v16.2.9/packages/next/src/server/web/spec-extension/adapters/next-request.ts",
+      "sha256": "6bb72e8bf4f389629a02cc569042e807ee9ee2c69ac0dbae2622eda2e21cd7b0"
+    }
+  ],
+  "nextOriginChain": [
+    {
+      "source": "build/utils.ts",
+      "lines": "1386-1412",
+      "fact": "Standalone template reads HOSTNAME and passes it to startServer."
+    },
+    {
+      "source": "server/lib/start-server.ts",
+      "lines": "480-491 and160-165",
+      "fact": "startServer passes hostname to getRequestHandlers and initialize."
+    },
+    {
+      "source": "server/lib/router-server.ts",
+      "lines": "737-741",
+      "fact": "renderServerOpts passes opts.hostname."
+    },
+    {
+      "source": "server/base-server.ts",
+      "lines": "487-492",
+      "fact": "hostname becomes fetchHostname through formatHostname."
+    },
+    {
+      "source": "server/lib/format-hostname.ts",
+      "lines": "9-10",
+      "fact": "Only IPv6 values wrapped; localhost and0.0.0.0 unchanged."
+    },
+    {
+      "source": "server/next-server.ts",
+      "lines": "1958-1964",
+      "fact": "Configured fetchHostname+port branch has priority over trustHostHeader fallback."
+    },
+    {
+      "source": "server/web/spec-extension/adapters/next-request.ts",
+      "lines": "93-103",
+      "fact": "Relative request URL resolved against initURL."
+    },
+    {
+      "source": "empireai-web/lib/owner/advisor-handler.ts",
+      "lines": "6",
+      "fact": "POST Origin must equal new URL(request.url).origin."
+    }
+  ],
+  "nextConfig": "Pinned frontend config has no trustHostHeader option. Independently, configured fetchHostname+port branch precedes that fallback, so enabling trustHostHeader would not override explicit hostname in this source path.",
+  "targetedValidation": {
+    "newTestsPassed": 7,
+    "scope": "changed origins, safe diagnostics and nonempty-note disabled-DEFER predicate only",
+    "checksSyntax": "PASS",
+    "runnerBashSyntax": "PASS",
+    "acceptedTestsRepeated": false,
+    "hostedRunDispatched": false
+  }
+}

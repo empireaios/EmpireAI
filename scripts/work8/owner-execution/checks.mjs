@@ -3,6 +3,7 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 import {assertReadiness, assertRecord, assertExecutive, digest, requireCheck} from './check-contract.mjs';
 import {examineWrongOwner} from './wrong-owner-check.mjs';
+import {operationFor, summarizeResponse, summarizeFailure} from './safe-diagnostics.mjs';
 
 const phase = process.argv[2];
 requireCheck(['initial', 'after-restart'].includes(phase), 'INVALID_PHASE');
@@ -23,6 +24,11 @@ const receipt = {classification:'SYNTHETIC_EXACT_PACKAGE_TECHNICAL_EXAMINATION',
 const save = (name, data) => fs.writeFileSync(path.join(output, name), JSON.stringify(data, null, 2) + '\n', {mode:0o600});
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 const apiPages = new WeakMap();
+const responseDiagnostics = [];
+const recordResponse = (operation, status, body, jsonParsed=true) => {
+  responseDiagnostics.push(summarizeResponse(operation, status, body, jsonParsed));
+  if (responseDiagnostics.length > 24) responseDiagnostics.shift();
+};
 async function health(url) {
   const response = await fetch(url, {signal:AbortSignal.timeout(7000), redirect:'error'});
   return {status:response.status, body:await response.json()};
@@ -50,9 +56,13 @@ async function jsonRequest(context, route, body, expectedStatus=200) {
   // HTTP client or weaken the accepted application's cookie attributes.
   const response = await page.evaluate(async ({route, body}) => {
     const r = await fetch(route, {method:body === undefined ? 'GET' : 'POST', credentials:'include', redirect:'error', cache:'no-store', headers:body === undefined ? undefined : {'content-type':'application/json'}, body:body === undefined ? undefined : JSON.stringify(body), signal:AbortSignal.timeout(20000)});
-    return {status:r.status, body:await r.json()};
+    let parsed;
+    try { parsed = await r.json(); } catch { return {status:r.status, jsonParsed:false}; }
+    return {status:r.status, body:parsed, jsonParsed:true};
   }, {route, body});
+  recordResponse(operationFor(route, body), response.status, response.body, response.jsonParsed);
   requireCheck(response.status === expectedStatus, 'HTTP_STATUS_MISMATCH');
+  requireCheck(response.jsonParsed, 'JSON_RESPONSE_REQUIRED');
   return response.body;
 }
 async function readRecord(context) {
@@ -77,11 +87,13 @@ async function verifyScreens(context, command) {
     let card = await openCard(page);
     await card.getByText('Record identity and history', {exact:true}).click();
     requireCheck(/version 1\b/.test(await card.innerText()), 'UI_VERSION_MISMATCH');
+    await card.getByLabel('Decision reason', {exact:true}).fill('Synthetic readback only; do not submit a second decision.');
     requireCheck(await card.getByRole('button', {name:'Defer decision', exact:true}).isDisabled(), 'UI_DEFER_NOT_DISABLED');
     await page.reload({waitUntil:'domcontentloaded'});
     card = await openCard(page);
     await card.getByText('Record identity and history', {exact:true}).click();
     requireCheck(/version 1\b/.test(await card.innerText()), 'UI_RELOAD_VERSION_MISMATCH');
+    await card.getByLabel('Decision reason', {exact:true}).fill('Synthetic readback only; do not submit a second decision.');
     requireCheck(await card.getByRole('button', {name:'Defer decision', exact:true}).isDisabled(), 'UI_RELOAD_DEFER_NOT_DISABLED');
     const evidenceLabel = 'Sources, confidence, alternatives and measured outcome';
     await card.getByRole('button', {name:evidenceLabel, exact:true}).click();
@@ -123,10 +135,13 @@ try {
   receipt.checks.authenticatedFrontendBackend = {status:'PASS', anonymousStatus:401, httpOnlyCookie:true, secureCookie:true, freshLogin:true};
   let command;
   if (phase === 'initial') {
-    stage = 'synthetic-fixture';
+    stage = 'synthetic-fixture-write';
     const seeded = await jsonRequest(context, '/api/owner/advisor/memory', {action:'synthetic_experience', experience:{id:target, scope:{domain:'executive', entities:[]}, belief:'An isolated package must preserve a deferred owner decision.', decision:title, rationale:'Synthetic fixture verifies native UI decision persistence only. No genuine product, CEO assessment, finance result or Assurance certification.', evidence:[], expectation:{description:'One durable DEFER and no execution', metrics:[], assumptions:['Synthetic non-production examination']}, confidence:1}});
+    stage = 'synthetic-fixture-receipt';
     requireCheck(seeded.result?.id === target && seeded.result.created === true && seeded.grantsAuthority === false, 'NEW_FIXTURE_REQUIRED');
+    stage = 'synthetic-fixture-read';
     const before = await readRecord(context);
+    stage = 'synthetic-fixture-version';
     requireCheck(before?.version === 0 && before.events?.length === 0, 'FRESH_ZERO_VERSION_REQUIRED');
     stage = 'native-defer';
     const page = await context.newPage();
@@ -139,8 +154,12 @@ try {
     command = (await posted).postDataJSON();
     requireCheck(command.action === 'owner_decision' && command.target === target && command.expectedVersion === 0 && command.decision === 'DEFER' && command.note === note && /^work7-decision-/.test(command.id), 'NATIVE_COMMAND_MISMATCH');
     const response = await responded;
+    let nativeResult;
+    let nativeJsonParsed = true;
+    try { nativeResult = await response.json(); } catch { nativeJsonParsed = false; }
+    recordResponse('NATIVE_DEFER_WRITE', response.status(), nativeResult, nativeJsonParsed);
     requireCheck(response.status() === 200, 'NATIVE_DEFER_HTTP');
-    const nativeResult = await response.json();
+    requireCheck(nativeJsonParsed, 'JSON_RESPONSE_REQUIRED');
     requireCheck(nativeResult.result?.id === command.id && nativeResult.result.created === true && nativeResult.grantsAuthority === false, 'NATIVE_DURABLE_RECEIPT');
     const first = assertRecord(await readRecord(context), target, command);
     assertExecutive(await jsonRequest(context, '/api/owner/advisor/executive'), target, command);
@@ -170,11 +189,13 @@ try {
   stage = 'desktop-mobile';
   receipt.checks.desktopMobile = await verifyScreens(context, command);
   receipt.status = 'PASS';
-} catch {
+} catch (error) {
   receipt.failureStage = stage;
+  receipt.failure = summarizeFailure(error);
   process.exitCode = 1;
 } finally {
   if (browser) await browser.close().catch(() => {});
+  receipt.responseDiagnostics = responseDiagnostics;
   save(`${phase}-checks.json`, receipt);
   console.log(JSON.stringify({phase, status:receipt.status, failureStage:receipt.failureStage || null}));
 }

@@ -161,7 +161,7 @@ docker run -d --pull never --name "$backend" --label "work8.owner-examination=tr
   --env-file "$private/backend.env" --mount "type=bind,src=$private/data,dst=/data" "$image" >/dev/null
 docker run -d --pull never --name "$web" --label "work8.owner-examination=true" --label "work8.owner-run=$label" \
   --network "$network" --network-alias owner-frontend --memory 1g --cpus 1 \
-  --env NODE_ENV=production --env PORT=43117 --env HOSTNAME=0.0.0.0 \
+  --env NODE_ENV=production --env PORT=43117 --env HOSTNAME=localhost \
   --env BRAIN_API_URL=http://owner-backend:43118 --env NEXT_TELEMETRY_DISABLED=1 \
   --mount "type=bind,src=$frontend,dst=/frontend,readonly" \
   --tmpfs /frontend/.next/cache:rw,noexec,nosuid,size=128m \
