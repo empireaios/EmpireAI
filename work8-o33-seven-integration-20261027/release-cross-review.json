@@ -1,0 +1,37 @@
+{
+  "reviewer": "release_review",
+  "tree": "bf8de7a3b224c683645317f4717f42b74fadd06d",
+  "parent": "c48ddae2165632cf279ea145bacc7e2b74945af3",
+  "scope": "INDEPENDENT_LOCK_CONTROLLER_CROSS_REVIEW; Redis author review explicitly excluded",
+  "decision": "NO_ADDITIONAL_BLOCKER_FOUND_IN_BOUNDED_LOCK_CONTROLLER_REVIEW",
+  "findings": [
+    "Actual WORK8_REAL_GRAPH capture selects fixed admitted broker before legacy fork; denied scope cannot fall through to fork",
+    "Both separate-process holders admitted before primary/readiness; exact seven-member census and source/generation/process identity required",
+    "Broker identity/capture/request/deadline checks and unique client request set; fixed scope sequence missions then domains then reverse release",
+    "Final membership receipt follows both HELD acknowledgements; root copies under held ACK deadline; no success before release protocol",
+    "Controller member exit/disconnect during capture fails cohort; holder loss outside capture fails closed",
+    "Shutdown ordering checked: MembershipController exit handler removes member from live before emitting memberExit and before later primary exit callback; prior concern about awaiting already-dead primary is resolved by handler registration order",
+    "Capture29-second, held-copy5-second, shared restoration180-second and shutdown20-second limits remain unchanged"
+  ],
+  "limitations": [
+    "No hosted execution or Node22 build performed in this review",
+    "Cannot certify complete O33 from source review",
+    "Redis code authored by reviewer requires other independent review"
+  ],
+  "priorRedisLocalTests": {
+    "runtime": "Node24",
+    "tests": 20,
+    "pass": 19,
+    "fail": 0,
+    "skip": 1,
+    "skipReason": "Host chown UID65534 unsupported EINVAL; runtime-owner proof hosted-only",
+    "notProven": [
+      "Actual private network and namespace",
+      "Real Redis atomic expiry/empty target gates"
+    ]
+  },
+  "ownerConsole": "Verified run40424964819 compilation and offline frontend standalone package unchanged. No repeated build. Backend runtime package/public-env/protectedcopy/DEFER/rollback/release gates remain.",
+  "newAcceptedRows": [],
+  "ciRuns": 0,
+  "productionActions": 0
+}

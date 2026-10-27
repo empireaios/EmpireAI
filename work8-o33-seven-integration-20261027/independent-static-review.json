@@ -1,0 +1,105 @@
+{
+  "schema": "work8-seven-participant-independent-static-review-v1",
+  "reviewer": "/root/o33_acceptance",
+  "baseCommit": "c48ddae2165632cf279ea145bacc7e2b74945af3",
+  "reviewedTree": "bf8de7a3b224c683645317f4717f42b74fadd06d",
+  "changedPaths": [
+    {
+      "path": "backend/src/runtime/native-store-capture-lock.cjs",
+      "overlayMatch": true
+    },
+    {
+      "path": "backend/src/runtime/native-store-capture.ts",
+      "overlayMatch": true
+    },
+    {
+      "path": "backend/src/runtime/work8-isolated-redis-capability.test.mjs",
+      "overlayMatch": true
+    },
+    {
+      "path": "backend/src/runtime/work8-isolated-redis-capability.ts",
+      "overlayMatch": true
+    },
+    {
+      "path": "backend/src/runtime/work8-primary-capture.ts",
+      "overlayMatch": true
+    },
+    {
+      "path": "backend/src/runtime/work8-recovery-capture.ts",
+      "overlayMatch": true
+    },
+    {
+      "path": "deployment/runtime-capture-lock-holder.mjs",
+      "overlayMatch": true
+    },
+    {
+      "path": "deployment/runtime-generation.cjs",
+      "overlayMatch": true
+    },
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "overlayMatch": true
+    },
+    {
+      "path": "deployment/runtime-membership-receipt.cjs",
+      "overlayMatch": true
+    },
+    {
+      "path": "deployment/runtime-native-lock-broker.cjs",
+      "overlayMatch": true
+    },
+    {
+      "path": "deployment/runtime-native-lock-client.cjs",
+      "overlayMatch": true
+    },
+    {
+      "path": "deployment/runtime-writer-controller.cjs",
+      "overlayMatch": true
+    },
+    {
+      "path": "scripts/work8/o33-application-coordinator.mjs",
+      "overlayMatch": true
+    },
+    {
+      "path": "scripts/work8/seven-lock-boundary.test.cjs",
+      "overlayMatch": true
+    },
+    {
+      "path": "scripts/work8/seven-lock-broker.test.cjs",
+      "overlayMatch": true
+    }
+  ],
+  "verdict": "STATIC_REVIEW_PASS_HOSTED_PROOF_PENDING",
+  "criteria": {
+    "admission": "Two fixed pre-admitted idle holder processes, exact seven-role census and generation roles, no runtime fork exemption, no Redis credentials for holders.",
+    "ordering": "Primary drained context precedes local drains; mission then domain lock acknowledgements finalize v2 receipt in ALS; inventory refuses intermediate context.",
+    "receiptCompatibility": "Historical v1 requires five roles; v2 requires seven including HELD holders.",
+    "failure": "Stale IDs/nonces/generation/capture/order/deadline/request reuse refused. Controller invalidates capture on holder loss, also stops unexpected holder loss outside capture. Client uncertain state kills brain before unwinding drains.",
+    "shutdown": "Idle holders terminated after primary drain with existing20second containment deadline; active holders refuse graceful success.",
+    "captureLifetime": "Original controller29second and primary30second fence, original five-second operator ACK, source and shared restoration deadlines retained.",
+    "redis": "Default loopback restriction retained; private root-owned single-use proof required for target-redis, bound source/digest/generations/runIDs/network, prewrite Lua identity/expiry/empty-target checks retained.",
+    "production": "No production deployment or authority activation; preserved locked-runtime/auth readiness and process-isolation code."
+  },
+  "validation": {
+    "realSeparateProcessSQLiteLocks": "2/2 PASS local Node24; test authored by reviewer",
+    "privateTransportStateTests": "Initial12/12 PASS local Node24; parent added request-reuse case13/13 PASS recorded broker-tests.tap",
+    "redisTests": "Author reports19PASS1SKIP local Node24; independently inspected actual filesystem verifier/test structure; UID65534 ownership test skipped due local chown EINVAL",
+    "typescript": "Syntax stripping only, not compiler/type-check acceptance"
+  },
+  "mandatoryHostedProof": [
+    "PinnedNode22 TypeScript/backend compilation",
+    "Actual seven participant admission and native containment",
+    "Full all-writer capture/seal/ACK/release with stable final receipt",
+    "Proof-bound Redis consume and atomic restoration in real isolated topology",
+    "Fresh target once-only continuation, restart/session/authority safeguards and all original whole-row oracles"
+  ],
+  "newWholeRowPass": false,
+  "accepted": 45,
+  "outstanding": 19,
+  "actions": {
+    "publication": false,
+    "ci": false,
+    "production": false
+  },
+  "legacyFixtureScope": "deployment/runtime-writer-graph.hosted.test.cjs retains historical five-entry synthetic examination and is excluded from targeted workflow. It is not evidence of current seven-participant compatibility and was not rerun. No update required for this targeted actual-application proposal; any later invocation must reconcile its obsolete fixture assumptions."
+}

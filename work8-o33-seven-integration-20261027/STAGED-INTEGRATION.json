@@ -1,0 +1,214 @@
+{
+  "schema": "work8-seven-participant-staged-v1",
+  "baseline": {
+    "accepted": 45,
+    "outstanding": 19,
+    "O33": "PENDING"
+  },
+  "source": {
+    "commit": "7181ac2a01bb614bf61bd18093518e07e5df6adc",
+    "tree": "bf8de7a3b224c683645317f4717f42b74fadd06d",
+    "parent": "c48ddae2165632cf279ea145bacc7e2b74945af3"
+  },
+  "evidenceParent": "4aa1cd5c3e8ebb4e9bb9b2d7bee24a3f434a8073",
+  "tests": {
+    "node": "24.22.1",
+    "separateProcessLocks": {
+      "pass": 2
+    },
+    "broker": {
+      "pass": 13
+    },
+    "redisCapability": {
+      "pass": 19,
+      "skip": 1,
+      "reason": "Local UID65534 chown EINVAL"
+    },
+    "totalPass": 34,
+    "totalSkip": 1,
+    "typescriptSyntax": "PASS",
+    "typescriptCompilation": "NOT_AVAILABLE_LOCALLY"
+  },
+  "independentReview": {
+    "schema": "work8-seven-participant-independent-static-review-v1",
+    "reviewer": "/root/o33_acceptance",
+    "baseCommit": "c48ddae2165632cf279ea145bacc7e2b74945af3",
+    "reviewedTree": "bf8de7a3b224c683645317f4717f42b74fadd06d",
+    "changedPaths": [
+      {
+        "path": "backend/src/runtime/native-store-capture-lock.cjs",
+        "overlayMatch": true
+      },
+      {
+        "path": "backend/src/runtime/native-store-capture.ts",
+        "overlayMatch": true
+      },
+      {
+        "path": "backend/src/runtime/work8-isolated-redis-capability.test.mjs",
+        "overlayMatch": true
+      },
+      {
+        "path": "backend/src/runtime/work8-isolated-redis-capability.ts",
+        "overlayMatch": true
+      },
+      {
+        "path": "backend/src/runtime/work8-primary-capture.ts",
+        "overlayMatch": true
+      },
+      {
+        "path": "backend/src/runtime/work8-recovery-capture.ts",
+        "overlayMatch": true
+      },
+      {
+        "path": "deployment/runtime-capture-lock-holder.mjs",
+        "overlayMatch": true
+      },
+      {
+        "path": "deployment/runtime-generation.cjs",
+        "overlayMatch": true
+      },
+      {
+        "path": "deployment/runtime-membership-controller.cjs",
+        "overlayMatch": true
+      },
+      {
+        "path": "deployment/runtime-membership-receipt.cjs",
+        "overlayMatch": true
+      },
+      {
+        "path": "deployment/runtime-native-lock-broker.cjs",
+        "overlayMatch": true
+      },
+      {
+        "path": "deployment/runtime-native-lock-client.cjs",
+        "overlayMatch": true
+      },
+      {
+        "path": "deployment/runtime-writer-controller.cjs",
+        "overlayMatch": true
+      },
+      {
+        "path": "scripts/work8/o33-application-coordinator.mjs",
+        "overlayMatch": true
+      },
+      {
+        "path": "scripts/work8/seven-lock-boundary.test.cjs",
+        "overlayMatch": true
+      },
+      {
+        "path": "scripts/work8/seven-lock-broker.test.cjs",
+        "overlayMatch": true
+      }
+    ],
+    "verdict": "STATIC_REVIEW_PASS_HOSTED_PROOF_PENDING",
+    "criteria": {
+      "admission": "Two fixed pre-admitted idle holder processes, exact seven-role census and generation roles, no runtime fork exemption, no Redis credentials for holders.",
+      "ordering": "Primary drained context precedes local drains; mission then domain lock acknowledgements finalize v2 receipt in ALS; inventory refuses intermediate context.",
+      "receiptCompatibility": "Historical v1 requires five roles; v2 requires seven including HELD holders.",
+      "failure": "Stale IDs/nonces/generation/capture/order/deadline/request reuse refused. Controller invalidates capture on holder loss, also stops unexpected holder loss outside capture. Client uncertain state kills brain before unwinding drains.",
+      "shutdown": "Idle holders terminated after primary drain with existing20second containment deadline; active holders refuse graceful success.",
+      "captureLifetime": "Original controller29second and primary30second fence, original five-second operator ACK, source and shared restoration deadlines retained.",
+      "redis": "Default loopback restriction retained; private root-owned single-use proof required for target-redis, bound source/digest/generations/runIDs/network, prewrite Lua identity/expiry/empty-target checks retained.",
+      "production": "No production deployment or authority activation; preserved locked-runtime/auth readiness and process-isolation code."
+    },
+    "validation": {
+      "realSeparateProcessSQLiteLocks": "2/2 PASS local Node24; test authored by reviewer",
+      "privateTransportStateTests": "Initial12/12 PASS local Node24; parent added request-reuse case13/13 PASS recorded broker-tests.tap",
+      "redisTests": "Author reports19PASS1SKIP local Node24; independently inspected actual filesystem verifier/test structure; UID65534 ownership test skipped due local chown EINVAL",
+      "typescript": "Syntax stripping only, not compiler/type-check acceptance"
+    },
+    "mandatoryHostedProof": [
+      "PinnedNode22 TypeScript/backend compilation",
+      "Actual seven participant admission and native containment",
+      "Full all-writer capture/seal/ACK/release with stable final receipt",
+      "Proof-bound Redis consume and atomic restoration in real isolated topology",
+      "Fresh target once-only continuation, restart/session/authority safeguards and all original whole-row oracles"
+    ],
+    "newWholeRowPass": false,
+    "accepted": 45,
+    "outstanding": 19,
+    "actions": {
+      "publication": false,
+      "ci": false,
+      "production": false
+    },
+    "legacyFixtureScope": "deployment/runtime-writer-graph.hosted.test.cjs retains historical five-entry synthetic examination and is excluded from targeted workflow. It is not evidence of current seven-participant compatibility and was not rerun. No update required for this targeted actual-application proposal; any later invocation must reconcile its obsolete fixture assumptions."
+  },
+  "crossReview": {
+    "reviewer": "release_review",
+    "tree": "bf8de7a3b224c683645317f4717f42b74fadd06d",
+    "parent": "c48ddae2165632cf279ea145bacc7e2b74945af3",
+    "scope": "INDEPENDENT_LOCK_CONTROLLER_CROSS_REVIEW; Redis author review explicitly excluded",
+    "decision": "NO_ADDITIONAL_BLOCKER_FOUND_IN_BOUNDED_LOCK_CONTROLLER_REVIEW",
+    "findings": [
+      "Actual WORK8_REAL_GRAPH capture selects fixed admitted broker before legacy fork; denied scope cannot fall through to fork",
+      "Both separate-process holders admitted before primary/readiness; exact seven-member census and source/generation/process identity required",
+      "Broker identity/capture/request/deadline checks and unique client request set; fixed scope sequence missions then domains then reverse release",
+      "Final membership receipt follows both HELD acknowledgements; root copies under held ACK deadline; no success before release protocol",
+      "Controller member exit/disconnect during capture fails cohort; holder loss outside capture fails closed",
+      "Shutdown ordering checked: MembershipController exit handler removes member from live before emitting memberExit and before later primary exit callback; prior concern about awaiting already-dead primary is resolved by handler registration order",
+      "Capture29-second, held-copy5-second, shared restoration180-second and shutdown20-second limits remain unchanged"
+    ],
+    "limitations": [
+      "No hosted execution or Node22 build performed in this review",
+      "Cannot certify complete O33 from source review",
+      "Redis code authored by reviewer requires other independent review"
+    ],
+    "priorRedisLocalTests": {
+      "runtime": "Node24",
+      "tests": 20,
+      "pass": 19,
+      "fail": 0,
+      "skip": 1,
+      "skipReason": "Host chown UID65534 unsupported EINVAL; runtime-owner proof hosted-only",
+      "notProven": [
+        "Actual private network and namespace",
+        "Real Redis atomic expiry/empty target gates"
+      ]
+    },
+    "ownerConsole": "Verified run40424964819 compilation and offline frontend standalone package unchanged. No repeated build. Backend runtime package/public-env/protectedcopy/DEFER/rollback/release gates remain.",
+    "newAcceptedRows": [],
+    "ciRuns": 0,
+    "productionActions": 0
+  },
+  "hostedPlan": {
+    "trigger": "one automatic push examination after separate exact-tree owner approval",
+    "workflow": ".github/workflows/work8-writer-integration.yml",
+    "jobs": 1,
+    "timeoutMinutes": 20,
+    "attempt": 1,
+    "retry": false,
+    "acceptedWatchdogJobRepeated": false,
+    "ownerBuildJobRepeated": false,
+    "required": [
+      "Pinned Node22 compilation",
+      "Actual seven-role admission and containment",
+      "Original capture/seal/ACK/release",
+      "Proof-bound isolated Redis restore",
+      "Fresh target once-only work",
+      "Restart no replay",
+      "Original sessions and financial/control integrity",
+      "Independent whole-row original O33 criteria review"
+    ]
+  },
+  "safety": {
+    "PR113": "draft/unmerged",
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "productionActions": false,
+    "newPaidCommitments": false
+  },
+  "ownerConsole": {
+    "preparation": "Existing immutable package and rollback index retained unchanged",
+    "checksumsReexamined": false,
+    "remaining": [
+      "Production public-env binding",
+      "Complete executable backend packaging",
+      "Selectable platform identities",
+      "Exact-pair authenticated durable-DEFER",
+      "Protected consistent pre-release copy/readback",
+      "Separate production approval and connected-owner acceptance"
+    ]
+  }
+}

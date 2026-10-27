@@ -1,0 +1,21 @@
+✔ both process acknowledgements required before final receipt; reverse release only (4.312487ms)
+✔ stale nonce refuses before holder command (0.592743ms)
+✔ stale generation refuses before holder command (0.31204ms)
+✔ stale capture refuses before holder command (0.366348ms)
+✔ wrong source refuses before holder command (0.209557ms)
+✔ unknown scope refuses before holder command (0.211534ms)
+✔ unknown command refuses before holder command (0.166336ms)
+✔ drain, phase and original deadline are mandatory (0.493815ms)
+✔ domain-before-mission, concurrent request and duplicate holder ACK fail closed (0.771514ms)
+✔ out-of-order release and reacquisition after hold are refused (2.364363ms)
+✔ forged ACK identity, deadline and responder cannot finalize receipt (0.511602ms)
+✔ IPC disconnect during partial hold and send failure notify containment (0.332377ms)
+✔ client request identity cannot be reused across valid phases (0.688978ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.87342
