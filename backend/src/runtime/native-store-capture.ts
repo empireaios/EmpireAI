@@ -1,3 +1,6 @@
+import path from "node:path";
+import {createRequire} from "node:module";
+import {getActiveMembershipCapture,finalizeActiveMembershipCapture} from "./work8-primary-capture.js";
 import { fork } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
@@ -21,6 +24,17 @@ export async function withExclusiveWork8DomainCapture<T>(root: string,
 }
 
 async function withNativeCaptureLocks<T>(args: string[], captureAndVerify: () => T | Promise<T>): Promise<T> {
+  if(process.env.WORK8_REAL_GRAPH==='1') {
+    const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
+    const scope=args.length===1&&root&&args[0]===path.join(root,'commissioning/empireai-brain.db')?'missions':args.length===2&&args[0]===root&&args[1]==='work8-domains'?'domains':null;
+    if(!scope)throw Error('FIXED_NATIVE_LOCK_SCOPE_REQUIRED');
+    const context=getActiveMembershipCapture();
+    const {command}=createRequire(import.meta.url)('../../../deployment/runtime-native-lock-client.cjs');
+    const receipt=await command('acquire',scope,context);
+    if(scope==='domains')finalizeActiveMembershipCapture(receipt);
+    try { return await captureAndVerify(); }
+    finally { await command('release',scope,context); }
+  }
   const child = fork(holderPath, args, { execArgv: [], stdio: ["ignore", "ignore", "ignore", "ipc"] });
   let alive = true;
   let finished = false;

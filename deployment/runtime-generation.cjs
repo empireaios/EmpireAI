@@ -42,7 +42,7 @@ function event(root,value){
 function acquireGenerationLock({root,expectedGeneration,expectedSource,cutoverDigest,role,expectedDevice,expectedInode,volumeRoot,redisUrl,controlPrincipal=false}){
  generation(expectedGeneration);source(expectedSource);
  if(controlPrincipal&&(process.getuid()!==0||role!=='launcher'))reject();
- if(!['launcher','primary','brain-worker','assurance-worker','assurance-inspector','startup-readback'].includes(role))reject();
+ if(!['launcher','primary','brain-worker','assurance-worker','assurance-inspector','native-mission-lock-holder','work8-domain-lock-holder','startup-readback'].includes(role))reject();
  const {db,file,identity}=open(root,true,expectedDevice,expectedInode);let held=false;
  try{
   db.exec('BEGIN');
@@ -53,7 +53,7 @@ function acquireGenerationLock({root,expectedGeneration,expectedSource,cutoverDi
   canonical(volumeRoot);const volume=fs.statSync(volumeRoot);
   if(!r.storage||r.storage.root!==volumeRoot||String(r.storage.dev)!==String(volume.dev)||String(r.storage.ino)!==String(volume.ino)||!root.startsWith(volumeRoot+path.sep))reject();
   if(redisUrl){const url=new URL(redisUrl);if(!['redis:','rediss:'].includes(url.protocol)||url.hostname!==r.redis.host||Number(url.port||6379)!==r.redis.port||Number(url.pathname.slice(1)||0)!==r.redis.db)reject();}
-  else if(role!=='assurance-inspector')reject();
+  else if(role!=='assurance-inspector'&&!['native-mission-lock-holder','work8-domain-lock-holder'].includes(role))reject();
   if(!r.compatibleSources.includes(expectedSource)||row.sources!==JSON.stringify(r.compatibleSources))reject();
   const now=regular(file);if(now.dev!==identity.dev||now.ino!==identity.ino)reject();
   const stat=fs.readFileSync('/proc/self/stat','utf8');const startTicks=stat.slice(stat.lastIndexOf(')')+2).split(' ')[19];
@@ -111,7 +111,7 @@ function exportMembership({root,expectedDevice,expectedInode}){
  if(!authority||authority.version!==VERSION||!Number.isSafeInteger(authority.epoch)||authority.epoch<1||!/^[a-f0-9]{64}$/.test(authority.cutover_digest))reject();generation(authority.generation);
  const sources=JSON.parse(authority.sources);if(!Array.isArray(sources)||!sources.length)reject();sources.forEach(source);authority.sources=sources;
  const transitions=db.prepare('SELECT previous_generation,next_generation,cutover_digest,at FROM transitions').all().map(r=>{generation(r.previous_generation);generation(r.next_generation);if(!/^[a-f0-9]{64}$/.test(r.cutover_digest)||!Number.isFinite(Date.parse(r.at)))reject();return {...r,at:new Date(r.at).toISOString()};});
- const members=fs.readdirSync(path.join(root,'members')).filter(x=>/^[a-f0-9-]{36}\.(admitted|exiting)\.json$/.test(x)).sort().map(x=>{const m=JSON.parse(fs.readFileSync(path.join(root,'members',x),'utf8'));generation(m.member);generation(m.generation);source(m.source);if(!Number.isSafeInteger(m.pid)||!Number.isSafeInteger(m.epoch)||!/^\d+$/.test(m.startTicks)||!['launcher','primary','brain-worker','assurance-worker','assurance-inspector','startup-readback'].includes(m.role)||!['admitted','exiting'].includes(m.event)||x!==m.member+'.'+m.event+'.json'||!/^[a-f0-9]{64}$/.test(m.cutoverDigest)||!Number.isFinite(Date.parse(m.at)))reject();return {member:m.member,generation:m.generation,source:m.source,epoch:m.epoch,role:m.role,pid:m.pid,startTicks:m.startTicks,cutoverDigest:m.cutoverDigest,event:m.event,at:new Date(m.at).toISOString()};});
+ const members=fs.readdirSync(path.join(root,'members')).filter(x=>/^[a-f0-9-]{36}\.(admitted|exiting)\.json$/.test(x)).sort().map(x=>{const m=JSON.parse(fs.readFileSync(path.join(root,'members',x),'utf8'));generation(m.member);generation(m.generation);source(m.source);if(!Number.isSafeInteger(m.pid)||!Number.isSafeInteger(m.epoch)||!/^\d+$/.test(m.startTicks)||!['launcher','primary','brain-worker','assurance-worker','assurance-inspector','native-mission-lock-holder','work8-domain-lock-holder','startup-readback'].includes(m.role)||!['admitted','exiting'].includes(m.event)||x!==m.member+'.'+m.event+'.json'||!/^[a-f0-9]{64}$/.test(m.cutoverDigest)||!Number.isFinite(Date.parse(m.at)))reject();return {member:m.member,generation:m.generation,source:m.source,epoch:m.epoch,role:m.role,pid:m.pid,startTicks:m.startTicks,cutoverDigest:m.cutoverDigest,event:m.event,at:new Date(m.at).toISOString()};});
  return {authority,members,transitions,completeLiveState:false,bootAllowed:false,scope:'DECLARED_SHARED_VOLUME_COHORT_ONLY',receiptCompleteness:'UNPROVEN_RUNTIME_WRITABLE_MEMBER_DIRECTORY',currentLiveness:'UNKNOWN_FROM_RECEIPTS',captureHeld:'NOT_ESTABLISHED',externalRedisExclusion:'OPERATING_RECEIPT_REQUIRES_INDEPENDENT_VERIFICATION'};
  }finally{db.close();}
 }

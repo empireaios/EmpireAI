@@ -1,3 +1,4 @@
+import {consumeIsolatedRedisCapability} from './work8-isolated-redis-capability.js';
 import {getActiveMembershipCapture} from './work8-primary-capture.js';
 import {createRequire} from 'node:module';
 import type {Redis} from 'ioredis';
@@ -48,7 +49,7 @@ export async function captureRedisInventory(queue:TaskQueue) {
 export async function captureWork8RecoveryInventory(request:Work8RecoveryRequest,paths:{root:string;primaryPath:string;shadowPath:string;visualMemorySnapshot?:unknown;sessionContinuitySnapshot?:unknown;executiveDecisionJournalSnapshot?:unknown},queue:TaskQueue):Promise<Work8RecoveryResult>{
  if(request.requireComplete!==false) throw new Error("FULL_RUNTIME_CAPTURE_UNPROVEN: Redis producers, watchdog, continuation and protected custody remain uncovered; only explicit scoped inspection is available");
  const controllerMembershipReceipt=getActiveMembershipCapture();
- if(process.env.WORK8_REAL_GRAPH==='1'&&!controllerMembershipReceipt)throw new Error('CONTROLLER_CAPTURE_RECEIPT_REQUIRED');
+ if(process.env.WORK8_REAL_GRAPH==='1'&&controllerMembershipReceipt?.schema!=='work8-controller-capture-v2')throw new Error('CONTROLLER_CAPTURE_RECEIPT_REQUIRED');
  return (require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).captureRuntimeRecoverySet({...request,...paths,controllerMembershipReceipt,captureId:randomUUID(),captureRepositoryLifecycle:request.captureRepositoryLifecycle===true,captureObserverWatchdog:process.env.WORK8_SUPERVISED_OBSERVERS==='1',
   authorityFile:path.join(resolveShadowCeoAuthorityDir(),'authority-store.json'),
   requestOwnersFile:path.join(resolveShadowCeoDataRoot(),'shadow-ceo-request-owners.json'),
@@ -77,10 +78,11 @@ async function redisIdentity(client:Redis){
  * Source shutdown/quarantine is an operator precondition, not established here.
  * This API cannot authorize operational restoration or global writer exclusion.
  */
-export async function restoreWork8RedisInspection(request:{directory:string;digest:string;mode?:'inspection-only';expectedCaptureOwner:string;expectedSource?:{runId:string;db:number};expectedTarget?:{runId:string;db:number}},target:Redis){
+export async function restoreWork8RedisInspection(request:{directory:string;digest:string;mode?:'inspection-only';expectedCaptureOwner:string;expectedSource?:{runId:string;db:number};expectedTarget?:{runId:string;db:number};isolatedEndpointCapability?:string},target:Redis){
  if(request.mode!=='inspection-only')throw new Error('INSPECTION_ONLY_EXPLICIT_MODE_REQUIRED');
- if(!['127.0.0.1','::1'].includes(target.options.host??'')||target.options.path)throw new Error('ISOLATED_LOOPBACK_TARGET_REQUIRED');
- const manifest=(require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).verifyRuntimeRecoverySet(request) as {redisDigest:string;redisCapturedAt?:number;redisIdentity?:{runId:string;db:number;ownerKey:string;owner:string;metaKey:string}};
+ const remote=!['127.0.0.1','::1'].includes(target.options.host??'');
+ if(target.options.path||(remote&&!request.isolatedEndpointCapability))throw new Error('ISOLATED_LOOPBACK_TARGET_REQUIRED');
+ const manifest=(require('../../../deployment/work8-recovery-set.cjs') as RecoveryAdapter).verifyRuntimeRecoverySet(request) as {sourceCommit:string;redisDigest:string;redisCapturedAt?:number;redisIdentity?:{runId:string;db:number;ownerKey:string;owner:string;metaKey:string}};
  const source=manifest.redisIdentity;
  if(!Number.isSafeInteger(manifest.redisCapturedAt)||manifest.redisCapturedAt!<=0||manifest.redisCapturedAt!>Date.now())throw new Error('REDIS_CAPTURE_TIME_REQUIRED');
  if(!source||!/^[a-f0-9]{40}$/.test(source.runId)||!Number.isSafeInteger(source.db)||!source.ownerKey||!source.metaKey||!source.owner)throw new Error('CAPTURE_REDIS_IDENTITY_REQUIRED');
@@ -103,6 +105,9 @@ export async function restoreWork8RedisInspection(request:{directory:string;dige
  // Lua is atomic against competing clients. Errors do not roll back Redis writes:
  // keep a persistent admission owner BEFORE any subsequent row can fail.
  const script=`
+ local expiry=tonumber(table.remove(ARGV,1))
+ local clock0=redis.call('TIME'); local now0=tonumber(clock0[1])*1000+math.floor(tonumber(clock0[2])/1000)
+ if expiry>0 and now0>=expiry then return redis.error_reply('ISOLATED_CAPABILITY_EXPIRED') end
  local runId=string.match(redis.call('INFO','server'),'run_id:([a-f0-9]+)')
  if runId ~= ARGV[1] then return redis.error_reply('TARGET_REDIS_IDENTITY_CHANGED') end
  redis.call('SELECT',tonumber(ARGV[2]))
@@ -125,7 +130,14 @@ export async function restoreWork8RedisInspection(request:{directory:string;dige
  return 1`;
  const args:Array<string|number|Buffer>=[observed.runId,observed.db,manifest.redisCapturedAt!,inspectionOwner,Buffer.from(owner.dump,'base64'),source.owner,Buffer.from(meta.dump,'base64')];
  for(const row of rows)if(row!==owner&&row!==meta)args.push(Buffer.from(row.key,'base64'),row.ttl===-1?0:manifest.redisCapturedAt!+row.ttl,Buffer.from(row.dump,'base64'));
- await target.eval(script,2,source.ownerKey,source.metaKey,...args);
+ let capabilityExpiry=0;
+ if(remote){
+  if(await target.dbsize()!==0)throw new Error('INSPECTION_TARGET_NOT_EMPTY');
+  const capability=consumeIsolatedRedisCapability(request.isolatedEndpointCapability!,{source:manifest.sourceCommit,captureDigest:request.digest,sourceRunId:source.runId,targetRunId:observed.runId,host:target.options.host!,port:target.options.port??6379,db:observed.db});
+  capabilityExpiry=capability.expiresAt;
+  if(Date.now()>=capability.expiresAt)throw new Error('ISOLATED_CAPABILITY_EXPIRED');
+ }
+ await target.eval(script,2,source.ownerKey,source.metaKey,capabilityExpiry,...args);
  return {mode:'inspection-only' as const,digest:request.digest,source, target:observed,owner:inspectionOwner,bootAllowed:false as const,noExecutionAuthority:true as const};
 }
 

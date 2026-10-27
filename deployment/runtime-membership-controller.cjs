@@ -18,7 +18,7 @@ function protectedPath(file,operatorUid){
  for(;;){const s=fs.lstatSync(current);if(s.uid!==operatorUid||(s.mode&0o022)!==0)fail('OPERATOR_PATH_NOT_PROTECTED');const parent=path.dirname(current);if(parent===current)break;current=parent;}
 }
 const UUID=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
-const rolesAllowed=['primary','brain-worker','assurance-worker','assurance-inspector','startup-readback','containment-guard'];
+const rolesAllowed=['primary','brain-worker','assurance-worker','assurance-inspector','native-mission-lock-holder','work8-domain-lock-holder','startup-readback','containment-guard'];
 function exact(value,keys){if(!value||typeof value!=='object'||Array.isArray(value)||JSON.stringify(Object.keys(value).sort())!==JSON.stringify([...keys].sort()))fail('JOURNAL_SCHEMA_REFUSED');}
 function record(value){
  exact(value,['id','role','pid','startTicks','boot','pidNamespace','uid','gid','source','generation','epoch','cutoverDigest','entrySha256','scope','scopeDigest','storeRoot','storeDevice','storeInode']);
@@ -112,7 +112,7 @@ class MembershipController extends EventEmitter{
   if([...this.live.values()].some(m=>m.role===role))fail('ROLE_ALREADY_PRESENT');
   protectedPath(spec.entry,this.operatorUid);if(digest(fs.readFileSync(spec.entry))!==spec.entrySha256)fail('ENTRY_ARTIFACT_MISMATCH');
   const id=crypto.randomUUID(),nonce=crypto.randomUUID();
-  const env={...spec.environment,PATH:process.env.PATH,LANG:'C.UTF-8',...this.generationEnv,RAILWAY_VOLUME_MOUNT_PATH:this.volumeRoot,RAILWAY_GIT_COMMIT_SHA:this.source,REDIS_URL:role==='assurance-inspector'?undefined:this.redisUrl,WORK8_MEMBERSHIP_ID:id,WORK8_MEMBERSHIP_NONCE:nonce,WORK8_MEMBERSHIP_ROLE:role,WORK8_RUNTIME_STATE:spec.stateDirectory,WORK8_CONTROLLER_JOURNAL_PATH:this.journal.file,...this.writerIsolation?.environment};
+  const env={...spec.environment,PATH:process.env.PATH,LANG:'C.UTF-8',...this.generationEnv,RAILWAY_VOLUME_MOUNT_PATH:this.volumeRoot,RAILWAY_GIT_COMMIT_SHA:this.source,REDIS_URL:role==='assurance-inspector'||role.endsWith('-lock-holder')?undefined:this.redisUrl,WORK8_MEMBERSHIP_ID:id,WORK8_MEMBERSHIP_NONCE:nonce,WORK8_MEMBERSHIP_ROLE:role,WORK8_RUNTIME_STATE:spec.stateDirectory,WORK8_CONTROLLER_JOURNAL_PATH:this.journal.file,...this.writerIsolation?.environment};
   if(env.REDIS_URL===undefined)delete env.REDIS_URL;
   const child=spawn(process.execPath,[...(spec.nodeArgs||[]),'--import',this.bootstrap,spec.entry],{env,uid:this.uid,gid:this.gid,stdio:['ignore',spec.inheritOutput?'inherit':'pipe',spec.inheritOutput?'inherit':'pipe','ipc']});
   const member={id,nonce,role,child,record:null,ready:false,afterCommit};this.live.set(id,member);

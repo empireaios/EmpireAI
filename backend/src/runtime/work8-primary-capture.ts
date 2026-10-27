@@ -2,6 +2,11 @@ import { randomUUID } from 'node:crypto';
 import { AsyncLocalStorage } from 'node:async_hooks';
 const activeMembershipCapture = new AsyncLocalStorage<Record<string, unknown> | undefined>();
 export const getActiveMembershipCapture = () => activeMembershipCapture.getStore();
+export function finalizeActiveMembershipCapture(receipt: Record<string,unknown>) {
+ const context=activeMembershipCapture.getStore();
+ if(!context||context.schema!=='work8-controller-capture-context-v1'||receipt?.schema!=='work8-controller-capture-v2'||receipt.captureId!==context.captureId||receipt.source!==context.source||receipt.generation!==context.generation)throw Error('FINAL_LOCK_RECEIPT_REQUIRED');
+ for(const key of Object.keys(context))delete context[key];Object.assign(context,receipt);
+}
 import type { RuntimeProcessHandle } from './runtime-process-handle.js';
 
 const protocol = 'work8-primary-capture-v1';
@@ -68,7 +73,7 @@ export async function withPrimaryCaptureFence<T>(capture: () => Promise<T>): Pro
     if (!message(v) || v.id !== id) return;
     if (v.action === 'held' && stage === 'acquiring' && typeof v.generation === 'string') {
       generation = v.generation; membershipReceipt = v.membershipReceipt;
-      if (process.env.WORK8_REAL_GRAPH === '1' && (!membershipReceipt || membershipReceipt.schema !== 'work8-controller-capture-v1' || membershipReceipt.captureId !== id || membershipReceipt.source !== process.env.RAILWAY_GIT_COMMIT_SHA || membershipReceipt.generation !== process.env.EMPIRE_GENERATION)) { fail(); return; }
+      if (process.env.WORK8_REAL_GRAPH === '1' && (!membershipReceipt || membershipReceipt.schema !== 'work8-controller-capture-context-v1' || membershipReceipt.captureId !== id || membershipReceipt.source !== process.env.RAILWAY_GIT_COMMIT_SHA || membershipReceipt.generation !== process.env.EMPIRE_GENERATION)) { fail(); return; }
       stage = 'held'; resolveHeld();
     } else if (v.action === 'released' && stage === 'releasing' && v.generation === generation) resolveReleased();
     else fail();

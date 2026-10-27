@@ -10,6 +10,7 @@ const NATIVE_STORES = [
   { suffix: '.mission-execution.sqlite', appId: 0x454d4558, version: 1, maximum: 16 * 1024 * 1024,
     tables: 'execution_events,execution_jobs,execution_meta' },
 ];
+function acquireNativeCaptureLocks(args) {
 const held = [];
 const paths = [];
 function verifyPaths() {
@@ -23,16 +24,11 @@ function close() {
     try { if (db.isTransaction) db.exec('ROLLBACK'); } finally { db.close(); }
   }
 }
-function fail(error) {
-  try { close(); } catch { /* preserve first refusal */ }
-  if (process.connected) process.send({ kind: 'refused', reason: String(error?.message ?? error).slice(0, 180) });
-  else process.exit(1);
-}
 try {
-  const primary = process.argv[2];
+  const primary = args[0];
   if (!primary || !path.isAbsolute(primary) || path.resolve(primary) !== primary ||
       primary.startsWith('/proc/') || primary.startsWith('/dev/')) throw new Error('Canonical absolute primary path required');
-  const domainMode = process.argv[3] === 'work8-domains';
+  const domainMode = args[1] === 'work8-domains';
   const domains = ['commissioning/intelligence.sqlite', 'commissioning/pillow-institutional.sqlite',
     'commissioning/pillow-request-receipts.sqlite', 'commissioning/pillow-reasoning.sqlite',
     'commissioning/communications.sqlite', 'commissioning/openai-october-2026.sqlite',
@@ -73,10 +69,16 @@ try {
     paths.push({filename,dev:after.dev,ino:after.ino});
   }
   verifyPaths();
-  process.send({ kind: 'ready' });
-  process.on('message', message => {
-    if (message?.kind !== 'release') return;
-    try { verifyPaths(); close(); process.exit(0); } catch { try { close(); } finally { process.exit(1); } }
-  });
-  process.on('disconnect', () => { try { close(); } finally { process.exit(1); } });
-} catch (error) { fail(error); }
+  return {verifyPaths,close};
+} catch(error) { try { close(); } catch {} throw error; }
+}
+module.exports={acquireNativeCaptureLocks};
+if(require.main===module){
+let lease;
+try {
+ lease=acquireNativeCaptureLocks(process.argv.slice(2));
+ process.send({kind:"ready"});
+ process.on("message",message=>{if(message?.kind!=="release")return;try{lease.verifyPaths();lease.close();process.exit(0);}catch{process.exit(1);}});
+ process.on("disconnect",()=>{try{lease.close();}finally{process.exit(1);}});
+}catch(error){try{lease?.close();}catch{}if(process.connected)process.send({kind:"refused",reason:String(error?.message??error).slice(0,180)});else process.exit(1);}
+}

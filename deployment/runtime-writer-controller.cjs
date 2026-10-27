@@ -2,22 +2,24 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {MembershipController,processIdentity,digest}=require('./runtime-membership-controller.cjs');
 const {prepareWriterIsolation}=require('./runtime-writer-isolation.cjs');
+const {installNativeLockBroker}=require('./runtime-native-lock-broker.cjs');
 const {installBrainBroker}=require('./runtime-brain-broker.cjs');
 const {superviseAssurance}=require('./assurance-supervisor.cjs');
 const {initializeAuditFence,openAuditFence}=require('./runtime-operator-audit.cjs');
 const {configuration}=require('./locked-runtime.cjs');
 const {loadGrant,verifyGrantRedis,reserveGrant,issueGrant,installExaminationChannel}=require('./runtime-isolated-application.cjs');
 const {resolveRuntimeRevision}=require('./runtime-revision.cjs');
-const scopes={primary:['sessions','native-stores','runtime-journal','queue-runner'],'brain-worker':['sql-stores','redis-producer','visual-memory','queued-work'],'assurance-worker':['assurance-records','redis-producer'],'assurance-inspector':['assurance-records'],'startup-readback':['inference-readback']};
+const scopes={primary:['sessions','native-stores','runtime-journal','queue-runner'],'brain-worker':['sql-stores','redis-producer','visual-memory','queued-work'],'assurance-worker':['assurance-records','redis-producer'],'assurance-inspector':['assurance-records'],'native-mission-lock-holder':['native-mission-locks'],'work8-domain-lock-holder':['work8-domain-locks'],'startup-readback':['inference-readback']};
 const group=pid=>Number(fs.readFileSync('/proc/'+pid+'/stat','utf8').split(') ')[1].split(' ')[2]);
 function realRoles(cwd,env,source){
  const clean={...env,WORK8_REAL_GRAPH:'1',WORK8_SUPERVISED_OBSERVERS:'1',RAILWAY_GIT_COMMIT_SHA:source};
  for(const key of ['NODE_OPTIONS','NODE_PATH','LD_AUDIT','LD_PRELOAD','WORK8_MEMBERSHIP_ID','WORK8_MEMBERSHIP_NONCE','WORK8_MEMBERSHIP_ROLE'])delete clean[key];
  return Object.entries(scopes).map(([role,scope])=>{
-  const entry=role==='startup-readback'?path.join(__dirname,'runtime-startup-readback.mjs'):role.startsWith('assurance-')?path.join(cwd,'backend/src/assurance',role==='assurance-worker'?'permanent-worker.mjs':'permanent-inspector.mjs'):path.join(cwd,'backend/dist/index.js');
+  const entry=role.endsWith('-lock-holder')?path.join(__dirname,'runtime-capture-lock-holder.mjs'):role==='startup-readback'?path.join(__dirname,'runtime-startup-readback.mjs'):role.startsWith('assurance-')?path.join(cwd,'backend/src/assurance',role==='assurance-worker'?'permanent-worker.mjs':'permanent-inspector.mjs'):path.join(cwd,'backend/dist/index.js');
   let environment={...clean};
   if(role==='brain-worker')Object.assign(environment,{EMPIRE_ROLE:'brain-worker',EMPIRE_TIER0_ISOLATION:'false',PORT:String(Number(env.EMPIRE_BRAIN_WORKER_PORT??Number(env.PORT)+1)),HOST:'127.0.0.1'});
   if(role.startsWith('assurance-'))environment={TMPDIR:env.TMPDIR,ASSURANCE_RUNTIME_ORIGIN:env.ASSURANCE_RUNTIME_ORIGIN,WORK8_REAL_GRAPH:'1'};
+  if(role.endsWith('-lock-holder'))environment={TMPDIR:env.TMPDIR,WORK8_REAL_GRAPH:'1'};
   return {role,entry,inheritOutput:true,nodeArgs:['--max-old-space-size=1536'],entrySha256:digest(fs.readFileSync(entry)),stateDirectory:path.dirname(env.DATABASE_PATH),scope,environment};
  });
 }
@@ -51,24 +53,32 @@ async function main(){
  process.once('disconnect',()=>fail(Error('GUARD_DISCONNECTED')));
  const complete=()=>{
   const current=c.journal.read().members.filter(m=>m.state!=='TERMINATED');
-  const expected=['containment-guard','primary','brain-worker','assurance-worker','assurance-inspector'];
+  const expected=['containment-guard','primary','brain-worker','assurance-worker','assurance-inspector','native-mission-lock-holder','work8-domain-lock-holder'];
   if(current.length!==expected.length||expected.some(role=>current.filter(m=>m.role===role).length!==1)||current.some(m=>{const p=processIdentity(m.pid);return !p||p.startTicks!==m.startTicks||p.state==='Z'||group(m.pid)!==guard.pid||m.generation!==env.EMPIRE_GENERATION;})||fs.existsSync(journal+'.emergency'))throw Error('COMPLETE_REAL_CENSUS_REQUIRED');
   return current;
  };
  const beginCapture=(member,m)=>{
   if(capture||c.phase!=='OPEN')throw Error('CAPTURE_ALREADY_ACTIVE');const members=complete(),releaseAudit=openAuditFence(journal);
   if(fs.existsSync(journal+'.emergency')){releaseAudit();throw Error('EMERGENCY_CAPTURE_REFUSED');}
-  c.phase='CAPTURING';capture={id:m.id,member:member.id,releaseAudit};
+  c.phase='CAPTURING';capture={id:m.id,member:member.id,releaseAudit,deadline:Date.now()+29000,primaryDrained:false,lockStack:[],lockPhase:'acquiring'};
   const journalRevision=c.journal.change(null,'CAPTURE_FROZEN',{capture:m.id,members:members.map(x=>x.id)},null);
-  capture.receipt={schema:'work8-controller-capture-v1',source,generation:env.EMPIRE_GENERATION,journalRevision,captureId:m.id,members,guardMarkerAbsent:true,scope:'ACTUAL_DECLARED_GRAPH_ONLY',completeLiveState:false,bootAllowed:false};
+  capture.receipt={schema:'work8-controller-capture-context-v1',source,generation:env.EMPIRE_GENERATION,journalRevision,captureId:m.id,members,guardMarkerAbsent:true,scope:'ACTUAL_DECLARED_GRAPH_ONLY',completeLiveState:false,bootAllowed:false};
   capture.timer=setTimeout(()=>fail(Error('REAL_CAPTURE_DEADLINE')),29000);
  };
- const captureReceipt=(member,m)=>{if(stopping||!capture||capture.id!==m.id||capture.member!==member.id||c.journal.read().revision!==capture.receipt.journalRevision)throw Error('CAPTURE_IDENTITY_REFUSED');complete();return capture.receipt;};
+ const captureReceipt=(member,m)=>{if(stopping||!capture||capture.id!==m.id||capture.member!==member.id||capture.primaryDrained||c.journal.read().revision!==capture.receipt.journalRevision)throw Error('CAPTURE_IDENTITY_REFUSED');complete();capture.primaryDrained=true;return capture.receipt;};
+ installNativeLockBroker(c,{getCapture:()=>capture,fail,finalizeReceipt:()=>{
+  if(!capture||capture.lockPhase!=='held'||capture.lockStack.join(',')!=='missions,domains')throw Error('COMPLETE_LOCK_HOLD_REQUIRED');
+  const members=complete();for(const role of ['native-mission-lock-holder','work8-domain-lock-holder'])if(members.find(m=>m.role===role)?.state!=='HELD')throw Error('LOCK_HOLD_RECORD_REQUIRED');
+  capture.receipt={...capture.receipt,schema:'work8-controller-capture-v2',members,journalRevision:c.journal.read().revision};return capture.receipt;
+ }});
  const endCapture=(member,m)=>{
-  captureReceipt(member,m);clearTimeout(capture.timer);capture.releaseAudit();capture=null;c.phase='OPEN';
+  if(stopping||!capture||capture.id!==m.id||capture.member!==member.id||capture.lockPhase!=='released'||capture.lockStack.length)throw Error('LOCK_RELEASE_REQUIRED');complete();clearTimeout(capture.timer);capture.releaseAudit();capture=null;c.phase='OPEN';
  };
- c.on('memberExit',()=>{if(capture)fail(Error('CAPTURE_MEMBERSHIP_LOST'));});
+ c.on('memberExit',event=>{if(capture)fail(Error('CAPTURE_MEMBERSHIP_LOST'));else if(!stopping&&event.role.endsWith('-lock-holder'))fail(Error('LOCK_HOLDER_LOST'));});
  const startup=c.launch('startup-readback');await new Promise((resolve,reject)=>{startup.child.once('error',reject);startup.child.once('exit',(code,signal)=>code===0&&!signal?resolve():reject(Error('STARTUP_READBACK_FAILED')));});
+ for(const role of ['native-mission-lock-holder','work8-domain-lock-holder']){
+  const holder=c.launch(role);await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('LOCK_HOLDER_STARTUP_DEADLINE')),5000);const ready=m=>{if(m===holder){clearTimeout(timer);c.off('ready',ready);resolve();}};c.on('ready',ready);holder.child.once('exit',()=>{clearTimeout(timer);reject(Error('LOCK_HOLDER_STARTUP_EXIT'));});});
+ }
  const primary=c.launch('primary');installBrainBroker(c,primary,{beginCapture,endCapture,captureReceipt,fail});
  stopObservers=superviseAssurance({cwd,env,spawnImpl(_command,args){const role=args[0].endsWith('/permanent-worker.mjs')?'assurance-worker':args[0].endsWith('/permanent-inspector.mjs')?'assurance-inspector':null;if(!role)throw Error('OBSERVER_ROLE_REFUSED');return c.launch(role).child;},onCaptureFailure:()=>fail(Error('OBSERVER_CAPTURE_LOST')),onEvent:event=>{
   console.log(JSON.stringify(event));if(event.event==='assurance_restart_quarantined'){
@@ -80,7 +90,7 @@ async function main(){
  const shutdown=()=>{
   if(stopping)return;stopping=true;c.phase='STOPPING';
   const deadline=setTimeout(()=>{c.invalidate(Error('CONTROLLER_SHUTDOWN_DEADLINE'));process.exit(1);},20000);
-  primary.child.once('exit',async(code,signal)=>{const observers=[...c.live.values()];const exited=Promise.all(observers.map(m=>new Promise(resolve=>m.child.once('exit',resolve))));stopObservers();await exited;await c.stop();clearTimeout(deadline);if(code!==0||signal){process.exit(1);return;}process.send({type:'runtime_drained',generation:env.EMPIRE_GENERATION,activeRuntimeWriters:0},()=>process.exit(0));});
+  primary.child.once('exit',async(code,signal)=>{const observers=[...c.live.values()];const exited=Promise.all(observers.map(m=>new Promise(resolve=>m.child.once('exit',resolve))));stopObservers();for(const m of observers)if(m.role.endsWith('-lock-holder'))m.child.kill('SIGTERM');await exited;await c.stop();clearTimeout(deadline);if(code!==0||signal){process.exit(1);return;}process.send({type:'runtime_drained',generation:env.EMPIRE_GENERATION,activeRuntimeWriters:0},()=>process.exit(0));});
   if(!primary.child.kill('SIGTERM')){clearTimeout(deadline);process.exit(1);}
  };
  process.on('SIGTERM',shutdown);process.on('SIGINT',shutdown);
