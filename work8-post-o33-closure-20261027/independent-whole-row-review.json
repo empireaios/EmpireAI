@@ -1,0 +1,135 @@
+{
+  "schema": "work8-o33-independent-whole-row-review-v1",
+  "reviewer": "/root/o33_acceptance",
+  "decision": "PASS_COMPLETE_ORIGINAL_O33",
+  "requirement": "O33 \u2014 Concurrency races and replay",
+  "run": 40435244974,
+  "attempt": 1,
+  "artifact": 12703866650,
+  "artifactSHA256": "3594494924a0f7bf9b4823a07d44c3003ee37987f809c390fbf47b600d89da4d",
+  "source": "3b86fe119fdfc3b5463b9ae4c1be3c61924d899b",
+  "sourceTree": "f7eabb6e65ca176ffe41a423ee116c60803a0c3e",
+  "criterionAuthority": {
+    "file": "docs/work8/work8-acceptance-campaign-20261025z/Work8-Strategic-Closure-20261025z.json",
+    "evidenceCommit": "a7a6229ea901f089bdb54db4e0c6927bb755d7e3",
+    "originalRetainedCriterion": "Complete exclusion and coordinated capture/replay for every admitted writer/transport in declared runtime topology, including still-active prior instances. Preserve scoped reviewed lifecycle-marker and held-handoff corrections; neither establishes operational replay or full topology. Arbitrary privileged host attackers are not an added criterion.",
+    "olderTrackerConflictResolved": "Later strategic criterion explicitly excludes unconditional production cutover/custody gates for O33 and identifies actual declared topology, coordinated capture/replay and once-only continuation as remaining assertions. Older tracker custody/rollback campaign language is not an additional original O33 acceptance criterion."
+  },
+  "wholeRowChecklist": [
+    {
+      "criterion": "Complete actual admitted writer/transport census and exclusion including prior instances",
+      "decision": "PASS",
+      "evidence": [
+        "membership.json",
+        "source-startup-ipc-preflight.json",
+        "source-stale-generation-refusal.json",
+        "target-stale-generation-refusal.json"
+      ],
+      "reason": "Actual source, target and restart each have exactly seven unique admitted identities bound to source/generation: guard, primary, brain, assurance worker/inspector, two process-separated SQLite holders. Live generation transition refused; exact stale source/target generations denied before admission with unchanged canonical data, journal and Redis DUMP. Reuse accepted U/Y native isolation, descendant refusal, prior-live membership exclusion and group-containment evidence."
+    },
+    {
+      "criterion": "Coordinated capture of all declared application domains under stable holds and original deadlines",
+      "decision": "PASS",
+      "evidence": [
+        "sealed-capture/controller-membership.json",
+        "sealed-capture/runtime-recovery.json",
+        "source.log",
+        "o33-application-result.json"
+      ],
+      "reason": "Final v2 receipt has exact seven-member census, both native holders HELD, journalRevision14. Reviewed executable oracle verifies unchanged revision before and after independent sealed copy and original five-second ACK. Application/observer/queue/SQL.js/native/JSON/visual/session/journal drain paths remain nested through copy and ACK; no membership additions after freeze."
+    },
+    {
+      "criterion": "Complete source-bound capture integrity and lifecycle preservation",
+      "decision": "PASS",
+      "evidence": [
+        "sealed-capture"
+      ],
+      "reason": "Independently recomputed full manifest digest cb039ab961babd8d9b838152665546654c7a63d69487e9171253d0bfc5a30cfc; verified all13 checkpoint manifest/database hashes and sizes and performed read-only SQLite integrity_check on every checkpoint. Verified all3 JSON domain hashes, visual/session/executive journal/Redis/controller hashes and3 genuine lifecycle marker digests. No repair or reexecution."
+    },
+    {
+      "criterion": "Fresh target actual application replay and coupled pending work exactly once",
+      "decision": "PASS",
+      "evidence": [
+        "membership.json",
+        "pending-state.json",
+        "target-last-readiness.json",
+        "target.log"
+      ],
+      "reason": "Target has fresh volume, distinct Redis identity, explicit new isolated authority and actual compiled graph. Same bound job changes queued/attempts0/unreconciled to completed/attempts1/reconciled with single readonly_claimed, output+receipt and reconciliation events. Exact reviewed pending oracle enforced output and mission binding."
+    },
+    {
+      "criterion": "Restart without duplicate work, sessions retained, no authority/financial corruption",
+      "decision": "PASS",
+      "evidence": [
+        "pending-state.json",
+        "restart-last-readiness.json",
+        "control-domain-readback.json",
+        "o33-application-result.json"
+      ],
+      "reason": "Original executable oracle compares completed state before/after actual restart and1100ms observation within shared180second deadline; original bearer/cookie identity and Redis session bytes/TTL verified, forged401 and mission-runtime403. Financial/cost table hashes unchanged. Inert authority/owner state preserved, approvals empty, permittedActions empty, NOT_BORN and unauthorized commerce maintained."
+    },
+    {
+      "criterion": "Clean contained terminal state and preserved fail-closed controls",
+      "decision": "PASS",
+      "evidence": [
+        "source.log",
+        "target.log",
+        "restart.log",
+        "membership.json",
+        "container-inspect.json",
+        "terminal-verification.json"
+      ],
+      "reason": "All3 controlled drains return0, no live recorded member verified by original coordinator; runtime history entries TERMINATED. Last guard historical journal record can remain ADMITTED because controller terminates before guard, but actual liveness check and container exited0 prove terminal containment. Existing observer SIGKILL shutdown events are contained teardown, not uncontained survivors. Prior accepted corruption/refusal controls are reused, not rerun."
+    }
+  ],
+  "independentExamination": {
+    "notBasedOnGreenStatusAlone": true,
+    "readOnlyArtifactChecks": [
+      "exact source/tree",
+      "three exact seven-member censuses and unique IDs",
+      "three actual readiness and mandatory inventory observations",
+      "final held receipt",
+      "all captured hashes and13 SQLite integrity checks",
+      "pending before/after records",
+      "stale-generation refusal receipts",
+      "control-domain readback",
+      "termination history and exit logs",
+      "reviewed exact-source executable acceptance oracles"
+    ],
+    "testsOrCIReexecuted": false
+  },
+  "scopeInterpretation": {
+    "completeLiveStateFalse": "Generic recovery manifest intentionally does not authorize arbitrary production live-state completeness; complete declared isolated concurrency/capture/replay is established by integrated examination and independent review.",
+    "bootAllowedFalse": "Captured history is not boot authority. Actual target/restart are launched under fresh recipient-bound isolated examination authority; old approvals are not replayed.",
+    "genericRemainingText": "Legacy manifest strings about global Redis/executive/Amazon coverage and custody describe broader operational claims, not new criteria for the explicitly declared and fully examined isolated O33 graph.",
+    "notAcceptedByThisDecision": [
+      "A3/O39 protected operational custody",
+      "production cutover or rollback release",
+      "Owner Console connected-owner acceptance",
+      "all production historical/business coverage",
+      "commercial activation or Work9"
+    ]
+  },
+  "missingMandatoryO33Evidence": [],
+  "acceptanceChange": {
+    "newWholeRowPass": "O33",
+    "before": {
+      "accepted": 45,
+      "outstanding": 19
+    },
+    "after": {
+      "accepted": 46,
+      "outstanding": 18
+    },
+    "other45Accepted": "PRESERVED"
+  },
+  "safety": {
+    "PR113": "DRAFT_UNMERGED",
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "productionChanges": false,
+    "newCI": false,
+    "newPatches": false
+  }
+}

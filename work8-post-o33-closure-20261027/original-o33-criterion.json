@@ -1,0 +1,38 @@
+{
+  "id": "O33",
+  "status": "PENDING",
+  "originalRetainedCriterion": "Complete exclusion and coordinated capture/replay for every admitted writer/transport in declared runtime topology, including still-active prior instances. Preserve scoped reviewed lifecycle-marker and held-handoff corrections; neither establishes operational replay or full topology. Arbitrary privileged host attackers are not an added criterion.",
+  "criterionSource": "campaign-n/Work8-Whole-Row-Closure-Checkpoint-20261024n.md",
+  "acceptedReusableEvidence": [
+    "HH3/HH4 and thirteen-store/application-graph inspection/restoration within retained scopes",
+    "Original session, financial/history and admission controls within retained scopes",
+    "Index/watchdog readiness within original deadline and queued-work continuation18.792s",
+    "U controller journal11/11 within isolated cohort",
+    "Y run40175524098 actual control modules with synthetic entries: native isolation, admitted census, generation exclusion, journal/descendant refusal, clean drain and primary-death containment"
+  ],
+  "exactUnprovenAssertions": [
+    "Complete actual declared primary/worker/observer/session/journal/visual-memory/queue writer and transport census, including prior instances still able to write",
+    "Source-bound actual-application coordinated capture and replay with all writer holds/exclusion",
+    "Coupled pending-work continuation exactly once under that complete integrated graph"
+  ],
+  "existingEvidenceAloneCompletes": false,
+  "isolatedFeasibility": "YES for the complete concurrency/capture/replay contract of the declared actual application topology: use real compiled entries, all writer/transport classes and current/prior generations in a fresh isolated epoch. Neither production cutover nor custody is an automatic original O33 criterion. This would not certify production historical coverage or the other five operating/custody contracts. Current Y synthetic entries do not provide this proof.",
+  "nextActionClassification": "OWNER DECISION REQUIRED",
+  "authorityOrEvidenceNeeded": "The minimum actual-application integration has been implemented, independently reviewed and staged as source0329e389035e96599e439fff068bf11b3496ecd4/tree210751c83aef4737b6962f6d17b5e52335debfc7. Next required action is exact-tree source/evidence publication approval for one automatic Node22/Docker examination; no production cutover or custody prerequisite is added to O33.",
+  "wholeRowDecision": "NOT_ACCEPTED_INCOMPLETE_MANDATORY_EVIDENCE",
+  "scopeGuard": "Do not add protected custody as a universal O33 criterion. Assess concurrency/replay against its original declared runtime topology; custody is separately mandatory for A3/O39.",
+  "minimumEngineering": "Completed: private controller-reserved/recipient-bound capability, admitted actual-brain source initialization and coordinated held capture, operator-only sealed-copy/materialization coordinator, actual controller-admitted target/restart, reused pure pending/readiness oracles. Incompatible old orchestration is not invoked or weakened.",
+  "hostedExaminationClass": "OWNER DECISION REQUIRED",
+  "assignedImplementationLane": "o33_integration",
+  "engineeringStatus": "COMPLETE_REVIEWED_STAGED_HOSTED_UNVERIFIED",
+  "sourceCandidate": {
+    "commit": "0329e389035e96599e439fff068bf11b3496ecd4",
+    "tree": "210751c83aef4737b6962f6d17b5e52335debfc7",
+    "parent": "fe442e0c1a0d792173f8bc818ab1deecdb7d601a",
+    "branch": "work8/writer-integration-20261025v",
+    "verified": true,
+    "published": false,
+    "review": "O33-INDEPENDENT-SOURCE-REVIEW.json",
+    "changedPaths": 14
+  }
+}

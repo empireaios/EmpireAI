@@ -1,0 +1,28 @@
+{
+  "run": 40435244974,
+  "attempt": 1,
+  "conclusion": "success",
+  "job": 121962247559,
+  "artifact": 12703866650,
+  "sha256": "3594494924a0f7bf9b4823a07d44c3003ee37987f809c390fbf47b600d89da4d",
+  "bytes": 203872,
+  "zipEntries": 72,
+  "source": "3b86fe119fdfc3b5463b9ae4c1be3c61924d899b",
+  "tree": "f7eabb6e65ca176ffe41a423ee116c60803a0c3e",
+  "startedAt": "2026-10-27T01:53:49Z",
+  "finishedAt": "2026-10-27T01:57:26Z",
+  "automaticRuns": 1,
+  "dispatches": 0,
+  "reruns": 0,
+  "PR113": {
+    "draft": true,
+    "merged": false,
+    "head": "a12b4f4ec5ea8282addfcf0c5277d2ca36b67a2a"
+  },
+  "safety": {
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "productionActions": 0
+  }
+}

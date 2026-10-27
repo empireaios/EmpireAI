@@ -1,0 +1,15 @@
+{
+  "commit": "e83244a1d62239ca2927445a526ec0163584895e",
+  "tree": "da9c8a962ed09476617e30eb806aa151a0ca770e",
+  "parent": "3b86fe119fdfc3b5463b9ae4c1be3c61924d899b",
+  "publicationBranch": "work8/owner-packaging-20261027",
+  "paths": [
+    ".github/workflows/work8-owner-packaging.yml",
+    "empireai-web/vercel.json",
+    "scripts/work8/owner-package/OwnerBackend.Dockerfile",
+    "scripts/work8/owner-package/README.md",
+    "scripts/work8/owner-package/package-owner-backend.sh",
+    "vercel.json"
+  ],
+  "published": false
+}

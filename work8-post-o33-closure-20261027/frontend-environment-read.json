@@ -1,0 +1,32 @@
+{
+  "schema": "work8-owner-frontend-environment-read-v1",
+  "project": "prj_F4UZtqA8mIpIrRaIu2V6LOM664Kr",
+  "readOnly": true,
+  "decrypted": false,
+  "productionVariables": [
+    {
+      "key": "BRAIN_API_URL",
+      "id": "A8qxWghm7aMoWNjv",
+      "type": "sensitive",
+      "target": [
+        "production"
+      ],
+      "updatedAt": 1790856970673
+    },
+    {
+      "key": "VITE_API_BASE_URL",
+      "id": "nd6HwfU139efGp2u",
+      "type": "sensitive",
+      "target": [
+        "preview",
+        "production"
+      ],
+      "updatedAt": 1782878868213
+    }
+  ],
+  "hiddenProductionEnvCount": 0,
+  "publicVariablesConfigured": [],
+  "compiledConfigEnv": {},
+  "source": "42dfd0aa9d69a74d237f17555e6a1aeb343c59b9",
+  "scope": "Explicit public environment absence verified; automatic Vercel system variables and exact platform output not yet attested. BRAIN_API_URL runtime value not decrypted or verified. No deployment."
+}

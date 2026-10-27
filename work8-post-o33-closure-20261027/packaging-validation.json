@@ -1,0 +1,39 @@
+{
+  "scope": "LOCAL_OWNER_PACKAGING_STATIC_VALIDATION_ONLY",
+  "candidate": "owner-package-stage",
+  "checks": [
+    {
+      "command": "python with yaml.safe_load(work8-owner-packaging.yml) and explicit assertions",
+      "result": "PASS",
+      "assertions": [
+        "sole push branch work8/owner-packaging-20261027",
+        "contents read and actions read only",
+        "concurrency cancel-in-progress false",
+        "job github.run_attempt == 1",
+        "timeout-minutes 20",
+        "upload step always()",
+        "retention-days 7",
+        "artifact allowlist excludes context and whole output directory",
+        "all checkout/upload actions pinned to 40-character commits"
+      ]
+    },
+    {
+      "command": "bash -n owner-package-stage/scripts/work8/owner-package/package-owner-backend.sh",
+      "result": "PASS",
+      "exitCode": 0
+    }
+  ],
+  "executionLimits": {
+    "sourceBuildRun": false,
+    "dockerBuildRun": false,
+    "dependencyInstallRun": false,
+    "hostedCIRun": false,
+    "publicationPerformed": false,
+    "runtimeAcceptanceClaimed": false
+  },
+  "unreviewedByThisValidation": [
+    "Parent subsequently added Vercel branch deployment suppression; not covered by this earlier validation",
+    "Final integrated tree identities are owned by parent and independent reviewer"
+  ],
+  "newWholeRowPass": false
+}

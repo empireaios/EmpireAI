@@ -1,0 +1,69 @@
+{
+  "schema": "work8-owner-release-package-v1",
+  "status": "PREPARED_NOT_RELEASE_READY",
+  "baselineAccepted": 45,
+  "baselineOutstanding": 19,
+  "frontend": {
+    "source": "42dfd0aa9d69a74d237f17555e6a1aeb343c59b9",
+    "tree": "6d7d834b45964dadf3dab24818467ba6b5187e94",
+    "package": "frontend-standalone-package.tar.gz",
+    "sha256": "c1f2b32938d22728c8ed2e4c6cf963d73bcf5d96e0b07f0ae6922b21a95b2913",
+    "entrypoint": "node server.js",
+    "classification": "OFFLINE_STANDALONE_PACKAGE",
+    "manifest": "frontend-standalone-manifest.json"
+  },
+  "backend": {
+    "source": "98970018d579e5a7c720d25293cdddbe294856c0",
+    "tree": "7469666e172da6c7ed63648edb673b599e08079e",
+    "compiledArchive": "owner-build/backend-compiled.tar.gz",
+    "classification": "COMPILED_DIST_ONLY_NOT_RUNTIME_PACKAGE",
+    "missing": [
+      "Exact runtime dependencies",
+      "Governance bundle",
+      "Platform executable packaging"
+    ]
+  },
+  "buildEvidence": {
+    "run": 40424964819,
+    "attempt": 1,
+    "artifact": 12698388923,
+    "review": "independent-owner-review.json"
+  },
+  "rollbackStates": [
+    {
+      "when": "No backend change",
+      "action": "Preserve current baseline; release-time source and alias drift read required"
+    },
+    {
+      "when": "Corrected backend installed; no committed DEFER",
+      "action": "Prior backend eligible only after selectable artifact verification and authoritative no-DEFER read under controlled writes"
+    },
+    {
+      "when": "Any committed DEFER",
+      "action": "Retain corrected backend or separately verified compatible successor; never revert institutional-memory data. Old frontend only with durable-decision submission disabled"
+    },
+    {
+      "when": "Ambiguous decision result",
+      "action": "Reconcile command identity/events/version; do not repeat write or downgrade backend"
+    }
+  ],
+  "remainingGates": [
+    "Production public frontend build-environment binding",
+    "Complete backend executable artifact including exact dependencies/governance bundle",
+    "Supported platform packaging and retained/selectable artifact identity",
+    "Isolated authenticated DEFER persistence/version/replay/history examination on exact pair",
+    "Protected consistent pre-release institutional-memory/session snapshot and independent full-data readback",
+    "Release-time current source/alias/decision-version binding",
+    "Separate exact production release approval",
+    "Post-release authenticated desktop/mobile complete same-product source-to-decision/result/finance/Assurance acceptance"
+  ],
+  "safeguards": {
+    "PR113": "DRAFT_UNMERGED",
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "productionActions": 0,
+    "newWholeRowPass": false
+  },
+  "executableNow": "Retain source-bound offline package and rollback decision matrix; runtime/deploy verification cannot be inferred from packaging."
+}

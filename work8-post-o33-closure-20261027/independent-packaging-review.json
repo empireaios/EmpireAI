@@ -1,0 +1,71 @@
+{
+  "schema": "work8-independent-owner-packaging-review-v1",
+  "reviewer": "/root/o33_acceptance",
+  "decision": "STATIC_STAGING_REVIEW_PASS_EXECUTION_PENDING",
+  "source": "e83244a1d62239ca2927445a526ec0163584895e",
+  "tree": "da9c8a962ed09476617e30eb806aa151a0ca770e",
+  "parent": "3b86fe119fdfc3b5463b9ae4c1be3c61924d899b",
+  "completeDelta": [
+    {
+      "path": ".github/workflows/work8-owner-packaging.yml",
+      "blob": "20df7691d9696b282c90851176e1c6e26a89c274"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "blob": "6c6ff52ea07f4e1817de7ae043676944ed1bdce6"
+    },
+    {
+      "path": "scripts/work8/owner-package/OwnerBackend.Dockerfile",
+      "blob": "5c40fe59a3d912bd4ed4513cb6fde7852b416e4a"
+    },
+    {
+      "path": "scripts/work8/owner-package/README.md",
+      "blob": "9face16759acb9332a73fd3b43b6bdb0a7c6164c"
+    },
+    {
+      "path": "scripts/work8/owner-package/package-owner-backend.sh",
+      "blob": "4d4998087bad4e14a7b2e591296039866925a9f6"
+    },
+    {
+      "path": "vercel.json",
+      "blob": "3b2f40826a7bde86bdb6976a49ebbbecdfa64757"
+    }
+  ],
+  "inputBinding": {
+    "backendSource": "98970018d579e5a7c720d25293cdddbe294856c0",
+    "backendTree": "7469666e172da6c7ed63648edb673b599e08079e",
+    "artifact": 12698388923,
+    "artifactZIP_SHA256": "15b531fcab695b43a0fddfccb0afbaa4504ce8d927dfa67aa1a9595ac7f2adb1",
+    "compiledArchiveSHA256": "9b0249c91e60c2ea6e92af6fbb2aa72e464bb0f74dcf43ba7ec214ea59e10a41",
+    "nodeBase": "node:22.23.2-bookworm-slim@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9"
+  },
+  "contractReview": {
+    "provenance": "Clean exact source/tree and both lockfile digests enforced. Exact git archive plus accepted compiled overlay; compiled hashes compared before/after installs, governance sync and pruning.",
+    "dependencyLayout": "Full repository-root /app retained including deployment/scripts/config/governance, sibling pillow/dist and both dependency trees. Backend file:../pillow remains correctly located. Pillow package has no runtime dependencies; pruning removes tooling dev dependencies only. Backend required tsx/TypeScript are declared dependencies and retained. Actual npm layout success remains hosted validation.",
+    "entrypoint": "Preserves pinned9897 CMD node deployment/locked-runtime.cjs with WORKDIR /app, no unreviewed seven-controller graft. Compatibility with certified O33 release lineage is not asserted.",
+    "lifecycle": "Declared project install hooks verify environment/toolchain. No project compilation/test/appstart command invoked. Dependency install lifecycle is packaging work, not proof of runtime health.",
+    "executionBounds": "Sole push branch work8/owner-packaging-20261027, one20minute job, attempt1, no manual trigger or retry. Read-only contents/actions token scoped to artifact download; pinned checkout/upload actions; concurrency cancellation disabled.",
+    "triggerAudit": "Inspected every workflow push filter in complete candidate tree; no other push workflow matches new packaging branch.",
+    "deploymentSuppression": "Both Vercel configs change only exact newbranch deploymentEnabled:false; no other settings changed.",
+    "outputs": "Docker build/save only; archive imageID/inspect/source/base/checksums/logs, seven-day Actions retention. Explicit upload allowlist excludes build context/checkouts. No push, application start or deployment."
+  },
+  "limits": [
+    "No packaging execution, dependency installation or image startup performed in this review.",
+    "Not a release-ready image, compatible rollback proof, durable-DEFER acceptance or operational protected backup.",
+    "Hosted exact dependency install/governance assembly/image export and independent resulting-image examination remain.",
+    "Source9897 predates accepted seven-participant graph; subsequent runtime compatibility examination required."
+  ],
+  "accepted": 46,
+  "outstanding": 18,
+  "O33": "PASS_PRESERVED",
+  "newWholeRowPass": false,
+  "safety": {
+    "PR113": "DRAFT_UNMERGED",
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "productionActions": false,
+    "ciExecuted": false
+  },
+  "storageLane": "Retained Backblaze authentication/configuration/retention/credential/billing limitations unchanged; no repeated access investigation."
+}
