@@ -1,0 +1,26 @@
+{
+  "workflowContract": "PASS",
+  "existingPushWorkflowsExcluded": [
+    "pillow-runtime-repair-ci.yml",
+    "work8-owner-packaging.yml",
+    "work8-writer-integration.yml",
+    "product-path-ci.yml",
+    "independent-assurance.yml",
+    "provider-readback.yml",
+    "pillow-semantic-repair-ci.yml",
+    "work8-journal-examination.yml"
+  ],
+  "vercelBranchDeploymentDisabled": true,
+  "syntax": "PASS",
+  "browserImageDigestVerified": true,
+  "toolOnlyNpmCi": "PASS: 2 packages; ignore-scripts; omit optional",
+  "applicationBuilds": 0,
+  "ciDispatches": 0,
+  "runtimeExamination": "NOT_RUN",
+  "acceptedExaminationsRepeated": 0,
+  "changedBoundaryTests": {
+    "readinessAndDecisionGuards": "9/9 PASS",
+    "syntheticAssemblyGuards": "7/7 PASS",
+    "evidenceScannerCases": "4/4 PASS"
+  }
+}
