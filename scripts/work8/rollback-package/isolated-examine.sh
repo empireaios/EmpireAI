@@ -74,7 +74,11 @@ env={'EMPIRE_RUNTIME_PROFILE':'LOCKED_COMMISSIONING_V1','RAILWAY_VOLUME_MOUNT_PA
 (p/'backend.env').write_text(''.join(k+'='+v+'\n' for k,v in env.items()))
 (p/'browser.env').write_text('OWNER_EMAIL=owner@work8.invalid\nOWNER_PASSWORD='+founder+'\nEXPECTED_SOURCE_COMMIT='+m['backend']['commit']+'\n')
 (p/'data').mkdir(mode=0o700);(p/'policy').mkdir(mode=0o755)
+# mkdir's requested0755 is masked by umask077; explicitly establish traversal.
+(p/'policy').chmod(0o755)
 PY
+[[ -d "$private/policy" && ! -L "$private/policy" ]]
+[[ $(stat -c '%u:%g:%a' -- "$private/policy") == "$(id -u):$(id -g):755" ]]
 python3 "$script/complete-diagnostics.py" register-generated --directory "$private"
 # Capability-dropped container UID 0 must own its mode-0700 data bind.
 # A host-runner-owned 0700 directory is inaccessible without DAC override.
@@ -117,7 +121,13 @@ mount=next(m for m in c[0]['Mounts'] if m['Destination']=='/run/empire-policy');
 assert 'ALL' in c[0]['HostConfig']['CapDrop'] and c[1]['HostConfig']['ReadonlyRootfs']
 json.dump({'internalNetwork':True,'publishedPorts':False,'externalCredentials':False,'policyReadonlyMount':True,'backendCapabilitiesDropped':True,'frontendReadonly':True,'freshDisposableData':True},open(sys.argv[2],'w'),indent=2)
 PY
-docker exec "$backend" node -e 'try{require("fs").writeFileSync("/run/empire-policy/forbidden","x");process.exit(1)}catch(e){if(e.code!=="EROFS")process.exit(2)}'
+docker exec "$backend" node -e '
+const fs=require("fs"),directory="/run/empire-policy",target=directory+"/forbidden";
+const st=fs.statSync(directory);
+const context={probe:"readonly-policy-mount",directory,uid:st.uid,gid:st.gid,mode:(st.mode&0o777).toString(8)};
+try{fs.writeFileSync(target,"x");console.error(JSON.stringify({...context,result:"UNEXPECTED_WRITE_SUCCESS"}));process.exit(1)}
+catch(error){console.error(JSON.stringify({...context,result:"WRITE_REFUSED",code:error.code,errno:error.errno,syscall:error.syscall,path:error.path}));if(error.code!=="EROFS")process.exit(2)}
+'
 run_checks(){
  docker run --pull never --name "$browser" --label "work8.release=$label" --network "container:$web" \
   --memory 2g --cpus 2 --shm-size 512m --user "$(id -u):$(id -g)" --env HOME=/tmp --env-file "$private/browser.env" \

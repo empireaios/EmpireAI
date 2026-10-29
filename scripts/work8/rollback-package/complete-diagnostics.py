@@ -71,7 +71,7 @@ try:
   if temporary.exists():shutil.rmtree(temporary)
   temporary.mkdir(mode=0o700)
   entries=[]
-  names=['pipeline.log','load.log','backend-dependencies.log','compile.log','backend-build.log','frontend-build.log','frontend-image.log','command-failures.jsonl']
+  names=['retained-backend-load.log','retained-frontend-load.log','pipeline.log','load.log','backend-dependencies.log','compile.log','backend-build.log','frontend-build.log','frontend-image.log','command-failures.jsonl']
   logs=[private/name for name in names if (private/name).exists()]
   logs += sorted((private/'container-logs').glob('*.log')) if (private/'container-logs').exists() else []
   if (private/'container-logs/acquisition.tsv').exists():logs.append(private/'container-logs/acquisition.tsv')

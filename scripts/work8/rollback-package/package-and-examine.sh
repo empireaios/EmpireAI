@@ -17,7 +17,7 @@ trap finish EXIT
 trap 'exit 143' TERM
 trap 'exit 130' INT
 [[ "${GITHUB_RUN_ATTEMPT:?}" == 1 && "${GITHUB_RUN_NUMBER:?}" == 1 ]]
-[[ "${GITHUB_REF:?}" == refs/heads/work8/rollback-package-20261029c ]]
-bash "$script/build-images.sh"
+[[ "${GITHUB_REF:?}" == refs/heads/work8/rollback-package-20261029d ]]
+bash "$script/acquire-retained-images.sh"
 unset GH_TOKEN GITHUB_TOKEN
 bash "$script/isolated-examine.sh"

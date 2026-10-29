@@ -21,11 +21,19 @@ try{
    const a=await fetch(backend+'/health/live',{signal:AbortSignal.timeout(5000)});
    const b=await fetch(backend+'/health/ready',{signal:AbortSignal.timeout(5000)});
    diagnostics.backend={liveStatus:a.status,readyStatus:b.status};
-   assert.equal(a.status,200);assert.equal(b.status,200);live=await a.json();ready=await b.json();
-   assert.equal(live.deploy.gitCommitSha,expected);assert.equal(ready.ready,true);
-   assert.equal(ready.birth,'NOT_BORN');assert.equal(ready.commerce,'LOCKED');assert.equal(ready.operational,false);
-   assert.equal(ready.ownerWriteRestriction,restricted?'RESTRICTED':'RELEASED');break;
-  }catch{ready=null;await new Promise(r=>setTimeout(r,1000));}
+   diagnostics.readinessCheck='live-http-status';assert.equal(a.status,200);
+   diagnostics.readinessCheck='ready-http-status';assert.equal(b.status,200);live=await a.json();ready=await b.json();
+   diagnostics.readinessCheck='source-commit';assert.equal(live.deploy.gitCommitSha,expected);
+   diagnostics.readinessCheck='ready';assert.equal(ready.ready,true);
+   diagnostics.readinessCheck='birth';assert.equal(ready.birth,'NOT_BORN');
+   diagnostics.readinessCheck='commerce';assert.equal(ready.commerce,'LOCKED');
+   diagnostics.readinessCheck='operational';assert.equal(ready.operational,false);
+   diagnostics.readinessCheck='owner-write-restriction';assert.equal(ready.ownerWriteRestriction,restricted?'RESTRICTED':'RELEASED');break;
+  }catch(error){
+   const safe=v=>typeof v==='boolean'||typeof v==='number'||v===null?v:typeof v==='string'&&(/^[a-f0-9]{40}$/.test(v)||['NOT_BORN','BORN','LOCKED','RESTRICTED','RELEASED'].includes(v))?v:v===undefined?'UNAVAILABLE':'UNRECOGNIZED_VALUE';
+   diagnostics.readinessFailure={check:diagnostics.readinessCheck||'transport',code:['ERR_ASSERTION','ECONNREFUSED','ETIMEDOUT'].includes(error?.code)?error.code:'READINESS_ERROR',actual:safe(error?.actual),expected:safe(error?.expected)};
+   ready=null;await new Promise(r=>setTimeout(r,1000));
+  }
  }
  assert.ok(ready,'complete readiness deadline');
  receipt.readiness={ready:true,birth:ready.birth,commerce:ready.commerce,restriction:ready.ownerWriteRestriction};

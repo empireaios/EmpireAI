@@ -1,0 +1,37 @@
+{
+  "schema": "work8-rollback-images-v1",
+  "images": {
+    "backend": {
+      "sourceFileSha256": {
+        "backend/src/runtime/owner-write-restriction.ts": "4b371ef82fc0a1479b706aff19ee3ebd743e224f5f58f7e725576378877dcd48",
+        "backend/src/runtime/locked-commissioning.ts": "43c873a29d841389e4f3ec0d71a39cd69dbe4e62ff30ea63fa25eb544b9f242f",
+        "backend/src/institutional-memory/store.ts": "041a646e7338336791984d7b6501fe8eb484776ee941ba470d5a2d73f86f901e",
+        "deployment/locked-runtime.cjs": "5736c6e3b57e6cdc78740ae67717719fb904b39653d08f4fa740501e604c18ed",
+        "vercel.json": "f33372c3366d3ef1fdaa0a726e4b4682831748d7cb7d553a3b324c13a2bff4b9",
+        "empireai-web/vercel.json": "30994e01e3b93c3a0809517b2811e044250771407fd4d1bcdf0c10eaeb1b5a7d"
+      },
+      "imageId": "sha256:dc2f97ce36a93a9b5c35c0135b1660c7336d68b946d6c4cdfb3384d8c0d0eaed",
+      "archive": "backend-image.tar.gz",
+      "archiveSha256": "8c86817475c54c4092e77613cb76a5b84ff3d92eb28a837487c2fbc1b92db046",
+      "sourceCommit": "90a16fe2a0acbe5a5270a0ef6088c1c75800ce69",
+      "sourceTree": "a05e9f82ec6d8378baeff0434173a992535bff07",
+      "baseImageId": "sha256:4b1a7f3be41a509b606f609650edddb1abfd458db48d085bd34b8ee4dcc50673",
+      "nodeVersion": "22.23.2"
+    },
+    "frontend": {
+      "sourceFileSha256": {
+        "empireai-web/app/rollback/route.ts": "eda59751339e2290529620b9397ec2fd57bf99676748614363def19328b9d69e",
+        "empireai-web/lib/owner/rollback-handler.ts": "8b73bdfe1ec1d75872fb841d84d0f03d07c68fbcf435cb382103310c0d3a9bd3",
+        "empireai-web/lib/owner/runtime-identity.mjs": "8bbf43f0cc2a4ac0f64632836b87b2c7647ac9e434b26b1c0c6645e94526e9c9"
+      },
+      "imageId": "sha256:548f9098e851942e97e13bcc1268bcac8118f697a55ab8e5bf3f535460f24303",
+      "archive": "frontend-image.tar.gz",
+      "archiveSha256": "7ef53a1f0269e968c38359499b888916694657847cc2f5a294a72cb02855641f",
+      "sourceCommit": "8fdf835c7e8dbdb508336572ddf6d343b6efedfe",
+      "sourceTree": "bd28e53a1df006703d9ff054cce3e8291804a973",
+      "baseImageId": "sha256:4b1a7f3be41a509b606f609650edddb1abfd458db48d085bd34b8ee4dcc50673",
+      "nodeVersion": "22.23.2"
+    }
+  },
+  "status": "BUILT_NOT_RELEASE_ACCEPTED"
+}
