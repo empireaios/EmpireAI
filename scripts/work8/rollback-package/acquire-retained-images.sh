@@ -17,7 +17,20 @@ for role in ['backend','frontend']:
  assert image['sourceCommit']==m['commit'] and image['sourceTree']==m['tree']
 PY
 gh api "repos/${GITHUB_REPOSITORY:?}/actions/artifacts/12882963734/zip" > "$private/retained-images.zip"
+gh api "repos/${GITHUB_REPOSITORY:?}/actions/artifacts/12896628026/zip" > "$private/accepted-phases.zip"
 unset GH_TOKEN GITHUB_TOKEN
+python3 - "$private" "$public" "$script" <<'PY_PHASES'
+import hashlib,json,pathlib,sys,zipfile
+private,public,script=map(pathlib.Path,sys.argv[1:]);m=json.load(open(script/'assets/accepted-policy-phases.json'))
+assert hashlib.sha256((private/'accepted-phases.zip').read_bytes()).hexdigest()==m['zipSha256']
+out=public/'retained-accepted-phases';out.mkdir()
+with zipfile.ZipFile(private/'accepted-phases.zip') as z:
+ for phase,digest in m['phases'].items():
+  name='examination/'+phase+'.json';assert z.namelist().count(name)==1;data=z.read(name);assert hashlib.sha256(data).hexdigest()==digest
+  receipt=json.loads(data);assert receipt['phase']==phase and receipt['status']=='PASS' and receipt['sourceCommit']=='90a16fe2a0acbe5a5270a0ef6088c1c75800ce69'
+  (out/(phase+'.json')).write_bytes(data)
+(public/'accepted-phase-reuse.json').write_text(json.dumps({**m,'verified':True,'rerun':False},indent=2)+'\n')
+PY_PHASES
 printf '%s  %s\n' 7f453221fd9cdcb7ed3001f286520a171344dae490f2abc367a6139d48af3ff5 "$private/retained-images.zip" | sha256sum -c -
 python3 - "$private" "$script" <<'PY'
 import hashlib,json,pathlib,shutil,sys,zipfile

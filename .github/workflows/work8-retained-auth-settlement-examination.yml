@@ -1,10 +1,10 @@
-name: Work 8 retained image same-origin examination
+name: Work 8 retained revocation and restart examination
 on:
   push:
-    branches: [work8/rollback-package-20261029f]
+    branches: [work8/rollback-package-20261029g]
 permissions: {}
 concurrency:
-  group: work8-rollback-package-20261029f
+  group: work8-rollback-package-20261029g
   cancel-in-progress: false
 jobs:
   package:

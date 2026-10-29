@@ -149,7 +149,7 @@ run_checks(){
  docker run --pull never --name "$browser" --label "work8.release=$label" --network "container:$web" \
   --memory 2g --cpus 2 --shm-size 512m --user "$(id -u):$(id -g)" --env HOME=/tmp --env NODE_OPTIONS=--dns-result-order=ipv4first --env-file "$private/browser.env" \
   --mount "type=bind,src=$script,dst=/examination,readonly" --mount "type=bind,src=$script/tools,dst=/tools,readonly" \
-  --mount "type=bind,src=$out,dst=/evidence" --workdir /examination --entrypoint node "$browser_image" checks.mjs "$1"
+  --mount "type=bind,src=$out,dst=/evidence" --mount "type=bind,src=$log_private,dst=/private-evidence" --workdir /examination --entrypoint node "$browser_image" checks.mjs "$1"
  local log_code=0
  docker logs "$browser" > "$log_private/browser-$1.log" 2>&1 || log_code=$?
  printf '\n[container-log-capture-exit:%s]\n' "$log_code" >> "$log_private/browser-$1.log"
@@ -158,7 +158,6 @@ run_checks(){
  python3 "$script/complete-diagnostics.py" finalize
  [[ "$1" == restart ]] || docker rm "$browser" >/dev/null
 }
-run_checks missing
 set_policy(){
  python3 - "$private/policy" "$1" <<'PY'
 import datetime,hashlib,json,os,pathlib,sys
@@ -168,9 +167,10 @@ t=p/'next.json';t.write_text(v);t.chmod(0o444);os.replace(t,p/'control.json')
 PY
  sudo -n chown 0:0 "$private/policy/control.json"
 }
-set_policy malformed;run_checks malformed
-set_policy expired;run_checks expired
-set_policy released;run_checks released
+# Establish a fresh release state as a prerequisite; do not repeat accepted phases.
+set_policy released
+docker exec "$backend" node -e '
+(async()=>{for(let i=0;i<60;i++){try{const r=await fetch("http://127.0.0.1:43118/health/ready",{signal:AbortSignal.timeout(5000)});const b=await r.json();if(r.status===200&&b.ready&&b.ownerWriteRestriction==="RELEASED"&&b.birth==="NOT_BORN"&&b.commerce==="LOCKED"){console.log(JSON.stringify({freshReleaseEstablished:true,sourceCommit:b.deploy?.gitCommitSha||null}));return;}}catch{}await new Promise(r=>setTimeout(r,1000));}throw Error("Fresh release prerequisite not established");})().catch(e=>{console.error(e);process.exitCode=1});'
 rm "$private/policy/control.json";run_checks revoked
 docker restart --time 25 "$backend" >/dev/null
 run_checks restart

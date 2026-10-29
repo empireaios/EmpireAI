@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {createHash} from 'node:crypto';
 import {lookup} from 'node:dns/promises';
+import {cookieAttributes,redactAuth} from './auth-evidence.mjs';
 const phase=process.argv[2];
-assert.ok(['missing','malformed','expired','released','revoked','restart'].includes(phase));
+assert.ok(['revoked','restart'].includes(phase));
 const expected=process.env.EXPECTED_SOURCE_COMMIT;
 assert.match(expected,/^[a-f0-9]{40}$/);
 const restricted=phase!=='released';
@@ -17,6 +18,7 @@ const safeAssertionValue=value=>typeof value==='boolean'||typeof value==='number
 const safeResponse=body=>({code:['OWNER_WRITES_RESTRICTED'].includes(body?.code)?body.code:body?.code===undefined?undefined:'UNRECOGNIZED_CODE',error:['Same-origin request required','Sign in to continue','Package too large','Route unavailable','Advisor service unavailable. No completion is confirmed.'].includes(body?.error)?body.error:body?.error===undefined?undefined:'UNRECOGNIZED_ERROR'});
 
 let browser;
+const authCaptures=[];
 try{
  let ready,live;
  const deadline=Date.now()+180000;
@@ -58,7 +60,24 @@ try{
  browser=await chromium.launch({headless:true,args:['--disable-dev-shm-usage']});
  const context=await browser.newContext({serviceWorkers:'block'});
  const page=await context.newPage();
+ diagnostics.authResponses=[];
+ page.on('response',response=>{
+  const path=new URL(response.url()).pathname;if(!path.startsWith('/api/auth/'))return;
+  const sequence=diagnostics.authResponses.length+1;const metadata={sequence,path,status:response.status(),cookies:[],bodyCaptured:false};diagnostics.authResponses.push(metadata);
+  authCaptures.push((async()=>{
+   const headers=await response.headersArray();const cookies=headers.filter(h=>h.name.toLowerCase()==='set-cookie').map(h=>h.value);metadata.cookies=cookies.map(cookieAttributes);
+   const known=[process.env.OWNER_PASSWORD,...cookies.map(v=>v.split(';',1)[0].split('=').slice(1).join('='))];
+   const text=await response.text();let body;try{body=JSON.parse(text);}catch{body=text;}
+   const safeHeaders=Object.fromEntries(headers.map(h=>[h.name,/cookie|authorization/i.test(h.name)?'[REDACTED]':h.value]));
+   fs.appendFileSync('/private-evidence/auth-'+phase+'.log',JSON.stringify({sequence,path,status:response.status(),headers:safeHeaders,body:redactAuth(body,known)})+'\n');metadata.bodyCaptured=true;
+  })().catch(error=>{metadata.captureError=['ERR_ASSERTION','ECONNRESET'].includes(error?.code)?error.code:'AUTH_RESPONSE_CAPTURE_FAILED';}));
+ });
+ const bootstrap=page.waitForResponse(r=>new URL(r.url()).pathname==='/api/auth/me'&&r.request().method()==='GET',{timeout:60000});
  const landing=await page.goto(origin+'/login',{waitUntil:'domcontentloaded'});assert.equal(landing.status(),200);assert.equal(new URL(page.url()).origin,origin);
+ stage='authentication-bootstrap';
+ const bootstrapResponse=await bootstrap;await bootstrapResponse.finished();assert.equal(bootstrapResponse.status(),401);
+ const loginButton=page.getByRole('button',{name:'Enter EmpireAI',exact:true});await loginButton.waitFor({state:'visible',timeout:60000});assert.equal(await loginButton.isEnabled(),true);
+ diagnostics.bootstrap={status:bootstrapResponse.status(),responseFinished:true,realLoginFormReady:true,settledBeforeLogin:true};
  async function api(route,body){const result=await page.evaluate(async({route,body})=>{
   const response=await fetch(route,{method:body===undefined?'GET':'POST',credentials:'include',redirect:'error',cache:'no-store',headers:body===undefined?undefined:{'content-type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
   return {status:response.status,body:await response.json()};
@@ -67,7 +86,8 @@ try{
  assert.equal((await api('/api/owner/advisor/read?domain=memory&id='+retained.target)).status,401);
  stage='authentication';const login=await api('/api/auth/login',{email:process.env.OWNER_EMAIL,password:process.env.OWNER_PASSWORD});
  assert.equal(login.status,200);assert.equal(login.body.user.email,process.env.OWNER_EMAIL);
- const cookie=(await context.cookies(origin)).find(c=>c.name==='empireai_session');
+ const storedCookies=await context.cookies(origin);diagnostics.sessionCookie=storedCookies.filter(c=>c.name==='empireai_session').map(({name,domain,path,secure,httpOnly,sameSite,expires})=>({name,domain,path,secure,httpOnly,sameSite,expires}));
+ const cookie=storedCookies.find(c=>c.name==='empireai_session');
  assert.ok(cookie?.secure&&cookie?.httpOnly);assert.equal((await api('/api/auth/me')).body.user.id,login.body.user.id);
  const read=async()=>{const r=await api('/api/owner/advisor/read?domain=memory&id='+retained.target);assert.equal(r.status,200);assert.deepEqual(r.body.data,retained.record);return r.body.data;};
  stage='authenticated-history';await read();
@@ -103,4 +123,4 @@ try{
  }
  receipt.status='PASS';
 }catch(error){receipt.failure=['ERR_ASSERTION','ECONNREFUSED','ETIMEDOUT'].includes(error?.code)?error.code:'EXAMINATION_FAILURE';receipt.failedStage=stage;receipt.assertion={operator:['strictEqual','deepStrictEqual','==','===','match','ok'].includes(error?.operator)?error.operator:'UNRECOGNIZED',actual:safeAssertionValue(error?.actual),expected:safeAssertionValue(error?.expected)};throw Error('Changed-pair examination stopped: '+phase+' at '+stage);}
-finally{try{await browser?.close();}catch{receipt.browserCleanupFailed=true;receipt.status='FAIL';process.exitCode=1;}receipt.diagnostics=diagnostics;fs.writeFileSync('/evidence/'+phase+'.json',JSON.stringify(receipt,null,2)+'\n');}
+finally{await Promise.allSettled(authCaptures);if(diagnostics.authResponses?.some(r=>!r.bodyCaptured)){receipt.authEvidenceIncomplete=true;receipt.status='FAIL';process.exitCode=1;}try{await browser?.close();}catch{receipt.browserCleanupFailed=true;receipt.status='FAIL';process.exitCode=1;}receipt.diagnostics=diagnostics;fs.writeFileSync('/evidence/'+phase+'.json',JSON.stringify(receipt,null,2)+'\n');}

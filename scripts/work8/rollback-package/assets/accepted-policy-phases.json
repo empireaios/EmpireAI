@@ -1,0 +1,11 @@
+{
+  "run": 40873776853,
+  "artifactId": 12896628026,
+  "zipSha256": "a590f8013fda33a4a2a7b0c80777b1326690b93bfc635c23cda32514617d86b1",
+  "phases": {
+    "missing": "f238bd77bb236a4585523f93280a42d87df7ecff3b4d598be17f4e76b5dcd025",
+    "malformed": "ecbd84e9bc5a9232c92d898857a1187e4dc782b1b4ff7daf21fa961fabdd94ae",
+    "expired": "8fe02209e3edfd2da7f16d7e09caba3dc674b03c95abad5095ab2474aa3c4610",
+    "released": "46151c1379724ae9f3469bd17f2152988ef7f592a87686c43d9f83b4298ec0f5"
+  }
+}
