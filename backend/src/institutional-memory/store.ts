@@ -1,3 +1,4 @@
+import {assertOwnerWritesReleased,ownerWritesRestricted} from '../runtime/owner-write-restriction.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
@@ -34,15 +35,17 @@ export class InstitutionalMemory {
  constructor(readonly filename:string){}
  private use<T>(fn:(db:DatabaseSync)=>T):T{
   if(!path.isAbsolute(this.filename)||fs.realpathSync(path.dirname(this.filename))!==path.dirname(this.filename))throw Error('MEMORY_PATH');
-  if(!fs.existsSync(this.filename))fs.closeSync(fs.openSync(this.filename,'wx',0o600));
+  const restricted=ownerWritesRestricted();
+  if(!restricted&&!fs.existsSync(this.filename))fs.closeSync(fs.openSync(this.filename,'wx',0o600));
   const st=fs.lstatSync(this.filename);
   if(!st.isFile()||st.nlink!==1||fs.realpathSync(this.filename)!==this.filename||st.size>64*1024*1024)throw Error('MEMORY_STORAGE_BOUND');
-  const db=new DatabaseSync(this.filename,{allowExtension:false,timeout:1000});
+  const db=new DatabaseSync(this.filename,{allowExtension:false,timeout:1000,readOnly:restricted});
   try{
    const app=db.prepare('PRAGMA application_id').get()?.application_id;
    if(app!==0&&app!==1161907507)throw Error('MEMORY_STORE_IDENTITY');
    if(app===0&&db.prepare("SELECT name FROM sqlite_schema WHERE type='table'").all().length)throw Error('MEMORY_STORE_IDENTITY');
    if(app===1161907507&&db.prepare('PRAGMA user_version').get()?.user_version!==1)throw Error('MEMORY_STORE_VERSION');
+   if(restricted){if(app!==1161907507)throw Error('MEMORY_STORE_IDENTITY');return fn(db);}
    db.exec(`PRAGMA trusted_schema=OFF; PRAGMA synchronous=EXTRA; PRAGMA max_page_count=16384;
     CREATE TABLE IF NOT EXISTS identity(workspace TEXT PRIMARY KEY,body TEXT NOT NULL) STRICT;
     CREATE TABLE IF NOT EXISTS records(workspace TEXT NOT NULL,id TEXT NOT NULL,kind TEXT NOT NULL,domain TEXT NOT NULL,authenticity TEXT NOT NULL,created TEXT NOT NULL,body TEXT NOT NULL,hash TEXT NOT NULL,PRIMARY KEY(workspace,id)) STRICT;
@@ -54,13 +57,14 @@ export class InstitutionalMemory {
    return fn(db);
   }finally{db.close();}
  }
- identity(workspace:string){key.parse(workspace);return this.use(db=>{db.prepare('INSERT OR IGNORE INTO identity VALUES(?,?)').run(workspace,JSON.stringify({...identity,workspace}));return parse(db.prepare('SELECT body FROM identity WHERE workspace=?').get(workspace));});}
+ identity(workspace:string){key.parse(workspace);return this.use(db=>{if(!ownerWritesRestricted())db.prepare('INSERT OR IGNORE INTO identity VALUES(?,?)').run(workspace,JSON.stringify({...identity,workspace}));return parse(db.prepare('SELECT body FROM identity WHERE workspace=?').get(workspace));});}
  private insert(workspace:string,id:string,kind:string,domain:string,origin:Origin,payload:unknown){
+  assertOwnerWritesReleased();
   key.parse(workspace);const body={id,kind,scope:{domain},...payload as object,origin,recordedAt:new Date().toISOString(),grantsAuthority:false};
   const digest=hash({kind,payload,origin});
   if(kind==='EXPERIENCE')Object.assign(body,{decisionTime:body.recordedAt});
   return this.use(db=>{
-   db.exec('BEGIN IMMEDIATE');try{
+   db.exec('BEGIN IMMEDIATE');try{assertOwnerWritesReleased();
     const old=db.prepare('SELECT hash FROM records WHERE workspace=? AND id=?').get(workspace,id);
     if(old){if(old.hash!==digest)throw Error('MEMORY_IDEMPOTENCY_CONFLICT');db.exec('COMMIT');return {id,created:false};}
     if(kind==='SAFETY_POLICY'){const latest=db.prepare("SELECT body FROM records WHERE workspace=? AND kind='SAFETY_POLICY' ORDER BY json_extract(body,'$.version') DESC LIMIT 1").get(workspace);const current=latest?JSON.parse(String(latest.body)).version:0;if(current!==(payload as {expectedVersion:number}).expectedVersion)throw Error('SAFETY_VERSION_CONFLICT');}
@@ -71,6 +75,7 @@ export class InstitutionalMemory {
      if(active.length>1||(active[0]&&replacement!==active[0].id))throw Error('EXPLICIT_STRATEGY_SUPERSESSION_REQUIRED');
     }
     if(Number(db.prepare('SELECT count(*) n FROM records WHERE workspace=?').get(workspace)?.n)>=10000)throw Error('MEMORY_CAPACITY');
+    assertOwnerWritesReleased();
     db.prepare('INSERT INTO records VALUES(?,?,?,?,?,?,?,?)').run(workspace,id,kind,domain,origin.authenticity,body.recordedAt,JSON.stringify(body),digest);
     db.exec('COMMIT');return {id,created:true};
    }catch(e){if(db.isTransaction)db.exec('ROLLBACK');throw e;}
@@ -78,6 +83,7 @@ export class InstitutionalMemory {
  }
  /** Only authenticated owner route may invoke this adapter; caller cannot choose actor/authenticity. */
  ownerCommand(workspace:string,ownerId:string,raw:unknown){
+  assertOwnerWritesReleased();
   key.parse(ownerId);const c=ownerMemoryCommand.parse(raw);
   const origin:Origin={actor:'GRAND_KING',authenticity:'OWNER_ASSERTED',source:'authenticated-owner:'+ownerId};
   if(c.action==='doctrine'){
@@ -107,6 +113,7 @@ export class InstitutionalMemory {
  }
  /** Model statements are never evidence of execution, owner doctrine or verified facts. */
  captureDecision(workspace:string,input:{request:string;session:string;question:string;answer:string;influences:string[];evidence?:Array<z.infer<typeof evidence>>}){
+  assertOwnerWritesReleased();
   const reviewId=input.question.match(/^Review experience ([A-Za-z0-9_.:-]{1,160})(?:\s|$)/)?.[1];
   const review=reviewId?this.get(workspace,reviewId):null;
   const reviewMatch=input.answer.match(/<executive-review>([\s\S]{1,12000}?)<\/executive-review>/);
@@ -127,8 +134,9 @@ export class InstitutionalMemory {
  }
  /** Trusted event adapters must supply source attribution separately from evidence text. */
  private append(workspace:string,raw:unknown,origin:Origin){
+  assertOwnerWritesReleased();
   const event=eventSchema.parse(raw);const digest=hash({event,origin});
-  return this.use(db=>{db.exec('BEGIN IMMEDIATE');try{
+  return this.use(db=>{db.exec('BEGIN IMMEDIATE');try{assertOwnerWritesReleased();
    const old=db.prepare('SELECT hash FROM events WHERE workspace=? AND id=?').get(workspace,event.id);
    if(old){if(old.hash!==digest)throw Error('MEMORY_IDEMPOTENCY_CONFLICT');db.exec('COMMIT');return {id:event.id,created:false};}
    const target=parse(db.prepare('SELECT body FROM records WHERE workspace=? AND id=?').get(workspace,event.target));
@@ -149,6 +157,7 @@ export class InstitutionalMemory {
     if(events.some(e=>['CONTRADICT','RETRACT','SUPERSEDE'].includes(e.kind)))throw Error('LESSON_CONFLICT_UNRESOLVED');
    }
    const body={...event,origin:target.origin.authenticity==='SYNTHETIC'?{...origin,authenticity:'SYNTHETIC'}:origin,recordedAt:new Date().toISOString(),grantsAuthority:false,independentSourceRoots:[...new Set((event.outcome?.evidence??[]).map(e=>e.hash))],discrepancy:event.kind==='OUTCOME'?discrepancy(target.expectation?.metrics??[],event.outcome!.metrics):null};
+   assertOwnerWritesReleased();
    db.prepare('INSERT INTO events VALUES(?,?,?,?,?,?,?)').run(workspace,event.id,event.target,events.length+1,body.recordedAt,JSON.stringify(body),digest);
    db.exec('COMMIT');return {id:event.id,created:true};
   }catch(e){if(db.isTransaction)db.exec('ROLLBACK');throw e;}});
