@@ -58,6 +58,11 @@ env={'EMPIRE_RUNTIME_PROFILE':'LOCKED_COMMISSIONING_V1','RAILWAY_VOLUME_MOUNT_PA
 (p/'browser.env').write_text('OWNER_EMAIL=owner@work8.invalid\nOWNER_PASSWORD='+founder+'\nEXPECTED_SOURCE_COMMIT='+m['backend']['commit']+'\n')
 (p/'data').mkdir(mode=0o700);(p/'policy').mkdir(mode=0o755)
 PY
+# Capability-dropped container UID 0 must own its mode-0700 data bind.
+# A host-runner-owned 0700 directory is inaccessible without DAC override.
+[[ -d "$private/data" && ! -L "$private/data" ]]
+sudo -n chown 0:0 -- "$private/data"
+[[ $(stat -c '%u:%g:%a' -- "$private/data") == 0:0:700 ]]
 docker run --rm --pull never --network none --cap-drop ALL --security-opt no-new-privileges \
  --mount "type=bind,src=$private/data,dst=/data" --mount "type=bind,src=$script,dst=/examination,readonly" \
  --entrypoint node "$BACKEND_IMAGE" /examination/seed-history.mjs
