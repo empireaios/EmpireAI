@@ -1,0 +1,17 @@
+{
+  "backend": {
+    "base": "98970018d579e5a7c720d25293cdddbe294856c0",
+    "commit": "90a16fe2a0acbe5a5270a0ef6088c1c75800ce69",
+    "tree": "a05e9f82ec6d8378baeff0434173a992535bff07",
+    "destination": "work8/rollback-gate-20261029",
+    "bundleSha256": "bdef1b453a160aeaa0dd3410f6adad504cb5f92c64a32abcc2bd74af91dc91f5"
+  },
+  "frontend": {
+    "base": "42dfd0aa9d69a74d237f17555e6a1aeb343c59b9",
+    "commit": "8fdf835c7e8dbdb508336572ddf6d343b6efedfe",
+    "tree": "bd28e53a1df006703d9ff054cce3e8291804a973",
+    "destination": "work8/rollback-view-20261029",
+    "bundleSha256": "ed74e89e70be9a99410d7607526c4a35caf2f3b3a6d69058f590f2d24a13a82d"
+  },
+  "reviewSha256": "5b5daff06b05a5ed5199e276e854480465494792db29656426d8ac34aa8d55f6"
+}

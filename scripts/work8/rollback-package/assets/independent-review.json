@@ -1,0 +1,107 @@
+{
+  "schema": "work8-independent-hosted-rollback-publication-review-v1",
+  "reviewer": "/root/gate_surface_review",
+  "date": "2026-10-29",
+  "decision": "PASS_FOR_PUBLICATION",
+  "scope": "Exact successor source pair and hosted controller static contract; publication requires fresh owner approval of final controller complete tree. This receipt is not hosted runtime PASS, release readiness or whole-row acceptance.",
+  "candidates": {
+    "backend": {
+      "commit": "90a16fe2a0acbe5a5270a0ef6088c1c75800ce69",
+      "tree": "a05e9f82ec6d8378baeff0434173a992535bff07",
+      "bundleSha256": "bdef1b453a160aeaa0dd3410f6adad504cb5f92c64a32abcc2bd74af91dc91f5"
+    },
+    "frontend": {
+      "commit": "8fdf835c7e8dbdb508336572ddf6d343b6efedfe",
+      "tree": "bd28e53a1df006703d9ff054cce3e8291804a973",
+      "bundleSha256": "ed74e89e70be9a99410d7607526c4a35caf2f3b3a6d69058f590f2d24a13a82d"
+    }
+  },
+  "controllerFilesSha256": {
+    ".github/workflows/work8-rollback-package.yml": "4a4533f7dbc65d0c976386de5154218eec576786c92624468bebe15ee8b7a654",
+    "empireai-web/vercel.json": "57032131d49ecec817f78092b2d6496310f66d24e6e602c456910c472ea8f8ec",
+    "scripts/work8/rollback-package/assets/accepted-history.json": "bcfc8cc0f94f88d99edf86e6943aa20a1b6fff38080149279a048221342cab9e",
+    "scripts/work8/rollback-package/assets/backend.bundle": "bdef1b453a160aeaa0dd3410f6adad504cb5f92c64a32abcc2bd74af91dc91f5",
+    "scripts/work8/rollback-package/assets/frontend.bundle": "ed74e89e70be9a99410d7607526c4a35caf2f3b3a6d69058f590f2d24a13a82d",
+    "scripts/work8/rollback-package/build-images.sh": "4adcb42acd39963e9ad41bb001faf994eb6897627d45c8a6a3d2d6372c6039ca",
+    "scripts/work8/rollback-package/checks.mjs": "5ad80fad159e777d1e0b38dad621528eea6bfa30b077a0921dda5bcb52f897e3",
+    "scripts/work8/rollback-package/history-fingerprint.mjs": "56fbfc6b49ff3c3e7282056a1953164513d43ad839ae53ae2a6cb5f6002cda21",
+    "scripts/work8/rollback-package/isolated-examine.sh": "99213234ad29692950e12821747d988542050ac11e33552cd5529b6c3b5fffde",
+    "scripts/work8/rollback-package/package-and-examine.sh": "0874e5477d790a856e586ba31c6b9110c0b39f84f64f6abb40e5881758d6c937",
+    "scripts/work8/rollback-package/publish-exact.py": "5eb6e150c43bbd2a0725f6a98bfa3783cb9347d95027446f147da6ce22e68427",
+    "scripts/work8/rollback-package/seed-history.mjs": "c467fb9fd3906e27e5b0b420651a80ee197ae6765f5ea668c1f857a42a41ad60",
+    "scripts/work8/rollback-package/tools/package-lock.json": "8802a0bbf09f2ce03d1c06ed6710e23ab834508ae105d8ee3e32e07e8e9b5bff",
+    "scripts/work8/rollback-package/tools/package.json": "ec26c53e569da56099673184b69072d42ac3a07ede068509e26524288de7e509",
+    "vercel.json": "68fe046f0b90181b1c205878103e90020217700a590fd40862b9bfd3f7d173b2"
+  },
+  "manifestCandidateBinding": {
+    "backend": {
+      "base": "98970018d579e5a7c720d25293cdddbe294856c0",
+      "commit": "90a16fe2a0acbe5a5270a0ef6088c1c75800ce69",
+      "tree": "a05e9f82ec6d8378baeff0434173a992535bff07",
+      "destination": "work8/rollback-gate-20261029",
+      "bundleSha256": "bdef1b453a160aeaa0dd3410f6adad504cb5f92c64a32abcc2bd74af91dc91f5"
+    },
+    "frontend": {
+      "base": "42dfd0aa9d69a74d237f17555e6a1aeb343c59b9",
+      "commit": "8fdf835c7e8dbdb508336572ddf6d343b6efedfe",
+      "tree": "bd28e53a1df006703d9ff054cce3e8291804a973",
+      "destination": "work8/rollback-view-20261029",
+      "bundleSha256": "ed74e89e70be9a99410d7607526c4a35caf2f3b3a6d69058f590f2d24a13a82d"
+    }
+  },
+  "finalControllerTreeBinding": "Root must independently attest final complete controller tree after binding this receipt digest into exact-manifest.json; self-hash/tree is intentionally excluded.",
+  "blockingFindings": [],
+  "correctedFindings": [
+    "Frontend standalone root asserted and image uses /frontend; tmpfs cache mount now matches /frontend/.next/cache.",
+    "Frontend login status200 and exact origin readiness now verified before credentials, with bounded deadline.",
+    "Failed-stage, method/path/status and bounded container metadata retained without raw environment, cookies, credentials or logs.",
+    "Final browser.close failure handling reviewed: cleanup failure marks receipt FAIL and exitCode1 while still persisting bounded diagnostics; a prior examination exception remains a failure."
+  ],
+  "reviewedContract": [
+    "Publisher verifies reviewed bundle hashes, commit/tree identities, ancestry and linear successor chain; refuses unapproved existing heads; atomic create-only empty leases prevent overwrite/races; re-fetches exact published heads and rechecks review digest afterward.",
+    "Independent review digest and candidate commit/tree/bundle identities checked before publication; candidate destinations and bases hardcoded.",
+    "Workflow single first run/attempt guards; package job has20minute timeout; publication job separately20minute timeout; no retries, no production deployment commands.",
+    "Accepted immutable backend image/archive/zip digests pinned; overlays only changed compiled modules, matching source and launcher. Changed frontend standalone build produces fresh recovery image; no assertion that prior accepted package binaries are unchanged.",
+    "Exact runtime source receipt/image labels and frontend expectedbackend pin bind new pair.",
+    "Publisher credential confined to publication checkout; package checkouts do not persist credentials; artifact-download token unset before builds/examination containers.",
+    "Runtime internal Docker network, no published ports, random disposable owner/admin/session/Redis secrets, pinned Redis and Chromium; no provider or production credentials supplied.",
+    "Operator policy mounted readonly, root-owned mode0444 release file; missing/malformed/expired/revoked conditions tested; direct backend and frontend invalid probes cannot validly create decisions.",
+    "Original accepted run readback reconstructed offline; seed hashes are explicitly not original idempotency hashes. No valid DEFER command or replay sent.",
+    "Authenticated history equality, exact pair readiness, desktop/mobile rendering consistency and restart invariance examined without asserting genuine product acceptance.",
+    "Cleanup trap removes labelled containers/network and bounded private directory; failure produces nonsecret phase/container receipts; only publishable images/evidence uploaded.",
+    "Existing workflow source filters exclude all three work8 branches under review; no PR or manualdispatch proposed. Root and frontend Vercel configs explicitly suppress controller automatic deployment.",
+    "Hosted history preservation now compares readonly deterministic fingerprints of all identity/records/events rows including stored hashes and application/schema IDs, avoiding false failure from mutable SQLite header counters. This preserves reconstructed snapshot rows, not original-run database hashes."
+  ],
+  "localEvidence": {
+    "syntax": "bash -n all3 shell scripts and Python AST publisher PASS",
+    "bundles": "Both bundle SHA256s match manifest; both complete trees and baseline ancestry checked independently.",
+    "priorGateReview": "safe-rollback/evidence/independent-review.json retained; no accepted gate or hosted examinations repeated.",
+    "launcher": "Parent supplied targeted launcher-policy forwarding PASS; only whitelist source delta reviewed.",
+    "retainedHistory": "release-review/retained-history.tap inspected1PASS0FAIL; actual restricted store readback equals seeded snapshot with unchanged bytes.",
+    "successorPin": "release-review/successor-identity.tap inspected1PASS0FAIL.",
+    "workflowSource": "Nine exact retained workflow blobs hash-verified; branch patterns exclude proposed branches.",
+    "fingerprintReview": "Read-only DatabaseSync; deterministic ORDER BY workspace/id; complete SELECT * rows including stored hashes; db close finally; mounted data readonly; no mutation."
+  },
+  "limitations": [
+    "Docker unavailable locally: actual new image construction, startup, full authentication, network/mount permissions and browser results await the single authorised hosted execution.",
+    "New immutable image IDs/archive checksums do not yet exist; BUILT_NOT_RELEASE_ACCEPTED marks packaging output before acceptance.",
+    "Cannot certify provider/account-level automation outside reviewed repository workflow and Vercel configuration.",
+    "Missing or denied artifact acquisition stops job without retries; do not infer artifact availability from this static review.",
+    "Publication job and package job each have20minute ceilings, not a shared20minute workflow ceiling.",
+    "Production-equivalent policy custody, quiescent capture, Backblaze Compliance protection and actual operating activation remain separately unverified.",
+    "File-policy checks and SQLite commits are not cross-process atomic; operating runbook requires writer quiescence/reconciliation."
+  ],
+  "baseline": {
+    "accepted": 46,
+    "outstanding": 18
+  },
+  "newWholeRowsAccepted": [],
+  "preserved": {
+    "O33": "PASS",
+    "ownerConsoleRun": "40500699886",
+    "PR113": "DRAFT_UNMERGED",
+    "Pillow": "NOT_BORN",
+    "commerce": "LOCKED",
+    "Work9": "INACTIVE"
+  }
+}

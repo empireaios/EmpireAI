@@ -1,0 +1,81 @@
+{
+  "classification": "SYNTHETIC_EXACT_PACKAGE_TECHNICAL_EXAMINATION",
+  "target": "work8-hosted-synthetic-owner-package",
+  "command": {
+    "action": "owner_decision",
+    "id": "work7-decision-0cbcad89-d2b6-4b01-9ae8-574e3a1c65ad",
+    "target": "work8-hosted-synthetic-owner-package",
+    "expectedVersion": 0,
+    "decision": "DEFER",
+    "note": "SYNTHETIC isolated immutable-package examination. DEFER only; no real product or execution authority."
+  },
+  "record": {
+    "id": "work8-hosted-synthetic-owner-package",
+    "kind": "EXPERIENCE",
+    "scope": {
+      "domain": "executive",
+      "entities": []
+    },
+    "belief": "An isolated package must preserve a deferred owner decision.",
+    "decision": "SYNTHETIC OWNER PACKAGE EXAMINATION — NO REAL PRODUCT",
+    "rationale": "Synthetic fixture verifies native UI decision persistence only. No genuine product, CEO assessment, finance result or Assurance certification.",
+    "evidence": [],
+    "expectation": {
+      "description": "One durable DEFER and no execution",
+      "metrics": [],
+      "assumptions": [
+        "Synthetic non-production examination"
+      ]
+    },
+    "confidence": 1,
+    "influences": [],
+    "actorId": "PILLOW",
+    "authoritySnapshot": {
+      "source": "locked-runtime-profile",
+      "birth": "NOT_BORN",
+      "commerce": "LOCKED",
+      "historicalOnly": true
+    },
+    "executionStatus": "NOT_EXECUTED",
+    "outcomeStatus": "AWAITING_OUTCOME",
+    "origin": {
+      "actor": "SYSTEM",
+      "authenticity": "SYNTHETIC",
+      "source": "authenticated-owner:usr_08487597c34f0f66"
+    },
+    "recordedAt": "2026-10-27T12:04:37.382Z",
+    "grantsAuthority": false,
+    "decisionTime": "2026-10-27T12:04:37.382Z",
+    "events": [
+      {
+        "id": "work7-decision-0cbcad89-d2b6-4b01-9ae8-574e3a1c65ad",
+        "target": "work8-hosted-synthetic-owner-package",
+        "kind": "OWNER_DECISION",
+        "note": "SYNTHETIC isolated immutable-package examination. DEFER only; no real product or execution authority.",
+        "refs": [],
+        "expectedVersion": 0,
+        "decision": "DEFER",
+        "origin": {
+          "actor": "GRAND_KING",
+          "authenticity": "SYNTHETIC",
+          "source": "authenticated-owner:usr_08487597c34f0f66"
+        },
+        "recordedAt": "2026-10-27T12:04:39.296Z",
+        "grantsAuthority": false,
+        "independentSourceRoots": [],
+        "discrepancy": null
+      }
+    ],
+    "version": 1,
+    "current": {
+      "status": "ACTIVE",
+      "supersededBy": null,
+      "lessonStatus": "NONE",
+      "outcomeStatus": "AWAITING_OUTCOME",
+      "latestEvent": "work7-decision-0cbcad89-d2b6-4b01-9ae8-574e3a1c65ad",
+      "learningEligible": false,
+      "reviewDue": false
+    }
+  },
+  "historyDigest": "964309997704efaeb7480e0ca347a398aeb586abb931128df944ad054f40c78b"
+}

@@ -1,0 +1,90 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {createHash} from 'node:crypto';
+const phase=process.argv[2];
+assert.ok(['missing','malformed','expired','released','revoked','restart'].includes(phase));
+const expected=process.env.EXPECTED_SOURCE_COMMIT;
+assert.match(expected,/^[a-f0-9]{40}$/);
+const restricted=phase!=='released';
+const origin='http://localhost:43117',backend='http://owner-backend:43118';
+const retained=JSON.parse(fs.readFileSync('/examination/assets/accepted-history.json','utf8'));
+const receipt={phase,status:'FAIL',sourceCommit:expected,newDecisions:0,productionEffects:false,wholeRowsAccepted:[]};
+let stage='backend-readiness';
+const diagnostics={};
+let browser;
+try{
+ let ready,live;
+ const deadline=Date.now()+180000;
+ while(Date.now()<deadline){
+  try{
+   const a=await fetch(backend+'/health/live',{signal:AbortSignal.timeout(5000)});
+   const b=await fetch(backend+'/health/ready',{signal:AbortSignal.timeout(5000)});
+   diagnostics.backend={liveStatus:a.status,readyStatus:b.status};
+   assert.equal(a.status,200);assert.equal(b.status,200);live=await a.json();ready=await b.json();
+   assert.equal(live.deploy.gitCommitSha,expected);assert.equal(ready.ready,true);
+   assert.equal(ready.birth,'NOT_BORN');assert.equal(ready.commerce,'LOCKED');assert.equal(ready.operational,false);
+   assert.equal(ready.ownerWriteRestriction,restricted?'RESTRICTED':'RELEASED');break;
+  }catch{ready=null;await new Promise(r=>setTimeout(r,1000));}
+ }
+ assert.ok(ready,'complete readiness deadline');
+ receipt.readiness={ready:true,birth:ready.birth,commerce:ready.commerce,restriction:ready.ownerWriteRestriction};
+ stage='frontend-readiness';
+ let frontendReady=false;const frontendDeadline=Date.now()+90000;
+ while(Date.now()<frontendDeadline){
+  try{const r=await fetch(origin+'/login',{redirect:'error',signal:AbortSignal.timeout(5000)});diagnostics.frontend={status:r.status,originMatched:new URL(r.url).origin===origin};await r.body?.cancel();if(r.status===200&&diagnostics.frontend.originMatched){frontendReady=true;break;}}
+  catch{diagnostics.frontend={transportFailure:true};}
+  await new Promise(r=>setTimeout(r,1000));
+ }
+ assert.ok(frontendReady,'frontend readiness deadline');
+ stage='browser-start';
+ const {chromium}=createRequire('/tools/package.json')('playwright');
+ browser=await chromium.launch({headless:true,args:['--disable-dev-shm-usage']});
+ const context=await browser.newContext({serviceWorkers:'block'});
+ const page=await context.newPage();
+ const landing=await page.goto(origin+'/login',{waitUntil:'domcontentloaded'});assert.equal(landing.status(),200);assert.equal(new URL(page.url()).origin,origin);
+ async function api(route,body){const result=await page.evaluate(async({route,body})=>{
+  const response=await fetch(route,{method:body===undefined?'GET':'POST',credentials:'include',redirect:'error',cache:'no-store',headers:body===undefined?undefined:{'content-type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
+  return {status:response.status,body:await response.json()};
+ },{route,body});diagnostics.lastRequest={path:route.split('?')[0],method:body===undefined?'GET':'POST',status:result.status};return result;}
+ stage='anonymous-history-refusal';
+ assert.equal((await api('/api/owner/advisor/read?domain=memory&id='+retained.target)).status,401);
+ stage='authentication';const login=await api('/api/auth/login',{email:process.env.OWNER_EMAIL,password:process.env.OWNER_PASSWORD});
+ assert.equal(login.status,200);assert.equal(login.body.user.email,process.env.OWNER_EMAIL);
+ const cookie=(await context.cookies(origin)).find(c=>c.name==='empireai_session');
+ assert.ok(cookie?.secure&&cookie?.httpOnly);assert.equal((await api('/api/auth/me')).body.user.id,login.body.user.id);
+ const read=async()=>{const r=await api('/api/owner/advisor/read?domain=memory&id='+retained.target);assert.equal(r.status,200);assert.deepEqual(r.body.data,retained.record);return r.body.data;};
+ stage='authenticated-history';await read();
+ if(restricted){
+  stage='restricted-write-probes';
+  // Invalid probe cannot create a decision even if a regression permits ingress.
+  const probe={action:'work8_restriction_probe',noAuthority:true};
+  const bff=await api('/api/owner/advisor/memory',probe);assert.equal(bff.status,423);assert.equal(bff.body.code,'OWNER_WRITES_RESTRICTED');
+  const direct=await fetch(backend+'/api/owner/advisor/memory',{method:'POST',headers:{authorization:'Bearer '+cookie.value,'content-type':'application/json'},body:JSON.stringify(probe)});
+  assert.equal(direct.status,423);assert.equal((await direct.json()).code,'OWNER_WRITES_RESTRICTED');
+  receipt.writeRestriction={frontend:423,directBackend:423};
+ }else{
+  stage='explicit-release-invalid-probe';
+  // Release is demonstrated by health and route admission only; no valid decision submitted.
+  const direct=await fetch(backend+'/api/owner/advisor/memory',{method:'POST',headers:{authorization:'Bearer '+cookie.value,'content-type':'application/json'},body:'{"action":"work8_restriction_probe"}'});
+  assert.equal(direct.status,400);receipt.explicitRelease={invalidCommandRefused:400,newDecision:false};
+ }
+ await read();receipt.authentication={anonymousRefused:true,secureCookie:true,httpOnly:true,ownerMatched:true};
+ if(restricted){
+  stage='recovery-view-readback';
+  const views=[];
+  for(const [name,width,height] of [['desktop',1440,1000],['mobile',390,844]]){
+   await page.setViewportSize({width,height});const response=await page.goto(origin+'/rollback?id='+retained.target,{waitUntil:'domcontentloaded'});
+   assert.equal(response.status(),200);const data=JSON.parse(await page.locator('pre').innerText());assert.deepEqual(data.data,retained.record);
+   assert.equal(await page.locator('form[method="post"],script,input[type="submit"]').count(),0);
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   views.push({name,width,historyDigest:createHash('sha256').update(JSON.stringify(data.data)).digest('hex')});
+   if(phase==='restart')await page.screenshot({path:'/evidence/restart-'+name+'.png',fullPage:true});
+  }
+  assert.equal(views[0].historyDigest,views[1].historyDigest);receipt.views=views;
+ }else{
+  assert.equal((await page.goto(origin+'/rollback?id='+retained.target)).status(),503);
+ }
+ receipt.status='PASS';
+}catch(error){receipt.failure=['ERR_ASSERTION','ECONNREFUSED','ETIMEDOUT'].includes(error?.code)?error.code:'EXAMINATION_FAILURE';receipt.failedStage=stage;throw Error('Changed-pair examination stopped: '+phase+' at '+stage);}
+finally{try{await browser?.close();}catch{receipt.browserCleanupFailed=true;receipt.status='FAIL';process.exitCode=1;}receipt.diagnostics=diagnostics;fs.writeFileSync('/evidence/'+phase+'.json',JSON.stringify(receipt,null,2)+'\n');}

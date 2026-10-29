@@ -1,0 +1,85 @@
+name: Work 8 exact rollback publication and release packaging
+on:
+  push:
+    branches: [work8/rollback-package-20261029]
+permissions: {}
+concurrency:
+  group: work8-rollback-package-20261029
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.run_number == 1 && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    outputs:
+      backend_commit: ${{ steps.publish.outputs.backend_commit }}
+      frontend_commit: ${{ steps.publish.outputs.frontend_commit }}
+    steps:
+      - name: Checkout reviewed controller with job-scoped publication credential
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          path: controller
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Import and atomically publish exact reviewed commits
+        id: publish
+        working-directory: controller
+        env:
+          EXPECTED_CONTROLLER: ${{ github.sha }}
+        run: python3 scripts/work8/rollback-package/publish-exact.py
+      - name: Retain secret-free publication receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-rollback-publication-${{ github.run_id }}
+          path: controller/publication-output/receipt.json
+          retention-days: 30
+          if-no-files-found: error
+  package:
+    needs: publish
+    if: github.run_number == 1 && github.run_attempt == 1 && needs.publish.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Checkout exact reviewed controller without retained credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          path: controller
+          persist-credentials: false
+      - name: Checkout published exact backend
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ needs.publish.outputs.backend_commit }}
+          path: backend-source
+          persist-credentials: false
+      - name: Checkout published exact frontend
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ needs.publish.outputs.frontend_commit }}
+          path: frontend-source
+          persist-credentials: false
+      - name: Use pinned Node runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22.23.2
+      - name: Package and examine the exact changed pair in isolation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_CONTROLLER: ${{ github.sha }}
+          NEXT_TELEMETRY_DISABLED: '1'
+        run: bash controller/scripts/work8/rollback-package/package-and-examine.sh
+      - name: Retain only package-script approved publishable evidence and immutable images
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-rollback-package-${{ github.run_id }}
+          path: release-package-output/publishable/
+          retention-days: 30
+          if-no-files-found: error
