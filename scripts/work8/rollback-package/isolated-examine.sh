@@ -127,7 +127,7 @@ docker run -d --pull never --name "$backend" --label "work8.release=$label" --ne
  --mount "type=bind,src=$private/policy,dst=/run/empire-policy,readonly" "$BACKEND_IMAGE" >/dev/null
 docker run -d --pull never --name "$web" --label "work8.release=$label" --network "$network" \
  --memory 1g --cpus 1 --read-only --cap-drop ALL --security-opt no-new-privileges \
- --env NODE_ENV=production --env HOSTNAME=0.0.0.0 --env PORT=43117 --env BRAIN_API_URL=http://owner-backend:43118 \
+ --env NODE_ENV=production --env HOSTNAME=localhost --env PORT=43117 --env NODE_OPTIONS=--dns-result-order=ipv4first --env BRAIN_API_URL=http://owner-backend:43118 \
  --env NEXT_TELEMETRY_DISABLED=1 --tmpfs /tmp:rw,noexec,nosuid,size=64m \
  --tmpfs /frontend/.next/cache:rw,noexec,nosuid,size=128m "$FRONTEND_IMAGE" >/dev/null
 docker inspect "$backend" "$web" "$redis" > "$private/containers.json"
@@ -147,7 +147,7 @@ catch(error){console.error(JSON.stringify({...context,result:"WRITE_REFUSED",cod
 '
 run_checks(){
  docker run --pull never --name "$browser" --label "work8.release=$label" --network "container:$web" \
-  --memory 2g --cpus 2 --shm-size 512m --user "$(id -u):$(id -g)" --env HOME=/tmp --env-file "$private/browser.env" \
+  --memory 2g --cpus 2 --shm-size 512m --user "$(id -u):$(id -g)" --env HOME=/tmp --env NODE_OPTIONS=--dns-result-order=ipv4first --env-file "$private/browser.env" \
   --mount "type=bind,src=$script,dst=/examination,readonly" --mount "type=bind,src=$script/tools,dst=/tools,readonly" \
   --mount "type=bind,src=$out,dst=/evidence" --workdir /examination --entrypoint node "$browser_image" checks.mjs "$1"
  local log_code=0

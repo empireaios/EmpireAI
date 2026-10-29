@@ -13,6 +13,9 @@ const retained=JSON.parse(fs.readFileSync('/examination/assets/accepted-history.
 const receipt={phase,status:'FAIL',sourceCommit:expected,newDecisions:0,productionEffects:false,wholeRowsAccepted:[]};
 let stage='backend-readiness';
 const diagnostics={};
+const safeAssertionValue=value=>typeof value==='boolean'||typeof value==='number'||value===null?value:typeof value==='string'&&['OWNER_WRITES_RESTRICTED','RESTRICTED','RELEASED','NOT_BORN','LOCKED'].includes(value)?value:{type:typeof value,length:typeof value==='string'?value.length:undefined};
+const safeResponse=body=>({code:['OWNER_WRITES_RESTRICTED'].includes(body?.code)?body.code:body?.code===undefined?undefined:'UNRECOGNIZED_CODE',error:['Same-origin request required','Sign in to continue','Package too large','Route unavailable','Advisor service unavailable. No completion is confirmed.'].includes(body?.error)?body.error:body?.error===undefined?undefined:'UNRECOGNIZED_ERROR'});
+
 let browser;
 try{
  let ready,live;
@@ -59,7 +62,7 @@ try{
  async function api(route,body){const result=await page.evaluate(async({route,body})=>{
   const response=await fetch(route,{method:body===undefined?'GET':'POST',credentials:'include',redirect:'error',cache:'no-store',headers:body===undefined?undefined:{'content-type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
   return {status:response.status,body:await response.json()};
- },{route,body});diagnostics.lastRequest={path:route.split('?')[0],method:body===undefined?'GET':'POST',status:result.status};return result;}
+ },{route,body});diagnostics.lastRequest={path:route.split('?')[0],method:body===undefined?'GET':'POST',status:result.status,response:safeResponse(result.body)};return result;}
  stage='anonymous-history-refusal';
  assert.equal((await api('/api/owner/advisor/read?domain=memory&id='+retained.target)).status,401);
  stage='authentication';const login=await api('/api/auth/login',{email:process.env.OWNER_EMAIL,password:process.env.OWNER_PASSWORD});
@@ -99,5 +102,5 @@ try{
   assert.equal((await page.goto(origin+'/rollback?id='+retained.target)).status(),503);
  }
  receipt.status='PASS';
-}catch(error){receipt.failure=['ERR_ASSERTION','ECONNREFUSED','ETIMEDOUT'].includes(error?.code)?error.code:'EXAMINATION_FAILURE';receipt.failedStage=stage;throw Error('Changed-pair examination stopped: '+phase+' at '+stage);}
+}catch(error){receipt.failure=['ERR_ASSERTION','ECONNREFUSED','ETIMEDOUT'].includes(error?.code)?error.code:'EXAMINATION_FAILURE';receipt.failedStage=stage;receipt.assertion={operator:['strictEqual','deepStrictEqual','==','===','match','ok'].includes(error?.operator)?error.operator:'UNRECOGNIZED',actual:safeAssertionValue(error?.actual),expected:safeAssertionValue(error?.expected)};throw Error('Changed-pair examination stopped: '+phase+' at '+stage);}
 finally{try{await browser?.close();}catch{receipt.browserCleanupFailed=true;receipt.status='FAIL';process.exitCode=1;}receipt.diagnostics=diagnostics;fs.writeFileSync('/evidence/'+phase+'.json',JSON.stringify(receipt,null,2)+'\n');}
