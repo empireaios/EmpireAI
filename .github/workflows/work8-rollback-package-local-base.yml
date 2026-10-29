@@ -1,10 +1,10 @@
 name: Work 8 exact published pair packaging with durable diagnostics
 on:
   push:
-    branches: [work8/rollback-package-20261029b]
+    branches: [work8/rollback-package-20261029c]
 permissions: {}
 concurrency:
-  group: work8-rollback-package-20261029b
+  group: work8-rollback-package-20261029c
   cancel-in-progress: false
 jobs:
   package:

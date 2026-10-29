@@ -24,6 +24,7 @@ stage runtime-preflight
 [[ ! -e "$private/build.env" ]]
 [[ $(node --version) == v22.23.2 ]]
 base=sha256:4b1a7f3be41a509b606f609650edddb1abfd458db48d085bd34b8ee4dcc50673
+base_ref=work8-accepted-backend:sha256-4b1a7f3be41a509b606f609650edddb1abfd458db48d085bd34b8ee4dcc50673
 stage source-contract
 python3 - "$root" "$script/exact-manifest.json" <<'PY'
 import hashlib,json,os,pathlib,subprocess,sys
@@ -67,6 +68,11 @@ stage accepted-image-load
 docker load -i "$private/accepted-backend.tar.gz" > "$private/load.log" 2>&1
 stage accepted-image-identity
 [[ $(docker image inspect "$base" --format '{{.Id}}') == "$base" ]]
+# FROM requires a local repository reference, not an image-config digest.
+# The immutable loaded image ID remains the authority for every build.
+docker tag "$base" "$base_ref"
+verify_local_base(){ [[ $(docker image inspect "$base_ref" --format '{{.Id}}') == "$base" ]]; }
+verify_local_base
 stage accepted-node-identity
 [[ $(docker run --rm --network none --pull never --entrypoint node "$base" --version) == v22.23.2 ]]
 # Compiler dependencies do not run install scripts; native dependencies remain in
@@ -124,7 +130,7 @@ assert count==1,'Accepted revision does not attribute expected backend base'
 (p/'backend-overlay/backend/dist/runtime-revision.json').write_text(json.dumps(revision,indent=2)+'\n')
 PY
 cat > "$private/backend-overlay/Dockerfile" <<EOF
-FROM $base
+FROM $base_ref
 LABEL org.opencontainers.image.revision="$backend_commit" io.empireai.source-tree="$backend_tree"
 COPY vercel.json /app/vercel.json
 COPY empireai-web/vercel.json /app/empireai-web/vercel.json
@@ -133,6 +139,7 @@ COPY backend/src/ /app/backend/src/
 COPY deployment/ /app/deployment/
 EOF
 stage backend-image-build
+verify_local_base
 docker build --network none --pull=false --iidfile "$private/backend.id" "$private/backend-overlay" > "$private/backend-build.log" 2>&1
 stage frontend-build
 # The recovery frontend has a changed Next route; compile this exact frontend.
@@ -158,7 +165,7 @@ PY
 server_path=$(cat "$private/frontend-image/server-path")
 [[ "$server_path" =~ ^[a-zA-Z0-9_./-]+$ && "$server_path" != *..* ]]
 cat > "$private/frontend-image/Dockerfile" <<EOF
-FROM $base
+FROM $base_ref
 LABEL org.opencontainers.image.revision="$frontend_commit" io.empireai.source-tree="$frontend_tree"
 RUN rm -rf /app
 WORKDIR /frontend
@@ -168,6 +175,7 @@ ENTRYPOINT ["node"]
 CMD ["$server_path"]
 EOF
 stage frontend-image-build
+verify_local_base
 docker build --network none --pull=false --iidfile "$private/frontend.id" "$private/frontend-image" > "$private/frontend-image.log" 2>&1
 stage image-archive-export
 for role in backend frontend; do
