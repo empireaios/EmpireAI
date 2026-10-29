@@ -1,10 +1,10 @@
-name: Work 8 retained image policy and rollback examination
+name: Work 8 retained image frontend listener examination
 on:
   push:
-    branches: [work8/rollback-package-20261029d]
+    branches: [work8/rollback-package-20261029e]
 permissions: {}
 concurrency:
-  group: work8-rollback-package-20261029d
+  group: work8-rollback-package-20261029e
   cancel-in-progress: false
 jobs:
   package:

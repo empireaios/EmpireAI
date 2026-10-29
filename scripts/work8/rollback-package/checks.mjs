@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {createHash} from 'node:crypto';
+import {lookup} from 'node:dns/promises';
 const phase=process.argv[2];
 assert.ok(['missing','malformed','expired','released','revoked','restart'].includes(phase));
 const expected=process.env.EXPECTED_SOURCE_COMMIT;
@@ -36,12 +37,16 @@ try{
   }
  }
  assert.ok(ready,'complete readiness deadline');
+ if(diagnostics.readinessFailure){diagnostics.transientBackendReadinessFailure=diagnostics.readinessFailure;delete diagnostics.readinessFailure;}
  receipt.readiness={ready:true,birth:ready.birth,commerce:ready.commerce,restriction:ready.ownerWriteRestriction};
  stage='frontend-readiness';
+ diagnostics.frontendOrigin=origin;
+ try{diagnostics.localhostAddresses=(await lookup('localhost',{all:true})).slice(0,8);}catch(error){diagnostics.localhostLookupError={code:error?.code||'LOOKUP_FAILED'};}
+ const transportError=error=>{const chain=[];for(let item=error,depth=0;item&&depth<4;item=item.cause,depth++){const children=Array.isArray(item.errors)?item.errors.slice(0,8):[item];for(const child of children){chain.push({name:typeof child?.name==='string'?child.name.slice(0,60):'Error',code:typeof child?.code==='string'?child.code.slice(0,60):null,syscall:['connect','getaddrinfo'].includes(child?.syscall)?child.syscall:null,address:['127.0.0.1','::1'].includes(child?.address)?child.address:null,port:child?.port===43117?43117:null});}}return chain;};
  let frontendReady=false;const frontendDeadline=Date.now()+90000;
  while(Date.now()<frontendDeadline){
   try{const r=await fetch(origin+'/login',{redirect:'error',signal:AbortSignal.timeout(5000)});diagnostics.frontend={status:r.status,originMatched:new URL(r.url).origin===origin};await r.body?.cancel();if(r.status===200&&diagnostics.frontend.originMatched){frontendReady=true;break;}}
-  catch{diagnostics.frontend={transportFailure:true};}
+  catch(error){diagnostics.frontend={transportFailure:true,errors:transportError(error)};}
   await new Promise(r=>setTimeout(r,1000));
  }
  assert.ok(frontendReady,'frontend readiness deadline');

@@ -18,6 +18,23 @@ redis_image=redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77
 browser_image=mcr.microsoft.com/playwright:v1.62.1-noble@sha256:dcc5531e97840b9b5e794f2814476b21571c5124a3fca2267d73041f56e7580e
 cleanup(){
  status=$?;trap - EXIT TERM INT ERR;set +e
+ # Final listening-address evidence is read before cleanup; no runtime mutation.
+ if docker container inspect "$web" >/dev/null 2>&1;then
+  if docker exec "$web" node -e '
+const fs=require("fs"),port=43117,rows=[];
+for(const [file,family] of [["/proc/net/tcp",4],["/proc/net/tcp6",6]]){
+ for(const line of fs.readFileSync(file,"utf8").trim().split("\n").slice(1)){
+  const fields=line.trim().split(/\s+/),[address,hexPort]=fields[1].split(":");
+  if(fields[3]==="0A"&&parseInt(hexPort,16)===port)rows.push({family,addressHex:address,port});
+ }
+}
+console.log(JSON.stringify({status:"OBSERVED_FINAL_LISTENERS",port,bindings:rows}));
+' > "$private/frontend-listeners.json" 2> "$log_private/frontend-listeners.log";then
+   cp "$private/frontend-listeners.json" "$out/frontend-listeners.json"
+  else
+   code=$?;printf '{"status":"UNAVAILABLE","exitCode":%s}\n' "$code" > "$out/frontend-listeners.json"
+  fi
+ fi
  # Capture and sanitize logs before removing containers or generated secrets.
  python3 "$script/complete-diagnostics.py" register-generated --directory "$private" || status=1
  for role in backend frontend redis browser;do
@@ -110,7 +127,7 @@ docker run -d --pull never --name "$backend" --label "work8.release=$label" --ne
  --mount "type=bind,src=$private/policy,dst=/run/empire-policy,readonly" "$BACKEND_IMAGE" >/dev/null
 docker run -d --pull never --name "$web" --label "work8.release=$label" --network "$network" \
  --memory 1g --cpus 1 --read-only --cap-drop ALL --security-opt no-new-privileges \
- --env NODE_ENV=production --env HOSTNAME=localhost --env PORT=43117 --env BRAIN_API_URL=http://owner-backend:43118 \
+ --env NODE_ENV=production --env HOSTNAME=0.0.0.0 --env PORT=43117 --env BRAIN_API_URL=http://owner-backend:43118 \
  --env NEXT_TELEMETRY_DISABLED=1 --tmpfs /tmp:rw,noexec,nosuid,size=64m \
  --tmpfs /frontend/.next/cache:rw,noexec,nosuid,size=128m "$FRONTEND_IMAGE" >/dev/null
 docker inspect "$backend" "$web" "$redis" > "$private/containers.json"
