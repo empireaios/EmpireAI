@@ -8,6 +8,7 @@ out="$root/release-package-output"
 private="$out/private"
 publishable="$out/publishable"
 mkdir -p "$private" "$publishable"
+source "$script/command-diagnostics.sh"
 container=''
 stage(){ python3 "$script/build-diagnostics.py" stage --stage "$1"; }
 finish(){

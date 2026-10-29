@@ -43,9 +43,13 @@ jobs:
           EXPECTED_CONTROLLER: ${{ github.sha }}
           NEXT_TELEMETRY_DISABLED: '1'
         run: bash controller/scripts/work8/rollback-package/package-and-examine.sh
-      - name: Preserve bounded failure diagnostics even after interrupted execution
+      - name: Preserve complete sanitized diagnostics even after interrupted execution
         if: always()
-        run: python3 controller/scripts/work8/rollback-package/build-diagnostics.py fallback
+        run: |
+          status=0
+          python3 controller/scripts/work8/rollback-package/build-diagnostics.py fallback || status=1
+          python3 controller/scripts/work8/rollback-package/complete-diagnostics.py finalize || status=1
+          exit "$status"
       - name: Retain only package-script approved publishable evidence and immutable images
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

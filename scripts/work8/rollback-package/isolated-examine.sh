@@ -5,6 +5,9 @@ root=$(realpath "${GITHUB_WORKSPACE:?}")
 script="$root/controller/scripts/work8/rollback-package"
 out="$root/release-package-output/publishable/examination"
 mkdir -p "$out"
+source "$script/command-diagnostics.sh"
+log_private="$root/release-package-output/private/container-logs"
+mkdir -p "$log_private"
 source "$root/release-package-output/private/build.env"
 [[ "$BACKEND_IMAGE" =~ ^sha256:[a-f0-9]{64}$ && "$FRONTEND_IMAGE" =~ ^sha256:[a-f0-9]{64}$ ]]
 private_parent=$(realpath -e "${RUNNER_TEMP:?}")
@@ -14,8 +17,22 @@ network=$label; backend=$label-backend; web=$label-web; redis=$label-redis; brow
 redis_image=redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
 browser_image=mcr.microsoft.com/playwright:v1.62.1-noble@sha256:dcc5531e97840b9b5e794f2814476b21571c5124a3fca2267d73041f56e7580e
 cleanup(){
- status=$?;trap - EXIT TERM INT;set +e
- # Private raw logs are never uploaded. A failed check emits only bounded metadata.
+ status=$?;trap - EXIT TERM INT ERR;set +e
+ # Capture and sanitize logs before removing containers or generated secrets.
+ python3 "$script/complete-diagnostics.py" register-generated --directory "$private" || status=1
+ for role in backend frontend redis browser;do
+  case "$role" in backend) name=$backend;;frontend) name=$web;;redis) name=$redis;;browser) name=$browser;;esac
+  if docker container inspect "$name" >/dev/null 2> "$log_private/$role-inspect.log";then
+   docker logs "$name" > "$log_private/$role-final.log" 2>&1
+   code=$?;printf '\n[container-log-capture-exit:%s]\n' "$code" >> "$log_private/$role-final.log"
+   [[ "$code" == 0 ]] || status=1
+   printf '%s\tLOGS_CAPTURED\t%s\n' "$role" "$code" >> "$log_private/acquisition.tsv"
+  else
+   code=$?
+   printf '%s\tNOT_CREATED_OR_UNAVAILABLE\t%s\n' "$role" "$code" >> "$log_private/acquisition.tsv"
+  fi
+ done
+ python3 "$script/complete-diagnostics.py" finalize || status=1
  docker inspect "$backend" "$web" "$redis" > "$private/final-containers.json" 2>/dev/null
  python3 - "$private/final-containers.json" "$out/container-state.json" <<'PY'
 import json,sys
@@ -58,6 +75,7 @@ env={'EMPIRE_RUNTIME_PROFILE':'LOCKED_COMMISSIONING_V1','RAILWAY_VOLUME_MOUNT_PA
 (p/'browser.env').write_text('OWNER_EMAIL=owner@work8.invalid\nOWNER_PASSWORD='+founder+'\nEXPECTED_SOURCE_COMMIT='+m['backend']['commit']+'\n')
 (p/'data').mkdir(mode=0o700);(p/'policy').mkdir(mode=0o755)
 PY
+python3 "$script/complete-diagnostics.py" register-generated --directory "$private"
 # Capability-dropped container UID 0 must own its mode-0700 data bind.
 # A host-runner-owned 0700 directory is inaccessible without DAC override.
 [[ -d "$private/data" && ! -L "$private/data" ]]
@@ -101,10 +119,17 @@ json.dump({'internalNetwork':True,'publishedPorts':False,'externalCredentials':F
 PY
 docker exec "$backend" node -e 'try{require("fs").writeFileSync("/run/empire-policy/forbidden","x");process.exit(1)}catch(e){if(e.code!=="EROFS")process.exit(2)}'
 run_checks(){
- docker run --rm --pull never --name "$browser" --label "work8.release=$label" --network "container:$web" \
+ docker run --pull never --name "$browser" --label "work8.release=$label" --network "container:$web" \
   --memory 2g --cpus 2 --shm-size 512m --user "$(id -u):$(id -g)" --env HOME=/tmp --env-file "$private/browser.env" \
   --mount "type=bind,src=$script,dst=/examination,readonly" --mount "type=bind,src=$script/tools,dst=/tools,readonly" \
   --mount "type=bind,src=$out,dst=/evidence" --workdir /examination --entrypoint node "$browser_image" checks.mjs "$1"
+ local log_code=0
+ docker logs "$browser" > "$log_private/browser-$1.log" 2>&1 || log_code=$?
+ printf '\n[container-log-capture-exit:%s]\n' "$log_code" >> "$log_private/browser-$1.log"
+ printf 'browser-%s\tLOGS_CAPTURED\t%s\n' "$1" "$log_code" >> "$log_private/acquisition.tsv"
+ [[ "$log_code" == 0 ]]
+ python3 "$script/complete-diagnostics.py" finalize
+ [[ "$1" == restart ]] || docker rm "$browser" >/dev/null
 }
 run_checks missing
 set_policy(){
