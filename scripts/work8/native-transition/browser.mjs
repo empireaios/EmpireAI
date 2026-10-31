@@ -8,7 +8,18 @@ const {chromium}=createRequire('/frontend-package/package.json')('playwright');
 const origin='http://localhost:43117',backend='http://native-backend:43100',deadline=Date.now()+480000;
 const pause=ms=>new Promise(r=>setTimeout(r,ms)),sha=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const receipt={schema:'work8-distinct-version-transition-v1',status:'FAIL',syntheticOwnerOnly:true,genuineKingObservation:false,productionEffects:false,wholeRowsAccepted:[],phases:[]};
-let browser,hostileServer,stage='start';
+let browser,hostileServer,ownerPage,stage='start',cleanupMode=false;
+const lifecycle=[];
+function lifecycleEvent(event,details={}){lifecycle.push({event,stage,cleanup:cleanupMode,...details});if(lifecycle.length>120)lifecycle.shift();try{fs.writeFileSync('/evidence/browser-lifecycle.json',JSON.stringify(lifecycle,null,2)+'\n');}catch{receipt.lifecycleDiagnosticUnavailable=true;}}
+function routeClass(value){try{const u=new URL(value);return u.origin===origin&&['/api/auth/me','/api/owner/runtime','/api/owner/advisor/read','/api/owner/advisor/memory','/rollback','/login'].includes(u.pathname)?u.pathname:'OTHER_REDACTED';}catch{return 'OTHER_REDACTED';}}
+function safeFailure(error){
+ const message=String(error?.message??'');
+ const patterns=[['FETCH_TYPE_ERROR',/page\.evaluate: TypeError: Failed to fetch/],['EXECUTION_CONTEXT_DESTROYED',/Execution context was destroyed/],['BROWSER_TARGET_CLOSED',/Target page, context or browser has been closed/],['NAVIGATION_NETWORK_ERROR',/page\.goto: net::ERR_[A-Z_]+/],['BROWSER_TIMEOUT',/Timeout \d+ms exceeded/]];
+ const found=patterns.find(([,pattern])=>pattern.test(message));
+ const names=['Error','AssertionError','TypeError','TimeoutError'];const operators=['strictEqual','deepStrictEqual','==','!=','===','!==','match'];
+ return {name:names.includes(error?.name)?error.name:'OTHER_ERROR',code:found?.[0]??(error?.code==='ERR_ASSERTION'?'ERR_ASSERTION':'UNCLASSIFIED_ERROR'),operator:operators.includes(error?.operator)?error.operator:null,firstSafeMessage:found?message.match(found[1])[0]:'Sensitive message and assertion values withheld',sourceFrames:(String(error?.stack??'').match(/browser\.mjs:\d+:\d+/g)??[]).slice(0,8),browserConnected:browser?.isConnected()??false,ownerPageClosed:ownerPage?.isClosed()??null,arbitraryErrorValuesRetained:false};
+}
+function recordFailure(error){const failure=safeFailure(error);if(!receipt.failure){receipt.failedStage=stage;receipt.failure=failure;console.error('WORK8_BROWSER_DIAGNOSTIC '+JSON.stringify({stage,firstFailure:true,...failure}));}else receipt.cleanupFailure=failure;receipt.status='FAIL';process.exitCode=1;}
 const initialization=[];
 const writeInitialization=()=>fs.writeFileSync('/evidence/authentication-initialization.json',JSON.stringify({scope:'CURRENT_EXAMINATION_NOT_HISTORICAL_SESSION_FAILURE',phases:initialization},null,2)+'\n');
 const responseObservations=[];
@@ -23,7 +34,13 @@ function signal(name,value){fs.writeFileSync('/control/'+name+'.tmp',JSON.string
 async function wait(name){while(!fs.existsSync('/control/'+name)){assert.ok(Date.now()<deadline,'OVERALL_TRANSITION_DEADLINE');await pause(50);}}
 try{
  assert.equal(getDefaultResultOrder(),'ipv4first');
- browser=await chromium.launch({headless:true,args:['--disable-dev-shm-usage']});const context=await browser.newContext({serviceWorkers:'block'}),page=await context.newPage();
+ browser=await chromium.launch({headless:true,args:['--disable-dev-shm-usage']});browser.on('disconnected',()=>lifecycleEvent('browser-disconnected'));
+ const context=await browser.newContext({serviceWorkers:'block'}),page=ownerPage=await context.newPage();
+ context.on('close',()=>lifecycleEvent('owner-context-close'));page.on('close',()=>lifecycleEvent('owner-page-close'));page.on('crash',()=>lifecycleEvent('owner-page-crash'));
+ page.on('requestfailed',request=>{const code=request.failure()?.errorText;lifecycleEvent('request-failed',{route:routeClass(request.url()),code:['net::ERR_FAILED','net::ERR_ABORTED','net::ERR_CONNECTION_REFUSED','net::ERR_CONNECTION_RESET','net::ERR_EMPTY_RESPONSE'].includes(code)?code:'OTHER_REDACTED'});});
+ await page.exposeBinding('__work8PolicyEvidence',(_source,event)=>{if(!event||typeof event!=='object')return;const directives=['connect-src','default-src','script-src','style-src','img-src','frame-src'];lifecycleEvent('security-policy-violation',{effectiveDirective:directives.includes(event.effectiveDirective)?event.effectiveDirective:'OTHER_REDACTED',disposition:['enforce','report'].includes(event.disposition)?event.disposition:'OTHER_REDACTED',blockedRoute:routeClass(event.blockedURI)});});
+ await page.addInitScript(()=>document.addEventListener('securitypolicyviolation',event=>globalThis.__work8PolicyEvidence({effectiveDirective:event.effectiveDirective,disposition:event.disposition,blockedURI:event.blockedURI})));
+ lifecycleEvent('owner-context-created',{newSessionContext:true});
  async function api(route,body){const response=await page.evaluate(async({route,body})=>{const r=await fetch(route,{method:body===undefined?'GET':'POST',credentials:'include',redirect:'error',cache:'no-store',headers:body===undefined?undefined:{'content-type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});let data;try{data=await r.json();}catch{data=null;}return {status:r.status,body:data};},{route,body});return observe(route,response);}
  async function initializationBarrier(target,phase){
   const row={phase,authenticatedContext:false,status:null,responseFinished:false,realLoginFormReady:false,credentialsRecorded:false};initialization.push(row);writeInitialization();
@@ -36,8 +53,18 @@ try{
   stage=phase.toLowerCase()+'-authentication-initialization';
   const anonymous=await browser.newContext({serviceWorkers:'block'});
   try{await initializationBarrier(await anonymous.newPage(),phase);}finally{await anonymous.close();}
-  // Preserve the existing owner context. Navigating its /login would introduce
-  // an unrelated React authenticated redirect while subsequent reads execute.
+  // Preserve the existing owner context and cookie. The retained RECOVERY
+  // document denies connect-src; replacing the server does not replace it.
+  // Navigate the same owner page to NORMAL's existing /rollback 404 document
+  // before fetch. Do not relax CSP or navigate through the React /login redirect.
+  if(phase==='NORMAL_RETURN'){
+   const previousRoute=routeClass(page.url()),before=(await context.cookies(origin)).find(c=>c.name==='empireai_session');
+   stage='normal_return-owner-document-navigation';const landing=await page.goto(origin+'/rollback',{waitUntil:'domcontentloaded'});
+   assert.equal(landing.status(),404);assert.equal(new URL(page.url()).origin,origin);assert.equal(page.isClosed(),false);assert.equal(browser.isConnected(),true);
+   const after=(await context.cookies(origin)).find(c=>c.name==='empireai_session');assert.ok(before&&after);assert.equal(after.value,before.value);assert.equal(after.value,initialSession.value);assert.equal(after.secure,true);assert.equal(after.httpOnly,true);assert.equal(after.sameSite,'Lax');
+   receipt.returnDocument={previousRoute,navigationRoute:'/rollback',navigationStatus:404,samePage:true,sameContext:true,relogin:false,sessionValueUnchanged:true,cookieProtectionsUnchanged:true,securityPolicyChanged:false};lifecycleEvent('owner-document-replaced',receipt.returnDocument);
+   stage='normal_return-authentication-readback';
+  }
   const current=await api('/api/auth/me');initialization.push({phase,authenticatedContext:true,mechanism:'AUTHENTICATED_READBACK_BARRIER',status:current.status,responseBodyComplete:true,relogin:false,sessionReplaced:false,credentialsRecorded:false});writeInitialization();
   assert.equal(current.status,200);assert.deepEqual(current.body.user,initialUser);
  }
@@ -80,5 +107,5 @@ try{
  for(const row of records)assert.deepEqual(await history(row.id),row);assert.equal((await page.goto(origin+'/rollback')).status(),404);
  await commit('work8_transition_'+process.env.EXAM_ID+'_returned');receipt.phases.push({phase:'NORMAL_RETURN',...views.normal,newerRecordsPreserved:true,sessionUnchanged:true,newSyntheticWriteAccepted:true});
  fs.writeFileSync('/control/expected-records.json',JSON.stringify(records));fs.writeFileSync('/evidence/technical-synthetic-records.json',JSON.stringify(records,null,2));receipt.status='PASS_AWAITING_INDEPENDENT_TECHNICAL_REVIEW';signal('browser-complete.json',{ok:true});
-}catch(error){receipt.failedStage=stage;receipt.failure={name:error?.name,code:error?.code,operator:error?.operator,detail:'Sensitive assertion values and messages are withheld; bounded sanitized HTTP observations retain the response evidence.'};receipt.status='FAIL';process.exitCode=1;}
-finally{try{if(hostileServer)await new Promise(resolve=>hostileServer.close(resolve));await browser?.close();}catch{receipt.status='FAIL';process.exitCode=1;}fs.writeFileSync('/evidence/transition-browser-result.json',JSON.stringify(receipt,null,2)+'\n');}
+}catch(error){recordFailure(error);}
+finally{cleanupMode=true;lifecycleEvent('cleanup-start',{browserConnected:browser?.isConnected()??false,ownerPageClosed:ownerPage?.isClosed()??null});try{if(hostileServer)await new Promise(resolve=>hostileServer.close(resolve));await browser?.close();}catch(error){recordFailure(error);}fs.writeFileSync('/evidence/transition-browser-result.json',JSON.stringify(receipt,null,2)+'\n');}

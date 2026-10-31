@@ -19,6 +19,7 @@ REDIS='redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07ef
 BROWSER='mcr.microsoft.com/playwright:v1.62.1-noble@sha256:dcc5531e97840b9b5e794f2814476b21571c5124a3fca2267d73041f56e7580e'
 START=time.monotonic();stage='preflight';result={'status':'FAIL','wholeRowsAccepted':[],'productionAccess':False,'genuineOwnerObservation':False}
 MAX_OUTPUT=candidate_packages.MAX_BYTES
+container_lifecycle=[]
 
 def output_bytes():
  total=0
@@ -42,13 +43,59 @@ def run(args,*,cwd=None,timeout=120,log=None,input=None):
  return output
 
 def inspect(name):return json.loads(run(['docker','inspect',name]))[0]
+def safe_container_state(role,payload,checkpoint):
+ state=payload['State']
+ known_status={'created','running','paused','restarting','removing','exited','dead'}
+ codes=['EACCES','EROFS','EPERM','ENOENT','ECONNREFUSED','EADDRINUSE','ENOMEM']
+ error=str(state.get('Error',''))
+ row={'role':role,'checkpoint':checkpoint,'status':state.get('Status') if state.get('Status') in known_status else 'UNRECOGNIZED','running':state.get('Running') is True,'paused':state.get('Paused') is True,'restarting':state.get('Restarting') is True,'oomKilled':state.get('OOMKilled') is True,'dead':state.get('Dead') is True,'pid':int(state.get('Pid',0)),'exitCode':int(state.get('ExitCode',0)),'stateErrorPresent':bool(error),'stateErrorSha256':hashlib.sha256(error.encode()).hexdigest() if error else None,'stateErrorAllowlistedCodes':[code for code in codes if re.search(r'(?<![A-Z_])'+code+r'(?![A-Z_])',error)],'rawStateErrorRetained':False,'environmentOrCredentialsRetained':False}
+ for key in ['StartedAt','FinishedAt']:
+  value=state.get(key,'')
+  row[key]=value if re.fullmatch(r'[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.]+Z',value) else None
+ image=payload.get('Image','');row['image']=image if re.fullmatch(r'sha256:[a-f0-9]{64}',image) else None
+ return row
+
+def capture_container_state(role,checkpoint,payload=None):
+ # This read-only diagnostic must never replace the first examination failure.
+ try:
+  if payload is None:
+   response=subprocess.run(['docker','inspect',NAMES[role]],stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,text=True,timeout=10,check=False)
+   if response.returncode:return
+   payload=json.loads(response.stdout)[0]
+  row=safe_container_state(role,payload,checkpoint);row.update(stage=stage,frontendPhase=front_phase)
+  container_lifecycle.append(row)
+  (OUT/'container-lifecycle.json').write_text(json.dumps({'schema':'work8-container-lifecycle-v1','snapshots':container_lifecycle,'rawInspectOrEnvironmentRetained':False},indent=2)+'\n')
+ except Exception:result.setdefault('optionalDiagnosticUnavailable',[]).append('container-state:'+role)
+def sanitized_browser_stderr(text):
+ prefix='WORK8_BROWSER_DIAGNOSTIC '
+ keys={'stage','firstFailure','name','code','operator','firstSafeMessage','sourceFrames','browserConnected','ownerPageClosed','arbitraryErrorValuesRetained'}
+ messages={'FETCH_TYPE_ERROR':r'page\.evaluate: TypeError: Failed to fetch','EXECUTION_CONTEXT_DESTROYED':r'Execution context was destroyed','BROWSER_TARGET_CLOSED':r'Target page, context or browser has been closed','NAVIGATION_NETWORK_ERROR':r'page\.goto: net::ERR_[A-Z_]+','BROWSER_TIMEOUT':r'Timeout [0-9]+ms exceeded','ERR_ASSERTION':r'Sensitive message and assertion values withheld','UNCLASSIFIED_ERROR':r'Sensitive message and assertion values withheld'}
+ rows=[];omitted=0
+ for line in text.splitlines():
+  try:
+   assert line.startswith(prefix)
+   row=json.loads(line[len(prefix):]);assert set(row)==keys
+   assert re.fullmatch('[a-z_-]{1,80}',row['stage']) and row['firstFailure'] is True
+   assert row['name'] in ['Error','AssertionError','TypeError','TimeoutError','OTHER_ERROR']
+   assert row['code'] in messages and re.fullmatch(messages[row['code']],row['firstSafeMessage'])
+   assert row['operator'] in [None,'strictEqual','deepStrictEqual','==','!=','===','!==','match']
+   assert isinstance(row['sourceFrames'],list) and len(row['sourceFrames'])<=8 and all(re.fullmatch(r'browser\.mjs:[0-9]+:[0-9]+',frame) for frame in row['sourceFrames'])
+   assert type(row['browserConnected']) is bool and (row['ownerPageClosed'] is None or type(row['ownerPageClosed']) is bool) and row['arbitraryErrorValuesRetained'] is False
+   rows.append(row)
+  except Exception:omitted+=1
+ return {'schema':'work8-browser-sanitized-stderr-v1','stream':'stderr','diagnostics':rows[:1],'unclassifiedLinesOmitted':omitted,'arbitraryStderrRetained':False}
+
 def marker(name,timeout=210):
  deadline=time.monotonic()+timeout
  while not (PRIVATE/'control'/name).exists():
   assert time.monotonic()<deadline,'PHASE_DEADLINE:'+name
   for role in ['backend','browser']:
    if role=='browser' and (PRIVATE/'control/browser-complete.json').exists():continue
-   if NAMES[role] in created:assert inspect(NAMES[role])['State']['Running'],'CONTAINER_EXITED:'+role
+   if NAMES[role] in created:
+    payload=inspect(NAMES[role])
+    if not payload['State']['Running']:
+     capture_container_state(role,'first-observed-exit',payload)
+     raise AssertionError('CONTAINER_EXITED:'+role)
   time.sleep(.2)
 def signal(name,value={'ok':True}):(PRIVATE/'control'/name).write_text(json.dumps(value))
 def set_policy(released):
@@ -78,6 +125,7 @@ def start_front(role,phase):
  global front_phase
  if NAMES['frontend'] in created:
   capture_frontend_origin(require_contract=True)
+  capture_container_state('frontend','before-version-switch')
   run(['docker','rm','-f',NAMES['frontend']]);created.remove(NAMES['frontend'])
  front_phase=phase
  run(['docker','run','-d','--name',NAMES['frontend'],'--label','work8.native='+LABEL,'--network','container:'+NAMES['anchor'],'--pull','never','--read-only','--user','65534:65534','--cap-drop','ALL','--security-opt','no-new-privileges','--memory','1g','--cpus','1','--pids-limit','128','--env','PORT=43117','--env','HOSTNAME=localhost','--env','NODE_OPTIONS=--dns-result-order=ipv4first --require=/examination/origin-observer.cjs','--env','WORK8_OBSERVER_PHASE='+phase,'--env','WORK8_OBSERVER_ROLE='+role,'--env','WORK8_OBSERVER_IMAGE='+images[role],'--mount','type=bind,src='+str(SCRIPT)+',dst=/examination,readonly','--env','NODE_ENV=production','--env','BRAIN_API_URL=http://native-backend:43100','--env','VERCEL_GIT_COMMIT_SHA='+MANIFEST[role]['commit'],'--env','NEXT_TELEMETRY_DISABLED=1','--tmpfs','/tmp:rw,noexec,nosuid,size=32m','--tmpfs','/frontend/.next/cache:rw,noexec,nosuid,size=64m',images[role]])
@@ -96,11 +144,11 @@ def start_front(role,phase):
  (PRIVATE/'evidence'/('frontend-listener-'+phase+'.json')).write_text(json.dumps(listener,indent=2))
 
 try:
- assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v24-20261031-retained-native'
- event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v24-20261031-retained-native'
+ assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v25-20261031-return'
+ event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v25-20261031-return'
  assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1'
  assert run(['node','--version']).strip()=='v22.23.2'
- assert PHASE=='--examine-retained','V24_BUILD_PATH_NOT_AUTHORISED'
+ assert PHASE=='--examine-retained','V25_BUILD_PATH_NOT_AUTHORISED'
  assert json.loads((OUT/'retained-import-result.json').read_text())['status']=='PASS_RETAINED_BYTES_LOADED_DRIVER_READY'
  for role in ['backend','normal','recovery']:
   entry=MANIFEST[role];source=ROOT/(role+'-source')
@@ -208,6 +256,7 @@ ENTRYPOINT ["node","/app/deployment/locked-runtime.cjs"]
 except Exception as error:
  result['failedStage']=stage;result['error']=redact(str(error))[:500]
 finally:
+ for role in ['backend','frontend','redis','anchor','browser']:capture_container_state(role,'before-cleanup')
  stage='cleanup';cleanup_ok=True
  try:capture_frontend_origin()
  except Exception:result.setdefault('optionalDiagnosticUnavailable',[]).append('frontend-origin')
@@ -215,8 +264,13 @@ finally:
  # named container but failed before returning a successful start receipt.
  for role in ['backend','browser']:
   try:
-   log=subprocess.run(['docker','logs',NAMES[role]],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=10)
-   if log.returncode==0:(OUT/(role+'-container.log')).write_text(redact(log.stdout)[-1048576:])
+   log=subprocess.run(['docker','logs',NAMES[role]],stdout=subprocess.PIPE,stderr=subprocess.PIPE if role=='browser' else subprocess.STDOUT,text=True,timeout=10)
+   if log.returncode==0:
+    if role=='browser':
+     stderr=sanitized_browser_stderr(log.stderr)
+     (OUT/'browser-stderr-sanitized.json').write_text(json.dumps(stderr,indent=2)+'\n')
+     (OUT/'browser-container.log').write_text(''.join('WORK8_BROWSER_DIAGNOSTIC '+json.dumps(row)+'\n' for row in stderr['diagnostics']))
+    else:(OUT/(role+'-container.log')).write_text(redact(log.stdout)[-1048576:])
   except (subprocess.TimeoutExpired,OSError):result.setdefault('optionalDiagnosticUnavailable',[]).append(role)
  try:
   own=subprocess.run(['docker','ps','-aq','--filter','label=work8.native='+LABEL],stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,timeout=10,check=True).stdout.split()

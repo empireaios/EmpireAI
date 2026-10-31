@@ -4,7 +4,7 @@ import base64, hashlib, io, json, os, pathlib, re, subprocess, sys, tarfile, tem
 import candidate_packages
 
 REPOSITORY = 'empireaios/EmpireAI'
-BRANCH = 'work8/v24-20261031-retained-native'
+BRANCH = 'work8/v25-20261031-return'
 PRIOR_RUN = 41186780720
 PRIOR_CONTROLLER = '8cb258e05b83ab5a5b36676f3457b610444f3732'
 ARTIFACT_ID = 13037177457
