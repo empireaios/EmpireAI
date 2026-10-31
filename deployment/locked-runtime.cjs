@@ -15,6 +15,20 @@ function configuration(input) {
   if (!root || !path.isAbsolute(root) || fs.realpathSync(root) !== root || !fs.statSync(root).isDirectory()) throw Error('Attached canonical volume required');
   const database = path.join(root, 'commissioning', 'empireai-brain.db');
   if (input.DATABASE_PATH !== database) throw Error('Dedicated fresh commissioning path required');
+  // Native stores join repositoryRoot with their configured value. Forward only
+  // the relative spelling that resolves to the existing O33 data envelope; an
+  // absolute value would incorrectly become /app/data under path.join.
+  const repositoryRoot = path.resolve(__dirname, '..');
+  for (const [key,name] of [['VISUAL_MEMORY_STORAGE_ROOT','pillow-visual-memory'],['SESSION_CONTINUITY_STORAGE_ROOT','pillow-session-continuity']]) {
+    if (input[key] === undefined) continue;
+    const expected = path.join(root,name,name), parent = path.dirname(expected);
+    if (typeof input[key] !== 'string' || input[key] !== path.relative(repositoryRoot,expected) || path.join(repositoryRoot,input[key]) !== expected) throw Error('Canonical native storage binding required');
+    const envelope = fs.lstatSync(parent), uid = Number(input.WORK8_RUNTIME_UID), gid = Number(input.WORK8_RUNTIME_GID);
+    if (!Number.isInteger(uid) || uid < 1 || !Number.isInteger(gid) || gid < 1 || !envelope.isDirectory() || envelope.isSymbolicLink() || fs.realpathSync(parent) !== parent || envelope.uid !== uid || envelope.gid !== gid || (envelope.mode & 0o777) !== 0o700) throw Error('Canonical runtime-owned native storage envelope required');
+    let existing;
+    try { existing = fs.lstatSync(expected); } catch (error) { if (error.code !== 'ENOENT') throw error; }
+    if (existing && (!existing.isDirectory() || existing.isSymbolicLink() || fs.realpathSync(expected) !== expected || existing.uid !== uid || existing.gid !== gid || (existing.mode & 0o022))) throw Error('Canonical restored native storage required');
+  }
   if (input.EMPIRE_CANARY_EXPIRES_AT || input.EMPIRE_CANARY_ACK) throw Error('Temporary canary profile cannot be promoted');
   const intelligenceKeys=['AMAZON_SP_API_CLIENT_ID','AMAZON_SP_API_CLIENT_SECRET','AMAZON_SP_API_REFRESH_TOKEN','AMAZON_SP_API_REGION','CJ_API_KEY'];
   for(const flag of ['INTELLIGENCE_ENABLED','INTELLIGENCE_DISABLED'])if(input[flag]!==undefined&&!['true','false'].includes(input[flag]))throw Error('Explicit intelligence switch required');
@@ -25,7 +39,7 @@ function configuration(input) {
   if (input.FOUNDER_EMAIL===input.ADMIN_EMAIL || input.FOUNDER_PASSWORD===input.ADMIN_PASSWORD || (input.SESSION_SECRET||'').length<32 || [input.FOUNDER_PASSWORD,input.ADMIN_PASSWORD].includes(input.SESSION_SECRET)) throw Error('Independent identities and secrets required');
   const redis = new URL(input.REDIS_URL);
   if (!['redis:','rediss:'].includes(redis.protocol) || !redis.password || redis.hostname!==input.EMPIRE_LOCKED_REDIS_HOST || redis.search || redis.hash || !['','/','/0'].includes(redis.pathname)) throw Error('Dedicated authenticated Redis required');
-  const keys=['EMPIRE_OWNER_WRITE_POLICY','WORK8_ISOLATED_APPLICATION_GRANT','EMPIRE_LOCKED_REDIS_HOST','WORK8_CONTROLLER_JOURNAL_PATH','WORK8_RUNTIME_UID','WORK8_RUNTIME_GID','WORK8_WRITER_ISOLATION_LIBRARY','WORK8_WRITER_ISOLATION_SHA256','EMPIRE_BRAIN_WORKER_PORT','EMPIRE_GENERATION_DIRECTORY','EMPIRE_GENERATION','EMPIRE_CUTOVER_DIGEST','EMPIRE_GENERATION_DEVICE','EMPIRE_GENERATION_INODE',...intelligenceKeys,...verifierKeys,'INTELLIGENCE_ENABLED','INTELLIGENCE_DISABLED','COMMISSIONING_OPERATOR_TOKEN_SHA256','COMMISSIONING_OPERATOR_EXPIRES_AT','ANTHROPIC_API_KEY','GOOGLE_AI_API_KEY','OPENAI_API_KEY','PATH','HOME','TMPDIR','LANG','TZ','PORT','REDIS_URL','FOUNDER_EMAIL','FOUNDER_PASSWORD','ADMIN_EMAIL','ADMIN_PASSWORD','SESSION_SECRET','CORS_ORIGIN','RAILWAY_VOLUME_MOUNT_PATH','RAILWAY_PROJECT_ID','RAILWAY_ENVIRONMENT_ID','RAILWAY_SERVICE_ID','RAILWAY_GIT_COMMIT_SHA','RAILWAY_DEPLOYMENT_ID'];
+  const keys=['VISUAL_MEMORY_STORAGE_ROOT','SESSION_CONTINUITY_STORAGE_ROOT','EMPIRE_OWNER_WRITE_POLICY','WORK8_ISOLATED_APPLICATION_GRANT','EMPIRE_LOCKED_REDIS_HOST','WORK8_CONTROLLER_JOURNAL_PATH','WORK8_RUNTIME_UID','WORK8_RUNTIME_GID','WORK8_WRITER_ISOLATION_LIBRARY','WORK8_WRITER_ISOLATION_SHA256','EMPIRE_BRAIN_WORKER_PORT','EMPIRE_GENERATION_DIRECTORY','EMPIRE_GENERATION','EMPIRE_CUTOVER_DIGEST','EMPIRE_GENERATION_DEVICE','EMPIRE_GENERATION_INODE',...intelligenceKeys,...verifierKeys,'INTELLIGENCE_ENABLED','INTELLIGENCE_DISABLED','COMMISSIONING_OPERATOR_TOKEN_SHA256','COMMISSIONING_OPERATOR_EXPIRES_AT','ANTHROPIC_API_KEY','GOOGLE_AI_API_KEY','OPENAI_API_KEY','PATH','HOME','TMPDIR','LANG','TZ','PORT','REDIS_URL','FOUNDER_EMAIL','FOUNDER_PASSWORD','ADMIN_EMAIL','ADMIN_PASSWORD','SESSION_SECRET','CORS_ORIGIN','RAILWAY_VOLUME_MOUNT_PATH','RAILWAY_PROJECT_ID','RAILWAY_ENVIRONMENT_ID','RAILWAY_SERVICE_ID','RAILWAY_GIT_COMMIT_SHA','RAILWAY_DEPLOYMENT_ID'];
   const env=Object.fromEntries(keys.filter(k=>input[k]!==undefined).map(k=>[k,input[k]]));
   env.ASSURANCE_RUNTIME_ORIGIN=assuranceRuntimeOrigin(input);
   Object.assign(env,{EMPIRE_RUNTIME_PROFILE:PROFILE,NODE_ENV:'production',NODE_OPTIONS:'--max-old-space-size=1536 --require='+JSON.stringify(path.join(__dirname,'runtime-generation-preload.cjs')),DATABASE_PATH:database,
