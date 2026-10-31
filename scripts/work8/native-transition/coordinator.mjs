@@ -6,6 +6,7 @@ import {spawn} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {DatabaseSync} from 'node:sqlite';
 import {once} from 'node:events';
+import {verifyStoragePreflight} from './storage-preflight.mjs';
 import {preparePathContract} from '/app/scripts/work8/o33-permissions.mjs';
 const require=createRequire('/app/backend/package.json'),Redis=require('ioredis');
 const {MembershipJournal,processIdentity}=require('/app/deployment/runtime-membership-controller.cjs');
@@ -52,7 +53,8 @@ try{
  const bytes=JSON.stringify(cutover),digest=sha(bytes);fs.writeFileSync(path.join(p.authority,'cutover-'+digest+'.json'),bytes,{flag:'wx',mode:0o644});
  const file=path.join(p.authority,'generation.sqlite'),db=new DatabaseSync(file);db.exec('PRAGMA journal_mode=DELETE;CREATE TABLE authority(id INTEGER PRIMARY KEY,version INTEGER,generation TEXT,cutover_digest TEXT,sources TEXT,epoch INTEGER);CREATE TABLE transitions(previous_generation TEXT,next_generation TEXT,cutover_digest TEXT,at TEXT);');db.prepare('INSERT INTO authority VALUES(1,1,?,?,?,1)').run(generation,digest,JSON.stringify([source]));db.close();fs.chmodSync(file,0o644);const identity=fs.statSync(file);
  paths={...p,journal:path.join(p.operator,'journal.sqlite')};
- const env={PATH:'/usr/local/bin:/usr/bin:/bin',TMPDIR:p.temporary,EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',RAILWAY_VOLUME_MOUNT_PATH:p.volume,DATABASE_PATH:path.join(p.volume,'commissioning/empireai-brain.db'),RAILWAY_GIT_COMMIT_SHA:source,REDIS_URL:u.href,EMPIRE_LOCKED_REDIS_HOST:u.hostname,PORT:'43100',FOUNDER_EMAIL:'owner@work8.invalid',ADMIN_EMAIL:'admin@work8.invalid',FOUNDER_PASSWORD:process.env.FOUNDER_PASSWORD,ADMIN_PASSWORD:process.env.ADMIN_PASSWORD,SESSION_SECRET:process.env.SESSION_SECRET,WORK8_CONTROLLER_JOURNAL_PATH:paths.journal,WORK8_RUNTIME_UID:'65534',WORK8_RUNTIME_GID:'65534',WORK8_WRITER_ISOLATION_LIBRARY:'/native/runtime-writer-isolation.so',WORK8_WRITER_ISOLATION_SHA256:fs.readFileSync('/native/native.sha256','utf8').trim(),EMPIRE_GENERATION_DIRECTORY:p.authority,EMPIRE_GENERATION:generation,EMPIRE_CUTOVER_DIGEST:digest,EMPIRE_GENERATION_DEVICE:String(identity.dev),EMPIRE_GENERATION_INODE:String(identity.ino),EMPIRE_OWNER_WRITE_POLICY:'/run/empire-policy/control.json',INTELLIGENCE_ENABLED:'false',INTELLIGENCE_DISABLED:'true',CORS_ORIGIN:'http://localhost:43117'};
+ const env={PATH:'/usr/local/bin:/usr/bin:/bin',TMPDIR:p.temporary,VISUAL_MEMORY_STORAGE_ROOT:path.relative('/app',p.visual),SESSION_CONTINUITY_STORAGE_ROOT:path.relative('/app',p.session),EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',RAILWAY_VOLUME_MOUNT_PATH:p.volume,DATABASE_PATH:path.join(p.volume,'commissioning/empireai-brain.db'),RAILWAY_GIT_COMMIT_SHA:source,REDIS_URL:u.href,EMPIRE_LOCKED_REDIS_HOST:u.hostname,PORT:'43100',FOUNDER_EMAIL:'owner@work8.invalid',ADMIN_EMAIL:'admin@work8.invalid',FOUNDER_PASSWORD:process.env.FOUNDER_PASSWORD,ADMIN_PASSWORD:process.env.ADMIN_PASSWORD,SESSION_SECRET:process.env.SESSION_SECRET,WORK8_CONTROLLER_JOURNAL_PATH:paths.journal,WORK8_RUNTIME_UID:'65534',WORK8_RUNTIME_GID:'65534',WORK8_WRITER_ISOLATION_LIBRARY:'/native/runtime-writer-isolation.so',WORK8_WRITER_ISOLATION_SHA256:fs.readFileSync('/native/native.sha256','utf8').trim(),EMPIRE_GENERATION_DIRECTORY:p.authority,EMPIRE_GENERATION:generation,EMPIRE_CUTOVER_DIGEST:digest,EMPIRE_GENERATION_DEVICE:String(identity.dev),EMPIRE_GENERATION_INODE:String(identity.ino),EMPIRE_OWNER_WRITE_POLICY:'/run/empire-policy/control.json',INTELLIGENCE_ENABLED:'false',INTELLIGENCE_DISABLED:'true',CORS_ORIGIN:'http://localhost:43117'};
+ write('native-storage-preflight.json',verifyStoragePreflight(p,env,source));
  const startupDeadline=Date.now()+210000;
  runtime=spawn(process.execPath,['/app/deployment/locked-runtime.cjs'],{env,stdio:['ignore','pipe','pipe']});
  write('last-startup-observation.json',{...startupMetadata(),startupDeadline:new Date(startupDeadline).toISOString(),phase:'spawned'});
@@ -61,7 +63,24 @@ try{
  const expectedRoles=['assurance-inspector','assurance-worker','brain-worker','containment-guard','native-mission-lock-holder','primary','work8-domain-lock-holder'];
  await until(()=>{write('last-startup-observation.json',{...startupMetadata(),phase:'ROLE_CENSUS',startupDeadline:new Date(startupDeadline).toISOString(),...lastHealth});try{return JSON.stringify(census().members.filter(m=>m.state!=='TERMINATED').map(m=>m.role).sort())===JSON.stringify(expectedRoles);}catch{return false;}},'ACTUAL_NATIVE_ROLE_STARTUP',startupDeadline);
  const members=census().members.filter(m=>m.state!=='TERMINATED');assert.deepEqual(members.map(m=>m.role).sort(),expectedRoles);
- assert.ok(members.every(m=>m.source===source&&m.generation===generation));receipt.actualNativeApplication=true;receipt.runtimeRoles=members.map(m=>({role:m.role,source:m.source,entrySha256:m.entrySha256,uid:m.uid}));
+ assert.ok(members.every(m=>m.source===source&&m.generation===generation));
+ const nativeStoragePropagation=[];
+ // Read child environment only inside the privileged examination process. Retain
+ // exactly the two non-secret path settings, never the full environment bytes.
+ for(const member of members.filter(m=>['primary','brain-worker'].includes(m.role))){
+  const before=processIdentity(member.pid);assert.ok(before&&before.startTicks===member.startTicks&&before.state!=='Z'&&before.uids.every(id=>id===65534)&&before.gids.every(id=>id===65534));assert.equal(member.uid,65534);
+  const entries=fs.readFileSync('/proc/'+member.pid+'/environ','utf8').split('\0'),bindings={};
+  for(const [key,target] of [['VISUAL_MEMORY_STORAGE_ROOT',p.visual],['SESSION_CONTINUITY_STORAGE_ROOT',p.session]]){
+   const match=entries.find(value=>value.startsWith(key+'='));assert.ok(match,'NATIVE_STORAGE_SETTING_NOT_PROPAGATED');
+   const value=match.slice(key.length+1);assert.equal(value,env[key]);assert.equal(path.join('/app',value),target);bindings[key]={value,resolvedRoot:target};
+  }
+  const after=processIdentity(member.pid);assert.ok(after&&after.startTicks===before.startTicks&&after.state!=='Z');
+  nativeStoragePropagation.push({role:member.role,source:member.source,uid:member.uid,bindings});
+ }
+ assert.equal(nativeStoragePropagation.length,2);
+ for(const root of [p.visual,p.session]){const st=fs.lstatSync(root);assert.ok(st.isDirectory()&&!st.isSymbolicLink());assert.equal(fs.realpathSync(root),root);assert.equal(st.uid,65534);assert.equal(st.gid,65534);assert.equal(st.mode&0o022,0);}
+ write('native-storage-child-bindings.json',{source,generation,roles:nativeStoragePropagation,actualNativeRootsPresent:true,fullEnvironmentRetained:false,wholeRowsAccepted:[]});
+ receipt.actualNativeApplication=true;receipt.runtimeRoles=members.map(m=>({role:m.role,source:m.source,entrySha256:m.entrySha256,uid:m.uid}));
  write('actual-runtime-ready.json',{source,generation,volume:p.volume,redisRunId:redisIdentity.runId,actualNativeApplication:true,syntheticOwnerOnly:true});signal('runtime-ready.json');
  await until(()=>fs.existsSync(path.join(control,'stop-runtime.json')),'TRANSITION_CONTROL_DEADLINE');await drain();signal('runtime-drained.json',{volume:p.volume});
  await until(()=>fs.existsSync(path.join(control,'readback-complete.json')),'INDEPENDENT_READBACK_DEADLINE');receipt.status='PASS_TECHNICAL_RUNTIME_ONLY';

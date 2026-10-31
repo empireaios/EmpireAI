@@ -1,4 +1,4 @@
-name: Work 8 distinct transition diagnostic-control successor
+name: Work 8 V21 authorised storage correction examination
 on: create
 permissions:
   contents: read
@@ -7,7 +7,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   transition:
-    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/closure-20261031-native-transition-r2' && github.run_attempt == 1 && github.run_number == 1
+    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v21-20261031-native-exam' && github.run_attempt == 1 && github.run_number == 1
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
