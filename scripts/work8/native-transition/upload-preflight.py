@@ -4,7 +4,7 @@ import hashlib,json,os,pathlib,stat,sys
 from candidate_packages import MAX_BYTES,MAX_PAYLOAD_BYTES,ZIP_ENVELOPE_RESERVE,directory_bytes
 workspace=pathlib.Path(os.environ['GITHUB_WORKSPACE']);mode=sys.argv[1] if len(sys.argv)>1 else 'evidence';allowed=False
 try:
- assert mode in {'candidates','evidence'}
+ assert mode=='evidence','V28_CANDIDATE_REUPLOAD_FORBIDDEN'
  root=workspace/('native-transition-candidates' if mode=='candidates' else 'native-transition-output')
  assert root.is_dir() and not root.is_symlink()
  index=json.loads((root/'artifact-index.json').read_text())
@@ -26,7 +26,7 @@ try:
   if name in expected:
    assert s.st_size==expected[name]['bytes']
    with p.open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==expected[name]['sha256']
- total=directory_bytes(workspace/'native-transition-candidates')+directory_bytes(workspace/'native-transition-output')
+ total=directory_bytes(workspace/'native-transition-output')
  assert total<=MAX_PAYLOAD_BYTES, 'AGGREGATE_PAYLOAD_BYTES_BOUND'
  # Both Actions uploads use compression-level:0 and <=128 short flat members;
  # 2MiB is held back for the two ZIP envelopes and uncompressed-deflate framing.

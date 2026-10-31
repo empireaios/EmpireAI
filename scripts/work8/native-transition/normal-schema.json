@@ -1,0 +1,1655 @@
+{
+  "sourceContract": "projection-schema-paths.json",
+  "sourceContractSha256": "b3dd4d58cc6b3c36d8b6f7d063b75c93cae9a67a03942b841d542f8ab0183b89",
+  "paths": {
+    "$": [
+      "object"
+    ],
+    "$.schema": [
+      "string"
+    ],
+    "$.label": [
+      "string"
+    ],
+    "$.session": [
+      "object"
+    ],
+    "$.session.schema": [
+      "string"
+    ],
+    "$.session.workspace": [
+      "string"
+    ],
+    "$.session.owner": [
+      "string"
+    ],
+    "$.session.sessionId": [
+      "string"
+    ],
+    "$.session.twinWorkspace": [
+      "string"
+    ],
+    "$.session.id": [
+      "string"
+    ],
+    "$.session.version": [
+      "number"
+    ],
+    "$.session.action": [
+      "string"
+    ],
+    "$.session.status": [
+      "string"
+    ],
+    "$.session.at": [
+      "number"
+    ],
+    "$.session.previous": [
+      "string"
+    ],
+    "$.session.requestDigest": [
+      "string"
+    ],
+    "$.session.classification": [
+      "string"
+    ],
+    "$.session.externalEffects": [
+      "number"
+    ],
+    "$.session.digest": [
+      "string"
+    ],
+    "$.records": [
+      "array"
+    ],
+    "$.records[]": [
+      "object"
+    ],
+    "$.records[].missionId": [
+      "string"
+    ],
+    "$.records[].receiptDigest": [
+      "string"
+    ],
+    "$.records[].version": [
+      "number"
+    ],
+    "$.records[].productId": [
+      "string"
+    ],
+    "$.records[].variantId": [
+      "string"
+    ],
+    "$.records[].listing": [
+      "object"
+    ],
+    "$.records[].listing.productId": [
+      "string"
+    ],
+    "$.records[].listing.title": [
+      "string"
+    ],
+    "$.records[].listing.bullets": [
+      "array"
+    ],
+    "$.records[].listing.bullets[]": [
+      "string"
+    ],
+    "$.records[].listing.description": [
+      "string"
+    ],
+    "$.records[].listing.category": [
+      "string"
+    ],
+    "$.records[].listing.attributes": [
+      "object"
+    ],
+    "$.records[].listing.attributes.material": [
+      "string"
+    ],
+    "$.records[].listing.variants": [
+      "array"
+    ],
+    "$.records[].listing.variants[]": [
+      "object"
+    ],
+    "$.records[].listing.variants[].sku": [
+      "string"
+    ],
+    "$.records[].listing.variants[].variantId": [
+      "string"
+    ],
+    "$.records[].listing.variants[].dimensions": [
+      "string"
+    ],
+    "$.records[].listing.images": [
+      "array"
+    ],
+    "$.records[].listing.images[]": [
+      "object"
+    ],
+    "$.records[].listing.images[].url": [
+      "string"
+    ],
+    "$.records[].listing.images[].license": [
+      "string"
+    ],
+    "$.records[].listing.images[].rightsEvidence": [
+      "string"
+    ],
+    "$.records[].listing.images[].sha256": [
+      "string"
+    ],
+    "$.records[].listing.claims": [
+      "array"
+    ],
+    "$.records[].listing.claims[]": [
+      "object"
+    ],
+    "$.records[].listing.claims[].text": [
+      "string"
+    ],
+    "$.records[].listing.claims[].evidenceId": [
+      "string"
+    ],
+    "$.records[].listing.sourceEvidence": [
+      "array"
+    ],
+    "$.records[].listing.sourceEvidence[]": [
+      "string"
+    ],
+    "$.records[].publication": [
+      "object"
+    ],
+    "$.records[].publication.capacity": [
+      "object"
+    ],
+    "$.records[].publication.capacity.account": [
+      "string"
+    ],
+    "$.records[].publication.capacity.marketplace": [
+      "string"
+    ],
+    "$.records[].publication.capacity.mode": [
+      "string"
+    ],
+    "$.records[].publication.capacity.asin": [
+      "null"
+    ],
+    "$.records[].publication.capacity.newAsinRemaining": [
+      "number"
+    ],
+    "$.records[].publication.capacity.unsoldRemaining": [
+      "number"
+    ],
+    "$.records[].publication.capacity.requestsPerSecond": [
+      "number"
+    ],
+    "$.records[].publication.capacity.eligibility": [
+      "string"
+    ],
+    "$.records[].publication.capacity.provenance": [
+      "object"
+    ],
+    "$.records[].publication.capacity.provenance.source": [
+      "string"
+    ],
+    "$.records[].publication.capacity.provenance.reference": [
+      "string"
+    ],
+    "$.records[].publication.capacity.provenance.sha256": [
+      "string"
+    ],
+    "$.records[].publication.capacity.provenance.observedAt": [
+      "string"
+    ],
+    "$.records[].publication.capacity.provenance.expiresAt": [
+      "string"
+    ],
+    "$.records[].publication.capacity.provenance.classification": [
+      "string"
+    ],
+    "$.records[].publication.status": [
+      "string"
+    ],
+    "$.records[].publication.receiptId": [
+      "string"
+    ],
+    "$.records[].publication.canonicalPublisher": [
+      "string"
+    ],
+    "$.records[].orders": [
+      "object"
+    ],
+    "$.records[].orders.*": [
+      "object"
+    ],
+    "$.records[].orders.*.order": [
+      "object"
+    ],
+    "$.records[].orders.*.order.orderId": [
+      "string"
+    ],
+    "$.records[].orders.*.order.workspaceId": [
+      "string"
+    ],
+    "$.records[].orders.*.order.storeId": [
+      "string"
+    ],
+    "$.records[].orders.*.order.brandId": [
+      "string"
+    ],
+    "$.records[].orders.*.order.supplierPlatform": [
+      "string"
+    ],
+    "$.records[].orders.*.order.connectorId": [
+      "string"
+    ],
+    "$.records[].orders.*.order.status": [
+      "string"
+    ],
+    "$.records[].orders.*.order.fulfillmentStatus": [
+      "string"
+    ],
+    "$.records[].orders.*.order.items": [
+      "array"
+    ],
+    "$.records[].orders.*.order.items[]": [
+      "object"
+    ],
+    "$.records[].orders.*.order.items[].itemId": [
+      "string"
+    ],
+    "$.records[].orders.*.order.items[].supplierSku": [
+      "string"
+    ],
+    "$.records[].orders.*.order.items[].supplierProductId": [
+      "string"
+    ],
+    "$.records[].orders.*.order.items[].title": [
+      "string"
+    ],
+    "$.records[].orders.*.order.items[].quantity": [
+      "number"
+    ],
+    "$.records[].orders.*.order.items[].unitCost": [
+      "number"
+    ],
+    "$.records[].orders.*.order.items[].currency": [
+      "string"
+    ],
+    "$.records[].orders.*.order.shippingAddress": [
+      "object"
+    ],
+    "$.records[].orders.*.order.shippingAddress.fullName": [
+      "string"
+    ],
+    "$.records[].orders.*.order.shippingAddress.addressLine1": [
+      "string"
+    ],
+    "$.records[].orders.*.order.shippingAddress.city": [
+      "string"
+    ],
+    "$.records[].orders.*.order.shippingAddress.state": [
+      "string"
+    ],
+    "$.records[].orders.*.order.shippingAddress.postalCode": [
+      "string"
+    ],
+    "$.records[].orders.*.order.shippingAddress.countryCode": [
+      "string"
+    ],
+    "$.records[].orders.*.order.shippingAddress.phone": [
+      "string"
+    ],
+    "$.records[].orders.*.order.estimatedCost": [
+      "number"
+    ],
+    "$.records[].orders.*.order.estimatedDeliveryDaysMin": [
+      "number"
+    ],
+    "$.records[].orders.*.order.estimatedDeliveryDaysMax": [
+      "number"
+    ],
+    "$.records[].orders.*.order.currency": [
+      "string"
+    ],
+    "$.records[].orders.*.order.approval": [
+      "null"
+    ],
+    "$.records[].orders.*.order.supplierOrderId": [
+      "null"
+    ],
+    "$.records[].orders.*.order.trackingNumber": [
+      "null"
+    ],
+    "$.records[].orders.*.order.carrier": [
+      "null"
+    ],
+    "$.records[].orders.*.order.trackingEvents": [
+      "array"
+    ],
+    "$.records[].orders.*.order.integrationMode": [
+      "string"
+    ],
+    "$.records[].orders.*.order.createdAt": [
+      "string"
+    ],
+    "$.records[].orders.*.order.updatedAt": [
+      "string"
+    ],
+    "$.records[].orders.*.outcome": [
+      "string"
+    ],
+    "$.records[].orders.*.accepted": [
+      "number"
+    ],
+    "$.records[].orders.*.shipped": [
+      "number"
+    ],
+    "$.records[].orders.*.delivered": [
+      "number"
+    ],
+    "$.records[].orders.*.tracking": [
+      "array"
+    ],
+    "$.records[].orders.*.tracking[]": [
+      "string"
+    ],
+    "$.records[].orders.*.lastTrackingAt": [
+      "string"
+    ],
+    "$.records[].orders.*.shipments": [
+      "object"
+    ],
+    "$.records[].orders.*.shipments.*": [
+      "object"
+    ],
+    "$.records[].orders.*.shipments.*.quantity": [
+      "number"
+    ],
+    "$.records[].orders.*.shipments.*.delivered": [
+      "boolean"
+    ],
+    "$.records[].orders.*.shipments.*.carrier": [
+      "string"
+    ],
+    "$.records[].orders.*.shipments.*.tracking": [
+      "string"
+    ],
+    "$.records[].orders.*.remedies": [
+      "array"
+    ],
+    "$.records[].orders.*.intentId": [
+      "string"
+    ],
+    "$.records[].orders.*.providerId": [
+      "string"
+    ],
+    "$.records[].financeReference": [
+      "object"
+    ],
+    "$.records[].financeReference.workspace": [
+      "string"
+    ],
+    "$.records[].financeReference.missionId": [
+      "string"
+    ],
+    "$.records[].financeReference.sourceReceiptDigest": [
+      "string"
+    ],
+    "$.records[].sourceClassification": [
+      "string"
+    ],
+    "$.records[].media": [
+      "object"
+    ],
+    "$.records[].media.version": [
+      "number"
+    ],
+    "$.records[].media.original": [
+      "array"
+    ],
+    "$.records[].media.original[]": [
+      "object"
+    ],
+    "$.records[].media.original[].id": [
+      "string"
+    ],
+    "$.records[].media.original[].url": [
+      "string"
+    ],
+    "$.records[].media.original[].kind": [
+      "string"
+    ],
+    "$.records[].media.original[].sha256": [
+      "string"
+    ],
+    "$.records[].media.original[].sourceIdentity": [
+      "string"
+    ],
+    "$.records[].media.original[].rightsEvidence": [
+      "string"
+    ],
+    "$.records[].media.original[].rightsStatus": [
+      "string"
+    ],
+    "$.records[].media.original[].provenance": [
+      "string"
+    ],
+    "$.records[].media.proposal": [
+      "null"
+    ],
+    "$.records[].media.current": [
+      "null"
+    ],
+    "$.records[].media.history": [
+      "array"
+    ],
+    "$.records[].media.status": [
+      "string"
+    ],
+    "$.records[].media.reminder": [
+      "null"
+    ],
+    "$.records[].media.sourceBindingCurrent": [
+      "boolean"
+    ],
+    "$.records[].media.externalStatus": [
+      "string"
+    ],
+    "$.records[].media.editingCapability": [
+      "string"
+    ],
+    "$.records[].media.classification": [
+      "string"
+    ],
+    "$.records[].media.externalEffects": [
+      "number"
+    ],
+    "$.records[].title": [
+      "string"
+    ],
+    "$.records[].sku": [
+      "string"
+    ],
+    "$.records[].phase": [
+      "string"
+    ],
+    "$.records[].qualification": [
+      "object"
+    ],
+    "$.records[].qualification.qualified": [
+      "boolean"
+    ],
+    "$.records[].qualification.reasons": [
+      "array"
+    ],
+    "$.records[].qualification.score": [
+      "number"
+    ],
+    "$.records[].qualification.confidence": [
+      "number"
+    ],
+    "$.records[].qualification.economics": [
+      "object"
+    ],
+    "$.records[].qualification.economics.input": [
+      "object"
+    ],
+    "$.records[].qualification.economics.input.productId": [
+      "string"
+    ],
+    "$.records[].qualification.economics.input.supplierId": [
+      "string"
+    ],
+    "$.records[].qualification.economics.input.channel": [
+      "string"
+    ],
+    "$.records[].qualification.economics.input.country": [
+      "string"
+    ],
+    "$.records[].qualification.economics.input.currency": [
+      "string"
+    ],
+    "$.records[].qualification.economics.input.sellingPrice": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.productCost": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.freight": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.fulfilment": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.feePercent": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.paymentPercent": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.advertising": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.refundRate": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.refundLoss": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.duties": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.tax": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.overhead": [
+      "number"
+    ],
+    "$.records[].qualification.economics.input.complete": [
+      "boolean"
+    ],
+    "$.records[].qualification.economics.input.evidenceRefs": [
+      "array"
+    ],
+    "$.records[].qualification.economics.input.evidenceRefs[]": [
+      "string"
+    ],
+    "$.records[].qualification.economics.input.assumptions": [
+      "string"
+    ],
+    "$.records[].qualification.economics.gross": [
+      "number"
+    ],
+    "$.records[].qualification.economics.contribution": [
+      "number"
+    ],
+    "$.records[].qualification.economics.net": [
+      "number"
+    ],
+    "$.records[].qualification.economics.breakEven": [
+      "number"
+    ],
+    "$.records[].qualification.economics.minimumViablePrice": [
+      "number"
+    ],
+    "$.records[].qualification.economics.marginPercent": [
+      "number"
+    ],
+    "$.records[].qualification.economics.status": [
+      "string"
+    ],
+    "$.records[].qualification.economics.genuinelyProfitable": [
+      "boolean"
+    ],
+    "$.records[].qualification.exposure": [
+      "number"
+    ],
+    "$.records[].qualification.available": [
+      "number"
+    ],
+    "$.records[].qualification.classification": [
+      "string"
+    ],
+    "$.records[].qualification.genuinelyProfitable": [
+      "boolean"
+    ],
+    "$.records[].decisions": [
+      "array"
+    ],
+    "$.records[].finance": [
+      "object"
+    ],
+    "$.records[].finance.missionId": [
+      "string"
+    ],
+    "$.records[].finance.lifecycleComplete": [
+      "boolean"
+    ],
+    "$.records[].finance.status": [
+      "string"
+    ],
+    "$.records[].finance.classification": [
+      "string"
+    ],
+    "$.records[].finance.sourceReceiptDigest": [
+      "string"
+    ],
+    "$.records[].finance.planDigest": [
+      "string"
+    ],
+    "$.records[].finance.assumptions": [
+      "object"
+    ],
+    "$.records[].finance.assumptions.classification": [
+      "string"
+    ],
+    "$.records[].finance.assumptions.version": [
+      "string"
+    ],
+    "$.records[].finance.assumptions.feeBasis": [
+      "string"
+    ],
+    "$.records[].finance.assumptions.dutyBasis": [
+      "string"
+    ],
+    "$.records[].finance.assumptions.payout": [
+      "string"
+    ],
+    "$.records[].finance.assumptions.supplierPayment": [
+      "string"
+    ],
+    "$.records[].finance.assumptions.actualCashMovement": [
+      "number"
+    ],
+    "$.records[].finance.recordedEvents": [
+      "number"
+    ],
+    "$.records[].finance.totalEvents": [
+      "number"
+    ],
+    "$.records[].finance.financial": [
+      "object"
+    ],
+    "$.records[].finance.financial.classification": [
+      "string"
+    ],
+    "$.records[].finance.financial.sourceReceiptDigest": [
+      "string"
+    ],
+    "$.records[].finance.financial.work5Reference": [
+      "string"
+    ],
+    "$.records[].finance.financial.eventDigest": [
+      "string"
+    ],
+    "$.records[].finance.financial.cutoffAt": [
+      "string"
+    ],
+    "$.records[].finance.financial.orders": [
+      "array"
+    ],
+    "$.records[].finance.financial.orders[]": [
+      "object"
+    ],
+    "$.records[].finance.financial.orders[].orderId": [
+      "string"
+    ],
+    "$.records[].finance.financial.orders[].currency": [
+      "string"
+    ],
+    "$.records[].finance.financial.orders[].missing": [
+      "array"
+    ],
+    "$.records[].finance.financial.orders[].missing[]": [
+      "string"
+    ],
+    "$.records[].finance.financial.orders[].unknownIds": [
+      "array"
+    ],
+    "$.records[].finance.financial.orders[].contributionMinor": [
+      "null"
+    ],
+    "$.records[].finance.financial.orders[].realisedContributionMinor": [
+      "null"
+    ],
+    "$.records[].finance.financial.orders[].receivableMinor": [
+      "number"
+    ],
+    "$.records[].finance.financial.orders[].settlementMinor": [
+      "number"
+    ],
+    "$.records[].finance.financial.orders[].payoutHeldMinor": [
+      "number"
+    ],
+    "$.records[].finance.financial.orders[].bankMinor": [
+      "number"
+    ],
+    "$.records[].finance.financial.orders[].liabilityMinor": [
+      "number"
+    ],
+    "$.records[].finance.financial.orders[].cashNeedMinor": [
+      "number"
+    ],
+    "$.records[].finance.financial.orders[].conserved": [
+      "boolean"
+    ],
+    "$.records[].finance.financial.orders[].complete": [
+      "boolean"
+    ],
+    "$.records[].finance.financial.duplicates": [
+      "number"
+    ],
+    "$.records[].finance.financial.pending": [
+      "array"
+    ],
+    "$.records[].finance.financial.unknown": [
+      "array"
+    ],
+    "$.records[].finance.financial.balanced": [
+      "boolean"
+    ],
+    "$.records[].finance.financial.conserved": [
+      "boolean"
+    ],
+    "$.records[].finance.financial.complete": [
+      "boolean"
+    ],
+    "$.records[].finance.financial.actualCashMovement": [
+      "number"
+    ],
+    "$.records[].finance.financial.actualRevenue": [
+      "null"
+    ],
+    "$.records[].finance.financial.actualProfit": [
+      "null"
+    ],
+    "$.records[].finance.financial.technologyCosts": [
+      "string"
+    ],
+    "$.records[].finance.financial.fx": [
+      "string"
+    ],
+    "$.records[].finance.financial.sourceVerification": [
+      "string"
+    ],
+    "$.records[].finance.financial.noncanonicalAmounts": [
+      "string"
+    ],
+    "$.records[].finance.actualCashMovement": [
+      "number"
+    ],
+    "$.records[].finance.simulatedCharges": [
+      "array"
+    ],
+    "$.records[].finance.simulatedCharges[]": [
+      "object"
+    ],
+    "$.records[].finance.simulatedCharges[].orderId": [
+      "string"
+    ],
+    "$.records[].finance.simulatedCharges[].currency": [
+      "string"
+    ],
+    "$.records[].finance.simulatedCharges[].feeMinor": [
+      "null"
+    ],
+    "$.records[].finance.simulatedCharges[].dutyAndTaxMinor": [
+      "null"
+    ],
+    "$.records[].finance.simulatedCharges[].refundMinor": [
+      "null"
+    ],
+    "$.records[].finance.events": [
+      "array"
+    ],
+    "$.records[].finance.events[]": [
+      "object"
+    ],
+    "$.records[].finance.events[].id": [
+      "string"
+    ],
+    "$.records[].finance.events[].orderId": [
+      "string"
+    ],
+    "$.records[].finance.events[].sourceReceiptDigest": [
+      "string"
+    ],
+    "$.records[].finance.events[].kind": [
+      "string"
+    ],
+    "$.records[].finance.events[].currency": [
+      "string"
+    ],
+    "$.records[].finance.events[].minor": [
+      "number"
+    ],
+    "$.records[].finance.events[].at": [
+      "string"
+    ],
+    "$.records[].finance.events[].classification": [
+      "string"
+    ],
+    "$.records[].finance.events[].assumptionRef": [
+      "string"
+    ],
+    "$.next": [
+      "null"
+    ],
+    "$.coverage": [
+      "string"
+    ],
+    "$.actualCashMovement": [
+      "number"
+    ],
+    "$.liveCommerce": [
+      "string"
+    ],
+    "$.birth": [
+      "string"
+    ],
+    "$.portfolioReviews": [
+      "array"
+    ],
+    "$.recoveredAuthorityAudit": [
+      "object"
+    ],
+    "$.recoveredAuthorityAudit.classification": [
+      "string"
+    ],
+    "$.recoveredAuthorityAudit.histories": [
+      "array"
+    ],
+    "$.preparationAuthority": [
+      "array"
+    ],
+    "$.preparationAuthority[]": [
+      "object"
+    ],
+    "$.preparationAuthority[].scope": [
+      "string"
+    ],
+    "$.preparationAuthority[].latestPreparation": [
+      "null"
+    ],
+    "$.preparationAuthority[].latestApproval": [
+      "null"
+    ],
+    "$.preparationAuthority[].version": [
+      "number"
+    ],
+    "$.preparationAuthority[].grant": [
+      "null"
+    ],
+    "$.preparationAuthority[].status": [
+      "string"
+    ],
+    "$.preparationAuthority[].paidInference": [
+      "boolean"
+    ],
+    "$.preparationAuthority[].externalEffects": [
+      "boolean"
+    ],
+    "$.communications": [
+      "array"
+    ],
+    "$.authority": [
+      "object"
+    ],
+    "$.authority.grant": [
+      "object"
+    ],
+    "$.authority.grant.workspace": [
+      "string"
+    ],
+    "$.authority.grant.owner": [
+      "string"
+    ],
+    "$.authority.grant.id": [
+      "string"
+    ],
+    "$.authority.grant.sessionId": [
+      "string"
+    ],
+    "$.authority.grant.version": [
+      "number"
+    ],
+    "$.authority.grant.action": [
+      "string"
+    ],
+    "$.authority.grant.at": [
+      "number"
+    ],
+    "$.authority.grant.expiresAt": [
+      "number"
+    ],
+    "$.authority.grant.requestDigest": [
+      "string"
+    ],
+    "$.authority.grant.previous": [
+      "string"
+    ],
+    "$.authority.grant.scope": [
+      "string"
+    ],
+    "$.authority.grant.digest": [
+      "string"
+    ],
+    "$.authority.version": [
+      "number"
+    ],
+    "$.authority.status": [
+      "string"
+    ],
+    "$.authority.scope": [
+      "string"
+    ],
+    "$.authority.externalEffects": [
+      "number"
+    ],
+    "$.tasks": [
+      "array"
+    ],
+    "$.tasks[]": [
+      "object"
+    ],
+    "$.tasks[].id": [
+      "string"
+    ],
+    "$.tasks[].mission": [
+      "string"
+    ],
+    "$.tasks[].workspace": [
+      "string"
+    ],
+    "$.tasks[].owner": [
+      "string"
+    ],
+    "$.tasks[].createdAt": [
+      "number"
+    ],
+    "$.tasks[].cursor": [
+      "number"
+    ],
+    "$.tasks[].fence": [
+      "number"
+    ],
+    "$.tasks[].status": [
+      "string"
+    ],
+    "$.tasks[].error": [
+      "null"
+    ],
+    "$.tasks[].attempts": [
+      "number"
+    ],
+    "$.tasks[].maxSteps": [
+      "number"
+    ],
+    "$.tasks[].maxAttempts": [
+      "number"
+    ],
+    "$.tasks[].paidInference": [
+      "number"
+    ],
+    "$.tasks[].stepCount": [
+      "number"
+    ],
+    "$.assurance": [
+      "object"
+    ],
+    "$.assurance.probes": [
+      "array"
+    ],
+    "$.assurance.probes[]": [
+      "object"
+    ],
+    "$.assurance.probes[].id": [
+      "string"
+    ],
+    "$.assurance.probes[].capability": [
+      "string"
+    ],
+    "$.assurance.probes[].classification": [
+      "string"
+    ],
+    "$.assurance.probes[].severity": [
+      "string"
+    ],
+    "$.assurance.probes[].status": [
+      "string"
+    ],
+    "$.assurance.probes[].summary": [
+      "string"
+    ],
+    "$.assurance.probes[].evidence": [
+      "object"
+    ],
+    "$.assurance.probes[].evidence.taskId": [
+      "string"
+    ],
+    "$.assurance.probes[].evidence.missionId": [
+      "string"
+    ],
+    "$.assurance.probes[].evidence.cursor": [
+      "number"
+    ],
+    "$.assurance.probes[].evidence.fence": [
+      "number"
+    ],
+    "$.assurance.probes[].evidence.prefixDigest": [
+      "string"
+    ],
+    "$.assurance.probes[].evidence.receiptDigest": [
+      "string"
+    ],
+    "$.assurance.probes[].evidence.observedAt": [
+      "number"
+    ],
+    "$.assurance.probes[].evidence.externalEffects": [
+      "number"
+    ],
+    "$.assurance.probes[].runbookId": [
+      "null"
+    ],
+    "$.assurance.observations": [
+      "array"
+    ],
+    "$.assurance.observations[]": [
+      "object"
+    ],
+    "$.assurance.observations[].id": [
+      "string"
+    ],
+    "$.assurance.observations[].kind": [
+      "string"
+    ],
+    "$.assurance.observations[].modelAssessment": [
+      "string"
+    ],
+    "$.assurance.observations[].taskId": [
+      "string"
+    ],
+    "$.assurance.observations[].missionId": [
+      "string"
+    ],
+    "$.assurance.observations[].receiptDigest": [
+      "string"
+    ],
+    "$.assurance.observations[].evidenceIds": [
+      "array"
+    ],
+    "$.assurance.observations[].evaluationWindow": [
+      "number"
+    ],
+    "$.assurance.observations[].health": [
+      "object"
+    ],
+    "$.assurance.observations[].health.classification": [
+      "string"
+    ],
+    "$.assurance.observations[].health.policy": [
+      "string"
+    ],
+    "$.assurance.observations[].health.score": [
+      "null"
+    ],
+    "$.assurance.observations[].health.scoreMeaning": [
+      "string"
+    ],
+    "$.assurance.observations[].health.unknownChecks": [
+      "number"
+    ],
+    "$.assurance.observations[].health.checks": [
+      "array"
+    ],
+    "$.assurance.observations[].health.recommendations": [
+      "array"
+    ],
+    "$.assurance.observations[].health.recommendations[]": [
+      "string"
+    ],
+    "$.assurance.observations[].health.grantsAuthority": [
+      "boolean"
+    ],
+    "$.assurance.observations[].grantsAuthority": [
+      "boolean"
+    ],
+    "$.assurance.observations[].observedAt": [
+      "number"
+    ],
+    "$.assurance.observations[].classification": [
+      "string"
+    ],
+    "$.assurance.observations[].externalEffects": [
+      "number"
+    ],
+    "$.assurance.observations[].cursor": [
+      "number"
+    ],
+    "$.assurance.observations[].status": [
+      "string"
+    ],
+    "$.assurance.observations[].error": [
+      "null"
+    ],
+    "$.assurance.coverage": [
+      "string"
+    ],
+    "$.scheduler": [
+      "object"
+    ],
+    "$.scheduler.mode": [
+      "string"
+    ],
+    "$.scheduler.intervalMs": [
+      "number"
+    ],
+    "$.sourceNotice": [
+      "string"
+    ]
+  },
+  "objectKeyVariants": {
+    "$": [
+      [
+        "actualCashMovement",
+        "assurance",
+        "authority",
+        "birth",
+        "communications",
+        "coverage",
+        "label",
+        "liveCommerce",
+        "next",
+        "portfolioReviews",
+        "preparationAuthority",
+        "records",
+        "recoveredAuthorityAudit",
+        "scheduler",
+        "schema",
+        "session",
+        "sourceNotice",
+        "tasks"
+      ]
+    ],
+    "$.assurance": [
+      [
+        "coverage",
+        "observations",
+        "probes"
+      ]
+    ],
+    "$.assurance.observations[]": [
+      [
+        "classification",
+        "evaluationWindow",
+        "evidenceIds",
+        "externalEffects",
+        "grantsAuthority",
+        "health",
+        "id",
+        "kind",
+        "missionId",
+        "modelAssessment",
+        "observedAt",
+        "receiptDigest",
+        "taskId"
+      ],
+      [
+        "classification",
+        "cursor",
+        "error",
+        "externalEffects",
+        "id",
+        "kind",
+        "missionId",
+        "observedAt",
+        "status",
+        "taskId"
+      ]
+    ],
+    "$.assurance.observations[].health": [
+      [
+        "checks",
+        "classification",
+        "grantsAuthority",
+        "policy",
+        "recommendations",
+        "score",
+        "scoreMeaning",
+        "unknownChecks"
+      ]
+    ],
+    "$.assurance.probes[]": [
+      [
+        "capability",
+        "classification",
+        "evidence",
+        "id",
+        "runbookId",
+        "severity",
+        "status",
+        "summary"
+      ]
+    ],
+    "$.assurance.probes[].evidence": [
+      [
+        "cursor",
+        "externalEffects",
+        "fence",
+        "missionId",
+        "observedAt",
+        "prefixDigest",
+        "receiptDigest",
+        "taskId"
+      ]
+    ],
+    "$.authority": [
+      [
+        "externalEffects",
+        "grant",
+        "scope",
+        "status",
+        "version"
+      ]
+    ],
+    "$.authority.grant": [
+      [
+        "action",
+        "at",
+        "digest",
+        "expiresAt",
+        "id",
+        "owner",
+        "previous",
+        "requestDigest",
+        "scope",
+        "sessionId",
+        "version",
+        "workspace"
+      ]
+    ],
+    "$.preparationAuthority[]": [
+      [
+        "externalEffects",
+        "grant",
+        "latestApproval",
+        "latestPreparation",
+        "paidInference",
+        "scope",
+        "status",
+        "version"
+      ]
+    ],
+    "$.records[]": [
+      [
+        "decisions",
+        "finance",
+        "financeReference",
+        "listing",
+        "media",
+        "missionId",
+        "orders",
+        "phase",
+        "productId",
+        "publication",
+        "qualification",
+        "receiptDigest",
+        "sku",
+        "sourceClassification",
+        "title",
+        "variantId",
+        "version"
+      ]
+    ],
+    "$.records[].finance": [
+      [
+        "actualCashMovement",
+        "assumptions",
+        "classification",
+        "events",
+        "financial",
+        "lifecycleComplete",
+        "missionId",
+        "planDigest",
+        "recordedEvents",
+        "simulatedCharges",
+        "sourceReceiptDigest",
+        "status",
+        "totalEvents"
+      ]
+    ],
+    "$.records[].finance.assumptions": [
+      [
+        "actualCashMovement",
+        "classification",
+        "dutyBasis",
+        "feeBasis",
+        "payout",
+        "supplierPayment",
+        "version"
+      ]
+    ],
+    "$.records[].finance.events[]": [
+      [
+        "assumptionRef",
+        "at",
+        "classification",
+        "currency",
+        "id",
+        "kind",
+        "minor",
+        "orderId",
+        "sourceReceiptDigest"
+      ]
+    ],
+    "$.records[].finance.financial": [
+      [
+        "actualCashMovement",
+        "actualProfit",
+        "actualRevenue",
+        "balanced",
+        "classification",
+        "complete",
+        "conserved",
+        "cutoffAt",
+        "duplicates",
+        "eventDigest",
+        "fx",
+        "noncanonicalAmounts",
+        "orders",
+        "pending",
+        "sourceReceiptDigest",
+        "sourceVerification",
+        "technologyCosts",
+        "unknown",
+        "work5Reference"
+      ]
+    ],
+    "$.records[].finance.financial.orders[]": [
+      [
+        "bankMinor",
+        "cashNeedMinor",
+        "complete",
+        "conserved",
+        "contributionMinor",
+        "currency",
+        "liabilityMinor",
+        "missing",
+        "orderId",
+        "payoutHeldMinor",
+        "realisedContributionMinor",
+        "receivableMinor",
+        "settlementMinor",
+        "unknownIds"
+      ]
+    ],
+    "$.records[].finance.simulatedCharges[]": [
+      [
+        "currency",
+        "dutyAndTaxMinor",
+        "feeMinor",
+        "orderId",
+        "refundMinor"
+      ]
+    ],
+    "$.records[].financeReference": [
+      [
+        "missionId",
+        "sourceReceiptDigest",
+        "workspace"
+      ]
+    ],
+    "$.records[].listing": [
+      [
+        "attributes",
+        "bullets",
+        "category",
+        "claims",
+        "description",
+        "images",
+        "productId",
+        "sourceEvidence",
+        "title",
+        "variants"
+      ]
+    ],
+    "$.records[].listing.attributes": [
+      [
+        "material"
+      ]
+    ],
+    "$.records[].listing.claims[]": [
+      [
+        "evidenceId",
+        "text"
+      ]
+    ],
+    "$.records[].listing.images[]": [
+      [
+        "license",
+        "rightsEvidence",
+        "sha256",
+        "url"
+      ]
+    ],
+    "$.records[].listing.variants[]": [
+      [
+        "dimensions",
+        "sku",
+        "variantId"
+      ]
+    ],
+    "$.records[].media": [
+      [
+        "classification",
+        "current",
+        "editingCapability",
+        "externalEffects",
+        "externalStatus",
+        "history",
+        "original",
+        "proposal",
+        "reminder",
+        "sourceBindingCurrent",
+        "status",
+        "version"
+      ]
+    ],
+    "$.records[].media.original[]": [
+      [
+        "id",
+        "kind",
+        "provenance",
+        "rightsEvidence",
+        "rightsStatus",
+        "sha256",
+        "sourceIdentity",
+        "url"
+      ]
+    ],
+    "$.records[].orders.*": [
+      [
+        "accepted",
+        "delivered",
+        "intentId",
+        "lastTrackingAt",
+        "order",
+        "outcome",
+        "providerId",
+        "remedies",
+        "shipments",
+        "shipped",
+        "tracking"
+      ]
+    ],
+    "$.records[].orders.*.order": [
+      [
+        "approval",
+        "brandId",
+        "carrier",
+        "connectorId",
+        "createdAt",
+        "currency",
+        "estimatedCost",
+        "estimatedDeliveryDaysMax",
+        "estimatedDeliveryDaysMin",
+        "fulfillmentStatus",
+        "integrationMode",
+        "items",
+        "orderId",
+        "shippingAddress",
+        "status",
+        "storeId",
+        "supplierOrderId",
+        "supplierPlatform",
+        "trackingEvents",
+        "trackingNumber",
+        "updatedAt",
+        "workspaceId"
+      ]
+    ],
+    "$.records[].orders.*.order.items[]": [
+      [
+        "currency",
+        "itemId",
+        "quantity",
+        "supplierProductId",
+        "supplierSku",
+        "title",
+        "unitCost"
+      ]
+    ],
+    "$.records[].orders.*.order.shippingAddress": [
+      [
+        "addressLine1",
+        "city",
+        "countryCode",
+        "fullName",
+        "phone",
+        "postalCode",
+        "state"
+      ]
+    ],
+    "$.records[].orders.*.shipments.*": [
+      [
+        "carrier",
+        "delivered",
+        "quantity",
+        "tracking"
+      ]
+    ],
+    "$.records[].publication": [
+      [
+        "canonicalPublisher",
+        "capacity",
+        "receiptId",
+        "status"
+      ]
+    ],
+    "$.records[].publication.capacity": [
+      [
+        "account",
+        "asin",
+        "eligibility",
+        "marketplace",
+        "mode",
+        "newAsinRemaining",
+        "provenance",
+        "requestsPerSecond",
+        "unsoldRemaining"
+      ]
+    ],
+    "$.records[].publication.capacity.provenance": [
+      [
+        "classification",
+        "expiresAt",
+        "observedAt",
+        "reference",
+        "sha256",
+        "source"
+      ]
+    ],
+    "$.records[].qualification": [
+      [
+        "available",
+        "classification",
+        "confidence",
+        "economics",
+        "exposure",
+        "genuinelyProfitable",
+        "qualified",
+        "reasons",
+        "score"
+      ]
+    ],
+    "$.records[].qualification.economics": [
+      [
+        "breakEven",
+        "contribution",
+        "genuinelyProfitable",
+        "gross",
+        "input",
+        "marginPercent",
+        "minimumViablePrice",
+        "net",
+        "status"
+      ]
+    ],
+    "$.records[].qualification.economics.input": [
+      [
+        "advertising",
+        "assumptions",
+        "channel",
+        "complete",
+        "country",
+        "currency",
+        "duties",
+        "evidenceRefs",
+        "feePercent",
+        "freight",
+        "fulfilment",
+        "overhead",
+        "paymentPercent",
+        "productCost",
+        "productId",
+        "refundLoss",
+        "refundRate",
+        "sellingPrice",
+        "supplierId",
+        "tax"
+      ]
+    ],
+    "$.recoveredAuthorityAudit": [
+      [
+        "classification",
+        "histories"
+      ]
+    ],
+    "$.scheduler": [
+      [
+        "intervalMs",
+        "mode"
+      ]
+    ],
+    "$.session": [
+      [
+        "action",
+        "at",
+        "classification",
+        "digest",
+        "externalEffects",
+        "id",
+        "owner",
+        "previous",
+        "requestDigest",
+        "schema",
+        "sessionId",
+        "status",
+        "twinWorkspace",
+        "version",
+        "workspace"
+      ]
+    ],
+    "$.tasks[]": [
+      [
+        "attempts",
+        "createdAt",
+        "cursor",
+        "error",
+        "fence",
+        "id",
+        "maxAttempts",
+        "maxSteps",
+        "mission",
+        "owner",
+        "paidInference",
+        "status",
+        "stepCount",
+        "workspace"
+      ]
+    ]
+  }
+}

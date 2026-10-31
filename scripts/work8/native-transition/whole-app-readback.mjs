@@ -6,7 +6,7 @@ import {createRequire} from 'node:module';
 import {createHash} from 'node:crypto';
 import {DatabaseSync} from 'node:sqlite';
 const require=createRequire(import.meta.url),contract=require('/app/deployment/o33-path-contract.cjs');
-const phase=process.argv[2];assert.ok(['normal','recovery','final'].includes(phase));
+const phase=process.argv[2];assert.ok(['normal','recovery','returned','replayed','final'].includes(phase));
 const root='/data/work8-exam/native-transition/volume';
 const sha=x=>createHash('sha256').update(x).digest('hex');
 const json=x=>JSON.stringify(x,(_,v)=>typeof v==='bigint'?String(v):v);
@@ -54,6 +54,9 @@ try{
  for(const relative of contract.CONTROL)state.controls[relative]=fileSnapshot(path.join(root,relative));
  for(const id of Object.keys(contract.NATIVE))state.native[id]=nativeSnapshot(contract.nativeRoot(root,id));
  state.generation=dbSnapshot(path.join(root,'authority/generation.sqlite'));assert.equal(state.generation.present,true,'GENERATION_AUTHORITY_MISSING');
+ receipt.stores=Object.fromEntries(Object.entries(state.stores).map(([id,s])=>[id,{...s,tables:s.tables&&Object.fromEntries(Object.entries(s.tables).map(([name,{hashes,mutableRows,...t}])=>[name,t]))}]));
+ receipt.controls=state.controls;receipt.native=Object.fromEntries(Object.entries(state.native).map(([id,s])=>[id,{present:s.present,fileCount:Object.keys(s.files||{}).length,logicalSha256:sha(json(s.files||{}))}]));
+ receipt.generationSha256=sha(json(state.generation));
  if(phase==='normal')fs.writeFileSync('/control/whole-app-baseline.json',json(state));
  else{
   const baseline=JSON.parse(fs.readFileSync('/control/whole-app-baseline.json','utf8'));
@@ -109,7 +112,5 @@ try{
   }
   receipt.unchangedNativeChildRoots=true;receipt.unchangedGenerationAuthority=true;receipt.originalBusinessAndStaticRowsPreserved=true;
  }
- receipt.stores=Object.fromEntries(Object.entries(state.stores).map(([id,s])=>[id,{...s,tables:s.tables&&Object.fromEntries(Object.entries(s.tables).map(([name,{hashes,mutableRows,...t}])=>[name,t]))}]));
- receipt.controls=state.controls;receipt.native=Object.fromEntries(Object.entries(state.native).map(([id,s])=>[id,{present:s.present,fileCount:Object.keys(s.files||{}).length,logicalSha256:sha(json(s.files||{}))}]));
- receipt.generationSha256=sha(json(state.generation));receipt.status='PASS_DECLARED_DOMAIN_PRESERVATION_WITH_SEPARATE_DIAGNOSTIC_CLASSIFICATION';
-}finally{fs.writeFileSync('/evidence/'+phase+'-whole-app-readback.json',JSON.stringify(receipt,null,2)+'\n');}
+receipt.status='PASS_DECLARED_DOMAIN_PRESERVATION_WITH_SEPARATE_DIAGNOSTIC_CLASSIFICATION';
+}catch(error){receipt.safeFailure={code:error?.code==='ERR_ASSERTION'?'WHOLE_APP_ASSERTION_FAILED':error?.code==='ERR_SQLITE_ERROR'?'WHOLE_APP_SQLITE_ERROR':'WHOLE_APP_READBACK_FAILED',sourceFrames:(String(error?.stack??'').match(/whole-app-readback\.mjs:\d+:\d+/g)??[]).slice(0,8),valuesWithheld:true};process.exitCode=1;}finally{fs.writeFileSync('/evidence/'+phase+'-whole-app-readback.json',JSON.stringify(receipt,null,2)+'\n');}

@@ -5,7 +5,7 @@ import candidate_packages
 
 ROOT=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve()
 SCRIPT=ROOT/'controller/scripts/work8/native-transition'
-PHASE=sys.argv[1] if len(sys.argv)==2 else '';assert PHASE in {'--examine-v27-stage-b'},'EXPLICIT_EXAMINATION_PHASE_REQUIRED'
+PHASE=sys.argv[1] if len(sys.argv)==2 else '';assert PHASE in {'--examine-v28-canonical-return'},'EXPLICIT_EXAMINATION_PHASE_REQUIRED'
 OUT=ROOT/'native-transition-output';OUT.mkdir(exist_ok=True)
 PRIVATE=pathlib.Path(tempfile.mkdtemp(prefix='work8-native-transition-',dir=os.environ['RUNNER_TEMP']))
 MANIFEST=json.loads((SCRIPT/'components.json').read_text())
@@ -42,7 +42,7 @@ def run(args,*,cwd=None,timeout=120,log=None,input=None):
  if log:(OUT/log).write_text(redact(output)[-1048576:])
  if r.returncode:
   codes=re.findall(r'(?:Error(?: \[ERR_ASSERTION\])?|AssertionError(?: \[ERR_ASSERTION\])?): ([A-Z][A-Z0-9_:-]{3,160})(?::|\s|$)',output)
-  (OUT/'command-first-failure.json').write_text(json.dumps({'stage':stage,'exitCode':r.returncode,'safeAssertionCodes':codes[:5],'rawOutputSha256':hashlib.sha256(output.encode()).hexdigest(),'arbitraryOutputRetained':False},indent=2)+'\n')
+  if not (OUT/'command-first-failure.json').exists():(OUT/'command-first-failure.json').write_text(json.dumps({'stage':stage,'exitCode':r.returncode,'safeAssertionCodes':codes[:5],'rawOutputSha256':hashlib.sha256(output.encode()).hexdigest(),'arbitraryOutputRetained':False},indent=2)+'\n')
   raise RuntimeError('COMMAND_FAILED:'+args[0]+':'+stage+':'+str(r.returncode)+((':'+codes[0]) if codes else ''))
  return output
 
@@ -105,6 +105,16 @@ def marker(name,timeout=210):
      raise AssertionError('CONTAINER_EXITED:'+role)
   time.sleep(.2)
 def signal(name,value={'ok':True}):(PRIVATE/'control'/name).write_text(json.dumps(value))
+def independent_readbacks(phase,capture=False):
+ # Always attempt both independent scopes before releasing a comparison gate.
+ # A failed commerce assertion cannot suppress control/generation diagnostics.
+ outcomes={}
+ scripts=(['capture-canonical-persistence.mjs'] if capture else [])+['offline-commerce-readback.mjs','whole-app-readback.mjs']
+ for script in scripts:
+  try:run(['docker','exec',NAMES['backend'],'node','/examination/'+script,phase]);outcomes[script]='PASS'
+  except Exception:outcomes[script]='FAIL'
+ (PRIVATE/'evidence'/(phase+'-independent-gate.json')).write_text(json.dumps({'phase':phase,'outcomes':outcomes,'allPassed':all(v=='PASS' for v in outcomes.values()),'attempts':1},indent=2)+'\n')
+ return all(v=='PASS' for v in outcomes.values())
 def set_policy(released):
  p=PRIVATE/'policy/control.json'
  if not released:p.unlink();return
@@ -139,13 +149,12 @@ def start_front(role,phase):
  (PRIVATE/'evidence'/('frontend-listener-'+phase+'.json')).write_text(json.dumps(listener,indent=2))
 
 try:
- assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v27-20261101-a5-acceptance'
- event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v27-20261101-a5-acceptance'
+ assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v28-20261101-canonical-return'
+ event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v28-20261101-canonical-return'
  assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1'
  assert run(['node','--version']).strip()=='v22.23.2'
- assert PHASE=='--examine-v27-stage-b','V27_ONLY_REVIEWED_CANDIDATES_AUTHORISED'
- assert json.loads((OUT/'stage-a-gate.json').read_text())['status']=='PASS_APPROVED_STAGE_A_AND_IDENTICAL_COMPILER'
- assert json.loads((OUT/'candidate-preparation-result.json').read_text())['status']=='CANDIDATES_PREPARED_AWAITING_REMOTE_UPLOAD'
+ assert PHASE=='--examine-v28-canonical-return','V28_ONLY_REVIEWED_CANDIDATES_AUTHORISED'
+ assert json.loads((OUT/'v28-source-gate.json').read_text())['status']=='PASS_INDEPENDENT_SOURCE_AND_LOCAL_PREFLIGHT'
  assert json.loads((OUT/'retained-import-result.json').read_text())['status']=='PASS_RETAINED_BYTES_LOADED_DRIVER_READY'
  for role in ['backend','normal','recovery']:
   entry=MANIFEST[role];source=ROOT/(role+'-source')
@@ -158,10 +167,6 @@ try:
  if True:
   stage='verify-retained-candidate-bytes-and-upload-receipt'
   images,components=candidate_packages.reuse(ROOT,OUT,MANIFEST)
-  upload=json.loads((OUT/'candidate-upload-receipt.json').read_text())
-  upload.update(providerUploadReceiptSource='current exact reviewed V27 candidate upload before runtime',sourceRunId=int(os.environ['GITHUB_RUN_ID']),newCandidateUpload=True,retentionRenewed=True)
-  upload.pop('sourceExpiresAtUTC',None)
-  (OUT/'candidate-upload-receipt.json').write_text(json.dumps(upload,indent=2)+'\n')
   for d in ['control','evidence','policy']:(PRIVATE/d).mkdir(mode=0o700)
   (PRIVATE/'policy').chmod(0o755);(PRIVATE/'evidence').chmod(0o755)
   (PRIVATE/'control/component-identities.json').write_text(json.dumps(components))
@@ -185,14 +190,30 @@ try:
   (PRIVATE/'evidence/isolation.json').write_text(json.dumps({'internalNetwork':True,'publishedPorts':False,'externalCredentials':False,'policyReadonlyMount':True,'runtimePolicyWriteRefused':True,'actualNativeApplication':True,'syntheticOwnerOnly':True,'components':components},indent=2))
   start_front('normal','NORMAL');stage='normal-view'
   run(['docker','run','-d','--name',NAMES['browser'],'--label','work8.native='+LABEL,'--network','container:'+NAMES['anchor'],'--memory','2g','--cpus','1','--pids-limit','128','--shm-size','256m','--user',str(os.getuid())+':'+str(os.getgid()),'--env','HOME=/tmp','--env','NODE_OPTIONS=--dns-result-order=ipv4first','--env-file',str(PRIVATE/'browser.env'),'--mount','type=bind,src='+str(SCRIPT)+',dst=/examination,readonly','--mount','type=bind,src='+str(ROOT/'native-transition-driver')+',dst=/frontend-package,readonly','--mount','type=bind,src='+str(PRIVATE/'control')+',dst=/control','--mount','type=bind,src='+str(PRIVATE/'evidence')+',dst=/evidence','--entrypoint','timeout',BROWSER,'--signal=KILL','500s','node','/examination/browser.mjs']);created.append(NAMES['browser'])
-  marker('normal-complete.json',timeout=150);run(['docker','exec',NAMES['backend'],'node','/examination/offline-commerce-readback.mjs','normal']);run(['docker','exec',NAMES['backend'],'node','/examination/whole-app-readback.mjs','normal']);stage='recovery-version';set_policy(False);start_front('recovery','RECOVERY');signal('recovery-ready.json');marker('recovery-complete.json');run(['docker','exec',NAMES['backend'],'node','/examination/offline-commerce-readback.mjs','recovery']);run(['docker','exec',NAMES['backend'],'node','/examination/whole-app-readback.mjs','recovery'])
-  stage='normal-return-version';start_front('normal','NORMAL_RETURN');set_policy(True);signal('return-ready.json');marker('browser-complete.json')
+  # Container Date.now observations use the same kernel realtime clock; no clock changes.
+  clock_ids={}
+  for role in ['backend','browser']:
+   clock_ids[role]=run(['docker','exec',NAMES[role],'node','-e',"console.log(require('fs').readlinkSync('/proc/self/ns/time'))"]).strip()
+  clock_ids['host']=os.readlink('/proc/self/ns/time')
+  assert len(set(clock_ids.values()))==1,'TIME_NAMESPACE_NOT_SHARED'
+  (PRIVATE/'evidence/observation-clock-contract.json').write_text(json.dumps({'schema':'work8-v28-observation-clock-v1','timeNamespaces':clock_ids,'sameKernelRealtime':True,'clockModification':False,'browserClockSource':'Node Date.now around frontend response','backendClockSource':'source-pinned Date.now; financial.cutoffAt lower bound; status second read'},indent=2)+'\n')
+  marker('normal-observed.json',timeout=150)
+  normal_ok=independent_readbacks('normal',capture=True);signal('normal-readback-ready.json',{'allPassed':normal_ok})
+  marker('normal-complete.json');assert normal_ok,'NORMAL_INDEPENDENT_READBACK_FAILED'
+  stage='recovery-version';set_policy(False);start_front('recovery','RECOVERY');signal('recovery-ready.json');marker('recovery-complete.json')
+  assert independent_readbacks('recovery'),'RECOVERY_INDEPENDENT_READBACK_FAILED'
+  stage='normal-return-version';start_front('normal','NORMAL_RETURN');set_policy(True);signal('return-ready.json');marker('returned-observed.json')
+  returned_ok=independent_readbacks('returned',capture=True);signal('returned-readback-ready.json',{'allPassed':returned_ok})
+  marker('replayed-observed.json');assert returned_ok,'RETURNED_INDEPENDENT_READBACK_FAILED'
+  replayed_ok=independent_readbacks('replayed',capture=True);signal('replayed-readback-ready.json',{'allPassed':replayed_ok})
+  marker('browser-complete.json');assert replayed_ok,'REPLAYED_INDEPENDENT_READBACK_FAILED'
   deadline=time.monotonic()+20
   while inspect(NAMES['browser'])['State']['Running']:assert time.monotonic()<deadline;time.sleep(.2)
   assert inspect(NAMES['browser'])['State']['ExitCode']==0
   capture_frontend_origin(require_contract=True)
   stage='drain-and-independent-readback';signal('stop-runtime.json');marker('runtime-drained.json')
-  run(['docker','exec',NAMES['backend'],'node','/examination/offline-commerce-readback.mjs','final']);run(['docker','exec',NAMES['backend'],'node','/examination/whole-app-readback.mjs','final']);signal('readback-complete.json')
+  assert independent_readbacks('final'),'FINAL_INDEPENDENT_READBACK_FAILED'
+  signal('readback-complete.json')
   deadline=time.monotonic()+20
   while inspect(NAMES['backend'])['State']['Running']:assert time.monotonic()<deadline;time.sleep(.2)
   assert inspect(NAMES['backend'])['State']['ExitCode']==0
@@ -249,5 +270,5 @@ finally:
   assert p.is_file() and not p.is_symlink(),'NONREGULAR_ARTIFACT_REFUSED'
   index.append({'path':p.name,'bytes':p.stat().st_size,'sha256':hashlib.file_digest(p.open('rb'),'sha256').hexdigest()})
  (OUT/'artifact-index.json').write_text(json.dumps({'schema':'work8-bounded-upload-v1','exactGeneratedSecretCheck':True,'maxBytes':MAX_OUTPUT,'files':index},indent=2)+'\n')
- assert output_bytes()+candidate_packages.directory_bytes(ROOT/'native-transition-candidates')<=candidate_packages.MAX_PAYLOAD_BYTES,'TOTAL_PAYLOAD_BYTES_BOUND'
+ assert output_bytes()<=candidate_packages.MAX_PAYLOAD_BYTES,'TOTAL_PAYLOAD_BYTES_BOUND'
  if result['status'].startswith('FAIL'):raise SystemExit(1)

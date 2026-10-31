@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 // Independent read-only process: no application imports, write calls or raw DB export.
 const sha=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const control=process.env.WORK8_CONTROL_DIR??'/control',evidence=process.env.WORK8_EVIDENCE_DIR??'/evidence';
-const phase=['normal','recovery','final'].includes(process.argv[2])?process.argv[2]:'invalid';
+const phase=['normal','recovery','returned','replayed','final'].includes(process.argv[2])?process.argv[2]:'invalid';
 const database=process.env.WORK8_READBACK_DATABASE??'/data/work8-exam/native-transition/volume/commerce/runtime.sqlite';
 let db,expected,snapshot,session;
 const receipt={schema:'work8-native-commerce-independent-readback-v2',status:'FAIL',readerProcess:process.pid,phase,readOnlySqlite:true,productionData:false,rawDatabaseExported:false,wholeRowsAccepted:[]};
@@ -108,6 +108,7 @@ try{
    finance:{status:events.length===plan.events.length?'COMPLETE_SIMULATION':'INCOMPLETE_SIMULATION',recordedEvents:events.length,totalPlannedEvents:plan.events.length,sourceReceiptDigest:plan.sourceDigest,planDigest:plans[0].digest,eventDigest:sha(presentedEvents),events:presentedEvents,classification:'SIMULATION_EXCLUDED_FROM_ACTUALS',actualCashMovement:0}});
   missionEvidence.push({missionId:projected.missionId,receiptCount:history.length,lastReceiptDigest:last.digest,orderCount:orders.length,ordersSha256:sha(state.orders),planDigest:plans[0].digest,recordedFinancialEvents:events.length,eventDigest:sha(events),fullFinancialSettlementClaimed:false});
  }
+ assert.equal(allOrderIds.size,2,'ORDER_COUNT_NOT_TWO');assert.equal(allEventIds.size,4,'FINANCE_EVENT_COUNT_NOT_FOUR');assert.equal(missionEvidence.reduce((n,m)=>n+m.receiptCount,0),20,'HISTORY_COUNT_NOT_TWENTY');
  stage='CANONICAL_LABELLED_ADMISSION';
  const admissions=read('work8_twin_admissions','SELECT id,record FROM work8_twin_admissions WHERE workspace=? AND session=? ORDER BY id',session.workspace,session.sessionId);assert.equal(admissions.length,1);
  const admission=JSON.parse(admissions[0].record);assert.equal(admission.classification,'LABELLED_TEST_FIXTURES_NOT_GENUINE_PRODUCTS');assert.equal(admission.externalEffects,0);assert.equal(admission.paidInference,0);assert.equal(admission.count,2);assert.equal(admission.sessionId,session.sessionId);

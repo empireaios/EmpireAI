@@ -2,10 +2,8 @@
 import gzip, hashlib, json, os, pathlib, re, stat, subprocess, time
 
 CONTINUATION_MAX_BYTES = 2 * 1024**3
-# Both V27 stages share one 2GiB allowance; count the actual approved Stage A ZIP.
-_STAGE_A_APPROVAL = json.loads(pathlib.Path(__file__).with_name('stage-a-approval.json').read_text())
-PRIOR_DIAGNOSTIC_ARTIFACT_BYTES = _STAGE_A_APPROVAL['artifact']['bytes'] if _STAGE_A_APPROVAL.get('approved') is True else 16 * 1024**2
-assert type(PRIOR_DIAGNOSTIC_ARTIFACT_BYTES) is int and 0 < PRIOR_DIAGNOSTIC_ARTIFACT_BYTES <= 16 * 1024**2, 'STAGE_A_ARTIFACT_BOUND'
+# V28 retains only new evidence. Prior V27 candidate bytes are imported, never reuploaded.
+PRIOR_DIAGNOSTIC_ARTIFACT_BYTES = 0
 MAX_BYTES = CONTINUATION_MAX_BYTES - PRIOR_DIAGNOSTIC_ARTIFACT_BYTES
 ZIP_ENVELOPE_RESERVE = 2 * 1024**2
 MAX_PAYLOAD_BYTES = MAX_BYTES - ZIP_ENVELOPE_RESERVE
@@ -122,24 +120,28 @@ def prepare(root, private, evidence, images, components, generated):
 
 def reuse(root, evidence, manifest):
  candidates=root/'native-transition-candidates'
- artifact_id=os.environ.get('CANDIDATE_ARTIFACT_ID','');digest=os.environ.get('CANDIDATE_ARTIFACT_DIGEST','')
- assert re.fullmatch(r'[1-9][0-9]*',artifact_id), 'REMOTE_CANDIDATE_UPLOAD_RECEIPT_REQUIRED'
- assert re.fullmatch(r'[a-f0-9]{64}',digest), 'REMOTE_CANDIDATE_UPLOAD_DIGEST_REQUIRED'
+ imported=json.loads((evidence/'retained-import-result.json').read_text())
+ assert imported['status']=='PASS_RETAINED_BYTES_LOADED_DRIVER_READY'
+ artifact_id=imported['artifactId'];digest=imported['outerArchiveSha256']
+ assert artifact_id==13058526104 and digest=='1f3bd66ce343c2739274a0e8003a7f51f7d2c22b45e0c67c7106d3d6eb9249c6'
  index=json.loads((candidates/'artifact-index.json').read_text());assert index['schema']=='work8-candidate-upload-v1'
  assert index['secretScanPassed'] is True and index['beforeRuntimeSecrets'] is True
  expected={r['path']:r for r in index['files']}
  assert {p.name for p in candidates.iterdir()}==set(expected)|{'artifact-index.json'}
+ # The importer verified each exact member and all 24 layer references once.
+ # Only immutable identity/metadata is checked here; no second layer scan.
+ assert sha(candidates/'artifact-index.json')==imported['indexSha256']
  for name,entry in expected.items():
-  p=candidates/name;assert p.stat().st_size==entry['bytes'] and sha(p)==entry['sha256'], 'CANDIDATE_BYTES_CHANGED'
+  p=candidates/name;assert p.is_file() and not p.is_symlink() and p.stat().st_size==entry['bytes'], 'CANDIDATE_BYTES_CHANGED'
  components=json.loads((candidates/'immutable-images.json').read_text());images={}
  for role in ROLES:
   component=components[role];assert component['commit']==manifest[role]['commit'] and component['tree']==manifest[role]['tree']
   image=json.loads(subprocess.check_output(['docker','image','inspect',component['image']]))[0]
   assert image['Id']==component['image']
   labels=image['Config']['Labels'];assert labels['org.opencontainers.image.revision']==component['commit'] and labels['io.empireai.source-tree']==component['tree']
-  assert component['archiveSha256']==sha(candidates/component['archiveFile'])
+  assert any(x['role']==role and x['image']==component['image'] and x['archiveSha256']==component['archiveSha256'] for x in imported['images'])
   images[role]=component['image']
- assert directory_bytes(candidates)+directory_bytes(evidence)<=MAX_PAYLOAD_BYTES
- receipt={'schema':'work8-candidate-upload-receipt-v1','status':'RETAINED_CANDIDATES_NOT_ACCEPTED','artifactId':int(artifact_id),'githubOuterArtifactSha256':digest,'candidateIndexSha256':sha(candidates/'artifact-index.json'),'candidateBytes':directory_bytes(candidates),'retentionDays':7,'archiveBytesVerifiedBeforeExamination':True,'buildsRepeated':False,'providerUploadReceiptSource':'prior-run Actions artifact metadata plus exact outer ZIP/index checks in retained-import-result.json','sourceRunId':41186780720,'newCandidateUpload':False,'retentionRenewed':False,'sourceExpiresAtUTC':'2026-11-07T09:09:06Z'}
+ assert directory_bytes(evidence)<=MAX_PAYLOAD_BYTES
+ receipt={'schema':'work8-candidate-upload-receipt-v1','status':'RETAINED_CANDIDATES_NOT_ACCEPTED','artifactId':artifact_id,'githubOuterArtifactSha256':digest,'candidateIndexSha256':imported['indexSha256'],'candidateBytes':directory_bytes(candidates),'retentionDays':7,'archiveBytesVerifiedBeforeExamination':True,'buildsRepeated':False,'providerUploadReceiptSource':'prior-run Actions artifact metadata plus exact outer ZIP/index checks in retained-import-result.json','sourceRunId':41243779489,'newCandidateUpload':False,'retentionRenewed':False,'sourceExpiresAtUTC':imported['sourceExpiresAtUTC']}
  (evidence/'candidate-upload-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
  return images,components

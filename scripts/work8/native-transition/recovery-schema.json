@@ -1,0 +1,366 @@
+{
+  "sourceContract": "projection-schema-paths.json",
+  "sourceContractSha256": "b3dd4d58cc6b3c36d8b6f7d063b75c93cae9a67a03942b841d542f8ab0183b89",
+  "paths": {
+    "$": [
+      "object"
+    ],
+    "$.schema": [
+      "string"
+    ],
+    "$.classification": [
+      "string"
+    ],
+    "$.notice": [
+      "string"
+    ],
+    "$.session": [
+      "object"
+    ],
+    "$.session.sessionId": [
+      "string"
+    ],
+    "$.session.version": [
+      "number"
+    ],
+    "$.session.status": [
+      "string"
+    ],
+    "$.session.digest": [
+      "string"
+    ],
+    "$.session.twinWorkspace": [
+      "string"
+    ],
+    "$.authority": [
+      "object"
+    ],
+    "$.authority.status": [
+      "string"
+    ],
+    "$.authority.version": [
+      "number"
+    ],
+    "$.authority.digest": [
+      "string"
+    ],
+    "$.authority.grantsAuthority": [
+      "boolean"
+    ],
+    "$.records": [
+      "array"
+    ],
+    "$.records[]": [
+      "object"
+    ],
+    "$.records[].missionId": [
+      "string"
+    ],
+    "$.records[].productId": [
+      "string"
+    ],
+    "$.records[].variantId": [
+      "string"
+    ],
+    "$.records[].receiptDigest": [
+      "string"
+    ],
+    "$.records[].version": [
+      "number"
+    ],
+    "$.records[].classification": [
+      "string"
+    ],
+    "$.records[].orders": [
+      "array"
+    ],
+    "$.records[].orders[]": [
+      "object"
+    ],
+    "$.records[].orders[].orderId": [
+      "string"
+    ],
+    "$.records[].orders[].status": [
+      "string"
+    ],
+    "$.records[].orders[].fulfillmentStatus": [
+      "string"
+    ],
+    "$.records[].orders[].integrationMode": [
+      "string"
+    ],
+    "$.records[].orders[].outcome": [
+      "string"
+    ],
+    "$.records[].orders[].accepted": [
+      "number"
+    ],
+    "$.records[].orders[].shipped": [
+      "number"
+    ],
+    "$.records[].orders[].delivered": [
+      "number"
+    ],
+    "$.records[].orders[].currency": [
+      "string"
+    ],
+    "$.records[].orders[].createdAt": [
+      "string"
+    ],
+    "$.records[].orders[].updatedAt": [
+      "string"
+    ],
+    "$.records[].orders[].items": [
+      "array"
+    ],
+    "$.records[].orders[].items[]": [
+      "object"
+    ],
+    "$.records[].orders[].items[].itemId": [
+      "string"
+    ],
+    "$.records[].orders[].items[].supplierProductId": [
+      "string"
+    ],
+    "$.records[].orders[].items[].supplierSku": [
+      "string"
+    ],
+    "$.records[].orders[].items[].quantity": [
+      "number"
+    ],
+    "$.records[].orders[].items[].unitCost": [
+      "number"
+    ],
+    "$.records[].orders[].items[].currency": [
+      "string"
+    ],
+    "$.records[].history": [
+      "array"
+    ],
+    "$.records[].history[]": [
+      "object"
+    ],
+    "$.records[].history[].id": [
+      "string"
+    ],
+    "$.records[].history[].missionId": [
+      "string"
+    ],
+    "$.records[].history[].version": [
+      "number"
+    ],
+    "$.records[].history[].at": [
+      "string"
+    ],
+    "$.records[].history[].commandType": [
+      "string"
+    ],
+    "$.records[].history[].previous": [
+      "string"
+    ],
+    "$.records[].history[].digest": [
+      "string"
+    ],
+    "$.records[].history[].requestDigest": [
+      "string"
+    ],
+    "$.records[].history[].classification": [
+      "string"
+    ],
+    "$.records[].finance": [
+      "object"
+    ],
+    "$.records[].finance.status": [
+      "string"
+    ],
+    "$.records[].finance.recordedEvents": [
+      "number"
+    ],
+    "$.records[].finance.totalPlannedEvents": [
+      "number"
+    ],
+    "$.records[].finance.sourceReceiptDigest": [
+      "string"
+    ],
+    "$.records[].finance.planDigest": [
+      "string"
+    ],
+    "$.records[].finance.eventDigest": [
+      "string"
+    ],
+    "$.records[].finance.events": [
+      "array"
+    ],
+    "$.records[].finance.events[]": [
+      "object"
+    ],
+    "$.records[].finance.events[].id": [
+      "string"
+    ],
+    "$.records[].finance.events[].orderId": [
+      "string"
+    ],
+    "$.records[].finance.events[].sourceReceiptDigest": [
+      "string"
+    ],
+    "$.records[].finance.events[].kind": [
+      "string"
+    ],
+    "$.records[].finance.events[].minor": [
+      "number"
+    ],
+    "$.records[].finance.events[].currency": [
+      "string"
+    ],
+    "$.records[].finance.events[].classification": [
+      "string"
+    ],
+    "$.records[].finance.events[].assumptionRef": [
+      "string"
+    ],
+    "$.records[].finance.events[].at": [
+      "string"
+    ],
+    "$.records[].finance.classification": [
+      "string"
+    ],
+    "$.records[].finance.actualCashMovement": [
+      "number"
+    ],
+    "$.coverage": [
+      "string"
+    ],
+    "$.readOnly": [
+      "boolean"
+    ],
+    "$.actualCashMovement": [
+      "number"
+    ],
+    "$.externalEffects": [
+      "number"
+    ],
+    "$.paidInference": [
+      "number"
+    ],
+    "$.liveCommerce": [
+      "string"
+    ],
+    "$.birth": [
+      "string"
+    ]
+  },
+  "objectKeyVariants": {
+    "$": [
+      [
+        "actualCashMovement",
+        "authority",
+        "birth",
+        "classification",
+        "coverage",
+        "externalEffects",
+        "liveCommerce",
+        "notice",
+        "paidInference",
+        "readOnly",
+        "records",
+        "schema",
+        "session"
+      ]
+    ],
+    "$.authority": [
+      [
+        "digest",
+        "grantsAuthority",
+        "status",
+        "version"
+      ]
+    ],
+    "$.records[]": [
+      [
+        "classification",
+        "finance",
+        "history",
+        "missionId",
+        "orders",
+        "productId",
+        "receiptDigest",
+        "variantId",
+        "version"
+      ]
+    ],
+    "$.records[].finance": [
+      [
+        "actualCashMovement",
+        "classification",
+        "eventDigest",
+        "events",
+        "planDigest",
+        "recordedEvents",
+        "sourceReceiptDigest",
+        "status",
+        "totalPlannedEvents"
+      ]
+    ],
+    "$.records[].finance.events[]": [
+      [
+        "assumptionRef",
+        "at",
+        "classification",
+        "currency",
+        "id",
+        "kind",
+        "minor",
+        "orderId",
+        "sourceReceiptDigest"
+      ]
+    ],
+    "$.records[].history[]": [
+      [
+        "at",
+        "classification",
+        "commandType",
+        "digest",
+        "id",
+        "missionId",
+        "previous",
+        "requestDigest",
+        "version"
+      ]
+    ],
+    "$.records[].orders[]": [
+      [
+        "accepted",
+        "createdAt",
+        "currency",
+        "delivered",
+        "fulfillmentStatus",
+        "integrationMode",
+        "items",
+        "orderId",
+        "outcome",
+        "shipped",
+        "status",
+        "updatedAt"
+      ]
+    ],
+    "$.records[].orders[].items[]": [
+      [
+        "currency",
+        "itemId",
+        "quantity",
+        "supplierProductId",
+        "supplierSku",
+        "unitCost"
+      ]
+    ],
+    "$.session": [
+      [
+        "digest",
+        "sessionId",
+        "status",
+        "twinWorkspace",
+        "version"
+      ]
+    ]
+  }
+}

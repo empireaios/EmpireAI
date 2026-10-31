@@ -1,14 +1,14 @@
-name: Work 8 V27 Stage B source-gated A5 acceptance
+name: Work 8 V28 source-gated canonical business return
 on: create
 permissions:
   contents: read
   actions: read
 concurrency:
-  group: work8-v27-stages-20261101
+  group: work8-v28-canonical-return-20261101
   cancel-in-progress: false
 jobs:
   transition:
-    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v27-20261101-a5-acceptance' && github.run_attempt == 1 && github.run_number == 1
+    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v28-20261101-canonical-return' && github.run_attempt == 1 && github.run_number == 1
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -18,10 +18,8 @@ jobs:
           ref: ${{ github.sha }}
           path: controller
           persist-credentials: false
-      - name: Verify independently approved Stage A artifact and identical compiler contract
-        env:
-          GH_STAGE_A_READ_TOKEN: ${{ github.token }}
-        run: python3 controller/scripts/work8/native-transition/verify-stage-a.py
+      - name: Verify exact independently approved comparator, source and local preflight
+        run: python3 controller/scripts/work8/native-transition/verify-v28-gate.py
       - name: Read preserved immutable component pins
         id: pins
         run: |
@@ -34,7 +32,7 @@ jobs:
               assert re.fullmatch('[a-f0-9]{40}',m[role]['tree'])
               print(role+'='+m[role]['commit'],file=out)
           PY
-      - name: Checkout exact reviewed backend source delta
+      - name: Checkout backend source identity for readback only
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: ${{ steps.pins.outputs.backend }}
@@ -48,7 +46,7 @@ jobs:
           path: normal-source
           fetch-depth: 2
           persist-credentials: false
-      - name: Checkout exact distinct RECOVERY projection source
+      - name: Checkout RECOVERY source identity for readback only
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: ${{ steps.pins.outputs.recovery }}
@@ -63,31 +61,11 @@ jobs:
         env:
           GH_RETAINED_READ_TOKEN: ${{ github.token }}
         run: python3 controller/scripts/work8/native-transition/prepare-base-candidates.py
-      - name: Build only independently reviewed minimal component changes
-        env:
-          NEXT_TELEMETRY_DISABLED: '1'
-          CI: 'true'
-        run: python3 controller/scripts/work8/native-transition/build-v26-candidates.py
-      - name: Gate bounded new candidate artifacts before runtime
-        id: candidate_gate
-        run: python3 controller/scripts/work8/native-transition/upload-preflight.py candidates
-      - name: Retain reusable immutable candidates before runtime credentials exist
-        id: candidates
-        if: steps.candidate_gate.outputs.allowed == 'true'
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: work8-v27-candidates-${{ github.sha }}-${{ github.run_id }}
-          path: native-transition-candidates/
-          if-no-files-found: error
-          retention-days: 7
-          compression-level: 0
       - name: Execute one coherent canonical business recovery acceptance
         env:
           NEXT_TELEMETRY_DISABLED: '1'
           CI: 'true'
-          CANDIDATE_ARTIFACT_ID: ${{ steps.candidates.outputs.artifact-id }}
-          CANDIDATE_ARTIFACT_DIGEST: ${{ steps.candidates.outputs.artifact-digest }}
-        run: python3 controller/scripts/work8/native-transition/examine-v26.py --examine-v27-stage-b
+        run: python3 controller/scripts/work8/native-transition/examine-v26.py --examine-v28-canonical-return
       - name: Gate only new sanitized evidence and enforce retained-artifact bounds
         id: upload
         if: always()
@@ -96,7 +74,7 @@ jobs:
         if: always() && steps.upload.outputs.allowed == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: work8-v27-stage-b-evidence-${{ github.sha }}-${{ github.run_id }}
+          name: work8-v28-canonical-return-evidence-${{ github.sha }}-${{ github.run_id }}
           path: native-transition-output/
           if-no-files-found: error
           retention-days: 7

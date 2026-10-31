@@ -4,13 +4,13 @@ import base64, hashlib, io, json, os, pathlib, re, subprocess, sys, tarfile, tem
 import candidate_packages
 
 REPOSITORY = 'empireaios/EmpireAI'
-BRANCH = 'work8/v27-20261101-a5-acceptance'
-PRIOR_RUN = 41186780720
-PRIOR_CONTROLLER = '8cb258e05b83ab5a5b36676f3457b610444f3732'
-ARTIFACT_ID = 13037177457
-ARCHIVE_BYTES = 398575029
-ARCHIVE_SHA = '3fa3cf875e23cd4ff201c053f49915ba2007cfdf369ad2bbde6eadd629861d23'
-INDEX_SHA = '7b6dd98dabe7488b786531ab9d13d3dab78ed956e1c57f2d24f6efa2f65fa056'
+BRANCH = 'work8/v28-20261101-canonical-return'
+PRIOR_RUN = 41243779489
+PRIOR_CONTROLLER = '07517caaf1a355d9d3b552439815f6bb1fdb348f'
+ARTIFACT_ID = 13058526104
+ARCHIVE_BYTES = 437019263
+ARCHIVE_SHA = '1f3bd66ce343c2739274a0e8003a7f51f7d2c22b45e0c67c7106d3d6eb9249c6'
+INDEX_SHA = '753d9e0157ed16a152b5fba0c37cbc6f04753a10bb6e90ae7c9aafa1eba4abfd'
 LOCK_SHA = '84f99595b7564d9196b0eeb25c054b290801bfe2e3a148f61ab2c9c2871d37b4'
 DRIVER_PACKAGES = {
  'playwright': {'version':'1.62.1','resolved':'https://registry.npmjs.org/playwright/-/playwright-1.62.1.tgz','integrity':'sha512-0M+L3LAD8/nm554LOla9Ayx0j0tmFZ0FBcoQ7F1VuVHpM/XpiC8RcDzBQB8W5+hA8L22THxELzeF+2WcUzvcLg=='},
@@ -53,7 +53,7 @@ def verify_archive(path,destination):
   index_bytes=z.read('artifact-index.json');assert hashlib.sha256(index_bytes).hexdigest()==INDEX_SHA
   index=json.loads(index_bytes);assert index['schema']=='work8-candidate-upload-v1' and index['secretScanPassed'] is True and index['beforeRuntimeSecrets'] is True
   expected={r['path']:r for r in index['files']}
-  assert len(expected)==9 and set(z.namelist())==set(expected)|{'artifact-index.json'} and len(z.namelist())==10
+  assert len(expected)==7 and set(z.namelist())==set(expected)|{'artifact-index.json'} and len(z.namelist())==8
   destination.mkdir()
   for name in z.namelist():
    assert '/' not in name and '\\' not in name and name not in ('.','..')
@@ -61,6 +61,7 @@ def verify_archive(path,destination):
    with z.open(name) as src,p.open('xb') as out:
     while chunk:=src.read(1048576):out.write(chunk)
    if name in expected:assert p.stat().st_size==expected[name]['bytes'] and sha(p)==expected[name]['sha256'],'PRIOR_MEMBER_IDENTITY_MISMATCH'
+ assert sha(destination/'immutable-images.json')=='82acf0ba290e8371b9187e9cfa4b49d9b45e021e6f4582bb35fac11844d0a1d5','IMMUTABLE_COMPONENT_MANIFEST_CHANGED'
  components=json.loads((destination/'immutable-images.json').read_text())
  return components
 
@@ -106,7 +107,7 @@ def prepare_driver(root,private):
  return receipts
 
 def main():
- root=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve();out=root/'native-transition-output';out.mkdir(exist_ok=True);budget=json.loads((out/'workflow-budget.json').read_text());assert budget['maximumSeconds']==1650 and budget['cleanupAndUploadReserveSeconds']==120;assert json.loads((out/'stage-a-gate.json').read_text())['status']=='PASS_APPROVED_STAGE_A_AND_IDENTICAL_COMPILER';stage='event-authority';result={'status':'FAIL','productionAccess':False,'buildsRepeated':False,'broadBuildScansRepeated':False}
+ root=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve();out=root/'native-transition-output';out.mkdir(exist_ok=True);budget=json.loads((out/'workflow-budget.json').read_text());assert budget['maximumSeconds']==1650 and budget['cleanupAndUploadReserveSeconds']==120;assert json.loads((out/'v28-source-gate.json').read_text())['status']=='PASS_INDEPENDENT_SOURCE_AND_LOCAL_PREFLIGHT';stage='event-authority';result={'status':'FAIL','productionAccess':False,'buildsRepeated':False,'broadBuildScansRepeated':False}
  try:
   assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/'+BRANCH
   event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']==BRANCH
@@ -120,12 +121,12 @@ def main():
    signed=api('/repos/'+REPOSITORY+'/actions/artifacts/'+str(ARTIFACT_ID)+'/zip',token,redirect=True);del token
    stage='prior-artifact-download';archive=private/'candidates.zip';download(signed,archive,ARCHIVE_BYTES,ARCHIVE_BYTES);del signed
    stage='prior-artifact-and-image-validation';candidates=root/'native-transition-candidates';components=verify_archive(archive,candidates)
-   pins=json.loads((pathlib.Path(__file__).with_name('retained-components.json')).read_text());verified=[]
+   pins=json.loads((pathlib.Path(__file__).with_name('components.json')).read_text());verified=[]
    for role in ['backend','normal','recovery']:
     component=components[role];assert component['commit']==pins[role]['commit'] and component['tree']==pins[role]['tree']
     layers=verify_image_archive(candidates/component['archiveFile'],component)
     verified.append({'role':role,'image':component['image'],'source':component['commit'],'tree':component['tree'],'layersVerified':layers,'archiveSha256':component['archiveSha256']})
-   assert sum(x['layersVerified'] for x in verified)==23
+   assert sum(x['layersVerified'] for x in verified)==24
    stage='load-verified-prior-images'
    for role in ['backend','normal','recovery']:
     component=components[role];subprocess.run(['docker','load','--input',str(candidates/component['archiveFile'])],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=180,check=True)
@@ -133,7 +134,7 @@ def main():
     assert actual['Id']==component['image']
     assert actual['Config']['Labels']['org.opencontainers.image.revision']==component['commit'] and actual['Config']['Labels']['io.empireai.source-tree']==component['tree']
    stage='locked-browser-driver';drivers=prepare_driver(root,private)
-   result.update(status='PASS_RETAINED_BYTES_LOADED_DRIVER_READY',priorRunId=PRIOR_RUN,artifactId=ARTIFACT_ID,outerArchiveBytes=ARCHIVE_BYTES,outerArchiveSha256=ARCHIVE_SHA,indexSha256=INDEX_SHA,images=verified,browserDriver=drivers,applicationImagesRebuilt=False,newCandidateUpload=False,providerCredentialPassedToRuntime=False)
+   result.update(status='PASS_RETAINED_BYTES_LOADED_DRIVER_READY',priorRunId=PRIOR_RUN,artifactId=ARTIFACT_ID,outerArchiveBytes=ARCHIVE_BYTES,outerArchiveSha256=ARCHIVE_SHA,indexSha256=INDEX_SHA,sourceExpiresAtUTC=meta['expires_at'],images=verified,browserDriver=drivers,applicationImagesRebuilt=False,newCandidateUpload=False,providerCredentialPassedToRuntime=False)
  except Exception:
   result['failedStage']=stage;result['error']='RETAINED_PREPARATION_REFUSED'
  finally:
