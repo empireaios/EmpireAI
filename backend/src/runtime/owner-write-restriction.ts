@@ -41,6 +41,12 @@ export function allowedRestrictedRequest(method: string, url: string): boolean {
   if (method === 'POST') return raw === '/auth/login' || raw === '/auth/logout';
   if (method !== 'GET' && method !== 'HEAD') return false;
   if (reads.has(raw)) return true;
+  if (raw === '/api/owner/recovery/commerce') {
+    const query = new URL(url, 'http://localhost').searchParams;
+    // Only the separately reviewed, non-initializing canonical history reader.
+    return method === 'GET' && [...query.keys()].join(',') === 'sessionId' &&
+      /^[A-Za-z0-9_.:-]{1,100}$/.test(query.get('sessionId') ?? '');
+  }
   if (raw === '/api/owner/advisor/read') {
     const query = new URL(url, 'http://localhost').searchParams;
     // Other domains may initialize legacy stores; only reviewed durable history here.

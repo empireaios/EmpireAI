@@ -5,6 +5,7 @@ import path from 'node:path';
 import {AssuranceControlPlane,inspectControlPlaneMonitor} from './control-plane.mjs';
 import { assurancePaths } from './live-sources.mjs';
 import {runInspectorPass} from './inspector-cycle.mjs';
+import {waitForAssuranceSchema} from './schema-readiness.mjs';
 import {setTimeout as delay} from 'node:timers/promises';
 const {database}=assurancePaths(process.env.RAILWAY_VOLUME_MOUNT_PATH);
 const shutdown=new AbortController();
@@ -20,6 +21,7 @@ while(!stopping){
   }catch{console.error(JSON.stringify({event:'assurance_control_plane_supervision_failed'}));}}
 
   try{
+    await waitForAssuranceSchema(database,{signal:shutdown.signal});
     const verdict=runInspectorPass(database);
     console.log(JSON.stringify({event:'independent_assurance_watchdog',...verdict}));
   }catch(error){
