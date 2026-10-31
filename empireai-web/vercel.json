@@ -11,7 +11,8 @@
       "work8/closure-20261031-native-backend": false,
       "work8/closure-20261031-native-normal": false,
       "work8/closure-20261031-native-recovery": false,
-      "work8/closure-20261031-native-transition": false
+      "work8/closure-20261031-native-transition": false,
+      "work8/closure-20261031-native-transition-r2": false
     }
   }
 }

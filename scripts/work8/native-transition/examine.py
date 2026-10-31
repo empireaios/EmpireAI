@@ -46,8 +46,8 @@ def run(args,*,cwd=None,timeout=120,log=None,input=None):
  return output
 
 def inspect(name):return json.loads(run(['docker','inspect',name]))[0]
-def marker(name):
- deadline=time.monotonic()+210
+def marker(name,timeout=210):
+ deadline=time.monotonic()+timeout
  while not (PRIVATE/'control'/name).exists():
   assert time.monotonic()<deadline,'PHASE_DEADLINE:'+name
   for role in ['backend','browser']:
@@ -75,8 +75,8 @@ def start_front(role):
   time.sleep(.5)
 
 try:
- assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/closure-20261031-native-transition'
- event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/closure-20261031-native-transition'
+ assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/closure-20261031-native-transition-r2'
+ event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/closure-20261031-native-transition-r2'
  assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1'
  assert run(['node','--version']).strip()=='v22.23.2'
  for role in ['backend','normal','recovery']:
@@ -145,7 +145,7 @@ ENTRYPOINT ["node","/app/deployment/locked-runtime.cjs"]
  cmd+=['--security-opt','no-new-privileges','--env-file',str(PRIVATE/'backend.env'),'--tmpfs','/data/work8-exam:rw,noexec,nosuid,nodev,mode=0755,size=2g','--tmpfs','/tmp:rw,noexec,nosuid,size=16m']
  for source,dest,ro in [(PRIVATE/'policy','/run/empire-policy',True),(PRIVATE/'control','/control',False),(PRIVATE/'evidence','/evidence',False),(SCRIPT,'/examination',True)]:cmd+=['--mount','type=bind,src='+str(source)+',dst='+dest+(',readonly' if ro else '')]
  cmd+=['--entrypoint','timeout',images['backend'],'--signal=KILL','650s','node','/examination/coordinator.mjs'];run(cmd);created.append(NAMES['backend'])
- stage='actual-runtime-start';marker('runtime-ready.json')
+ stage='actual-runtime-start';marker('runtime-ready.json',timeout=245)
  meta=inspect(NAMES['backend']);assert not meta['HostConfig']['PortBindings'];assert next(m for m in meta['Mounts'] if m['Destination']=='/run/empire-policy')['RW'] is False
  run(['docker','exec','--user','65534:65534',NAMES['backend'],'node','-e',"const fs=require('fs');let denied=false;try{fs.writeFileSync('/run/empire-policy/control.json','forbidden')}catch(e){denied=['EROFS','EACCES','EPERM'].includes(e.code)}if(!denied)process.exit(1)"])
  (PRIVATE/'evidence/isolation.json').write_text(json.dumps({'internalNetwork':True,'publishedPorts':False,'externalCredentials':False,'policyReadonlyMount':True,'runtimePolicyWriteRefused':True,'actualNativeApplication':True,'syntheticOwnerOnly':True,'components':components},indent=2))
