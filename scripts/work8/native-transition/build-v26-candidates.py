@@ -7,6 +7,10 @@ ROOT=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve()
 SCRIPT=ROOT/'controller/scripts/work8/native-transition'
 OUT=ROOT/'native-transition-output'
 PLAN=json.loads((SCRIPT/'v26-build-plan.json').read_text())
+AUTHORITY=json.loads((SCRIPT/'stage-b-authority.json').read_text())
+import sys
+sys.path.insert(0,str(SCRIPT.parent/'packaging'))
+from compiler_job import copy_verified_outputs
 PINS=json.loads((SCRIPT/'components.json').read_text())
 BASE=json.loads((ROOT/'native-transition-candidates/immutable-images.json').read_text())
 NODE='node:22.23.2-bookworm-slim@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9'
@@ -53,13 +57,25 @@ def old_files(image,destination,path):
  try:run(['docker','cp',name+':'+path,str(destination)],timeout=90)
  finally:subprocess.run(['docker','rm','-f',name],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20,check=False)
 
+def readable_context_file(filename,app_root):
+ # Only reviewed files inside this newly created, isolated Docker build context.
+ filename=pathlib.Path(filename);app_root=pathlib.Path(app_root)
+ assert filename.is_relative_to(app_root) and filename.is_file() and not filename.is_symlink(),'STAGED_CONTEXT_FILE_REFUSED'
+ relative=filename.relative_to(app_root);assert '..' not in relative.parts,'STAGED_CONTEXT_PATH_REFUSED'
+ directories=[app_root]
+ for part in relative.parts[:-1]:directories.append(directories[-1]/part)
+ assert all(directory.is_dir() and not directory.is_symlink() for directory in directories),'STAGED_CONTEXT_DIRECTORY_REFUSED'
+ for directory in directories:directory.chmod(0o755)
+ filename.chmod(0o644)
+
 def main():
  global stage
- assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v26-20261031-business-recovery'
+ assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v27-20261101-a5-acceptance'
  assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1'
+ assert json.loads((OUT/'stage-a-gate.json').read_text())['status']=='PASS_APPROVED_STAGE_A_AND_IDENTICAL_COMPILER'
  assert json.loads((OUT/'retained-import-result.json').read_text())['status']=='PASS_RETAINED_BYTES_LOADED_DRIVER_READY'
- assert PLAN['independentPreflightApproved'] is True and PLAN['additionalReservationUSD']<=0.50
- assert PLAN['priorReservationUSD']==2.35 and PLAN['retentionDays']==7 and PLAN['maximumMinutes']==30
+ assert PLAN['independentPreflightApproved'] is True and AUTHORITY['combinedAdditionalReservationUSD']<=0.50
+ assert AUTHORITY['priorReservationUSD']==2.85 and AUTHORITY['retentionDays']==7 and AUTHORITY['maximumMinutes']==30
  assert run(['node','--version']).strip()=='v22.23.2'
  provenance={}
  for role in cp.ROLES:
@@ -89,8 +105,18 @@ def main():
   context=private/'backend-context';(context/'app').mkdir(parents=True)
   for item in PLAN['sourceChanges']['backend']:
    dest=context/'app'/item['path'];dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/'backend-source'/item['path'],dest)
-  compile_result=json.loads(run(['docker','run','--rm','--network','none','--read-only','--cap-drop','ALL','--security-opt','no-new-privileges','--mount','type=bind,src='+str(context)+',dst=/overlay','--mount','type=bind,src='+str(SCRIPT)+',dst=/examination,readonly','--entrypoint','node',BASE['backend']['image'],'/examination/compile-overlay.cjs','/app','/overlay','/examination/v26-build-plan.json']))
+   readable_context_file(dest,context/'app')
+  # Reuse the exact independently accepted Stage A bytes; do not repeat compilation.
+  compile_result=copy_verified_outputs(ROOT/'stage-a-approved-inputs/generated',context/'app',SCRIPT/'v26-build-plan.json')
   revision=context/'app/backend/dist/runtime-revision.json';revision.parent.mkdir(parents=True,exist_ok=True);revision.write_text(json.dumps({'revision':PINS['backend']['commit']})+'\n')
+  readable_context_file(revision,context/'app')
+  modes=[]
+  for item in sorted((context/'app').rglob('*')):
+   assert not item.is_symlink(),'STAGED_CONTEXT_SYMLINK_REFUSED'
+   expected=0o755 if item.is_dir() else 0o644
+   assert item.stat().st_mode&0o777==expected,'STAGED_CONTEXT_READABILITY_MISMATCH'
+   modes.append({'path':item.relative_to(context/'app').as_posix(),'mode':oct(expected)})
+  (OUT/'backend-context-modes.json').write_text(json.dumps({'scope':'isolated reviewed backend Docker build context only','filesReadableByExistingWorkerIdentities':True,'hostPermissionsOutsideContextChanged':False,'entries':modes},indent=2)+'\n')
   (context/'Dockerfile').write_text('FROM '+base_tag+'\nCOPY --chown=0:0 app/ /app/\nLABEL org.opencontainers.image.revision="'+PINS['backend']['commit']+'" io.empireai.source-tree="'+PINS['backend']['tree']+'"\n')
   scans['backend']=scan_delta(context,private/'no-baseline')
   run(['docker','build','--network','none','--pull=false','--iidfile',str(private/'backend.id'),str(context)],timeout=90)

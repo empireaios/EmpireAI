@@ -1,0 +1,18 @@
+{
+  "schema": "WORK8_V27_STAGE_B_AUTHORITY_V1",
+  "ownerDirective": "V27_STAGE_A_THEN_INDEPENDENTLY_GATED_STAGE_B",
+  "stage": "B",
+  "priorReservationUSD": 2.85,
+  "combinedAdditionalReservationUSD": 0.5,
+  "aggregateReservedAfterBothStagesUSD": 3.35,
+  "aggregateAllowanceUSD": 10,
+  "chargesConfirmed": false,
+  "maximumMinutes": 30,
+  "retentionDays": 7,
+  "combinedMaximumNewArtifactBytes": 2147483648,
+  "noAutomaticRetry": true,
+  "unchangedApplicationSources": true,
+  "branch": "work8/v27-20261101-a5-acceptance",
+  "priorFailedRunPreserved": 41208944209,
+  "acceptedTechnicalRunReused": 41205128907
+}

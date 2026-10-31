@@ -1,0 +1,86 @@
+{
+  "schema": "WORK8_V27_STAGE_A_APPROVAL_V1",
+  "approved": true,
+  "stageA": {
+    "runId": 41243335327,
+    "controllerCommit": "83c99a0e1ff25244d5393afaac9d8f29e0839ae1",
+    "branch": "work8/v27-20261101-compiler-preflight",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "artifact": {
+    "id": 13058218098,
+    "bytes": 122786,
+    "sha256": "03a646b2858e1d841e272669f72cfe421516e0675b27beef617d8d1b0b66f8aa",
+    "members": [
+      {
+        "path": "compiler-permission-receipt.json",
+        "bytes": 12786,
+        "sha256": "29f0bbfe5925038f93bfbaa16b7fe164fbf75c4a8c1a132d4f3b9bdacbd4883f"
+      },
+      {
+        "path": "artifact-index.json",
+        "bytes": 2116,
+        "sha256": "5bbfd44b06227db6096f999047def2b32017b28df5faf3603da488a3cce7054a"
+      },
+      {
+        "path": "generated/backend/dist/runtime/commerce-runtime/governed/recovery-projection.js",
+        "bytes": 13751,
+        "sha256": "8b3fba5d935bbb75c66b0877ef1017d28de40928c7561ab4d13ce0d534840caa"
+      },
+      {
+        "path": "generated/backend/dist/runtime/commerce-runtime/governed/recovery-projection.js.map",
+        "bytes": 14990,
+        "sha256": "53cabe985f7e6aa6e42eb53a7ccf4d8f6913e9f71fb2470631ceff3ef383ee71"
+      },
+      {
+        "path": "generated/backend/dist/runtime/commerce-runtime/governed/runtime.js",
+        "bytes": 30741,
+        "sha256": "8194998296fa6cea3a716fd5f07215b90248925d1d979570972e1d66ac28c603"
+      },
+      {
+        "path": "generated/backend/dist/runtime/commerce-runtime/governed/runtime.js.map",
+        "bytes": 31185,
+        "sha256": "56f813343a61bf568ffe62ff32c023bdd992c58e9f70978582af3ec77203a2c5"
+      },
+      {
+        "path": "generated/backend/dist/runtime/owner-write-restriction.js",
+        "bytes": 3954,
+        "sha256": "c5ac9d04eebae1bfe5c85e608fe625677fc3d11310e7b56a2f588eaf69c884ca"
+      },
+      {
+        "path": "generated/backend/dist/runtime/owner-write-restriction.js.map",
+        "bytes": 3809,
+        "sha256": "94336b2fbad05bdb6120290459efc96deff0d5b427342b192f701a22170d931e"
+      },
+      {
+        "path": "retained-backend-import.json",
+        "bytes": 1731,
+        "sha256": "09da02d9d06703533f71731a1dbe9e6e5ad3022f88dadfa1c508988996b96f1b"
+      },
+      {
+        "path": "source-identities.json",
+        "bytes": 3012,
+        "sha256": "06e55d1b48ce26faf69b1f2ae337dfccc54697db1bcb7af0783a679012722383"
+      },
+      {
+        "path": "stage-a-result.json",
+        "bytes": 2601,
+        "sha256": "fe50f9565dc09d187b27e203988d569cc47e1d738748cfe64f3a0d19b44512d5"
+      }
+    ]
+  },
+  "independentReview": {
+    "decision": "PASS",
+    "sha256": "eb010a88961d426866d32f46a86f1c664c439c65503e56e56a3934b45bf941e8",
+    "acceptedScope": "ACTUAL_ISOLATED_COMPILER_PERMISSION_AND_EXACT_OUTPUT_CONTRACT"
+  },
+  "componentPinsSha256": "1511f21cb02fe26e2b7a6322dc3f0a90ab8d56ff4de5e9d04aebe945e07b52c7",
+  "sourcePlanSha256": "101fd7b60be5dcbbafe3ec33b4106de1d8e335cd5b1fb67d078ab6f4b4b5617f",
+  "sharedFiles": {
+    "scripts/work8/packaging/compiler_job.py": "a573b2a06500e9c4729fdbfbd652ade538c7c4f2fc2ca840d0db80896522f7df",
+    "scripts/work8/packaging/isolated-compiler.cjs": "9821ed6d5304b06075f47fb173643540825dbc0532e116507f9ffeab6ecc8f34"
+  },
+  "expectedStageAStatus": "PASS_COMPILER_PERMISSION_PREFLIGHT",
+  "instruction": "Exact Stage A compiler permission and output contract independently accepted. One Stage B remains subject to exact source and remote publication review; no automatic retry."
+}

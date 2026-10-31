@@ -2,7 +2,10 @@
 import gzip, hashlib, json, os, pathlib, re, stat, subprocess, time
 
 CONTINUATION_MAX_BYTES = 2 * 1024**3
-PRIOR_DIAGNOSTIC_ARTIFACT_BYTES = 16804
+# Both V27 stages share one 2GiB allowance; count the actual approved Stage A ZIP.
+_STAGE_A_APPROVAL = json.loads(pathlib.Path(__file__).with_name('stage-a-approval.json').read_text())
+PRIOR_DIAGNOSTIC_ARTIFACT_BYTES = _STAGE_A_APPROVAL['artifact']['bytes'] if _STAGE_A_APPROVAL.get('approved') is True else 16 * 1024**2
+assert type(PRIOR_DIAGNOSTIC_ARTIFACT_BYTES) is int and 0 < PRIOR_DIAGNOSTIC_ARTIFACT_BYTES <= 16 * 1024**2, 'STAGE_A_ARTIFACT_BOUND'
 MAX_BYTES = CONTINUATION_MAX_BYTES - PRIOR_DIAGNOSTIC_ARTIFACT_BYTES
 ZIP_ENVELOPE_RESERVE = 2 * 1024**2
 MAX_PAYLOAD_BYTES = MAX_BYTES - ZIP_ENVELOPE_RESERVE

@@ -5,7 +5,7 @@ import candidate_packages
 
 ROOT=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve()
 SCRIPT=ROOT/'controller/scripts/work8/native-transition'
-PHASE=sys.argv[1] if len(sys.argv)==2 else '';assert PHASE in {'--examine-v26'},'EXPLICIT_EXAMINATION_PHASE_REQUIRED'
+PHASE=sys.argv[1] if len(sys.argv)==2 else '';assert PHASE in {'--examine-v27-stage-b'},'EXPLICIT_EXAMINATION_PHASE_REQUIRED'
 OUT=ROOT/'native-transition-output';OUT.mkdir(exist_ok=True)
 PRIVATE=pathlib.Path(tempfile.mkdtemp(prefix='work8-native-transition-',dir=os.environ['RUNNER_TEMP']))
 MANIFEST=json.loads((SCRIPT/'components.json').read_text())
@@ -139,11 +139,12 @@ def start_front(role,phase):
  (PRIVATE/'evidence'/('frontend-listener-'+phase+'.json')).write_text(json.dumps(listener,indent=2))
 
 try:
- assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v26-20261031-business-recovery'
- event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v26-20261031-business-recovery'
+ assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v27-20261101-a5-acceptance'
+ event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v27-20261101-a5-acceptance'
  assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1'
  assert run(['node','--version']).strip()=='v22.23.2'
- assert PHASE=='--examine-v26','V26_ONLY_REVIEWED_CANDIDATES_AUTHORISED'
+ assert PHASE=='--examine-v27-stage-b','V27_ONLY_REVIEWED_CANDIDATES_AUTHORISED'
+ assert json.loads((OUT/'stage-a-gate.json').read_text())['status']=='PASS_APPROVED_STAGE_A_AND_IDENTICAL_COMPILER'
  assert json.loads((OUT/'candidate-preparation-result.json').read_text())['status']=='CANDIDATES_PREPARED_AWAITING_REMOTE_UPLOAD'
  assert json.loads((OUT/'retained-import-result.json').read_text())['status']=='PASS_RETAINED_BYTES_LOADED_DRIVER_READY'
  for role in ['backend','normal','recovery']:
@@ -158,7 +159,7 @@ try:
   stage='verify-retained-candidate-bytes-and-upload-receipt'
   images,components=candidate_packages.reuse(ROOT,OUT,MANIFEST)
   upload=json.loads((OUT/'candidate-upload-receipt.json').read_text())
-  upload.update(providerUploadReceiptSource='current exact reviewed V26 candidate upload before runtime',sourceRunId=int(os.environ['GITHUB_RUN_ID']),newCandidateUpload=True,retentionRenewed=True)
+  upload.update(providerUploadReceiptSource='current exact reviewed V27 candidate upload before runtime',sourceRunId=int(os.environ['GITHUB_RUN_ID']),newCandidateUpload=True,retentionRenewed=True)
   upload.pop('sourceExpiresAtUTC',None)
   (OUT/'candidate-upload-receipt.json').write_text(json.dumps(upload,indent=2)+'\n')
   for d in ['control','evidence','policy']:(PRIVATE/d).mkdir(mode=0o700)
