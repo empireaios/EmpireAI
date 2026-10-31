@@ -1,15 +1,15 @@
-name: Work 8 V23 bounded scan-only diagnostic
+name: Work 8 V23 authorised classified-package native examination
 on: create
 permissions:
   contents: read
 concurrency:
-  group: work8-v23-scan-diagnostic-20261031
+  group: work8-native-transition-20261031
   cancel-in-progress: false
 jobs:
   transition:
-    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v23-20261031-scan' && github.run_attempt == 1 && github.run_number == 1
+    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v23-20261031-native-exam' && github.run_attempt == 1 && github.run_number == 1
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - name: Exact reviewed controller, no persisted token
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -51,21 +51,42 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22.23.2'
-      - name: Reconstruct only the bounded candidate contexts and classify safe metadata
+      - name: Build once and prepare immutable CANDIDATE packages before runtime
         env:
           NEXT_TELEMETRY_DISABLED: '1'
           CI: 'true'
-        run: python3 controller/scripts/work8/native-transition/scan-diagnostic.py
-      - name: Verify safe metadata and bounded diagnostic artifact
+        run: python3 controller/scripts/work8/native-transition/examine.py --prepare-candidates
+      - name: Independently gate candidate package bytes and secret scan
+        id: candidates_gate
+        run: python3 controller/scripts/work8/native-transition/upload-preflight.py candidates
+      - name: Retain CANDIDATE bytes before any browser assertion
+        id: candidates
+        if: success() && steps.candidates_gate.outputs.allowed == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-native-CANDIDATES-${{ github.sha }}-${{ github.run_id }}
+          path: native-transition-candidates/
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+      - name: Execute exactly one missing full-native version transition with retained candidates
+        if: success() && steps.candidates.outputs.artifact-id != ''
+        env:
+          NEXT_TELEMETRY_DISABLED: '1'
+          CI: 'true'
+          CANDIDATE_ARTIFACT_ID: ${{ steps.candidates.outputs.artifact-id }}
+          CANDIDATE_ARTIFACT_DIGEST: ${{ steps.candidates.outputs.artifact-digest }}
+        run: python3 controller/scripts/work8/native-transition/examine.py --examine-retained
+      - name: Independently enforce scanned diagnostics and aggregate artifact limit
         id: upload
         if: always()
-        run: python3 controller/scripts/work8/native-transition/scan-upload-preflight.py
-      - name: Retain safe scan metadata only
+        run: python3 controller/scripts/work8/native-transition/upload-preflight.py evidence
+      - name: Retain sanitized examination evidence without duplicating candidate archives
         if: always() && steps.upload.outputs.allowed == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: work8-v23-scan-metadata-${{ github.sha }}-${{ github.run_id }}
-          path: scan-diagnostic-output/
+          name: work8-native-evidence-${{ github.sha }}-${{ github.run_id }}
+          path: native-transition-output/
           if-no-files-found: error
           retention-days: 7
           compression-level: 0

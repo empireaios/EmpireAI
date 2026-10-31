@@ -2,6 +2,7 @@
 """One fresh, bounded full-native distinct-version examination. No provider keys."""
 import hashlib, io, json, os, pathlib, re, secrets, shutil, subprocess, sys, tarfile, tempfile, time
 import candidate_packages
+import packaging_corrections
 
 ROOT=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve()
 SCRIPT=ROOT/'controller/scripts/work8/native-transition'
@@ -16,7 +17,7 @@ NODE='node:22.23.2-bookworm-slim@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8
 REDIS='redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952'
 BROWSER='mcr.microsoft.com/playwright:v1.62.1-noble@sha256:dcc5531e97840b9b5e794f2814476b21571c5124a3fca2267d73041f56e7580e'
 START=time.monotonic();stage='preflight';result={'status':'FAIL','wholeRowsAccepted':[],'productionAccess':False,'genuineOwnerObservation':False}
-MAX_OUTPUT=2*1024**3
+MAX_OUTPUT=candidate_packages.MAX_BYTES
 
 def output_bytes():
  total=0
@@ -97,8 +98,8 @@ def start_front(role,phase):
  (PRIVATE/'evidence'/('frontend-listener-'+phase+'.json')).write_text(json.dumps(listener,indent=2))
 
 try:
- assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v22-20261031-native-exam'
- event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v22-20261031-native-exam'
+ assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v23-20261031-native-exam'
+ event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v23-20261031-native-exam'
  assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1'
  assert run(['node','--version']).strip()=='v22.23.2'
  if PHASE=='--prepare-candidates':run(['node','--test',str(SCRIPT/'contracts.test.mjs')],timeout=30,log='execution-contract-regressions.log')
@@ -137,7 +138,15 @@ ENTRYPOINT ["node","/app/deployment/locked-runtime.cjs"]
   (context/'Dockerfile').write_text(docker)
   # A root .dockerignore from the full application may exclude compiled inputs.
   (context/'.dockerignore').write_text('.git\n.env\n**/.env\n')
+  stage='backend-exact-packaging-and-prebuild-scan'
+  packaging_corrections.apply_exact_omission(context,OUT)
+  (OUT/'backend-prebuild-secret-scan.json').write_text(json.dumps(candidate_packages.scan_context(context),indent=2)+'\n')
   run(['docker','build','--iidfile',str(PRIVATE/'backend.id'),str(context)],timeout=240,log='backend-image-build.log');images['backend']=(PRIVATE/'backend.id').read_text().strip()
+  stage='backend-built-image-wasm-smoke'
+  smoke=json.loads(run(['docker','run','--rm','--label','work8.native='+LABEL,'--network','none','--read-only','--user','65534:65534','--cap-drop','ALL','--security-opt','no-new-privileges','--memory','512m','--cpus','0.5','--pids-limit','32','--mount','type=bind,src='+str(SCRIPT)+',dst=/examination,readonly','--entrypoint','timeout',images['backend'],'--signal=KILL','25s','node','/examination/packaging-smoke.mjs','/app/backend/node_modules/sql.js','-'],timeout=30))
+  assert smoke['status']=='PASS' and smoke['nodeVersion']=='v22.23.2' and smoke['exactRetainedFileHashesVerified'] is True and smoke['removedVariantsAbsent'] is True
+  smoke.update(imageId=images['backend'],networkDisabled=True,readOnlyRoot=True,runtimeUser='65534:65534',packagingPolicySha256=packaging_corrections.sha(SCRIPT/'package-exclusions.json'))
+  (OUT/'backend-packaging-image-smoke.json').write_text(json.dumps(smoke,indent=2)+'\n')
   for role in ['normal','recovery']:
    stage=role+'-frontend-build';web=ROOT/(role+'-source')/'empireai-web'
    run(['npm','ci','--ignore-scripts','--no-audit','--no-fund'],cwd=web,timeout=180,log=role+'-dependencies.log')
@@ -148,12 +157,14 @@ ENTRYPOINT ["node","/app/deployment/locked-runtime.cjs"]
    if (web/'public').exists():shutil.copytree(web/'public',context/'app/public',dirs_exist_ok=True)
    (context/'app/.next/cache').mkdir(exist_ok=True)
    (context/'Dockerfile').write_text(f'FROM {NODE}\nWORKDIR /frontend\nCOPY --chown=0:0 app/ /frontend/\nLABEL org.opencontainers.image.revision="{MANIFEST[role]["commit"]}" io.empireai.source-tree="{MANIFEST[role]["tree"]}"\nENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1\nENTRYPOINT ["node","server.js"]\n')
+   (OUT/(role+'-prebuild-secret-scan.json')).write_text(json.dumps(candidate_packages.scan_context(context),indent=2)+'\n')
    run(['docker','build','--network','none','--pull=false','--iidfile',str(PRIVATE/(role+'.id')),str(context)],timeout=90,log=role+'-image-build.log');images[role]=(PRIVATE/(role+'.id')).read_text().strip()
   stage='isolation-setup';components={}
   for role,image in images.items():
    inspected=json.loads(run(['docker','image','inspect',image]))[0];assert inspected['Config']['Labels']['org.opencontainers.image.revision']==MANIFEST[role]['commit'];assert run(['docker','run','--rm','--network','none','--entrypoint','node',image,'--version']).strip()=='v22.23.2'
    components[role]={'commit':MANIFEST[role]['commit'],'tree':MANIFEST[role]['tree'],'image':image,'createdAt':inspected['Created']}
    if role!='backend':components[role]['buildId']=(ROOT/(role+'-source')/'empireai-web/.next/BUILD_ID').read_text().strip()
+   else:components[role]['packaging']={'controllerCommit':os.environ['GITHUB_SHA'],'policySha256':packaging_corrections.sha(SCRIPT/'package-exclusions.json'),'helperSha256':packaging_corrections.sha(SCRIPT/'packaging_corrections.py'),'smokeScriptSha256':packaging_corrections.sha(SCRIPT/'packaging-smoke.mjs'),'removalReceiptSha256':packaging_corrections.sha(OUT/'backend-packaging-removal.json'),'actualImageSmokeReceiptSha256':packaging_corrections.sha(OUT/'backend-packaging-image-smoke.json'),'sourcePinsUnchanged':True,'scannerExceptions':[]}
   stage='archive-and-scan-candidates-before-runtime'
   candidate_packages.prepare(ROOT,PRIVATE,OUT,images,components,generated)
   result.update(status='CANDIDATES_PREPARED_AWAITING_REMOTE_UPLOAD',candidateBytes=candidate_packages.directory_bytes(ROOT/'native-transition-candidates'),runtimeStarted=False,wholeRowsAccepted=[])

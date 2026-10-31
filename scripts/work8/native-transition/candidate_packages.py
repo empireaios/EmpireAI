@@ -1,7 +1,9 @@
 """Bounded build-only CANDIDATE packages. Never include runtime mounts or secrets."""
 import gzip, hashlib, json, os, pathlib, re, stat, subprocess, time
 
-MAX_BYTES = 2 * 1024**3
+CONTINUATION_MAX_BYTES = 2 * 1024**3
+PRIOR_DIAGNOSTIC_ARTIFACT_BYTES = 16804
+MAX_BYTES = CONTINUATION_MAX_BYTES - PRIOR_DIAGNOSTIC_ARTIFACT_BYTES
 ZIP_ENVELOPE_RESERVE = 2 * 1024**2
 MAX_PAYLOAD_BYTES = MAX_BYTES - ZIP_ENVELOPE_RESERVE
 EVIDENCE_RESERVE = 16 * 1024**2
@@ -63,7 +65,7 @@ def write_index(directory, schema, **extra):
   if p.name=='artifact-index.json':continue
   info=p.lstat();assert stat.S_ISREG(info.st_mode) and info.st_nlink==1 and not p.is_symlink()
   entries.append({'path':p.name,'bytes':info.st_size,'sha256':sha(p)})
- (directory/'artifact-index.json').write_text(json.dumps({'schema':schema,'maxBytes':MAX_BYTES,'maxPayloadBytes':MAX_PAYLOAD_BYTES,'zipEnvelopeReserveBytes':ZIP_ENVELOPE_RESERVE,'files':entries,**extra},indent=2)+'\n')
+ (directory/'artifact-index.json').write_text(json.dumps({'schema':schema,'maxBytes':MAX_BYTES,'continuationMaxBytes':CONTINUATION_MAX_BYTES,'priorDiagnosticArtifactBytes':PRIOR_DIAGNOSTIC_ARTIFACT_BYTES,'maxPayloadBytes':MAX_PAYLOAD_BYTES,'zipEnvelopeReserveBytes':ZIP_ENVELOPE_RESERVE,'files':entries,**extra},indent=2)+'\n')
 
 def prepare(root, private, evidence, images, components, generated):
  assert not generated, 'RUNTIME_SECRETS_EXIST_BEFORE_CANDIDATE_RETENTION'
@@ -79,7 +81,17 @@ def prepare(root, private, evidence, images, components, generated):
   permitted={'PATH','NODE_VERSION','YARN_VERSION','NODE_ENV','NEXT_TELEMETRY_DISABLED'}
   assert all(item.split('=',1)[0] in permitted for item in image['Config'].get('Env',[])), 'UNREVIEWED_IMAGE_ENVIRONMENT'
   scans[role]['imageConfigEnvironmentAllowlistPassed']=True
- (candidates/'candidate-secret-scan.json').write_text(json.dumps({'schema':'work8-candidate-secret-scan-v1','generatedRuntimeSecretsExist':False,'providerCredentialsSupplied':False,'productionDataSupplied':False,'source':'reviewed exact public application checkouts and compiled outputs only','scans':scans},indent=2)+'\n')
+ policy=pathlib.Path(__file__).with_name('package-exclusions.json')
+ (candidates/policy.name).write_bytes(policy.read_bytes())
+ bindings={'policySha256':sha(policy),'scannerExceptions':[]}
+ for name in ['backend-packaging-removal.json','backend-packaging-image-smoke.json']:
+  source=evidence/name;receipt=json.loads(source.read_text())
+  assert receipt['status'] in {'PASS','EXACT_FIVE_UNUSED_ASM_VARIANTS_REMOVED_BEFORE_IMAGE_BUILD'}
+  (candidates/name).write_bytes(source.read_bytes());bindings[name]={'sha256':sha(source),'status':receipt['status']}
+ smoke=json.loads((evidence/'backend-packaging-image-smoke.json').read_text())
+ assert smoke['nodeVersion']=='v22.23.2' and smoke['imageId']==images['backend'] and smoke['networkDisabled'] is True
+ bindings['runtimeNodeVersion']=smoke['nodeVersion'];bindings['actualImageId']=smoke['imageId']
+ (candidates/'candidate-secret-scan.json').write_text(json.dumps({'schema':'work8-candidate-secret-scan-v1','generatedRuntimeSecretsExist':False,'providerCredentialsSupplied':False,'productionDataSupplied':False,'source':'reviewed exact public application checkouts and compiled outputs only; five exact independently classified unused ASM distribution files omitted before Docker COPY','precisePackaging':bindings,'scans':scans},indent=2)+'\n')
  for role in ROLES:
   target=candidates/(role+'-image.tar.gz');partial=private/(role+'-image.partial')
   limit=MAX_PAYLOAD_BYTES-directory_bytes(candidates)-directory_bytes(evidence)-EVIDENCE_RESERVE
@@ -100,7 +112,7 @@ def prepare(root, private, evidence, images, components, generated):
   components[role]['archiveSha256']=sha(target)
   components[role]['acceptance']='CANDIDATE_NOT_ACCEPTED'
  (candidates/'immutable-images.json').write_text(json.dumps(components,indent=2)+'\n')
- (candidates/'CANDIDATES.txt').write_text('CANDIDATES — NOT ACCEPTED RELEASES\nThree exact application images built once before examination runtime credentials or data exist.\nVerify each compressed archive against immutable-images.json archiveSha256.\nRestore bytes with: gzip -dc ROLE-image.tar.gz | docker load\nVerify docker image inspect ID and revision/tree labels against immutable-images.json.\nDo not deploy these images without applicable authority and a compatible reviewed runtime policy.\nThis archive was created before any examination runtime database or generated session secret existed; no provider credential was supplied. Any public source/dependency fixture database is separately identified by the scan receipt and is never examination state.\nThe GitHub artifact upload digest identifies the outer Actions ZIP; per-image hashes identify inner compressed archives.\nSeven-day Actions retention is time-limited; retain the verified archive through an authorised evidence route before expiry if further reuse is needed.\n')
+ (candidates/'CANDIDATES.txt').write_text('CANDIDATES — NOT ACCEPTED RELEASES\nThree exact application images built once before examination runtime credentials or data exist.\nBackend packaging omits only the five hash-bound unused ASM distribution files identified by package-exclusions.json; source pins, runtime WASM implementation, package metadata, README and LICENSE remain unchanged. The removal and actual-image Node 22.23.2 smoke receipts are included.\nVerify each compressed archive against immutable-images.json archiveSha256 and the packaging recipe, not source labels alone.\nRestore bytes with: gzip -dc ROLE-image.tar.gz | docker load\nVerify docker image inspect ID and revision/tree labels against immutable-images.json.\nDo not deploy these images without applicable authority and a compatible reviewed runtime policy.\nThis archive was created before any examination runtime database or generated session secret existed; no provider credential was supplied. Any public source/dependency fixture database is separately identified by the scan receipt and is never examination state.\nThe GitHub artifact upload digest identifies the outer Actions ZIP; per-image hashes identify inner compressed archives.\nSeven-day Actions retention is time-limited; retain the verified archive through an authorised evidence route before expiry if further reuse is needed.\n')
  write_index(candidates,'work8-candidate-upload-v1',secretScanPassed=True,beforeRuntimeSecrets=True,candidateStatus='CANDIDATE_NOT_ACCEPTED')
  assert directory_bytes(candidates)+directory_bytes(evidence)<=MAX_PAYLOAD_BYTES-EVIDENCE_RESERVE, 'AGGREGATE_CANDIDATE_BYTES_BOUND'
  return candidates
