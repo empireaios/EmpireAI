@@ -1,18 +1,14 @@
 {
-  "schema": "work8-native-transition-components-v1",
   "backend": {
-    "commit": "8cd7ac029b9f23b36b02c84df62492d47275311d",
-    "tree": "d2e6863fa995f32be526a98bff80dffa8f8cbc00"
+    "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+    "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
   },
   "normal": {
-    "commit": "a13f385f5e88c81075852f16f549da090c5155ef",
-    "tree": "863f2023adc5d3786a2c02325e02a48ee7c6a0a8"
+    "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+    "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
   },
   "recovery": {
-    "commit": "35bb4b2ab2e89c66f5f751868560ca422604d8df",
-    "tree": "100620686befe62e4c425b234055284e27088990"
-  },
-  "productionData": false,
-  "syntheticOwnerOnly": true,
-  "wholeRowsAccepted": []
+    "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+    "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+  }
 }

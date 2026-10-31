@@ -1,4 +1,4 @@
-name: Work 8 V25 authorised retained-package final return
+name: Work 8 V26 authorised canonical recovery visibility
 on: create
 permissions:
   contents: read
@@ -8,7 +8,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   transition:
-    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v25-20261031-return' && github.run_attempt == 1 && github.run_number == 1
+    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v26-20261031-business-recovery' && github.run_attempt == 1 && github.run_number == 1
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -30,23 +30,26 @@ jobs:
               assert re.fullmatch('[a-f0-9]{40}',m[role]['tree'])
               print(role+'='+m[role]['commit'],file=out)
           PY
-      - name: Verify backend source identity without rebuilding
+      - name: Checkout exact reviewed backend source delta
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: ${{ steps.pins.outputs.backend }}
           path: backend-source
+          fetch-depth: 2
           persist-credentials: false
-      - name: Verify NORMAL source identity and pinned browser lock
+      - name: Checkout NORMAL compatible identity pin only
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: ${{ steps.pins.outputs.normal }}
           path: normal-source
+          fetch-depth: 2
           persist-credentials: false
-      - name: Verify distinct RECOVERY source identity without rebuilding
+      - name: Checkout exact distinct RECOVERY projection source
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: ${{ steps.pins.outputs.recovery }}
           path: recovery-source
+          fetch-depth: 2
           persist-credentials: false
       - name: Preserve accepted Node runtime
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
@@ -55,14 +58,32 @@ jobs:
       - name: Verify and load exact preserved images; extract locked browser driver without scripts
         env:
           GH_RETAINED_READ_TOKEN: ${{ github.token }}
-        run: python3 controller/scripts/work8/native-transition/prepare-retained.py
-      - name: Execute one coherent final-return transition with retained candidates
+        run: python3 controller/scripts/work8/native-transition/prepare-base-candidates.py
+      - name: Build only independently reviewed minimal component changes
         env:
           NEXT_TELEMETRY_DISABLED: '1'
           CI: 'true'
-          CANDIDATE_ARTIFACT_ID: '13037177457'
-          CANDIDATE_ARTIFACT_DIGEST: '3fa3cf875e23cd4ff201c053f49915ba2007cfdf369ad2bbde6eadd629861d23'
-        run: python3 controller/scripts/work8/native-transition/examine.py --examine-retained
+        run: python3 controller/scripts/work8/native-transition/build-v26-candidates.py
+      - name: Gate bounded new candidate artifacts before runtime
+        id: candidate_gate
+        run: python3 controller/scripts/work8/native-transition/upload-preflight.py candidates
+      - name: Retain reusable immutable candidates before runtime credentials exist
+        id: candidates
+        if: steps.candidate_gate.outputs.allowed == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-v26-candidates-${{ github.sha }}-${{ github.run_id }}
+          path: native-transition-candidates/
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+      - name: Execute one coherent canonical business recovery acceptance
+        env:
+          NEXT_TELEMETRY_DISABLED: '1'
+          CI: 'true'
+          CANDIDATE_ARTIFACT_ID: ${{ steps.candidates.outputs.artifact-id }}
+          CANDIDATE_ARTIFACT_DIGEST: ${{ steps.candidates.outputs.artifact-digest }}
+        run: python3 controller/scripts/work8/native-transition/examine-v26.py --examine-v26
       - name: Gate only new sanitized evidence and enforce retained-artifact bounds
         id: upload
         if: always()
@@ -71,7 +92,7 @@ jobs:
         if: always() && steps.upload.outputs.allowed == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: work8-v25-native-evidence-${{ github.sha }}-${{ github.run_id }}
+          name: work8-v26-native-evidence-${{ github.sha }}-${{ github.run_id }}
           path: native-transition-output/
           if-no-files-found: error
           retention-days: 7
