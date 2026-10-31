@@ -1,8 +1,10 @@
+import {installOwnerWriteRestriction} from './owner-write-restriction.js';
 import { COMMISSIONING_CEILING_MICRO_USD } from "../brain/llm/commissioning-inference-budget.js";
 import type { FastifyInstance } from 'fastify';
 import { LOCKED_PROVIDERS, configuredLockedProviders } from '../brain/llm/locked-provider-orchestration.js';
 const PROFILE = 'LOCKED_COMMISSIONING_V1';
 export function installLockedCommissioning(app: FastifyInstance): void {
+  installOwnerWriteRestriction(app);
   const profile = process.env.EMPIRE_RUNTIME_PROFILE;
   if (!profile) return;
   if (profile !== PROFILE || process.env.EMPIRE_ENGINEERING_TEST_MODE !== 'true') throw new Error('Invalid locked runtime profile');
