@@ -1,0 +1,13 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "build": {"builder": "DOCKERFILE", "dockerfilePath": "Dockerfile"},
+  "deploy": {
+    "startCommand": "timeout --signal=KILL 30s node /probe/bootstrap.cjs",
+    "restartPolicyType": "NEVER",
+    "restartPolicyMaxRetries": 0,
+    "numReplicas": 1,
+    "sleepApplication": false,
+    "overlapSeconds": 0,
+    "drainingSeconds": 1
+  }
+}
