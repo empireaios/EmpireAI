@@ -1,0 +1,9 @@
+{
+  "schema": "work8-native-transition-components-v1",
+  "backend": {"commit": "1a3752189bd6123de9b48eb0a57e0e6f8c48e8a1", "tree": "17ffab0b4dbb7e5c3af0c5f0e401833a318fabbf"},
+  "normal": {"commit": "c110a3853cc02cf127aae724957719a4bc61f025", "tree": "b5d8417bcd6bcf090a04d61fcc0291adcd0fb11f"},
+  "recovery": {"commit": "eb197b27c8518077945e0345acad038b556dfc57", "tree": "7a0c6f3624f6050331072daa5916356622959ae8"},
+  "productionData": false,
+  "syntheticOwnerOnly": true,
+  "wholeRowsAccepted": []
+}
