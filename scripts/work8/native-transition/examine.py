@@ -3,6 +3,7 @@
 import hashlib, io, json, os, pathlib, re, secrets, shutil, subprocess, sys, tarfile, tempfile, time
 import candidate_packages
 import packaging_corrections
+from origin_contract import verify_origin_observations
 
 ROOT=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve()
 SCRIPT=ROOT/'controller/scripts/work8/native-transition'
@@ -60,21 +61,18 @@ def capture_frontend_origin(require_contract=False):
  if NAMES['frontend'] not in created:return
  logged=run(['docker','logs',NAMES['frontend']],timeout=10)
  state=inspect(NAMES['frontend'])['State']
- allowed_codes=['MODULE_NOT_FOUND','ORIGIN_OBSERVER_CONTRACT_UNAVAILABLE','ORIGIN_OBSERVER_PHASE_REFUSED','EADDRINUSE','ENOTFOUND','EACCES','EROFS','EPERM','ENOENT','ECONNREFUSED']
+ allowed_codes=['MODULE_NOT_FOUND','ORIGIN_OBSERVER_CONTRACT_UNAVAILABLE','ORIGIN_OBSERVER_PHASE_REFUSED','ORIGIN_OBSERVER_PACKAGE_IDENTITY_REFUSED','ORIGIN_OBSERVER_PACKAGE_BYTES_REFUSED','ORIGIN_OBSERVER_MODULE_IDENTITY_REFUSED','EADDRINUSE','ENOTFOUND','EACCES','EROFS','EPERM','ENOENT','ECONNREFUSED']
  codes=[code for code in allowed_codes if re.search(r'(?<![A-Z_])'+code+r'(?![A-Z_])',logged)]
- known_module='/frontend/node_modules/next/dist/server/web/spec-extension/request.js'
+ known_module='/frontend/.next/server/chunks/4741.js'
  diagnostics={'phase':front_phase,'status':state['Status'] if state['Status'] in ['created','running','paused','restarting','removing','exited','dead'] else 'UNRECOGNIZED','running':bool(state['Running']),'exitCode':int(state['ExitCode']),'oomKilled':bool(state['OOMKilled']),'reportedAllowlistedCodes':codes,'knownObserverModulePath':known_module if known_module in logged else None,'arbitraryLogMessagesRetained':False,'requestHeadersRetained':False}
  (PRIVATE/'evidence'/('frontend-startup-diagnostics-'+front_phase+'.json')).write_text(json.dumps(diagnostics,indent=2))
  prefix='WORK8_ORIGIN_OBSERVER '
  observations=[json.loads(line[len(prefix):]) for line in logged.splitlines() if line.startswith(prefix)]
- assert all(row.get('phase')==front_phase and row.get('nodeVersion')=='v22.23.2' for row in observations),'ORIGIN_OBSERVER_IDENTITY_MISMATCH'
+ role='recovery' if front_phase=='RECOVERY' else 'normal'
+ package=json.loads((SCRIPT/'observer-packages.json').read_text())['packages'][role]
+ verify_origin_observations(observations,front_phase,package,images[role],False)
  (PRIVATE/'evidence'/('frontend-origin-'+front_phase+'.json')).write_text(json.dumps({'historicalFailureOperandsCaptured':False,'currentExaminationOnly':True,'observations':observations},indent=2))
- if require_contract:
-  installed=[r for r in observations if r.get('kind')=='observer-installed']
-  rows=[r for r in observations if r.get('kind')=='actual-next-request-url-getter']
-  assert len(installed)==1 and installed[0]['configuredHostname']=='localhost','ORIGIN_OBSERVER_NOT_INSTALLED'
-  assert any(r['origin']=='http://localhost:43117' and r['requestUrlOrigin']=='http://localhost:43117' and r['originEqualsRequestUrlOrigin'] for r in rows),'ACTUAL_SAME_ORIGIN_OPERANDS_NOT_OBSERVED'
-  if front_phase=='NORMAL':assert any(r['origin']=='http://localhost:43119' and r['requestUrlOrigin']=='http://localhost:43117' and not r['originEqualsRequestUrlOrigin'] for r in rows),'ACTUAL_HOSTILE_ORIGIN_OPERANDS_NOT_OBSERVED'
+ verify_origin_observations(observations,front_phase,package,images[role],require_contract)
 
 def start_front(role,phase):
  global front_phase
@@ -82,7 +80,7 @@ def start_front(role,phase):
   capture_frontend_origin(require_contract=True)
   run(['docker','rm','-f',NAMES['frontend']]);created.remove(NAMES['frontend'])
  front_phase=phase
- run(['docker','run','-d','--name',NAMES['frontend'],'--label','work8.native='+LABEL,'--network','container:'+NAMES['anchor'],'--pull','never','--read-only','--user','65534:65534','--cap-drop','ALL','--security-opt','no-new-privileges','--memory','1g','--cpus','1','--pids-limit','128','--env','PORT=43117','--env','HOSTNAME=localhost','--env','NODE_OPTIONS=--dns-result-order=ipv4first --require=/examination/origin-observer.cjs','--env','WORK8_OBSERVER_PHASE='+phase,'--mount','type=bind,src='+str(SCRIPT)+',dst=/examination,readonly','--env','NODE_ENV=production','--env','BRAIN_API_URL=http://native-backend:43100','--env','VERCEL_GIT_COMMIT_SHA='+MANIFEST[role]['commit'],'--env','NEXT_TELEMETRY_DISABLED=1','--tmpfs','/tmp:rw,noexec,nosuid,size=32m','--tmpfs','/frontend/.next/cache:rw,noexec,nosuid,size=64m',images[role]])
+ run(['docker','run','-d','--name',NAMES['frontend'],'--label','work8.native='+LABEL,'--network','container:'+NAMES['anchor'],'--pull','never','--read-only','--user','65534:65534','--cap-drop','ALL','--security-opt','no-new-privileges','--memory','1g','--cpus','1','--pids-limit','128','--env','PORT=43117','--env','HOSTNAME=localhost','--env','NODE_OPTIONS=--dns-result-order=ipv4first --require=/examination/origin-observer.cjs','--env','WORK8_OBSERVER_PHASE='+phase,'--env','WORK8_OBSERVER_ROLE='+role,'--env','WORK8_OBSERVER_IMAGE='+images[role],'--mount','type=bind,src='+str(SCRIPT)+',dst=/examination,readonly','--env','NODE_ENV=production','--env','BRAIN_API_URL=http://native-backend:43100','--env','VERCEL_GIT_COMMIT_SHA='+MANIFEST[role]['commit'],'--env','NEXT_TELEMETRY_DISABLED=1','--tmpfs','/tmp:rw,noexec,nosuid,size=32m','--tmpfs','/frontend/.next/cache:rw,noexec,nosuid,size=64m',images[role]])
  created.append(NAMES['frontend'])
  actual=inspect(NAMES['frontend']);assert actual['Image']==images[role] and not actual['HostConfig']['PortBindings']
  deadline=time.monotonic()+90
@@ -98,11 +96,12 @@ def start_front(role,phase):
  (PRIVATE/'evidence'/('frontend-listener-'+phase+'.json')).write_text(json.dumps(listener,indent=2))
 
 try:
- assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v23-20261031-native-exam'
- event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v23-20261031-native-exam'
+ assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v24-20261031-retained-native'
+ event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v24-20261031-retained-native'
  assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1'
  assert run(['node','--version']).strip()=='v22.23.2'
- if PHASE=='--prepare-candidates':run(['node','--test',str(SCRIPT/'contracts.test.mjs')],timeout=30,log='execution-contract-regressions.log')
+ assert PHASE=='--examine-retained','V24_BUILD_PATH_NOT_AUTHORISED'
+ assert json.loads((OUT/'retained-import-result.json').read_text())['status']=='PASS_RETAINED_BYTES_LOADED_DRIVER_READY'
  for role in ['backend','normal','recovery']:
   entry=MANIFEST[role];source=ROOT/(role+'-source')
   assert run(['git','rev-parse','HEAD'],cwd=source).strip()==entry['commit'];assert run(['git','rev-parse','HEAD^{tree}'],cwd=source).strip()==entry['tree']
@@ -179,7 +178,7 @@ ENTRYPOINT ["node","/app/deployment/locked-runtime.cjs"]
   (PRIVATE/'browser.env').write_text('OWNER_PASSWORD='+values['founder']+'\nEXPECTED_BACKEND='+MANIFEST['backend']['commit']+'\nEXAM_ID='+os.environ['GITHUB_RUN_ID']+'\n')
   (PRIVATE/'redis.conf').write_text('bind 0.0.0.0\nprotected-mode yes\nsave ""\nappendonly no\nrequirepass '+values['redis']+'\n');(PRIVATE/'redis.conf').chmod(0o444)
   set_policy(True);run(['docker','network','create','--internal','--label','work8.native='+LABEL,NETWORK]);network_created=True
-  for image in [REDIS,BROWSER]:run(['docker','pull',image],timeout=120)
+  for image in [NODE,REDIS,BROWSER]:run(['docker','pull',image],timeout=120)
   run(['docker','run','-d','--name',NAMES['redis'],'--label','work8.native='+LABEL,'--network',NETWORK,'--network-alias','transition-redis','--memory','128m','--cpus','0.5','--pids-limit','64','--read-only','--user','999:999','--cap-drop','ALL','--security-opt','no-new-privileges','--tmpfs','/data:rw,noexec,nosuid,size=32m','--mount','type=bind,src='+str(PRIVATE/'redis.conf')+',dst=/redis.conf,readonly',REDIS,'redis-server','/redis.conf']);created.append(NAMES['redis'])
   run(['docker','run','-d','--name',NAMES['anchor'],'--label','work8.native='+LABEL,'--network',NETWORK,'--memory','64m','--cpus','0.1','--pids-limit','32','--read-only','--cap-drop','ALL','--security-opt','no-new-privileges',NODE,'node','-e','setTimeout(()=>process.exit(0),650000)']);created.append(NAMES['anchor'])
   cmd=['docker','run','-d','--name',NAMES['backend'],'--label','work8.native='+LABEL,'--network',NETWORK,'--network-alias','native-backend','--memory','5g','--cpus','2','--pids-limit','256','--read-only','--user','0:0','--cap-drop','ALL']
@@ -192,7 +191,7 @@ ENTRYPOINT ["node","/app/deployment/locked-runtime.cjs"]
   run(['docker','exec','--user','65534:65534',NAMES['backend'],'node','-e',"const fs=require('fs');let denied=false;try{fs.writeFileSync('/run/empire-policy/control.json','forbidden')}catch(e){denied=['EROFS','EACCES','EPERM'].includes(e.code)}if(!denied)process.exit(1)"])
   (PRIVATE/'evidence/isolation.json').write_text(json.dumps({'internalNetwork':True,'publishedPorts':False,'externalCredentials':False,'policyReadonlyMount':True,'runtimePolicyWriteRefused':True,'actualNativeApplication':True,'syntheticOwnerOnly':True,'components':components},indent=2))
   start_front('normal','NORMAL');stage='normal-view'
-  run(['docker','run','-d','--name',NAMES['browser'],'--label','work8.native='+LABEL,'--network','container:'+NAMES['anchor'],'--memory','2g','--cpus','1','--pids-limit','128','--shm-size','256m','--user',str(os.getuid())+':'+str(os.getgid()),'--env','HOME=/tmp','--env','NODE_OPTIONS=--dns-result-order=ipv4first','--env-file',str(PRIVATE/'browser.env'),'--mount','type=bind,src='+str(SCRIPT)+',dst=/examination,readonly','--mount','type=bind,src='+str(ROOT/'normal-source/empireai-web')+',dst=/frontend-package,readonly','--mount','type=bind,src='+str(PRIVATE/'control')+',dst=/control','--mount','type=bind,src='+str(PRIVATE/'evidence')+',dst=/evidence','--entrypoint','timeout',BROWSER,'--signal=KILL','500s','node','/examination/browser.mjs']);created.append(NAMES['browser'])
+  run(['docker','run','-d','--name',NAMES['browser'],'--label','work8.native='+LABEL,'--network','container:'+NAMES['anchor'],'--memory','2g','--cpus','1','--pids-limit','128','--shm-size','256m','--user',str(os.getuid())+':'+str(os.getgid()),'--env','HOME=/tmp','--env','NODE_OPTIONS=--dns-result-order=ipv4first','--env-file',str(PRIVATE/'browser.env'),'--mount','type=bind,src='+str(SCRIPT)+',dst=/examination,readonly','--mount','type=bind,src='+str(ROOT/'native-transition-driver')+',dst=/frontend-package,readonly','--mount','type=bind,src='+str(PRIVATE/'control')+',dst=/control','--mount','type=bind,src='+str(PRIVATE/'evidence')+',dst=/evidence','--entrypoint','timeout',BROWSER,'--signal=KILL','500s','node','/examination/browser.mjs']);created.append(NAMES['browser'])
   marker('origin-preflight-complete.json');capture_frontend_origin(require_contract=True);signal('origin-preflight-verified.json')
   marker('normal-complete.json');run(['docker','exec',NAMES['backend'],'node','/examination/offline-readback.mjs','normal']);stage='recovery-version';set_policy(False);start_front('recovery','RECOVERY');signal('recovery-ready.json');marker('recovery-complete.json')
   stage='normal-return-version';start_front('normal','NORMAL_RETURN');set_policy(True);signal('return-ready.json');marker('browser-complete.json')

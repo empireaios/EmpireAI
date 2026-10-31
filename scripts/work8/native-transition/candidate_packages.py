@@ -137,6 +137,6 @@ def reuse(root, evidence, manifest):
   assert component['archiveSha256']==sha(candidates/component['archiveFile'])
   images[role]=component['image']
  assert directory_bytes(candidates)+directory_bytes(evidence)<=MAX_PAYLOAD_BYTES
- receipt={'schema':'work8-candidate-upload-receipt-v1','status':'RETAINED_CANDIDATES_NOT_ACCEPTED','artifactId':int(artifact_id),'githubOuterArtifactSha256':digest,'candidateIndexSha256':sha(candidates/'artifact-index.json'),'candidateBytes':directory_bytes(candidates),'retentionDays':7,'archiveBytesVerifiedBeforeExamination':True,'buildsRepeated':False,'providerUploadReceiptSource':'pinned actions/upload-artifact successful step outputs'}
+ receipt={'schema':'work8-candidate-upload-receipt-v1','status':'RETAINED_CANDIDATES_NOT_ACCEPTED','artifactId':int(artifact_id),'githubOuterArtifactSha256':digest,'candidateIndexSha256':sha(candidates/'artifact-index.json'),'candidateBytes':directory_bytes(candidates),'retentionDays':7,'archiveBytesVerifiedBeforeExamination':True,'buildsRepeated':False,'providerUploadReceiptSource':'prior-run Actions artifact metadata plus exact outer ZIP/index checks in retained-import-result.json','sourceRunId':41186780720,'newCandidateUpload':False,'retentionRenewed':False,'sourceExpiresAtUTC':'2026-11-07T09:09:06Z'}
  (evidence/'candidate-upload-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
  return images,components

@@ -1,13 +1,14 @@
-name: Work 8 V23 authorised classified-package native examination
+name: Work 8 V24 authorised retained-package native transition
 on: create
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: work8-native-transition-20261031
   cancel-in-progress: false
 jobs:
   transition:
-    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v23-20261031-native-exam' && github.run_attempt == 1 && github.run_number == 1
+    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v24-20261031-retained-native' && github.run_attempt == 1 && github.run_number == 1
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -17,7 +18,7 @@ jobs:
           ref: ${{ github.sha }}
           path: controller
           persist-credentials: false
-      - name: Read reviewed immutable component pins
+      - name: Read preserved immutable component pins
         id: pins
         run: |
           python3 - <<'PY'
@@ -29,19 +30,19 @@ jobs:
               assert re.fullmatch('[a-f0-9]{40}',m[role]['tree'])
               print(role+'='+m[role]['commit'],file=out)
           PY
-      - name: Exact full-native backend
+      - name: Verify backend source identity without rebuilding
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: ${{ steps.pins.outputs.backend }}
           path: backend-source
           persist-credentials: false
-      - name: Exact full-native normal frontend
+      - name: Verify NORMAL source identity and pinned browser lock
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: ${{ steps.pins.outputs.normal }}
           path: normal-source
           persist-credentials: false
-      - name: Exact distinct recovery frontend
+      - name: Verify distinct RECOVERY source identity without rebuilding
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: ${{ steps.pins.outputs.recovery }}
@@ -51,41 +52,26 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22.23.2'
-      - name: Build once and prepare immutable CANDIDATE packages before runtime
+      - name: Verify and load exact preserved images; extract locked browser driver without scripts
+        env:
+          GH_RETAINED_READ_TOKEN: ${{ github.token }}
+        run: python3 controller/scripts/work8/native-transition/prepare-retained.py
+      - name: Execute one full missing native transition with retained candidates
         env:
           NEXT_TELEMETRY_DISABLED: '1'
           CI: 'true'
-        run: python3 controller/scripts/work8/native-transition/examine.py --prepare-candidates
-      - name: Independently gate candidate package bytes and secret scan
-        id: candidates_gate
-        run: python3 controller/scripts/work8/native-transition/upload-preflight.py candidates
-      - name: Retain CANDIDATE bytes before any browser assertion
-        id: candidates
-        if: success() && steps.candidates_gate.outputs.allowed == 'true'
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: work8-native-CANDIDATES-${{ github.sha }}-${{ github.run_id }}
-          path: native-transition-candidates/
-          if-no-files-found: error
-          retention-days: 7
-          compression-level: 0
-      - name: Execute exactly one missing full-native version transition with retained candidates
-        if: success() && steps.candidates.outputs.artifact-id != ''
-        env:
-          NEXT_TELEMETRY_DISABLED: '1'
-          CI: 'true'
-          CANDIDATE_ARTIFACT_ID: ${{ steps.candidates.outputs.artifact-id }}
-          CANDIDATE_ARTIFACT_DIGEST: ${{ steps.candidates.outputs.artifact-digest }}
+          CANDIDATE_ARTIFACT_ID: '13037177457'
+          CANDIDATE_ARTIFACT_DIGEST: '3fa3cf875e23cd4ff201c053f49915ba2007cfdf369ad2bbde6eadd629861d23'
         run: python3 controller/scripts/work8/native-transition/examine.py --examine-retained
-      - name: Independently enforce scanned diagnostics and aggregate artifact limit
+      - name: Gate only new sanitized evidence and enforce retained-artifact bounds
         id: upload
         if: always()
-        run: python3 controller/scripts/work8/native-transition/upload-preflight.py evidence
-      - name: Retain sanitized examination evidence without duplicating candidate archives
+        run: python3 controller/scripts/work8/native-transition/retained-upload-preflight.py
+      - name: Preserve sanitized complete or failed examination evidence
         if: always() && steps.upload.outputs.allowed == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: work8-native-evidence-${{ github.sha }}-${{ github.run_id }}
+          name: work8-v24-native-evidence-${{ github.sha }}-${{ github.run_id }}
           path: native-transition-output/
           if-no-files-found: error
           retention-days: 7
