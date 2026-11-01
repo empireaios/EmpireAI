@@ -1,5 +1,5 @@
 {
-  "schema": "work8-v42-source-bound-ci-continuation-plan-v1",
+  "schema": "work8-v42-semantic-generated-report-qualification-plan-v1",
   "environment": {
     "CI": "true",
     "NODE_ENV": "test",
@@ -10,66 +10,8 @@
     "PILLOW_TEST_REDIS_SERVER": "/usr/bin/redis-server"
   },
   "jobs": {
-    "security-remaining": {
-      "scope": "Eleven original source-bound security fixture files never reached after unrelated repository-contract failure",
-      "minutes": 15,
-      "pins": {
-        "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
-        "primaryTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
-      },
-      "setup": [],
-      "test": [
-        {
-          "name": "New source-bound security fixture deltas with native self-compile mode",
-          "run": "node --test --test-concurrency=1 \\\n  backend/src/runtime/work8-isolated-redis-capability.test.mjs \\\n  deployment/runtime-brain-broker.test.cjs \\\n  deployment/runtime-generation.test.cjs \\\n  deployment/runtime-graph-redis.test.cjs \\\n  deployment/runtime-isolated-application.test.cjs \\\n  deployment/runtime-membership-controller.test.cjs \\\n  deployment/runtime-membership-receipt.test.cjs \\\n  deployment/runtime-writer-isolation.test.cjs \\\n  scripts/work8/o33-capture-readiness.test.mjs \\\n  scripts/work8/seven-lock-boundary.test.cjs \\\n  scripts/work8/seven-lock-broker.test.cjs",
-          "executionCondition": "Linuxx64/arm64, cc, pinnedNode22.23.2; WORK8_NATIVE_ARTIFACT_DIRECTORY and controllerLD_PRELOAD absent. Nativewriter test compiles temporary ownlibrary/probe. No external.so/helperdirectory injection. See security-fixture-invocation.json.",
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED"
-        }
-      ],
-      "evidence": []
-    },
-    "assurance-remaining": {
-      "scope": "Three original deterministic Assurance commands never reached after failed supervisor command; no production health claim",
-      "minutes": 12,
-      "pins": {
-        "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
-        "primaryTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
-      },
-      "setup": [],
-      "test": [
-        {
-          "name": "Original core discrepancy probe fixture",
-          "run": "node backend/src/validation/tests/assurance-discrepancy-probe.test.mjs",
-          "working-directory": ".",
-          "env": {},
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "assurance-core-tail-discrepancy"
-        },
-        {
-          "name": "Original core omission collector fixture",
-          "run": "node backend/src/validation/tests/omission-collector.test.mjs",
-          "working-directory": ".",
-          "env": {},
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "assurance-core-tail-omission"
-        },
-        {
-          "name": "Current schema readiness delta",
-          "run": "node --test backend/src/validation/tests/assurance-schema-readiness.test.mjs",
-          "working-directory": ".",
-          "env": {},
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "assurance-test-01"
-        }
-      ],
-      "evidence": []
-    },
-    "backend-remaining": {
-      "scope": "Eight original backend assertion commands never reached; initial340-test failed command is not rerun",
+    "semantic-qualified": {
+      "scope": "Five previously unqualified current94aa semantic commands; exact nine generated JSON report outputs preserved and read back; Work5 excluded",
       "minutes": 45,
       "pins": {
         "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
@@ -93,120 +35,6 @@
           "run": "npm run build --prefix backend\ntest -f backend/dist/runtime/native-store-capture-lock.cjs",
           "working-directory": ".",
           "prerequisiteOnly": true
-        },
-        {
-          "name": "Original Work8 listen-only fixture subset never reached",
-          "run": "python3 ../scripts/work8/isolated-exec.py --listen-only node --import tsx --test --test-concurrency=1 src/validation/tests/work8-inspector-inbox.test.ts src/validation/tests/work8-joined-assurance.test.ts",
-          "working-directory": "backend",
-          "env": {},
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "backend-integrated-listen-only-tail"
-        },
-        {
-          "name": "Verify isolated SQL.js and HTTP capture admission, save and readback",
-          "run": "node --import tsx --test src/validation/tests/quiesced-sqlite-save.test.ts src/validation/tests/shadow-ceo-quiesced-capture.test.ts src/validation/tests/coordinated-sqlite-capture.test.ts src/validation/tests/capture-http-admission.test.ts src/validation/tests/capture-brain-worker-drain.test.ts src/validation/tests/capture-shared-brain-queue.test.ts src/validation/tests/capture-pillow-boot-drain.test.ts src/validation/tests/capture-authority-json.test.ts src/validation/tests/native-store-capture.test.ts src/validation/tests/sqlite-persistence-boundary.test.ts",
-          "working-directory": "backend",
-          "env": {
-            "REDIS_OPTIONAL": "true"
-          },
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "backend-test-03"
-        },
-        {
-          "name": "Run fast invariant gate",
-          "run": "npm run gate:fast-invariant",
-          "working-directory": "backend",
-          "env": {},
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "backend-test-04"
-        },
-        {
-          "name": "Run ranking, correction and authority lock tests",
-          "run": "node --import tsx --test \\\n  src/validation/tests/comma-contribution-ranking.lock.test.ts \\\n  src/validation/tests/correction-supersession.lock.test.ts \\\n  src/validation/tests/authority-synthetic-isolation.lock.test.ts \\\n  src/validation/tests/exec-cap-authority-compact.lock.test.ts \\\n  src/validation/tests/w1-t1-decision-state-propagation.test.ts\n",
-          "working-directory": "backend",
-          "env": {},
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "backend-test-05"
-        },
-        {
-          "name": "Run chat, recovery and canonical-truth tests",
-          "run": "node --import tsx --test \\\n  src/validation/tests/shadow-ceo-chat-admission.test.ts \\\n  src/validation/tests/shadow-ceo-durability.test.ts \\\n  src/validation/tests/pillow-accepted-request-recovery.test.ts \\\n  src/validation/tests/canonical-executive-truth.test.ts \\\n  src/validation/tests/dc05421-response-contract.test.ts\n",
-          "working-directory": "backend",
-          "env": {},
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "backend-test-06"
-        },
-        {
-          "name": "Verify bounded multi-provider inference and preserved authority",
-          "run": "node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/advisor-gateway.test.ts backend/src/validation/tests/advisor-pillow-readback.test.ts backend/src/validation/tests/provider-receipt-readback.test.ts backend/src/validation/tests/answer-gate-diagnostics.test.ts backend/src/validation/tests/owner-commissioning-readback.test.ts backend/src/validation/tests/locked-inference.test.ts backend/src/validation/tests/locked-provider-orchestration.test.ts backend/src/validation/tests/locked-reasoning-integration.test.ts",
-          "working-directory": ".",
-          "env": {},
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "backend-test-07"
-        },
-        {
-          "name": "Verify response completion and frontend preservation safeguards",
-          "run": "node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/executive-response-completion.test.ts empireai-web/lib/pillow/confirmed-reasoning.test.ts empireai-web/lib/pillow/durable-delivery.test.ts empireai-web/lib/pillow/bff-chat-sanitize.test.ts",
-          "working-directory": ".",
-          "env": {},
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "backend-test-08"
-        },
-        {
-          "name": "Run mandatory isolated runtime and session tests",
-          "run": "set -euo pipefail\nnode --import tsx --test --test-concurrency=1 --test-reporter=tap \\\n  src/validation/tests/locked-commissioning.test.ts \\\n  src/validation/tests/work3-institutional-memory.test.ts \\\n  src/validation/tests/work4-intelligence.test.ts \\\n  src/validation/tests/work1-reconstructed.test.ts \\\n  src/validation/tests/pillow-investigation.test.ts \\\n  src/validation/tests/pillow-durable-queue-redis.test.ts \\\n  src/validation/tests/capture-shared-brain-redis.test.ts \\\n  src/validation/tests/pillow-durable-reasoning-worker.test.ts \\\n  src/validation/tests/pillow-durable-access.test.ts \\\n  src/validation/tests/mission-runtime-access.test.ts \\\n  src/validation/tests/amazon-publish-authority.test.ts \\\n  src/validation/tests/pillow-authority-contract.test.ts \\\n  src/validation/tests/amazon-listing-proof.test.ts \\\n  src/validation/tests/mission-execution-binding.test.ts \\\n  src/validation/tests/mission-execution-durability.test.ts \\\n  src/validation/tests/mission-authority-wiring.test.ts \\\n  src/validation/tests/strategic-memory-read-preservation.test.ts \\\n  src/validation/tests/strategic-memory-engine.test.ts \\\n  src/validation/tests/certification-receipt-intake.test.ts \\\n  src/validation/tests/held-case-budget-ledger.test.ts \\\n  src/runtime/held-case-dispatch.test.ts \\\n  src/validation/tests/offline-state-bundle.test.ts \\\n  src/validation/tests/reasoning-only-policy.test.ts \\\n  src/validation/tests/session-store-unavailable.test.ts \\\n  src/validation/tests/locked-fresh-session.test.ts \\\n  src/validation/tests/sqlite-shutdown-boundary.test.ts \\\n  src/validation/tests/primary-shutdown.test.ts \\\n  src/validation/tests/continuity-heartbeat-clock.test.ts \\\n  src/validation/tests/executive-continuity-watchdog.test.ts \\\n  src/validation/tests/independent-shutdown-last-attempt.test.ts \\\n  src/validation/tests/sqlite-corruption-recovery.test.ts \\\n  src/validation/tests/engineering-test-mode.test.ts \\\n  src/validation/tests/cost-guard-authorization.test.ts \\\n  src/validation/tests/llm-call-control.test.ts \\\n  src/validation/tests/llm-provider-cancellation.test.ts \\\n  src/validation/tests/auth-readiness.test.ts \\\n  src/validation/tests/auth-verification.test.ts \\\n  src/validation/tests/bootstrap-credential-policy.test.ts \\\n  src/validation/tests/bootstrap-password-sync.test.ts \\\n  src/validation/tests/pillow-durable-delivery-fault-matrix.test.ts \\\n  src/validation/tests/tier0-isolated-primary.test.ts \\\n  src/validation/tests/worker-http-proxy.test.ts \\\n  src/validation/tests/commerce-reasoning-admission.test.ts \\\n  src/validation/tests/durable-pending-receipt.lock.test.ts \\\n  src/validation/tests/pillow-terminal-json.test.ts \\\n  src/validation/tests/pillow-chat-request-store.test.ts \\\n  | tee \"$RUNNER_TEMP/pillow-runtime-tests.tap\"\nnode --input-type=module - \"$RUNNER_TEMP/pillow-runtime-tests.tap\" <<'NODE'\nimport assert from 'node:assert/strict';\nimport { readFileSync } from 'node:fs';\nconst output = readFileSync(process.argv[2], 'utf8');\nconst count = (name) => {\n  const match = output.match(new RegExp(`^# ${name} (\\\\d+)$`, 'm'));\n  assert.ok(match, `Missing TAP summary: ${name}`);\n  return Number(match[1]);\n};\n// All six ledger cases must execute; aggregate counts cannot hide a removed suite.\nfor (const name of [\n  'campaign identity/cap/expiry are immutable and malformed money cannot authorize',\n  'foreign databases are refused without replacing their records',\n  'timeouts, retry IDs and restart retain reservations; duplicate IDs never redispatch',\n  'only final receipt releases unused reservation; conflicting settlement and overruns are visible',\n  'expired campaign cannot reserve even with remaining balance but final reconciliation remains possible',\n  'independent processes cannot reserve the same funds twice; committed reservation survives exit without close',\n]) {\n  assert.ok(output.split(/\\r?\\n/).some(line => /^ok \\d+ - /.test(line) && line.endsWith(` - ${name}`)),\n    `Missing mandatory executed ledger test: ${name}`);\n}\nassert.ok(count('tests') > 0, 'Runtime tests must actually execute');\nfor (const name of [\n  'unconfigured or denied trusted verifier cannot dispatch; client permission fields are forbidden',\n  'success retains full reservation; duplicate request and reopen never redispatch',\n  'timeout aborts one attempt and preserves uncertain full hold without retry',\n  'provider/model mismatch, tools, fallback and prompt mutation are rejected before dispatch',\n  'missing/expired pricing or unknown other costs cannot reserve or dispatch',\n  'independent ledger connections racing distinct steps cannot overspend campaign cap',\n  'provider response violation retains hold and a policy revision cannot reset prior spend',\n  'actual scope, output bound, expiry and pre-aborted calls fail before dispatch',\n  'retained verifier references and mutable originals cannot change the approved dispatch snapshot',\n]) {\n  assert.ok(output.split(/\\r?\\n/).some(line => /^ok \\d+ - /.test(line) && line.endsWith(` - ${name}`)),\n    `Missing mandatory executed held dispatch test: ${name}`);\n}\nfor (const name of [\n  'timeouts are finite integer bounded and reject malformed configuration',\n  'deadline aborts the actual in-flight fake provider once',\n  'already cancelled caller cannot invoke provider; caller cancellation propagates',\n  'fast success clears timer and provider errors are never retried',\n  'a noncooperative provider remains bounded locally without claiming remote cancellation',\n  'openai real SDK receives per-request maxRetries zero and performs one fake fetch on 503',\n  'openai actual SDK fake fetch sees timeout abort',\n  'anthropic real SDK receives per-request maxRetries zero and performs one fake fetch on 503',\n  'anthropic actual SDK fake fetch sees timeout abort',\n  'Gemini adapter forwards cancellation and rejects already-aborted work before client acquisition',\n  'Gemini installed SDK propagates signal into its actual fetch transport',\n  'router aborts its actual provider invocation on timeout without retry',\n  'invalid router timeout fails before provider resolution',\n]) {\n  assert.ok(output.split(/\\r?\\n/).some(line => /^\\s*ok \\d+ - /.test(line) && line.endsWith(` - ${name}`)),\n    `Missing mandatory executed cancellation test: ${name}`);\n}\nassert.equal(count('pass'), count('tests'), 'Every runtime test must pass');\nfor (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {\n  assert.equal(count(kind), 0, `${kind} tests are not permitted`);\n}\nNODE\n",
-          "working-directory": "backend",
-          "env": {
-            "REDIS_OPTIONAL": "true"
-          },
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "backend-test-09"
-        }
-      ],
-      "evidence": []
-    },
-    "semantic-remaining": {
-      "scope": "Original semantic assertions never reached after Work7 failure; no owner-write restriction override",
-      "minutes": 45,
-      "pins": {
-        "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
-        "primaryTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
-      },
-      "setup": [
-        {
-          "name": "Download locked Pillow/backend packages without lifecycle scripts",
-          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix pillow\nnpm ci --ignore-scripts --no-audit --no-fund --prefix backend",
-          "working-directory": "."
-        }
-      ],
-      "test": [
-        {
-          "name": "Rebuild downloaded native dependencies offline and build linked Pillow",
-          "run": "npm rebuild --offline --build-from-source --prefix pillow\nnpm rebuild --offline --build-from-source --prefix backend\nnpm run build --prefix pillow",
-          "working-directory": "."
-        },
-        {
-          "name": "Reestablish compiled backend dependency without repeating typecheck acceptance",
-          "run": "npm run build --prefix backend\ntest -f backend/dist/runtime/native-store-capture-lock.cjs",
-          "working-directory": ".",
-          "prerequisiteOnly": true
-        },
-        {
-          "name": "Work5 financial integrity regressions",
-          "run": "node --import tsx --test src/validation/tests/work5-finance.test.ts src/validation/tests/work5-finance-routes.test.ts src/validation/tests/work7-cost-categories.test.ts",
-          "working-directory": "backend",
-          "env": {},
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED in initial run41317032553",
-          "sourceReviewId": "semantic-test-04"
         },
         {
           "name": "Create network-denial preload for offline child processes",
@@ -269,194 +97,134 @@
           "sourceReviewId": "semantic-test-09"
         }
       ],
-      "evidence": []
-    },
-    "normal-remaining": {
-      "scope": "Original normal frontend typecheck/build/library and standalone synthetic read-only commerce browser assertions never reached; source-context/media remain excluded",
-      "minutes": 30,
-      "pins": {
-        "primary": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
-        "primaryTree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
-      },
-      "setup": [
-        {
-          "name": "Download current backend linked packages without lifecycle scripts",
-          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix pillow\nnpm ci --ignore-scripts --no-audit --no-fund --prefix backend",
-          "working-directory": "../backend-current"
-        },
-        {
-          "name": "Download frontend packages and exact Chromium tooling",
-          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix empireai-web\ncd empireai-web\nnpx --no-install playwright install chromium",
-          "working-directory": "."
-        }
-      ],
-      "test": [
-        {
-          "name": "Offline native dependency rebuild and linked backend Pillow setup",
-          "run": "npm rebuild --offline --build-from-source --prefix pillow\nnpm rebuild --offline --build-from-source --prefix backend\nnpm run build --prefix pillow",
-          "working-directory": "../backend-current"
-        },
-        {
-          "name": "Use acquired locked Linux optional sharp binaries with offline lifecycle rebuild",
-          "working-directory": ".",
-          "prerequisiteOnly": true,
-          "run": "python3 - <<'SHARP'\nimport hashlib,json,pathlib\nroot=pathlib.Path('empireai-web');raw=(root/'package-lock.json').read_bytes()\nassert hashlib.sha256(raw).hexdigest()=='84f99595b7564d9196b0eeb25c054b290801bfe2e3a148f61ab2c9c2871d37b4'\nlock=json.loads(raw)\nfor name,version in [('sharp','0.34.5'),('@img/sharp-linux-x64','0.34.5'),('@img/sharp-libvips-linux-x64','1.2.4')]:\n p=root/'node_modules'/name\n assert p.is_dir() and not p.is_symlink(),name\n assert json.loads((p/'package.json').read_text())['version']==version,name\n assert lock['packages']['node_modules/'+name]['version']==version,name\nprint('Exact Linux x64/glibc optional packages acquired under lock; no source compilation override')\nSHARP\nnpm rebuild --offline --prefix empireai-web\nnode -e 'const sharp=require(\"./empireai-web/node_modules/sharp\"); if(sharp.versions.sharp!==\"0.34.5\")process.exit(1); console.log(JSON.stringify({sharp:sharp.versions.sharp,vips:sharp.versions.vips}))' "
-        },
-        {
-          "name": "Typecheck Next.js web",
-          "run": "npm run typecheck --prefix empireai-web",
-          "historicalWorkflow": "product-path-ci",
-          "historicalJob": "empireai-web",
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED"
-        },
-        {
-          "name": "Run web tests with mandatory durable-delivery coverage",
-          "run": "set -euo pipefail\ntest -f lib/pillow/durable-delivery.test.ts\ntest -f lib/pillow/bff-chat-sanitize.test.ts\nnode --import tsx --test --test-reporter=tap 'lib/**/*.test.ts' \\\n  | tee \"$RUNNER_TEMP/pillow-web-tests.tap\"\nnode --input-type=module - \"$RUNNER_TEMP/pillow-web-tests.tap\" <<'NODE'\nimport assert from 'node:assert/strict';\nimport { readFileSync } from 'node:fs';\nconst output = readFileSync(process.argv[2], 'utf8');\nconst count = (name) => {\n  const match = output.match(new RegExp(`^# ${name} (\\\\d+)$`, 'm'));\n  assert.ok(match, `Missing TAP summary: ${name}`);\n  return Number(match[1]);\n};\nassert.ok(count('tests') > 0, 'Web tests must actually execute');\nassert.equal(count('pass'), count('tests'), 'Every web test must pass');\nfor (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {\n  assert.equal(count(kind), 0, `${kind} tests are not permitted`);\n}\nNODE\n",
-          "working-directory": "empireai-web",
-          "historicalWorkflow": "pillow-runtime-repair-ci",
-          "historicalJob": "durable-web",
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED"
-        },
-        {
-          "name": "Build Next.js web",
-          "run": "npm run build --prefix empireai-web",
-          "historicalWorkflow": "product-path-ci",
-          "historicalJob": "empireai-web",
-          "priorDisposition": "NOT_REACHED",
-          "prerequisiteOnly": true
-        },
-        {
-          "name": "Verify real phone browser login BFF backend and disk transaction",
-          "run": "node empireai-web/scripts/verify-commerce-browser.mjs",
-          "historicalWorkflow": "product-path-ci",
-          "historicalJob": "commerce-browser",
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED"
-        }
-      ],
       "evidence": [],
-      "extraCheckouts": [
+      "generatedReports": [
         {
-          "path": "backend-current",
-          "sha": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
-          "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+          "path": "docs/audits/complete-state/BOUNDED_COMMERCIAL_ROUTING_QUAL.json",
+          "producerPath": "backend/scripts/bounded-commercial-routing-qualify.mjs",
+          "producerSHA256": "0af46026b633e49766a679a3a8532ccfc6ce57b4247df832544841447a34bcfb",
+          "passField": "pass",
+          "stdoutLabel": "scripts/bounded-commercial-routing-qualify.mjs",
+          "stdoutExtraMarker": "BOUNDED_COMMERCIAL_ROUTING_QUAL"
+        },
+        {
+          "path": "docs/audits/capability-extraction/BUILD_EC01_EC02_ARITH_DEV_FULL_QUAL.json",
+          "producerPath": "backend/scripts/build-ec01-ec02-arith-qualify.mjs",
+          "producerSHA256": "b72f074a45777235199b41327bde84ab194dd3a899f2e7b889383dee0934615c",
+          "passField": "DEV_ARITH_FULL_PASS",
+          "stdoutLabel": "scripts/build-ec01-ec02-arith-qualify.mjs",
+          "stdoutExtraMarker": null
+        },
+        {
+          "path": "docs/audits/complete-state/CASE_PROVENANCE_CAUSAL_GRAPH_QUAL.json",
+          "producerPath": "backend/scripts/case-provenance-causal-graph-qualify.mjs",
+          "producerSHA256": "47ed5025a61e68d25675a3ad7cfcdaf17c82fe9dccefca7dc754b03c0f15a5ed",
+          "passField": "pass",
+          "stdoutLabel": "scripts/case-provenance-causal-graph-qualify.mjs",
+          "stdoutExtraMarker": null
+        },
+        {
+          "path": "docs/audits/complete-state/CAUSAL_PREDICATE_QUAL.json",
+          "producerPath": "backend/scripts/causal-predicate-qualify.mjs",
+          "producerSHA256": "0222efabb39fa058ec6f799c6068b3b8a9cb3ff8756773747f2f86b24ba81a0f",
+          "passField": "pass",
+          "stdoutLabel": "scripts/causal-predicate-qualify.mjs",
+          "stdoutExtraMarker": null
+        },
+        {
+          "path": "docs/audits/complete-state/CAUSAL_RELEVANCE_COMBINED_QUAL.json",
+          "producerPath": "backend/scripts/causal-relevance-combined-qualify.mjs",
+          "producerSHA256": "4d36b2c6836a54dc6dbc85eba509f567121ba0c5a251dd03a564da8d3f34b930",
+          "passField": "pass",
+          "stdoutLabel": "scripts/causal-relevance-combined-qualify.mjs",
+          "stdoutExtraMarker": null
+        },
+        {
+          "path": "docs/audits/complete-state/DECISION_STATE_AUTHORITY_QUAL.json",
+          "producerPath": "backend/scripts/decision-state-authority-qualify.mjs",
+          "producerSHA256": "f0560faaf929e1df584dad7810ec139ecc65a02326e1a1240d13af7cf6a4b890",
+          "passField": "pass",
+          "stdoutLabel": "scripts/decision-state-authority-qualify.mjs",
+          "stdoutExtraMarker": null
+        },
+        {
+          "path": "docs/audits/complete-state/TRANSPORT_BOUNDARY_CONTRACT_QUAL.json",
+          "producerPath": "backend/scripts/transport-boundary-contract-qualify.mjs",
+          "producerSHA256": "d2f785834070ab8ff9e482e45e7336ff93bcf35af7e78cb21f6f1b7105bc0a30",
+          "passField": "pass",
+          "stdoutLabel": "scripts/transport-boundary-contract-qualify.mjs",
+          "stdoutExtraMarker": null
+        },
+        {
+          "path": "docs/audits/capability-extraction/UNBLOCK_EPISTEMIC_DEV_FULL_QUAL.json",
+          "producerPath": "backend/scripts/unblock-epistemic-open-bounded-qualify.mjs",
+          "producerSHA256": "8c7355297188fbd1e649d010463a848494cb9b2d0c6dfd457783d5501c475446",
+          "passField": "DEV_FULL_PASS",
+          "stdoutLabel": "scripts/unblock-epistemic-open-bounded-qualify.mjs",
+          "stdoutExtraMarker": null
+        },
+        {
+          "path": "docs/audits/complete-state/VISIBLE_RELEVANCE_QUAL.json",
+          "producerPath": "backend/scripts/visible-relevance-qualify.mjs",
+          "producerSHA256": "24c149dc2cec65a8691ac92cf29262ab94b215f5c81127f1c6320b884768e9a5",
+          "passField": "pass",
+          "stdoutLabel": "scripts/visible-relevance-qualify.mjs",
+          "stdoutExtraMarker": null
         }
       ],
-      "backendAlias": true
-    },
-    "recovery-remaining": {
-      "scope": "Original recovery frontend typecheck/build/library and standalone synthetic read-only commerce browser assertions never reached; source-context/media remain excluded",
-      "minutes": 30,
-      "pins": {
-        "primary": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
-        "primaryTree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
-      },
-      "setup": [
+      "generatedReportProducerCommand": "Run full semantic engineering regressions with no provider access",
+      "generatedReportLog": "pillow-semantic-gate.log",
+      "producerSourceBindings": [
         {
-          "name": "Download current backend linked packages without lifecycle scripts",
-          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix pillow\nnpm ci --ignore-scripts --no-audit --no-fund --prefix backend",
-          "working-directory": "../backend-current"
+          "path": "backend/scripts/bounded-commercial-routing-qualify.mjs",
+          "sha256": "0af46026b633e49766a679a3a8532ccfc6ce57b4247df832544841447a34bcfb"
         },
         {
-          "name": "Download frontend packages and exact Chromium tooling",
-          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix empireai-web\ncd empireai-web\nnpx --no-install playwright install chromium",
-          "working-directory": "."
-        }
-      ],
-      "test": [
-        {
-          "name": "Offline native dependency rebuild and linked backend Pillow setup",
-          "run": "npm rebuild --offline --build-from-source --prefix pillow\nnpm rebuild --offline --build-from-source --prefix backend\nnpm run build --prefix pillow",
-          "working-directory": "../backend-current"
+          "path": "backend/scripts/build-ec01-ec02-arith-qualify.mjs",
+          "sha256": "b72f074a45777235199b41327bde84ab194dd3a899f2e7b889383dee0934615c"
         },
         {
-          "name": "Use acquired locked Linux optional sharp binaries with offline lifecycle rebuild",
-          "working-directory": ".",
-          "prerequisiteOnly": true,
-          "run": "python3 - <<'SHARP'\nimport hashlib,json,pathlib\nroot=pathlib.Path('empireai-web');raw=(root/'package-lock.json').read_bytes()\nassert hashlib.sha256(raw).hexdigest()=='84f99595b7564d9196b0eeb25c054b290801bfe2e3a148f61ab2c9c2871d37b4'\nlock=json.loads(raw)\nfor name,version in [('sharp','0.34.5'),('@img/sharp-linux-x64','0.34.5'),('@img/sharp-libvips-linux-x64','1.2.4')]:\n p=root/'node_modules'/name\n assert p.is_dir() and not p.is_symlink(),name\n assert json.loads((p/'package.json').read_text())['version']==version,name\n assert lock['packages']['node_modules/'+name]['version']==version,name\nprint('Exact Linux x64/glibc optional packages acquired under lock; no source compilation override')\nSHARP\nnpm rebuild --offline --prefix empireai-web\nnode -e 'const sharp=require(\"./empireai-web/node_modules/sharp\"); if(sharp.versions.sharp!==\"0.34.5\")process.exit(1); console.log(JSON.stringify({sharp:sharp.versions.sharp,vips:sharp.versions.vips}))' "
+          "path": "backend/scripts/case-provenance-causal-graph-qualify.mjs",
+          "sha256": "47ed5025a61e68d25675a3ad7cfcdaf17c82fe9dccefca7dc754b03c0f15a5ed"
         },
         {
-          "name": "Typecheck Next.js web",
-          "run": "npm run typecheck --prefix empireai-web",
-          "historicalWorkflow": "product-path-ci",
-          "historicalJob": "empireai-web",
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED"
+          "path": "backend/scripts/causal-predicate-qualify.mjs",
+          "sha256": "0222efabb39fa058ec6f799c6068b3b8a9cb3ff8756773747f2f86b24ba81a0f"
         },
         {
-          "name": "Run web tests with mandatory durable-delivery coverage",
-          "run": "set -euo pipefail\ntest -f lib/pillow/durable-delivery.test.ts\ntest -f lib/pillow/bff-chat-sanitize.test.ts\nnode --import tsx --test --test-reporter=tap 'lib/**/*.test.ts' \\\n  | tee \"$RUNNER_TEMP/pillow-web-tests.tap\"\nnode --input-type=module - \"$RUNNER_TEMP/pillow-web-tests.tap\" <<'NODE'\nimport assert from 'node:assert/strict';\nimport { readFileSync } from 'node:fs';\nconst output = readFileSync(process.argv[2], 'utf8');\nconst count = (name) => {\n  const match = output.match(new RegExp(`^# ${name} (\\\\d+)$`, 'm'));\n  assert.ok(match, `Missing TAP summary: ${name}`);\n  return Number(match[1]);\n};\nassert.ok(count('tests') > 0, 'Web tests must actually execute');\nassert.equal(count('pass'), count('tests'), 'Every web test must pass');\nfor (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {\n  assert.equal(count(kind), 0, `${kind} tests are not permitted`);\n}\nNODE\n",
-          "working-directory": "empireai-web",
-          "historicalWorkflow": "pillow-runtime-repair-ci",
-          "historicalJob": "durable-web",
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED"
+          "path": "backend/scripts/causal-relevance-combined-qualify.mjs",
+          "sha256": "4d36b2c6836a54dc6dbc85eba509f567121ba0c5a251dd03a564da8d3f34b930"
         },
         {
-          "name": "Build Next.js web",
-          "run": "npm run build --prefix empireai-web",
-          "historicalWorkflow": "product-path-ci",
-          "historicalJob": "empireai-web",
-          "priorDisposition": "NOT_REACHED",
-          "prerequisiteOnly": true
+          "path": "backend/scripts/decision-state-authority-qualify.mjs",
+          "sha256": "f0560faaf929e1df584dad7810ec139ecc65a02326e1a1240d13af7cf6a4b890"
         },
         {
-          "name": "Verify real phone browser login BFF backend and disk transaction",
-          "run": "node empireai-web/scripts/verify-commerce-browser.mjs",
-          "historicalWorkflow": "product-path-ci",
-          "historicalJob": "commerce-browser",
-          "independentAssertion": true,
-          "priorDisposition": "NOT_REACHED"
-        }
-      ],
-      "evidence": [],
-      "extraCheckouts": [
+          "path": "backend/scripts/run-full-certification-gate.mjs",
+          "sha256": "724de04f3abc33b3be4ad4cf4ef4c5f4805e4843868aaf3b1e25166f13b61db9"
+        },
         {
-          "path": "backend-current",
-          "sha": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
-          "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
-        }
-      ],
-      "backendAlias": true
-    },
-    "prepared-entrypoint-proof": {
-      "minutes": 5,
-      "scope": "Prepared seven-file entrypoint correction on exact94aa base; Node22 actualinspector standalone/IPC/schema lifecycle plus isolated13domain readback; not originalcandidateCI or productionhealth",
-      "pins": {
-        "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
-        "primaryTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
-      },
-      "preparedCorrection": true,
-      "preparedCorrectionManifest": "entrypoint-correction/manifest.json",
-      "preparedCorrectionManifestSHA256": "d307f9c9d0e151fcb4e2bbd2c2848e81baf504a304a5335ba98bc5822012746d",
-      "preparedCorrectionVariant": "prepared-independent-readback-plus-actual-inspector-entrypoint-v2",
-      "setup": [],
-      "test": [
+          "path": "backend/scripts/transport-boundary-contract-qualify.mjs",
+          "sha256": "d2f785834070ab8ff9e482e45e7336ff93bcf35af7e78cb21f6f1b7105bc0a30"
+        },
         {
-          "name": "Verify originalbase and exact seven-file preparedentrypoint overlay; execute separate21test Node22proof",
-          "run": "bash \"$WORK8_CI_CONTROLLER_ROOT/entrypoint-correction/apply-and-check.sh\" \"$PWD\" \"$RUNNER_TEMP/entrypoint-correction\"",
-          "working-directory": "."
-        }
-      ],
-      "evidence": [
+          "path": "backend/scripts/unblock-epistemic-open-bounded-qualify.mjs",
+          "sha256": "8c7355297188fbd1e649d010463a848494cb9b2d0c6dfd457783d5501c475446"
+        },
         {
-          "path": "ci-temp/{job}/entrypoint-correction/controlled-fixture-proof.json",
-          "name": "controlled-fixture-proof.json"
+          "path": "backend/scripts/visible-relevance-qualify.mjs",
+          "sha256": "24c149dc2cec65a8691ac92cf29262ab94b215f5c81127f1c6320b884768e9a5"
         }
       ]
     }
   },
-  "initialRun": 41317032553,
-  "initialController": "562f4b492165caf7e268c4b79e44dc8c1fc1da5f",
   "remainingRequiredScopes": [
     "Current exact package fault, held capture and extended runtime assertions F27/F29/HH3/HH4 need separate valid results or source-bound reuse; this selection does not claim them.",
     "Authenticated original historical owner-record assertion remains unexecuted without valid current-boundary inheritance; no authentic owner-data import.",
     "Initial repository contract,340-test integrated group,Work7,original supervisor and full-path corpora failures remain unresolved.",
     "Source-context and media browser fixtures are excluded because current immutable owner-write restriction predictably prevents their setup."
   ],
-  "aggregateRule": "Each independent boundary retains its own result. A failed boundary keeps group FAIL while other explicitly independent assertions continue; failed setup/build/source integrity stops dependent group. Whole O42 remains pending.",
-  "noReruns": true,
+  "aggregateRule": "All five selected commands and exact9generated report validation must PASS; every other tracked change fails. No old failure or wholeO42 closure is inferred.",
+  "noRerunsOfAcceptedAssertions": true,
   "noA5": true
 }
