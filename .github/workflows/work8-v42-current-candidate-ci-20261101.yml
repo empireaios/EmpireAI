@@ -5,14 +5,14 @@ permissions:
   contents: read
   actions: read
 concurrency:
-  group: work8-v42-20261101-semantic-qualification
+  group: work8-v42-20261102-recovery-qualification
   cancel-in-progress: false
 jobs:
   selected-current-candidate:
     if: >-
       github.event.ref_type == 'branch' &&
-      github.event.ref == 'work8/v42-20261101-semantic-qualification' &&
-      github.run_attempt == 1 && github.run_number == 3
+      github.event.ref == 'work8/v42-20261102-recovery-qualification' &&
+      github.run_attempt == 1 && github.run_number == 4
     name: ${{ matrix.group }}
     runs-on: ubuntu-24.04
     timeout-minutes: ${{ matrix.minutes }}
@@ -21,7 +21,10 @@ jobs:
       max-parallel: 3
       matrix:
         include:
-          - {group: semantic-qualified, minutes: 45, sha: '94aa919c7c39c4c9bf2c14b636232da028dba72d'}
+          - {group: normal-qualified, minutes: 30, sha: 'ee5fd37a5b6c0010c65171c0a590a89a3929db84'}
+          - {group: recovery-qualified, minutes: 30, sha: 'c003676d009a8e04e369711cad04e4587fc96e14'}
+          - {group: assurance-integrated, minutes: 10, sha: '6c1e63ba20619ee480742fd87dc810ca93152e22'}
+          - {group: membership-isolated, minutes: 5, sha: '94aa919c7c39c4c9bf2c14b636232da028dba72d'}
     steps:
       - name: Check out exact controller
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -34,6 +37,13 @@ jobs:
         with:
           ref: ${{ matrix.sha }}
           path: candidate
+          persist-credentials: false
+      - name: Check out exact backend for isolated frontend fixtures
+        if: matrix.group == 'normal-qualified' || matrix.group == 'recovery-qualified'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: '94aa919c7c39c4c9bf2c14b636232da028dba72d'
+          path: backend-current
           persist-credentials: false
       - name: Set exact Node runtime
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
@@ -56,7 +66,7 @@ jobs:
         if: always() && steps.collect.outputs.allowed == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: work8-v42-qualified-${{ matrix.group }}-${{ github.run_id }}
+          name: work8-v42-recovered-${{ matrix.group }}-${{ github.run_id }}
           path: ci-output/${{ matrix.group }}/
           retention-days: 7
           if-no-files-found: error

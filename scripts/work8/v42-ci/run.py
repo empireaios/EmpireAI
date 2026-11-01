@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Run a frozen CI selection; retain bounded results without provider credentials."""
-import argparse, datetime, hashlib, json, os, pathlib, re, shutil, subprocess, sys, time
+import argparse, hashlib, json, os, pathlib, re, shutil, subprocess, sys, time
 
 ROOT = pathlib.Path(__file__).resolve().parent
 PLAN = json.loads((ROOT / 'plan.json').read_text())
@@ -11,48 +11,8 @@ def digest(p): return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
 def dump(p, data): pathlib.Path(p).write_text(json.dumps(data, indent=2) + '\n')
 def git(p, *args): return subprocess.check_output(['git', '-C', str(p), *args], text=True).strip()
 
-def generated_path(source, name):
-    p=source/name
-    if not p.is_relative_to(source/'docs'/'audits'):raise RuntimeError('GENERATED_OUTPUT_PATH_REFUSED')
-    if any(x.is_symlink() for x in [p,*p.parents] if x.is_relative_to(source)):raise RuntimeError('GENERATED_OUTPUT_SYMLINK_REFUSED')
-    if not p.resolve().is_relative_to((source/'docs'/'audits').resolve()) or not p.is_file():raise RuntimeError('GENERATED_OUTPUT_SCOPE_REFUSED')
-    if p.stat().st_nlink!=1:raise RuntimeError('GENERATED_OUTPUT_HARDLINK_REFUSED')
-    if p.stat().st_size>MAX_LOG:raise RuntimeError('GENERATED_OUTPUT_SIZE_REFUSED')
-    return p
-
-def validate_generated_reports(workspace, source, spec, state, out=None):
-    if not any(x['name']==spec['generatedReportProducerCommand'] and x['status']=='PASS' for x in state['steps']):raise RuntimeError('GENERATED_REPORT_PRODUCER_NOT_PASS')
-    log=workspace/'ci-temp'/state['job']/spec['generatedReportLog']
-    if any(x.is_symlink() for x in [log,*log.parents] if x.is_relative_to(workspace)):raise RuntimeError('GENERATED_REPORT_LOG_SYMLINK_REFUSED')
-    if not log.resolve().is_relative_to((workspace/'ci-temp'/state['job']).resolve()) or not log.is_file() or log.stat().st_size>MAX_LOG:raise RuntimeError('GENERATED_REPORT_LOG_REFUSED')
-    text=log.read_text();entries=[]
-    for item in spec['generatedReports']:
-        p=generated_path(source,item['path']);raw=p.read_bytes()
-        if SECRET.search(raw):raise RuntimeError('GENERATED_REPORT_SECRET_PATTERN_REFUSED')
-        value=json.loads(raw)
-        if not isinstance(value,dict) or value.get(item['passField']) is not True:raise RuntimeError('GENERATED_REPORT_NOT_PASS')
-        timestamp=datetime.datetime.fromisoformat(value['generatedAt'].replace('Z','+00:00')).timestamp()
-        if not state['testStartedAtEpoch']<=timestamp<=time.time()+5:raise RuntimeError('GENERATED_REPORT_NOT_CURRENT')
-        marker='▶ '+item['stdoutLabel']+'\n'
-        if text.count(marker)!=1:raise RuntimeError('GENERATED_REPORT_STDOUT_AMBIGUOUS')
-        segment=text.split(marker,1)[1].split('\n▶ ',1)[0];start=segment.index('{')
-        printed,end=json.JSONDecoder().raw_decode(segment[start:]);printed_raw=segment[start:start+end].encode()
-        if item.get('stdoutExtraMarker'):
-            if printed.pop(item['stdoutExtraMarker'],None)!='PASS' or printed!=value:raise RuntimeError('GENERATED_REPORT_STDOUT_MISMATCH')
-        elif printed_raw!=raw:raise RuntimeError('GENERATED_REPORT_STDOUT_BYTES_MISMATCH')
-        baseline=state['generatedReportBaseline'][item['path']]
-        if digest(p)==baseline['sha256']:raise RuntimeError('GENERATED_REPORT_UNCHANGED_FROM_BASELINE')
-        entry={'path':item['path'],'producerPath':item['producerPath'],'producerSHA256':item['producerSHA256'],'beforeSHA256':baseline['sha256'],'beforeGitBlob':baseline['gitBlob'],'afterSHA256':digest(p),'bytes':len(raw),'generatedAt':value['generatedAt'],'stdoutEquality':'PASS','passField':item['passField']}
-        if out is not None:
-            artifact_name='qualification-'+pathlib.PurePosixPath(item['path']).name
-            (out/artifact_name).write_bytes(raw);entry['artifact']=artifact_name
-        entries.append(entry)
-    state['generatedReportReadback']=entries
-
 def verify_tracked_sources(workspace, source, spec, state, boundary):
     checks=[]
-    for item in spec.get('producerSourceBindings',[]):
-        if digest(source/item['path'])!=item['sha256']:raise RuntimeError('QUALIFICATION_PRODUCER_SOURCE_MISMATCH')
     for directory in [source]+[workspace/x['path'] for x in spec.get('extraCheckouts',[])]:
         paths=['.']
         if directory==source and spec.get('backendAlias'):paths.append(':(exclude)backend')
@@ -69,10 +29,6 @@ def verify_tracked_sources(workspace, source, spec, state, boundary):
                 for entry in manifest['files']:
                     if digest(source/entry['path'])!=entry.get('candidateSha256',entry.get('sha256')):raise RuntimeError('CORRECTION_FINAL_SOURCE_MISMATCH')
                 state['preparedCorrectionFileManifestSHA256']=digest(manifest_path)
-            elif directory==source and spec.get('generatedReports') and boundary in ['after-test','before-independent-continuation']:
-                allowed={x['path'] for x in spec['generatedReports']}
-                if not set(changed).issubset(allowed):raise RuntimeError('UNREVIEWED_TRACKED_SOURCE_MUTATION:'+directory.name+':'+','.join(changed))
-                validate_generated_reports(workspace,source,spec,state)
             else:raise RuntimeError('UNREVIEWED_TRACKED_SOURCE_MUTATION:'+directory.name+':'+','.join(changed))
 
 def clean_env(temp):
@@ -90,7 +46,7 @@ def run_step(step, source, env, out, index, seconds, isolated):
     name = step['name']; log = out / ('step-%02d.log' % index)
     script = out / ('step-%02d.sh' % index)
     body = step['run'].replace('HOME="$RUNNER_TEMP" ', '')
-    entered='printf "WORK8_CI_ISOLATED_ASSERTION_ENTERED\\n"\n' if isolated else ''
+    entered='printf "WORK8_CI_ISOLATED_ASSERTION_ENTERED\\n"\n' if isolated and step.get('mode')!='isolatedRootFixture' else ''
     script.write_text('set -euo pipefail\ntest "$(node --version)" = v22.23.2\n' + entered + body + '\n')
     cwd = source / step.get('working-directory', '.')
     actual_env = dict(env)
@@ -98,7 +54,17 @@ def run_step(step, source, env, out, index, seconds, isolated):
         if '${{' in str(v): raise RuntimeError('UNRESOLVED_WORKFLOW_EXPRESSION:' + k)
         actual_env[k] = str(v).replace('__BACKEND_ROOT__', str(source.parent / 'backend-current' / 'backend')).replace('__CONTEXT_OUT__', str(pathlib.Path(env['RUNNER_TEMP']) / 'source-context'))
     command = ['bash', str(script)]
-    if isolated:
+    if isolated and step.get('mode')=='isolatedRootFixture':
+        spec=PLAN['jobs'].get(out.name,{})
+        if out.name!='membership-isolated' or spec.get('pins')!={'primary':'94aa919c7c39c4c9bf2c14b636232da028dba72d','primaryTree':'ad538f63dc1e2dfe392fea1cacb565d361e9a9e2'}:raise RuntimeError('ROOT_FIXTURE_SCOPE_REFUSED')
+        if step['run']!='# Direct approved membership jail invocation; no shell body':raise RuntimeError('ROOT_FIXTURE_COMMAND_REFUSED')
+        admission=spec.get('isolatedRootFixture',{})
+        if set(admission)!={'job','helperPath','helperSHA256','manifestPath','manifestSHA256'} or admission['job']!='membership-isolated' or admission['helperPath']!='membership/membership-jail.py' or admission['manifestPath']!='membership/membership-inputs.json':raise RuntimeError('ROOT_FIXTURE_HELPER_SET_REFUSED')
+        if digest(ROOT/admission['helperPath'])!=admission['helperSHA256'] or digest(ROOT/admission['manifestPath'])!=admission['manifestSHA256']:raise RuntimeError('ROOT_FIXTURE_HELPER_MISMATCH')
+        proof=pathlib.Path(env['RUNNER_TEMP'])/'membership-proof';proof.mkdir(exist_ok=False)
+        node=pathlib.Path(subprocess.check_output(['node','-p','process.execPath'],text=True).strip()).resolve()
+        command=['/usr/bin/sudo','-n','/usr/bin/env','-i','PATH=/usr/bin:/usr/sbin:/bin:/sbin','/usr/bin/unshare','--mount','--pid','--fork','--net','--kill-child=KILL','/usr/bin/python3',str(ROOT/'membership/membership-jail.py'),str(source),str(proof),str(node),str(ROOT/'membership/membership-inputs.json')]
+    elif isolated:
         command = ['bash', str(ROOT / 'namespace.sh'), str(os.getuid()), str(os.getgid()), str(seconds), 'env', '-i'] + [k+'='+v for k,v in actual_env.items()] + command
     started = time.monotonic()
     with log.open('wb') as output:
@@ -149,9 +115,6 @@ def main():
         if state.get('sourceIdentityVerified'):
             try:verify_tracked_sources(workspace,source,spec,state,'after-test')
             except Exception as exc:state['status']='FAIL';state['sourceIntegrityFailure']=str(exc)
-        if spec.get('generatedReports'):
-            try:validate_generated_reports(workspace,source,spec,state,out)
-            except Exception as exc:state['status']='FAIL';state['generatedReportValidationFailure']=str(exc)
         for item in spec.get('evidence',[]):
             origin=workspace / item['path'].replace('{job}',args.job)
             if not origin.is_relative_to(workspace/'ci-temp'/args.job):raise RuntimeError('EVIDENCE_SCOPE_REFUSED')
@@ -203,10 +166,6 @@ def main():
     temp=workspace/'ci-temp'/args.job;temp.mkdir(parents=True,exist_ok=True);env=clean_env(temp)
     state['sourceIdentityVerified']=True;state['node']='22.23.2';state['runner']={k:os.environ.get(k) for k in ['RUNNER_OS','RUNNER_ARCH','ImageOS','ImageVersion']};state['status']='RUNNING';dump(state_path,state)
     verify_tracked_sources(workspace,source,spec,state,'before-'+args.phase)
-    if args.phase=='test':
-        state['testStartedAtEpoch']=time.time()
-        if spec.get('generatedReports'):
-            state['generatedReportBaseline']={item['path']:{'sha256':digest(generated_path(source,item['path'])),'gitBlob':git(source,'rev-parse','HEAD:'+item['path'])} for item in spec['generatedReports']}
     dump(state_path,state)
     steps=spec[args.phase]
     deadline=time.monotonic()+spec['minutes']*60-120
@@ -214,6 +173,10 @@ def main():
         remaining=int(deadline-time.monotonic())
         if remaining<=0:state['status']='FAIL';state['reason']='GROUP_DEADLINE';dump(state_path,state);return 1
         result=run_step(step,source,env,out,len(state['steps']),min(remaining,2580),args.phase=='test');state['steps'].append(result);dump(state_path,state)
+        try:verify_tracked_sources(workspace,source,spec,state,'after-step-'+str(len(state['steps'])-1))
+        except Exception as exc:
+            state['status']='FAIL';state['sourceIntegrityFailure']=str(exc);dump(state_path,state);return 1
+        dump(state_path,state)
         print(json.dumps({'job':args.job,'phase':args.phase,'name':result['name'],'status':result['status'],'exitCode':result['exitCode'],'reason':result['reason']}))
         if result['status']!='PASS':
             state['status']='FAIL';state['reason']='FAILED_ASSERTION_OR_PREREQUISITE';dump(state_path,state)

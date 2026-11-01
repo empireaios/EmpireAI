@@ -1,0 +1,55 @@
+{
+  "schema": "work8-isolated-membership-inputs-v1",
+  "sourceCommit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+  "sourceTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2",
+  "files": [
+    {
+      "path": "deployment/runtime-membership-controller.hosted.test.cjs",
+      "sha256": "bc16de886279d4730294d2cbbad40b045190d7896df2ae968ecb06d527960769",
+      "gitBlob": "75948a8054d5fa770e49b8efe08f7915a17feba9",
+      "bytes": 11684
+    },
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "sha256": "59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b",
+      "gitBlob": "92145cc42a3373bf0dfde639bc570d9a58b46998",
+      "bytes": 20923
+    },
+    {
+      "path": "deployment/runtime-membership-bootstrap.mjs",
+      "sha256": "84bd06b3cd85727cf8f48ee2668065361349323e5285429f63b90978b7856ea5",
+      "gitBlob": "269e6a51b9e836092f1269ab450087d5147bfe6f",
+      "bytes": 3973
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-writer.mjs",
+      "sha256": "f28f272613576647bcd9f7bf1f6be88574385b3220d2724d643f03a400b4ce88",
+      "gitBlob": "29bdebbe42cda86f79e28da884f04adb029e5ed1",
+      "bytes": 1871
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-redis.cjs",
+      "sha256": "1ba5ddd94fd64c8adf673e4f08af6b1de8e3ad9a8841984c45e15d6bdf2ec3f4",
+      "gitBlob": "0399ebf693480605dc89c9ddcda8c170bfe7cb3a",
+      "bytes": 1432
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-runner.cjs",
+      "sha256": "c9895772f773d472f0195acdb62aa613871978b9fe8c341cc570562a384c99c8",
+      "gitBlob": "415d9abf689949079eec9ad2f5d3d1147256aa04",
+      "bytes": 583
+    },
+    {
+      "path": "deployment/runtime-generation.cjs",
+      "sha256": "2103a04ed2342c803de9127e1a109e7b6f92543c9bfa59dea1eb866d406f926d",
+      "gitBlob": "4fe363accda4a586a26713a1abc7590f6c9440b0",
+      "bytes": 11435
+    },
+    {
+      "path": "deployment/runtime-revision.cjs",
+      "sha256": "631c36a3760e2a3db8cbb414b9070911a1fa8acfa4c3cf6acb96b7fea4d85cd8",
+      "gitBlob": "a3f511c36d8d80593d5a3c8c4ba653ca2e76a86a",
+      "bytes": 592
+    }
+  ]
+}
