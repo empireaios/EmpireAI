@@ -1,0 +1,648 @@
+{
+  "schema": "work8-v42-frozen-currentcandidate-ci-plan-v1",
+  "environment": {
+    "CI": "true",
+    "NODE_ENV": "test",
+    "SOAK_ALLOW_LIVE_RUN": "0",
+    "LIVE_CJ_FULFILLMENT_ENABLED": "false",
+    "LIVE_CJ_FULFILLMENT_MOCK": "true",
+    "CJ_INTEGRATION_MODE": "SANDBOX",
+    "PILLOW_TEST_REDIS_SERVER": "/usr/bin/redis-server"
+  },
+  "jobs": {
+    "contracts": {
+      "minutes": 15,
+      "scope": "Current configuration and newly changed security fixture assertions; no image fault or A5 proof.",
+      "pins": {
+        "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "primaryTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+      },
+      "setup": [],
+      "test": [
+        {
+          "name": "Verify package scripts, lockfiles and the production web contract",
+          "run": "node scripts/verify-product-path-ci.mjs",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "repository-contract"
+        },
+        {
+          "name": "Verify deterministic build configuration and reject runtime drift",
+          "run": "node --test scripts/verify-build-runtime.test.mjs",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "repository-contract"
+        },
+        {
+          "name": "New source-bound security fixture deltas with native self-compile mode",
+          "run": "node --test --test-concurrency=1 \\\n  backend/src/runtime/work8-isolated-redis-capability.test.mjs \\\n  deployment/runtime-brain-broker.test.cjs \\\n  deployment/runtime-generation.test.cjs \\\n  deployment/runtime-graph-redis.test.cjs \\\n  deployment/runtime-isolated-application.test.cjs \\\n  deployment/runtime-membership-controller.test.cjs \\\n  deployment/runtime-membership-receipt.test.cjs \\\n  deployment/runtime-writer-isolation.test.cjs \\\n  scripts/work8/o33-capture-readiness.test.mjs \\\n  scripts/work8/seven-lock-boundary.test.cjs \\\n  scripts/work8/seven-lock-broker.test.cjs",
+          "executionCondition": "Linuxx64/arm64, cc, pinnedNode22.23.2; WORK8_NATIVE_ARTIFACT_DIRECTORY and controllerLD_PRELOAD absent. Nativewriter test compiles temporary ownlibrary/probe. No external.so/helperdirectory injection. See security-fixture-invocation.json."
+        },
+        {
+          "name": "source-normal: Verify package scripts, lockfiles and the production web contract",
+          "run": "node scripts/verify-product-path-ci.mjs",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "repository-contract",
+          "working-directory": "../source-normal"
+        },
+        {
+          "name": "source-normal: Verify deterministic build configuration and reject runtime drift",
+          "run": "node --test scripts/verify-build-runtime.test.mjs",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "repository-contract",
+          "working-directory": "../source-normal"
+        },
+        {
+          "name": "source-recovery: Verify package scripts, lockfiles and the production web contract",
+          "run": "node scripts/verify-product-path-ci.mjs",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "repository-contract",
+          "working-directory": "../source-recovery"
+        },
+        {
+          "name": "source-recovery: Verify deterministic build configuration and reject runtime drift",
+          "run": "node --test scripts/verify-build-runtime.test.mjs",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "repository-contract",
+          "working-directory": "../source-recovery"
+        }
+      ],
+      "extraCheckouts": [
+        {
+          "path": "source-normal",
+          "sha": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+          "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+        },
+        {
+          "path": "source-recovery",
+          "sha": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+          "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+        }
+      ]
+    },
+    "backend": {
+      "minutes": 45,
+      "scope": "Current full backend build and selected affected runtime/capture/Product assertions.",
+      "pins": {
+        "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "primaryTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+      },
+      "setup": [
+        {
+          "name": "Download locked Pillow/backend packages without lifecycle scripts",
+          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix pillow\nnpm ci --ignore-scripts --no-audit --no-fund --prefix backend",
+          "working-directory": "."
+        }
+      ],
+      "test": [
+        {
+          "name": "Rebuild downloaded native dependencies offline and build linked Pillow",
+          "run": "npm rebuild --offline --build-from-source --prefix pillow\nnpm rebuild --offline --build-from-source --prefix backend\nnpm run build --prefix pillow",
+          "working-directory": "."
+        },
+        {
+          "name": "Verify typecheck and build exact backend",
+          "run": "npm run verify:env --prefix backend\nnpm run typecheck --prefix backend\nnpm run build --prefix backend\ntest -f backend/dist/runtime/native-store-capture-lock.cjs",
+          "working-directory": "."
+        },
+        {
+          "name": "Work8 bounded integrated exams with kernel network denial",
+          "run": "set -euo pipefail\n# Preserve the complete discovered suite. Only these authenticated\n# in-process HTTP examinations require socket creation; outbound\n# connect/send syscalls remain denied by the existing launcher.\ndenied=()\nlisten_only=()\nfor test_file in src/validation/tests/work8-*.test.ts src/validation/tests/work8-*.test.mjs src/validation/tests/work6-commerce-routes.test.ts ../scripts/work8/autonomous-locks.test.ts ../scripts/work8/shared-store-days.test.ts; do\n  case \"$test_file\" in\n    src/validation/tests/work8-inspector-inbox.test.ts|src/validation/tests/work8-joined-assurance.test.ts)\n      listen_only+=(\"$test_file\") ;;\n    *) denied+=(\"$test_file\") ;;\n  esac\ndone\ntest \"${#listen_only[@]}\" -eq 2\npython3 ../scripts/work8/isolated-exec.py node --import tsx --test --test-concurrency=1 \"${denied[@]}\"\npython3 ../scripts/work8/isolated-exec.py --listen-only node --import tsx --test --test-concurrency=1 \"${listen_only[@]}\"\n",
+          "working-directory": "backend",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "backend"
+        },
+        {
+          "name": "Verify isolated SQL.js and HTTP capture admission, save and readback",
+          "run": "node --import tsx --test src/validation/tests/quiesced-sqlite-save.test.ts src/validation/tests/shadow-ceo-quiesced-capture.test.ts src/validation/tests/coordinated-sqlite-capture.test.ts src/validation/tests/capture-http-admission.test.ts src/validation/tests/capture-brain-worker-drain.test.ts src/validation/tests/capture-shared-brain-queue.test.ts src/validation/tests/capture-pillow-boot-drain.test.ts src/validation/tests/capture-authority-json.test.ts src/validation/tests/native-store-capture.test.ts src/validation/tests/sqlite-persistence-boundary.test.ts",
+          "working-directory": "backend",
+          "env": {
+            "REDIS_OPTIONAL": "true"
+          },
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "backend"
+        },
+        {
+          "name": "Run fast invariant gate",
+          "run": "npm run gate:fast-invariant",
+          "working-directory": "backend",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "backend"
+        },
+        {
+          "name": "Run ranking, correction and authority lock tests",
+          "run": "node --import tsx --test \\\n  src/validation/tests/comma-contribution-ranking.lock.test.ts \\\n  src/validation/tests/correction-supersession.lock.test.ts \\\n  src/validation/tests/authority-synthetic-isolation.lock.test.ts \\\n  src/validation/tests/exec-cap-authority-compact.lock.test.ts \\\n  src/validation/tests/w1-t1-decision-state-propagation.test.ts\n",
+          "working-directory": "backend",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "backend"
+        },
+        {
+          "name": "Run chat, recovery and canonical-truth tests",
+          "run": "node --import tsx --test \\\n  src/validation/tests/shadow-ceo-chat-admission.test.ts \\\n  src/validation/tests/shadow-ceo-durability.test.ts \\\n  src/validation/tests/pillow-accepted-request-recovery.test.ts \\\n  src/validation/tests/canonical-executive-truth.test.ts \\\n  src/validation/tests/dc05421-response-contract.test.ts\n",
+          "working-directory": "backend",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "backend"
+        },
+        {
+          "name": "Verify bounded multi-provider inference and preserved authority",
+          "run": "node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/advisor-gateway.test.ts backend/src/validation/tests/advisor-pillow-readback.test.ts backend/src/validation/tests/provider-receipt-readback.test.ts backend/src/validation/tests/answer-gate-diagnostics.test.ts backend/src/validation/tests/owner-commissioning-readback.test.ts backend/src/validation/tests/locked-inference.test.ts backend/src/validation/tests/locked-provider-orchestration.test.ts backend/src/validation/tests/locked-reasoning-integration.test.ts",
+          "historicalWorkflow": "pillow-runtime-repair-ci",
+          "historicalJob": "durable-runtime"
+        },
+        {
+          "name": "Verify response completion and frontend preservation safeguards",
+          "run": "node --import ./backend/node_modules/tsx/dist/loader.mjs --test backend/src/validation/tests/executive-response-completion.test.ts empireai-web/lib/pillow/confirmed-reasoning.test.ts empireai-web/lib/pillow/durable-delivery.test.ts empireai-web/lib/pillow/bff-chat-sanitize.test.ts",
+          "historicalWorkflow": "pillow-runtime-repair-ci",
+          "historicalJob": "durable-runtime"
+        },
+        {
+          "name": "Run mandatory isolated runtime and session tests",
+          "run": "set -euo pipefail\nnode --import tsx --test --test-concurrency=1 --test-reporter=tap \\\n  src/validation/tests/locked-commissioning.test.ts \\\n  src/validation/tests/work3-institutional-memory.test.ts \\\n  src/validation/tests/work4-intelligence.test.ts \\\n  src/validation/tests/work1-reconstructed.test.ts \\\n  src/validation/tests/pillow-investigation.test.ts \\\n  src/validation/tests/pillow-durable-queue-redis.test.ts \\\n  src/validation/tests/capture-shared-brain-redis.test.ts \\\n  src/validation/tests/pillow-durable-reasoning-worker.test.ts \\\n  src/validation/tests/pillow-durable-access.test.ts \\\n  src/validation/tests/mission-runtime-access.test.ts \\\n  src/validation/tests/amazon-publish-authority.test.ts \\\n  src/validation/tests/pillow-authority-contract.test.ts \\\n  src/validation/tests/amazon-listing-proof.test.ts \\\n  src/validation/tests/mission-execution-binding.test.ts \\\n  src/validation/tests/mission-execution-durability.test.ts \\\n  src/validation/tests/mission-authority-wiring.test.ts \\\n  src/validation/tests/strategic-memory-read-preservation.test.ts \\\n  src/validation/tests/strategic-memory-engine.test.ts \\\n  src/validation/tests/certification-receipt-intake.test.ts \\\n  src/validation/tests/held-case-budget-ledger.test.ts \\\n  src/runtime/held-case-dispatch.test.ts \\\n  src/validation/tests/offline-state-bundle.test.ts \\\n  src/validation/tests/reasoning-only-policy.test.ts \\\n  src/validation/tests/session-store-unavailable.test.ts \\\n  src/validation/tests/locked-fresh-session.test.ts \\\n  src/validation/tests/sqlite-shutdown-boundary.test.ts \\\n  src/validation/tests/primary-shutdown.test.ts \\\n  src/validation/tests/continuity-heartbeat-clock.test.ts \\\n  src/validation/tests/executive-continuity-watchdog.test.ts \\\n  src/validation/tests/independent-shutdown-last-attempt.test.ts \\\n  src/validation/tests/sqlite-corruption-recovery.test.ts \\\n  src/validation/tests/engineering-test-mode.test.ts \\\n  src/validation/tests/cost-guard-authorization.test.ts \\\n  src/validation/tests/llm-call-control.test.ts \\\n  src/validation/tests/llm-provider-cancellation.test.ts \\\n  src/validation/tests/auth-readiness.test.ts \\\n  src/validation/tests/auth-verification.test.ts \\\n  src/validation/tests/bootstrap-credential-policy.test.ts \\\n  src/validation/tests/bootstrap-password-sync.test.ts \\\n  src/validation/tests/pillow-durable-delivery-fault-matrix.test.ts \\\n  src/validation/tests/tier0-isolated-primary.test.ts \\\n  src/validation/tests/worker-http-proxy.test.ts \\\n  src/validation/tests/commerce-reasoning-admission.test.ts \\\n  src/validation/tests/durable-pending-receipt.lock.test.ts \\\n  src/validation/tests/pillow-terminal-json.test.ts \\\n  src/validation/tests/pillow-chat-request-store.test.ts \\\n  | tee \"$RUNNER_TEMP/pillow-runtime-tests.tap\"\nnode --input-type=module - \"$RUNNER_TEMP/pillow-runtime-tests.tap\" <<'NODE'\nimport assert from 'node:assert/strict';\nimport { readFileSync } from 'node:fs';\nconst output = readFileSync(process.argv[2], 'utf8');\nconst count = (name) => {\n  const match = output.match(new RegExp(`^# ${name} (\\\\d+)$`, 'm'));\n  assert.ok(match, `Missing TAP summary: ${name}`);\n  return Number(match[1]);\n};\n// All six ledger cases must execute; aggregate counts cannot hide a removed suite.\nfor (const name of [\n  'campaign identity/cap/expiry are immutable and malformed money cannot authorize',\n  'foreign databases are refused without replacing their records',\n  'timeouts, retry IDs and restart retain reservations; duplicate IDs never redispatch',\n  'only final receipt releases unused reservation; conflicting settlement and overruns are visible',\n  'expired campaign cannot reserve even with remaining balance but final reconciliation remains possible',\n  'independent processes cannot reserve the same funds twice; committed reservation survives exit without close',\n]) {\n  assert.ok(output.split(/\\r?\\n/).some(line => /^ok \\d+ - /.test(line) && line.endsWith(` - ${name}`)),\n    `Missing mandatory executed ledger test: ${name}`);\n}\nassert.ok(count('tests') > 0, 'Runtime tests must actually execute');\nfor (const name of [\n  'unconfigured or denied trusted verifier cannot dispatch; client permission fields are forbidden',\n  'success retains full reservation; duplicate request and reopen never redispatch',\n  'timeout aborts one attempt and preserves uncertain full hold without retry',\n  'provider/model mismatch, tools, fallback and prompt mutation are rejected before dispatch',\n  'missing/expired pricing or unknown other costs cannot reserve or dispatch',\n  'independent ledger connections racing distinct steps cannot overspend campaign cap',\n  'provider response violation retains hold and a policy revision cannot reset prior spend',\n  'actual scope, output bound, expiry and pre-aborted calls fail before dispatch',\n  'retained verifier references and mutable originals cannot change the approved dispatch snapshot',\n]) {\n  assert.ok(output.split(/\\r?\\n/).some(line => /^ok \\d+ - /.test(line) && line.endsWith(` - ${name}`)),\n    `Missing mandatory executed held dispatch test: ${name}`);\n}\nfor (const name of [\n  'timeouts are finite integer bounded and reject malformed configuration',\n  'deadline aborts the actual in-flight fake provider once',\n  'already cancelled caller cannot invoke provider; caller cancellation propagates',\n  'fast success clears timer and provider errors are never retried',\n  'a noncooperative provider remains bounded locally without claiming remote cancellation',\n  'openai real SDK receives per-request maxRetries zero and performs one fake fetch on 503',\n  'openai actual SDK fake fetch sees timeout abort',\n  'anthropic real SDK receives per-request maxRetries zero and performs one fake fetch on 503',\n  'anthropic actual SDK fake fetch sees timeout abort',\n  'Gemini adapter forwards cancellation and rejects already-aborted work before client acquisition',\n  'Gemini installed SDK propagates signal into its actual fetch transport',\n  'router aborts its actual provider invocation on timeout without retry',\n  'invalid router timeout fails before provider resolution',\n]) {\n  assert.ok(output.split(/\\r?\\n/).some(line => /^\\s*ok \\d+ - /.test(line) && line.endsWith(` - ${name}`)),\n    `Missing mandatory executed cancellation test: ${name}`);\n}\nassert.equal(count('pass'), count('tests'), 'Every runtime test must pass');\nfor (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {\n  assert.equal(count(kind), 0, `${kind} tests are not permitted`);\n}\nNODE\n",
+          "working-directory": "backend",
+          "env": {
+            "REDIS_OPTIONAL": "true"
+          },
+          "historicalWorkflow": "pillow-runtime-repair-ci",
+          "historicalJob": "durable-runtime",
+          "sharedExecutionAttribution": [
+            {
+              "path": "backend/src/validation/tests/exec-cap-authority-compact.lock.test.ts",
+              "removedFrom": "backend/Run mandatory isolated runtime and session tests",
+              "retainedIn": "backend/Run ranking, correction and authority lock tests",
+              "retainedSelection": "src/validation/tests/exec-cap-authority-compact.lock.test.ts",
+              "source": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "reason": "Explicit original Product command; all named assertions retained.",
+              "retainedCommandUnchanged": true
+            },
+            {
+              "path": "backend/src/validation/tests/shadow-ceo-durability.test.ts",
+              "removedFrom": "backend/Run mandatory isolated runtime and session tests",
+              "retainedIn": "backend/Run chat, recovery and canonical-truth tests",
+              "retainedSelection": "src/validation/tests/shadow-ceo-durability.test.ts",
+              "source": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "reason": "Explicit original Product command; all named assertions retained.",
+              "retainedCommandUnchanged": true
+            },
+            {
+              "path": "backend/src/validation/tests/pillow-accepted-request-recovery.test.ts",
+              "removedFrom": "backend/Run mandatory isolated runtime and session tests",
+              "retainedIn": "backend/Run chat, recovery and canonical-truth tests",
+              "retainedSelection": "src/validation/tests/pillow-accepted-request-recovery.test.ts",
+              "source": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "reason": "Explicit original Product command; all named assertions retained.",
+              "retainedCommandUnchanged": true
+            },
+            {
+              "path": "backend/src/validation/tests/sqlite-persistence-boundary.test.ts",
+              "removedFrom": "backend/Run mandatory isolated runtime and session tests",
+              "retainedIn": "backend/Verify isolated SQL.js and HTTP capture admission, save and readback",
+              "retainedSelection": "src/validation/tests/sqlite-persistence-boundary.test.ts",
+              "source": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "reason": "Same explicit REDIS_OPTIONAL=true environment as removed runtime copy.",
+              "retainedCommandUnchanged": true
+            },
+            {
+              "path": "backend/src/validation/tests/work8-generated-startup-protocol.test.ts",
+              "removedFrom": "backend/Run mandatory isolated runtime and session tests",
+              "retainedIn": "backend/Work8 bounded integrated exams with kernel network denial",
+              "retainedSelection": "src/validation/tests/work8-*.test.ts",
+              "source": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "reason": "Retained work8-*.test.ts glob with stricter kernel egress denial; no isolation weakening.",
+              "retainedCommandUnchanged": true
+            },
+            {
+              "path": "backend/src/validation/tests/work8-product-history.test.ts",
+              "removedFrom": "backend/Run mandatory isolated runtime and session tests",
+              "retainedIn": "backend/Work8 bounded integrated exams with kernel network denial",
+              "retainedSelection": "src/validation/tests/work8-*.test.ts",
+              "source": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "reason": "Retained work8-*.test.ts glob with stricter kernel egress denial; no isolation weakening.",
+              "retainedCommandUnchanged": true
+            }
+          ],
+          "deduplicationNote": "Six duplicate file invocations removed; every assertion still executes in listed unchanged Product/Work8 step on same pinned backend. Work8 retains stronger inner kernel denial; no skipped tests or count-gate weakening. Original runtime named ledger/held-dispatch/cancellation checks and aggregate zero-failure checks unchanged."
+        }
+      ]
+    },
+    "semantic": {
+      "minutes": 30,
+      "scope": "Affected offline semantic engineering gates; shared commerce-route and Assurance-core assertions attributed from otherjobs.",
+      "pins": {
+        "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "primaryTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+      },
+      "setup": [
+        {
+          "name": "Download locked Pillow/backend packages without lifecycle scripts",
+          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix pillow\nnpm ci --ignore-scripts --no-audit --no-fund --prefix backend",
+          "working-directory": "."
+        }
+      ],
+      "test": [
+        {
+          "name": "Rebuild downloaded native dependencies offline and build linked Pillow",
+          "run": "npm rebuild --offline --build-from-source --prefix pillow\nnpm rebuild --offline --build-from-source --prefix backend\nnpm run build --prefix pillow",
+          "working-directory": "."
+        },
+        {
+          "name": "Build exact backend for independent semantic job setup",
+          "run": "npm run build --prefix backend\ntest -f backend/dist/runtime/native-store-capture-lock.cjs",
+          "working-directory": ".",
+          "scope": "Dependency setup in this separate job; full typecheck assertion is executed in backend job and not repeated. Compiled backend artifacts are required by established semantic gate/qualification runners."
+        },
+        {
+          "name": "Work6 governed commerce lifecycle and authority",
+          "run": "node --import tsx --test src/validation/tests/work6-commerce.test.ts src/validation/tests/work6-provider-contracts.test.ts src/validation/tests/work6-scale.test.ts",
+          "working-directory": "backend",
+          "historicalWorkflow": "pillow-semantic-repair-ci",
+          "historicalJob": "semantic-regressions"
+        },
+        {
+          "name": "Work7 owner projections and safety policy",
+          "run": "node --import tsx --test src/validation/tests/work7-owner-portfolio.test.ts src/validation/tests/work7-executive.test.ts src/validation/tests/work7-safety.test.ts",
+          "working-directory": "backend",
+          "historicalWorkflow": "pillow-semantic-repair-ci",
+          "historicalJob": "semantic-regressions"
+        },
+        {
+          "name": "Work5 financial integrity regressions",
+          "run": "node --import tsx --test src/validation/tests/work5-finance.test.ts src/validation/tests/work5-finance-routes.test.ts src/validation/tests/work7-cost-categories.test.ts",
+          "working-directory": "backend",
+          "historicalWorkflow": "pillow-semantic-repair-ci",
+          "historicalJob": "semantic-regressions"
+        },
+        {
+          "name": "Create network-denial preload for offline child processes",
+          "run": "node --input-type=module <<'NODE'\nimport { writeFileSync } from 'node:fs';\nimport { join } from 'node:path';\nwriteFileSync(join(process.env.RUNNER_TEMP, 'pillow-offline-guard.cjs'), `\nconst http = require('node:http');\nconst https = require('node:https');\nconst net = require('node:net');\nconst tls = require('node:tls');\nconst { syncBuiltinESMExports } = require('node:module');\nfunction blocked() { throw new Error('OFFLINE_VERIFICATION_NETWORK_BLOCKED'); }\nglobalThis.fetch = blocked;\nhttp.request = http.get = https.request = https.get = blocked;\nnet.connect = net.createConnection = net.Socket.prototype.connect = blocked;\ntls.connect = blocked;\nsyncBuiltinESMExports();\n`);\nNODE\n",
+          "historicalWorkflow": "pillow-semantic-repair-ci",
+          "historicalJob": "semantic-regressions"
+        },
+        {
+          "name": "Run full semantic engineering regressions with no provider access",
+          "run": "set -euo pipefail\nenv -i \\\n  PATH=\"$PATH\" TMPDIR=\"$RUNNER_TEMP\" \\\n  CI=true NODE_ENV=test SOAK_ALLOW_LIVE_RUN=0 \\\n  NODE_OPTIONS=\"--require=$RUNNER_TEMP/pillow-offline-guard.cjs\" \\\n  REDIS_OPTIONAL=true REDIS_URL=redis://127.0.0.1:6399 \\\n  DATABASE_PATH=:memory: LOG_LEVEL=fatal \\\n  LIVE_CJ_FULFILLMENT_ENABLED=false LIVE_CJ_FULFILLMENT_MOCK=true \\\n  CJ_INTEGRATION_MODE=SANDBOX \\\n  node scripts/run-full-certification-gate.mjs \\\n  | tee \"$RUNNER_TEMP/pillow-semantic-gate.log\"\nnode --input-type=module - \"$RUNNER_TEMP/pillow-semantic-gate.log\" <<'NODE'\nimport assert from 'node:assert/strict';\nimport { readFileSync } from 'node:fs';\nconst output = readFileSync(process.argv[2], 'utf8');\nconst values = (name) => Array.from(output.matchAll(new RegExp(`^(?:#|\u2139) ${name} (\\\\d+)$`, 'gm')), (m) => Number(m[1]));\nconst sum = (name) => values(name).reduce((total, value) => total + value, 0);\nassert.ok(values('tests').length >= 23, 'All 23 mandatory test files must execute');\nassert.ok(sum('tests') >= 150, 'The combined 150-test engineering regression baseline must execute');\nassert.equal(sum('pass'), sum('tests'), 'Every engineering regression must pass');\nfor (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {\n  assert.equal(values(kind).length, values('tests').length, `Missing summary: ${kind}`);\n  assert.equal(sum(kind), 0, `${kind} tests are not permitted`);\n}\nassert.ok(output.includes('\u25b6 src/validation/tests/chronology-evidence-contract.test.ts'), 'Chronology regressions are mandatory');\nassert.ok(output.includes('\u25b6 src/validation/tests/pillow-birth-authority.test.ts'), 'Birth authority regressions are mandatory');\nassert.ok(output.includes('\u25b6 src/validation/tests/executive-truth-grounding.test.ts'), 'Truth grounding regressions are mandatory');\nassert.equal((output.match(/^\u25b6 scripts\\/[^\\n]+-qualify\\.mjs$/gm) ?? []).length, 9, 'All nine qualification scripts must execute');\nassert.ok(output.includes('OFFLINE_ENGINEERING_GATE: PASS'));\nassert.doesNotMatch(output, /^FAIL:|OFFLINE_ENGINEERING_GATE: FAIL/m);\nNODE\n",
+          "working-directory": "backend",
+          "historicalWorkflow": "pillow-semantic-repair-ci",
+          "historicalJob": "semantic-regressions"
+        },
+        {
+          "name": "Require CJ receipt truth and authorization regressions without provider access",
+          "run": "set -euo pipefail\nenv -i \\\n  PATH=\"$PATH\" TMPDIR=\"$RUNNER_TEMP\" \\\n  CI=true NODE_ENV=test SOAK_ALLOW_LIVE_RUN=0 \\\n  NODE_OPTIONS=\"--require=$RUNNER_TEMP/pillow-offline-guard.cjs\" \\\n  REDIS_OPTIONAL=true DATABASE_PATH=:memory: LOG_LEVEL=fatal \\\n  LIVE_CJ_FULFILLMENT_ENABLED=false LIVE_CJ_FULFILLMENT_MOCK=true \\\n  CJ_INTEGRATION_MODE=SANDBOX \\\n  npm run test:cj-receipt-safety \\\n  | tee \"$RUNNER_TEMP/pillow-cj-receipt-tests.tap\"\nnode --input-type=module - \"$RUNNER_TEMP/pillow-cj-receipt-tests.tap\" <<'NODE'\nimport assert from 'node:assert/strict';\nimport { readFileSync } from 'node:fs';\nconst output = readFileSync(process.argv[2], 'utf8');\nconst count = (name) => {\n  const match = output.match(new RegExp(`^(?:#|\u2139) ${name} (\\\\d+)$`, 'm'));\n  assert.ok(match, `Missing test summary: ${name}`);\n  return Number(match[1]);\n};\nassert.ok(count('tests') >= 116, 'All reviewed CJ receipt, authorization and unknown-cost regressions must execute');\nassert.equal(count('pass'), count('tests'), 'Every CJ regression must pass');\nfor (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {\n  assert.equal(count(kind), 0, `${kind} tests are not permitted`);\n}\nNODE\n",
+          "working-directory": "backend",
+          "historicalWorkflow": "pillow-semantic-repair-ci",
+          "historicalJob": "semantic-regressions"
+        },
+        {
+          "name": "Owner regression and certification readback tests (offline)",
+          "run": "node --import tsx --test src/validation/tests/pillow-owner-regression.test.ts src/validation/tests/reasoning-certification-readback.test.ts src/validation/tests/operational-state-metrics.test.ts",
+          "working-directory": "backend",
+          "historicalWorkflow": "pillow-semantic-repair-ci",
+          "historicalJob": "semantic-regressions"
+        },
+        {
+          "name": "Advanced Assurance deterministic resilience and reconciliation",
+          "run": "python3 ../scripts/work8/isolated-exec.py node --test src/validation/tests/assurance-observer-progress.test.mjs ../deployment/locked-observer-shutdown.test.cjs\nnode --import tsx --test src/validation/tests/assurance-readback.test.ts src/validation/tests/assurance-advisor-agent.test.ts src/validation/tests/evidence-reconciliation.test.ts src/validation/tests/investigation-resilience.test.ts src/validation/tests/advanced-assurance-runtime.test.ts src/validation/tests/assurance-functional-probes.test.ts\n",
+          "working-directory": "backend",
+          "env": {
+            "NODE_ENV": "test",
+            "REDIS_OPTIONAL": "true"
+          },
+          "historicalWorkflow": "pillow-semantic-repair-ci",
+          "historicalJob": "semantic-regressions"
+        }
+      ]
+    },
+    "assurance": {
+      "minutes": 20,
+      "scope": "Original94aa deterministic independent Assurance core; no correctedsource or actual operatinghealth claim.",
+      "pins": {
+        "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "primaryTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+      },
+      "setup": [],
+      "test": [
+        {
+          "name": "Deterministic independent Assurance exact historical core",
+          "run": "node --test deployment/runtime-revision.test.cjs\nnode --test --test-concurrency=1 deployment/locked-supervision.test.cjs deployment/launcher-loss-guard.test.cjs\nnode --test backend/src/validation/tests/assurance-passive-closure.test.mjs backend/src/validation/tests/assurance-recovery-freshness.test.mjs backend/src/validation/tests/assurance-deployment-verifier.test.mjs backend/src/validation/tests/assurance-control-plane.test.mjs\nnode backend/src/validation/tests/commissioning-operator.test.mjs\nnode backend/src/validation/tests/assurance-owner-evidence.test.mjs\nnode backend/src/validation/tests/assurance-current-state-provenance.test.mjs\nnode backend/src/validation/tests/independent-assurance.test.mjs\nnode backend/src/validation/tests/assurance-runtime-collector.test.mjs\nnode backend/src/validation/tests/assurance-live-sources.test.mjs\nnode backend/src/validation/tests/assurance-delivery-resolution.test.mjs\nnode backend/src/validation/tests/assurance-closure-health.test.mjs\nnode backend/src/validation/tests/assurance-capability-health.test.mjs\nnode backend/src/validation/tests/assurance-operating-scope.test.mjs\nnode backend/src/validation/tests/assurance-historical-provider.test.mjs\nnode backend/src/validation/tests/assurance-provider-storage.test.mjs\nnode backend/src/validation/tests/assurance-internal-collectors.test.mjs\nnode backend/src/validation/tests/assurance-supervisor.test.mjs\nnode backend/src/validation/tests/assurance-discrepancy-probe.test.mjs\nnode backend/src/validation/tests/omission-collector.test.mjs\n",
+          "historicalWorkflow": "independent-assurance",
+          "historicalJob": "deterministic-assurance"
+        },
+        {
+          "name": "Current schema readiness delta",
+          "run": "node --test backend/src/validation/tests/assurance-schema-readiness.test.mjs"
+        }
+      ]
+    },
+    "reasoning-admission": {
+      "minutes": 30,
+      "scope": "Current full-path reasoning-admission intercepted-provider corpus, not real owner/Birth/commerce acceptance.",
+      "pins": {
+        "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "primaryTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+      },
+      "setup": [
+        {
+          "name": "Download locked Pillow/backend packages without lifecycle scripts",
+          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix pillow\nnpm ci --ignore-scripts --no-audit --no-fund --prefix backend",
+          "working-directory": "."
+        }
+      ],
+      "test": [
+        {
+          "name": "Rebuild downloaded native dependencies offline and build linked Pillow",
+          "run": "npm rebuild --offline --build-from-source --prefix pillow\nnpm rebuild --offline --build-from-source --prefix backend\nnpm run build --prefix pillow",
+          "working-directory": "."
+        },
+        {
+          "name": "Verify typecheck and build exact backend",
+          "run": "npm run verify:env --prefix backend\nnpm run typecheck --prefix backend\nnpm run build --prefix backend\ntest -f backend/dist/runtime/native-store-capture-lock.cjs",
+          "working-directory": "."
+        },
+        {
+          "name": "Current exact full-path corpus reasoning-admission",
+          "run": "node --import ./backend/node_modules/tsx/dist/loader.mjs \"backend/scripts/$CORPUS-full-path.mjs\" \"$RUNNER_TEMP/$CORPUS-full-path.json\"",
+          "working-directory": ".",
+          "env": {
+            "CORPUS": "reasoning-admission"
+          }
+        },
+        {
+          "name": "Verify corpus complete provider/effect-free result",
+          "run": "node -e 'const f=require(\"node:fs\");const r=JSON.parse(f.readFileSync(process.env.RUNNER_TEMP+\"/\"+process.env.CORPUS+\"-full-path.json\"));if(r.result!==\"PASS\"||r.cases!==Number(process.env.EXPECTED_CASES)||r.externalConnections!==0||r.effectCalls!==0||r.paidInference!==0||r.productionStorageAccess!==false)throw Error(\"CORPUS_ACCEPTANCE_FAILED\");console.log(JSON.stringify(r));'",
+          "working-directory": ".",
+          "env": {
+            "CORPUS": "reasoning-admission",
+            "EXPECTED_CASES": "1950"
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "path": "ci-temp/{job}/reasoning-admission-full-path.json",
+          "name": "corpus-result.json"
+        }
+      ]
+    },
+    "response-delivery": {
+      "minutes": 30,
+      "scope": "Current full-path response-delivery intercepted-provider corpus, not real owner/Birth/commerce acceptance.",
+      "pins": {
+        "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "primaryTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+      },
+      "setup": [
+        {
+          "name": "Download locked Pillow/backend packages without lifecycle scripts",
+          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix pillow\nnpm ci --ignore-scripts --no-audit --no-fund --prefix backend",
+          "working-directory": "."
+        }
+      ],
+      "test": [
+        {
+          "name": "Rebuild downloaded native dependencies offline and build linked Pillow",
+          "run": "npm rebuild --offline --build-from-source --prefix pillow\nnpm rebuild --offline --build-from-source --prefix backend\nnpm run build --prefix pillow",
+          "working-directory": "."
+        },
+        {
+          "name": "Verify typecheck and build exact backend",
+          "run": "npm run verify:env --prefix backend\nnpm run typecheck --prefix backend\nnpm run build --prefix backend\ntest -f backend/dist/runtime/native-store-capture-lock.cjs",
+          "working-directory": "."
+        },
+        {
+          "name": "Current exact full-path corpus response-delivery",
+          "run": "node --import ./backend/node_modules/tsx/dist/loader.mjs \"backend/scripts/$CORPUS-full-path.mjs\" \"$RUNNER_TEMP/$CORPUS-full-path.json\"",
+          "working-directory": ".",
+          "env": {
+            "CORPUS": "response-delivery"
+          }
+        },
+        {
+          "name": "Verify corpus complete provider/effect-free result",
+          "run": "node -e 'const f=require(\"node:fs\");const r=JSON.parse(f.readFileSync(process.env.RUNNER_TEMP+\"/\"+process.env.CORPUS+\"-full-path.json\"));if(r.result!==\"PASS\"||r.cases!==Number(process.env.EXPECTED_CASES)||r.externalConnections!==0||r.effectCalls!==0||r.paidInference!==0||r.productionStorageAccess!==false)throw Error(\"CORPUS_ACCEPTANCE_FAILED\");console.log(JSON.stringify(r));'",
+          "working-directory": ".",
+          "env": {
+            "CORPUS": "response-delivery",
+            "EXPECTED_CASES": "1381"
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "path": "ci-temp/{job}/response-delivery-full-path.json",
+          "name": "corpus-result.json"
+        }
+      ]
+    },
+    "normal": {
+      "minutes": 25,
+      "scope": "Exact normal frontend typecheck/test/build and currentbackend-bound syntheticbrowser assertions; authentic ownerhistory not imported.",
+      "pins": {
+        "primary": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+        "primaryTree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+      },
+      "setup": [
+        {
+          "name": "Download current backend linked packages without lifecycle scripts",
+          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix pillow\nnpm ci --ignore-scripts --no-audit --no-fund --prefix backend",
+          "working-directory": "../backend-current"
+        },
+        {
+          "name": "Download frontend packages and exact Chromium tooling",
+          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix empireai-web\ncd empireai-web\nnpx --no-install playwright install chromium",
+          "working-directory": "."
+        }
+      ],
+      "test": [
+        {
+          "name": "Offline native dependency rebuild and linked backend Pillow setup",
+          "run": "npm rebuild --offline --build-from-source --prefix pillow\nnpm rebuild --offline --build-from-source --prefix backend\nnpm run build --prefix pillow",
+          "working-directory": "../backend-current"
+        },
+        {
+          "name": "Offline frontend native dependency rebuild",
+          "run": "npm rebuild --offline --build-from-source --prefix empireai-web",
+          "working-directory": "."
+        },
+        {
+          "name": "Typecheck Next.js web",
+          "run": "npm run typecheck --prefix empireai-web",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "empireai-web"
+        },
+        {
+          "name": "Build Next.js web",
+          "run": "npm run build --prefix empireai-web",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "empireai-web"
+        },
+        {
+          "name": "Run web tests with mandatory durable-delivery coverage",
+          "run": "set -euo pipefail\ntest -f lib/pillow/durable-delivery.test.ts\ntest -f lib/pillow/bff-chat-sanitize.test.ts\nnode --import tsx --test --test-reporter=tap 'lib/**/*.test.ts' \\\n  | tee \"$RUNNER_TEMP/pillow-web-tests.tap\"\nnode --input-type=module - \"$RUNNER_TEMP/pillow-web-tests.tap\" <<'NODE'\nimport assert from 'node:assert/strict';\nimport { readFileSync } from 'node:fs';\nconst output = readFileSync(process.argv[2], 'utf8');\nconst count = (name) => {\n  const match = output.match(new RegExp(`^# ${name} (\\\\d+)$`, 'm'));\n  assert.ok(match, `Missing TAP summary: ${name}`);\n  return Number(match[1]);\n};\nassert.ok(count('tests') > 0, 'Web tests must actually execute');\nassert.equal(count('pass'), count('tests'), 'Every web test must pass');\nfor (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {\n  assert.equal(count(kind), 0, `${kind} tests are not permitted`);\n}\nNODE\n",
+          "working-directory": "empireai-web",
+          "historicalWorkflow": "pillow-runtime-repair-ci",
+          "historicalJob": "durable-web"
+        },
+        {
+          "name": "Verify real phone browser login BFF backend and disk transaction",
+          "run": "node empireai-web/scripts/verify-commerce-browser.mjs",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "commerce-browser"
+        },
+        {
+          "name": "Examine authenticated source-context delivery on mobile and desktop",
+          "run": "node e2e/work8-source-context-native.mjs",
+          "working-directory": "empireai-web",
+          "env": {
+            "WORK8_A8_BACKEND_ROOT": "__BACKEND_ROOT__",
+            "WORK8_A8_OUT": "__CONTEXT_OUT__"
+          },
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "commerce-browser"
+        },
+        {
+          "name": "Examine Work8 two-stage media approval without live effects",
+          "run": "node empireai-web/e2e/work8-media-native.mjs",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "commerce-browser"
+        }
+      ],
+      "extraCheckouts": [
+        {
+          "path": "backend-current",
+          "sha": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+          "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+        }
+      ],
+      "backendAlias": true,
+      "evidence": [
+        {
+          "path": "ci-temp/{job}/source-context/receipt.json",
+          "name": "source-context-receipt.json"
+        },
+        {
+          "path": "ci-temp/{job}/source-context/source-identities.json",
+          "name": "source-context-identities.json"
+        }
+      ]
+    },
+    "recovery": {
+      "minutes": 25,
+      "scope": "Exact recovery frontend typecheck/test/build and currentbackend-bound syntheticbrowser assertions; authentic ownerhistory not imported.",
+      "pins": {
+        "primary": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+        "primaryTree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+      },
+      "setup": [
+        {
+          "name": "Download current backend linked packages without lifecycle scripts",
+          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix pillow\nnpm ci --ignore-scripts --no-audit --no-fund --prefix backend",
+          "working-directory": "../backend-current"
+        },
+        {
+          "name": "Download frontend packages and exact Chromium tooling",
+          "run": "npm ci --ignore-scripts --no-audit --no-fund --prefix empireai-web\ncd empireai-web\nnpx --no-install playwright install chromium",
+          "working-directory": "."
+        }
+      ],
+      "test": [
+        {
+          "name": "Offline native dependency rebuild and linked backend Pillow setup",
+          "run": "npm rebuild --offline --build-from-source --prefix pillow\nnpm rebuild --offline --build-from-source --prefix backend\nnpm run build --prefix pillow",
+          "working-directory": "../backend-current"
+        },
+        {
+          "name": "Offline frontend native dependency rebuild",
+          "run": "npm rebuild --offline --build-from-source --prefix empireai-web",
+          "working-directory": "."
+        },
+        {
+          "name": "Typecheck Next.js web",
+          "run": "npm run typecheck --prefix empireai-web",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "empireai-web"
+        },
+        {
+          "name": "Build Next.js web",
+          "run": "npm run build --prefix empireai-web",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "empireai-web"
+        },
+        {
+          "name": "Run web tests with mandatory durable-delivery coverage",
+          "run": "set -euo pipefail\ntest -f lib/pillow/durable-delivery.test.ts\ntest -f lib/pillow/bff-chat-sanitize.test.ts\nnode --import tsx --test --test-reporter=tap 'lib/**/*.test.ts' \\\n  | tee \"$RUNNER_TEMP/pillow-web-tests.tap\"\nnode --input-type=module - \"$RUNNER_TEMP/pillow-web-tests.tap\" <<'NODE'\nimport assert from 'node:assert/strict';\nimport { readFileSync } from 'node:fs';\nconst output = readFileSync(process.argv[2], 'utf8');\nconst count = (name) => {\n  const match = output.match(new RegExp(`^# ${name} (\\\\d+)$`, 'm'));\n  assert.ok(match, `Missing TAP summary: ${name}`);\n  return Number(match[1]);\n};\nassert.ok(count('tests') > 0, 'Web tests must actually execute');\nassert.equal(count('pass'), count('tests'), 'Every web test must pass');\nfor (const kind of ['fail', 'cancelled', 'skipped', 'todo']) {\n  assert.equal(count(kind), 0, `${kind} tests are not permitted`);\n}\nNODE\n",
+          "working-directory": "empireai-web",
+          "historicalWorkflow": "pillow-runtime-repair-ci",
+          "historicalJob": "durable-web"
+        },
+        {
+          "name": "Verify real phone browser login BFF backend and disk transaction",
+          "run": "node empireai-web/scripts/verify-commerce-browser.mjs",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "commerce-browser"
+        },
+        {
+          "name": "Examine authenticated source-context delivery on mobile and desktop",
+          "run": "node e2e/work8-source-context-native.mjs",
+          "working-directory": "empireai-web",
+          "env": {
+            "WORK8_A8_BACKEND_ROOT": "__BACKEND_ROOT__",
+            "WORK8_A8_OUT": "__CONTEXT_OUT__"
+          },
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "commerce-browser"
+        },
+        {
+          "name": "Examine Work8 two-stage media approval without live effects",
+          "run": "node empireai-web/e2e/work8-media-native.mjs",
+          "historicalWorkflow": "product-path-ci",
+          "historicalJob": "commerce-browser"
+        }
+      ],
+      "extraCheckouts": [
+        {
+          "path": "backend-current",
+          "sha": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+          "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+        }
+      ],
+      "backendAlias": true,
+      "evidence": [
+        {
+          "path": "ci-temp/{job}/source-context/receipt.json",
+          "name": "source-context-receipt.json"
+        },
+        {
+          "path": "ci-temp/{job}/source-context/source-identities.json",
+          "name": "source-context-identities.json"
+        }
+      ]
+    },
+    "prepared-assurance-proof": {
+      "minutes": 5,
+      "scope": "Prepared five-file Assurance correction on exact94aa base; Node22 controlled module/13domain proof only; not original candidate CI or production health",
+      "pins": {
+        "primary": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "primaryTree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+      },
+      "preparedCorrection": true,
+      "setup": [],
+      "test": [
+        {
+          "name": "Verify original base and exact prepared overlay, then independent isolated Assurance readback",
+          "run": "bash \"$WORK8_CI_CONTROLLER_ROOT/correction/apply-and-check.sh\" \"$PWD\" \"$RUNNER_TEMP/correction\"",
+          "working-directory": "."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "ci-temp/{job}/correction/controlled-fixture-proof.json",
+          "name": "controlled-fixture-proof.json"
+        }
+      ]
+    }
+  },
+  "remainingRequiredScopes": [
+    "Current exact package fault, held capture and extended runtime assertions F27/F29/HH3/HH4 need separate valid results or source-bound reuse; this selection does not claim them.",
+    "Authenticated original historical owner-record assertion remains unexecuted without valid current-boundary inheritance; no authentic owner-data import."
+  ],
+  "aggregateRule": "Adjudicate original eight current-candidate groups separately from the prepared Assurance correction. Each selected group needs PASS_SELECTED_SCOPE with no mandatory skip/cancel/todo; none establishes the whole original O42 or full Runtime/Product aggregate while listed scopes remain.",
+  "noReruns": true,
+  "noA5": true
+}

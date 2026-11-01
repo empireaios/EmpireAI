@@ -1,0 +1,64 @@
+{
+  "schema": "assurance-corrective-module-manifest-v1",
+  "baseCommit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+  "scope": "separate prepared-source correction; not original-candidate CI",
+  "files": [
+    {
+      "path": "deployment/assurance-discrepancy-readback.cjs",
+      "base": null,
+      "candidateSha256": "06458c2b2eecfda41708729c0d7ba4f19dc37c913a0c71e3f4e9d15049a3139f",
+      "candidateGitBlob": "2f6c36029d50026b9ec607460580d2671eb36d0f"
+    },
+    {
+      "path": "deployment/assurance-discrepancy-readback.test.mjs",
+      "base": null,
+      "candidateSha256": "c28340d9eee5850285e4f529ef4457d827dc119259034a436834c1f92e608be6",
+      "candidateGitBlob": "eb68c634f470db54e74d0e849603ba1331a214a0"
+    },
+    {
+      "path": "deployment/assurance-supervisor.cjs",
+      "base": {
+        "blob": "9fda1a98ad58dd5fc736ac0d37a9d89336c0288f",
+        "sha256": "9f001f2aa14a97bdd60de5c926fe814f6a6987988f1e72acfa3c6cedef291da6"
+      },
+      "candidateSha256": "e49baca21653562b3c00532907762027a4782473c14ba12b0d4fca9719daec21",
+      "candidateGitBlob": "bdccb6c601828e06349d6eeee408c7357d4316af"
+    },
+    {
+      "path": "backend/src/assurance/safe-discrepancy-probe.mjs",
+      "base": {
+        "blob": "bbeabe56b6530e39844537e8aa0d305bb86f4741",
+        "sha256": "54620f389deca4d04ca305f0c2ba5341820efbea45058aa7401c01ab032d1445"
+      },
+      "candidateSha256": "6fcead1d4f98579c0227a67dae53670a158cc7e42478f1cb507fee6f178801c7",
+      "candidateGitBlob": "3e44968a20e230c511492e6dbd06955b74d892fe"
+    },
+    {
+      "path": "backend/src/assurance/permanent-inspector.mjs",
+      "base": {
+        "blob": "d736a831944445d4ded3b0a4364863107d40ba0d",
+        "sha256": "6bbe358825941f1013d45c72a1047cc32249f6a5e924e0a67be2644f339d7ef2"
+      },
+      "candidateSha256": "1a8bac309c54188c35e0e3beaed4162a3fcd494f26399a6cb80facacdf22ba8a",
+      "candidateGitBlob": "bb21aeb0d4b00ab355fe0af3bae92d77d6946f0f"
+    }
+  ],
+  "unchangedNativeSource": {
+    "blob": "7678fc0332a8daea71f46b01803c29b2acb4ceb4",
+    "sha256": "2f17b9f9e6202ae78ea98ce2575f49b8d65d56c183c9460af98409c9254d541c"
+  },
+  "localRuntime": "v24.22.1",
+  "localPlatform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "localCompiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "localBinarySha256": "5636aee2e146708788397b65421e4ce94fe005b8127f41bd0f20b32f07885ccb",
+  "localBinaryClaim": "locally compiled fixture binary, not retained5048 binary or production compatibility",
+  "tests": 15,
+  "passed": 15,
+  "hostedRuntimeRequired": "v22.23.2",
+  "hostedWallTimeStopSeconds": 300,
+  "command": "bash assurance-correction-check.sh ABSOLUTE_CANDIDATE_ROOT ABSOLUTE_OUTPUT_DIR ABSOLUTE_CORRECTIVE_MANIFEST",
+  "wholeRowsAccepted": [],
+  "productionHealth": false,
+  "freshProcessRestart": false,
+  "entrypointLimitation": "Fixture spawnImpl uses dedicated fixture entrypoints. Actual supervisor/readback/core/inspector-cycle/native-filter execute; permanent-worker/permanent-inspector application startup is source-reviewed, not exercised."
+}

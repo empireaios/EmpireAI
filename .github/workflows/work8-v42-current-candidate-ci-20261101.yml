@@ -1,0 +1,93 @@
+name: Work8 V42 current candidate isolated CI 20261101
+on:
+  create:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: work8-v42-20261101-current-candidate-ci
+  cancel-in-progress: false
+jobs:
+  selected-current-candidate:
+    if: >-
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v42-20261101-current-candidate-ci' &&
+      github.run_attempt == 1 && github.run_number == 1
+    name: ${{ matrix.group }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: ${{ matrix.minutes }}
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - {group: contracts, minutes: 15, sha: '94aa919c7c39c4c9bf2c14b636232da028dba72d'}
+          - {group: backend, minutes: 45, sha: '94aa919c7c39c4c9bf2c14b636232da028dba72d'}
+          - {group: semantic, minutes: 30, sha: '94aa919c7c39c4c9bf2c14b636232da028dba72d'}
+          - {group: assurance, minutes: 20, sha: '94aa919c7c39c4c9bf2c14b636232da028dba72d'}
+          - {group: reasoning-admission, minutes: 30, sha: '94aa919c7c39c4c9bf2c14b636232da028dba72d'}
+          - {group: response-delivery, minutes: 30, sha: '94aa919c7c39c4c9bf2c14b636232da028dba72d'}
+          - {group: normal, minutes: 25, sha: '30002da6bb219fe16f6fd9c88109102d1d09e38d'}
+          - {group: recovery, minutes: 25, sha: 'a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232'}
+          - {group: prepared-assurance-proof, minutes: 5, sha: '94aa919c7c39c4c9bf2c14b636232da028dba72d'}
+    steps:
+      - name: Check out exact controller
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          path: controller
+          persist-credentials: false
+      - name: Check out immutable original candidate
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ matrix.sha }}
+          path: candidate
+          persist-credentials: false
+      - name: Check out exact normal source contract
+        if: matrix.group == 'contracts'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: '30002da6bb219fe16f6fd9c88109102d1d09e38d'
+          path: source-normal
+          persist-credentials: false
+      - name: Check out exact recovery source contract
+        if: matrix.group == 'contracts'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 'a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232'
+          path: source-recovery
+          persist-credentials: false
+      - name: Check out exact backend for isolated frontend fixtures
+        if: matrix.group == 'normal' || matrix.group == 'recovery'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: '94aa919c7c39c4c9bf2c14b636232da028dba72d'
+          path: backend-current
+          persist-credentials: false
+      - name: Set exact Node runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.23.2'
+      - name: Acquire only runner fixture and isolation tools
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install --yes --no-install-recommends redis-server libseccomp2 libseccomp-dev iproute2 build-essential
+      - name: Acquire locked dependencies without lifecycle scripts
+        run: python3 controller/scripts/work8/v42-ci/run.py --job '${{ matrix.group }}' --phase setup
+      - name: Execute selected assertions with no external network
+        run: python3 controller/scripts/work8/v42-ci/run.py --job '${{ matrix.group }}' --phase test
+      - name: Validate bounded evidence allowlist and restore fixture layout
+        id: collect
+        if: always()
+        run: python3 controller/scripts/work8/v42-ci/run.py --job '${{ matrix.group }}' --phase collect
+      - name: Retain validated result only
+        if: always() && steps.collect.outputs.allowed == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: work8-v42-${{ matrix.group }}-${{ github.run_id }}
+          path: ci-output/${{ matrix.group }}/
+          retention-days: 7
+          if-no-files-found: error
+          compression-level: 6
+          overwrite: false
