@@ -1,14 +1,14 @@
-name: Work 8 V30 bounded actual live Brain preflight
+name: Work 8 V31 bounded actual live Brain preflight
 on: create
 permissions:
   contents: read
   actions: read
 concurrency:
-  group: work8-v30-live-brain-preflight-20261101
+  group: work8-v31-native-brain-preflight-20261101
   cancel-in-progress: false
 jobs:
   preflight:
-    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v30-20261101-live-brain-preflight' && github.run_attempt == 1 && github.run_number == 1
+    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v31-20261101-native-brain-preflight' && github.run_attempt == 1 && github.run_number == 1
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -19,7 +19,7 @@ jobs:
           path: controller
           persist-credentials: false
       - name: Verify source, shared reservation and exact preflight authority
-        run: python3 controller/scripts/work8/native-transition/verify-v30-gate.py --preflight
+        run: python3 controller/scripts/work8/native-transition/verify-v31-gate.py --preflight
       - name: Read preserved immutable component pins
         id: pins
         run: |
@@ -51,7 +51,7 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: '1'
           CI: 'true'
-        run: python3 controller/scripts/work8/native-transition/examine-v26.py --preflight-v30-live-brain
+        run: python3 controller/scripts/work8/native-transition/run-native-examination.py --preflight-v31-native-brain
       - name: Gate only new sanitized evidence and enforce retained-artifact bounds
         id: upload
         if: always()
@@ -60,7 +60,7 @@ jobs:
         if: always() && steps.upload.outputs.allowed == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: work8-v30-live-brain-preflight-evidence-${{ github.sha }}-${{ github.run_id }}
+          name: work8-v31-native-brain-preflight-evidence-${{ github.sha }}-${{ github.run_id }}
           path: native-transition-output/
           if-no-files-found: error
           retention-days: 7

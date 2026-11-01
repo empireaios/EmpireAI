@@ -2,18 +2,19 @@
 """One fresh, bounded full-native distinct-version examination. No provider keys."""
 import hashlib, io, json, os, pathlib, re, secrets, shutil, subprocess, sys, tarfile, tempfile, time
 import candidate_packages
+from native_diagnostics import save_first,from_error,parse_stream,emit_fallback,sanitize,token
 from private_contract import backend_options,browser_options,private_write,safe_docker_contract
 
 ROOT=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve()
 SCRIPT=ROOT/'controller/scripts/work8/native-transition'
-PHASE=sys.argv[1] if len(sys.argv)==2 else '';assert PHASE in {'--preflight-v30-live-brain','--examine-v30-live-brain'},'EXPLICIT_EXAMINATION_PHASE_REQUIRED'
-PREFLIGHT=PHASE=='--preflight-v30-live-brain'
-BRANCH='work8/v30-20261101-live-brain'+('-preflight' if PREFLIGHT else '')
+PHASE=sys.argv[1] if len(sys.argv)==2 else '';assert PHASE in {'--preflight-v31-native-brain','--examine-v31-native-brain'},'EXPLICIT_EXAMINATION_PHASE_REQUIRED'
+PREFLIGHT=PHASE=='--preflight-v31-native-brain'
+BRANCH='work8/v31-20261101-native-brain'+('-preflight' if PREFLIGHT else '')
 OUT=ROOT/'native-transition-output';OUT.mkdir(exist_ok=True)
 PRIVATE=pathlib.Path(tempfile.mkdtemp(prefix='work8-native-transition-',dir=os.environ['RUNNER_TEMP']))
 MANIFEST=json.loads((SCRIPT/'components.json').read_text())
 LABEL='work8-native-'+os.environ['GITHUB_RUN_ID']
-NAMES={x:LABEL+'-'+x for x in ['backend','frontend','redis','anchor','browser']}
+NAMES={x:LABEL+'-'+x for x in ['backend','frontend','redis','anchor','browser','module']}
 NETWORK=LABEL+'-network';network_created=False;created=[];images={};generated=[];front_phase=None
 NODE='node:22.23.2-bookworm-slim@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9'
 REDIS='redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952'
@@ -42,9 +43,10 @@ def run(args,*,cwd=None,timeout=120,log=None,input=None):
  remaining=BUDGET['maximumSeconds']-(time.time()-BUDGET['startedAtEpoch'])-BUDGET['cleanupAndUploadReserveSeconds']
  r=subprocess.run(args,cwd=cwd,encoding=None if isinstance(input,bytes) else 'utf8',input=input,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=min(timeout,max(1,int(remaining))),check=False)
  output=r.stdout.decode(errors='replace') if isinstance(r.stdout,bytes) else r.stdout
- if log:(OUT/log).write_text(redact(output)[-1048576:])
+ if log:(OUT/log).write_text(json.dumps({'schema':'work8-v31-command-output-metadata-v1','exitCode':r.returncode,'rawOutputSha256':hashlib.sha256(output.encode()).hexdigest(),'safeFirstFailure':parse_stream(output),'rawOutputRetained':False},indent=2)+'\n')
  if r.returncode:
-  codes=re.findall(r'(?:Error(?: \[ERR_ASSERTION\])?|AssertionError(?: \[ERR_ASSERTION\])?): ([A-Z][A-Z0-9_:-]{3,160})(?::|\s|$)',output)
+  save_first(OUT,from_error(RuntimeError('COMMAND_FAILED'),stage,'EXECUTE_REVIEWED_COMMAND',output,r.returncode));emit_fallback(OUT)
+  codes=[token(x) for x in re.findall(r'(?:Error(?: \[ERR_ASSERTION\])?|AssertionError(?: \[ERR_ASSERTION\])?): ([A-Z][A-Z0-9_:-]{3,160})(?::|\s|$)',output)];codes=[x for x in codes if x!='UNKNOWN']
   if not (OUT/'command-first-failure.json').exists():(OUT/'command-first-failure.json').write_text(json.dumps({'stage':stage,'exitCode':r.returncode,'safeAssertionCodes':codes[:5],'rawOutputSha256':hashlib.sha256(output.encode()).hexdigest(),'arbitraryOutputRetained':False},indent=2)+'\n')
   raise RuntimeError('COMMAND_FAILED:'+args[0]+':'+stage+':'+str(r.returncode)+((':'+codes[0]) if codes else ''))
  return output
@@ -72,6 +74,12 @@ def capture_container_state(role,checkpoint,payload=None):
    payload=json.loads(response.stdout)[0]
   row=safe_container_state(role,payload,checkpoint);row.update(stage=stage,frontendPhase=front_phase)
   container_lifecycle.append(row)
+  causal=OUT/'first-native-failure.json'
+  if causal.is_file():
+   prior=sanitize(json.loads(causal.read_text()))
+   if prior['containerLifecycle']['role']==role:
+    prior['containerLifecycle']={k:row.get(k) for k in ['role','status','exitCode','oomKilled']}
+    causal.write_text(json.dumps(sanitize(prior),indent=2)+'\n')
   (OUT/'container-lifecycle.json').write_text(json.dumps({'schema':'work8-container-lifecycle-v1','snapshots':container_lifecycle,'rawInspectOrEnvironmentRetained':False},indent=2)+'\n')
  except Exception:result.setdefault('optionalDiagnosticUnavailable',[]).append('container-state:'+role)
 def sanitized_browser_stderr(text):
@@ -153,18 +161,18 @@ def start_front(role,phase):
  (PRIVATE/'evidence'/('frontend-listener-'+phase+'.json')).write_text(json.dumps(listener,indent=2))
 
 try:
- assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/'+BRANCH
- event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']==BRANCH
- assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1'
- assert run(['node','--version']).strip()=='v22.23.2'
- assert json.loads((OUT/'v30-source-gate.json').read_text())['status']==('PASS_INDEPENDENT_SOURCE_AND_LOCAL_LIVE_BRAIN_PREFLIGHT' if PREFLIGHT else 'PASS_INDEPENDENT_SOURCE_AND_HOSTED_LIVE_BRAIN_PREFLIGHT')
+ assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/'+BRANCH,'EXACT_BRANCH_CREATE_EVENT_REQUIRED'
+ event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']==BRANCH,'EXACT_BRANCH_EVENT_PAYLOAD_REQUIRED'
+ assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1','ONE_FIRST_RUN_ONLY'
+ assert run(['node','--version']).strip()=='v22.23.2','EXACT_HOST_NODE_VERSION_REQUIRED'
+ assert json.loads((OUT/'v31-source-gate.json').read_text())['status']==('PASS_INDEPENDENT_SOURCE_AND_LOCAL_LIVE_BRAIN_PREFLIGHT' if PREFLIGHT else 'PASS_INDEPENDENT_SOURCE_AND_HOSTED_LIVE_BRAIN_PREFLIGHT')
  assert json.loads((OUT/'retained-import-result.json').read_text())['status']==('PASS_RETAINED_BACKEND_LOADED_PREFLIGHT_READY' if PREFLIGHT else 'PASS_RETAINED_BYTES_LOADED_DRIVER_READY')
  for role in (['backend'] if PREFLIGHT else ['backend','normal','recovery']):
   entry=MANIFEST[role];source=ROOT/(role+'-source')
-  assert run(['git','rev-parse','HEAD'],cwd=source).strip()==entry['commit'];assert run(['git','rev-parse','HEAD^{tree}'],cwd=source).strip()==entry['tree']
+  assert run(['git','rev-parse','HEAD'],cwd=source).strip()==entry['commit'],'COMPONENT_SOURCE_COMMIT_CHANGED';assert run(['git','rev-parse','HEAD^{tree}'],cwd=source).strip()==entry['tree'],'COMPONENT_SOURCE_TREE_CHANGED'
   native='backend/src/runtime/commerce-runtime/governed/work8-twin-media.ts' if role=='backend' else 'empireai-web/components/owner/work8/TwinMedia.tsx'
   expected='05e726fc9a562e591384e94a54c80f76f0294c08' if role=='backend' else '1d9a398ad3d3951207c90f0b8125034bef361e27'
-  assert run(['git','rev-parse','HEAD:'+native],cwd=source).strip()==expected
+  assert run(['git','rev-parse','HEAD:'+native],cwd=source).strip()==expected,'ACCEPTED_COMPONENT_BLOB_CHANGED'
  assert MANIFEST['normal']['commit']!=MANIFEST['recovery']['commit']
  (OUT/'exact-components.json').write_text(json.dumps(MANIFEST,indent=2))
  if True:
@@ -274,11 +282,16 @@ try:
    assert inspect(NAMES['backend'])['State']['ExitCode']==0
    result.update(status='PASS_AWAITING_INDEPENDENT_TECHNICAL_REVIEW',distinctFrontendTransition=True,newerCommittedRecordsPreserved=True,canonicalBusinessData=True,wholeRowsAccepted=[],candidateBytes=candidate_packages.directory_bytes(ROOT/'native-transition-candidates'))
 except Exception as error:
- result['failedStage']=stage;result['error']=redact(str(error))[:500]
+ causal=PRIVATE/'evidence/first-native-failure.json'
+ if causal.is_file() and not causal.is_symlink() and causal.stat().st_size<=16384:
+  try:save_first(OUT,sanitize(json.loads(causal.read_text())))
+  except Exception:pass
+ save_first(OUT,from_error(error,stage,'EXAMINATION_ASSERTION'));emit_fallback(OUT)
+ result['failedStage']=stage;result['error']='SAFE_FIRST_CAUSAL_RECEIPT_RETAINED'
  if result['phaseAStatus']=='RUNNING':result['phaseAStatus']='FAIL'
  if getattr(error,'safe_handoff',None):(OUT/'host-private-handoff-first-failure.json').write_text(json.dumps(error.safe_handoff,indent=2)+'\n')
 finally:
- for role in ['backend','frontend','redis','anchor','browser']:capture_container_state(role,'before-cleanup')
+ for role in ['backend','frontend','redis','anchor','browser','module']:capture_container_state(role,'before-cleanup')
  stage='cleanup';cleanup_ok=True
  try:capture_frontend_origin()
  except Exception:result.setdefault('optionalDiagnosticUnavailable',[]).append('frontend-origin')
@@ -292,7 +305,10 @@ finally:
      stderr=sanitized_browser_stderr(log.stderr)
      (OUT/'browser-stderr-sanitized.json').write_text(json.dumps(stderr,indent=2)+'\n')
      (OUT/'browser-container.log').write_text(''.join('WORK8_BROWSER_DIAGNOSTIC '+json.dumps(row)+'\n' for row in stderr['diagnostics']))
-    else:(OUT/(role+'-container.log')).write_text(redact(log.stdout)[-1048576:])
+    else:
+     native=parse_stream(log.stdout)
+     if native:save_first(OUT,native)
+     (OUT/(role+'-container.log')).write_text(json.dumps({'schema':'work8-v31-container-output-metadata-v1','safeNativeFailure':native,'rawOutputSha256':hashlib.sha256(log.stdout.encode()).hexdigest(),'rawOutputRetained':False},indent=2)+'\n')
   except (subprocess.TimeoutExpired,OSError):result.setdefault('optionalDiagnosticUnavailable',[]).append(role)
  try:
   own=subprocess.run(['docker','ps','-aq','--filter','label=work8.native='+LABEL],stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,timeout=10,check=True).stdout.split()
@@ -309,7 +325,10 @@ finally:
  except:cleanup_ok=False
  for p in (PRIVATE/'evidence').glob('*') if (PRIVATE/'evidence').exists() else []:
   if p.is_file() and p.stat().st_size<2*1024*1024:
-   if p.suffix in ['.json','.log']: (OUT/p.name).write_text(redact(p.read_text()))
+   if p.name=='first-native-failure.json':
+    try:save_first(OUT,sanitize(json.loads(p.read_text())))
+    except Exception:result.setdefault('optionalDiagnosticUnavailable',[]).append('private-first-failure-invalid')
+   elif p.suffix in ['.json','.log']: (OUT/p.name).write_text(redact(p.read_text()))
    elif p.suffix=='.png':shutil.copyfile(p,OUT/p.name)
  result['temporaryContainersAndNetworkRemoved']=cleanup_ok
  if not cleanup_ok:result['status']='FAIL'
@@ -326,6 +345,6 @@ finally:
   if p.name=='artifact-index.json':continue
   assert p.is_file() and not p.is_symlink(),'NONREGULAR_ARTIFACT_REFUSED'
   index.append({'path':p.name,'bytes':p.stat().st_size,'sha256':hashlib.file_digest(p.open('rb'),'sha256').hexdigest()})
- (OUT/'artifact-index.json').write_text(json.dumps({'schema':'work8-bounded-upload-v1','exactGeneratedSecretCheck':True,'maxBytes':MAX_OUTPUT,'files':index},indent=2)+'\n')
+ (OUT/'artifact-index.json').write_text(json.dumps({'schema':'work8-bounded-upload-v1','exactGeneratedSecretCheck':True,'maxBytes':candidate_packages.MAX_BYTES,'stageMaximumArtifactBytes':MAX_OUTPUT,'files':index},indent=2)+'\n')
  assert output_bytes()<=MAX_OUTPUT-candidate_packages.ZIP_ENVELOPE_RESERVE,'TOTAL_PAYLOAD_BYTES_BOUND'
- if result['status'].startswith('FAIL'):raise SystemExit(1)
+ if result['status'].startswith('FAIL'):emit_fallback(OUT);raise SystemExit(1)

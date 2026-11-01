@@ -1,3 +1,4 @@
+import {emitNativeFailure} from '/examination/native-diagnostic.mjs';
 import { initializeAdmittedApplicationIfPresent, publishAdmittedApplicationReadyIfPresent } from './runtime/work8-admitted-application.js';
 import { initializeGeneratedWorkerIfRegistered, publishGeneratedWorkerReadyIfRegistered } from './runtime/work8-generated-worker-lifecycle.js';
 import { env } from "./config/env.js";
@@ -113,6 +114,7 @@ async function main() {
     await (await import('/examination/live-brain-hook.mjs')).installLiveBrainObservation(application);
 }
 main().catch((error) => {
+    emitNativeFailure(error, "NATIVE_APPLICATION_INITIALIZATION", "INITIALIZE_RETAINED_APPLICATION");
     logCaughtError(logger, error, "Failed to start EmpireAI Brain API");
     process.exit(1);
 });

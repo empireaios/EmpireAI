@@ -1,0 +1,369 @@
+{
+  "schema": "work8-v31-independent-source-gate-v1",
+  "stage": "preflight",
+  "branch": "work8/v31-20261101-native-brain-preflight",
+  "approved": true,
+  "status": "PASS_INDEPENDENT_SOURCE_AND_LOCAL_LIVE_BRAIN_PREFLIGHT",
+  "reviewer": "independent_v31",
+  "reviewedAtUTC": "2026-11-01T03:29:59.740851+00:00",
+  "parentCommit": "faf76ac292f7fcdcd7937b48ebaa6e8327bdfdf2",
+  "applicationBuilds": 0,
+  "candidateReuploads": 0,
+  "wholeRowsAccepted": [],
+  "localPreflight": {
+    "status": "PASS",
+    "receiptSha256": "1ce23e5869fcb3dde4ce7455c780f4b05c52da1d995aec37bcaa0095c1294a5f",
+    "scope": "REUSED_ACCEPTED_ACTUAL_RETAINED_SQLJS_MODULE_LIFECYCLE_ONLY; native UID/application integration remains required in bounded V31 preflight",
+    "checksPassed": 10,
+    "nativeApplicationCaptureIntegrationProven": false
+  },
+  "contract": {
+    "status": "PASS",
+    "method": "METHOD_B_GUARDED_CRITICAL_PERSISTENCE",
+    "sameInitializedCachedBrain": true,
+    "securityPolicyUnchanged": true,
+    "absentStoresInitialized": false,
+    "originalDeclaredStores": 13,
+    "isolatedCriticalPersistenceIsWrite": true,
+    "noWholeApplicationQuiescenceClaim": true,
+    "existingCaptureChain": [
+      "withDrainedWork8Background",
+      "TaskQueue.withPausedSharedProcessing",
+      "application.withDrainedLocalAdmission",
+      "withQuiescedSqliteSave"
+    ],
+    "pendingActualNativeProof": true
+  },
+  "acceptedPrivateHandoff": {
+    "runId": 41256737269,
+    "checksPassed": 25,
+    "receiptSha256": "1ea6434ced3b1977ef01e2a210e2e7eff473776499c2ffcf0794cb70ff6c1fe5",
+    "coreImplementationUnchanged": true,
+    "newExplicitExchangeNames": [
+      "capture-live-brain.json",
+      "live-brain-baseline.json",
+      "live-brain-captured.json"
+    ],
+    "independentReviewSha256": "c46d645a3dcec606946ce5a478d16207bda9dc3ad2a8c471dd1c189700db32e9"
+  },
+  "instrumentation": {
+    "readOnlyEntryOverlay": true,
+    "originalEntrySha256": "62cda9b7f8829056e877481f95e264a88d246336d1ef3f60aeaac7d66a0393f3",
+    "overlayEntrySha256": "4246473ab80cfdfed1823f8aabd899eeff8c4cee679182bbaf3f47584a63cb7d",
+    "files": [
+      {
+        "path": "scripts/work8/native-transition/accepted-v29-private-contract.json",
+        "bytes": 2135,
+        "sha256": "5b079637e09990c165b0d8db57e4fa1e9ada63291f980a5ca4a9a40cee8f12c1"
+      },
+      {
+        "path": "scripts/work8/native-transition/coordinator.mjs",
+        "bytes": 20682,
+        "sha256": "2542ace12ed61789d46f412cde8cef6fa3a292c83bafd1e66f7750ec520a89ee"
+      },
+      {
+        "path": "scripts/work8/native-transition/examine-v26.py",
+        "bytes": 34391,
+        "sha256": "b3a21ba5ad3fbb58db47101b4367a21cbb033e63338191712437dbff017ce35e"
+      },
+      {
+        "path": "scripts/work8/native-transition/independent-brain-readback.mjs",
+        "bytes": 2561,
+        "sha256": "8dd1e183293391938cdf4f4657fa1dd31af383bac41de08fdff644f1ba53b6d0"
+      },
+      {
+        "path": "scripts/work8/native-transition/live-brain-hook.mjs",
+        "bytes": 10886,
+        "sha256": "53ae9f68b0885a788f361d955b847285d9813ed9c8637f2c1775eeedb258afd4"
+      },
+      {
+        "path": "scripts/work8/native-transition/live-brain-index-overlay.js",
+        "bytes": 6287,
+        "sha256": "4246473ab80cfdfed1823f8aabd899eeff8c4cee679182bbaf3f47584a63cb7d"
+      },
+      {
+        "path": "scripts/work8/native-transition/live-brain-observation.mjs",
+        "bytes": 4952,
+        "sha256": "b35a488301e905dd5d3463d5a35512164b36de757fc7f3f988e481ffddf95a3d"
+      },
+      {
+        "path": "scripts/work8/native-transition/live-brain-overlay.json",
+        "bytes": 876,
+        "sha256": "db732e853eed242433b0cc943227ea40ebcc1b289229adc1c84787fcd31a811d"
+      },
+      {
+        "path": "scripts/work8/native-transition/live-brain-preflight.mjs",
+        "bytes": 12283,
+        "sha256": "1383d17abdc1a6f96d398fff570c72947e33f9bdce59318e224ccab153a1f2bb"
+      },
+      {
+        "path": "scripts/work8/native-transition/native-diagnostic-codes.json",
+        "bytes": 27736,
+        "sha256": "8c6be850a2a65921994f9b5c06ebca0a07c07d127deef0bad67d70d56ba85027"
+      },
+      {
+        "path": "scripts/work8/native-transition/native-diagnostic.mjs",
+        "bytes": 4673,
+        "sha256": "d0b8a861983fae20f559416ae0f507698e0d4481e77ebe7c45e132d1e82b6b52"
+      },
+      {
+        "path": "scripts/work8/native-transition/native_diagnostics.py",
+        "bytes": 5576,
+        "sha256": "3f0cdec3b81ba9cd10554d84ccc9632ea11d685f23c715c38a3ba1fdd13e2132"
+      },
+      {
+        "path": "scripts/work8/native-transition/private-exchanges.mjs",
+        "bytes": 2054,
+        "sha256": "f7f35aed49e73037110e388cdd6a63fb079cde339b595713aed8052771227461"
+      },
+      {
+        "path": "scripts/work8/native-transition/run-native-examination.py",
+        "bytes": 2872,
+        "sha256": "0bf0e6e9713756d1c5b72ea46e8b4707903fb410a28439a3f077297c9841a248"
+      },
+      {
+        "path": "scripts/work8/native-transition/whole-app-readback.mjs",
+        "bytes": 17226,
+        "sha256": "ad3eb8d0c6a025775d3884d29001db8c5b1412e71919df7197b7453112620b79"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": ".github/workflows/work8-v31-native-brain-preflight-20261101.yml",
+      "bytes": 3056,
+      "sha256": "be110ead2bc92c8adc645a36320381d685346d4fcffa145c5234190e31465b81"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 1365,
+      "sha256": "b438c52754ee0b9c1a9ab38baa0781245c17332516fc499ee0aca65a9442dc63"
+    },
+    {
+      "path": "scripts/work8/native-transition/accepted-v29-private-contract.json",
+      "bytes": 2135,
+      "sha256": "5b079637e09990c165b0d8db57e4fa1e9ada63291f980a5ca4a9a40cee8f12c1"
+    },
+    {
+      "path": "scripts/work8/native-transition/browser.mjs",
+      "bytes": 19902,
+      "sha256": "2d313b1933e9ae0885ac21c6c9edf7f3bc627245011a40fec1022b530350a2e3"
+    },
+    {
+      "path": "scripts/work8/native-transition/candidate_packages.py",
+      "bytes": 11261,
+      "sha256": "7a605ea3229e3cd2ea0aca062d719b829291d7775c8b526d39baca13de0186b0"
+    },
+    {
+      "path": "scripts/work8/native-transition/canonical-comparator.mjs",
+      "bytes": 13102,
+      "sha256": "f1f98c7200fd17883c2547486a8913e9bf0d055af0e810eec23db1dedf65cc16"
+    },
+    {
+      "path": "scripts/work8/native-transition/capture-canonical-persistence.mjs",
+      "bytes": 4624,
+      "sha256": "61ce4858f486d8c7b7005ccf0cef00a46c9c1da68a5a092666e0f41c690debdf"
+    },
+    {
+      "path": "scripts/work8/native-transition/components.json",
+      "bytes": 402,
+      "sha256": "1511f21cb02fe26e2b7a6322dc3f0a90ab8d56ff4de5e9d04aebe945e07b52c7"
+    },
+    {
+      "path": "scripts/work8/native-transition/coordinator.mjs",
+      "bytes": 20682,
+      "sha256": "2542ace12ed61789d46f412cde8cef6fa3a292c83bafd1e66f7750ec520a89ee"
+    },
+    {
+      "path": "scripts/work8/native-transition/examine-v26.py",
+      "bytes": 34391,
+      "sha256": "b3a21ba5ad3fbb58db47101b4367a21cbb033e63338191712437dbff017ce35e"
+    },
+    {
+      "path": "scripts/work8/native-transition/independent-brain-readback.mjs",
+      "bytes": 2561,
+      "sha256": "8dd1e183293391938cdf4f4657fa1dd31af383bac41de08fdff644f1ba53b6d0"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-hook.mjs",
+      "bytes": 10886,
+      "sha256": "53ae9f68b0885a788f361d955b847285d9813ed9c8637f2c1775eeedb258afd4"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-index-overlay.js",
+      "bytes": 6287,
+      "sha256": "4246473ab80cfdfed1823f8aabd899eeff8c4cee679182bbaf3f47584a63cb7d"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-observation.mjs",
+      "bytes": 4952,
+      "sha256": "b35a488301e905dd5d3463d5a35512164b36de757fc7f3f988e481ffddf95a3d"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-overlay.json",
+      "bytes": 876,
+      "sha256": "db732e853eed242433b0cc943227ea40ebcc1b289229adc1c84787fcd31a811d"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-preflight.mjs",
+      "bytes": 12283,
+      "sha256": "1383d17abdc1a6f96d398fff570c72947e33f9bdce59318e224ccab153a1f2bb"
+    },
+    {
+      "path": "scripts/work8/native-transition/native-diagnostic-codes.json",
+      "bytes": 27736,
+      "sha256": "8c6be850a2a65921994f9b5c06ebca0a07c07d127deef0bad67d70d56ba85027"
+    },
+    {
+      "path": "scripts/work8/native-transition/native-diagnostic.mjs",
+      "bytes": 4673,
+      "sha256": "d0b8a861983fae20f559416ae0f507698e0d4481e77ebe7c45e132d1e82b6b52"
+    },
+    {
+      "path": "scripts/work8/native-transition/native_diagnostics.py",
+      "bytes": 5576,
+      "sha256": "3f0cdec3b81ba9cd10554d84ccc9632ea11d685f23c715c38a3ba1fdd13e2132"
+    },
+    {
+      "path": "scripts/work8/native-transition/offline-commerce-readback.mjs",
+      "bytes": 17211,
+      "sha256": "ad0daa88235598eb7ecbaf1595fa04fb64301ab260abfabd2e0f6c978e465d8b"
+    },
+    {
+      "path": "scripts/work8/native-transition/offline-readback.mjs",
+      "bytes": 1861,
+      "sha256": "0e8cfa2093e632d14ed247573d3d8dae6925dd31bacee330a139cdf8786ab5da"
+    },
+    {
+      "path": "scripts/work8/native-transition/prepare-base-candidates.py",
+      "bytes": 11785,
+      "sha256": "4d7d8807e6554ef4fb61ff77f4b8d2cc7bfa34596a43624955d383757821a606"
+    },
+    {
+      "path": "scripts/work8/native-transition/private-exchanges.mjs",
+      "bytes": 2054,
+      "sha256": "f7f35aed49e73037110e388cdd6a63fb079cde339b595713aed8052771227461"
+    },
+    {
+      "path": "scripts/work8/native-transition/private-handoff.mjs",
+      "bytes": 14713,
+      "sha256": "7f45fb8350647a49063d70c6249e69e44e920b557884940c89aef7bb8f722aff"
+    },
+    {
+      "path": "scripts/work8/native-transition/private_contract.py",
+      "bytes": 6547,
+      "sha256": "dbe1ab78fdd4702e04ccc06658ecebfca5caff6f53a39e5a406a0eb878d21eae"
+    },
+    {
+      "path": "scripts/work8/native-transition/retained-components.json",
+      "bytes": 539,
+      "sha256": "4200228fd1a4469e652e1dc87a793ed1ed77d57bbc2506167211192380f62bb0"
+    },
+    {
+      "path": "scripts/work8/native-transition/retained-upload-preflight.py",
+      "bytes": 4639,
+      "sha256": "abb78ca57fe15e90297f14204369291449b3c5d127591a45a4d1dd98652a1072"
+    },
+    {
+      "path": "scripts/work8/native-transition/run-native-examination.py",
+      "bytes": 2872,
+      "sha256": "0bf0e6e9713756d1c5b72ea46e8b4707903fb410a28439a3f077297c9841a248"
+    },
+    {
+      "path": "scripts/work8/native-transition/upload-contract-selftest.py",
+      "bytes": 12147,
+      "sha256": "62d9e8472741a5e9dc599b5cf3dabec6afb814b544526decdc91364d6ac957b7"
+    },
+    {
+      "path": "scripts/work8/native-transition/upload-preflight.py",
+      "bytes": 2418,
+      "sha256": "9582affdb55540970c05cf9e720ae9aceea5c897a03f3235230aedc4e7ef1e32"
+    },
+    {
+      "path": "scripts/work8/native-transition/v30-full-source-gate.json",
+      "bytes": 164,
+      "sha256": "3ddfe8d71c67f6a8b42a77d06589a9eb3f75e714f801fd5028e7fc57535f248b"
+    },
+    {
+      "path": "scripts/work8/native-transition/v30-full-workflow.template.yml",
+      "bytes": 3659,
+      "sha256": "babe52b8abf09d354b17db844247762e4f36d9806ec8752b0c71b16698999070"
+    },
+    {
+      "path": "scripts/work8/native-transition/v30-hosted-preflight-acceptance.json",
+      "bytes": 235,
+      "sha256": "37940f5feca9e09abf010b0993abdd55a03f304b2b1dec3483ad23e5c4e4923d"
+    },
+    {
+      "path": "scripts/work8/native-transition/v30-preflight-source-gate.json",
+      "bytes": 10819,
+      "sha256": "272c219890bbf71c679086e343c8ced188b3204085ca749a80f7b3f5d04c57e1"
+    },
+    {
+      "path": "scripts/work8/native-transition/v31-full-source-gate.json",
+      "bytes": 137,
+      "sha256": "50620e5341a9afe4add3b2338c6eaddaaa4d94deca23c466c90afacea1442ecc"
+    },
+    {
+      "path": "scripts/work8/native-transition/v31-full-workflow.template.yml",
+      "bytes": 3678,
+      "sha256": "2456e4a20c3bfe3e5b67a5e4f56929c60525bd71c79d4c44469994baad92a202"
+    },
+    {
+      "path": "scripts/work8/native-transition/v31-hosted-preflight-acceptance.json",
+      "bytes": 169,
+      "sha256": "526afae36e8fe4b09f83ccb7d9c3aa49e099d847d1ee9b040cab1d57aabf8fb4"
+    },
+    {
+      "path": "scripts/work8/native-transition/v31-independent-local-preflight-review.json",
+      "bytes": 9136,
+      "sha256": "4cf52fae0e07fa7073e2562f98d6ea5dd37996e0126a6fc082f28373bb0a94f3"
+    },
+    {
+      "path": "scripts/work8/native-transition/v31-upload-contract-selftest.json",
+      "bytes": 15432,
+      "sha256": "13ddd6b4e66579e4913388f6fcb3b831610e940bf4a98ed764e90a1b6467432f"
+    },
+    {
+      "path": "scripts/work8/native-transition/verify-v30-gate.py",
+      "bytes": 12441,
+      "sha256": "74c08bd8a2975a0d924c5474fc36d4556707fe0dc15adc43e453b944c40ef152"
+    },
+    {
+      "path": "scripts/work8/native-transition/verify-v31-gate.py",
+      "bytes": 14632,
+      "sha256": "6c9bc672804347c9ed4dec3bb19d0e6a092645eab2676cd1f54d2e3a453f1228"
+    },
+    {
+      "path": "scripts/work8/native-transition/whole-app-readback.mjs",
+      "bytes": 17226,
+      "sha256": "ad3eb8d0c6a025775d3884d29001db8c5b1412e71919df7197b7453112620b79"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 1544,
+      "sha256": "d7e7515286236d82e634cb179dfee5412c34d151eccf43c1c6dc2559543ac39d"
+    }
+  ],
+  "requiredDeletions": [
+    ".github/workflows/work8-v30-live-brain-preflight-20261101.yml"
+  ],
+  "requiredAbsentPaths": [
+    ".github/workflows/work8-v31-native-brain-20261101.yml"
+  ],
+  "fullExaminationDispatchApproved": false,
+  "remotePublicationReadbackRequiredBeforeBranchCreation": true,
+  "limits": {
+    "jobMaximumMinutes": 10,
+    "businessTransitionPermitted": false,
+    "frontendStartupPermitted": false,
+    "maxRetainedArtifactBytes": 134217728,
+    "retentionDays": 7,
+    "sharedAdditionalReservationMaximumUSD": 0.5,
+    "aggregateReservationMaximumUSD": 5.35,
+    "automaticRetry": false
+  },
+  "preparedFullWorkRetainedInactive": true,
+  "uploadContractSelfTestSha256": "13ddd6b4e66579e4913388f6fcb3b831610e940bf4a98ed764e90a1b6467432f",
+  "independentLocalReviewSha256": "4cf52fae0e07fa7073e2562f98d6ea5dd37996e0126a6fc082f28373bb0a94f3"
+}

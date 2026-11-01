@@ -1,3 +1,4 @@
+import {emitNativeFailure,sanitizeNativeRecord} from './native-diagnostic.mjs';
 import {writeControlPrivate} from './private-exchanges.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -15,7 +16,9 @@ const {resolveRuntimeRevision}=require('/app/deployment/runtime-revision.cjs');
 const sha=x=>createHash('sha256').update(x).digest('hex'),pause=ms=>new Promise(r=>setTimeout(r,ms));
 const source=process.env.EXPECTED_BACKEND,deadline=Date.now()+600000,evidence='/evidence',control='/control';
 const receipt={schema:'work8-native-transition-runtime-v1',status:'FAIL',source,actualNativeApplication:false,productionAccess:false,wholeRowsAccepted:[]};
-let runtime,paths,output='',drained=false,lastHealth={},brainReady,brainCaptureDone=false;
+let runtime,paths,output='',drained=false,lastHealth={},brainReady,brainCaptureDone=false,causalStage='NATIVE_COORDINATOR_SETUP',firstNativeFailure=null,streamBuffer='';
+function retainFirst(value){if(firstNativeFailure)return;firstNativeFailure=sanitizeNativeRecord(value);write('first-native-failure.json',firstNativeFailure);console.error('WORK8_NATIVE_FIRST_FAILURE '+JSON.stringify(firstNativeFailure));}
+function consumeSafeDiagnostics(chunk){streamBuffer+=chunk;for(;;){const at=streamBuffer.indexOf('\n');if(at<0)break;const line=streamBuffer.slice(0,at);streamBuffer=streamBuffer.slice(at+1);const prefix='WORK8_NATIVE_FIRST_FAILURE ';if(line.startsWith(prefix)&&line.length<=16384){try{retainFirst(JSON.parse(line.slice(prefix.length)));}catch{}}}if(streamBuffer.length>16384)streamBuffer='';}
 const brainChannel='/data/work8-exam/native-transition/live-brain';
 const overlay=JSON.parse(fs.readFileSync('/examination/live-brain-overlay.json','utf8'));
 assert.equal(sha(fs.readFileSync('/app/backend/dist/index.js')),overlay.overlaySha256,'LIVE_BRAIN_INDEX_OVERLAY_CHANGED');
@@ -66,12 +69,13 @@ try{
 
  const env={PATH:'/usr/local/bin:/usr/bin:/bin',TMPDIR:p.temporary,VISUAL_MEMORY_STORAGE_ROOT:path.relative('/app',p.visual),SESSION_CONTINUITY_STORAGE_ROOT:path.relative('/app',p.session),EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',RAILWAY_VOLUME_MOUNT_PATH:p.volume,DATABASE_PATH:path.join(p.volume,'commissioning/empireai-brain.db'),RAILWAY_GIT_COMMIT_SHA:source,REDIS_URL:u.href,EMPIRE_LOCKED_REDIS_HOST:u.hostname,PORT:'43100',FOUNDER_EMAIL:'owner@work8.invalid',ADMIN_EMAIL:'admin@work8.invalid',FOUNDER_PASSWORD:process.env.FOUNDER_PASSWORD,ADMIN_PASSWORD:process.env.ADMIN_PASSWORD,SESSION_SECRET:process.env.SESSION_SECRET,WORK8_CONTROLLER_JOURNAL_PATH:paths.journal,WORK8_RUNTIME_UID:'65534',WORK8_RUNTIME_GID:'65534',WORK8_WRITER_ISOLATION_LIBRARY:'/native/runtime-writer-isolation.so',WORK8_WRITER_ISOLATION_SHA256:fs.readFileSync('/native/native.sha256','utf8').trim(),EMPIRE_GENERATION_DIRECTORY:p.authority,EMPIRE_GENERATION:generation,EMPIRE_CUTOVER_DIGEST:digest,EMPIRE_GENERATION_DEVICE:String(identity.dev),EMPIRE_GENERATION_INODE:String(identity.ino),EMPIRE_OWNER_WRITE_POLICY:'/run/empire-policy/control.json',INTELLIGENCE_ENABLED:'false',INTELLIGENCE_DISABLED:'true',CORS_ORIGIN:'http://localhost:43117'};
  write('native-storage-preflight.json',verifyStoragePreflight(p,env,source));
- const startupDeadline=Date.now()+210000;
+ causalStage='NATIVE_APPLICATION_SPAWN';const startupDeadline=Date.now()+210000;
  runtime=spawn(process.execPath,['/app/deployment/locked-runtime.cjs'],{env,stdio:['ignore','pipe','pipe']});
  write('last-startup-observation.json',{...startupMetadata(),startupDeadline:new Date(startupDeadline).toISOString(),phase:'spawned'});
- for(const stream of [runtime.stdout,runtime.stderr])stream.on('data',b=>{output+=b;fs.writeFileSync(path.join(evidence,'sanitized-runtime.log'),boundedText(safe(output)));if(Buffer.byteLength(output)>1048576){runtime.kill('SIGTERM');throw Error('DIAGNOSTIC_SIZE_BOUND');}});
+ for(const stream of [runtime.stdout,runtime.stderr])stream.on('data',b=>{output+=b;consumeSafeDiagnostics(b.toString('utf8'));if(Buffer.byteLength(output)>1048576){const failure=Error('DIAGNOSTIC_SIZE_BOUND');retainFirst(emitNativeFailure(failure,causalStage,'NATIVE_COORDINATOR_LIFECYCLE',{},'NATIVE_COORDINATOR'));runtime.kill('SIGTERM');throw failure;}});
+ causalStage='NATIVE_APPLICATION_READINESS';
  await until(async()=>{const [primary,worker]=await Promise.all([observeHealth(43100),observeHealth(43101)]);lastHealth={primary,worker};write('last-startup-observation.json',{...startupMetadata(),phase:'READINESS_POLL',startupDeadline:new Date(startupDeadline).toISOString(),...lastHealth});return primary.matched;},'ACTUAL_NATIVE_STARTUP_DEADLINE',startupDeadline);
- const expectedRoles=['assurance-inspector','assurance-worker','brain-worker','containment-guard','native-mission-lock-holder','primary','work8-domain-lock-holder'];
+ causalStage='NATIVE_MEMBERSHIP_CENSUS';const expectedRoles=['assurance-inspector','assurance-worker','brain-worker','containment-guard','native-mission-lock-holder','primary','work8-domain-lock-holder'];
  await until(()=>{write('last-startup-observation.json',{...startupMetadata(),phase:'ROLE_CENSUS',startupDeadline:new Date(startupDeadline).toISOString(),...lastHealth});try{return JSON.stringify(census().members.filter(m=>m.state!=='TERMINATED').map(m=>m.role).sort())===JSON.stringify(expectedRoles);}catch{return false;}},'ACTUAL_NATIVE_ROLE_STARTUP',startupDeadline);
  const members=census().members.filter(m=>m.state!=='TERMINATED');assert.deepEqual(members.map(m=>m.role).sort(),expectedRoles);
  assert.ok(members.every(m=>m.source===source&&m.generation===generation));
@@ -91,7 +95,7 @@ try{
  assert.equal(nativeStoragePropagation.length,2);
  for(const root of [p.visual,p.session]){const st=fs.lstatSync(root);assert.ok(st.isDirectory()&&!st.isSymbolicLink());assert.equal(fs.realpathSync(root),root);assert.equal(st.uid,65534);assert.equal(st.gid,65534);assert.equal(st.mode&0o022,0);}
  write('native-storage-child-bindings.json',{source,generation,roles:nativeStoragePropagation,actualNativeRootsPresent:true,fullEnvironmentRetained:false,wholeRowsAccepted:[]});
- const brainMember=members.find(m=>m.role==='brain-worker');assert.equal(brainMember.entrySha256,overlay.overlaySha256,'ADMITTED_BRAIN_ENTRY_OVERLAY_CHANGED');
+ causalStage='NATIVE_BRAIN_HOOK_READY';const brainMember=members.find(m=>m.role==='brain-worker');assert.equal(brainMember.entrySha256,overlay.overlaySha256,'ADMITTED_BRAIN_ENTRY_OVERLAY_CHANGED');
  await until(()=>fs.existsSync(path.join(brainChannel,'receipts/ready.json')),'LIVE_BRAIN_HOOK_READY_REQUIRED',startupDeadline);
  const readyPath=path.join(brainChannel,'receipts/ready.json'),readyStat=fs.lstatSync(readyPath);assert.equal(readyStat.uid,65534);assert.equal(readyStat.gid,65534);assert.equal(readyStat.mode&0o777,0o600);assert.ok(readyStat.size<=16384);
  brainReady=readNativeReceipt('ready.json',16384);assert.equal(brainReady.source,source);assert.equal(brainReady.generation,generation);assert.equal(brainReady.identity.pid,brainMember.pid);assert.equal(brainReady.identity.startTicks,String(brainMember.startTicks));assert.equal(brainReady.membershipId,brainMember.id);assert.equal(brainReady.entrySha256,overlay.overlaySha256);assert.equal(brainReady.actualApplicationInitialized,true);
@@ -100,21 +104,21 @@ try{
  write('actual-runtime-ready.json',{source,generation,volume:p.volume,redisRunId:redisIdentity.runId,actualNativeApplication:true,syntheticOwnerOnly:true});signal('runtime-ready.json');
  await until(async()=>{
   if(!brainCaptureDone&&fs.existsSync(path.join(control,'capture-live-brain.json'))){
-   brainCaptureDone=true;const command=JSON.parse(fs.readFileSync(path.join(control,'capture-live-brain.json'),'utf8'));assert.ok(['PREFLIGHT','BASELINE'].includes(command.mode));
+   causalStage='NATIVE_BRAIN_CAPTURE_REQUEST';brainCaptureDone=true;const command=JSON.parse(fs.readFileSync(path.join(control,'capture-live-brain.json'),'utf8'));assert.ok(['PREFLIGHT','BASELINE'].includes(command.mode));
    const request={schema:'work8-v30-live-brain-request-v1',requestId:randomUUID(),source,generation,mode:command.mode};
    const target=path.join(brainChannel,'requests/request.json'),pending=target+'.pending',fd=fs.openSync(pending,fs.constants.O_WRONLY|fs.constants.O_CREAT|fs.constants.O_EXCL|fs.constants.O_NOFOLLOW,0o600);
    try{fs.writeFileSync(fd,JSON.stringify(request));fs.fchmodSync(fd,0o440);fs.fsyncSync(fd);fs.fchownSync(fd,0,65534);}finally{fs.closeSync(fd);}fs.renameSync(pending,target);
    await until(()=>fs.existsSync(path.join(brainChannel,'receipts/capture.json'))||fs.existsSync(path.join(brainChannel,'receipts/channel-failure.json')),'LIVE_BRAIN_CAPTURE_COMPLETION_REQUIRED',Date.now()+60000);
-   if(fs.existsSync(path.join(brainChannel,'receipts/channel-failure.json'))){write('live-brain-channel-failure.json',readNativeReceipt('channel-failure.json',16384));throw Error('LIVE_BRAIN_PRIVATE_CHANNEL_FAILED');}
+   if(fs.existsSync(path.join(brainChannel,'receipts/channel-failure.json'))){const failure=readNativeReceipt('channel-failure.json',16384);retainFirst(failure);write('live-brain-channel-failure.json',sanitizeNativeRecord(failure));throw Error('LIVE_BRAIN_PRIVATE_CHANNEL_FAILED');}
    const capturedPath=path.join(brainChannel,'receipts/capture.json'),capturedStat=fs.lstatSync(capturedPath);assert.equal(capturedStat.uid,65534);assert.equal(capturedStat.gid,65534);assert.equal(capturedStat.mode&0o777,0o600);assert.ok(capturedStat.size<=1048576);
-   const captured=readNativeReceipt('capture.json');assert.equal(captured.requestId,request.requestId);assert.equal(captured.mode,command.mode);assert.deepEqual(captured.ready,brainReady);
+   const captured=readNativeReceipt('capture.json');if(captured.failure)retainFirst(captured.failure);assert.equal(captured.requestId,request.requestId);assert.equal(captured.mode,command.mode);assert.deepEqual(captured.ready,brainReady);
    const member=census().members.find(m=>m.role==='brain-worker'&&m.state!=='TERMINATED');assert.ok(member);const actual=processIdentity(member.pid);assert.ok(actual&&actual.startTicks===member.startTicks&&actual.state!=='Z');assert.equal(member.pid,brainReady.identity.pid);assert.equal(String(member.startTicks),brainReady.identity.startTicks);assert.equal(member.entrySha256,overlay.overlaySha256);
    const {capture,...safeCaptured}=captured;write('live-brain-capture.json',{...safeCaptured,capture:capture&&{...capture,logicalStore:undefined},independentMembershipMatched:true});
    const expected=command.mode==='PREFLIGHT'?'PASS_ACTUAL_NATIVE_LIVE_BRAIN_PREFLIGHT':'PASS_ACTUAL_LIVE_BRAIN_BASELINE';assert.equal(captured.status,expected,'LIVE_BRAIN_CAPTURE_FAILED');assert.equal(capture.attestation.sameCachedInstance,true);assert.equal(capture.attestation.runtimeGeneration,generation);assert.equal(capture.attestation.source,source);
    signal('live-brain-baseline.json',capture);signal('live-brain-captured.json',{status:expected,requestId:request.requestId,source,generation,entrySha256:overlay.overlaySha256,logicalStoreSha256:capture.attestation.logicalStoreSha256,schemaObjectsSha256:capture.attestation.schemaObjectsSha256});
   }
   return fs.existsSync(path.join(control,'stop-runtime.json'));
- },'TRANSITION_CONTROL_DEADLINE');assert.ok(brainCaptureDone,'LIVE_BRAIN_CAPTURE_REQUIRED_BEFORE_DRAIN');await drain();signal('runtime-drained.json',{volume:p.volume});
+ },'TRANSITION_CONTROL_DEADLINE');causalStage='NATIVE_ORDERLY_DRAIN';assert.ok(brainCaptureDone,'LIVE_BRAIN_CAPTURE_REQUIRED_BEFORE_DRAIN');await drain();signal('runtime-drained.json',{volume:p.volume});
  await until(()=>fs.existsSync(path.join(control,'readback-complete.json')),'INDEPENDENT_READBACK_DEADLINE');receipt.status='PASS_TECHNICAL_RUNTIME_ONLY';
-}catch(error){receipt.failure=String(error?.code||'RUNTIME_TRANSITION_FAILURE');receipt.safeMessage=safe(String(error)).slice(0,500);throw error;}
-finally{try{await drain();}catch{receipt.shutdownFailure=true;receipt.status='FAIL';}write('native-runtime-result.json',receipt);fs.writeFileSync(path.join(evidence,'sanitized-runtime.log'),boundedText(safe(output)));}
+}catch(error){if(!firstNativeFailure)retainFirst(emitNativeFailure(error,causalStage,'NATIVE_COORDINATOR_LIFECYCLE',{moduleInitialized:brainReady?true:null,applicationInitialized:receipt.actualNativeApplication===true?true:null,captureRequestReached:brainCaptureDone?true:null},'NATIVE_COORDINATOR'));receipt.failure=firstNativeFailure;throw error;}
+finally{try{await drain();}catch{receipt.shutdownFailure=true;receipt.status='FAIL';}write('native-runtime-result.json',receipt);fs.writeFileSync(path.join(evidence,'sanitized-runtime.log'),JSON.stringify({schema:'work8-v31-runtime-output-metadata-v1',rawOutputSha256:sha(output),rawOutputBytes:Buffer.byteLength(output),firstNativeFailure,rawOutputRetained:false})+'\n');}

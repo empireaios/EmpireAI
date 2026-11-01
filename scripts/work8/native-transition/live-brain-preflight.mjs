@@ -1,3 +1,4 @@
+import {emitNativeFailure,diagnosticState} from './native-diagnostic.mjs';
 // Bounded real-module preflight. No HTTP server, commerce route, provider, model,
 // or scheduler starts. The application's real getDatabase() initializes and
 // migrates its actual cached SQL.js instance; it is not a fabricated DB copy.
@@ -9,6 +10,7 @@ import {randomUUID} from 'node:crypto';
 import {observeLiveBrain, logicalLiveBrainStore, liveBrainSchemaSha256, canonicalJson, sha256} from './live-brain-observation.mjs';
 import {independentBrainReadback, assertBrainLogicalEquality} from './independent-brain-readback.mjs';
 
+process.on('uncaughtExceptionMonitor',error=>emitNativeFailure(error,'SQLJS_MODULE_SETUP','INITIALIZE_RETAINED_SQLJS_MODULE',diagnosticState,'SQLJS_MODULE_PREFLIGHT'));
 process.umask(0o077);
 const backend = path.resolve(process.argv[2] || '');
 const output = path.resolve(process.argv[3] || '');
@@ -53,7 +55,7 @@ try {
   const {withQuiescedSqliteSave} = await import(pathToFileURL(path.join(backend, 'dist/brain/quiesced-sqlite-save.js')).href);
   const {EmpireDatabase, getSqlitePersistStats} = await import(pathToFileURL(path.join(backend, 'dist/brain/sqlite-database.js')).href);
   activeCheck = 'ACTUAL_INITIALIZED_CACHED_BRAIN';
-  db = api.getDatabase();
+  db = api.getDatabase();diagnosticState.moduleInitialized=true;
   const readyAt = new Date().toISOString();
   const instanceId = randomUUID();
   assert.equal(api.getDatabase(), db);
@@ -81,7 +83,7 @@ try {
   let capture;
   activeCheck = 'AWAITED_FENCED_SAME_INSTANCE_PERSISTENCE';
   await withQuiescedSqliteSave(db, () => {
-    assert.equal(db.captureWriteFence, true);
+    assert.equal(db.captureWriteFence, true);diagnosticState.captureFenceAcquired=true;diagnosticState.persistenceCompleted=db.persistedRevision===db.mutationRevision;
     assert.equal(api.getDatabase(), db);
     assert.equal(db.mutationRevision, preRevision);
     assert.equal(db.persistedRevision, preRevision);
@@ -164,7 +166,7 @@ try {
   receipt.status = 'PASS_ACTUAL_SQLJS_MODULE_LIFECYCLE';
 } catch (error) {
   receipt.firstFailedAssertion = activeCheck;
-  receipt.safeFailure = safeFailure(error);
+  diagnosticState.captureFenceReleased=db?db.captureWriteFence===false:null;receipt.safeFailure = emitNativeFailure(error,activeCheck,'EXECUTE_REAL_MODULE_PREFLIGHT',diagnosticState,'SQLJS_MODULE_PREFLIGHT');
   process.exitCode = 1;
 } finally {
   try { if (db && !db.closed && !db.captureWriteFence) api.closeDatabase(); } catch (error) { receipt.cleanupFailure = safeFailure(error); process.exitCode = 1; }

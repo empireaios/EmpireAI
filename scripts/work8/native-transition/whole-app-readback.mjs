@@ -1,3 +1,4 @@
+import {emitNativeFailure} from './native-diagnostic.mjs';
 import {writeControlPrivate} from './private-exchanges.mjs';
 import {independentBrainReadback} from './independent-brain-readback.mjs';
 // Source-declared bounded, read-only logical inventory. No raw database rows leave this process.
@@ -128,4 +129,4 @@ try{
   receipt.unchangedNativeChildRoots=true;receipt.unchangedGenerationAuthority=true;receipt.originalBusinessAndStaticRowsPreserved=true;
  }
 receipt.status='PASS_DECLARED_DOMAIN_PRESERVATION_WITH_SEPARATE_DIAGNOSTIC_CLASSIFICATION';
-}catch(error){receipt.safeFailure={code:error?.code==='ERR_ASSERTION'?'WHOLE_APP_ASSERTION_FAILED':error?.code==='ERR_SQLITE_ERROR'?'WHOLE_APP_SQLITE_ERROR':'WHOLE_APP_READBACK_FAILED',sourceFrames:(String(error?.stack??'').match(/whole-app-readback\.mjs:\d+:\d+/g)??[]).slice(0,8),valuesWithheld:true};process.exitCode=1;}finally{fs.writeFileSync('/evidence/'+phase+'-whole-app-readback.json',JSON.stringify(receipt,null,2)+'\n');}
+}catch(error){receipt.safeFailure=emitNativeFailure(error,'WHOLE_APPLICATION_READBACK','COMPARE_DECLARED_CANONICAL_STATE',{},'INDEPENDENT_DATABASE_READER');process.exitCode=1;}finally{fs.writeFileSync('/evidence/'+phase+'-whole-app-readback.json',JSON.stringify(receipt,null,2)+'\n');}
