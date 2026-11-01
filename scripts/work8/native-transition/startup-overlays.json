@@ -1,0 +1,47 @@
+{
+  "schema": "work8-v32-startup-observation-overlays-v1",
+  "backendSource": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+  "backendImage": "sha256:abd6eb113ccf07678eba6f2386e9828afc029981e4d31bf266cd389b77d50d3e",
+  "files": [
+    {
+      "sourceFile": "observed-locked-runtime.cjs",
+      "target": "/app/deployment/locked-runtime.cjs",
+      "originalSha256": "e0a2067c02ac66f1aafda7c1ce845dc1c5f8052bd2be1ca035c450237c022bd2",
+      "overlaySha256": "6ba137982f4d6cb1aaf508b67e27a5feb4492ab224b08949dcf148b4c596da90",
+      "originalBytes": 8752,
+      "overlayBytes": 8978,
+      "originalRestoredExactlyAfterRemovingDiagnosticEdits": true
+    },
+    {
+      "sourceFile": "observed-launcher-loss-guard.cjs",
+      "target": "/app/deployment/launcher-loss-guard.cjs",
+      "originalSha256": "784553efa00db2bfbc09938dce88f3ea59e93b845df8bb4936f3c36fd04b982c",
+      "overlaySha256": "79e588f28c8ed2b431342bc767d85cb7903f74fbc10ab46ae56d8164c4769409",
+      "originalBytes": 4685,
+      "overlayBytes": 5001,
+      "originalRestoredExactlyAfterRemovingDiagnosticEdits": true
+    },
+    {
+      "sourceFile": "observed-runtime-writer-controller.cjs",
+      "target": "/app/deployment/runtime-writer-controller.cjs",
+      "originalSha256": "20df8940deaa92b760fa80576130bcedc8cdc75e96df4593dab33d0c16ee8777",
+      "overlaySha256": "8bce1714fc78082f66d2b1d6581fc957c2a4e069bb6a8d1c50f727a832ebda9e",
+      "originalBytes": 11646,
+      "overlayBytes": 11962,
+      "originalRestoredExactlyAfterRemovingDiagnosticEdits": true
+    },
+    {
+      "sourceFile": "observed-runtime-membership-bootstrap.mjs",
+      "target": "/app/deployment/runtime-membership-bootstrap.mjs",
+      "originalSha256": "84bd06b3cd85727cf8f48ee2668065361349323e5285429f63b90978b7856ea5",
+      "overlaySha256": "d7fd8190ab9260751bab338dfbad9d84fe936fc97363f6ca97b1d579233d7ff4",
+      "originalBytes": 3973,
+      "overlayBytes": 4275,
+      "originalRestoredExactlyAfterRemovingDiagnosticEdits": true
+    }
+  ],
+  "originalMembershipControllerSha256": "59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b",
+  "applicationImageRebuilt": false,
+  "securityDecisionsChanged": false,
+  "rawOutputRetained": false
+}

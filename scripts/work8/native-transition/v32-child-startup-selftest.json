@@ -1,0 +1,178 @@
+{
+  "schema": "work8-v32-child-startup-evidence-contract-selftest-v1",
+  "status": "PASS_CHILD_PARENT_ACTUAL_SCAN_AND_UPLOAD_GATE",
+  "nativeApplicationStarted": false,
+  "scope": "CONTROLLED_CHILD_FAILURES_NOT_HOSTED_NATIVE_ACCEPTANCE",
+  "childProcessReceipt": {
+    "path": "v32-continuation/native-diagnostics/child-process-selftest.json",
+    "bytes": 8002,
+    "sha256": "c77540d3e795279d168dd399422c7b266b53f509271d4872b0fed09823867581"
+  },
+  "childFixtures": 3,
+  "uploaderCases": [
+    {
+      "mode": "valid-protected-entrypoint",
+      "status": "PASS",
+      "actualScanGateRan": true,
+      "actualCanonicalUploaderGateRan": true,
+      "gateAllowed": true,
+      "firstCausalReceiptSha256": "aee7c48b4edf3c07d1bb99160c40cad30dda60fea2088a7cbb8e45b43d113404",
+      "originPidPreserved": true,
+      "firstCausalReceiptUnchanged": true,
+      "safeFallbackVerified": false,
+      "rawOutputRetained": false,
+      "actualPipelineInvoked": true,
+      "rejectionStage": null
+    },
+    {
+      "mode": "valid-system-errno",
+      "status": "PASS",
+      "actualScanGateRan": true,
+      "actualCanonicalUploaderGateRan": true,
+      "gateAllowed": true,
+      "firstCausalReceiptSha256": "645463f797143d4caa92cd616441eef8376cd8ff6cff13529f40e67b792d072f",
+      "originPidPreserved": true,
+      "firstCausalReceiptUnchanged": true,
+      "safeFallbackVerified": false,
+      "rawOutputRetained": false,
+      "actualPipelineInvoked": true,
+      "rejectionStage": null
+    },
+    {
+      "mode": "valid-untrusted-message",
+      "status": "PASS",
+      "actualScanGateRan": true,
+      "actualCanonicalUploaderGateRan": true,
+      "gateAllowed": true,
+      "firstCausalReceiptSha256": "3e13a8f9dfe72a8acba2afc87b1bd2028cee5557d30d4a24ef8f1703308a41d0",
+      "originPidPreserved": true,
+      "firstCausalReceiptUnchanged": true,
+      "safeFallbackVerified": false,
+      "rawOutputRetained": false,
+      "actualPipelineInvoked": true,
+      "rejectionStage": null
+    },
+    {
+      "mode": "secret-file",
+      "status": "PASS",
+      "actualScanGateRan": true,
+      "actualCanonicalUploaderGateRan": false,
+      "gateAllowed": false,
+      "firstCausalReceiptSha256": "aee7c48b4edf3c07d1bb99160c40cad30dda60fea2088a7cbb8e45b43d113404",
+      "originPidPreserved": true,
+      "firstCausalReceiptUnchanged": true,
+      "safeFallbackVerified": true,
+      "rawOutputRetained": false,
+      "actualPipelineInvoked": true,
+      "rejectionStage": "PRECEDING_SECRET_SCAN"
+    },
+    {
+      "mode": "invalid-index",
+      "status": "PASS",
+      "actualScanGateRan": true,
+      "actualCanonicalUploaderGateRan": true,
+      "gateAllowed": false,
+      "firstCausalReceiptSha256": "aee7c48b4edf3c07d1bb99160c40cad30dda60fea2088a7cbb8e45b43d113404",
+      "originPidPreserved": true,
+      "firstCausalReceiptUnchanged": true,
+      "safeFallbackVerified": true,
+      "rawOutputRetained": false,
+      "actualPipelineInvoked": true,
+      "rejectionStage": "CANONICAL_UPLOAD_GATE"
+    },
+    {
+      "mode": "sanitized-hostile-origin-metadata",
+      "status": "PASS",
+      "actualScanGateRan": true,
+      "actualCanonicalUploaderGateRan": true,
+      "gateAllowed": true,
+      "firstCausalReceiptSha256": "13d768d51d9bffaf83a007bb493c398cf2ff4e38cd83585f2d4911352c541140",
+      "originPidPreserved": true,
+      "firstCausalReceiptUnchanged": true,
+      "safeFallbackVerified": false,
+      "rawOutputRetained": false,
+      "actualPipelineInvoked": true,
+      "rejectionStage": null
+    }
+  ],
+  "sourceHashes": {
+    "child-startup-diagnostic.cjs": "81f0574a34aaf50abb697c1fc04ec327fbb0c72cb82da972322dda039ebb61cc",
+    "child-startup-fixture.cjs": "dff7437bf236651be45fffd19db8bf3d3a0b74b5866c350e61b684334c120b4b",
+    "child-startup-selftest.mjs": "427a6fc4f418b8c23bd6e1315a59559014bf3f458733e30b9e0685f3d3f671bb",
+    "child-diagnostic-collector.mjs": "f3c18e87181d8d1c46d438ecdcbb27fd8a05ec93c1e74e51e119ff198daa8102",
+    "native-diagnostic.mjs": "56c9cc230cf8b5a7897e11534ce67e328853a6400b0a9e62843f10dd1e863af1",
+    "native_diagnostics.py": "420dadf8e12de76f507e6d9b582b6a89c434fa147e28342a9958e35fb97a8398",
+    "native-diagnostic-codes.json": "66dda8de79c1da5b6a712b54e61d818fd5304484af2b5bb9b5383ac5269d7221",
+    "startup-overlays.json": "9eec1d028d909d6a227f6d0ff767db480b2acae2f0003f6aa7dd9a234b3c7cef",
+    "retained-upload-preflight.py": "0a673bd343930a7c002597c27d7ebf22c69288a15a33570866542b67ef9bf625",
+    "upload-preflight.py": "9582affdb55540970c05cf9e720ae9aceea5c897a03f3235230aedc4e7ef1e32",
+    "candidate_packages.py": "7a605ea3229e3cd2ea0aca062d719b829291d7775c8b526d39baca13de0186b0",
+    "coordinator.mjs": "a61e0b0f8c28da20b2b167f7465f8ad0204b59ca70851aca979b41f35cc312bf"
+  },
+  "unchangedPrevious29UploaderControlsReexecuted": false,
+  "rawFixtureValuesRetained": false,
+  "originalPrivateFileHandoffUnchanged": true,
+  "allPassed": true,
+  "sourceBindings": [
+    {
+      "path": "scripts/work8/native-transition/child-startup-diagnostic.cjs",
+      "bytes": 3614,
+      "sha256": "81f0574a34aaf50abb697c1fc04ec327fbb0c72cb82da972322dda039ebb61cc"
+    },
+    {
+      "path": "scripts/work8/native-transition/child-startup-fixture.cjs",
+      "bytes": 1561,
+      "sha256": "dff7437bf236651be45fffd19db8bf3d3a0b74b5866c350e61b684334c120b4b"
+    },
+    {
+      "path": "scripts/work8/native-transition/child-startup-selftest.mjs",
+      "bytes": 3848,
+      "sha256": "427a6fc4f418b8c23bd6e1315a59559014bf3f458733e30b9e0685f3d3f671bb"
+    },
+    {
+      "path": "scripts/work8/native-transition/child-diagnostic-collector.mjs",
+      "bytes": 1199,
+      "sha256": "f3c18e87181d8d1c46d438ecdcbb27fd8a05ec93c1e74e51e119ff198daa8102"
+    },
+    {
+      "path": "scripts/work8/native-transition/native-diagnostic.mjs",
+      "bytes": 5764,
+      "sha256": "56c9cc230cf8b5a7897e11534ce67e328853a6400b0a9e62843f10dd1e863af1"
+    },
+    {
+      "path": "scripts/work8/native-transition/native_diagnostics.py",
+      "bytes": 6637,
+      "sha256": "420dadf8e12de76f507e6d9b582b6a89c434fa147e28342a9958e35fb97a8398"
+    },
+    {
+      "path": "scripts/work8/native-transition/native-diagnostic-codes.json",
+      "bytes": 34572,
+      "sha256": "66dda8de79c1da5b6a712b54e61d818fd5304484af2b5bb9b5383ac5269d7221"
+    },
+    {
+      "path": "scripts/work8/native-transition/startup-overlays.json",
+      "bytes": 2202,
+      "sha256": "9eec1d028d909d6a227f6d0ff767db480b2acae2f0003f6aa7dd9a234b3c7cef"
+    },
+    {
+      "path": "scripts/work8/native-transition/retained-upload-preflight.py",
+      "bytes": 4639,
+      "sha256": "0a673bd343930a7c002597c27d7ebf22c69288a15a33570866542b67ef9bf625"
+    },
+    {
+      "path": "scripts/work8/native-transition/upload-preflight.py",
+      "bytes": 2418,
+      "sha256": "9582affdb55540970c05cf9e720ae9aceea5c897a03f3235230aedc4e7ef1e32"
+    },
+    {
+      "path": "scripts/work8/native-transition/candidate_packages.py",
+      "bytes": 11261,
+      "sha256": "7a605ea3229e3cd2ea0aca062d719b829291d7775c8b526d39baca13de0186b0"
+    },
+    {
+      "path": "scripts/work8/native-transition/coordinator.mjs",
+      "bytes": 20628,
+      "sha256": "a61e0b0f8c28da20b2b167f7465f8ad0204b59ca70851aca979b41f35cc312bf"
+    }
+  ]
+}

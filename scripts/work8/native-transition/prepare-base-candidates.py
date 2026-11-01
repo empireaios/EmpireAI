@@ -5,8 +5,8 @@ import candidate_packages
 
 REPOSITORY = 'empireaios/EmpireAI'
 STAGES = {
- 'preflight': {'branch':'work8/v31-20261101-native-brain-preflight','maximumSeconds':540,'cleanupReserve':60,'gateStatus':'PASS_INDEPENDENT_SOURCE_AND_LOCAL_LIVE_BRAIN_PREFLIGHT'},
- 'full': {'branch':'work8/v31-20261101-native-brain','maximumSeconds':1650,'cleanupReserve':120,'gateStatus':'PASS_INDEPENDENT_SOURCE_AND_HOSTED_LIVE_BRAIN_PREFLIGHT'},
+ 'preflight': {'branch':'work8/v32-20261101-native-brain-preflight','maximumSeconds':540,'cleanupReserve':60,'gateStatus':'PASS_INDEPENDENT_SOURCE_AND_LOCAL_LIVE_BRAIN_PREFLIGHT'},
+ 'full': {'branch':'work8/v32-20261101-native-brain','maximumSeconds':1650,'cleanupReserve':120,'gateStatus':'PASS_INDEPENDENT_SOURCE_AND_HOSTED_LIVE_BRAIN_PREFLIGHT'},
 }
 PRIOR_RUN = 41243779489
 PRIOR_CONTROLLER = '07517caaf1a355d9d3b552439815f6bb1fdb348f'
@@ -112,7 +112,7 @@ def prepare_driver(root,private):
 def main():
  assert len(sys.argv)==2 and sys.argv[1] in {'--preflight','--full'},'EXPLICIT_RETAINED_IMPORT_STAGE_REQUIRED'
  mode=sys.argv[1][2:];limits=STAGES[mode]
- root=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve();out=root/'native-transition-output';out.mkdir(exist_ok=True);budget=json.loads((out/'workflow-budget.json').read_text());assert budget['maximumSeconds']==limits['maximumSeconds'] and budget['cleanupAndUploadReserveSeconds']==limits['cleanupReserve'];assert budget['reservationId']=='work8-v31-native-brain-20261101' and budget['aggregateReservedUSD']==5.35;assert json.loads((out/'v31-source-gate.json').read_text())['status']==limits['gateStatus'];stage='event-authority';result={'status':'FAIL','mode':mode,'productionAccess':False,'buildsRepeated':False,'broadBuildScansRepeated':False}
+ root=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve();out=root/'native-transition-output';out.mkdir(exist_ok=True);budget=json.loads((out/'workflow-budget.json').read_text());assert budget['maximumSeconds']==limits['maximumSeconds'] and budget['cleanupAndUploadReserveSeconds']==limits['cleanupReserve'];assert budget['reservationId']=='work8-v32-native-brain-20261101' and budget['aggregateReservedUSD']==5.85;assert json.loads((out/'v32-source-gate.json').read_text())['status']==limits['gateStatus'];stage='event-authority';result={'status':'FAIL','mode':mode,'productionAccess':False,'buildsRepeated':False,'broadBuildScansRepeated':False}
  def capacity():
   remaining=budget['maximumSeconds']-(time.time()-budget['startedAtEpoch'])-budget['cleanupAndUploadReserveSeconds']
   assert remaining>0,'RETAINED_IMPORT_TIME_BOUND'

@@ -4,12 +4,13 @@ import hashlib, io, json, os, pathlib, re, secrets, shutil, subprocess, sys, tar
 import candidate_packages
 from native_diagnostics import save_first,from_error,parse_stream,emit_fallback,sanitize,token
 from private_contract import backend_options,browser_options,private_write,safe_docker_contract
+from entrypoint_contract import execute as verify_mounted_entrypoints
 
 ROOT=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve()
 SCRIPT=ROOT/'controller/scripts/work8/native-transition'
-PHASE=sys.argv[1] if len(sys.argv)==2 else '';assert PHASE in {'--preflight-v31-native-brain','--examine-v31-native-brain'},'EXPLICIT_EXAMINATION_PHASE_REQUIRED'
-PREFLIGHT=PHASE=='--preflight-v31-native-brain'
-BRANCH='work8/v31-20261101-native-brain'+('-preflight' if PREFLIGHT else '')
+PHASE=sys.argv[1] if len(sys.argv)==2 else '';assert PHASE in {'--preflight-v32-native-brain','--examine-v32-native-brain'},'EXPLICIT_EXAMINATION_PHASE_REQUIRED'
+PREFLIGHT=PHASE=='--preflight-v32-native-brain'
+BRANCH='work8/v32-20261101-native-brain'+('-preflight' if PREFLIGHT else '')
 OUT=ROOT/'native-transition-output';OUT.mkdir(exist_ok=True)
 PRIVATE=pathlib.Path(tempfile.mkdtemp(prefix='work8-native-transition-',dir=os.environ['RUNNER_TEMP']))
 MANIFEST=json.loads((SCRIPT/'components.json').read_text())
@@ -165,7 +166,7 @@ try:
  event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']==BRANCH,'EXACT_BRANCH_EVENT_PAYLOAD_REQUIRED'
  assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1','ONE_FIRST_RUN_ONLY'
  assert run(['node','--version']).strip()=='v22.23.2','EXACT_HOST_NODE_VERSION_REQUIRED'
- assert json.loads((OUT/'v31-source-gate.json').read_text())['status']==('PASS_INDEPENDENT_SOURCE_AND_LOCAL_LIVE_BRAIN_PREFLIGHT' if PREFLIGHT else 'PASS_INDEPENDENT_SOURCE_AND_HOSTED_LIVE_BRAIN_PREFLIGHT')
+ assert json.loads((OUT/'v32-source-gate.json').read_text())['status']==('PASS_INDEPENDENT_SOURCE_AND_LOCAL_LIVE_BRAIN_PREFLIGHT' if PREFLIGHT else 'PASS_INDEPENDENT_SOURCE_AND_HOSTED_LIVE_BRAIN_PREFLIGHT')
  assert json.loads((OUT/'retained-import-result.json').read_text())['status']==('PASS_RETAINED_BACKEND_LOADED_PREFLIGHT_READY' if PREFLIGHT else 'PASS_RETAINED_BYTES_LOADED_DRIVER_READY')
  for role in (['backend'] if PREFLIGHT else ['backend','normal','recovery']):
   entry=MANIFEST[role];source=ROOT/(role+'-source')
@@ -187,20 +188,12 @@ try:
   reused_handoff={'schema':'work8-v30-reused-private-handoff-v1','runId':41256737269,'controller':'deb35b6b70e4c6aa95fe7a587483fa654a26cdbe','acceptedChecks':25,'repeatedChecks':0,'receiptSha256':'1ea6434ced3b1977ef01e2a210e2e7eff473776499c2ffcf0794cb70ff6c1fe5','independentReviewSha256':'c46d645a3dcec606946ce5a478d16207bda9dc3ad2a8c471dd1c189700db32e9','newExchangeNames':['capture-live-brain.json','live-brain-baseline.json','live-brain-captured.json'],'coreHandoffUnchanged':True}
   (OUT/'reused-private-handoff.json').write_text(json.dumps(reused_handoff,indent=2)+'\n')
   result['phaseAStatus']='NATIVE_LIVE_BRAIN_PREFLIGHT_PENDING' if PREFLIGHT else 'INDEPENDENT_HOSTED_LIVE_BRAIN_PREFLIGHT_ACCEPTED'
+  stage='original-mounted-entrypoint-contract-before-startup'
+  operator_mounts=verify_mounted_entrypoints(PRIVATE,SCRIPT,images['backend'],LABEL,run,inspect,created,OUT)
   if PREFLIGHT:
-   stage='actual-writer-module-live-brain-preflight'
-   module_output=PRIVATE/'module-preflight';module_output.mkdir(mode=0o700)
-   run(['sudo','-n','chown','65534:65534',str(module_output)])
-   module_name=LABEL+'-module';created.append(module_name)
-   module_cmd=['docker','run','--name',module_name,'--label','work8.native='+LABEL,'--network','none','--read-only','--user','65534:65534','--cap-drop','ALL','--security-opt','no-new-privileges','--memory','1g','--cpus','1','--pids-limit','32','--tmpfs','/tmp:rw,noexec,nosuid,nodev,uid=65534,gid=65534,mode=0700,size=16m','--mount','type=bind,src='+str(SCRIPT)+',dst=/examination,readonly','--mount','type=bind,src='+str(module_output)+',dst=/live-brain/module','--entrypoint','node',images['backend'],'/examination/live-brain-preflight.mjs','/app/backend','/live-brain/module']
-   module_error=None
-   try:run(module_cmd,timeout=60,log='live-brain-module-preflight.log')
-   except Exception as error:module_error=error
-   module_receipt=json.loads(run(['sudo','-n','cat',str(module_output/'preflight-receipt.json')]))
-   (OUT/'live-brain-module-preflight.json').write_text(json.dumps(module_receipt,indent=2)+'\n')
-   if module_error:raise module_error
-   assert module_receipt['status']=='PASS_ACTUAL_SQLJS_MODULE_LIFECYCLE' and len(module_receipt['checks'])==10 and module_receipt['exactHostedWriterIdentityProven'] is True
-   assert module_receipt['identities']['uid']==65534 and module_receipt['identities']['gid']==65534 and module_receipt['identities']['capEff']=='0000000000000000' and module_receipt['identities']['noNewPrivs']=='1'
+   reused_module=json.loads((SCRIPT/'v32-reused-module-preflight.json').read_text())
+   assert reused_module['status']=='PASS_ACTUAL_SQLJS_MODULE_LIFECYCLE' and len(reused_module['checks'])==10
+   (OUT/'accepted-module-preflight-reused.json').write_text(json.dumps({'schema':'work8-v32-reused-module-proof-v1','runId':41269718274,'checks':10,'repeated':False,'receiptSha256':hashlib.sha256((SCRIPT/'v32-reused-module-preflight.json').read_bytes()).hexdigest(),'nativeApplicationProofRequiredSeparately':True},indent=2)+'\n')
    assert time.time()-BUDGET['startedAtEpoch']<BUDGET['maximumSeconds']-290,'INSUFFICIENT_NATIVE_PREFLIGHT_CAPACITY'
   else:
    run(['docker','pull',BROWSER],timeout=180)
@@ -216,14 +209,15 @@ try:
   for image in ([REDIS] if PREFLIGHT else [NODE,REDIS]):run(['docker','pull',image],timeout=120)
   run(['docker','run','-d','--name',NAMES['redis'],'--label','work8.native='+LABEL,'--network',NETWORK,'--network-alias','transition-redis','--memory','128m','--cpus','0.5','--pids-limit','64','--read-only','--user','999:999','--cap-drop','ALL','--security-opt','no-new-privileges','--tmpfs','/data:rw,noexec,nosuid,size=32m','--mount','type=bind,src='+str(PRIVATE/'redis.conf')+',dst=/redis.conf,readonly',REDIS,'redis-server','/redis.conf']);created.append(NAMES['redis'])
   if not PREFLIGHT:run(['docker','run','-d','--name',NAMES['anchor'],'--label','work8.native='+LABEL,'--network',NETWORK,'--memory','64m','--cpus','0.1','--pids-limit','32','--read-only','--cap-drop','ALL','--security-opt','no-new-privileges',NODE,'node','-e','setTimeout(()=>process.exit(0),650000)']);created.append(NAMES['anchor'])
-  cmd=['docker','run','-d','--name',NAMES['backend'],'--label','work8.native='+LABEL,'--network',NETWORK,'--network-alias','native-backend','--memory','5g','--cpus','2','--pids-limit','256',*backend_options(PRIVATE,SCRIPT),'--env-file',str(PRIVATE/'backend.env'),'--mount','type=bind,src='+str(SCRIPT/'live-brain-index-overlay.js')+',dst=/app/backend/dist/index.js,readonly']
+  cmd=['docker','run','-d','--name',NAMES['backend'],'--label','work8.native='+LABEL,'--network',NETWORK,'--network-alias','native-backend','--memory','5g','--cpus','2','--pids-limit','256',*backend_options(PRIVATE,SCRIPT),'--env-file',str(PRIVATE/'backend.env')]
+  for overlay_source,overlay_target in operator_mounts:cmd+=['--mount','type=bind,src='+str(overlay_source)+',dst='+overlay_target+',readonly']
   cmd+=['--entrypoint','timeout',images['backend'],'--signal=KILL','650s','node','/examination/coordinator.mjs'];run(cmd);created.append(NAMES['backend'])
-  live_contract={'schema':'work8-v30-private-contract-v1','acceptedHandoffReused':True,'onlyAddedApplicationMount':'/app/backend/dist/index.js','backend':safe_docker_contract(inspect(NAMES['backend']))}
+  live_contract={'schema':'work8-v30-private-contract-v1','acceptedHandoffReused':True,'onlyAddedApplicationMounts':[dest for _,dest in operator_mounts],'backend':safe_docker_contract(inspect(NAMES['backend']))}
   assert live_contract['backend']['user']=='0:0' and live_contract['backend']['readOnlyRootfs'] is True and live_contract['backend']['privileged'] is False
   accepted_private_contract=json.loads((SCRIPT/'accepted-v29-private-contract.json').read_text())
-  underlying_contract={**live_contract['backend'],'mounts':[m for m in live_contract['backend']['mounts'] if m['destination']!='/app/backend/dist/index.js']}
+  underlying_contract={**live_contract['backend'],'mounts':[m for m in live_contract['backend']['mounts'] if m['destination'] not in {dest for _,dest in operator_mounts}]}
   assert underlying_contract==accepted_private_contract['backend'],'ACCEPTED_PRIVATE_BACKEND_CONTRACT_CHANGED'
-  assert next(m for m in live_contract['backend']['mounts'] if m['destination']=='/app/backend/dist/index.js')['rw'] is False
+  assert all(next(m for m in live_contract['backend']['mounts'] if m['destination']==dest)['rw'] is False for _,dest in operator_mounts)
   (OUT/'phase-b-private-contract.json').write_text(json.dumps(live_contract,indent=2)+'\n')
   stage='actual-runtime-start';marker('runtime-ready.json',timeout=245)
   meta=inspect(NAMES['backend']);assert not meta['HostConfig']['PortBindings'];assert next(m for m in meta['Mounts'] if m['Destination']=='/run/empire-policy')['RW'] is False
@@ -251,7 +245,7 @@ try:
    run(['docker','run','-d','--name',NAMES['browser'],'--label','work8.native='+LABEL,'--network','container:'+NAMES['anchor'],'--memory','2g','--cpus','1','--pids-limit','128','--shm-size','256m',*browser_options(PRIVATE,SCRIPT,ROOT/'native-transition-driver'),'--env-file',str(PRIVATE/'browser.env'),'--entrypoint','timeout',BROWSER,'--signal=KILL','500s','node','/examination/browser.mjs']);created.append(NAMES['browser'])
    live_contract['browser']=safe_docker_contract(inspect(NAMES['browser']))
    assert live_contract['browser']==accepted_private_contract['browser'],'ACCEPTED_PRIVATE_BROWSER_CONTRACT_CHANGED'
-   live_contract['status']='PASS_ACCEPTED_PRIVATE_CONTRACT_WITH_REVIEWED_READONLY_INDEX_OVERLAY';(OUT/'phase-b-private-contract.json').write_text(json.dumps(live_contract,indent=2)+'\n')
+   live_contract['status']='PASS_ACCEPTED_PRIVATE_CONTRACT_WITH_REVIEWED_READONLY_STARTUP_OBSERVERS';(OUT/'phase-b-private-contract.json').write_text(json.dumps(live_contract,indent=2)+'\n')
    # Container Date.now observations use the same kernel realtime clock; no clock changes.
    clock_ids={}
    for role in ['backend','browser']:

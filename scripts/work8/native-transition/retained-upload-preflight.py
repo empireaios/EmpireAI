@@ -30,7 +30,7 @@ try:
  budget_path=root/'workflow-budget.json';budget_stat=budget_path.lstat()
  assert stat.S_ISREG(budget_stat.st_mode) and budget_stat.st_nlink==1 and not budget_path.is_symlink() and budget_stat.st_size<=16384,'WORKFLOW_BUDGET_METADATA_REFUSED'
  budget=json.loads(budget_path.read_text())
- assert budget['reservationId']=='work8-v31-native-brain-20261101','RESERVATION_ID_REFUSED'
+ assert budget['reservationId']=='work8-v32-native-brain-20261101','RESERVATION_ID_REFUSED'
  prior=budget['priorStageRetainedArtifactBytes']
  assert type(prior) is int and 0<=prior<MAX_PAYLOAD_BYTES,'PRIOR_STAGE_ARTIFACT_BYTES_UNVERIFIED'
  stage_limit=budget['stageMaximumArtifactBytes']

@@ -1,0 +1,140 @@
+{
+  "schema": "work8-v30-live-brain-preflight-v1",
+  "status": "PASS_ACTUAL_SQLJS_MODULE_LIFECYCLE",
+  "scope": "ACTUAL_RETAINED_SQLJS_MODULE_LIFECYCLE_WITHOUT_APPLICATION_STARTUP",
+  "nativeApplicationCaptureIntegrationProven": false,
+  "exactHostedWriterIdentityProven": true,
+  "node": "v22.23.2",
+  "startedAt": "2026-11-01T03:35:33.591Z",
+  "identities": {
+    "pid": 1,
+    "uid": 65534,
+    "gid": 65534,
+    "groups": [
+      65534
+    ],
+    "capEff": "0000000000000000",
+    "capPrm": "0000000000000000",
+    "capBnd": "0000000000000000",
+    "noNewPrivs": "1"
+  },
+  "source": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+  "sourceBindings": {
+    "dist/brain/database.js": "9c6c9362e83f1ee6119d29855918d441e7016ae447a0e40664594bd54a2e4311",
+    "dist/brain/sqlite-database.js": "60462e92931bc9e3a6f38c68f12b0fb9666498d7fdc83d81658bef071ce4fbd8",
+    "dist/brain/quiesced-sqlite-save.js": "7baf2bf9f0d6b810028d7f56e0efb03acf8c17ae7d30a2303baf44358d79f274",
+    "node_modules/sql.js/dist/sql-wasm.wasm": "438c88f666dc054ce4e9395f80fe9db4218b1a3c379960454880f048a7898aed"
+  },
+  "checks": [
+    {
+      "id": "ACTUAL_INITIALIZED_CACHED_BRAIN",
+      "status": "PASS",
+      "sameCachedInstance": true,
+      "moduleInitialized": true
+    },
+    {
+      "id": "REAL_DELAYED_PERSISTENCE_DISK_ABSENT",
+      "status": "PASS",
+      "diskPresent": false,
+      "logicalSchemaPresent": true,
+      "firstFlushDelayMs": 3600000
+    },
+    {
+      "id": "AWAITED_FENCED_SAME_INSTANCE_PERSISTENCE",
+      "status": "PASS",
+      "liveBeforeEqualsLiveAfter": true,
+      "independentNativeSqliteEqual": true,
+      "explicitPersistCompletion": true
+    },
+    {
+      "id": "WRITES_AND_ALIAS_REFUSED_DURING_CAPTURE",
+      "status": "PASS",
+      "writeRefused": true,
+      "aliasRefused": true,
+      "substitutedInstanceRefused": true
+    },
+    {
+      "id": "SUCCESS_RELEASES_CAPTURE_FENCE",
+      "status": "PASS"
+    },
+    {
+      "id": "CALLBACK_FAILURE_RELEASES_CAPTURE_FENCE",
+      "status": "PASS"
+    },
+    {
+      "id": "PERSISTENCE_FAILURE_EXPLICIT_AND_FENCE_RELEASED",
+      "status": "PASS",
+      "operation": "critical-persist-private-temp-create",
+      "measuredErrno": "EACCES",
+      "parentModeDuringRefusal": "0500",
+      "failureVisible": true
+    },
+    {
+      "id": "INTENTIONAL_LIVE_CANONICAL_MUTATION_REJECTED",
+      "status": "PASS",
+      "realLiveMutation": true,
+      "independentlySavedMutationDetected": true
+    },
+    {
+      "id": "MISSING_TRUNCATED_CORRUPTED_EXPORTS_REFUSED",
+      "status": "PASS",
+      "missingRefused": true,
+      "truncatedRefused": true,
+      "corruptedRefused": true,
+      "noEmptyReplacement": true
+    },
+    {
+      "id": "ACTUAL_CLOSE_EXPORT_INDEPENDENT_READBACK",
+      "status": "PASS",
+      "originalLiveRowsPreserved": true,
+      "finalNativeSqliteEqual": true,
+      "noLogicalAuthorityChange": true
+    }
+  ],
+  "rawRowsPublic": false,
+  "applicationAuthorityExpanded": false,
+  "baseline": {
+    "schema": "work8-v30-live-brain-baseline-v1",
+    "method": "EXISTING_FENCED_AWAITED_CRITICAL_PERSISTENCE",
+    "persistenceIsWriteOperation": true,
+    "sameCachedInstance": true,
+    "instanceId": "d1ca87c5-47af-4572-b57f-e2e54ca65a5b",
+    "readyAt": "2026-11-01T03:35:34.020Z",
+    "observedAt": "2026-11-01T03:35:34.068Z",
+    "pid": 1,
+    "uid": 65534,
+    "gid": 65534,
+    "groups": [
+      65534
+    ],
+    "runtimeGeneration": "isolated-v30-module-preflight",
+    "source": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+    "moduleSha256": "9c6c9362e83f1ee6119d29855918d441e7016ae447a0e40664594bd54a2e4311",
+    "databasePathSha256": "c4c2d4bc22a107ec6668f3f1c1b4b507fc1b366a5a633ddc2e22e65d1a6cb4e6",
+    "revisions": {
+      "mutationRevision": 3,
+      "persistedRevision": 3,
+      "persistGeneration": 0
+    },
+    "fenceHeld": true,
+    "logicalStoreSha256": "eea6c1c0c0bd0b03bffbe292b543a3ac3c31f757d299410372646058879317a4",
+    "schemaObjectsSha256": "201a5caf872b1d85caafa8b394595b9ed6aa4cc2b9451e86d40abc2b0acc1e79",
+    "tableCount": 152,
+    "rowCount": 1,
+    "rawRowsRetained": false
+  },
+  "saved": {
+    "exportSha256": "03f6ad77e1a84f9b5722badbb9a7428d9d9d5b9022257eddb55ec6972ceaafb2",
+    "bytes": 2220032,
+    "mode": 384
+  },
+  "final": {
+    "exportSha256": "15a48eb975a52fc715c605ace3528039fd92bd9976131b90e561b733e408ce68",
+    "bytes": 2220032,
+    "logicalStoreSha256": "eea6c1c0c0bd0b03bffbe292b543a3ac3c31f757d299410372646058879317a4",
+    "schemaObjectsSha256": "201a5caf872b1d85caafa8b394595b9ed6aa4cc2b9451e86d40abc2b0acc1e79",
+    "finalPersistedRevision": 5,
+    "finalPersistGeneration": 1
+  },
+  "finishedAt": "2026-11-01T03:35:34.185Z"
+}

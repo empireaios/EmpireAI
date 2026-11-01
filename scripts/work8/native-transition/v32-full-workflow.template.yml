@@ -1,16 +1,16 @@
-name: Work 8 V31 bounded actual live Brain preflight
+name: Work 8 V32 conditional canonical business acceptance
 on: create
 permissions:
   contents: read
   actions: read
 concurrency:
-  group: work8-v31-native-brain-preflight-20261101
+  group: work8-v32-native-brain-full-20261101
   cancel-in-progress: false
 jobs:
-  preflight:
-    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v31-20261101-native-brain-preflight' && github.run_attempt == 1 && github.run_number == 1
+  full:
+    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v32-20261101-native-brain' && github.run_attempt == 1 && github.run_number == 1
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - name: Exact reviewed controller, no persisted token
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -18,8 +18,10 @@ jobs:
           ref: ${{ github.sha }}
           path: controller
           persist-credentials: false
-      - name: Verify source, shared reservation and exact preflight authority
-        run: python3 controller/scripts/work8/native-transition/verify-v31-gate.py --preflight
+      - name: Verify source, shared reservation and exact full authority
+        env:
+          GH_PREFLIGHT_READ_TOKEN: ${{ github.token }}
+        run: python3 controller/scripts/work8/native-transition/verify-v32-gate.py --full
       - name: Read preserved immutable component pins
         id: pins
         run: |
@@ -39,19 +41,33 @@ jobs:
           path: backend-source
           fetch-depth: 2
           persist-credentials: false
+      - name: Checkout NORMAL identity pin only
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ steps.pins.outputs.normal }}
+          path: normal-source
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Checkout RECOVERY identity pin only
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ steps.pins.outputs.recovery }}
+          path: recovery-source
+          fetch-depth: 2
+          persist-credentials: false
       - name: Preserve accepted Node runtime
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22.23.2'
-      - name: Verify retained archive once and load backend only
+      - name: Verify retained archive once and load unchanged images and locked browser driver
         env:
           GH_RETAINED_READ_TOKEN: ${{ github.token }}
-        run: python3 controller/scripts/work8/native-transition/prepare-base-candidates.py --preflight
-      - name: Actual initialized Brain preflight only; no business transition
+        run: python3 controller/scripts/work8/native-transition/prepare-base-candidates.py --full
+      - name: One coherent live baseline through business return and final readback
         env:
           NEXT_TELEMETRY_DISABLED: '1'
           CI: 'true'
-        run: python3 controller/scripts/work8/native-transition/run-native-examination.py --preflight-v31-native-brain
+        run: python3 controller/scripts/work8/native-transition/run-native-examination.py --examine-v32-native-brain
       - name: Gate only new sanitized evidence and enforce retained-artifact bounds
         id: upload
         if: always()
@@ -60,7 +76,7 @@ jobs:
         if: always() && steps.upload.outputs.allowed == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: work8-v31-native-brain-preflight-evidence-${{ github.sha }}-${{ github.run_id }}
+          name: work8-v32-native-brain-full-evidence-${{ github.sha }}-${{ github.run_id }}
           path: native-transition-output/
           if-no-files-found: error
           retention-days: 7
