@@ -1,14 +1,14 @@
-name: Work 8 V28 source-gated canonical business return
+name: Work 8 V29 source-gated private handoff and canonical business return
 on: create
 permissions:
   contents: read
   actions: read
 concurrency:
-  group: work8-v28-canonical-return-20261101
+  group: work8-v29-private-handoff-20261101
   cancel-in-progress: false
 jobs:
   transition:
-    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v28-20261101-canonical-return' && github.run_attempt == 1 && github.run_number == 1
+    if: github.event.ref_type == 'branch' && github.event.ref == 'work8/v29-20261101-private-handoff' && github.run_attempt == 1 && github.run_number == 1
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -18,8 +18,8 @@ jobs:
           ref: ${{ github.sha }}
           path: controller
           persist-credentials: false
-      - name: Verify exact independently approved comparator, source and local preflight
-        run: python3 controller/scripts/work8/native-transition/verify-v28-gate.py
+      - name: Verify exact independently approved handoff and shared permission contract
+        run: python3 controller/scripts/work8/native-transition/verify-v29-gate.py
       - name: Read preserved immutable component pins
         id: pins
         run: |
@@ -61,11 +61,11 @@ jobs:
         env:
           GH_RETAINED_READ_TOKEN: ${{ github.token }}
         run: python3 controller/scripts/work8/native-transition/prepare-base-candidates.py
-      - name: Execute one coherent canonical business recovery acceptance
+      - name: Phase A actual private handoff, then conditionally Phase B canonical business recovery
         env:
           NEXT_TELEMETRY_DISABLED: '1'
           CI: 'true'
-        run: python3 controller/scripts/work8/native-transition/examine-v26.py --examine-v28-canonical-return
+        run: python3 controller/scripts/work8/native-transition/examine-v26.py --examine-v29-private-handoff
       - name: Gate only new sanitized evidence and enforce retained-artifact bounds
         id: upload
         if: always()
@@ -74,7 +74,7 @@ jobs:
         if: always() && steps.upload.outputs.allowed == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: work8-v28-canonical-return-evidence-${{ github.sha }}-${{ github.run_id }}
+          name: work8-v29-private-handoff-evidence-${{ github.sha }}-${{ github.run_id }}
           path: native-transition-output/
           if-no-files-found: error
           retention-days: 7

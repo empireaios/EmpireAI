@@ -4,7 +4,7 @@ import base64, hashlib, io, json, os, pathlib, re, subprocess, sys, tarfile, tem
 import candidate_packages
 
 REPOSITORY = 'empireaios/EmpireAI'
-BRANCH = 'work8/v28-20261101-canonical-return'
+BRANCH = 'work8/v29-20261101-private-handoff'
 PRIOR_RUN = 41243779489
 PRIOR_CONTROLLER = '07517caaf1a355d9d3b552439815f6bb1fdb348f'
 ARTIFACT_ID = 13058526104
@@ -107,7 +107,7 @@ def prepare_driver(root,private):
  return receipts
 
 def main():
- root=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve();out=root/'native-transition-output';out.mkdir(exist_ok=True);budget=json.loads((out/'workflow-budget.json').read_text());assert budget['maximumSeconds']==1650 and budget['cleanupAndUploadReserveSeconds']==120;assert json.loads((out/'v28-source-gate.json').read_text())['status']=='PASS_INDEPENDENT_SOURCE_AND_LOCAL_PREFLIGHT';stage='event-authority';result={'status':'FAIL','productionAccess':False,'buildsRepeated':False,'broadBuildScansRepeated':False}
+ root=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve();out=root/'native-transition-output';out.mkdir(exist_ok=True);budget=json.loads((out/'workflow-budget.json').read_text());assert budget['maximumSeconds']==1650 and budget['cleanupAndUploadReserveSeconds']==120;assert json.loads((out/'v29-source-gate.json').read_text())['status']=='PASS_INDEPENDENT_SOURCE_AND_LOCAL_PREFLIGHT';stage='event-authority';result={'status':'FAIL','productionAccess':False,'buildsRepeated':False,'broadBuildScansRepeated':False}
  try:
   assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/'+BRANCH
   event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']==BRANCH

@@ -1,3 +1,4 @@
+import {writeControlPrivate} from './private-exchanges.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
@@ -22,7 +23,7 @@ function safeFailure(error){
  return {name:['AssertionError','Error','TypeError','TimeoutError'].includes(error?.name)?error.name:'OTHER_ERROR',code:named??patterns.find(([,p])=>p.test(message))?.[0]??'UNCLASSIFIED_ERROR',sourceFrames:(String(error?.stack??'').match(/browser\.mjs:\d+:\d+/g)??[]).slice(0,8),browserConnected:browser?.isConnected()??false,ownerPageClosed:ownerPage?.isClosed()??null,arbitraryErrorValuesRetained:false};
 }
 function recordFailure(error){const failure=safeFailure(error);if(!receipt.failure){receipt.failedStage=stage;receipt.failure=failure;signal('browser-first-failure.json',{stage,...failure});console.error('WORK8_BROWSER_DIAGNOSTIC '+JSON.stringify({stage,firstFailure:true,...failure}));}else receipt.cleanupFailure=failure;receipt.status='FAIL';process.exitCode=1;}
-function signal(name,value){fs.writeFileSync('/control/'+name+'.tmp',JSON.stringify(value));fs.renameSync('/control/'+name+'.tmp','/control/'+name);}
+function signal(name,value){return writeControlPrivate(name,JSON.stringify(value));}
 async function wait(name){while(!fs.existsSync('/control/'+name)){check(Date.now()<deadline,'OVERALL_TRANSITION_DEADLINE');await pause(50);}}
 function observe(route,response,action){const code=response.body?.code??response.body?.error;receipt.operations.push({stage,route:route.split('?')[0],status:response.status,...(action?{action}:{}),...(typeof code==='string'&&/^[A-Z_]{3,80}$/.test(code)?{code}:{})});fs.writeFileSync('/evidence/transition-http-observations.json',JSON.stringify(receipt.operations,null,2)+'\n');return response;}
 function privateRead(name){try{return read(name);}catch{return {};}}
@@ -70,7 +71,7 @@ try{
  stage='CANONICAL_PAUSE_AND_REVOKE';const pauseRequest={action:'twin_lifecycle',transition:{id:sid+'_pause',sessionId:sid,expectedVersion:progress.session.version,action:'PAUSE'}},paused=await post(pauseRequest);const revokeRequest={action:'twin_authority',authority:{action:'REVOKE',id:sid+'_revoke',sessionId:sid,expectedVersion:progress.authority.version}},revoked=await post(revokeRequest);
  const frozenRead=await observedSnapshot(),frozen=frozenRead.value;validateFrozen(frozen);check(frozen.records.every(r=>Object.values(r.orders).every(o=>Date.parse(o.order.createdAt)>minimumCreatedAt)),'ORDERS_NOT_NEWER_THAN_BOTH_VERSIONS');
  equal(await post(pauseRequest),paused,'PAUSE_REPLAY_NOT_IDENTICAL');equal(await post(revokeRequest),revoked,'REVOKE_REPLAY_NOT_IDENTICAL');const normalReplayRead=await observedSnapshot();
- fs.writeFileSync('/control/expected-commerce.json',JSON.stringify({sessionId:sid,minimumCreatedAt,snapshot:frozen}));
+ receipt.privateHandoff=signal('expected-commerce.json',{sessionId:sid,minimumCreatedAt,snapshot:frozen});
  signal('normal-observed.json',{ok:true});await wait('normal-readback-ready.json');
  const normalComparison=compareRecorded('normal-replay',frozen,normalReplayRead.value,frozenRead.observation,normalReplayRead.observation,'normal',views);
  check(normalComparison.pass,'NORMAL_REPLAY_CANONICAL_COMPARISON_FAILED');check(read('normal-readback-ready.json').allPassed,'NORMAL_INDEPENDENT_READBACK_FAILED');

@@ -1,3 +1,4 @@
+import {writeControlPrivate} from './private-exchanges.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
@@ -129,7 +130,7 @@ try{
  const canonical={sessionId:session.sessionId,sessionDigest:session.digest,sessionStatus:'PAUSED',authorityDigest:authorityHistory.at(-1).digest,authorityStatus:'REVOKED',authorityScope:'TWIN_SCHEDULER_ONLY',signatures,missionEvidence};
  const recovery={schema:'WORK8_RECOVERY_COMMERCE_V1',classification:'HISTORICAL_SIMULATED_OPERATIONS',session:{sessionId:session.sessionId,version:session.version,status:session.status,digest:session.digest,twinWorkspace:session.twinWorkspace},authority:{status:'REVOKED',version:authorityHistory.at(-1).version,digest:authorityHistory.at(-1).digest,grantsAuthority:false},records:recoveryRecords,coverage:'COMPLETE_SELECTED_SESSION_WITHIN_BOUNDS',readOnly:true,actualCashMovement:0,externalEffects:0,paidInference:0,liveCommerce:'LOCKED',birth:'NOT_BORN'};
  stage='CROSS_PHASE_CANONICAL_EQUALITY';
- if(phase==='normal')fs.writeFileSync(control+'/expected-recovery-commerce.json',JSON.stringify(recovery)+'\n');
+ if(phase==='normal')receipt.privateHandoff=writeControlPrivate('expected-recovery-commerce.json',JSON.stringify(recovery)+'\n',control,evidence);
  else {assert.deepEqual(canonical,JSON.parse(fs.readFileSync(evidence+'/normal-commerce-independent-readback.json','utf8')).canonical);assert.deepEqual(recovery,JSON.parse(fs.readFileSync(control+'/expected-recovery-commerce.json','utf8')));}
  receipt.canonical=canonical;receipt.canonicalSha256=sha(canonical);receipt.status='PASS_INDEPENDENT_PROCESS_COMMERCE_READBACK_ONLY';receipt.authorityRestored=false;receipt.liveCommerce='LOCKED';receipt.actualCashMovement=0;
  receipt.recoveryProjectionSha256=sha(recovery);receipt.noDuplicateReplay=true;receipt.populatedHistoryPreserved=true;

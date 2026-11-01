@@ -1,3 +1,4 @@
+import {writeControlPrivate} from './private-exchanges.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -18,7 +19,7 @@ let runtime,paths,output='',drained=false,lastHealth={};
 function boundedText(text,limit=1048576){const bytes=Buffer.from(text);if(bytes.length<=limit)return text;let cut=bytes.subarray(0,limit).toString('utf8');if(Buffer.byteLength(cut)>limit)cut=cut.slice(0,-1);return cut;}
 function safe(text){const values=[process.env.FOUNDER_PASSWORD,process.env.ADMIN_PASSWORD,process.env.SESSION_SECRET,process.env.REDIS_URL];try{values.push(new URL(process.env.REDIS_URL).password);}catch{}for(const value of values)if(value)text=text.split(value).join('[REDACTED]');return text.replace(/Bearer\s+[^\s"<>]+/gi,'Bearer [REDACTED]').replace(/empireai_session=[^;\s"<>]+/g,'empireai_session=[REDACTED]').replace(/("(?:token|password|secret|nonce|authorization)"\s*:\s*")[^"]*(")/gi,'$1[REDACTED]$2');}
 function write(name,value){const bytes=JSON.stringify(value,null,2)+'\n';assert.ok(Buffer.byteLength(bytes)<=16384,'DIAGNOSTIC_RECEIPT_SIZE_BOUND');const target=path.join(evidence,name),temp=target+'.tmp';fs.writeFileSync(temp,bytes);fs.renameSync(temp,target);}
-function signal(name,value={ok:true}){const temp=path.join(control,name+'.tmp');fs.writeFileSync(temp,JSON.stringify(value),{mode:0o644});fs.renameSync(temp,path.join(control,name));}
+function signal(name,value={ok:true}){return writeControlPrivate(name,JSON.stringify(value),control,evidence);}
 function census(){const j=new MembershipJournal(paths.journal);try{return j.read();}finally{j.close();}}
 // Persist a bounded, source-bound observation before the host's cleanup-inclusive 245-second
 // startup bound. This is evidence collection, never an alternate ready predicate.

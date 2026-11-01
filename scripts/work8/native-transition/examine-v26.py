@@ -2,10 +2,12 @@
 """One fresh, bounded full-native distinct-version examination. No provider keys."""
 import hashlib, io, json, os, pathlib, re, secrets, shutil, subprocess, sys, tarfile, tempfile, time
 import candidate_packages
+import handoff_preflight
+from private_contract import backend_options,browser_options,private_write,safe_docker_contract
 
 ROOT=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve()
 SCRIPT=ROOT/'controller/scripts/work8/native-transition'
-PHASE=sys.argv[1] if len(sys.argv)==2 else '';assert PHASE in {'--examine-v28-canonical-return'},'EXPLICIT_EXAMINATION_PHASE_REQUIRED'
+PHASE=sys.argv[1] if len(sys.argv)==2 else '';assert PHASE in {'--examine-v29-private-handoff'},'EXPLICIT_EXAMINATION_PHASE_REQUIRED'
 OUT=ROOT/'native-transition-output';OUT.mkdir(exist_ok=True)
 PRIVATE=pathlib.Path(tempfile.mkdtemp(prefix='work8-native-transition-',dir=os.environ['RUNNER_TEMP']))
 MANIFEST=json.loads((SCRIPT/'components.json').read_text())
@@ -16,7 +18,7 @@ NODE='node:22.23.2-bookworm-slim@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8
 REDIS='redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952'
 BROWSER='mcr.microsoft.com/playwright:v1.62.1-noble@sha256:dcc5531e97840b9b5e794f2814476b21571c5124a3fca2267d73041f56e7580e'
 BUDGET=json.loads((OUT/'workflow-budget.json').read_text())
-START=time.monotonic();stage='preflight';result={'status':'FAIL','wholeRowsAccepted':[],'productionAccess':False,'genuineOwnerObservation':False}
+START=time.monotonic();stage='preflight';result={'status':'FAIL','wholeRowsAccepted':[],'productionAccess':False,'genuineOwnerObservation':False,'phaseAStatus':'NOT_STARTED','phaseBStarted':False}
 MAX_OUTPUT=candidate_packages.MAX_BYTES
 container_lifecycle=[]
 
@@ -34,7 +36,7 @@ def redact(s):
  return re.sub(r'(?i)("(?:token|password|secret|nonce|authorization)"\s*:\s*")[^"]*(")',r'\1[REDACTED]\2',s)
 
 def run(args,*,cwd=None,timeout=120,log=None,input=None):
- assert time.monotonic()-START<650,'CAMPAIGN_EXAMINATION_BOUND'
+ assert time.monotonic()-START<1200,'CAMPAIGN_EXAMINATION_BOUND'
  assert time.time()-BUDGET['startedAtEpoch']<BUDGET['maximumSeconds']-BUDGET['cleanupAndUploadReserveSeconds'],'CAMPAIGN_TOTAL_BOUND'
  remaining=BUDGET['maximumSeconds']-(time.time()-BUDGET['startedAtEpoch'])-BUDGET['cleanupAndUploadReserveSeconds']
  r=subprocess.run(args,cwd=cwd,encoding=None if isinstance(input,bytes) else 'utf8',input=input,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=min(timeout,max(1,int(remaining))),check=False)
@@ -104,7 +106,7 @@ def marker(name,timeout=210):
       if isinstance(first.get('code'),str) and re.fullmatch('[A-Z0-9_:-]{1,160}',first['code']):raise AssertionError('BROWSER_FIRST_FAILURE:'+first['code'])
      raise AssertionError('CONTAINER_EXITED:'+role)
   time.sleep(.2)
-def signal(name,value={'ok':True}):(PRIVATE/'control'/name).write_text(json.dumps(value))
+def signal(name,value={'ok':True}):return private_write(PRIVATE/'control'/name,value)
 def independent_readbacks(phase,capture=False):
  # Always attempt both independent scopes before releasing a comparison gate.
  # A failed commerce assertion cannot suppress control/generation diagnostics.
@@ -149,12 +151,12 @@ def start_front(role,phase):
  (PRIVATE/'evidence'/('frontend-listener-'+phase+'.json')).write_text(json.dumps(listener,indent=2))
 
 try:
- assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v28-20261101-canonical-return'
- event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v28-20261101-canonical-return'
+ assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/work8/v29-20261101-private-handoff'
+ event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']=='work8/v29-20261101-private-handoff'
  assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1'
  assert run(['node','--version']).strip()=='v22.23.2'
- assert PHASE=='--examine-v28-canonical-return','V28_ONLY_REVIEWED_CANDIDATES_AUTHORISED'
- assert json.loads((OUT/'v28-source-gate.json').read_text())['status']=='PASS_INDEPENDENT_SOURCE_AND_LOCAL_PREFLIGHT'
+ assert PHASE=='--examine-v29-private-handoff','V29_ONLY_REVIEWED_CANDIDATES_AUTHORISED'
+ assert json.loads((OUT/'v29-source-gate.json').read_text())['status']=='PASS_INDEPENDENT_SOURCE_AND_LOCAL_PREFLIGHT'
  assert json.loads((OUT/'retained-import-result.json').read_text())['status']=='PASS_RETAINED_BYTES_LOADED_DRIVER_READY'
  for role in ['backend','normal','recovery']:
   entry=MANIFEST[role];source=ROOT/(role+'-source')
@@ -169,27 +171,38 @@ try:
   images,components=candidate_packages.reuse(ROOT,OUT,MANIFEST)
   for d in ['control','evidence','policy']:(PRIVATE/d).mkdir(mode=0o700)
   (PRIVATE/'policy').chmod(0o755);(PRIVATE/'evidence').chmod(0o755)
-  (PRIVATE/'control/component-identities.json').write_text(json.dumps(components))
+  assert time.time()-BUDGET['startedAtEpoch']<BUDGET['maximumSeconds']-900,'INSUFFICIENT_PREFLIGHT_AND_ACCEPTANCE_CAPACITY'
+  stage='phase-a-private-file-handoff';result['phaseAStatus']='RUNNING'
+  run(['docker','pull',BROWSER],timeout=180)
+  phase_a=handoff_preflight.execute(root=ROOT,script=SCRIPT,private=PRIVATE,out=OUT,label=LABEL,images=images,browser_image=BROWSER,run=run)
+  assert phase_a['status']=='PASS_PRIVATE_FILE_HANDOFF_PREFLIGHT' and phase_a['phaseBGateSatisfied'] is True,'PHASE_A_REQUIRED_BEFORE_APPLICATION_START'
+  result['phaseAStatus']=phase_a['status']
   assert time.time()-BUDGET['startedAtEpoch']<BUDGET['maximumSeconds']-700,'INSUFFICIENT_REMAINING_ACCEPTANCE_CAPACITY'
+  private_write(PRIVATE/'control/component-identities.json',components)
   values={key:secrets.token_hex(32) for key in ['founder','admin','session','redis']};generated=list(values.values())
   (PRIVATE/'backend.env').write_text('EXPECTED_BACKEND='+MANIFEST['backend']['commit']+'\nFOUNDER_PASSWORD='+values['founder']+'\nADMIN_PASSWORD='+values['admin']+'\nSESSION_SECRET='+values['session']+'\nREDIS_URL=redis://:'+values['redis']+'@transition-redis:6379/0\n')
   (PRIVATE/'browser.env').write_text('OWNER_PASSWORD='+values['founder']+'\nEXPECTED_BACKEND='+MANIFEST['backend']['commit']+'\nEXAM_ID='+os.environ['GITHUB_RUN_ID']+'\n')
   (PRIVATE/'redis.conf').write_text('bind 0.0.0.0\nprotected-mode yes\nsave ""\nappendonly no\nrequirepass '+values['redis']+'\n');(PRIVATE/'redis.conf').chmod(0o444)
+  (PRIVATE/'backend.env').chmod(0o600);(PRIVATE/'browser.env').chmod(0o600)
+  stage='phase-b-authorised-application-start';result['phaseBStarted']=True
   set_policy(True);run(['docker','network','create','--internal','--label','work8.native='+LABEL,NETWORK]);network_created=True
-  for image in [NODE,REDIS,BROWSER]:run(['docker','pull',image],timeout=120)
+  for image in [NODE,REDIS]:run(['docker','pull',image],timeout=120)
   run(['docker','run','-d','--name',NAMES['redis'],'--label','work8.native='+LABEL,'--network',NETWORK,'--network-alias','transition-redis','--memory','128m','--cpus','0.5','--pids-limit','64','--read-only','--user','999:999','--cap-drop','ALL','--security-opt','no-new-privileges','--tmpfs','/data:rw,noexec,nosuid,size=32m','--mount','type=bind,src='+str(PRIVATE/'redis.conf')+',dst=/redis.conf,readonly',REDIS,'redis-server','/redis.conf']);created.append(NAMES['redis'])
   run(['docker','run','-d','--name',NAMES['anchor'],'--label','work8.native='+LABEL,'--network',NETWORK,'--memory','64m','--cpus','0.1','--pids-limit','32','--read-only','--cap-drop','ALL','--security-opt','no-new-privileges',NODE,'node','-e','setTimeout(()=>process.exit(0),650000)']);created.append(NAMES['anchor'])
-  cmd=['docker','run','-d','--name',NAMES['backend'],'--label','work8.native='+LABEL,'--network',NETWORK,'--network-alias','native-backend','--memory','5g','--cpus','2','--pids-limit','256','--read-only','--user','0:0','--cap-drop','ALL']
-  for cap in ['SETUID','SETGID','CHOWN','DAC_OVERRIDE','KILL','SYS_PTRACE']:cmd+=['--cap-add',cap]
-  cmd+=['--security-opt','no-new-privileges','--env-file',str(PRIVATE/'backend.env'),'--tmpfs','/data/work8-exam:rw,noexec,nosuid,nodev,mode=0755,size=2g','--tmpfs','/tmp:rw,noexec,nosuid,size=16m']
-  for source,dest,ro in [(PRIVATE/'policy','/run/empire-policy',True),(PRIVATE/'control','/control',False),(PRIVATE/'evidence','/evidence',False),(SCRIPT,'/examination',True)]:cmd+=['--mount','type=bind,src='+str(source)+',dst='+dest+(',readonly' if ro else '')]
+  cmd=['docker','run','-d','--name',NAMES['backend'],'--label','work8.native='+LABEL,'--network',NETWORK,'--network-alias','native-backend','--memory','5g','--cpus','2','--pids-limit','256',*backend_options(PRIVATE,SCRIPT),'--env-file',str(PRIVATE/'backend.env')]
   cmd+=['--entrypoint','timeout',images['backend'],'--signal=KILL','650s','node','/examination/coordinator.mjs'];run(cmd);created.append(NAMES['backend'])
+  live_contract={'schema':'work8-v29-phase-b-private-contract-v1','phaseAPassedBeforeApplicationStartup':True,'backend':safe_docker_contract(inspect(NAMES['backend']))}
+  assert live_contract['backend']==phase_a['roles']['writer']['contract'],'LIVE_BACKEND_PRIVATE_CONTRACT_CHANGED'
+  (OUT/'phase-b-private-contract.json').write_text(json.dumps(live_contract,indent=2)+'\n')
   stage='actual-runtime-start';marker('runtime-ready.json',timeout=245)
   meta=inspect(NAMES['backend']);assert not meta['HostConfig']['PortBindings'];assert next(m for m in meta['Mounts'] if m['Destination']=='/run/empire-policy')['RW'] is False
   run(['docker','exec','--user','65534:65534',NAMES['backend'],'node','-e',"const fs=require('fs');let denied=false;try{fs.writeFileSync('/run/empire-policy/control.json','forbidden')}catch(e){denied=['EROFS','EACCES','EPERM'].includes(e.code)}if(!denied)process.exit(1)"])
   (PRIVATE/'evidence/isolation.json').write_text(json.dumps({'internalNetwork':True,'publishedPorts':False,'externalCredentials':False,'policyReadonlyMount':True,'runtimePolicyWriteRefused':True,'actualNativeApplication':True,'syntheticOwnerOnly':True,'components':components},indent=2))
   start_front('normal','NORMAL');stage='normal-view'
-  run(['docker','run','-d','--name',NAMES['browser'],'--label','work8.native='+LABEL,'--network','container:'+NAMES['anchor'],'--memory','2g','--cpus','1','--pids-limit','128','--shm-size','256m','--user',str(os.getuid())+':'+str(os.getgid()),'--env','HOME=/tmp','--env','NODE_OPTIONS=--dns-result-order=ipv4first','--env-file',str(PRIVATE/'browser.env'),'--mount','type=bind,src='+str(SCRIPT)+',dst=/examination,readonly','--mount','type=bind,src='+str(ROOT/'native-transition-driver')+',dst=/frontend-package,readonly','--mount','type=bind,src='+str(PRIVATE/'control')+',dst=/control','--mount','type=bind,src='+str(PRIVATE/'evidence')+',dst=/evidence','--entrypoint','timeout',BROWSER,'--signal=KILL','500s','node','/examination/browser.mjs']);created.append(NAMES['browser'])
+  run(['docker','run','-d','--name',NAMES['browser'],'--label','work8.native='+LABEL,'--network','container:'+NAMES['anchor'],'--memory','2g','--cpus','1','--pids-limit','128','--shm-size','256m',*browser_options(PRIVATE,SCRIPT,ROOT/'native-transition-driver'),'--env-file',str(PRIVATE/'browser.env'),'--entrypoint','timeout',BROWSER,'--signal=KILL','500s','node','/examination/browser.mjs']);created.append(NAMES['browser'])
+  live_contract['browser']=safe_docker_contract(inspect(NAMES['browser']))
+  assert live_contract['browser']==phase_a['roles']['reader-after']['contract'],'LIVE_BROWSER_PRIVATE_CONTRACT_CHANGED'
+  live_contract['status']='PASS_EXACT_PRIVATE_CONTRACT_REUSED';(OUT/'phase-b-private-contract.json').write_text(json.dumps(live_contract,indent=2)+'\n')
   # Container Date.now observations use the same kernel realtime clock; no clock changes.
   clock_ids={}
   for role in ['backend','browser']:
@@ -220,6 +233,8 @@ try:
   result.update(status='PASS_AWAITING_INDEPENDENT_TECHNICAL_REVIEW',distinctFrontendTransition=True,newerCommittedRecordsPreserved=True,canonicalBusinessData=True,wholeRowsAccepted=[],candidateBytes=candidate_packages.directory_bytes(ROOT/'native-transition-candidates'))
 except Exception as error:
  result['failedStage']=stage;result['error']=redact(str(error))[:500]
+ if result['phaseAStatus']=='RUNNING':result['phaseAStatus']='FAIL'
+ if getattr(error,'safe_handoff',None):(OUT/'host-private-handoff-first-failure.json').write_text(json.dumps(error.safe_handoff,indent=2)+'\n')
 finally:
  for role in ['backend','frontend','redis','anchor','browser']:capture_container_state(role,'before-cleanup')
  stage='cleanup';cleanup_ok=True

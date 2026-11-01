@@ -1,3 +1,4 @@
+import {writeControlPrivate} from './private-exchanges.mjs';
 // Source-declared bounded, read-only logical inventory. No raw database rows leave this process.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -57,7 +58,7 @@ try{
  receipt.stores=Object.fromEntries(Object.entries(state.stores).map(([id,s])=>[id,{...s,tables:s.tables&&Object.fromEntries(Object.entries(s.tables).map(([name,{hashes,mutableRows,...t}])=>[name,t]))}]));
  receipt.controls=state.controls;receipt.native=Object.fromEntries(Object.entries(state.native).map(([id,s])=>[id,{present:s.present,fileCount:Object.keys(s.files||{}).length,logicalSha256:sha(json(s.files||{}))}]));
  receipt.generationSha256=sha(json(state.generation));
- if(phase==='normal')fs.writeFileSync('/control/whole-app-baseline.json',json(state));
+ if(phase==='normal')receipt.privateHandoff=writeControlPrivate('whole-app-baseline.json',json(state));
  else{
   const baseline=JSON.parse(fs.readFileSync('/control/whole-app-baseline.json','utf8'));
   assert.deepEqual(state.generation,baseline.generation,'GENERATION_AUTHORITY_CHANGED');
