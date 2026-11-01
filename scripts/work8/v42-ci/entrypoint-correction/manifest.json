@@ -1,0 +1,153 @@
+{
+  "schema": "assurance-entrypoint-corrective-manifest-v1",
+  "baseCommit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+  "variant": "prepared-independent-readback-plus-actual-inspector-entrypoint-v2",
+  "frozenPredecessorManifestSHA256": "e55fb99e4c71b31c98e4634a7f20e3286b7b0e020115ac491939de2092a73e8b",
+  "frozenControllerManifest": {
+    "path": "ci/controller-publication-manifest.json",
+    "sha256": "aae800c203cf310e3894323e96fc83719eb94aeb1c16c9fb15f710063ab5b387"
+  },
+  "sourceOriginalManifestSHA256": "b867a7fce291a20e3cfa4f5eb82d2c6961a84d0a49dafc01e5ee82c2946672c7",
+  "files": [
+    {
+      "path": "deployment/assurance-discrepancy-readback.cjs",
+      "base": null,
+      "candidateSha256": "06458c2b2eecfda41708729c0d7ba4f19dc37c913a0c71e3f4e9d15049a3139f",
+      "candidateGitBlob": "2f6c36029d50026b9ec607460580d2671eb36d0f"
+    },
+    {
+      "path": "deployment/assurance-discrepancy-readback.test.mjs",
+      "base": null,
+      "candidateSha256": "c28340d9eee5850285e4f529ef4457d827dc119259034a436834c1f92e608be6",
+      "candidateGitBlob": "eb68c634f470db54e74d0e849603ba1331a214a0"
+    },
+    {
+      "path": "deployment/assurance-supervisor.cjs",
+      "base": {
+        "blob": "9fda1a98ad58dd5fc736ac0d37a9d89336c0288f",
+        "sha256": "9f001f2aa14a97bdd60de5c926fe814f6a6987988f1e72acfa3c6cedef291da6"
+      },
+      "candidateSha256": "e49baca21653562b3c00532907762027a4782473c14ba12b0d4fca9719daec21",
+      "candidateGitBlob": "bdccb6c601828e06349d6eeee408c7357d4316af"
+    },
+    {
+      "path": "backend/src/assurance/safe-discrepancy-probe.mjs",
+      "base": {
+        "blob": "bbeabe56b6530e39844537e8aa0d305bb86f4741",
+        "sha256": "54620f389deca4d04ca305f0c2ba5341820efbea45058aa7401c01ab032d1445"
+      },
+      "candidateSha256": "6fcead1d4f98579c0227a67dae53670a158cc7e42478f1cb507fee6f178801c7",
+      "candidateGitBlob": "3e44968a20e230c511492e6dbd06955b74d892fe"
+    },
+    {
+      "path": "backend/src/assurance/permanent-inspector.mjs",
+      "base": {
+        "blob": "d736a831944445d4ded3b0a4364863107d40ba0d",
+        "sha256": "6bbe358825941f1013d45c72a1047cc32249f6a5e924e0a67be2644f339d7ef2"
+      },
+      "candidateSha256": "70f6cb3563331baca9343967366bde38ed0f0b42852cc63ef483cbfae06e90fc",
+      "candidateGitBlob": "2df87fd8c596d5d093a03d8583c90bd0d831fc58"
+    },
+    {
+      "path": "backend/src/validation/tests/assurance-supervisor.test.mjs",
+      "base": {
+        "blob": "ffb1e6c2e271a9f7d173bf263d7df52853b8b3c8",
+        "sha256": "054c300ac89debb84b334e0e5fee96a58e6c57d6f04f111f8fa5387d06ea659c"
+      },
+      "candidateSha256": "c6127e9b5f42482aa0af39c19594edde1d873712dc7b7006988bef5ec4ebefc1",
+      "candidateGitBlob": "ad6101df24716fc0f6b10f6e3e633ad907524eb3"
+    },
+    {
+      "path": "deployment/assurance-inspector-entrypoint.test.mjs",
+      "base": null,
+      "candidateSha256": "7ee793dd4f57070c18cbf48f2030d099514a0e55116c6964f6318896e1bbc9a5",
+      "candidateGitBlob": "a7bd64b30ee08dcef4adafb5f09de4f6d8789d20"
+    }
+  ],
+  "unchangedNativeSource": {
+    "blob": "7678fc0332a8daea71f46b01803c29b2acb4ceb4",
+    "sha256": "2f17b9f9e6202ae78ea98ce2575f49b8d65d56c183c9460af98409c9254d541c"
+  },
+  "unchangedSourceFiles": {
+    "backend/src/assurance/control-plane.mjs": {
+      "blob": "f4e614b82d7cce59f05689351fb39f116cdf3428",
+      "sha256": "ce7d4e862a3b3f28cb485fe9dbd4b2cba1d572eda46d611048f783828229d107"
+    },
+    "backend/src/assurance/permanent-worker.mjs": {
+      "blob": "4cdab088c82f68f495dfde372ffa1b6dcae123fb",
+      "sha256": "ca774d237f7d37d8ae88deea98e5e5286107fc6e452f4b5f61046829fb805e86"
+    },
+    "backend/src/assurance/inspector-cycle.mjs": {
+      "blob": "ad7f33710887ee9a906c77e3c54d1a79cd031919",
+      "sha256": "272150524aea43215497f7148f0b56c34ea212e55961ac1176fc60e831210c13"
+    },
+    "backend/src/assurance/owner-demo.mjs": {
+      "blob": "74f44465ca48cd9e637f23c2879d84a632b31936",
+      "sha256": "585c2b73988ae822396d762618d779f2bf9803bfae5d5b05cf32e302452664a1"
+    },
+    "backend/src/assurance/independent-assurance.mjs": {
+      "blob": "4323b64101a410ce55509d80f02c380696bed7b2",
+      "sha256": "0ad30a3bb583b53b141be4bb64c12b51e8434cf47fb3d6fa0737eb6b41a2c9fe"
+    },
+    "backend/src/assurance/owner-evidence.mjs": {
+      "blob": "ba6656cd465c609092edcf9cce1d8a5e9dbc8862",
+      "sha256": "94b04b851ec492ce7025bd3570dbc34c058959d53e4df6f9a570c75640a3b3cf"
+    },
+    "deployment/observer-capture.cjs": {
+      "blob": "7577f4ba86edc65181fc62bd89b9c372f708a73a",
+      "sha256": "c9513c42c917b774b605a7d2e5cd454d01d7cc88dcd7508bf341cfed8272bc1b"
+    },
+    "backend/src/assurance/live-sources.mjs": {
+      "blob": "4ccb08744d309efe03e3beca4d54d736d26cf447",
+      "sha256": "60f0ec940135fb3322823c163f8011cea71d1a2c20c047dbf34045f9d955e65f"
+    },
+    "backend/src/assurance/schema-readiness.mjs": {
+      "blob": "2461b57faf294e8c99e45429c0bc921448658408",
+      "sha256": "a915328741fc25092fe30be8de52869cb08e2e2cd1fee5d4a401189580365f80"
+    },
+    "deployment/native/runtime-writer-isolation.c": {
+      "blob": "7678fc0332a8daea71f46b01803c29b2acb4ceb4",
+      "sha256": "2f17b9f9e6202ae78ea98ce2575f49b8d65d56c183c9460af98409c9254d541c"
+    },
+    "backend/src/assurance/durable-findings.mjs": {
+      "blob": "b81cfdd73ac59fd9350d4a210bd48226671d5323",
+      "sha256": "54a5505caa29996e837490e71f0ee67601af7267771a2d531da91ba9e8530d1c"
+    },
+    "backend/src/assurance/current-state-provenance.mjs": {
+      "blob": "c3edc96431d4109cb857eb5471891bc3bf12e31b",
+      "sha256": "817e9ef246b861754f40beb0a4ba98c58690e3fcc859374ab4a82a9977b93807"
+    },
+    "backend/src/assurance/coverage-scope.mjs": {
+      "blob": "c206adcd23973987769eed755fb626dc11604be6",
+      "sha256": "a20889f9a757bcb3ad98f11a7f8be8f96e198cf4aa39d23b352be3bcdd9808ea"
+    },
+    "backend/src/assurance/operating-scope.mjs": {
+      "blob": "6b2cc3871d32de74cdcd565c50be2d3d705f8a4d",
+      "sha256": "7089a3dd8b0ba4769017e3e4e76a1009bfbd009abf39b5dd529c7078c149da0e"
+    },
+    "backend/src/assurance/historical-provider.mjs": {
+      "blob": "e070d4c1488a15531b864373f3c9bdfd49e0ccfd",
+      "sha256": "74834269d2051d455a9d8ee36d95e434b31895de6554ed831dbb7242b42c4e80"
+    },
+    "backend/src/assurance/delivery-resolution.mjs": {
+      "blob": "2da3ae9bed8f17ed612b35c2ec1400949945c3dd",
+      "sha256": "d54d02eaa164e9559a3e0a6ffc631fd03581b79d35ee8d82eab79d5008466f7e"
+    },
+    "backend/src/assurance/closure-health.mjs": {
+      "blob": "99b20be7efb4c631e4f38c327b94070f7bcf081b",
+      "sha256": "0401c519342d7cbe149d40aa369452a626d00d5779f249c1f730d3e4038dbd7c"
+    }
+  },
+  "testFiles": [
+    "backend/src/validation/tests/assurance-supervisor.test.mjs",
+    "deployment/assurance-discrepancy-readback.test.mjs",
+    "deployment/assurance-inspector-entrypoint.test.mjs"
+  ],
+  "expectedTests": 21,
+  "runtimeRequiredForHosted": "v22.23.2",
+  "localRuntimeLimitation": "Node24.22.1 preparation only",
+  "maximumTestSeconds": 30,
+  "maximumJobSeconds": 300,
+  "scope": "Preparedvariant only; standalone and IPC actualinspector initialization/schema lifecycle under unchanged nativefilter, plus controlledfixture crossprocessreadback. No worker/controlplane/providerstartup or productionhealth coverage.",
+  "newWholeRowAcceptance": []
+}

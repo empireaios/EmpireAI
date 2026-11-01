@@ -22,12 +22,13 @@ def verify_tracked_sources(workspace, source, spec, state, boundary):
         checks.append(check);state.setdefault('sourceIntegrityChecks',[]).append(check)
         if changed:
             if spec.get('preparedCorrection') and boundary=='after-test' and directory==source:
-                manifest=json.loads((ROOT/'correction/corrective-module-manifest.json').read_text())
+                manifest_path=ROOT/spec.get('preparedCorrectionManifest','correction/corrective-module-manifest.json')
+                manifest=json.loads(manifest_path.read_text())
                 allowed={x['path']:x for x in manifest['files']}
                 if not set(changed).issubset(allowed):raise RuntimeError('UNREVIEWED_CORRECTION_MUTATION')
                 for entry in manifest['files']:
-                    if digest(source/entry['path'])!=entry['candidateSha256']:raise RuntimeError('CORRECTION_FINAL_SOURCE_MISMATCH')
-                state['preparedCorrectionFileManifestSHA256']=digest(ROOT/'correction/corrective-module-manifest.json')
+                    if digest(source/entry['path'])!=entry.get('candidateSha256',entry.get('sha256')):raise RuntimeError('CORRECTION_FINAL_SOURCE_MISMATCH')
+                state['preparedCorrectionFileManifestSHA256']=digest(manifest_path)
             else:raise RuntimeError('UNREVIEWED_TRACKED_SOURCE_MUTATION:'+directory.name+':'+','.join(changed))
 
 def clean_env(temp):
@@ -45,7 +46,8 @@ def run_step(step, source, env, out, index, seconds, isolated):
     name = step['name']; log = out / ('step-%02d.log' % index)
     script = out / ('step-%02d.sh' % index)
     body = step['run'].replace('HOME="$RUNNER_TEMP" ', '')
-    script.write_text('set -euo pipefail\ntest "$(node --version)" = v22.23.2\n' + body + '\n')
+    entered='printf "WORK8_CI_ISOLATED_ASSERTION_ENTERED\\n"\n' if isolated else ''
+    script.write_text('set -euo pipefail\ntest "$(node --version)" = v22.23.2\n' + entered + body + '\n')
     cwd = source / step.get('working-directory', '.')
     actual_env = dict(env)
     for k, v in step.get('env', {}).items():
@@ -79,7 +81,10 @@ def run_step(step, source, env, out, index, seconds, isolated):
         raw = raw[:MAX_LOG]; log.write_bytes(raw); reason = reason or 'OUTPUT_LIMIT_EXCEEDED'
     if SECRET.search(raw):
         log.write_text('WITHHELD_SECRET_PATTERN; no credential value published.\n'); reason = 'SECRET_PATTERN_UPLOAD_REFUSED'
+    if code in [124,137]:reason=reason or 'STEP_DEADLINE_EXCEEDED'
+    elif code < 0 or 128 <= code <= 192:reason=reason or 'ABNORMAL_SIGNAL_EXIT'
     text = raw.decode('utf8', 'replace')
+    if isolated and 'WORK8_CI_ISOLATED_ASSERTION_ENTERED\n' not in text:reason=reason or 'ISOLATED_BOUNDARY_NOT_REACHED'
     # Original command-specific TAP/count gates remain in the frozen scripts.
     # Also forbid a successful command from hiding skipped/cancelled/todo tests.
     if not reason and re.search(r'^\s*# (?:fail|cancelled|skipped|todo) [1-9]\d*\s*$', text, re.M): reason = 'MANDATORY_TEST_NOT_PASS'
@@ -159,9 +164,18 @@ def main():
         if remaining<=0:state['status']='FAIL';state['reason']='GROUP_DEADLINE';dump(state_path,state);return 1
         result=run_step(step,source,env,out,len(state['steps']),min(remaining,2580),args.phase=='test');state['steps'].append(result);dump(state_path,state)
         print(json.dumps({'job':args.job,'phase':args.phase,'name':result['name'],'status':result['status'],'exitCode':result['exitCode'],'reason':result['reason']}))
-        if result['status']!='PASS':state['status']='FAIL';state['reason']='FIRST_FAILING_COMMAND';dump(state_path,state);return 1
-    state['status']='SETUP_PASS' if args.phase=='setup' else 'PASS_SELECTED_SCOPE';dump(state_path,state)
-    return 0
+        if result['status']!='PASS':
+            state['status']='FAIL';state['reason']='FAILED_ASSERTION_OR_PREREQUISITE';dump(state_path,state)
+            safe_independent=(args.phase=='test' and step.get('independentAssertion') is True and result['reason'] in [None,'MANDATORY_TEST_NOT_PASS'])
+            if not safe_independent:return 1
+            state.setdefault('continuedIndependentFailures',[]).append(result['name'])
+            # Subsequent commands are independently selected. Recheck immutable
+            # source before continuing; a failed safety/source boundary stops.
+            verify_tracked_sources(workspace,source,spec,state,'before-independent-continuation')
+            dump(state_path,state)
+    failed=any(step['status']!='PASS' for step in state['steps'])
+    state['status']='FAIL' if failed else ('SETUP_PASS' if args.phase=='setup' else 'PASS_SELECTED_SCOPE');dump(state_path,state)
+    return 1 if failed else 0
 
 if __name__=='__main__':
     try: sys.exit(main() or 0)
