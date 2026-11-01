@@ -23,7 +23,9 @@
       "work8/v27-20261101-compiler-preflight": false,
       "work8/v27-20261101-a5-acceptance": false,
       "work8/v28-20261101-canonical-return": false,
-      "work8/v29-20261101-private-handoff": false
+      "work8/v29-20261101-private-handoff": false,
+      "work8/v30-20261101-live-brain-preflight": false,
+      "work8/v30-20261101-live-brain": false
     }
   }
 }

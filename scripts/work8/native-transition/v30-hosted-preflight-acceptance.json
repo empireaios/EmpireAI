@@ -1,0 +1,8 @@
+{
+  "schema": "work8-v30-hosted-preflight-acceptance-v1",
+  "stage": "preflight",
+  "approved": false,
+  "status": "PENDING_ACTUAL_HOSTED_PREFLIGHT_AND_INDEPENDENT_REVIEW",
+  "actualHostedExecution": false,
+  "wholeRowsAccepted": []
+}

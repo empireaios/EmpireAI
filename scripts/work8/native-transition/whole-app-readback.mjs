@@ -1,4 +1,5 @@
 import {writeControlPrivate} from './private-exchanges.mjs';
+import {independentBrainReadback} from './independent-brain-readback.mjs';
 // Source-declared bounded, read-only logical inventory. No raw database rows leave this process.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -52,6 +53,16 @@ function assertSubset(before,after){const counts=new Map();for(const h of after)
 try{
  assert.equal(Object.keys(contract.SQL).length,13);
  for(const [id,relative] of Object.entries(contract.SQL))state.stores[id]=dbSnapshot(path.join(root,relative),id);
+ const liveBaseline=JSON.parse(fs.readFileSync('/control/live-brain-baseline.json','utf8'));
+ assert.equal(liveBaseline.attestation.sameCachedInstance,true,'LIVE_BRAIN_INSTANCE_ATTESTATION_REQUIRED');
+ assert.equal(liveBaseline.attestation.method,'EXISTING_FENCED_AWAITED_CRITICAL_PERSISTENCE');
+ assert.equal(liveBaseline.attestation.persistenceIsWriteOperation,true);
+ assert.equal(state.stores.brain.present,true,'LIVE_BRAIN_MATERIALIZED_STORE_REQUIRED');
+ const brainReadback=independentBrainReadback(path.join(root,contract.SQL.brain));
+ assert.deepEqual(brainReadback.logicalStore,state.stores.brain,'INDEPENDENT_BRAIN_READER_DISAGREES');
+ assert.equal(brainReadback.schemaObjectsSha256,liveBaseline.attestation.schemaObjectsSha256,'LIVE_BRAIN_FULL_SCHEMA_CHANGED');
+ if(phase==='normal')assert.deepEqual(state.stores.brain,liveBaseline.logicalStore,'MATERIALIZED_NORMAL_BRAIN_NOT_LIVE_BASELINE');
+ receipt.brainLiveBaseline={instanceId:liveBaseline.attestation.instanceId,pid:liveBaseline.attestation.pid,source:liveBaseline.attestation.source,generation:liveBaseline.attestation.runtimeGeneration,readyAt:liveBaseline.attestation.readyAt,observedAt:liveBaseline.attestation.observedAt,baselineLogicalSha256:liveBaseline.attestation.logicalStoreSha256,currentLogicalSha256:sha(json(state.stores.brain)),fullSchemaSha256:brainReadback.schemaObjectsSha256,fullSchemaPreserved:true,method:liveBaseline.attestation.method,readbackExportSha256:brainReadback.exportSha256};
  for(const relative of contract.CONTROL)state.controls[relative]=fileSnapshot(path.join(root,relative));
  for(const id of Object.keys(contract.NATIVE))state.native[id]=nativeSnapshot(contract.nativeRoot(root,id));
  state.generation=dbSnapshot(path.join(root,'authority/generation.sqlite'));assert.equal(state.generation.present,true,'GENERATION_AUTHORITY_MISSING');
@@ -106,8 +117,11 @@ try{
      assert.deepEqual(Object.keys(next.mutableRows),Object.keys(table.mutableRows));
      for(const [key,prior] of Object.entries(table.mutableRows)){const current=next.mutableRows[key];assert.equal(current.after,'');assert.equal(current.blocked,false);assert.equal(current.watermark,prior.watermark);assert.ok(validTime(current.startedAt)&&current.startedAt>=prior.startedAt);assert.ok(validTime(current.completedAt)&&current.completedAt>=current.startedAt);}
      if(table.logicalSha256!==next.logicalSha256)receipt.dynamicDiagnosticChanges.push({store:id,table:name,classification:'BOUNDED_DERIVED_FULFILMENT_CURSOR_WITH_UNCHANGED_CANONICAL_WATERMARK'});
-    }else if(id==='brain'&&name==='audit_logs')assertSubset(table.hashes,next.hashes);
-    else if(id==='brain'&&name==='sqlite_sequence'){for(const [k,v] of Object.entries(table.sequences||{})){if(k==='audit_logs')assert.ok(next.sequences[k]>=v);else assert.equal(next.sequences[k],v,'UNEXPECTED_SEQUENCE_CHANGE');}assert.ok(Object.keys(next.sequences).every(k=>k==='audit_logs'||k in table.sequences));}
+    }else if(id==='brain'&&name==='audit_logs'){
+     assertSubset(table.hashes,next.hashes);
+     if(table.logicalSha256!==next.logicalSha256){const counts=new Map();for(const h of table.hashes)counts.set(h,(counts.get(h)||0)+1);const added=next.hashes.filter(h=>{const n=counts.get(h)||0;if(n){counts.set(h,n-1);return false;}return true;});receipt.dynamicDiagnosticChanges.push({store:'brain',table:'audit_logs',classification:'ORIGINAL_CONTRACT_APPEND_ONLY_AUDIT_ROWS_REQUIRES_INDEPENDENT_LIFECYCLE_REVIEW',originalRowsPreserved:true,beforeCount:table.count,afterCount:next.count,addedCount:added.length,addedRowHashes:added,beforeLogicalSha256:table.logicalSha256,afterLogicalSha256:next.logicalSha256});}
+    }
+    else if(id==='brain'&&name==='sqlite_sequence'){for(const [k,v] of Object.entries(table.sequences||{})){if(k==='audit_logs')assert.ok(next.sequences[k]>=v);else assert.equal(next.sequences[k],v,'UNEXPECTED_SEQUENCE_CHANGE');}assert.ok(Object.keys(next.sequences).every(k=>k==='audit_logs'||k in table.sequences));if(table.logicalSha256!==next.logicalSha256)receipt.dynamicDiagnosticChanges.push({store:'brain',table:'sqlite_sequence',classification:'ONLY_ORIGINAL_CONTRACT_AUDIT_SEQUENCE_MONOTONIC',beforeLogicalSha256:table.logicalSha256,afterLogicalSha256:next.logicalSha256});}
     else assert.deepEqual(next,table,'UNEXPLAINED_WHOLE_APPLICATION_DOMAIN_CHANGE:'+id+':'+name);
    }
   }

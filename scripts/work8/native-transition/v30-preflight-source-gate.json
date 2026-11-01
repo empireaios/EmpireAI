@@ -1,0 +1,287 @@
+{
+  "schema": "work8-v30-independent-source-gate-v1",
+  "stage": "preflight",
+  "branch": "work8/v30-20261101-live-brain-preflight",
+  "approved": true,
+  "status": "PASS_INDEPENDENT_SOURCE_AND_LOCAL_LIVE_BRAIN_PREFLIGHT",
+  "reviewer": "independent_v30",
+  "reviewedAtUTC": "2026-11-01T02:25:03.870285+00:00",
+  "parentCommit": "deb35b6b70e4c6aa95fe7a587483fa654a26cdbe",
+  "applicationBuilds": 0,
+  "candidateReuploads": 0,
+  "wholeRowsAccepted": [],
+  "localPreflight": {
+    "status": "PASS",
+    "receiptSha256": "1ce23e5869fcb3dde4ce7455c780f4b05c52da1d995aec37bcaa0095c1294a5f",
+    "scope": "ACTUAL_RETAINED_SQLJS_MODULE_LIFECYCLE_ONLY; native UID/application integration remains required in bounded preflight",
+    "checksPassed": 10,
+    "nativeApplicationCaptureIntegrationProven": false
+  },
+  "contract": {
+    "status": "PASS",
+    "method": "METHOD_B_GUARDED_CRITICAL_PERSISTENCE",
+    "sameInitializedCachedBrain": true,
+    "securityPolicyUnchanged": true,
+    "absentStoresInitialized": false,
+    "originalDeclaredStores": 13,
+    "isolatedCriticalPersistenceIsWrite": true,
+    "noWholeApplicationQuiescenceClaim": true,
+    "existingCaptureChain": [
+      "withDrainedWork8Background",
+      "TaskQueue.withPausedSharedProcessing",
+      "application.withDrainedLocalAdmission",
+      "withQuiescedSqliteSave"
+    ],
+    "pendingActualNativeProof": true
+  },
+  "acceptedPrivateHandoff": {
+    "runId": 41256737269,
+    "checksPassed": 25,
+    "receiptSha256": "1ea6434ced3b1977ef01e2a210e2e7eff473776499c2ffcf0794cb70ff6c1fe5",
+    "coreImplementationUnchanged": true,
+    "newExplicitExchangeNames": [
+      "capture-live-brain.json",
+      "live-brain-baseline.json",
+      "live-brain-captured.json"
+    ],
+    "independentReviewSha256": "c46d645a3dcec606946ce5a478d16207bda9dc3ad2a8c471dd1c189700db32e9"
+  },
+  "instrumentation": {
+    "readOnlyEntryOverlay": true,
+    "originalEntrySha256": "62cda9b7f8829056e877481f95e264a88d246336d1ef3f60aeaac7d66a0393f3",
+    "overlayEntrySha256": "7e3988244b3e972fa816f199e5536f3a6c9dcfca2080b44688292ab06da192e4",
+    "files": [
+      {
+        "path": "scripts/work8/native-transition/accepted-v29-private-contract.json",
+        "bytes": 2135,
+        "sha256": "5b079637e09990c165b0d8db57e4fa1e9ada63291f980a5ca4a9a40cee8f12c1"
+      },
+      {
+        "path": "scripts/work8/native-transition/coordinator.mjs",
+        "bytes": 19093,
+        "sha256": "8d61128e357c725c80eeb6e452e52893f13032eab3eba75218a805ba3d0d60fb"
+      },
+      {
+        "path": "scripts/work8/native-transition/examine-v26.py",
+        "bytes": 32455,
+        "sha256": "384c4c1ae13fec16289fde28562ad7cc744ee9ed0a58b226c388845b51023b01"
+      },
+      {
+        "path": "scripts/work8/native-transition/independent-brain-readback.mjs",
+        "bytes": 2561,
+        "sha256": "8dd1e183293391938cdf4f4657fa1dd31af383bac41de08fdff644f1ba53b6d0"
+      },
+      {
+        "path": "scripts/work8/native-transition/live-brain-hook.mjs",
+        "bytes": 10347,
+        "sha256": "9af64026eb938dfce31250ede1c26eef04d92f64473e8e1e978521f43b52d9f7"
+      },
+      {
+        "path": "scripts/work8/native-transition/live-brain-index-overlay.js",
+        "bytes": 6115,
+        "sha256": "7e3988244b3e972fa816f199e5536f3a6c9dcfca2080b44688292ab06da192e4"
+      },
+      {
+        "path": "scripts/work8/native-transition/live-brain-observation.mjs",
+        "bytes": 4952,
+        "sha256": "b35a488301e905dd5d3463d5a35512164b36de757fc7f3f988e481ffddf95a3d"
+      },
+      {
+        "path": "scripts/work8/native-transition/live-brain-overlay.json",
+        "bytes": 751,
+        "sha256": "c80eca8833bcce2174799cda731c64ce626789c759ae279a14e1c3db8b3bc83d"
+      },
+      {
+        "path": "scripts/work8/native-transition/live-brain-preflight.mjs",
+        "bytes": 11713,
+        "sha256": "2874930f7cb0a1251d615e954fd198e5db437d04e032253b69dee64165b43ae2"
+      },
+      {
+        "path": "scripts/work8/native-transition/private-exchanges.mjs",
+        "bytes": 2054,
+        "sha256": "f7f35aed49e73037110e388cdd6a63fb079cde339b595713aed8052771227461"
+      },
+      {
+        "path": "scripts/work8/native-transition/whole-app-readback.mjs",
+        "bytes": 17314,
+        "sha256": "ffb88a44e22ce2dd7f24d6ae3b29a6542bdb0282d5cd96c71bb88dc612836630"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": ".github/workflows/work8-v30-live-brain-preflight-20261101.yml",
+      "bytes": 3037,
+      "sha256": "9161da3e91713df506e3dd7a408185c8534b6e4de1ac6c473db59ece5110d759"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 1259,
+      "sha256": "ce01d0e143143ed6ea963e4d208668a1bdd0e9be208af09f017b21bbd0a9db5c"
+    },
+    {
+      "path": "scripts/work8/native-transition/accepted-v29-private-contract.json",
+      "bytes": 2135,
+      "sha256": "5b079637e09990c165b0d8db57e4fa1e9ada63291f980a5ca4a9a40cee8f12c1"
+    },
+    {
+      "path": "scripts/work8/native-transition/browser.mjs",
+      "bytes": 19902,
+      "sha256": "2d313b1933e9ae0885ac21c6c9edf7f3bc627245011a40fec1022b530350a2e3"
+    },
+    {
+      "path": "scripts/work8/native-transition/candidate_packages.py",
+      "bytes": 11261,
+      "sha256": "7a605ea3229e3cd2ea0aca062d719b829291d7775c8b526d39baca13de0186b0"
+    },
+    {
+      "path": "scripts/work8/native-transition/canonical-comparator.mjs",
+      "bytes": 13102,
+      "sha256": "f1f98c7200fd17883c2547486a8913e9bf0d055af0e810eec23db1dedf65cc16"
+    },
+    {
+      "path": "scripts/work8/native-transition/capture-canonical-persistence.mjs",
+      "bytes": 4624,
+      "sha256": "61ce4858f486d8c7b7005ccf0cef00a46c9c1da68a5a092666e0f41c690debdf"
+    },
+    {
+      "path": "scripts/work8/native-transition/components.json",
+      "bytes": 402,
+      "sha256": "1511f21cb02fe26e2b7a6322dc3f0a90ab8d56ff4de5e9d04aebe945e07b52c7"
+    },
+    {
+      "path": "scripts/work8/native-transition/coordinator.mjs",
+      "bytes": 19093,
+      "sha256": "8d61128e357c725c80eeb6e452e52893f13032eab3eba75218a805ba3d0d60fb"
+    },
+    {
+      "path": "scripts/work8/native-transition/examine-v26.py",
+      "bytes": 32455,
+      "sha256": "384c4c1ae13fec16289fde28562ad7cc744ee9ed0a58b226c388845b51023b01"
+    },
+    {
+      "path": "scripts/work8/native-transition/independent-brain-readback.mjs",
+      "bytes": 2561,
+      "sha256": "8dd1e183293391938cdf4f4657fa1dd31af383bac41de08fdff644f1ba53b6d0"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-hook.mjs",
+      "bytes": 10347,
+      "sha256": "9af64026eb938dfce31250ede1c26eef04d92f64473e8e1e978521f43b52d9f7"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-index-overlay.js",
+      "bytes": 6115,
+      "sha256": "7e3988244b3e972fa816f199e5536f3a6c9dcfca2080b44688292ab06da192e4"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-observation.mjs",
+      "bytes": 4952,
+      "sha256": "b35a488301e905dd5d3463d5a35512164b36de757fc7f3f988e481ffddf95a3d"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-overlay.json",
+      "bytes": 751,
+      "sha256": "c80eca8833bcce2174799cda731c64ce626789c759ae279a14e1c3db8b3bc83d"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-preflight.mjs",
+      "bytes": 11713,
+      "sha256": "2874930f7cb0a1251d615e954fd198e5db437d04e032253b69dee64165b43ae2"
+    },
+    {
+      "path": "scripts/work8/native-transition/offline-commerce-readback.mjs",
+      "bytes": 17211,
+      "sha256": "ad0daa88235598eb7ecbaf1595fa04fb64301ab260abfabd2e0f6c978e465d8b"
+    },
+    {
+      "path": "scripts/work8/native-transition/offline-readback.mjs",
+      "bytes": 1861,
+      "sha256": "0e8cfa2093e632d14ed247573d3d8dae6925dd31bacee330a139cdf8786ab5da"
+    },
+    {
+      "path": "scripts/work8/native-transition/prepare-base-candidates.py",
+      "bytes": 11779,
+      "sha256": "fa5c0b802dcf7a83055e0aba42dadedcb391972ac935832c489550f48b618260"
+    },
+    {
+      "path": "scripts/work8/native-transition/private-exchanges.mjs",
+      "bytes": 2054,
+      "sha256": "f7f35aed49e73037110e388cdd6a63fb079cde339b595713aed8052771227461"
+    },
+    {
+      "path": "scripts/work8/native-transition/private-handoff.mjs",
+      "bytes": 14713,
+      "sha256": "7f45fb8350647a49063d70c6249e69e44e920b557884940c89aef7bb8f722aff"
+    },
+    {
+      "path": "scripts/work8/native-transition/private_contract.py",
+      "bytes": 6547,
+      "sha256": "dbe1ab78fdd4702e04ccc06658ecebfca5caff6f53a39e5a406a0eb878d21eae"
+    },
+    {
+      "path": "scripts/work8/native-transition/retained-components.json",
+      "bytes": 539,
+      "sha256": "4200228fd1a4469e652e1dc87a793ed1ed77d57bbc2506167211192380f62bb0"
+    },
+    {
+      "path": "scripts/work8/native-transition/retained-upload-preflight.py",
+      "bytes": 1609,
+      "sha256": "1628ba717fe4391a50a70283175e40e05253df25ef4e231b6635ec7aeb6664d0"
+    },
+    {
+      "path": "scripts/work8/native-transition/upload-preflight.py",
+      "bytes": 2418,
+      "sha256": "9582affdb55540970c05cf9e720ae9aceea5c897a03f3235230aedc4e7ef1e32"
+    },
+    {
+      "path": "scripts/work8/native-transition/v30-full-source-gate.json",
+      "bytes": 164,
+      "sha256": "3ddfe8d71c67f6a8b42a77d06589a9eb3f75e714f801fd5028e7fc57535f248b"
+    },
+    {
+      "path": "scripts/work8/native-transition/v30-full-workflow.template.yml",
+      "bytes": 3659,
+      "sha256": "babe52b8abf09d354b17db844247762e4f36d9806ec8752b0c71b16698999070"
+    },
+    {
+      "path": "scripts/work8/native-transition/v30-hosted-preflight-acceptance.json",
+      "bytes": 235,
+      "sha256": "37940f5feca9e09abf010b0993abdd55a03f304b2b1dec3483ad23e5c4e4923d"
+    },
+    {
+      "path": "scripts/work8/native-transition/verify-v30-gate.py",
+      "bytes": 12441,
+      "sha256": "74c08bd8a2975a0d924c5474fc36d4556707fe0dc15adc43e453b944c40ef152"
+    },
+    {
+      "path": "scripts/work8/native-transition/whole-app-readback.mjs",
+      "bytes": 17314,
+      "sha256": "ffb88a44e22ce2dd7f24d6ae3b29a6542bdb0282d5cd96c71bb88dc612836630"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 1438,
+      "sha256": "823a31cff354e7ea972df3e6c5c8ef9d103625e50e2d5b5da3a89927ca7273cf"
+    }
+  ],
+  "requiredDeletions": [
+    ".github/workflows/work8-v29-private-handoff-20261101.yml"
+  ],
+  "requiredAbsentPaths": [
+    ".github/workflows/work8-v30-live-brain-20261101.yml"
+  ],
+  "fullExaminationDispatchApproved": false,
+  "remotePublicationReadbackRequiredBeforeBranchCreation": true,
+  "limits": {
+    "jobMaximumMinutes": 10,
+    "businessTransitionPermitted": false,
+    "frontendStartupPermitted": false,
+    "maxRetainedArtifactBytes": 134217728,
+    "retentionDays": 7,
+    "sharedAdditionalReservationMaximumUSD": 0.5,
+    "aggregateReservationMaximumUSD": 4.85,
+    "automaticRetry": false
+  },
+  "preparedFullWorkRetainedInactive": true
+}

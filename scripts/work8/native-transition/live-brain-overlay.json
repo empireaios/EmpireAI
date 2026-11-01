@@ -1,0 +1,15 @@
+{
+  "schema": "work8-v30-index-observation-overlay-v1",
+  "underlyingImage": "sha256:abd6eb113ccf07678eba6f2386e9828afc029981e4d31bf266cd389b77d50d3e",
+  "underlyingSource": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+  "originalPath": "/app/backend/dist/index.js",
+  "originalBytes": 6012,
+  "originalSha256": "62cda9b7f8829056e877481f95e264a88d246336d1ef3f60aeaac7d66a0393f3",
+  "overlayBytes": 6115,
+  "overlaySha256": "7e3988244b3e972fa816f199e5536f3a6c9dcfca2080b44688292ab06da192e4",
+  "onlyInsertion": "    await (await import('/examination/live-brain-hook.mjs')).installLiveBrainObservation(application);",
+  "runtimeImageRebuilt": false,
+  "applicationSourceModified": false,
+  "nonProductionInstrumentation": true,
+  "mountReadOnly": true
+}

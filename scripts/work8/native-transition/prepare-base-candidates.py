@@ -4,7 +4,10 @@ import base64, hashlib, io, json, os, pathlib, re, subprocess, sys, tarfile, tem
 import candidate_packages
 
 REPOSITORY = 'empireaios/EmpireAI'
-BRANCH = 'work8/v29-20261101-private-handoff'
+STAGES = {
+ 'preflight': {'branch':'work8/v30-20261101-live-brain-preflight','maximumSeconds':540,'cleanupReserve':60,'gateStatus':'PASS_INDEPENDENT_SOURCE_AND_LOCAL_LIVE_BRAIN_PREFLIGHT'},
+ 'full': {'branch':'work8/v30-20261101-live-brain','maximumSeconds':1650,'cleanupReserve':120,'gateStatus':'PASS_INDEPENDENT_SOURCE_AND_HOSTED_LIVE_BRAIN_PREFLIGHT'},
+}
 PRIOR_RUN = 41243779489
 PRIOR_CONTROLLER = '07517caaf1a355d9d3b552439815f6bb1fdb348f'
 ARTIFACT_ID = 13058526104
@@ -107,34 +110,44 @@ def prepare_driver(root,private):
  return receipts
 
 def main():
- root=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve();out=root/'native-transition-output';out.mkdir(exist_ok=True);budget=json.loads((out/'workflow-budget.json').read_text());assert budget['maximumSeconds']==1650 and budget['cleanupAndUploadReserveSeconds']==120;assert json.loads((out/'v29-source-gate.json').read_text())['status']=='PASS_INDEPENDENT_SOURCE_AND_LOCAL_PREFLIGHT';stage='event-authority';result={'status':'FAIL','productionAccess':False,'buildsRepeated':False,'broadBuildScansRepeated':False}
+ assert len(sys.argv)==2 and sys.argv[1] in {'--preflight','--full'},'EXPLICIT_RETAINED_IMPORT_STAGE_REQUIRED'
+ mode=sys.argv[1][2:];limits=STAGES[mode]
+ root=pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve();out=root/'native-transition-output';out.mkdir(exist_ok=True);budget=json.loads((out/'workflow-budget.json').read_text());assert budget['maximumSeconds']==limits['maximumSeconds'] and budget['cleanupAndUploadReserveSeconds']==limits['cleanupReserve'];assert budget['reservationId']=='work8-v30-live-brain-20261101' and budget['aggregateReservedUSD']==4.85;assert json.loads((out/'v30-source-gate.json').read_text())['status']==limits['gateStatus'];stage='event-authority';result={'status':'FAIL','mode':mode,'productionAccess':False,'buildsRepeated':False,'broadBuildScansRepeated':False}
+ def capacity():
+  remaining=budget['maximumSeconds']-(time.time()-budget['startedAtEpoch'])-budget['cleanupAndUploadReserveSeconds']
+  assert remaining>0,'RETAINED_IMPORT_TIME_BOUND'
+  return remaining
  try:
-  assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/'+BRANCH
-  event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']==BRANCH
+  assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/'+limits['branch']
+  event=json.load(open(os.environ['GITHUB_EVENT_PATH']));assert event['ref_type']=='branch' and event['ref']==limits['branch']
   assert os.environ['GITHUB_RUN_ATTEMPT']=='1' and os.environ['GITHUB_RUN_NUMBER']=='1'
   assert subprocess.check_output(['node','--version'],text=True).strip()=='v22.23.2'
   with tempfile.TemporaryDirectory(prefix='work8-retained-import-',dir=os.environ['RUNNER_TEMP']) as temp:
-   private=pathlib.Path(temp);stage='prior-artifact-metadata'
+   private=pathlib.Path(temp);stage='prior-artifact-metadata';capacity()
    token=os.environ.pop('GH_RETAINED_READ_TOKEN');meta=api('/repos/'+REPOSITORY+'/actions/artifacts/'+str(ARTIFACT_ID),token)
    assert meta['id']==ARTIFACT_ID and meta['size_in_bytes']==ARCHIVE_BYTES and meta['digest']=='sha256:'+ARCHIVE_SHA and meta['expired'] is False
    assert meta['workflow_run']['id']==PRIOR_RUN and meta['workflow_run']['head_sha']==PRIOR_CONTROLLER
    signed=api('/repos/'+REPOSITORY+'/actions/artifacts/'+str(ARTIFACT_ID)+'/zip',token,redirect=True);del token
-   stage='prior-artifact-download';archive=private/'candidates.zip';download(signed,archive,ARCHIVE_BYTES,ARCHIVE_BYTES);del signed
-   stage='prior-artifact-and-image-validation';candidates=root/'native-transition-candidates';components=verify_archive(archive,candidates)
+   stage='prior-artifact-download';capacity();archive=private/'candidates.zip';download(signed,archive,ARCHIVE_BYTES,ARCHIVE_BYTES);del signed
+   stage='prior-artifact-and-image-validation';capacity();candidates=root/'native-transition-candidates';components=verify_archive(archive,candidates)
    pins=json.loads((pathlib.Path(__file__).with_name('components.json')).read_text());verified=[]
    for role in ['backend','normal','recovery']:
-    component=components[role];assert component['commit']==pins[role]['commit'] and component['tree']==pins[role]['tree']
+    capacity();component=components[role];assert component['commit']==pins[role]['commit'] and component['tree']==pins[role]['tree']
     layers=verify_image_archive(candidates/component['archiveFile'],component)
     verified.append({'role':role,'image':component['image'],'source':component['commit'],'tree':component['tree'],'layersVerified':layers,'archiveSha256':component['archiveSha256']})
    assert sum(x['layersVerified'] for x in verified)==24
    stage='load-verified-prior-images'
-   for role in ['backend','normal','recovery']:
-    component=components[role];subprocess.run(['docker','load','--input',str(candidates/component['archiveFile'])],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=180,check=True)
+   loaded=['backend'] if mode=='preflight' else ['backend','normal','recovery']
+   for role in loaded:
+    component=components[role];subprocess.run(['docker','load','--input',str(candidates/component['archiveFile'])],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=min(180,max(1,int(capacity()))),check=True)
     actual=json.loads(subprocess.check_output(['docker','image','inspect',component['image']]))[0]
     assert actual['Id']==component['image']
     assert actual['Config']['Labels']['org.opencontainers.image.revision']==component['commit'] and actual['Config']['Labels']['io.empireai.source-tree']==component['tree']
-   stage='locked-browser-driver';drivers=prepare_driver(root,private)
-   result.update(status='PASS_RETAINED_BYTES_LOADED_DRIVER_READY',priorRunId=PRIOR_RUN,artifactId=ARTIFACT_ID,outerArchiveBytes=ARCHIVE_BYTES,outerArchiveSha256=ARCHIVE_SHA,indexSha256=INDEX_SHA,sourceExpiresAtUTC=meta['expires_at'],images=verified,browserDriver=drivers,applicationImagesRebuilt=False,newCandidateUpload=False,providerCredentialPassedToRuntime=False)
+   drivers=[]
+   if mode=='full':
+    stage='locked-browser-driver';capacity();drivers=prepare_driver(root,private)
+   capacity()
+   result.update(status='PASS_RETAINED_BACKEND_LOADED_PREFLIGHT_READY' if mode=='preflight' else 'PASS_RETAINED_BYTES_LOADED_DRIVER_READY',priorRunId=PRIOR_RUN,artifactId=ARTIFACT_ID,outerArchiveBytes=ARCHIVE_BYTES,outerArchiveSha256=ARCHIVE_SHA,indexSha256=INDEX_SHA,sourceExpiresAtUTC=meta['expires_at'],images=verified,loadedRoles=loaded,browserDriver=drivers,browserDriverPrepared=mode=='full',applicationImagesRebuilt=False,newCandidateUpload=False,providerCredentialPassedToRuntime=False)
  except Exception:
   result['failedStage']=stage;result['error']='RETAINED_PREPARATION_REFUSED'
  finally:
