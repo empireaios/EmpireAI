@@ -25,15 +25,17 @@ test('actual inspector restarts, reports missing durable cycles and stops prompt
  try{
   for(let attempt=0;attempt<2;attempt++){
    const child=spawn(process.execPath,[entry],{env:{PATH:process.env.PATH,RAILWAY_VOLUME_MOUNT_PATH:root},stdio:['ignore','pipe','pipe']});
-   let output='';
+   let output='',stderr='';child.stderr.on('data',chunk=>{stderr+=chunk;});
    const exit=new Promise((resolve,reject)=>{child.once('error',reject);child.once('exit',(code,signal)=>resolve({code,signal}));});
-   const timer=setTimeout(()=>child.kill('SIGKILL'),3000);
+   // The production read-only schema readiness bound is 5000ms. This test
+   // must permit that deliberate failure boundary plus startup overhead.
+   const timer=setTimeout(()=>child.kill('SIGKILL'),8000);
    try{
-    await new Promise((resolve,reject)=>{child.once('error',reject);child.stdout.on('data',chunk=>{output+=chunk; if(output.includes('\n'))resolve();});child.once('exit',()=>{if(!output)reject(Error('Inspector exited without evidence'));});});
+    await new Promise((resolve,reject)=>{child.once('error',reject);child.stdout.on('data',chunk=>{output+=chunk; if(output.includes('\n'))resolve();});child.once('exit',()=>{if(!output)reject(Error('Inspector exited without evidence: '+stderr));});});
     const report=JSON.parse(output.split('\n')[0]);assert.equal(report.event,'independent_assurance_watchdog');assert.equal(report.healthy,false);assert.equal(report.status,'SOURCE_UNAVAILABLE');
     assert.equal(report.observerFailed,true);assert.equal(report.heartbeatRenewed,false);
     assert.equal(fs.existsSync(path.join(root,'commissioning/assurance.sqlite.watchdog')),false);
-    child.kill('SIGTERM');const stopped=await exit;assert.equal(stopped.code,0);assert.equal(stopped.signal,null);
+    const shutdownAt=performance.now();child.kill('SIGTERM');const stopped=await exit;assert.equal(stopped.code,0);assert.equal(stopped.signal,null);assert.ok(performance.now()-shutdownAt<1000,'Inspector did not stop promptly');
    }finally{clearTimeout(timer);if(child.exitCode===null)child.kill('SIGKILL');}
   }
  }finally{fs.rmSync(root,{recursive:true,force:true});}

@@ -7,13 +7,18 @@ import { assurancePaths } from './live-sources.mjs';
 import {runInspectorPass} from './inspector-cycle.mjs';
 import {waitForAssuranceSchema} from './schema-readiness.mjs';
 import {setTimeout as delay} from 'node:timers/promises';
-const {database}=assurancePaths(process.env.RAILWAY_VOLUME_MOUNT_PATH);
+const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;
+const {database}=assurancePaths(root);
 const shutdown=new AbortController();
 let stopping=false;for(const s of ['SIGTERM','SIGINT'])process.on(s,()=>{stopping=true;shutdown.abort();});
 process.once('disconnect',()=>{stopping=true;shutdown.abort();});
 let controlPlane=null;
 try{if(process.env.RAILWAY_GIT_COMMIT_SHA)controlPlane=new AssuranceControlPlane({root:path.dirname(database),revision:process.env.RAILWAY_GIT_COMMIT_SHA});}catch{}
 capture.ready();
+const {installDiscrepancyReader}=createRequire(import.meta.url)('../../../deployment/assurance-discrepancy-readback.cjs');
+// Standalone watchdog execution has no parent IPC. It must retain its existing
+// observation behavior; optional discrepancy readback remains unavailable.
+const closeDiscrepancyReader=process.connected?installDiscrepancyReader({root,capture}):()=>{};
 while(!stopping){
   const ran=await capture.run(async()=>{
   if(controlPlane){try{
@@ -32,6 +37,7 @@ while(!stopping){
   await delay(30000,undefined,{signal:shutdown.signal}).catch(error=>{if(error.name!=='AbortError')throw error;});
 }
 
+closeDiscrepancyReader();
 controlPlane?.close();
 
 // Release the referenced parent IPC channel after orderly observer shutdown.

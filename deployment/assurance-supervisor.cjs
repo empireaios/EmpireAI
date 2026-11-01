@@ -2,6 +2,7 @@
 const {spawn}=require('node:child_process');
 const {randomUUID}=require('node:crypto');
 const {protocol,valid}=require('./observer-capture.cjs');
+const {createDiscrepancyRelay}=require('./assurance-discrepancy-readback.cjs');
 const LEGACY_ORIGIN='https://empireai-locked-runtime-production.up.railway.app';
 // A service-specific target prevents an isolated twin from observing production.
 function assuranceRuntimeOrigin(env){
@@ -15,6 +16,7 @@ function superviseAssurance({cwd,env,spawnImpl=spawn,onEvent=e=>console.log(JSON
   const origin=assuranceRuntimeOrigin(env);
   let stopping=false;const children=new Set(),timers=new Set(),failures=new Map();
   let runtime,capture;
+  const discrepancyRelay=createDiscrepancyRelay();
   const send=(child,m)=>{if(child?.connected)child.send(m,error=>{if(error&&capture)failCapture();});else if(capture)failCapture();};
   const failCapture=()=>{
     if(!capture)return;
@@ -81,6 +83,7 @@ function superviseAssurance({cwd,env,spawnImpl=spawn,onEvent=e=>console.log(JSON
     };
     try{
       child=spawnImpl(process.execPath,['backend/src/assurance/'+name],{cwd,env:childEnv,stdio:['ignore','inherit','inherit','ipc']});children.add(child);
+      discrepancyRelay.register(name==='permanent-worker.mjs'?'worker':'inspector',child);
       child.on('message',message=>{observerMessage(child,message);if(!queued&&!stopping&&message?.type==='assurance_progress')armProgress();});
       armProgress();
       child.once('error',()=>{onEvent({event:'assurance_process_unavailable',component:name});restart();});
@@ -88,7 +91,7 @@ function superviseAssurance({cwd,env,spawnImpl=spawn,onEvent=e=>console.log(JSON
     }catch{onEvent({event:'assurance_process_unavailable',component:name});restart();}
   }
   for(const name of ['permanent-worker.mjs','permanent-inspector.mjs'])start(name);
-  const stop=()=>{stopping=true;if(capture)clearTimeout(capture.timer);for(const timer of timers)clearTimeout(timer);for(const child of children)child.kill('SIGTERM');};
+  const stop=()=>{stopping=true;discrepancyRelay.close();if(capture)clearTimeout(capture.timer);for(const timer of timers)clearTimeout(timer);for(const child of children)child.kill('SIGTERM');};
   stop.attachRuntime=attachRuntime;return stop;
 }
 module.exports={superviseAssurance,assuranceRuntimeOrigin};
