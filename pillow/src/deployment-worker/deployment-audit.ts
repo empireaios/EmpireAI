@@ -1,1 +1,0 @@
-export type DeploymentAuditEvent={eventId:string;event:string;timestamp:string;data:Record<string,unknown>}; export class DeploymentAudit { private events:DeploymentAuditEvent[]=[]; record(event:DeploymentAuditEvent){this.events.push(event);return event} list(limit=50){return this.events.slice(-limit)} }

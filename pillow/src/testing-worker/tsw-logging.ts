@@ -1,1 +1,0 @@
-export class TestingWorkerLogger { constructor(private readonly redact=(value:unknown)=>JSON.stringify(value).replace(/(secret|token|password)["']?\s*[:=]\s*["']?[^,\s"']+/gi,"$1:[REDACTED]")){} info(event:string,data:unknown={}){return {event,data:this.redact(data)}} }

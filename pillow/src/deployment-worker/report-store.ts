@@ -1,1 +1,0 @@
-import type { DeploymentBuildReport } from "./types.js"; export class DeploymentReportStore { private reports:DeploymentBuildReport[]=[]; add(report:DeploymentBuildReport){this.reports.push(report);return report} list(){return [...this.reports]} }

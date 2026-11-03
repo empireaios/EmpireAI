@@ -1,1 +1,0 @@
-import type { DeploymentRecord } from "./types.js"; export class DeploymentHistory { private records:DeploymentRecord[]=[]; record(value:DeploymentRecord){this.records.push({...value});return value} list(){return [...this.records]} }
