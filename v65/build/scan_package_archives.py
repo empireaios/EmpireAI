@@ -60,9 +60,14 @@ def scan_frontend_stage(context,role):
         with p.open('rb') as stream:scan_stream(stream,role,relative.as_posix(),stats,entries,account)
     return stats
 
-def scan_packages(directory,manifest):
+def scan_packages(directory,manifest,roles=None):
     directory=pathlib.Path(directory);started=time.monotonic();total=0;results=[];policy=classifications()
-    entries=[('backend',manifest['backend']),*manifest['frontends'].items()]
+    entries=([('backend',manifest['backend'])] if manifest.get('backend') is not None else [])+list(manifest['frontends'].items())
+    if roles is not None:
+        assert len(roles)==1 and roles[0] in ('backend','normal','recovery'),'EXACT_COMPONENT_SCAN_ROLE'
+        entries=[entry for entry in entries if entry[0] in roles]
+        assert len(entries)==1,'COMPLETE_COMPONENT_SCAN_INPUT_REQUIRED'
+    else:assert manifest.get('backend') is not None,'COMPLETE_SCAN_BACKEND_REQUIRED'
     assert sum(item['bytes'] for _,item in entries)<=1024**3,'CANDIDATE_EXPORT_PAYLOAD_BOUND'
     def account(count):
         nonlocal total

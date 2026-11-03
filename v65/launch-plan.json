@@ -1,20 +1,20 @@
 {
   "schema": "work8-v65-reviewed-launch-plan-v1",
-  "status": "PREPARED_AUTHORITY_PAYLOAD_AWAITING_ROOT_DURABLE_RELEASE",
-  "scope": "One first-attempt GitHub Actions source reconstruction and conditional A5 native examination; no second run is authorized by this plan",
+  "status": "OWNER_APPROVED_ONE_ATTEMPT_PENDING_DURABLE_PRELAUNCH_RELEASE",
+  "scope": "V70 owner-authorised one corrected A5 attempt. Release becomes operative only after independent prelaunch review and durable single reservation receipt; no automatic retry or successor.",
   "authority": {
-    "ownerDirective": "EMPIREAI_V65_A5_RUNNER_LOCAL_EXECUTION_FINAL_CLOSURE",
+    "ownerDirective": "EMPIREAI_V70_A5_EXECUTION_APPROVAL",
     "work8CeilingUSD": 100,
     "existingAdditionalA5USD": 10,
-    "priorOverallHoldsUSD": 12.07,
-    "priorA5HoldsUSD": 2.12,
-    "availableBeforeReservationUSD": 7.88,
+    "priorOverallHoldsUSD": 12.08,
+    "priorA5HoldsUSD": 2.13,
+    "availableBeforeReservationUSD": 7.87,
     "reservationUSD": 1,
     "proposedReservationUSD": 1,
     "maximumProspectiveUSD": 0.127,
-    "currentOverallHoldsUSD": 13.07,
-    "currentA5HoldsUSD": 3.12,
-    "remainingUnreservedUSD": 6.88,
+    "currentOverallHoldsUSD": 13.08,
+    "currentA5HoldsUSD": 3.13,
+    "remainingUnreservedUSD": 6.87,
     "reservationCommitted": true,
     "renewed": false,
     "productionOperations": false,
@@ -77,13 +77,52 @@
     "retentionInterpretation": "Request7days; service verification tolerates at most one additional hour between created_at and expires_at, and the estimate reserves one extra hourly accounting boundary."
   },
   "releaseConditions": [
-    "Independent original-contract source-equivalence admission, exact immutable source recipe and local controller negative controls reviewed",
-    "Exact final workflow/source inventory reviewed and durably preserved",
-    "Root durably records the one-dollar reservation within existing authority before branch creation; this prepared authority payload's committed fields become operative only after that release, and the separate financial receipt remains NOT_YET_COMMITTED until then",
-    "Fresh launch branch work8/v65-a5-20261103 contains only reviewed workflow and audited source files",
-    "Actual hosted source/package/runtime/durable-evidence observations and independent acknowledgments remain mandatory before initialized native examination and full A5 execution"
+    "Explicit owner authorization for a new single hosted attempt must be established separately; this draft does not supply it",
+    "Preserve the failed V65 run, frozen source, remedy review, accepted histories and original A5 criteria; do not rerun accepted examinations",
+    "Bind final successor source inventory and the actual new-run authority, independently review and durably preserve them before creating the launch branch",
+    "Commit a one-dollar reservation from the existing 7.87USD available A5 authority before launch, updating reservationCommitted, reservationUSD and actual ledger totals; proposed totals here are not holds",
+    "Create the review branch from a previously reviewed non-launching commit before it points to successor source; create the exact fresh launch branch once and do not delete, recreate or automatically rerun it",
+    "Independently reconcile the actual current runner image provenance before native admission",
+    "Require complete candidate manifests, source-equivalence/runtime qualification, durable bounded evidence readback and both independent acknowledgments before native phases"
   ],
-  "reviewBranch": "work8/v65-review-20261103",
-  "launchBranch": "work8/v65-a5-20261103",
-  "providerReservationIsNotApplicationAcceptance": true
+  "reviewBranch": "work8/v66-review-20261103",
+  "launchBranch": "work8/v66-a5-20261103",
+  "providerReservationIsNotApplicationAcceptance": true,
+  "proposedPostReservationLedgerNotCommitted": {
+    "overallHoldsUSD": 13.08,
+    "A5HoldsUSD": 3.13,
+    "remainingA5USD": 6.87,
+    "reservationUSD": 1,
+    "operative": false
+  },
+  "predecessor": {
+    "runId": 41596492677,
+    "sourceCommit": "37b3a9489cf19fc0dceef4e144c2c8774e34c8b4",
+    "trackerNativeVersion": 69,
+    "disposition": "TERMINAL_FAILURE_NO_NATIVE_EXAMINATION",
+    "preserved": true
+  },
+  "launchEventPolicy": {
+    "event": "create",
+    "refType": "branch",
+    "exactBranch": "work8/v66-a5-20261103",
+    "attempt": 1,
+    "runNumberPredicate": false,
+    "freshBranchRequired": true,
+    "branchRecreationAuthorized": false,
+    "reviewBranchMayExecute": false,
+    "priorV65BranchMayExecute": false,
+    "providerStateVerifiedInThisDraft": false
+  },
+  "ownerApproval": {
+    "directive": "EMPIREAI_V70_A5_EXECUTION_APPROVAL",
+    "approvedDate": "2026-11-03",
+    "attempts": 1,
+    "maximumEstimatedAttributableUSD": 0.127,
+    "maximumReservationUSD": 1,
+    "existingAvailableA5USD": 7.87,
+    "noAutomaticRetry": true,
+    "noBudgetIncrease": true,
+    "soleTarget": "A5"
+  }
 }

@@ -9,6 +9,8 @@ import argparse, datetime, gzip, hashlib, json, os, pathlib, platform, re
 import selectors, shutil, signal, subprocess, tarfile, time, urllib.request
 from retained_candidate_packages import BoundedCompressedWriter
 from scan_package_archives import scan_frontend_stage
+from capture_diagnostics import capture as diagnostic_capture, CaptureFailure, node_probe_source, failure_fields, atomic as diagnostic_atomic
+from component_checkpoints import seal as seal_component
 
 HERE=pathlib.Path(__file__).resolve().parent
 BACKEND_COMMIT='6c1e63ba20619ee480742fd87dc810ca93152e22'
@@ -28,31 +30,60 @@ def atomic(p,obj):
     with tmp.open('x') as f:json.dump(obj,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
     tmp.chmod(0o600);os.replace(tmp,p)
 
+COMMAND_LABELS=frozenset({'backend-init','backend-origin','backend-fetch','backend-checkout','backend-reconstruction','frontend-reconstruction','git-init','git-origin'} | {role+'-'+step for role in ('normal','recovery') for step in ('fetch','checkout','dependencies','sharp-remedy','identity','build')})
+COMMAND_DIAGNOSTIC_CODES=frozenset({'ENOENT','EACCES','EPERM','ENOSPC','ENOMEM','EIO','ETIMEDOUT','ECONNREFUSED','ECONNRESET','ENOTFOUND','EAI_AGAIN','ERESOLVE','EINTEGRITY','ENOTEMPTY','EBADENGINE','MODULE_NOT_FOUND','ERR_MODULE_NOT_FOUND','ERR_PACKAGE_PATH_NOT_EXPORTED','ERR_DLOPEN_FAILED','ERR_REQUIRE_ESM','ERR_INVALID_ARG_TYPE'})
+
 def command(argv,cwd,env,logs,label,seconds=300):
-    need(re.fullmatch('[a-z0-9-]+',label) is not None,'COMMAND_LABEL')
-    path=logs/(label+'.log');start=time.monotonic();total=0
+    # Labels are tied to the unchanged reconstruction call sites, not output.
+    need(label in COMMAND_LABELS,'COMMAND_LABEL_REFUSED')
+    need(type(seconds) in (int,float) and 0<seconds<=1800,'COMMAND_DEADLINE_BOUND')
+    logs=pathlib.Path(logs);path=logs/(label+'.log');start=time.monotonic()
+    total=0;counts=[0,0];hashes=[hashlib.sha256(),hashlib.sha256()];tails=[b'',b''];codes=set()
+    p=None;sel=selectors.DefaultSelector();stop=None;complete=True;os_errno=None
     with path.open('xb') as out:
         path.chmod(0o600)
-        p=subprocess.Popen(argv,cwd=cwd,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,start_new_session=True)
-        sel=selectors.DefaultSelector();os.set_blocking(p.stdout.fileno(),False);sel.register(p.stdout,selectors.EVENT_READ)
         try:
+            p=subprocess.Popen(argv,cwd=cwd,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,start_new_session=True)
+            for index,stream in enumerate((p.stdout,p.stderr)):
+                os.set_blocking(stream.fileno(),False);sel.register(stream,selectors.EVENT_READ,index)
             while sel.get_map():
-                need(time.monotonic()-start<seconds,'COMMAND_TIMEOUT_'+label)
-                for key,_ in sel.select(.1):
-                    b=os.read(key.fd,65536)
-                    if not b:sel.unregister(key.fileobj);continue
-                    total+=len(b);need(total<=MAX_LOG,'COMMAND_LOG_LIMIT_'+label);out.write(b)
-            p.wait(timeout=max(.1,seconds-(time.monotonic()-start)))
-            need(p.returncode==0,'COMMAND_FAILED_'+label)
+                if time.monotonic()-start>=seconds:stop='COMMAND_TIMEOUT';complete=False;break
+                for key,_ in sel.select(.05):
+                    chunk=os.read(key.fd,min(65536,MAX_LOG-total+1))
+                    if not chunk:sel.unregister(key.fileobj);continue
+                    index=key.data;counts[index]+=len(chunk);hashes[index].update(chunk)
+                    sample=tails[index]+chunk;tails[index]=sample[-128:]
+                    for match in re.finditer(rb'(?<![A-Z0-9_])(?:ERR_[A-Z0-9_]{1,80}|MODULE_NOT_FOUND|E[A-Z]{1,30}|TS[0-9]{3,6})(?![A-Z0-9_])',sample):
+                        code=match.group().decode('ascii')
+                        if code in COMMAND_DIAGNOSTIC_CODES or re.fullmatch('TS[0-9]{3,6}',code):codes.add(code)
+                    remaining=MAX_LOG-total;out.write(chunk[:remaining]);total+=len(chunk)
+                    if total>MAX_LOG:stop='COMMAND_OUTPUT_BOUND';complete=False;break
+                if stop:break
+            if stop:
+                try:os.killpg(p.pid,signal.SIGKILL)
+                except ProcessLookupError:pass
+            p.wait(timeout=5 if stop else max(.001,seconds-(time.monotonic()-start)))
+            if not stop and p.returncode!=0:stop='COMMAND_NONZERO'
+        except subprocess.TimeoutExpired:stop='COMMAND_TIMEOUT';complete=False
+        except OSError as error:stop='COMMAND_OS_ERROR';complete=False;os_errno=error.errno
         finally:
-            if p.poll() is None:os.killpg(p.pid,signal.SIGKILL);p.wait(timeout=5)
-            sel.close();p.stdout.close()
-    return {'step':label,'exitCode':p.returncode,'seconds':round(time.monotonic()-start,3),'logSHA256':sha(path),'logBytes':total,'rawLogExported':False}
+            if p and p.poll() is None:
+                try:os.killpg(p.pid,signal.SIGKILL)
+                except ProcessLookupError:pass
+                p.wait(timeout=5)
+            sel.close()
+            if p:p.stdout.close();p.stderr.close()
+        out.flush();os.fsync(out.fileno())
+    receipt={'schema':'work8-v66-bounded-build-command-v1','commandLabel':label,'code':('COMMAND_FAILED_'+label if stop=='COMMAND_NONZERO' else stop or 'COMMAND_COMPLETE'),'stopCause':stop,'exitCode':p.returncode if p else None,'stdoutBytes':counts[0],'stderrBytes':counts[1],'stdoutSHA256':hashes[0].hexdigest(),'stderrSHA256':hashes[1].hexdigest(),'knownDiagnosticCodes':sorted(codes)[:16],'streamComplete':complete,'maximumStreamBytes':MAX_LOG,'maximumSeconds':seconds,'rawOutputExported':False,'applicationAcceptance':False,'elapsedSeconds':round(time.monotonic()-start,3),'logBytes':path.stat().st_size,'logSHA256':sha(path)}
+    if os_errno is not None:receipt['errno']=os_errno
+    if stop:
+        first=logs.parent/'command-receipts/first-command-failure.json'
+        if not first.exists():diagnostic_atomic(first,receipt,exclusive=True)
+        raise CaptureFailure(receipt)
+    return {'step':label,'exitCode':p.returncode,'seconds':receipt['elapsedSeconds'],'logSHA256':receipt['logSHA256'],'logBytes':receipt['logBytes'],'stdoutBytes':counts[0],'stderrBytes':counts[1],'stdoutSHA256':receipt['stdoutSHA256'],'stderrSHA256':receipt['stderrSHA256'],'rawLogExported':False}
 
-def capture(argv,cwd,env):
-    p=subprocess.run(argv,cwd=cwd,env=env,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,timeout=30)
-    need(p.returncode==0 and len(p.stdout)<131072,'CAPTURE_REFUSED')
-    return p.stdout
+def capture(argv,cwd,env,*,label,receipts):
+    return diagnostic_capture(argv,cwd,env,label=label,receipts=receipts)
 
 def acquire(root,env,logs,cache=None):
     dest=root/'toolchain';dest.mkdir()
@@ -69,14 +100,14 @@ def acquire(root,env,logs,cache=None):
         os.rename(partial,archive);directory=dest/item['package'];directory.mkdir()
         with tarfile.open(archive,'r:gz') as tf:tf.extractall(directory,filter='data')
     node=dest/'node-linux-x64/package/bin/node';npm=dest/'npm/package/bin/npm-cli.js'
-    need(capture([str(node),'--version'],root,env).strip()==b'v22.23.2','NODE_VERSION')
-    need(capture([str(node),str(npm),'--version'],root,env).strip()==b'10.9.8','NPM_VERSION')
+    need(capture([str(node),'--version'],root,env,label='toolchain-node-version',receipts=root/'capture-receipts').strip()==b'v22.23.2','NODE_VERSION')
+    need(capture([str(node),str(npm),'--version'],root,env,label='toolchain-npm-version',receipts=root/'capture-receipts').strip()==b'10.9.8','NPM_VERSION')
     return node,npm
 
 def verify_source(repo,spec,env):
-    need(capture(['git','rev-parse','HEAD'],repo,env).decode().strip()==spec['commit'],'SOURCE_COMMIT')
-    need(capture(['git','rev-parse','HEAD^{tree}'],repo,env).decode().strip()==spec['tree'],'SOURCE_TREE')
-    need(not capture(['git','diff','--name-only','HEAD'],repo,env).strip(),'SOURCE_MODIFIED')
+    need(capture(['git','rev-parse','HEAD'],repo,env,label=spec['name']+'-source-commit',receipts=repo.parent/'capture-receipts').decode().strip()==spec['commit'],'SOURCE_COMMIT')
+    need(capture(['git','rev-parse','HEAD^{tree}'],repo,env,label=spec['name']+'-source-tree',receipts=repo.parent/'capture-receipts').decode().strip()==spec['tree'],'SOURCE_TREE')
+    need(not capture(['git','diff','--name-only','HEAD'],repo,env,label=spec['name']+'-source-clean',receipts=repo.parent/'capture-receipts').strip(),'SOURCE_MODIFIED')
     web=repo/'empireai-web';need(sha(web/'package-lock.json')==spec['lockSHA256'],'SOURCE_LOCK')
     for contract in spec['contracts']:need(sha(web/contract['path'])==contract['sha256'],'SOURCE_CONTRACT')
 
@@ -123,7 +154,7 @@ def package(root,repo,spec,node,backend,build,env):
     return {'commit':spec['commit'],'tree':spec['tree'],'file':target.name,'bytes':target.stat().st_size,'sha256':sha(target),'membersSHA256':sha(stage/'MEMBERS.json'),'members':len(members),'buildId':build_id}
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--root',required=True);parser.add_argument('--backend-manifest',required=True);parser.add_argument('--toolchain-cache');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--root',required=True);parser.add_argument('--backend-manifest',required=True);parser.add_argument('--toolchain-cache');parser.add_argument('--execution-root',required=True,type=pathlib.Path);args=parser.parse_args()
     root=pathlib.Path(args.root).absolute()
     need(os.environ.get('GITHUB_ACTIONS')=='true','GITHUB_ACTIONS_CONTEXT_REQUIRED')
     need(platform.system()=='Linux' and platform.machine()=='x86_64','LINUX_AMD64_REQUIRED')
@@ -152,18 +183,30 @@ def main():
             result['buildReceipts'].append(command([str(node),str(npm),'ci','--ignore-scripts','--no-audit','--no-fund','--include=optional'],web,env,logs,name+'-dependencies',600))
             step=name+'-sharp-remedy'
             result['buildReceipts'].append(command([str(node),str(npm),'rebuild','--offline','--no-audit','--no-fund'],web,env,logs,name+'-sharp-remedy',180))
-            actual=json.loads(capture([str(node),'-e',"console.log(JSON.stringify({node:process.version,next:require('next/package.json').version,sharp:require('sharp').versions.sharp,sharpBinary:require('@img/sharp-linux-x64/package.json').version,libvips:require('@img/sharp-libvips-linux-x64/package.json').version}))"],web,env))
-            need(actual=={'node':'v22.23.2','next':'16.2.9','sharp':'0.34.5','sharpBinary':'0.34.5','libvips':'1.2.4'},'SHARP_RUNTIME_COMPATIBILITY')
+            probes=(('sharp-native-load',"require('sharp').versions.sharp",'0.34.5'),
+                    ('node-runtime-version','process.version','v22.23.2'),
+                    ('next-package-version',"require('next/package.json').version",'16.2.9'),
+                    ('sharp-binary-package-version',"require('@img/sharp-linux-x64/package').version",'0.34.5'),
+                    ('libvips-package-version',"require('@img/sharp-libvips-linux-x64/package').version",'1.2.4'))
+            for label,expression,expected in probes:
+                step=name+'-'+label
+                actual=json.loads(capture([str(node),'-e',node_probe_source(expression)],web,env,label=step,receipts=root/'capture-receipts'))
+                need(actual=={'value':expected},'PINNED_RUNTIME_VERSION_MISMATCH')
             step=name+'-identity'
             result['buildReceipts'].append(command([str(node),'--import','tsx','--test','lib/owner/runtime-release-identity.test.ts'],web,env,logs,name+'-identity',60))
             step=name+'-build';build=command([str(node),str(npm),'run','build'],web,env,logs,name+'-build',600);result['buildReceipts'].append(build)
             step=name+'-package';result['frontends'][name]=package(root,repo,spec,node,backend,build,env)
             verify_source(repo,spec,env)
+            component_receipt=root/'receipts'/(name+'-component-build.json')
+            atomic(component_receipt,{'schema':'work8-v65-frontend-component-build-v1','role':name,'source':spec,'package':result['frontends'][name],'commands':result['buildReceipts'],'runtimeProbes':probes,'applicationRuntimeStarted':False,'applicationAcceptance':False})
+            step=name+'-local-component-checkpoint'
+            seal_component(args.execution_root,name,result['frontends'][name],root/'artifacts'/result['frontends'][name]['file'],[component_receipt,*sorted((root/'capture-receipts').glob(name+'-*.json'))])
         result['elapsedSeconds']=round(time.monotonic()-started,3)
         result['recordedAtUTC']=datetime.datetime.now(datetime.timezone.utc).isoformat()
         atomic(root/'v65-packages.json',result);print(json.dumps({'status':'CANDIDATES_BUILT_AWAITING_INDEPENDENT_QUALIFICATION','manifestSHA256':sha(root/'v65-packages.json'),'nativeAcceptanceClaimed':False}))
     except Exception as error:
-        receipt={'schema':'work8-v65-build-first-failure-v1','stage':step,'code':str(error) if isinstance(error,Refusal) else type(error).__name__,'elapsedSeconds':round(time.monotonic()-started,3),'nativeAcceptanceClaimed':False,'rawLogsExported':False}
+        receipt={'schema':'work8-v65-build-first-failure-v1','stage':step,'code':str(error) if isinstance(error,(Refusal,CaptureFailure)) else type(error).__name__,'elapsedSeconds':round(time.monotonic()-started,3),'nativeAcceptanceClaimed':False,'rawLogsExported':False}
+        if isinstance(error,CaptureFailure):receipt.update(failure_fields(error))
         atomic(root/'receipts/first-build-failure.json',receipt);print(json.dumps(receipt));raise SystemExit(17)
 
 if __name__=='__main__':main()

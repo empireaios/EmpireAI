@@ -7,6 +7,7 @@ from every build, Docker, diagnostic and native subprocess environment.
 import argparse,ast,base64,datetime,hashlib,importlib.util,io,json,os,pathlib,re,secrets,shutil,stat,subprocess,sys,tarfile,time,urllib.error,urllib.parse,urllib.request
 sys.dont_write_bytecode=True
 from github_contract import *
+from collect_runtime_image_provenance import collect as collect_runtime_provenance
 
 HERE=pathlib.Path(__file__).resolve().parent
 FOUNDATION=HERE.parent/'foundation'
@@ -15,8 +16,8 @@ from runtime_common import atomic,bounded_process,Refusal as RuntimeRefusal
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
 CONTROLLER_SHA='daa27901f6f19e62c1f2069c7843cbc2806c9b6e77b050082e7e38507b214e04'
 DRIVER_SHA='49d50e3d985e0a544780422f8ad56c9a10311d835bbea667f8c384ccf9d9e480'
-REVIEW_REF='work8/v65-review-20261103'
-LAUNCH_REF='refs/heads/work8/v65-a5-20261103'
+REVIEW_REF='work8/v66-review-20261103'
+LAUNCH_REF='refs/heads/work8/v66-a5-20261103'
 ENV_KEYS=('GITHUB_ACTIONS','GITHUB_REPOSITORY','GITHUB_REPOSITORY_ID','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_SHA','GITHUB_JOB','RUNNER_OS','RUNNER_ARCH')
 
 def load_module(name,path):
@@ -89,6 +90,11 @@ def api(path,allow_missing=False):
   raise Refusal('GITHUB_READ_API_HTTP_'+str(exc.code)) from None
 
 def identity(root,job_name):
+ # Refuse an unreleased successor before reconstruction or provider inspection.
+ # The workflow allocation already exists; this gate cannot undo that allocation.
+ launch=json.loads((HERE.parent/'launch-plan.json').read_text())
+ require(launch.get('schema')=='work8-v65-reviewed-launch-plan-v1','REVIEWED_LAUNCH_PLAN_REQUIRED')
+ validate_authority(launch['authority'])
  require(os.getuid()==os.geteuid()==os.getgid()==os.getegid()==1001,'ORIGINAL_HOST_PRINCIPAL_REQUIRED')
  require(os.environ.get('GITHUB_RUN_ATTEMPT')=='1' and os.environ.get('GITHUB_REF')==LAUNCH_REF,'EXACT_BRANCH_FIRST_ATTEMPT_REQUIRED')
  require(os.environ.get('GITHUB_REPOSITORY')==REPOSITORY and os.environ.get('GITHUB_REPOSITORY_ID')==REPOSITORY_ID,'ACTUAL_REPOSITORY_REQUIRED')
@@ -104,6 +110,9 @@ def identity(root,job_name):
  disk=shutil.disk_usage(root);memory=int(next(x.split()[1] for x in pathlib.Path('/proc/meminfo').read_text().splitlines() if x.startswith('MemTotal:')))*1024
  result={'schema':'work8-v65-current-github-identity-v1','provider':'github-actions','repository':REPOSITORY,'repositoryId':REPOSITORY_ID,'runId':run_id,'runAttempt':1,'jobId':j['id'],'jobKey':os.environ['GITHUB_JOB'],'workflowCommit':r['head_sha'],'sessionId':'github-actions:'+run_id+':1:'+str(j['id']),'jobStartedAtEpoch':started,'timeoutSeconds':18000,'expiresAtEpoch':started+18000,'runnerImageVersion':image,'runnerName':j.get('runner_name'),'runnerId':j.get('runner_id'),'runnerGroupName':j.get('runner_group_name'),'labels':j['labels'],'hostUid':os.getuid(),'hostGid':os.getgid(),'architecture':'amd64','hostArtifactEgress':'github-provider-endpoints','nativeNetworkPolicy':'docker-internal-no-published-ports','ports':[],'productionMounts':[],'observedCapacity':{'cpus':os.cpu_count(),'memoryBytes':memory,'diskTotalBytes':disk.total,'diskFreeBytes':disk.free},'serviceRunSHA256':hashlib.sha256(json.dumps(r,sort_keys=True).encode()).hexdigest(),'serviceJobSHA256':hashlib.sha256(json.dumps(j,sort_keys=True).encode()).hexdigest(),'observedAtEpoch':time.time(),'applicationStarted':False}
  atomic(root/'runner-identity.json',result,exclusive=True)
+ code,provenance=collect_runtime_provenance(root/'runtime-image-provenance.json')
+ require(code==0,'CURRENT_RUNTIME_IMAGE_PROVENANCE_REQUIRED')
+ validate_image_provenance(provenance,result)
  return {'status':'ACTUAL_RUNNER_IDENTITY_RECORDED_NOT_LAUNCH_READY','sessionId':result['sessionId'],'observedCapacity':result['observedCapacity']}
 
 def replace_assignments(path,replacements):
@@ -171,7 +180,7 @@ def prepare(root):
  return {'status':'COMPLETE_CURRENT_PACKAGES_VERIFIED_AWAITING_EXTERNAL_EQUIVALENCE','controllerManifestSHA256':controller_sha,'packageManifestSHA256':sha(root/'v65-packages.json')}
 
 def qualify(root,authority_file):
- identity=json.loads((root/'runner-identity.json').read_text());packages=json.loads((root/'v65-packages.json').read_text());backend=packages['backend'];name='work8-v65-a5-'+identity['runId'];socket=pathlib.Path('/run/docker.sock');st=socket.lstat()
+ identity=json.loads((root/'runner-identity.json').read_text());validate_image_provenance(json.loads((root/'runtime-image-provenance.json').read_text()),identity);packages=json.loads((root/'v65-packages.json').read_text());backend=packages['backend'];name='work8-v65-a5-'+identity['runId'];socket=pathlib.Path('/run/docker.sock');st=socket.lstat()
  require(socket.resolve()==socket and stat.S_ISSOCK(st.st_mode) and st.st_uid==0 and stat.S_IMODE(st.st_mode)==0o660 and (st.st_gid in os.getgroups() or st.st_gid==os.getgid()),'ROOT_OWNED_ACCESSIBLE_DOCKER_SOCKET_REQUIRED')
  info=json.loads(run(root,['docker','info','--format','{{json .}}'],20));require(info['CgroupVersion']=='2' and 'seccomp' in str(info['SecurityOptions']),'CGROUP2_SECCOMP_REQUIRED')
  require(info['NCPU']>=4 and info['MemTotal']>=12*1024**3,'NATIVE_CAPACITY_BELOW_REVIEWED_FLOOR')
@@ -231,7 +240,7 @@ def qualify(root,authority_file):
  diagnostic=json.loads((diagnostics/'negative-control-result.json').read_text());require(diagnostic['status']=='PASS' and diagnostic['testsRun']==7 and diagnostic['testsPassed']==7,'SEVEN_FIRST_ERROR_CONTROLS_REQUIRED');q['diagnosticControlsSHA256']=sha(diagnostics/'negative-control-result.json')
  atomic(root/'native-qualification.json',q,exclusive=True)
  launch=json.loads(pathlib.Path(authority_file).read_text());require(launch['schema']=='work8-v65-reviewed-launch-plan-v1','REVIEWED_LAUNCH_PLAN_REQUIRED');launch['workflowCommit']=identity['workflowCommit'];atomic(root/'launch-contract.json',launch,exclusive=True)
- c={'schema':SCHEMA,'campaignId':name,'executor':identity,'authority':launch['authority'],'durationPlan':launch['durationPlan'],'dependencyImages':DEPENDENCY_IMAGES,'sources':SOURCES,'packageManifestSHA256':sha(root/'v65-packages.json'),'controllerManifestSHA256':sha(script/'controller-manifest.json'),'driverManifestSHA256':DRIVER_SHA,'sourceIdentitiesSHA256':sha(root/'source-identities.json'),'nativeQualificationSHA256':sha(root/'native-qualification.json'),'launchContractSHA256':sha(root/'launch-contract.json'),'packageDeliverySHA256':sha(root/'package-delivery.json')}
+ c={'schema':SCHEMA,'campaignId':name,'executor':identity,'runnerIdentitySHA256':sha(root/'runner-identity.json'),'runtimeImageProvenanceSHA256':sha(root/'runtime-image-provenance.json'),'authority':launch['authority'],'durationPlan':launch['durationPlan'],'dependencyImages':DEPENDENCY_IMAGES,'sources':SOURCES,'packageManifestSHA256':sha(root/'v65-packages.json'),'controllerManifestSHA256':sha(script/'controller-manifest.json'),'driverManifestSHA256':DRIVER_SHA,'sourceIdentitiesSHA256':sha(root/'source-identities.json'),'nativeQualificationSHA256':sha(root/'native-qualification.json'),'launchContractSHA256':sha(root/'launch-contract.json'),'packageDeliverySHA256':sha(root/'package-delivery.json')}
  validate_contract(c,time.time());atomic(root/'run-contract.json',c,exclusive=True)
  return {'status':'PACKAGE_AND_NATIVE_PREREQUISITES_OBSERVED_EXTERNAL_REVIEW_PENDING','applicationStarted':False,'bindings':package_bindings(c)}
 
@@ -287,12 +296,12 @@ def exporter(root):
  module=load_module('v65_exporter',root/'runtime/export-evidence.py' if (root/'runtime/export-evidence.py').exists() else FOUNDATION/'runtime/export-evidence.py')
  # Explicit new provider receipts only; original secret scan, per-file,
  # logical2MiB and compressed512KiB bounds remain exactly unchanged.
- module.TOP_NAMES.update({'launch-readiness.json','runner-identity.json','artifact-service-packages.json','artifact-service-final.json','review-transport-packages-and-executor.json','review-transport-preflight.json'})
+ module.TOP_NAMES.update({'runtime-image-provenance.json','component-checkpoint-summary.json','launch-readiness.json','runner-identity.json','artifact-service-packages.json','artifact-service-final.json','review-transport-packages-and-executor.json','review-transport-preflight.json'})
  return module
 
 def review_export(root):
  e=exporter(root);dest=root/'review-exports/packages-and-executor';dest.mkdir(parents=True,mode=0o700)
- names=['runner-identity.json','v65-packages.json','source-identities.json','package-delivery.json','native-qualification.json','run-contract.json','launch-contract.json','package-source-scan.json','artifact-service-packages.json','critical-image-readback.json','sqljs-packaging-smoke.json','diagnostic-controls/negative-control-result.json','controller/scripts/work8/native-transition/controller-manifest.json','native-transition-driver/controller-manifest.json']
+ names=['runtime-image-provenance.json','runner-identity.json','v65-packages.json','source-identities.json','package-delivery.json','native-qualification.json','run-contract.json','launch-contract.json','package-source-scan.json','artifact-service-packages.json','critical-image-readback.json','sqljs-packaging-smoke.json','diagnostic-controls/negative-control-result.json','controller/scripts/work8/native-transition/controller-manifest.json','native-transition-driver/controller-manifest.json']
  files={name:e.safe_bytes(root/name) for name in names}
  # Only schema-checked build receipt metadata, never build logs, source snapshots,
  # generated application databases, credentials, or native private directories.
@@ -307,6 +316,9 @@ def review_export(root):
  return {'status':'SAFE_REVIEW_METADATA_READY_FOR_DURABLE_UPLOAD','path':str(dest),'files':len(files)+1,'bytes':total}
 
 def package_export(root):
+ sys.path.insert(0,str(HERE.parent/'build'))
+ from component_checkpoints import export as export_checkpoints
+ if (root/'component-checkpoints').exists():return export_checkpoints(root)
  regular(root/'v65-packages.json',4*1024**2);regular(root/'package-source-scan.json',1024**2)
  packages=json.loads((root/'v65-packages.json').read_text());scan=json.loads((root/'package-source-scan.json').read_text())
  require(scan.get('status')=='PASS_COMPLETE_SOURCE_ONLY_PACKAGE_SCAN' and scan.get('applicationRuntimeStarted') is False and scan.get('providerCredentialsSupplied') is False and scan.get('productionDataSupplied') is False,'SOURCE_ONLY_PACKAGE_SCAN_REQUIRED')
@@ -357,14 +369,19 @@ def preserve_build_failure(root,build_root):
     regular(candidate,2*1024**2);value=json.loads(candidate.read_text());value=value.get('firstError',value)
     if not isinstance(value,dict):continue
     observed={}
-    for key in ('stage','class','code','commandLabel'):
+    for key in ('stage','class','code','commandLabel','errorClass','stopCause'):
      value_field=value.get(key)
      if isinstance(value_field,str) and re.fullmatch('[A-Za-z0-9_:.-]{1,160}',value_field):observed[key]=value_field
     for key in ('stdoutSHA256','stderrSHA256'):
      if digest_string(value.get(key)):observed[key]=value[key]
+    for key in ('stdoutBytes','stderrBytes','maximumStreamBytes'):
+     if type(value.get(key)) is int and 0<=value[key]<=4*1024**2+1:observed[key]=value[key]
+    if type(value.get('maximumSeconds')) in (int,float) and 0<value['maximumSeconds']<=1800:observed['maximumSeconds']=value['maximumSeconds']
+    if type(value.get('streamComplete')) is bool:observed['streamComplete']=value['streamComplete']
+    if type(value.get('errno')) is int and 0<=value['errno']<=4095:observed['errno']=value['errno']
     if type(value.get('exitCode')) is int and -255<=value['exitCode']<=255:observed['exitCode']=value['exitCode']
     codes=value.get('knownDiagnosticCodes',[])
-    if isinstance(codes,list) and len(codes)<=32 and all(isinstance(x,str) and re.fullmatch('(?:TS[0-9]{3,6}|E[A-Z]{1,30}|COMMAND_TIMEOUT)',x) for x in codes):observed['knownDiagnosticCodes']=codes
+    if isinstance(codes,list) and len(codes)<=32 and all(isinstance(x,str) and re.fullmatch('(?:TS[0-9]{3,6}|E[A-Z]{1,30}|ERR_[A-Z0-9_]{1,80}|MODULE_NOT_FOUND|COMMAND_TIMEOUT)',x) for x in codes):observed['knownDiagnosticCodes']=codes
     observed['sourceReceiptSHA256']=sha(candidate);chain.append(observed)
    code=next((x['code'] for x in chain if 'code' in x),'SOURCE_RECONSTRUCTION_FIRST_FAILURE')
    target=root/'runtime-evidence/first-runtime-failure.json'
@@ -393,7 +410,7 @@ def main():
   if args.command=='identity':result=identity(root,args.job_name)
   elif args.command=='prepare':result=prepare(root)
   elif args.command=='qualify':result=qualify(root,args.authority_file)
-  elif args.command=='package-export':result=package_export(root)
+  elif args.command=='package-export':preserve_build_failure(root,args.build_root);result=package_export(root)
   elif args.command=='artifact-check':result=artifact_check(root,args.artifact_id,args.artifact_digest,args.label)
   elif args.command=='review-export':result=review_export(root)
   elif args.command=='await-review':result=await_review(root,args.stage,args.artifact_id,args.artifact_digest,args.max_seconds)

@@ -7,6 +7,8 @@ Success means packages exist for independent qualification, never A5 PASS.
 import argparse, datetime, json, os, pathlib, shutil, time
 from reconstruct_frontends import acquire, atomic, command, need, sha
 from scan_package_archives import scan_packages, classifications
+from component_checkpoints import seal as seal_component
+from capture_diagnostics import CaptureFailure, failure_fields
 
 HERE=pathlib.Path(__file__).resolve().parent
 BACKEND='6c1e63ba20619ee480742fd87dc810ca93152e22'
@@ -41,9 +43,9 @@ def main():
     env={'PATH':'/usr/bin:/bin','HOME':str(root/'home'),'LANG':'C.UTF-8','CI':'true','GITHUB_ACTIONS':'true','NEXT_TELEMETRY_DISABLED':'1','npm_config_audit':'false','npm_config_fund':'false','npm_config_fetch_retries':'0','npm_config_fetch_timeout':'30000','npm_config_cache':str(root/'npm-cache'),'npm_config_update_notifier':'false'}
     try:
         memory=int(next(x.split()[1] for x in pathlib.Path('/proc/meminfo').read_text().splitlines() if x.startswith('MemTotal:')))*1024
-        capacity={'cpus':os.cpu_count(),'memoryBytes':memory,'diskFreeBytes':shutil.disk_usage(root).free,'minimumCpus':4,'minimumMemoryBytes':12*1024**3,'minimumFreeDiskBytes':12*1024**3,'purpose':'Source checkouts, three dependency/build trees, duplicate verified staging, bounded image saves, candidate archives and dependency-image pulls; later native gate separately requires6GiB free.'}
+        capacity={'cpus':os.cpu_count(),'memoryBytes':memory,'diskFreeBytes':shutil.disk_usage(root).free,'minimumCpus':4,'minimumMemoryBytes':12*1024**3,'minimumFreeDiskBytes':13*1024**3,'purpose':'Source checkouts, three dependency/build trees, duplicate verified staging, bounded image saves, candidate archives, up to1GiB sealed component checkpoint copies and dependency-image pulls; later native gate separately requires6GiB free.'}
         atomic(execution/'prebuild-capacity.json',capacity)
-        need(capacity['cpus']>=4 and memory>=12*1024**3 and capacity['diskFreeBytes']>=12*1024**3,'PREBUILD_RESOURCE_CAPACITY')
+        need(capacity['cpus']>=4 and memory>=12*1024**3 and capacity['diskFreeBytes']>=13*1024**3,'PREBUILD_RESOURCE_CAPACITY')
         stage='prebuild-public-binary-classification';classifications()
         stage='toolchain'
         node,npm=acquire(root/'tool-preparation',env,logs)
@@ -59,8 +61,11 @@ def main():
         steps.append(command(['python3',str(HERE/'reconstruct-backend.py'),'--source',str(src),'--controller',str(ctl),'--output',str(backend),'--max-seconds','1200'],root,env,logs,'backend-reconstruction',1260))
         manifest=backend/'backend-manifest.json'
         need(manifest.is_file(),'BACKEND_MANIFEST_REQUIRED')
+        stage='backend-local-component-checkpoint'
+        backend_pin=json.loads(manifest.read_text())
+        seal_component(execution,'backend',backend_pin,backend/'artifacts'/backend_pin['file'],[manifest,backend/'evidence/backend-build-result.json',backend/'evidence/backend-packaging-removal.json'])
         front=root/'frontend-build';stage='frontend-reconstruction'
-        steps.append(command(['python3',str(HERE/'reconstruct_frontends.py'),'--root',str(front),'--backend-manifest',str(manifest),'--toolchain-cache',str(root/'tool-preparation/toolchain')],root,env,logs,'frontend-reconstruction',1800))
+        steps.append(command(['python3',str(HERE/'reconstruct_frontends.py'),'--root',str(front),'--backend-manifest',str(manifest),'--toolchain-cache',str(root/'tool-preparation/toolchain'),'--execution-root',str(execution)],root,env,logs,'frontend-reconstruction',1800))
         candidate=json.loads((front/'v65-packages.json').read_text())
         artifacts=execution/'artifacts';artifacts.mkdir(mode=0o700)
         for role,item in [('backend',candidate['backend']),*candidate['frontends'].items()]:
@@ -84,7 +89,8 @@ def main():
         atomic(receipts/'reconstruction-result.json',receipt)
         print(json.dumps({'status':receipt['status'],'manifestSHA256':receipt['manifestSHA256'],'packageCount':3}))
     except Exception as error:
-        receipt={'schema':'work8-v65-reconstruction-first-failure-v1','stage':stage,'class':type(error).__name__,'code':str(error) if type(error).__name__ in ('Refusal','AssertionError') else 'BOUNDED_BUILD_OPERATION_FAILED','elapsedSeconds':round(time.monotonic()-started,3),'applicationRuntimeStarted':False,'A5AcceptanceClaimed':False,'rawLogsExported':False}
+        receipt={'schema':'work8-v65-reconstruction-first-failure-v1','stage':stage,'class':type(error).__name__,'code':str(error) if type(error).__name__ in ('Refusal','AssertionError','CaptureFailure') else 'BOUNDED_BUILD_OPERATION_FAILED','elapsedSeconds':round(time.monotonic()-started,3),'applicationRuntimeStarted':False,'A5AcceptanceClaimed':False,'rawLogsExported':False}
+        if isinstance(error,CaptureFailure):receipt.update(failure_fields(error))
         atomic(root/'reconstruction-first-failure.json',receipt)
         failure_dir=execution/'build-receipts';failure_dir.mkdir(mode=0o700,exist_ok=True)
         atomic(failure_dir/'reconstruction-first-failure.json',receipt)

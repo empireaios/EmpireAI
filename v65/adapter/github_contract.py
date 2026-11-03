@@ -15,7 +15,7 @@ import stat
 import time
 
 SCHEMA='work8-v65-github-execution-contract-v1'
-OWNER_DIRECTIVE='EMPIREAI_V65_A5_RUNNER_LOCAL_EXECUTION_FINAL_CLOSURE'
+OWNER_DIRECTIVE='EMPIREAI_V70_A5_EXECUTION_APPROVAL'
 REPOSITORY='empireaios/EmpireAI'
 REPOSITORY_ID='1275922460'
 CAPABILITIES=['SETUID','SETGID','CHOWN','DAC_OVERRIDE','KILL','SYS_PTRACE']
@@ -57,6 +57,17 @@ def verify_manifest(directory,path,digest,max_files=20000):
  require({str(p.relative_to(directory)) for p in paths if p.is_file() and p!=pathlib.Path(path)}==seen,'UNINDEXED_OR_MISSING_FILE')
  return manifest
 
+def validate_authority(a):
+ require(a['ownerDirective']==OWNER_DIRECTIVE,'CURRENT_OWNER_AUTHORITY_REQUIRED')
+ require(a['work8CeilingUSD']==100 and a['existingAdditionalA5USD']==10 and a['priorOverallHoldsUSD']==12.08 and a['priorA5HoldsUSD']==2.13 and a['availableBeforeReservationUSD']==7.87,'CURRENT_FINANCIAL_AUTHORITY_REQUIRED')
+ require(a.get('reservationCommitted') is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')
+ for key in ('reservationUSD','maximumProspectiveUSD'):
+  require(type(a[key]) in (int,float) and math.isfinite(a[key]) and 0<=a[key]<=7.87,'FINITE_CURRENT_EXPOSURE_REQUIRED')
+ require(a['maximumProspectiveUSD']<=a['reservationUSD'],'EXPOSURE_EXCEEDS_RESERVATION')
+ require(round(a['priorOverallHoldsUSD']+a['reservationUSD'],2)==a['currentOverallHoldsUSD'] and round(a['priorA5HoldsUSD']+a['reservationUSD'],2)==a['currentA5HoldsUSD'] and round(7.87-a['reservationUSD'],2)==a['remainingUnreservedUSD'] and a['reservationCommitted'] is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')
+ require(all(a[k] is False for k in ('renewed','productionOperations','protectedDataTransfer','commerceActivation','subscriptions','automaticRecreate','automaticRerun')),'ORIGINAL_OPERATING_LOCKS_REQUIRED')
+ return a
+
 def validate_contract(c,now,env=None):
  env=os.environ if env is None else env
  require(c.get('schema')==SCHEMA,'RUN_CONTRACT_SCHEMA')
@@ -73,13 +84,7 @@ def validate_contract(c,now,env=None):
  require(e['ports']==[] and e['productionMounts']==[] and e['runnerImageVersion'],'PRIVATE_NONPRODUCTION_RUNNER_REQUIRED')
  require(type(e['timeoutSeconds']) is int and 0<e['timeoutSeconds']<=21600,'FINITE_JOB_TIMEOUT_REQUIRED')
  require(e['expiresAtEpoch']==e['jobStartedAtEpoch']+e['timeoutSeconds'] and e['jobStartedAtEpoch']<=now<e['expiresAtEpoch'],'ACTUAL_JOB_DEADLINE_REQUIRED')
- a=c['authority'];require(a['ownerDirective']==OWNER_DIRECTIVE,'CURRENT_OWNER_AUTHORITY_REQUIRED')
- require(a['work8CeilingUSD']==100 and a['existingAdditionalA5USD']==10 and a['priorOverallHoldsUSD']==12.07 and a['priorA5HoldsUSD']==2.12 and a['availableBeforeReservationUSD']==7.88,'CURRENT_FINANCIAL_AUTHORITY_REQUIRED')
- for key in ('reservationUSD','maximumProspectiveUSD'):
-  require(type(a[key]) in (int,float) and math.isfinite(a[key]) and 0<=a[key]<=7.88,'FINITE_CURRENT_EXPOSURE_REQUIRED')
- require(a['maximumProspectiveUSD']<=a['reservationUSD'],'EXPOSURE_EXCEEDS_RESERVATION')
- require(round(a['priorOverallHoldsUSD']+a['reservationUSD'],2)==a['currentOverallHoldsUSD'] and round(a['priorA5HoldsUSD']+a['reservationUSD'],2)==a['currentA5HoldsUSD'] and round(7.88-a['reservationUSD'],2)==a['remainingUnreservedUSD'] and a['reservationCommitted'] is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')
- require(all(a[k] is False for k in ('renewed','productionOperations','protectedDataTransfer','commerceActivation','subscriptions','automaticRecreate','automaticRerun')),'ORIGINAL_OPERATING_LOCKS_REQUIRED')
+ validate_authority(c['authority'])
  require(c['dependencyImages']==DEPENDENCY_IMAGES,'EXACT_DEPENDENCY_PINS_REQUIRED')
  p=c['durationPlan'];require(set(p)=={'setupSeconds','deliverySeconds','preflightSeconds','examinationSeconds','cleanupSeconds','evidenceExportSeconds','reviewSeconds'},'COMPLETE_DURATION_PLAN_REQUIRED')
  require(all(type(v) is int and v>0 for v in p.values()),'POSITIVE_DURATION_BOUNDS_REQUIRED')
@@ -87,6 +92,14 @@ def validate_contract(c,now,env=None):
  require(sum(p.values())<=e['timeoutSeconds'],'DURATION_PLAN_EXCEEDS_JOB_TIMEOUT')
  require(c['sources']==SOURCES,'EXACT_SOURCE_COMMIT_TREE_REQUIRED')
  return c
+
+def validate_image_provenance(p,e):
+ require(p.get('schema')=='work8-runtime-image-provenance-v1' and p.get('status')=='PASS_CURRENT_RUNTIME_METADATA_AGREEMENT_ONLY','CURRENT_RUNTIME_IMAGE_PROVENANCE_REQUIRED')
+ require(p.get('runId')==str(e['runId']) and p.get('jobId')==e['jobId'] and p.get('runAttempt')==1 and p.get('workflowCommit')==e['workflowCommit'] and p.get('sessionId')==e['sessionId'],'IMAGE_PROVENANCE_RUN_BINDING')
+ o=p.get('observations',{});require(o.get('ImageOS')=='ubuntu24' and o.get('ImageVersion')==e['runnerImageVersion'] and o.get('setupInfo')==o.get('imageData') and o.get('setupInfo',{}).get('Version')==e['runnerImageVersion'],'CURRENT_RUNTIME_IMAGE_METADATA_AGREEMENT_REQUIRED')
+ require(p.get('providerSetupLogObserved') is False and p.get('nativeAdmissionGranted') is False and p.get('applicationAcceptance') is False,'PROVENANCE_SCOPE_MUST_BE_TRUTHFUL')
+ require(p.get('independentArtifactReviewRequiredBeforeNative') is True and p.get('terminalProviderSetupLogComparisonRequiredBeforeAcceptance') is True,'INDEPENDENT_PROVENANCE_REVIEW_REQUIRED')
+ return p
 
 def verify_ack(ack,c,stage,expected,now):
  require(stage in ('packages-and-executor','preflight'),'REVIEW_STAGE_REFUSED')
@@ -100,12 +113,13 @@ def verify_ack(ack,c,stage,expected,now):
  reviewed=datetime.datetime.fromisoformat(ack['reviewedAtUTC'].replace('Z','+00:00')).timestamp()
  require(e['jobStartedAtEpoch']<=reviewed<=now and now-reviewed<7200,'CURRENT_INDEPENDENT_REVIEW_REQUIRED')
  if stage=='packages-and-executor':
+  require(ack.get('runtimeImageProvenanceAccepted') is True and ack.get('terminalProviderSetupLogComparisonRequiredBeforeAcceptance') is True,'INDEPENDENT_CURRENT_IMAGE_PROVENANCE_REQUIRED')
   require(ack['sourceEquivalentPackagesQualified'] is True and ack['eightSatisfiedGroupsRemainApplicable'] is True and ack['nativePrerequisitesAccepted'] is True,'PACKAGE_AND_EXECUTOR_ADMISSION_REQUIRED')
  else:require(ack['actualInitializedBrainPreflightAccepted'] is True,'ACTUAL_PREFLIGHT_REVIEW_REQUIRED')
  return ack
 
 def package_bindings(c):
- return {k:c[k] for k in ('packageManifestSHA256','controllerManifestSHA256','driverManifestSHA256','sourceIdentitiesSHA256','nativeQualificationSHA256','launchContractSHA256')}
+ return {k:c[k] for k in ('packageManifestSHA256','controllerManifestSHA256','driverManifestSHA256','sourceIdentitiesSHA256','nativeQualificationSHA256','launchContractSHA256','runnerIdentitySHA256','runtimeImageProvenanceSHA256')}
 
 def verify_source_identity(root,c):
  s=pinned_json(pathlib.Path(root)/'source-identities.json',c['sourceIdentitiesSHA256'])
