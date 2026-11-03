@@ -1,0 +1,16 @@
+{
+  "schema": "work8-v30-index-observation-overlay-v1",
+  "underlyingImage": "sha256:65382b8f19482851212fe7a21746ca7ad7bf5af5708fec8f083165ac42e61573",
+  "underlyingSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "originalPath": "/app/backend/dist/index.js",
+  "originalBytes": 6012,
+  "originalSha256": "62cda9b7f8829056e877481f95e264a88d246336d1ef3f60aeaac7d66a0393f3",
+  "overlayBytes": 6287,
+  "overlaySha256": "4246473ab80cfdfed1823f8aabd899eeff8c4cee679182bbaf3f47584a63cb7d",
+  "onlyInsertion": "    await (await import('/examination/live-brain-hook.mjs')).installLiveBrainObservation(application);",
+  "runtimeImageRebuilt": false,
+  "applicationSourceModified": false,
+  "nonProductionInstrumentation": true,
+  "mountReadOnly": true,
+  "additionalInstrumentation": "Source-gated sanitized first-error observer; original main failure still logs and exits 1."
+}

@@ -1,0 +1,93 @@
+[
+  {
+    "path": "backend/Dockerfile",
+    "gitBlob": "5644cdc302b1c389d56ed29e285ae791224040e3",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/backend/Dockerfile",
+    "bytes": 362,
+    "sha256": "36c58a6e47777a3545fa4f4f222d31f7e5a50e0c8eb0f268d79804e0708d1d34"
+  },
+  {
+    "path": "backend/package.json",
+    "gitBlob": "e4b633ddacac24821251dfc4adfd497e4240e502",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/backend/package.json",
+    "bytes": 12487,
+    "sha256": "8a501520e561cc7ae1e0a295f121b38a7ab499a43521bc26ef75f77dd9671c0b"
+  },
+  {
+    "path": "package.json",
+    "gitBlob": "df28a62d2bfd832570d7d531b71e68df1f4c3eb0",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/package.json",
+    "bytes": 2729,
+    "sha256": "042ee40d2c50ceb722547cae25696fdc84f20e05558a8d3b46af27712b0f3432"
+  },
+  {
+    "path": "pillow/package.json",
+    "gitBlob": "d4a79029ead281e5f9a6fbb8eb8c3a799246b613",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/pillow/package.json",
+    "bytes": 16424,
+    "sha256": "658453fa94190c2c2f1b2992af9bd93e93449fda0f42ebafe834a3375bcced66"
+  },
+  {
+    "path": "backend/scripts/record-runtime-revision.cjs",
+    "gitBlob": "d3119fe912cfd51c11439c872bfa5b8f8982f9ec",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/backend/scripts/record-runtime-revision.cjs",
+    "bytes": 632,
+    "sha256": "8d9cbbef43fa37bc7a96738acd26712459eade61e1c8a472266e83c9214942c4"
+  },
+  {
+    "path": "deployment/native/runtime-writer-isolation.c",
+    "gitBlob": "7678fc0332a8daea71f46b01803c29b2acb4ceb4",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/deployment/native/runtime-writer-isolation.c",
+    "bytes": 3452,
+    "sha256": "2f17b9f9e6202ae78ea98ce2575f49b8d65d56c183c9460af98409c9254d541c"
+  },
+  {
+    "path": "deployment/build-runtime.md",
+    "gitBlob": "f98764d6d833449308a7f14bcd1d2283744d74e1",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/deployment/build-runtime.md",
+    "bytes": 3517,
+    "sha256": "ad0a6bcfba2160bff1c1ad0f3b77fe037b67d0b210abd446f176237098ce6c4b"
+  },
+  {
+    "path": "backend/tsconfig.json",
+    "gitBlob": "81cc6e5bb12174e5e41c49cd80e274bb619707e0",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/backend/tsconfig.json",
+    "bytes": 491,
+    "sha256": "85836155905deadf6a3ea89cdd59467ad3f93e576047fde6b9384631228a9b2b"
+  },
+  {
+    "path": "pillow/tsconfig.json",
+    "gitBlob": "4d8eea9021b1a1f93a6b2da91f31fe5dd5640b6f",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/pillow/tsconfig.json",
+    "bytes": 491,
+    "sha256": "bcc77ba804e7f45080cfa2b00bd70a25ab5e4aaa6a860b56efa2c5075c034b7c"
+  },
+  {
+    "path": "backend/package-lock.json",
+    "gitBlob": "b890be83361c7b1214a7dd18c1be9fc9b5a093bd",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/backend/package-lock.json",
+    "bytes": 78029,
+    "sha256": "ac637e1e0329d484c8eac12ccd47a0cd6a82a51df592e94495d325c79062b13f"
+  },
+  {
+    "path": "pillow/package-lock.json",
+    "gitBlob": "32d40b537bd941d6662668dfa1cefb82ca978c6e",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/pillow/package-lock.json",
+    "bytes": 16802,
+    "sha256": "53f3c989531a4a86b99eb544b1e90c6df367c091acb4c23115ca787079b2dde2"
+  },
+  {
+    "path": "scripts/verify-build-runtime.mjs",
+    "gitBlob": "7a08fcf905ee7d43ee61f29fa36c892f130724c1",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/scripts/verify-build-runtime.mjs",
+    "bytes": 5841,
+    "sha256": "3ada8d45f44c638bbb553739dc4245775b62cf7ec725975eaef1ed2699c848c4"
+  },
+  {
+    "path": "scripts/sync-pillow-governance.mjs",
+    "gitBlob": "0a2d19f4c13987644014a3c7aa20064ebe8156b4",
+    "url": "https://github.com/empireaios/EmpireAI/blob/6c1e63ba20619ee480742fd87dc810ca93152e22/scripts/sync-pillow-governance.mjs",
+    "bytes": 1670,
+    "sha256": "8677c01408d1e2d11d138093051342413aa2ce7f9d5359fe3ad8d65bf161ee68"
+  }
+]

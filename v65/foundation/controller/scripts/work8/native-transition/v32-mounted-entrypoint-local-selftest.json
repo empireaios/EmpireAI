@@ -1,0 +1,106 @@
+{
+  "schema": "work8-v32-mounted-entrypoint-local-selftest-v1",
+  "status": "PASS_TARGETED_ORIGINAL_PROTECTED_PATH_AND_COPY_PROTOCOL",
+  "allPassed": true,
+  "nodeVersion": "22.23.2",
+  "sourceMembershipSha256": "59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b",
+  "identity": {
+    "uid": 0,
+    "gid": 0,
+    "capEff": "0000000000000000",
+    "noNewPrivs": "1"
+  },
+  "checks": [
+    {
+      "name": "original exported protectedPath accepts operator-owned canonical ancestry",
+      "status": "PASS"
+    },
+    {
+      "name": "different required operator identity is refused",
+      "status": "PASS"
+    },
+    {
+      "name": "group-writable leaf is refused",
+      "status": "PASS"
+    },
+    {
+      "name": "world-writable ancestor is refused",
+      "status": "PASS"
+    },
+    {
+      "name": "noncanonical symlink is refused",
+      "status": "PASS"
+    },
+    {
+      "name": "missing path reports supplied ENOENT",
+      "status": "PASS"
+    },
+    {
+      "name": "all exact instrumentation copies retain hashes and source metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "changed-copy digest mismatch detected",
+      "status": "PASS"
+    }
+  ],
+  "sourceBindings": [
+    {
+      "path": "scripts/work8/native-transition/mounted-entrypoint-preflight.mjs",
+      "bytes": 6206,
+      "sha256": "4ddbe1970718c5b711f7e6c557acb41d1ba3525e2d9d7b7f309bab50fdf47449"
+    },
+    {
+      "path": "scripts/work8/native-transition/entrypoint_contract.py",
+      "bytes": 6575,
+      "sha256": "44108cba4c600b400e02fc56158638634227712aabcbc1d5d2cb30e0f1169ba6"
+    },
+    {
+      "path": "scripts/work8/native-transition/examine-v26.py",
+      "bytes": 33633,
+      "sha256": "1b418af307da51a4eba5ccce261fc3174217bbe4c85e38eefd8f2a948e87cb76"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-index-overlay.js",
+      "bytes": 6287,
+      "sha256": "4246473ab80cfdfed1823f8aabd899eeff8c4cee679182bbaf3f47584a63cb7d"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-overlay.json",
+      "bytes": 876,
+      "sha256": "db732e853eed242433b0cc943227ea40ebcc1b289229adc1c84787fcd31a811d"
+    },
+    {
+      "path": "scripts/work8/native-transition/startup-overlays.json",
+      "bytes": 2202,
+      "sha256": "9eec1d028d909d6a227f6d0ff767db480b2acae2f0003f6aa7dd9a234b3c7cef"
+    },
+    {
+      "path": "scripts/work8/native-transition/observed-locked-runtime.cjs",
+      "bytes": 8978,
+      "sha256": "6ba137982f4d6cb1aaf508b67e27a5feb4492ab224b08949dcf148b4c596da90"
+    },
+    {
+      "path": "scripts/work8/native-transition/observed-launcher-loss-guard.cjs",
+      "bytes": 5001,
+      "sha256": "79e588f28c8ed2b431342bc767d85cb7903f74fbc10ab46ae56d8164c4769409"
+    },
+    {
+      "path": "scripts/work8/native-transition/observed-runtime-writer-controller.cjs",
+      "bytes": 11962,
+      "sha256": "8bce1714fc78082f66d2b1d6581fc957c2a4e069bb6a8d1c50f727a832ebda9e"
+    },
+    {
+      "path": "scripts/work8/native-transition/observed-runtime-membership-bootstrap.mjs",
+      "bytes": 4275,
+      "sha256": "d7fd8190ab9260751bab338dfbad9d84fe936fc97363f6ca97b1d579233d7ff4"
+    }
+  ],
+  "limitations": [
+    "Local source-bound predicate and exact-copy checks only.",
+    "No local Docker daemon or bind-mount result is claimed.",
+    "Wrong actual container principal and real read-only bind mounts must pass the mandatory hosted pre-startup gate.",
+    "The historical run failure remains unknown."
+  ],
+  "applicationStarted": false
+}

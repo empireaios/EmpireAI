@@ -1,0 +1,53 @@
+{
+  "schema": "work8-actual-guard-observer-packages-v1",
+  "packages": {
+    "normal": {
+      "commit": "a13f385f5e88c81075852f16f549da090c5155ef",
+      "tree": "863f2023adc5d3786a2c02325e02a48ee7c6a0a8",
+      "image": "sha256:9e3827b0d7dc687833518860c3eaf71905b89c67888a7cedd1740e737da19e39",
+      "buildId": "vxNnJz3GDYulVfjPzE8vF",
+      "files": {
+        "server.js": "1216c32f418c2413165cb18a4f40ef5090ce5aa5921010848bd1eb5641f12452",
+        ".next/BUILD_ID": "97f6fe91c9b43a78dd74dfadd0396ceed120042a48122f0a50f17153a489a67c",
+        ".next/server/webpack-runtime.js": "c96548052528d721221c91afa9dea95a8697dd2b788bf491ef438a2cbf8fb0bc",
+        ".next/server/chunks/4741.js": "0ca4518a6751a91d39606f55f72ec67ad169054cd39e6deecfebdbef6d677670",
+        ".next/server/app/api/owner/advisor/[...path]/route.js": "825f2adb436e685433de04e20c6bc433c344470a3e20a3e94255b837216caaf3"
+      },
+      "guard": {
+        "file": ".next/server/app/api/owner/advisor/[...path]/route.js",
+        "functionName": "w",
+        "line": 1,
+        "columnStart": 1393,
+        "columnEnd": 1546,
+        "sourceSha256": "9f9a1d953462ea0296c9ec9dd4aa0a3bc538a27b20a96e7667da398fb75d89ae"
+      },
+      "webpackRequestModuleId": 43690,
+      "webpackAdapterModuleId": 90771,
+      "webpackChunk": "4741.js"
+    },
+    "recovery": {
+      "commit": "35bb4b2ab2e89c66f5f751868560ca422604d8df",
+      "tree": "100620686befe62e4c425b234055284e27088990",
+      "image": "sha256:7fc7d1941f6c7bbf25a5247ea60342e16e241bd4c60c0a5b73c0e74f9cd0a0be",
+      "buildId": "tDUKk9y9ktWIH5dyyP44p",
+      "files": {
+        "server.js": "459378d43431ed5fdc54bf289f2c90f41df01b192ced9336fc567aa588acdb85",
+        ".next/BUILD_ID": "fba5b74dadf10a375e4fd1d532e1415c0527af8eb430027a7cd956179a45415e",
+        ".next/server/webpack-runtime.js": "c96548052528d721221c91afa9dea95a8697dd2b788bf491ef438a2cbf8fb0bc",
+        ".next/server/chunks/4741.js": "0ca4518a6751a91d39606f55f72ec67ad169054cd39e6deecfebdbef6d677670",
+        ".next/server/app/api/owner/advisor/[...path]/route.js": "8c065c49786f89b69bbbec4968bc3913af808c2d1f0c439507ec58729a4c7f24"
+      },
+      "guard": {
+        "file": ".next/server/app/api/owner/advisor/[...path]/route.js",
+        "functionName": "e",
+        "line": 1,
+        "columnStart": 11540,
+        "columnEnd": 11693,
+        "sourceSha256": "805cc7ceca80b763530a80e4e6d82bd4ed538f71f8c19557fa8193281d4f9ed1"
+      },
+      "webpackRequestModuleId": 43690,
+      "webpackAdapterModuleId": 90771,
+      "webpackChunk": "4741.js"
+    }
+  }
+}

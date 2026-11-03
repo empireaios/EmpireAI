@@ -1,0 +1,146 @@
+{
+  "schema": "work8-v26-reviewed-build-plan-v1",
+  "independentPreflightApproved": true,
+  "priorReservationUSD": 2.35,
+  "additionalReservationUSD": 0.5,
+  "aggregateAllowanceUSD": 10.0,
+  "chargesConfirmed": false,
+  "retentionDays": 7,
+  "maximumMinutes": 30,
+  "maximumNewArtifactBytes": 2147483648,
+  "automaticRetry": false,
+  "compilerVersion": "5.9.3",
+  "frontendLockSha256": "84f99595b7564d9196b0eeb25c054b290801bfe2e3a148f61ab2c9c2871d37b4",
+  "sourceChanges": {
+    "backend": [
+      {
+        "path": "backend/src/runtime/commerce-runtime/governed/recovery-projection.ts",
+        "sha256": "0a8eff6cb0eb1d853a8cc721c55b10bfa595253d3839849e9bbb5c2dc86a4c1d",
+        "bytes": 12358,
+        "gitBlob": "7d37484c53084528c87e84fdc5d19e2a68936dee",
+        "javascriptSha256": "8b3fba5d935bbb75c66b0877ef1017d28de40928c7561ab4d13ce0d534840caa",
+        "mapSha256": "53cabe985f7e6aa6e42eb53a7ccf4d8f6913e9f71fb2470631ceff3ef383ee71"
+      },
+      {
+        "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+        "sha256": "3a186bfb12e34a9d0bfb1501adaa416b9c1221a56f0906ccda9ad37c9fcf3293",
+        "bytes": 27206,
+        "gitBlob": "b9f7c5b6b57811d35809c32511a8fc0be6f2fc4a",
+        "javascriptSha256": "8194998296fa6cea3a716fd5f07215b90248925d1d979570972e1d66ac28c603",
+        "mapSha256": "56f813343a61bf568ffe62ff32c023bdd992c58e9f70978582af3ec77203a2c5"
+      },
+      {
+        "path": "backend/src/runtime/owner-write-restriction.ts",
+        "sha256": "ec0edaf624414ceb0a631f7fef967d93915d6e48aad466f2dea101416f6bcdf4",
+        "bytes": 3704,
+        "gitBlob": "0770f8f38c1d10122b8042c525aa7c4b598196d7",
+        "javascriptSha256": "c5ac9d04eebae1bfe5c85e608fe625677fc3d11310e7b56a2f588eaf69c884ca",
+        "mapSha256": "94336b2fbad05bdb6120290459efc96deff0d5b427342b192f701a22170d931e"
+      },
+      {
+        "path": "backend/src/assurance/permanent-inspector.mjs",
+        "sha256": "6bbe358825941f1013d45c72a1047cc32249f6a5e924e0a67be2644f339d7ef2",
+        "bytes": 2072,
+        "gitBlob": "d736a831944445d4ded3b0a4364863107d40ba0d"
+      },
+      {
+        "path": "backend/src/assurance/schema-readiness.mjs",
+        "sha256": "a915328741fc25092fe30be8de52869cb08e2e2cd1fee5d4a401189580365f80",
+        "bytes": 1652,
+        "gitBlob": "2461b57faf294e8c99e45429c0bc921448658408"
+      },
+      {
+        "path": "backend/src/validation/tests/assurance-schema-readiness.test.mjs",
+        "sha256": "a7fdc2a1168118e2140ea08e3441a8a72f355cb1e077f6200de67166d11da91f",
+        "bytes": 4127,
+        "gitBlob": "2a27b51acced967f612932a35e31044d780885b9"
+      }
+    ],
+    "normal": [
+      {
+        "path": "empireai-web/lib/owner/runtime-identity.mjs",
+        "sha256": "dfe00f3cb952a326cae9870027e2c43724a018a8a2fe568ff4ee37809a4fa072",
+        "bytes": 601,
+        "gitBlob": "c55d13a3aca0a3df50f69b9694d5eb8d9e0c1517"
+      }
+    ],
+    "recovery": [
+      {
+        "path": "empireai-web/lib/owner/runtime-identity.mjs",
+        "sha256": "9c78d35859972a6ebf48daab4d1944b3e346a810b2afb5dfe0ed21fe1c9dadeb",
+        "bytes": 603,
+        "gitBlob": "7d4b8959d8d6d8f8d4dd4add1555ac712e048ba5"
+      },
+      {
+        "path": "empireai-web/app/recovery/commerce/route.ts",
+        "sha256": "b3ad4d6422d796eb6023f951ec23cbdf2c204503fc1d1c3cb6023f8fc5621e5e",
+        "bytes": 189,
+        "gitBlob": "55f0cfdc65f4d422f8c32937c8922b7915aadc5c"
+      },
+      {
+        "path": "empireai-web/lib/owner/recovery-commerce-handler.ts",
+        "sha256": "5f59fb30945952d61fe67f760e7ed18110d7cd25fc0d19bc26018a55940565e2",
+        "bytes": 2935,
+        "gitBlob": "1883dda627c17d468b8745e999aa97783675d8d4"
+      }
+    ]
+  },
+  "backendOverlay": [
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/recovery-projection.ts",
+      "sha256": "0a8eff6cb0eb1d853a8cc721c55b10bfa595253d3839849e9bbb5c2dc86a4c1d",
+      "bytes": 12358,
+      "gitBlob": "7d37484c53084528c87e84fdc5d19e2a68936dee",
+      "javascriptSha256": "8b3fba5d935bbb75c66b0877ef1017d28de40928c7561ab4d13ce0d534840caa",
+      "mapSha256": "53cabe985f7e6aa6e42eb53a7ccf4d8f6913e9f71fb2470631ceff3ef383ee71"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "sha256": "3a186bfb12e34a9d0bfb1501adaa416b9c1221a56f0906ccda9ad37c9fcf3293",
+      "bytes": 27206,
+      "gitBlob": "b9f7c5b6b57811d35809c32511a8fc0be6f2fc4a",
+      "javascriptSha256": "8194998296fa6cea3a716fd5f07215b90248925d1d979570972e1d66ac28c603",
+      "mapSha256": "56f813343a61bf568ffe62ff32c023bdd992c58e9f70978582af3ec77203a2c5"
+    },
+    {
+      "path": "backend/src/runtime/owner-write-restriction.ts",
+      "sha256": "ec0edaf624414ceb0a631f7fef967d93915d6e48aad466f2dea101416f6bcdf4",
+      "bytes": 3704,
+      "gitBlob": "0770f8f38c1d10122b8042c525aa7c4b598196d7",
+      "javascriptSha256": "c5ac9d04eebae1bfe5c85e608fe625677fc3d11310e7b56a2f588eaf69c884ca",
+      "mapSha256": "94336b2fbad05bdb6120290459efc96deff0d5b427342b192f701a22170d931e"
+    },
+    {
+      "path": "backend/src/assurance/permanent-inspector.mjs",
+      "sha256": "6bbe358825941f1013d45c72a1047cc32249f6a5e924e0a67be2644f339d7ef2",
+      "bytes": 2072,
+      "gitBlob": "d736a831944445d4ded3b0a4364863107d40ba0d"
+    },
+    {
+      "path": "backend/src/assurance/schema-readiness.mjs",
+      "sha256": "a915328741fc25092fe30be8de52869cb08e2e2cd1fee5d4a401189580365f80",
+      "bytes": 1652,
+      "gitBlob": "2461b57faf294e8c99e45429c0bc921448658408"
+    },
+    {
+      "path": "backend/src/validation/tests/assurance-schema-readiness.test.mjs",
+      "sha256": "a7fdc2a1168118e2140ea08e3441a8a72f355cb1e077f6200de67166d11da91f",
+      "bytes": 4127,
+      "gitBlob": "2a27b51acced967f612932a35e31044d780885b9"
+    }
+  ],
+  "componentParents": {
+    "backend": "8cd7ac029b9f23b36b02c84df62492d47275311d",
+    "normal": "a13f385f5e88c81075852f16f549da090c5155ef",
+    "recovery": "35bb4b2ab2e89c66f5f751868560ca422604d8df"
+  },
+  "sourceIdentity": "Exact immediate-parent source changes plus deterministic changed-only TypeScript compilation and runtime-revision.json bound to new backend commit. No unchanged application or dependency rebuild. NORMAL Next build is required solely for exact backend identity pin.",
+  "acceptedTechnicalRunReused": 41205128907,
+  "originalCandidateArchiveBytes": 398575029,
+  "originalCandidateArchiveSha256": "3fa3cf875e23cd4ff201c053f49915ba2007cfdf369ad2bbde6eadd629861d23",
+  "unresolvedAssuranceDefects": [
+    "safe_assurance_discrepancy_probe_failed:spawnSync_EPERM_under_accepted_no_descendant_isolation",
+    "ASSURANCE_OVERDUE:no_renewed_complete_cycle_receipt"
+  ],
+  "wholeRowDecision": "Only independent post-examination complete-original-A5 reconciliation may award PASS."
+}

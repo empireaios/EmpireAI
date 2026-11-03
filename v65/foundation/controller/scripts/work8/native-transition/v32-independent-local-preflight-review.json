@@ -1,0 +1,296 @@
+{
+  "schema": "work8-v32-independent-local-preflight-source-review-v1",
+  "status": "PASS_INDEPENDENT_V32_NATIVE_ENTRYPOINT_OVERLAY_AND_DIAGNOSTICS",
+  "reviewer": "independent_v31",
+  "approved": true,
+  "reviewedAtUTC": "2026-11-01T04:22:28.493091+00:00",
+  "parentCommit": "cb17ff0063a58e7b80d9e2221dab29ae41660264",
+  "parentTree": "2e8c0e35cec9371a3ac2cdbb2d4eec626b449d6c",
+  "priorUploadReceiptSha256": "13ddd6b4e66579e4913388f6fcb3b831610e940bf4a98ed764e90a1b6467432f",
+  "priorModuleReceiptSha256": "4fc9081deb52cc8df4ab4f85b3d17ab93b2a60ae3e43aa48c6b4a0ba26ba6f7d",
+  "localProofScope": "ORIGINAL_FUNCTION_RETAINED_NODE_ONLY",
+  "hostedMountedContractRequiredBeforeApplicationStart": true,
+  "checks": {
+    "originalProtectedPathExportExecuted": true,
+    "operatorOwnedReadOnlyOverlayContract": true,
+    "childCausalDiagnosticCaptured": true,
+    "changedDiagnosticUploadPathPassed": true,
+    "securityPolicyUnchanged": true,
+    "prior29And10ReusedWithinScope": true
+  },
+  "independentTargetedResults": {
+    "originalFunctionAndCopyProtocol": 8,
+    "actualChildFailures": 3,
+    "actualChangedDiagnosticScanUploadCases": 6,
+    "sourceAndConditionalGateCases": 19,
+    "actualReservationReferenceCases": 3,
+    "mountedFailureHostDelta": 1
+  },
+  "originalSecurityPredicates": "Unmodified canonical realpath, operator ownership for mounted leaf and every ancestor, no group/other write, exact entry hash, unmodified admission/generation/isolation/refusal/termination logic. New mounts are dedicated hash-identical 0:0/0444 instrumentation copies, never source checkout or production ownership changes.",
+  "diagnosticReview": "Four overlays invert byte-exactly to original. Observe earliest import/bootstrap errors, original catch errors, writer internal fault, supplied IPC callback errno and original admission timeout; retain first source-enumerated child record with origin PID/startTicks/source/entry hash. Preserve original exits/signals. Coordinator frames stdout/stderr separately and awaits bounded stream close before derived exit. Actual preceding scanner and canonical uploader transport controls passed; secret scan refusal prevents subsequent uploader by design.",
+  "historicalV31Cause": "UNKNOWN; source-supported mounted ownership hypothesis is not historical attribution. New native mounted predicate must be measured.",
+  "scopeLimits": [
+    "No local Docker/bind-mount proof claimed.",
+    "Actual retained-image mounted original/corrected predicates and UID65534 write/rename refusals must pass before application startup.",
+    "Actual initialized native cached Brain identity/capture/persistence/drain/readback remain unproven until specific Stage A artifact independent review.",
+    "Approves exact reviewed Stage A source preparation only; remote publication identity review still required.",
+    "Stage B remains conditional; no retry or automatic successor after failure.",
+    "No new whole-row acceptance; all64/48 original histories and eight satisfied A5 groups retained."
+  ],
+  "sourceBindings": [
+    {
+      "path": "scripts/work8/native-transition/browser.mjs",
+      "bytes": 19902,
+      "sha256": "2d313b1933e9ae0885ac21c6c9edf7f3bc627245011a40fec1022b530350a2e3"
+    },
+    {
+      "path": "scripts/work8/native-transition/candidate_packages.py",
+      "bytes": 11261,
+      "sha256": "7a605ea3229e3cd2ea0aca062d719b829291d7775c8b526d39baca13de0186b0"
+    },
+    {
+      "path": "scripts/work8/native-transition/canonical-comparator.mjs",
+      "bytes": 13102,
+      "sha256": "f1f98c7200fd17883c2547486a8913e9bf0d055af0e810eec23db1dedf65cc16"
+    },
+    {
+      "path": "scripts/work8/native-transition/capture-canonical-persistence.mjs",
+      "bytes": 4624,
+      "sha256": "61ce4858f486d8c7b7005ccf0cef00a46c9c1da68a5a092666e0f41c690debdf"
+    },
+    {
+      "path": "scripts/work8/native-transition/child-diagnostic-collector.mjs",
+      "bytes": 1199,
+      "sha256": "f3c18e87181d8d1c46d438ecdcbb27fd8a05ec93c1e74e51e119ff198daa8102"
+    },
+    {
+      "path": "scripts/work8/native-transition/child-startup-diagnostic.cjs",
+      "bytes": 3614,
+      "sha256": "81f0574a34aaf50abb697c1fc04ec327fbb0c72cb82da972322dda039ebb61cc"
+    },
+    {
+      "path": "scripts/work8/native-transition/child-startup-fixture.cjs",
+      "bytes": 1561,
+      "sha256": "dff7437bf236651be45fffd19db8bf3d3a0b74b5866c350e61b684334c120b4b"
+    },
+    {
+      "path": "scripts/work8/native-transition/child-startup-selftest.mjs",
+      "bytes": 3848,
+      "sha256": "427a6fc4f418b8c23bd6e1315a59559014bf3f458733e30b9e0685f3d3f671bb"
+    },
+    {
+      "path": "scripts/work8/native-transition/components.json",
+      "bytes": 402,
+      "sha256": "1511f21cb02fe26e2b7a6322dc3f0a90ab8d56ff4de5e9d04aebe945e07b52c7"
+    },
+    {
+      "path": "scripts/work8/native-transition/coordinator.mjs",
+      "bytes": 20628,
+      "sha256": "a61e0b0f8c28da20b2b167f7465f8ad0204b59ca70851aca979b41f35cc312bf"
+    },
+    {
+      "path": "scripts/work8/native-transition/entrypoint_contract.py",
+      "bytes": 6575,
+      "sha256": "44108cba4c600b400e02fc56158638634227712aabcbc1d5d2cb30e0f1169ba6"
+    },
+    {
+      "path": "scripts/work8/native-transition/examine-v26.py",
+      "bytes": 33633,
+      "sha256": "1b418af307da51a4eba5ccce261fc3174217bbe4c85e38eefd8f2a948e87cb76"
+    },
+    {
+      "path": "scripts/work8/native-transition/independent-brain-readback.mjs",
+      "bytes": 2561,
+      "sha256": "8dd1e183293391938cdf4f4657fa1dd31af383bac41de08fdff644f1ba53b6d0"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-hook.mjs",
+      "bytes": 10886,
+      "sha256": "53ae9f68b0885a788f361d955b847285d9813ed9c8637f2c1775eeedb258afd4"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-index-overlay.js",
+      "bytes": 6287,
+      "sha256": "4246473ab80cfdfed1823f8aabd899eeff8c4cee679182bbaf3f47584a63cb7d"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-observation.mjs",
+      "bytes": 4952,
+      "sha256": "b35a488301e905dd5d3463d5a35512164b36de757fc7f3f988e481ffddf95a3d"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-overlay.json",
+      "bytes": 876,
+      "sha256": "db732e853eed242433b0cc943227ea40ebcc1b289229adc1c84787fcd31a811d"
+    },
+    {
+      "path": "scripts/work8/native-transition/live-brain-preflight.mjs",
+      "bytes": 12283,
+      "sha256": "1383d17abdc1a6f96d398fff570c72947e33f9bdce59318e224ccab153a1f2bb"
+    },
+    {
+      "path": "scripts/work8/native-transition/mounted-entrypoint-preflight.mjs",
+      "bytes": 6206,
+      "sha256": "4ddbe1970718c5b711f7e6c557acb41d1ba3525e2d9d7b7f309bab50fdf47449"
+    },
+    {
+      "path": "scripts/work8/native-transition/native-diagnostic-codes.json",
+      "bytes": 34572,
+      "sha256": "66dda8de79c1da5b6a712b54e61d818fd5304484af2b5bb9b5383ac5269d7221"
+    },
+    {
+      "path": "scripts/work8/native-transition/native-diagnostic.mjs",
+      "bytes": 5764,
+      "sha256": "56c9cc230cf8b5a7897e11534ce67e328853a6400b0a9e62843f10dd1e863af1"
+    },
+    {
+      "path": "scripts/work8/native-transition/native_diagnostics.py",
+      "bytes": 6637,
+      "sha256": "420dadf8e12de76f507e6d9b582b6a89c434fa147e28342a9958e35fb97a8398"
+    },
+    {
+      "path": "scripts/work8/native-transition/observed-launcher-loss-guard.cjs",
+      "bytes": 5001,
+      "sha256": "79e588f28c8ed2b431342bc767d85cb7903f74fbc10ab46ae56d8164c4769409"
+    },
+    {
+      "path": "scripts/work8/native-transition/observed-locked-runtime.cjs",
+      "bytes": 8978,
+      "sha256": "6ba137982f4d6cb1aaf508b67e27a5feb4492ab224b08949dcf148b4c596da90"
+    },
+    {
+      "path": "scripts/work8/native-transition/observed-runtime-membership-bootstrap.mjs",
+      "bytes": 4275,
+      "sha256": "d7fd8190ab9260751bab338dfbad9d84fe936fc97363f6ca97b1d579233d7ff4"
+    },
+    {
+      "path": "scripts/work8/native-transition/observed-runtime-writer-controller.cjs",
+      "bytes": 11962,
+      "sha256": "8bce1714fc78082f66d2b1d6581fc957c2a4e069bb6a8d1c50f727a832ebda9e"
+    },
+    {
+      "path": "scripts/work8/native-transition/offline-commerce-readback.mjs",
+      "bytes": 17211,
+      "sha256": "ad0daa88235598eb7ecbaf1595fa04fb64301ab260abfabd2e0f6c978e465d8b"
+    },
+    {
+      "path": "scripts/work8/native-transition/prepare-base-candidates.py",
+      "bytes": 11785,
+      "sha256": "b43616e7e5af0dc83d136ccc699cff05b9d55569ba0dbfaeff354220b826efaa"
+    },
+    {
+      "path": "scripts/work8/native-transition/private-exchanges.mjs",
+      "bytes": 2054,
+      "sha256": "f7f35aed49e73037110e388cdd6a63fb079cde339b595713aed8052771227461"
+    },
+    {
+      "path": "scripts/work8/native-transition/private-handoff.mjs",
+      "bytes": 14713,
+      "sha256": "7f45fb8350647a49063d70c6249e69e44e920b557884940c89aef7bb8f722aff"
+    },
+    {
+      "path": "scripts/work8/native-transition/private_contract.py",
+      "bytes": 6547,
+      "sha256": "dbe1ab78fdd4702e04ccc06658ecebfca5caff6f53a39e5a406a0eb878d21eae"
+    },
+    {
+      "path": "scripts/work8/native-transition/retained-components.json",
+      "bytes": 539,
+      "sha256": "4200228fd1a4469e652e1dc87a793ed1ed77d57bbc2506167211192380f62bb0"
+    },
+    {
+      "path": "scripts/work8/native-transition/retained-upload-preflight.py",
+      "bytes": 4639,
+      "sha256": "0a673bd343930a7c002597c27d7ebf22c69288a15a33570866542b67ef9bf625"
+    },
+    {
+      "path": "scripts/work8/native-transition/run-native-examination.py",
+      "bytes": 2872,
+      "sha256": "0bf0e6e9713756d1c5b72ea46e8b4707903fb410a28439a3f077297c9841a248"
+    },
+    {
+      "path": "scripts/work8/native-transition/source_identity.py",
+      "bytes": 1687,
+      "sha256": "c9687d1fbfc138f559104aa9e93cb8ce7bcceac3fbe3200436886a2100f12afc"
+    },
+    {
+      "path": "scripts/work8/native-transition/startup-overlays.json",
+      "bytes": 2202,
+      "sha256": "9eec1d028d909d6a227f6d0ff767db480b2acae2f0003f6aa7dd9a234b3c7cef"
+    },
+    {
+      "path": "scripts/work8/native-transition/upload-preflight.py",
+      "bytes": 2418,
+      "sha256": "9582affdb55540970c05cf9e720ae9aceea5c897a03f3235230aedc4e7ef1e32"
+    },
+    {
+      "path": "scripts/work8/native-transition/v32-authority.json",
+      "bytes": 3966,
+      "sha256": "30f596a382c83b6ffcae0b2736cf4f34b308f8793c6f80986ed6b2d4795d5046"
+    },
+    {
+      "path": "scripts/work8/native-transition/v32-full-workflow.template.yml",
+      "bytes": 3678,
+      "sha256": "b99d26177e16ef16b40bc52e9f78160c8534c8a7b61066b7cd7b97b8e3b97e5b"
+    },
+    {
+      "path": "scripts/work8/native-transition/verify-v32-gate.py",
+      "bytes": 19413,
+      "sha256": "7c51a4deee33cc504ece2dac8082f8685b4bcddbbbf1212c0c45b5f568d1c8e3"
+    },
+    {
+      "path": "scripts/work8/native-transition/whole-app-readback.mjs",
+      "bytes": 17226,
+      "sha256": "ad3eb8d0c6a025775d3884d29001db8c5b1412e71919df7197b7453112620b79"
+    },
+    {
+      "path": ".github/workflows/work8-v32-native-brain-preflight-20261101.yml",
+      "bytes": 3056,
+      "sha256": "a6e28d80dd2ab0fce197abdaf073191b36baa19cf02fbaf98536d0146ca76566"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 1650,
+      "sha256": "2ae95053195461d00fadbd229178c74f6fc21e2a2b745a32ac02cd5a003b29da"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 1471,
+      "sha256": "f6058f484b73e9a36e7f876cb173014cc2845695fb6d64a156bbc2262bcfbc0e"
+    }
+  ],
+  "targetedReceiptBindings": [
+    {
+      "path": "scripts/work8/native-transition/v32-mounted-entrypoint-local-selftest.json",
+      "bytes": 3516,
+      "sha256": "642e57f09d65e367b33ac1f0b426d14f58f0556dd2a9304df233ec12dffbbbaa"
+    },
+    {
+      "path": "scripts/work8/native-transition/v32-child-startup-selftest.json",
+      "bytes": 7220,
+      "sha256": "cc19eb9bd07e1f37969f827a001814cc212cfe81b8e73b791f360fac6499886c"
+    },
+    {
+      "path": "scripts/work8/native-transition/v32-upload-authority-selftest.json",
+      "bytes": 3003,
+      "sha256": "05e27c84e9406849ae8a06d836f4e66f881e0057a80f39d1ff1d9dea7ab8fced"
+    }
+  ],
+  "priorSnapshotReviewSHA256": "9c305a4b9f68d615084cc2fc0f5be115fad58d00bd36f35ffe3fc0959f37db67",
+  "additionalMountedFailureReceiptReview": {
+    "status": "PASS",
+    "changedFiles": [
+      "scripts/work8/native-transition/entrypoint_contract.py",
+      "scripts/work8/native-transition/mounted-entrypoint-preflight.mjs"
+    ],
+    "safeLoopFailureObservation": "Retains measured metadata before hash/predicate/mount assertions; catches bounded source-enumerated failure, supplied errno and own frame; host saves it then rejects explicit non-PASS before any application startup.",
+    "actualHostControlledFailureTest": {
+      "sha256": "299cabee72803269d6523d5fb279538dcb44121daa030b1064d715f8451e5db5",
+      "fixtureOnly": true,
+      "explicitFailureRetainedBeforeRejection": true,
+      "exitZeroDidNotCountAsAcceptance": true
+    },
+    "sameRetainedStartupFreeContainerChildProof": "Three controlled child error fixtures also run before native application startup using the same retained image; their receipt is required, distinct from native Brain proof.",
+    "unchangedAcceptedTestsRepeated": false
+  }
+}

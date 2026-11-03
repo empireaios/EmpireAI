@@ -1,0 +1,230 @@
+name: Work 8 V65 A5 runner-local examination
+
+on:
+  create:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: work8-v65-a5-20261103
+  cancel-in-progress: false
+
+jobs:
+  a5:
+    name: A5 runner-local examination
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v65-a5-20261103' &&
+      github.run_attempt == 1 && github.run_number == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+
+    steps:
+      - name: Check out the exact reviewed launch commit
+        id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        timeout-minutes: 5
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Record the actual current runner and finite job deadline
+        id: identity
+        timeout-minutes: 3
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 -B v65/adapter/runner.py identity
+          --root "$RUNNER_TEMP/v65/execution"
+          --job-name 'A5 runner-local examination'
+
+      - name: Reconstruct the three immutable-source candidate packages once
+        id: reconstruct
+        timeout-minutes: 90
+        run: >-
+          python3 -B v65/build/reconstruct_all.py
+          --root "$RUNNER_TEMP/v65-build"
+          --execution-root "$RUNNER_TEMP/v65/execution"
+          --controller v65/foundation/controller/scripts/work8/native-transition
+
+      - name: Prepare bounded public-source-only package preservation
+        id: package_export
+        timeout-minutes: 5
+        run: >-
+          python3 -B v65/adapter/runner.py package-export
+          --root "$RUNNER_TEMP/v65/execution"
+
+      - name: Preserve the exact candidate packages before application execution
+        id: packages
+        timeout-minutes: 15
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v65-a5-candidates-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v65/execution/package-export/
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+
+      - name: Verify durable candidate artifact identity and cumulative exposure
+        timeout-minutes: 2
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 -B v65/adapter/runner.py artifact-check
+          --root "$RUNNER_TEMP/v65/execution"
+          --label packages
+          --artifact-id '${{ steps.packages.outputs.artifact-id }}'
+          --artifact-digest '${{ steps.packages.outputs.artifact-digest }}'
+
+      - name: Integrate the reviewed controller with complete current manifests
+        id: prepare
+        timeout-minutes: 10
+        run: >-
+          python3 -B v65/adapter/runner.py prepare
+          --root "$RUNNER_TEMP/v65/execution"
+
+      - name: Qualify native boundaries and diagnostic controls without application execution
+        id: qualify
+        timeout-minutes: 15
+        run: >-
+          python3 -B v65/adapter/runner.py qualify
+          --root "$RUNNER_TEMP/v65/execution"
+          --authority-file v65/launch-plan.json
+
+      - name: Export sanitized source-equivalence and executor qualification evidence
+        id: review_export
+        timeout-minutes: 2
+        run: >-
+          python3 -B v65/adapter/runner.py review-export
+          --root "$RUNNER_TEMP/v65/execution"
+
+      - name: Upload the bounded qualification evidence for independent review
+        id: qualification
+        timeout-minutes: 5
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v65-a5-qualification-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v65/execution/review-exports/packages-and-executor/
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+
+      - name: Require independent package-equivalence and executor acknowledgment
+        id: package_review
+        timeout-minutes: 26
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 -B v65/adapter/runner.py await-review
+          --root "$RUNNER_TEMP/v65/execution"
+          --stage packages-and-executor
+          --max-seconds 1500
+          --artifact-id '${{ steps.qualification.outputs.artifact-id }}'
+          --artifact-digest '${{ steps.qualification.outputs.artifact-digest }}'
+
+      - name: Run the actual initialized Brain native preflight once
+        id: preflight
+        timeout-minutes: 26
+        run: >-
+          python3 -B v65/adapter/runner.py native
+          --root "$RUNNER_TEMP/v65/execution"
+          --stage preflight
+
+      - name: Export bounded sanitized native preflight evidence
+        id: preflight_export
+        timeout-minutes: 2
+        run: >-
+          python3 -B v65/adapter/runner.py native-export
+          --root "$RUNNER_TEMP/v65/execution"
+          --label preflight
+
+      - name: Upload preflight evidence for independent acknowledgment
+        id: preflight_artifact
+        timeout-minutes: 5
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v65-a5-preflight-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v65/execution/evidence-exports/preflight/
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+
+      - name: Require independent acknowledgment of the actual Brain preflight
+        id: preflight_review
+        timeout-minutes: 26
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 -B v65/adapter/runner.py await-review
+          --root "$RUNNER_TEMP/v65/execution"
+          --stage preflight
+          --max-seconds 1500
+          --artifact-id '${{ steps.preflight_artifact.outputs.artifact-id }}'
+          --artifact-digest '${{ steps.preflight_artifact.outputs.artifact-digest }}'
+
+      - name: Execute the single coherent native A5 examination
+        id: native
+        timeout-minutes: 36
+        run: >-
+          python3 -B v65/adapter/runner.py native
+          --root "$RUNNER_TEMP/v65/execution"
+          --stage full
+
+      - name: Drain and remove only this isolated campaign's resources
+        id: cleanup
+        if: ${{ always() && steps.identity.outcome == 'success' }}
+        timeout-minutes: 10
+        run: >-
+          python3 -B v65/adapter/runner.py cleanup
+          --root "$RUNNER_TEMP/v65/execution"
+          --build-root "$RUNNER_TEMP/v65-build"
+
+      - name: Preserve bounded sanitized final or first-causal-failure evidence
+        id: final_export
+        if: ${{ always() && steps.checkout.outcome == 'success' }}
+        timeout-minutes: 3
+        run: >-
+          python3 -B v65/adapter/runner.py final-export
+          --root "$RUNNER_TEMP/v65/execution"
+          --build-root "$RUNNER_TEMP/v65-build"
+
+      - name: Upload the durable final-or-failure receipt
+        id: final_artifact
+        if: ${{ always() && steps.final_export.outcome == 'success' }}
+        timeout-minutes: 10
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v65-a5-final-or-failure-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v65/execution/final-export/
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+
+      - name: Read back final artifact digest, expiry, count and byte exposure
+        if: ${{ always() && steps.final_artifact.outcome == 'success' && steps.identity.outcome == 'success' }}
+        timeout-minutes: 2
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 -B v65/adapter/runner.py artifact-check
+          --root "$RUNNER_TEMP/v65/execution"
+          --label final
+          --artifact-id '${{ steps.final_artifact.outputs.artifact-id }}'
+          --artifact-digest '${{ steps.final_artifact.outputs.artifact-digest }}'

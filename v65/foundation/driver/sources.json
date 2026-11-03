@@ -1,0 +1,18 @@
+[
+  {
+    "name": "playwright",
+    "bytes": 895775,
+    "sha256": "1982556a882b246ccb7c16337fab5e4e790292b69f835a2db1011dddc440ed98",
+    "integrity": "sha512-0M+L3LAD8/nm554LOla9Ayx0j0tmFZ0FBcoQ7F1VuVHpM/XpiC8RcDzBQB8W5+hA8L22THxELzeF+2WcUzvcLg==",
+    "source": "https://registry.npmjs.org/playwright/-/playwright-1.62.1.tgz",
+    "status": "PASS_EXACT_REGISTRY_BYTES"
+  },
+  {
+    "name": "playwright-core",
+    "bytes": 3070300,
+    "sha256": "954be1e183d0ddb9748fe0d2d08b0b66a9210c74dd75c397aeb70303b9f08a00",
+    "integrity": "sha512-wPYSwEBJY9GHraISXqyqtx0na0LpO3XEX7jNDhntbex7tzUS7kLnZsOlFruFJB4Hi/rhDMjXGqHewDZ68nYZVw==",
+    "source": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.62.1.tgz",
+    "status": "PASS_EXACT_REGISTRY_BYTES"
+  }
+]

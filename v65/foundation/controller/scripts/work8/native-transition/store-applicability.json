@@ -1,0 +1,751 @@
+{
+  "atUTC": "2026-11-03T05:32:55.268712+00:00",
+  "backendArchiveSHA256": "8aa72fac4c3a99a1b1013f0d30349298616a00dc526d881a6bf0f7f1abe20863",
+  "backendImage": "sha256:65382b8f19482851212fe7a21746ca7ad7bf5af5708fec8f083165ac42e61573",
+  "backendSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "controls": [
+    "Enumerate all thirteen stores even if inactive; never silently omit an absent path.",
+    "For every required store: absence is FAIL; require declared minimum schema and the existing complete logical comparison.",
+    "For a lazy store: require explicit source-bound inactive reason and no activation by exact controller; absent baseline must remain absent in all phases.",
+    "If a lazy store is present at baseline, inventory actual schema/rows and require normal preservation; present-to-absent is always FAIL.",
+    "For liveCostCentre, financialEvidence and commerce, .initialized marker presence with missing database is always FAIL; present stores require their source marker.",
+    "No diagnostic fixture, empty substitute database or fabricated rows may satisfy required initialized application evidence.",
+    "index.js is overlaid at runtime; do not compare live mounted index.js against its uninstrumented package hash. Existing overlay contract verifies original/remedy binding."
+  ],
+  "mandatoryInventoryCount": 13,
+  "operations": {
+    "applicationExecution": false,
+    "implementationEdits": 0,
+    "productionRead": false,
+    "providerOperations": false,
+    "testReruns": 0
+  },
+  "qualifications": [
+    "Source analysis does not show actual native file presence; application and independent readback must still execute.",
+    "Required table sets are source-obvious minimums, not permission to ignore additional schema/rows.",
+    "FinancialEvidence required assumes successful initial onReady Assurance cycle; a swallowed initialization error is a failed prerequisite.",
+    "No new business request, chat, inference or mission execution is authorized merely to populate inactive stores."
+  ],
+  "reviewer": "v62_security",
+  "schema": "work8-v62-store-applicability-source-review-v1",
+  "sourceEvidence": {
+    "backend/dist/advisor/routes.js:53-55": {
+      "excerpt": "    registerAdvisorOAuth(app, store, owner);\n    if (!injectedStore)\n        registerIntelligence(app, owner);",
+      "imagePath": "/app/backend/dist/advisor/routes.js",
+      "lineEnd": 55,
+      "lineStart": 53,
+      "sha256": "b8890af0a89a54ade77485f33a03307d58030ea718ebf41887e8c6b329f2a478"
+    },
+    "backend/dist/advisor/store.js:7-39": {
+      "excerpt": "export class AdvisorStore {\n    filename;\n    constructor(filename) {\n        this.filename = filename;\n    }\n    use(fn) {\n        if (!path.isAbsolute(this.filename) || fs.realpathSync(path.dirname(this.filename)) !== path.dirname(this.filename))\n            throw Error('Store unavailable');\n        if (!fs.existsSync(this.filename))\n            fs.closeSync(fs.openSync(this.filename, 'wx', 0o600));\n        const stat = fs.lstatSync(this.filename);\n        if (!stat.isFile() || stat.nlink !== 1 || fs.realpathSync(this.filename) !== this.filename || stat.size > 64 * 1024 * 1024)\n            throw Error('Store unavailable');\n        const db = new DatabaseSync(this.filename, { allowExtension: false, timeout: 100 });\n        try {\n            const id = db.prepare('PRAGMA application_id').get()?.application_id;\n            if (id === 0x45414757 && db.prepare('PRAGMA user_version').get()?.user_version !== 1)\n                throw Error('Store version unsupported');\n            if (id !== 0 && id !== 0x45414757)\n                throw Error('Store identity invalid');\n            if (id === 0 && db.prepare(\"SELECT name FROM sqlite_schema WHERE type='table'\").all().length)\n                throw Error('Store identity invalid');\n            db.exec(`PRAGMA trusted_schema=OFF; PRAGMA synchronous=EXTRA; PRAGMA max_page_count=16384;\n    CREATE TABLE IF NOT EXISTS communications(id TEXT PRIMARY KEY,workspace TEXT NOT NULL,owner TEXT NOT NULL,hash TEXT NOT NULL,created TEXT NOT NULL,package TEXT NOT NULL,handler TEXT NOT NULL,status TEXT NOT NULL,result TEXT NOT NULL,request_id TEXT) STRICT;\n    CREATE INDEX IF NOT EXISTS communication_workspace ON communications(workspace,created,id);\n    CREATE TABLE IF NOT EXISTS access_audit(id INTEGER PRIMARY KEY,at TEXT NOT NULL,actor TEXT NOT NULL,operation TEXT NOT NULL,target TEXT NOT NULL,outcome TEXT NOT NULL) STRICT;\n    CREATE TABLE IF NOT EXISTS oauth_clients(id TEXT PRIMARY KEY,redirect TEXT NOT NULL,created INTEGER NOT NULL) STRICT;\n    CREATE TABLE IF NOT EXISTS oauth_codes(hash TEXT PRIMARY KEY,client TEXT NOT NULL,redirect TEXT NOT NULL,challenge TEXT NOT NULL,owner TEXT NOT NULL,workspace TEXT NOT NULL,expires INTEGER NOT NULL) STRICT;\n    CREATE TABLE IF NOT EXISTS oauth_tokens(hash TEXT PRIMARY KEY,client TEXT NOT NULL,owner TEXT NOT NULL,workspace TEXT NOT NULL,expires INTEGER NOT NULL) STRICT;\n    PRAGMA application_id=1161906007; PRAGMA user_version=1;`);\n            return fn(db);\n        }\n        finally {",
+      "imagePath": "/app/backend/dist/advisor/store.js",
+      "lineEnd": 39,
+      "lineStart": 7,
+      "sha256": "9a592b0f5360c4c372860ee1ecfed5e6bd9012e00d76d234f756037205785775"
+    },
+    "backend/dist/assurance/advisor-agent.js:17-24": {
+      "excerpt": "export class AdvisorTaskGateway {\n    store;\n    ports;\n    constructor(store, ports) {\n        this.store = store;\n        this.ports = ports;\n        store.use(db => db.exec(`CREATE TABLE IF NOT EXISTS advisor_tasks(id TEXT PRIMARY KEY,workspace TEXT NOT NULL,incident TEXT NOT NULL,fingerprint TEXT NOT NULL UNIQUE,body TEXT NOT NULL,status TEXT NOT NULL,created TEXT NOT NULL,updated TEXT NOT NULL,execution TEXT,stage TEXT NOT NULL,receipt TEXT,result TEXT,error TEXT) STRICT; CREATE TABLE IF NOT EXISTS advisor_task_events(seq INTEGER PRIMARY KEY,task TEXT NOT NULL,workspace TEXT NOT NULL,at TEXT NOT NULL,status TEXT NOT NULL,stage TEXT NOT NULL,payload TEXT NOT NULL) STRICT;`));\n    }",
+      "imagePath": "/app/backend/dist/assurance/advisor-agent.js",
+      "lineEnd": 24,
+      "lineStart": 17,
+      "sha256": "6e4f1f2987c0a793083fe5ce5dc5e657e4593f07d7930a61ebfa6df3c6cdad1e"
+    },
+    "backend/dist/assurance/runtime.js:151-164": {
+      "excerpt": "                for (const probe of productionCommerce().simulatedFinance.probes(workspace))\n                    this.control.observe(workspace, probe);\n            }\n            catch {\n                observe('simulated_financial_integrity', 'UNAVAILABLE', 'Durable simulated financial reconciliation unavailable; no actual finance repair authorised', { observedAt: Date.now() });\n            }\n            try {\n                this.control.observe(workspace, readWork8FinancialProbe(productionFinance(), workspace));\n            }\n            catch {\n                observe('financial_evidence', 'UNAVAILABLE', 'Financial journal unavailable; financial amounts must remain unknown');\n            }\n            this.control.observe(workspace, readWork8QueueProbe(this.root, workspace));\n            const contract = checkToolContract();",
+      "imagePath": "/app/backend/dist/assurance/runtime.js",
+      "lineEnd": 164,
+      "lineStart": 151,
+      "sha256": "830b03d59e3328509283a40ffa92d1c0e772e864c3f6b6f963a699988abdbc88"
+    },
+    "backend/dist/assurance/runtime.js:357-369": {
+      "excerpt": "export async function createAssuranceRuntime(root, revision) {\n    const moduleUrl = new URL('../../src/assurance/control-plane.mjs', import.meta.url).href;\n    const { AssuranceControlPlane } = await import(moduleUrl);\n    const { createDeploymentVerifier } = await import(new URL('../../src/assurance/deployment-verifier.mjs', import.meta.url).href);\n    const rebuild = { version: '1', authority: 'A', capability: 'reconciliation_view', timeoutMs: 10000, maxAttempts: 2, cooldownMs: 30000,\n        execute: async () => rebuildReconciliation(root, workspace, revision), verify: async () => verifyReconciliation(root, workspace), reconcile: async () => ({ completed: verifyReconciliation(root, workspace).healthy }) };\n    const control = new AssuranceControlPlane({ root: path.join(root, 'commissioning'), revision, deploymentVerifier: createDeploymentVerifier(), runbooks: {\n            work8_checkpoint_replay: { version: 'work8-checkpoint-v1', authority: 'A', capability: 'commerce-checkpoint', maxAttempts: 1, cooldownMs: 1000, timeoutMs: 1000, execute: (context) => makeWork8CommerceRecovery(productionCommerce()).runbook.execute(context), verify: (context) => makeWork8CommerceRecovery(productionCommerce()).runbook.verify(context) },\n            rebuild_reconciliation: rebuild, rebuild_reconciliation_advisor: { ...rebuild, executor: 'API_ADVISOR' },\n            quarantine_reconciliation: { ...rebuild, authority: 'B', capability: 'approval_quarantine', title: 'Quarantine and rebuild the derived operational view', description: 'Move only the derived reconciliation JSON to a retained quarantine copy, rebuild it from existing sources, and verify unchanged source digest.', approvalReason: 'A deliberate operational view interruption requires your specific approval.', execute: async () => { const before = reconciliationHash(readReconciliationSources(root, workspace)); const file = path.join(root, 'commissioning', 'reconciliation-' + workspace + '.json'); if (fs.existsSync(file))\n                    fs.renameSync(file, file + '.approved-' + Date.now()); const result = rebuildReconciliation(root, workspace, revision); return { ...result, sourceUnchanged: before === reconciliationHash(readReconciliationSources(root, workspace)) }; }, verify: async ({ result }) => { const verification = verifyReconciliation(root, workspace); return { ...verification, healthy: result?.sourceUnchanged === true && verification.healthy }; } }\n        } });\n    return new AssuranceRuntime(root, revision, control);",
+      "imagePath": "/app/backend/dist/assurance/runtime.js",
+      "lineEnd": 369,
+      "lineStart": 357,
+      "sha256": "830b03d59e3328509283a40ffa92d1c0e772e864c3f6b6f963a699988abdbc88"
+    },
+    "backend/dist/assurance/runtime.js:384-391": {
+      "excerpt": "export function installAssuranceRuntime(app) {\n    let timer;\n    app.addHook('onReady', async () => { if (process.env.EMPIRE_RUNTIME_PROFILE !== 'LOCKED_COMMISSIONING_V1')\n        return; const root = process.env.RAILWAY_VOLUME_MOUNT_PATH, revision = process.env.RAILWAY_GIT_COMMIT_SHA; if (!root || !revision)\n        return; active = await createAssuranceRuntime(root, revision); active.advisor.recoverInterrupted(workspace); const run = () => runCaptureAwareBackground(() => active?.cycle()).catch(() => { }); void run(); timer = setInterval(run, 30000); timer.unref(); });\n    app.addHook('onClose', async () => { if (timer)\n        clearInterval(timer); if (active?.advisorWork)\n        await active.advisorWork; active?.control.close(); active = null; });",
+      "imagePath": "/app/backend/dist/assurance/runtime.js",
+      "lineEnd": 391,
+      "lineStart": 384,
+      "sha256": "830b03d59e3328509283a40ffa92d1c0e772e864c3f6b6f963a699988abdbc88"
+    },
+    "backend/dist/assurance/runtime.js:78-90": {
+      "excerpt": "    constructor(root, revision, control) {\n        this.root = root;\n        this.revision = revision;\n        this.control = control;\n        this.advisor = new AdvisorTaskGateway(new AdvisorStore(path.join(root, 'commissioning', 'communications.sqlite')), {\n            readEvidence: async (task) => ({ refs: task.evidenceRefs, data: { incident: control.get(workspace, 'incident', task.incidentId), reconciliation: verifyReconciliation(root, workspace), authority: { birth: 'NOT_BORN', commerce: 'LOCKED' }, allowedAction: 'Rebuild only the derived reconciliation view from immutable sources' } }),\n            eligible: async (task) => task.expectedRevision === revision && !control.snapshot(workspace).paused.paused && control.snapshot(workspace).lease?.status !== 'ACTIVE' && control.get(workspace, 'incident', task.incidentId)?.runbookId === 'rebuild_reconciliation_advisor',\n            execute: async (task, _action, runbook) => { if (runbook !== 'rebuild_reconciliation_advisor' || control.get(workspace, 'incident', task.incidentId)?.runbookId !== runbook)\n                throw Error('RUNBOOK_SCOPE'); return control.recover(workspace, task.incidentId, { actor: 'API_ADVISOR' }); },\n            reconcileAction: async (task) => control.snapshot(workspace).recoveries.find((r) => r.incidentId === task.incidentId && r.actor === 'API_ADVISOR') ?? null,\n            verify: async (_task, receipt) => ({ verified: receipt?.status === 'VERIFIED' && verifyReconciliation(root, workspace).healthy, evidence: { receipt, reconciliation: verifyReconciliation(root, workspace) } }),\n        });\n    }",
+      "imagePath": "/app/backend/dist/assurance/runtime.js",
+      "lineEnd": 90,
+      "lineStart": 78,
+      "sha256": "830b03d59e3328509283a40ffa92d1c0e772e864c3f6b6f963a699988abdbc88"
+    },
+    "backend/dist/brain/database.js:28-76": {
+      "excerpt": "    return resolveDatabasePath();\n}\nexport function getDatabase() {\n    const dbPath = resolveDatabasePath();\n    if (dbInstance && activeDbPath !== dbPath) {\n        closeDatabase();\n    }\n    if (dbInstance)\n        return dbInstance;\n    if (!isInMemoryDatabasePath(dbPath)) {\n        fs.mkdirSync(path.dirname(dbPath), { recursive: true });\n    }\n    // Free ephemeral tmp/corrupt copies before sql.js may need a full-db temp write.\n    reclaimEphemeralSqliteArtifacts(dbPath);\n    dbInstance = new EmpireDatabase(dbPath);\n    activeDbPath = dbPath;\n    dbInstance.pragma(\"foreign_keys = ON\");\n    migrate(dbInstance);\n    const recovery = getLastSqliteOpenRecovery();\n    if (recovery.recovered) {\n        logger.error({\n            dbPath,\n            quarantinedPath: recovery.quarantinedPath,\n            reason: recovery.reason,\n            driver: \"sql.js\",\n        }, \"Brain database recovered from corruption (quarantined prior file; empty DB recreated)\");\n    }\n    else {\n        logger.info({ dbPath, driver: \"sql.js\" }, \"Brain database initialized\");\n    }\n    return dbInstance;\n}\nfunction migrate(db) {\n    db.exec(`\n    CREATE TABLE IF NOT EXISTS audit_logs (\n      id TEXT PRIMARY KEY,\n      action TEXT NOT NULL,\n      actor TEXT NOT NULL,\n      workspace_id TEXT NOT NULL,\n      company_id TEXT,\n      agent_id TEXT,\n      correlation_id TEXT NOT NULL,\n      metadata TEXT NOT NULL,\n      created_at TEXT NOT NULL\n    );\n\n    CREATE INDEX IF NOT EXISTS idx_audit_workspace ON audit_logs(workspace_id);\n    CREATE INDEX IF NOT EXISTS idx_audit_correlation ON audit_logs(correlation_id);\n    CREATE INDEX IF NOT EXISTS idx_audit_created ON audit_logs(created_at);",
+      "imagePath": "/app/backend/dist/brain/database.js",
+      "lineEnd": 76,
+      "lineStart": 28,
+      "sha256": "9c6c9362e83f1ee6119d29855918d441e7016ae447a0e40664594bd54a2e4311"
+    },
+    "backend/dist/brain/llm/locked-inference.js:26-59": {
+      "excerpt": "export function inferenceLedger(filename, action) {\n    if (!path.isAbsolute(filename) || path.resolve(filename) !== filename || fs.realpathSync(path.dirname(filename)) !== path.dirname(filename))\n        throw Error('Inference ledger path refused');\n    const existed = fs.existsSync(filename);\n    const marker = filename + '.initialized';\n    if (!existed && fs.existsSync(marker))\n        throw Error('Inference ledger missing; reconciliation required');\n    if (!existed)\n        fs.closeSync(fs.openSync(filename, 'wx', 0o600));\n    const stat = fs.lstatSync(filename);\n    if (!stat.isFile() || stat.nlink !== 1 || stat.size > 16 * 1024 * 1024 || fs.realpathSync(filename) !== filename)\n        throw Error('Inference ledger refused');\n    const db = new DatabaseSync(filename, { timeout: 0, allowExtension: false });\n    try {\n        db.exec('PRAGMA trusted_schema=OFF; PRAGMA synchronous=EXTRA; PRAGMA journal_mode=DELETE; BEGIN IMMEDIATE');\n        if (!existed)\n            db.exec(`CREATE TABLE calls (\n      id TEXT PRIMARY KEY, timestamp TEXT NOT NULL, model TEXT NOT NULL,\n      reserved_micro_usd INTEGER NOT NULL CHECK(reserved_micro_usd>0),\n      status TEXT NOT NULL, usage_json TEXT, estimated_micro_usd INTEGER,\n      provider_response_id TEXT, invoice_actual_micro_usd INTEGER\n    ) STRICT; PRAGMA application_id=1162430793; PRAGMA user_version=1;`);\n        if (db.prepare('PRAGMA application_id').get()?.application_id !== 1162430793 || db.prepare('PRAGMA user_version').get()?.user_version !== 1 || db.prepare('PRAGMA quick_check').get()?.quick_check !== 'ok')\n            throw Error('Inference ledger integrity/schema refused');\n        if (!fs.existsSync(marker)) {\n            if (existed)\n                throw Error('Inference ledger initialization marker missing');\n            const seal = fs.openSync(marker, 'wx', 0o600);\n            try {\n                fs.writeSync(seal, 'October 2026 cumulative guard; never reset\\n');\n                fs.fsyncSync(seal);\n            }\n            finally {\n                fs.closeSync(seal);",
+      "imagePath": "/app/backend/dist/brain/llm/locked-inference.js",
+      "lineEnd": 59,
+      "lineStart": 26,
+      "sha256": "077e35fccbcb2b9e8a4eca9fb51075f546926e3426d426f3b6a395ed2174da32"
+    },
+    "backend/dist/brain/llm/locked-provider-orchestration.js:17-35": {
+      "excerpt": "export function configuredLockedProviders() {\n    return Object.keys(LOCKED_PROVIDERS).filter(p => Boolean(process.env[LOCKED_PROVIDERS[p].key]?.trim()));\n}\nconst whole = (n) => Number.isSafeInteger(n) && Number(n) >= 0;\nfunction tables(db) {\n    db.exec(`CREATE TABLE IF NOT EXISTS inference_requests (id TEXT PRIMARY KEY, timestamp TEXT NOT NULL) STRICT;\n    CREATE TABLE IF NOT EXISTS provider_health (provider TEXT PRIMARY KEY, updated_at TEXT NOT NULL, state TEXT NOT NULL, retry_after INTEGER NOT NULL) STRICT;`);\n}\nfunction health(provider, state, retryAfter) {\n    inferenceLedger(inferenceLedgerPath(), db => { tables(db); db.prepare('INSERT OR REPLACE INTO provider_health VALUES(?,?,?,?)').run(provider, new Date().toISOString(), state, retryAfter); });\n}\nfunction ready(provider) {\n    if (!configuredLockedProviders().includes(provider))\n        return false;\n    return inferenceLedger(inferenceLedgerPath(), db => { tables(db); const row = db.prepare('SELECT retry_after FROM provider_health WHERE provider=?').get(provider); return !row || Number(row.retry_after) <= Date.now(); });\n}\nexport function providerHealthReadback() {\n    return inferenceLedger(inferenceLedgerPath(), db => { tables(db); return db.prepare('SELECT * FROM provider_health').all(); });\n}",
+      "imagePath": "/app/backend/dist/brain/llm/locked-provider-orchestration.js",
+      "lineEnd": 35,
+      "lineStart": 17,
+      "sha256": "97c11585747ad257ac803ce80d92198e4308bd37ce1767d2f806430e49ab6df5"
+    },
+    "backend/dist/finance/financial-centre.js:275-295": {
+      "excerpt": " * after that application's writers have stopped; the last owner closes it.\n * Acquiring/releasing an unused journal must never create financial state. */\nexport function retainProductionFinance() {\n    runtimeOwners++;\n    let released = false;\n    return () => { if (released)\n        return; if (runtimeOwners === 1 && instance) {\n        instance.close();\n        instance = undefined;\n    } runtimeOwners--; released = true; };\n}\nexport function productionFinance() { const root = process.env.RAILWAY_VOLUME_MOUNT_PATH; if (!root || !path.isAbsolute(root) || fs.realpathSync(root) !== root)\n    throw Error('FINANCE_VOLUME_UNAVAILABLE'); return instance ??= new FinancialCentre(path.join(root, 'finance', 'evidence.sqlite')); }\nexport function ownerProviderLimit(provider) { const root = process.env.RAILWAY_VOLUME_MOUNT_PATH; if (!root)\n    return null; const file = path.join(root, 'finance', 'evidence.sqlite'); if (!fs.existsSync(file)) {\n    if (fs.existsSync(file + '.initialized'))\n        throw Error('FINANCE_JOURNAL_MISSING');\n    return null;\n} const entries = productionFinance().entries('ws_empire_1'); const limit = entries.filter(e => e.type === 'provider_limit' && e.data.provider === provider).at(-1); return limit?.type === 'provider_limit' ? limit.data.monthlyMicroUsd : null; }\n//# sourceMappingURL=financial-centre.js.map",
+      "imagePath": "/app/backend/dist/finance/financial-centre.js",
+      "lineEnd": 295,
+      "lineStart": 275,
+      "sha256": "094c333414b8bde22954c312c73caa9a3011b158f5b2416c674cf6100b35af4a"
+    },
+    "backend/dist/finance/financial-centre.js:59-83": {
+      "excerpt": "export class FinancialCentre {\n    db;\n    constructor(filename) {\n        if (filename !== ':memory:') {\n            fs.mkdirSync(path.dirname(filename), { recursive: true, mode: 0o700 });\n            if (fs.existsSync(filename) && (!fs.lstatSync(filename).isFile() || fs.realpathSync(filename) !== filename))\n                throw Error('UNSAFE_FINANCE_PATH');\n        }\n        if (filename !== ':memory:' && fs.existsSync(filename + '.initialized') && !fs.existsSync(filename))\n            throw Error('FINANCE_JOURNAL_MISSING');\n        this.db = new DatabaseSync(filename, { allowExtension: false, timeout: 1000 });\n        this.db.exec('PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA trusted_schema=OFF; CREATE TABLE IF NOT EXISTS financial_evidence (workspace TEXT NOT NULL,id TEXT NOT NULL,digest TEXT NOT NULL,record TEXT NOT NULL,PRIMARY KEY(workspace,id));');\n        if (filename !== ':memory:') {\n            fs.chmodSync(filename, 0o600);\n            if (!fs.existsSync(filename + '.initialized')) {\n                const seal = fs.openSync(filename + '.initialized', 'wx', 0o600);\n                try {\n                    fs.writeSync(seal, 'Work5 durable evidence journal; never reset');\n                    fs.fsyncSync(seal);\n                }\n                finally {\n                    fs.closeSync(seal);\n                }\n            }\n        }",
+      "imagePath": "/app/backend/dist/finance/financial-centre.js",
+      "lineEnd": 83,
+      "lineStart": 59,
+      "sha256": "094c333414b8bde22954c312c73caa9a3011b158f5b2416c674cf6100b35af4a"
+    },
+    "backend/dist/institutional-memory/store.js:285-288": {
+      "excerpt": "    safetyPolicy(workspace) { key.parse(workspace); return this.use(db => { const r = db.prepare(\"SELECT body,hash FROM records WHERE workspace=? AND kind='SAFETY_POLICY' ORDER BY json_extract(body,'$.version') DESC LIMIT 1\").get(workspace); if (!r)\n        return null; const body = JSON.parse(String(r.body)); const { kind, scope, origin, recordedAt, grantsAuthority, ...payload } = body; if (hash({ kind, payload, origin }) !== r.hash || kind !== 'SAFETY_POLICY' || origin.actor !== 'GRAND_KING' || origin.authenticity !== 'OWNER_ASSERTED' || !origin.source.startsWith('authenticated-owner:') || body.version !== body.expectedVersion + 1)\n        throw Error('SAFETY_POLICY_INTEGRITY'); return { ...body, receiptHash: String(r.hash) }; }); }\n    executivePlan(workspace) { const rows = this.use(db => db.prepare(\"SELECT r.id FROM records r WHERE r.workspace=? AND r.kind='EXECUTIVE_PLAN' AND NOT EXISTS (SELECT 1 FROM records s WHERE s.workspace=r.workspace AND s.kind='EXECUTIVE_PLAN' AND json_extract(s.body,'$.supersedes')=r.id) LIMIT 2\").all(workspace)); if (rows.length > 1)",
+      "imagePath": "/app/backend/dist/institutional-memory/store.js",
+      "lineEnd": 288,
+      "lineStart": 285,
+      "sha256": "d6414fc49948a04b6be5e2f4e38d7dbd03c8960113c7f6beb3fca21df5f0c379"
+    },
+    "backend/dist/institutional-memory/store.js:29-65": {
+      "excerpt": "/** Additive durable store. No legacy records are migrated/promoted; no Redis dependency. */\nexport class InstitutionalMemory {\n    filename;\n    constructor(filename) {\n        this.filename = filename;\n    }\n    use(fn) {\n        if (!path.isAbsolute(this.filename) || fs.realpathSync(path.dirname(this.filename)) !== path.dirname(this.filename))\n            throw Error('MEMORY_PATH');\n        const restricted = ownerWritesRestricted();\n        if (!restricted && !fs.existsSync(this.filename))\n            fs.closeSync(fs.openSync(this.filename, 'wx', 0o600));\n        const st = fs.lstatSync(this.filename);\n        if (!st.isFile() || st.nlink !== 1 || fs.realpathSync(this.filename) !== this.filename || st.size > 64 * 1024 * 1024)\n            throw Error('MEMORY_STORAGE_BOUND');\n        const db = new DatabaseSync(this.filename, { allowExtension: false, timeout: 1000, readOnly: restricted });\n        try {\n            const app = db.prepare('PRAGMA application_id').get()?.application_id;\n            if (app !== 0 && app !== 1161907507)\n                throw Error('MEMORY_STORE_IDENTITY');\n            if (app === 0 && db.prepare(\"SELECT name FROM sqlite_schema WHERE type='table'\").all().length)\n                throw Error('MEMORY_STORE_IDENTITY');\n            if (app === 1161907507 && db.prepare('PRAGMA user_version').get()?.user_version !== 1)\n                throw Error('MEMORY_STORE_VERSION');\n            if (restricted) {\n                if (app !== 1161907507)\n                    throw Error('MEMORY_STORE_IDENTITY');\n                return fn(db);\n            }\n            db.exec(`PRAGMA trusted_schema=OFF; PRAGMA synchronous=EXTRA; PRAGMA max_page_count=16384;\n    CREATE TABLE IF NOT EXISTS identity(workspace TEXT PRIMARY KEY,body TEXT NOT NULL) STRICT;\n    CREATE TABLE IF NOT EXISTS records(workspace TEXT NOT NULL,id TEXT NOT NULL,kind TEXT NOT NULL,domain TEXT NOT NULL,authenticity TEXT NOT NULL,created TEXT NOT NULL,body TEXT NOT NULL,hash TEXT NOT NULL,PRIMARY KEY(workspace,id)) STRICT;\n    CREATE TABLE IF NOT EXISTS events(workspace TEXT NOT NULL,id TEXT NOT NULL,target TEXT NOT NULL,seq INTEGER NOT NULL,created TEXT NOT NULL,body TEXT NOT NULL,hash TEXT NOT NULL,PRIMARY KEY(workspace,id),UNIQUE(workspace,target,seq)) STRICT;\n    CREATE INDEX IF NOT EXISTS memory_scope ON records(workspace,domain,id);\n    CREATE INDEX IF NOT EXISTS memory_recent ON records(workspace,domain,created DESC);\n    CREATE INDEX IF NOT EXISTS memory_events ON events(workspace,target,seq);\n    PRAGMA application_id=1161907507; PRAGMA user_version=1;`);",
+      "imagePath": "/app/backend/dist/institutional-memory/store.js",
+      "lineEnd": 65,
+      "lineStart": 29,
+      "sha256": "d6414fc49948a04b6be5e2f4e38d7dbd03c8960113c7f6beb3fca21df5f0c379"
+    },
+    "backend/dist/intelligence/routes.js:26-32": {
+      "excerpt": "export function registerIntelligence(app, owner) {\n    const s = productionIntelligence();\n    if (!s)\n        return;\n    seedResourceGaps(s, 'ws_empire_1');\n    const stop = process.env.INTELLIGENCE_ENABLED === 'true' ? startIntelligence(s) : async () => { };\n    app.addHook('onClose', async () => { await stop(); });",
+      "imagePath": "/app/backend/dist/intelligence/routes.js",
+      "lineEnd": 32,
+      "lineStart": 26,
+      "sha256": "15647b100415b11eed9d805487afb41225663dae149b4d9ed726ae004e1a7e40"
+    },
+    "backend/dist/intelligence/runtime.js:148-149": {
+      "excerpt": "export function seedResourceGaps(s, w) { const id = 'historical-market-data'; if (!s.get(w, 'resources', id))\n    s.put(w, 'resources', id, { id, gap: 'Historical prices/ranks and seasonality missing', existingConsidered: ['amazon.catalog', 'amazon.offers'], insufficiency: 'Current first-party snapshots do not establish historical competitor behavior', proposal: 'Keepa API evaluation; adapter prepared, no subscription acquired', alternatives: ['Accumulate dated first-party snapshots', 'Defer historical-dependent conclusions'], estimatedMonthlyUsd: null, priceStatus: 'PUBLIC_PRICE_VERIFIED_ACCOUNT_TAX_FX_UNKNOWN', priceQuote: { provider: 'Keepa', plan: 'Starter API', eurMonthly: 49, tokensPerMinute: 20, source: 'https://keepa.com/#!api/3', observedAt: '2026-10-07', tax: null, fx: null }, recommendation: 'DEFER_PURCHASE_UNTIL_SPECIFIC_HISTORY_INVESTIGATION', expectedValue: 'Distinguish transient spikes from durable opportunities', decision: 'PROPOSED', blocksCoreClosure: false, ownerApprovalRequired: true }); }",
+      "imagePath": "/app/backend/dist/intelligence/runtime.js",
+      "lineEnd": 149,
+      "lineStart": 148,
+      "sha256": "bf1c9f392d52c5df30173701aa0b0efd706c52728a0002b7459cbf1d82eb1b22"
+    },
+    "backend/dist/intelligence/store.js:32-61": {
+      "excerpt": "export class IntelligenceStore {\n    filename;\n    now;\n    constructor(filename, now = () => Date.now()) {\n        this.filename = filename;\n        this.now = now;\n    }\n    use(fn) {\n        if (!path.isAbsolute(this.filename) || fs.realpathSync(path.dirname(this.filename)) !== path.dirname(this.filename))\n            throw Error('INTELLIGENCE_PATH');\n        if (!fs.existsSync(this.filename))\n            fs.closeSync(fs.openSync(this.filename, 'wx', 0o600));\n        const st = fs.lstatSync(this.filename);\n        if (!st.isFile() || st.nlink !== 1 || fs.realpathSync(this.filename) !== this.filename)\n            throw Error('INTELLIGENCE_PATH');\n        const db = new DatabaseSync(this.filename, { timeout: 1000, allowExtension: false });\n        try {\n            db.exec(`PRAGMA trusted_schema=OFF; PRAGMA synchronous=FULL; PRAGMA max_page_count=32768;\n   CREATE TABLE IF NOT EXISTS objects(workspace TEXT NOT NULL,kind TEXT NOT NULL,id TEXT NOT NULL,updated INTEGER NOT NULL,body TEXT NOT NULL,PRIMARY KEY(workspace,kind,id)) STRICT;\n   CREATE INDEX IF NOT EXISTS recent_objects ON objects(workspace,kind,updated DESC);\n   CREATE INDEX IF NOT EXISTS evidence_subject ON objects(workspace,kind,json_extract(body,'$.capabilityId'),json_extract(body,'$.subject'),updated DESC);\n   CREATE TABLE IF NOT EXISTS jobs(workspace TEXT NOT NULL,id TEXT NOT NULL,status TEXT NOT NULL,lease TEXT,lease_until INTEGER NOT NULL,created INTEGER NOT NULL,body TEXT NOT NULL,PRIMARY KEY(workspace,id)) STRICT;\n   CREATE TABLE IF NOT EXISTS schedules(workspace TEXT NOT NULL,id TEXT NOT NULL,next_at INTEGER NOT NULL,body TEXT NOT NULL,PRIMARY KEY(workspace,id)) STRICT;\n   CREATE TABLE IF NOT EXISTS quotas(provider TEXT NOT NULL,day TEXT NOT NULL,used INTEGER NOT NULL,PRIMARY KEY(provider,day)) STRICT;`);\n            return fn(db);\n        }\n        finally {\n            db.close();\n        }\n    }",
+      "imagePath": "/app/backend/dist/intelligence/store.js",
+      "lineEnd": 61,
+      "lineStart": 32,
+      "sha256": "bb52002d4e0818ee705ea2e3654070c921e4192fb0e6648fb079a7b3fdc2caf0"
+    },
+    "backend/dist/orchestration/pillow-host/mission-execution/store.js:15-38": {
+      "excerpt": "export class MissionExecutionStore {\n    filename;\n    scope;\n    constructor(filename, scope) {\n        this.filename = filename;\n        this.scope = scope;\n        validateScope(scope);\n        if (!path.isAbsolute(filename) || !filename.endsWith(\".mission-execution.sqlite\"))\n            throw new Error(\"Dedicated absolute mission execution database required\");\n    }\n    database(write, fn) {\n        fs.mkdirSync(path.dirname(this.filename), { recursive: true, mode: 0o700 });\n        try {\n            fs.closeSync(fs.openSync(this.filename, \"wx\", 0o600));\n        }\n        catch (error) {\n            if (error.code !== \"EEXIST\")\n                throw error;\n        }\n        const stat = fs.lstatSync(this.filename);\n        if (!stat.isFile() || stat.size > MAX_BYTES)\n            throw new Error(\"Execution database is not a bounded regular file\");\n        const db = new DatabaseSync(this.filename, { timeout: 0, allowExtension: false });\n        let transaction = false;",
+      "imagePath": "/app/backend/dist/orchestration/pillow-host/mission-execution/store.js",
+      "lineEnd": 38,
+      "lineStart": 15,
+      "sha256": "9c14e9c4b8e613b9cf32c348750f3996d1413ed2c4ba36f9c49648a057e8d939"
+    },
+    "backend/dist/orchestration/pillow-host/mission-execution/store.js:53-65": {
+      "excerpt": "                throw new Error(\"Execution database page size is unsupported\");\n            db.exec(\"PRAGMA max_page_count=4096;\");\n            // Even reads initialize only an empty, dedicated file. Never overwrite existing scope/schema.\n            if (fresh || write) {\n                db.exec(\"BEGIN IMMEDIATE\");\n                transaction = true;\n            }\n            if (fresh) {\n                db.exec(schema);\n                db.prepare(\"INSERT INTO execution_meta VALUES(1,?)\").run(JSON.stringify(this.scope));\n            }\n            const meta = db.prepare(\"SELECT id,scope FROM execution_meta\").all();\n            if (meta.length !== 1 || meta[0]?.id !== 1 || meta[0]?.scope !== JSON.stringify(this.scope))",
+      "imagePath": "/app/backend/dist/orchestration/pillow-host/mission-execution/store.js",
+      "lineEnd": 65,
+      "lineStart": 53,
+      "sha256": "9c14e9c4b8e613b9cf32c348750f3996d1413ed2c4ba36f9c49648a057e8d939"
+    },
+    "backend/dist/orchestration/pillow-host/reasoning-state.js:17-45": {
+      "excerpt": "/** Separate from the cost ledger. Stores conversation evidence, never authority. */\nexport class ReasoningState {\n    filename;\n    constructor(filename) {\n        this.filename = filename;\n    }\n    use(run) {\n        if (!path.isAbsolute(this.filename) || fs.realpathSync(path.dirname(this.filename)) !== path.dirname(this.filename))\n            throw Error('Reasoning store path refused');\n        if (!fs.existsSync(this.filename))\n            fs.closeSync(fs.openSync(this.filename, 'wx', 0o600));\n        const stat = fs.lstatSync(this.filename);\n        if (!stat.isFile() || stat.nlink !== 1 || fs.realpathSync(this.filename) !== this.filename || stat.size > 32 * 1024 * 1024)\n            throw Error('Reasoning store refused');\n        const db = new DatabaseSync(this.filename, { allowExtension: false, timeout: 1000 });\n        try {\n            db.exec(`PRAGMA trusted_schema=OFF; PRAGMA journal_mode=DELETE; PRAGMA synchronous=EXTRA;\n        CREATE TABLE IF NOT EXISTS transcripts(workspace TEXT NOT NULL, session TEXT NOT NULL, updated TEXT NOT NULL, turns TEXT NOT NULL, PRIMARY KEY(workspace,session)) STRICT;\n        CREATE TABLE IF NOT EXISTS browser_history(owner TEXT NOT NULL, workspace TEXT NOT NULL, id TEXT NOT NULL, recorded TEXT NOT NULL, turn TEXT NOT NULL, PRIMARY KEY(owner,workspace,id)) STRICT;\n        CREATE TABLE IF NOT EXISTS canonical_conversations(workspace TEXT PRIMARY KEY, session TEXT NOT NULL) STRICT;\n        CREATE TABLE IF NOT EXISTS pending_learning(id TEXT PRIMARY KEY, workspace TEXT NOT NULL, session TEXT NOT NULL, request TEXT NOT NULL, created TEXT NOT NULL, evidence TEXT NOT NULL, status TEXT NOT NULL CHECK(status='pending_owner_review')) STRICT;`);\n            if (db.prepare('PRAGMA quick_check').get()?.quick_check !== 'ok')\n                throw Error('Reasoning store integrity refused');\n            return run(db);\n        }\n        finally {\n            db.close();\n        }\n    }",
+      "imagePath": "/app/backend/dist/orchestration/pillow-host/reasoning-state.js",
+      "lineEnd": 45,
+      "lineStart": 17,
+      "sha256": "9ed1e37b9ef55d948fa147674e8d7e083f0e51405d8605a89e918b49e7369394"
+    },
+    "backend/dist/orchestration/pillow-host/routes/mission-runtime-routes.js:28-48": {
+      "excerpt": "export async function registerMissionRuntimeRoutes(app, deps) {\n    const { pillowHost, onUnavailableRead } = deps;\n    const missionAuth = createMissionRuntimeAuth(deps.authenticate);\n    // Explicit host enablement: read-only authority inspection only, never a commerce switch.\n    let executor = deps.missionExecutionService ?? null;\n    let executorConfigurationError = false;\n    if (!executor && process.env.MISSION_AUTHORITY_EXECUTOR_ENABLED === \"true\") {\n        try {\n            executor = createMissionExecutionService({ databasePath: env.DATABASE_PATH,\n                scope: { workspaceId: \"ws_empire_1\", ownerEmail: env.FOUNDER_EMAIL.trim().toLowerCase() },\n                buildSha: process.env.RAILWAY_GIT_COMMIT_SHA ?? process.env.EMPIREAI_BUILD_SHA ?? \"\",\n                host: pillowHost });\n        }\n        catch {\n            executor = null;\n            executorConfigurationError = true;\n        }\n    }\n    const executorDiagnostics = () => executor?.diagnostics() ?? { enabled: false,\n        state: executorConfigurationError ? \"configuration_error\" : \"disabled\", operation: \"authority.snapshot.v1\",\n        commerceExecution: false, certificationCredit: false };",
+      "imagePath": "/app/backend/dist/orchestration/pillow-host/routes/mission-runtime-routes.js",
+      "lineEnd": 48,
+      "lineStart": 28,
+      "sha256": "619cc6bdb2c973ef0783a60dd78a9ffb811ac3cda8459c4eecce2817d4a416d5"
+    },
+    "backend/dist/orchestration/pillow-host/session-store.js:11-37": {
+      "excerpt": "/** In-memory workspace session store (PILLOW-016 \u2014 ephemeral chat state). */\nexport class PillowSessionStore {\n    durable;\n    constructor(durable = productionReasoningState) {\n        this.durable = durable;\n    }\n    persist(session) { this.durable()?.save(session); }\n    sessions = new Map();\n    key(workspaceId, sessionId) {\n        return `${workspaceId}:${sessionId}`;\n    }\n    create(workspaceId, options) {\n        const now = new Date().toISOString();\n        const session = {\n            sessionId: randomUUID(),\n            workspaceId,\n            conversationHistory: [],\n            approvalState: \"none\",\n            repositoryFingerprint: options?.repositoryFingerprint ?? \"\",\n            currentMission: options?.currentMission ?? null,\n            tokenUsage: emptyTokenUsage(),\n            createdAt: now,\n            updatedAt: now,\n            lastActivityAt: now,\n        };\n        this.sessions.set(this.key(workspaceId, session.sessionId), session);\n        return session;",
+      "imagePath": "/app/backend/dist/orchestration/pillow-host/session-store.js",
+      "lineEnd": 37,
+      "lineStart": 11,
+      "sha256": "e799c6e1308bdf9f684dd0a524c5a361e3bf1e4f28be1cea29f276a5931d9674"
+    },
+    "backend/dist/orchestration/pillow-host/session-store.js:42-53": {
+      "excerpt": "     */\n    getOrCreate(workspaceId, options) {\n        const durable = this.durable();\n        if (durable) {\n            const candidate = randomUUID();\n            const canonicalId = durable.canonical(workspaceId, candidate);\n            const session = this.get(workspaceId, canonicalId);\n            if (!session)\n                throw new Error('Canonical conversation unavailable');\n            return { session, reused: canonicalId !== candidate };\n        }\n        const maxAgeMs = options?.maxAgeMs ?? Number(process.env.PILLOW_SESSION_REUSE_MAX_AGE_MS ?? 30 * 60_000);",
+      "imagePath": "/app/backend/dist/orchestration/pillow-host/session-store.js",
+      "lineEnd": 53,
+      "lineStart": 42,
+      "sha256": "e799c6e1308bdf9f684dd0a524c5a361e3bf1e4f28be1cea29f276a5931d9674"
+    },
+    "backend/dist/orchestration/shadow-ceo-integration/coordinated-sqlite-capture.js:29-37": {
+      "excerpt": "export async function withExistingShadowCapture(brain, shadowPath, captureAndVerify) {\n    const shadow = openShadowCeoRepository({ dbPath: shadowPath, captureReadOnly: true });\n    try {\n        return await withQuiescedBrainAndShadowCapture(brain, shadow, () => captureAndVerify(shadow));\n    }\n    finally {\n        shadow.close();\n    }\n}",
+      "imagePath": "/app/backend/dist/orchestration/shadow-ceo-integration/coordinated-sqlite-capture.js",
+      "lineEnd": 37,
+      "lineStart": 29,
+      "sha256": "ea21b402e1f8528dea07f18e89f369057bb6d05cd238a5cbe24a6c4e5d597727"
+    },
+    "backend/dist/orchestration/shadow-ceo-integration/routes.js:12-19": {
+      "excerpt": "}\nexport async function registerShadowCeoRoutes(app, _deps) {\n    if (registered)\n        return;\n    registered = true;\n    app.post(\"/shadow-ceo/run-vertical-slice\", { preHandler: _deps.authenticate }, async (request, reply) => {\n        // EXPLICIT DEMO ROUTE ONLY \u2014 never invoked from ordinary Pillow chat admission.\n        if (!founderOnly(request.user)) {",
+      "imagePath": "/app/backend/dist/orchestration/shadow-ceo-integration/routes.js",
+      "lineEnd": 19,
+      "lineStart": 12,
+      "sha256": "5eb442fab89ce5e6499f499faa202be1a15dc208f4c88f1ef8006405552b056b"
+    },
+    "backend/dist/orchestration/shadow-ceo-integration/routes.js:42-76": {
+      "excerpt": "    app.get(\"/shadow-ceo/cockpit\", { preHandler: _deps.authenticate }, async (request, reply) => {\n        if (!founderOnly(request.user)) {\n            return reply.code(403).send({ error: \"Founder access required\" });\n        }\n        const q = request.query;\n        if (q.run === \"1\") {\n            const result = runIntegratedVerticalSlice();\n            return {\n                ok: true,\n                ...result.cockpit,\n                ledger: result.ledger,\n                authority: result.authority,\n                restart: result.restart,\n                REAL_COMMERCE_AUTHORIZED: false,\n            };\n        }\n        if (q.objectiveId) {\n            const repo = openShadowCeoRepository({ dbPath: resolveShadowCeoDbPath() });\n            const chain = loadChain(repo, q.objectiveId);\n            repo.close();\n            return {\n                ok: true,\n                chain,\n                loop: null,\n                blockedActions: listBlockedActions(),\n                BIRTH_STATUS: \"NOT_BORN\",\n                WAVE_1: \"0/24\",\n                EXTERNAL_ACTION_LOCK: \"LOCKED\",\n                REAL_COMMERCE_AUTHORIZED: false,\n            };\n        }\n        {\n            const repo = openShadowCeoRepository({ dbPath: resolveShadowCeoDbPath() });\n            const recentObjectives = repo.listRecentObjectives(12).map((o) => ({\n                id: o.id,",
+      "imagePath": "/app/backend/dist/orchestration/shadow-ceo-integration/routes.js",
+      "lineEnd": 76,
+      "lineStart": 42,
+      "sha256": "5eb442fab89ce5e6499f499faa202be1a15dc208f4c88f1ef8006405552b056b"
+    },
+    "backend/dist/orchestration/shadow-ceo/repository.js:28-51": {
+      "excerpt": "export class SqliteShadowCeoRepository {\n    dbPath;\n    db;\n    closed = false;\n    constructor(options = {}) {\n        this.dbPath = options.dbPath ?? resolveShadowCeoDbPath();\n        if (!options.captureReadOnly && !this.dbPath.startsWith(\":memory:\")) {\n            fs.mkdirSync(path.dirname(this.dbPath), { recursive: true });\n        }\n        this.db = new EmpireDatabase(this.dbPath, options.captureReadOnly === true);\n        if (options.captureReadOnly) {\n            try {\n                // Validate the existing schema without migrations or writes. Missing or\n                // damaged stores are evidence of refusal, never authority to recreate.\n                this.db.prepare(`SELECT id,kind,objective_id,idempotency_key,record_json,created_at,updated_at FROM ${TABLE} LIMIT 0`).all();\n            }\n            catch (error) {\n                this.db.close();\n                throw error;\n            }\n        }\n        else\n            ensureShadowCeoTables(this.db);\n    }",
+      "imagePath": "/app/backend/dist/orchestration/shadow-ceo/repository.js",
+      "lineEnd": 51,
+      "lineStart": 28,
+      "sha256": "abe7b3bf6c6d575f8c7be57b392a4355feb1c2b8db5c110d7744e6ebe26074ba"
+    },
+    "backend/dist/runtime/commerce-runtime/governed/runtime.js:314-317": {
+      "excerpt": "    app.addHook('onReady', async () => { if (process.env.RAILWAY_VOLUME_MOUNT_PATH)\n        productionCommerce(); });\n    const stopTwinScheduler = startTwinScheduler(() => instance?.twinRuntime ?? null);\n    let busy = false;",
+      "imagePath": "/app/backend/dist/runtime/commerce-runtime/governed/runtime.js",
+      "lineEnd": 317,
+      "lineStart": 314,
+      "sha256": "8194998296fa6cea3a716fd5f07215b90248925d1d979570972e1d66ac28c603"
+    },
+    "backend/dist/runtime/commerce-runtime/governed/runtime.js:51-54": {
+      "excerpt": "export function productionCommerce() { const root = process.env.RAILWAY_VOLUME_MOUNT_PATH; if (!root || !path.isAbsolute(root) || fs.realpathSync(root) !== root)\n    throw Error('COMMERCE_VOLUME_UNAVAILABLE'); if (!instance) {\n    const store = new GovernedCommerceStore(path.join(root, 'commerce', 'runtime.sqlite')), twin = new Work8TwinSessions(store), engine = new GovernedCommerceEngine(store, Date.now, (actor, command, state) => enforceOwnerSafety(productionMemory(), store, actor, command, state, Date.now(), twin.safetyWorkspace(actor.workspace)));\n    const worker = new CommerceWorker(engine);",
+      "imagePath": "/app/backend/dist/runtime/commerce-runtime/governed/runtime.js",
+      "lineEnd": 54,
+      "lineStart": 51,
+      "sha256": "8194998296fa6cea3a716fd5f07215b90248925d1d979570972e1d66ac28c603"
+    },
+    "backend/dist/runtime/commerce-runtime/governed/runtime.js:51-61": {
+      "excerpt": "export function productionCommerce() { const root = process.env.RAILWAY_VOLUME_MOUNT_PATH; if (!root || !path.isAbsolute(root) || fs.realpathSync(root) !== root)\n    throw Error('COMMERCE_VOLUME_UNAVAILABLE'); if (!instance) {\n    const store = new GovernedCommerceStore(path.join(root, 'commerce', 'runtime.sqlite')), twin = new Work8TwinSessions(store), engine = new GovernedCommerceEngine(store, Date.now, (actor, command, state) => enforceOwnerSafety(productionMemory(), store, actor, command, state, Date.now(), twin.safetyWorkspace(actor.workspace)));\n    const worker = new CommerceWorker(engine);\n    const simulatedFinance = new DurableSimulatedFinance(store, worker);\n    instance = { store, engine, worker, twin, simulatedFinance, twinRuntime: new Work8TwinRuntime(twin, worker, simulatedFinance) };\n} return instance; }\nexport function resolveWork8ProductContext(p, raw, allowUnpinnedRead = false) {\n    const one = (reference) => { if (reference && typeof reference === 'object' && !Array.isArray(reference) && reference.kind === 'SOURCE_DOSSIER') {\n        const store = productionIntelligence();\n        if (!store)",
+      "imagePath": "/app/backend/dist/runtime/commerce-runtime/governed/runtime.js",
+      "lineEnd": 61,
+      "lineStart": 51,
+      "sha256": "8194998296fa6cea3a716fd5f07215b90248925d1d979570972e1d66ac28c603"
+    },
+    "backend/dist/runtime/commerce-runtime/governed/safety-admission.js:1-15": {
+      "excerpt": "/** Additional restrictions only. Original approval, idempotency and locked effect adapters still run. */\nexport function enforceOwnerSafety(memory, store, actor, command, state, now = Date.now(), policyWorkspace = actor.workspace) {\n    if (!['publication_intent', 'prepare', 'intercept'].includes(command.type))\n        return;\n    if (!memory)\n        throw Error('SAFETY_POLICY_UNAVAILABLE');\n    // Isolated twin exposure stays in actor.workspace; only verified owner policy is inherited.\n    const policy = memory.safetyPolicy(policyWorkspace);\n    // Legacy pre-Birth synthetic flows retain Work6 behavior until owner configures additional controls.\n    if (!policy)\n        return;\n    if (command.type === 'publication_intent') {\n        if (policy.breakers.listingPublication)\n            throw Error('OWNER_LISTING_PAUSED');\n        return;",
+      "imagePath": "/app/backend/dist/runtime/commerce-runtime/governed/safety-admission.js",
+      "lineEnd": 15,
+      "lineStart": 1,
+      "sha256": "9f6d647e991099edcbcc7c111228e80fb92d13ddd8bb388c8d50e172aa34e9a7"
+    },
+    "backend/dist/runtime/commerce-runtime/governed/store.js:10-48": {
+      "excerpt": "    constructor(filename) {\n        this.filename = filename;\n        if (filename !== ':memory:') {\n            fs.mkdirSync(path.dirname(filename), { recursive: true, mode: 0o700 });\n            if (fs.realpathSync(path.dirname(filename)) !== path.dirname(filename))\n                throw Error('UNSAFE_COMMERCE_PATH');\n            if (fs.existsSync(filename) && (!fs.lstatSync(filename).isFile() || fs.realpathSync(filename) !== filename))\n                throw Error('UNSAFE_COMMERCE_PATH');\n            if (fs.existsSync(filename + '.initialized') && !fs.existsSync(filename))\n                throw Error('COMMERCE_JOURNAL_MISSING');\n        }\n        const initialized = filename !== ':memory:' && fs.existsSync(filename + '.initialized');\n        if (initialized && fs.statSync(filename).size < 100)\n            throw Error('COMMERCE_JOURNAL_CORRUPT');\n        this.db = new DatabaseSync(filename, { allowExtension: false, timeout: 1000 });\n        if (initialized) {\n            try {\n                if (this.db.prepare('PRAGMA application_id').get()?.application_id !== 1162038605 || this.db.prepare('PRAGMA user_version').get()?.user_version !== 1 || this.db.prepare('PRAGMA quick_check').get()?.quick_check !== 'ok' || !this.db.prepare(\"SELECT name FROM sqlite_master WHERE type='table' AND name='commerce_runtime_receipts'\").get() || !this.db.prepare(\"SELECT name FROM sqlite_master WHERE type='table' AND name='commerce_runtime_tasks'\").get())\n                    throw Error('COMMERCE_JOURNAL_CORRUPT');\n            }\n            catch {\n                this.db.close();\n                throw Error('COMMERCE_JOURNAL_CORRUPT');\n            }\n        }\n        this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA trusted_schema=OFF; PRAGMA max_page_count=65536;\n   PRAGMA application_id=1162038605; PRAGMA user_version=1;\n   CREATE TABLE IF NOT EXISTS commerce_runtime_receipts(workspace TEXT NOT NULL,mission TEXT NOT NULL,version INTEGER NOT NULL,id TEXT NOT NULL,record TEXT NOT NULL,PRIMARY KEY(workspace,mission,version),UNIQUE(workspace,id));\n   CREATE TRIGGER IF NOT EXISTS immutable_commerce_update BEFORE UPDATE ON commerce_runtime_receipts BEGIN SELECT RAISE(ABORT,'IMMUTABLE_COMMERCE_RECEIPT'); END;\n   CREATE TRIGGER IF NOT EXISTS immutable_commerce_delete BEFORE DELETE ON commerce_runtime_receipts BEGIN SELECT RAISE(ABORT,'IMMUTABLE_COMMERCE_RECEIPT'); END;\n   CREATE TABLE IF NOT EXISTS commerce_runtime_tasks(workspace TEXT NOT NULL,id TEXT NOT NULL,mission TEXT NOT NULL,record TEXT NOT NULL,version INTEGER NOT NULL,PRIMARY KEY(workspace,id));`);\n        if (filename !== ':memory:') {\n            fs.chmodSync(filename, 0o600);\n            if (!fs.existsSync(filename + '.initialized')) {\n                const f = fs.openSync(filename + '.initialized', 'wx', 0o600);\n                try {\n                    fs.writeSync(f, 'Governed commerce evidence; never reset');\n                    fs.fsyncSync(f);\n                }",
+      "imagePath": "/app/backend/dist/runtime/commerce-runtime/governed/store.js",
+      "lineEnd": 48,
+      "lineStart": 10,
+      "sha256": "d52a02075c7ec274558aebaa2e8d6a3bb6bdc520e2ea9ea4b9a359071775045d"
+    },
+    "backend/dist/runtime/commerce-runtime/governed/work8-twin-authority.js:10-17": {
+      "excerpt": "    worker;\n    constructor(sessions, worker) {\n        this.sessions = sessions;\n        this.worker = worker;\n        sessions.store.db.exec(`CREATE TABLE IF NOT EXISTS work8_twin_authority(workspace TEXT NOT NULL,session TEXT NOT NULL,version INTEGER NOT NULL,request TEXT NOT NULL,record TEXT NOT NULL,PRIMARY KEY(workspace,session,version),UNIQUE(workspace,request));\n CREATE TRIGGER IF NOT EXISTS immutable_twin_authority_update BEFORE UPDATE ON work8_twin_authority BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TWIN_AUTHORITY');END;\n CREATE TRIGGER IF NOT EXISTS immutable_twin_authority_delete BEFORE DELETE ON work8_twin_authority BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TWIN_AUTHORITY');END;`);\n    }",
+      "imagePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-twin-authority.js",
+      "lineEnd": 17,
+      "lineStart": 10,
+      "sha256": "762e7ea48e450092babfce76c5ef593cf0f43591467a0ad1c1a9992fe1a56a4c"
+    },
+    "backend/dist/runtime/commerce-runtime/governed/work8-twin-runtime.js:27-45": {
+      "excerpt": "    constructor(sessions, worker, finance) {\n        this.sessions = sessions;\n        this.worker = worker;\n        this.finance = finance;\n        if (sessions.store !== worker.engine.store || finance.store !== sessions.store)\n            throw Error('TWIN_STORE_MISMATCH');\n        initializeSimulationEnrollments(sessions.store);\n        this.preparation = new Work8PreparationAuthority(this);\n        this.media = new Work8TwinMedia(this);\n        this.communications = new Work8TwinCommunications(this);\n        this.authority = new Work8TwinAuthority(sessions, worker);\n        this.recovery = makeWork8CommerceRecovery({ store: this.store, worker, now: worker.engine.clock });\n        this.store.db.exec(`CREATE TABLE IF NOT EXISTS work8_twin_admissions(workspace TEXT NOT NULL,id TEXT NOT NULL,session TEXT NOT NULL,record TEXT NOT NULL,PRIMARY KEY(workspace,id));\n   CREATE TABLE IF NOT EXISTS work8_twin_observations(workspace TEXT NOT NULL,session TEXT NOT NULL,id TEXT NOT NULL,record TEXT NOT NULL,PRIMARY KEY(workspace,session,id));\n   CREATE TABLE IF NOT EXISTS work8_twin_scheduler(id TEXT PRIMARY KEY,cursor TEXT NOT NULL);\n   CREATE TRIGGER IF NOT EXISTS immutable_twin_admission_update BEFORE UPDATE ON work8_twin_admissions BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TWIN_ADMISSION');END;\n   CREATE TRIGGER IF NOT EXISTS immutable_twin_admission_delete BEFORE DELETE ON work8_twin_admissions BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TWIN_ADMISSION');END;\n   CREATE TRIGGER IF NOT EXISTS immutable_twin_observation_update BEFORE UPDATE ON work8_twin_observations BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TWIN_OBSERVATION');END;\n   CREATE TRIGGER IF NOT EXISTS immutable_twin_observation_delete BEFORE DELETE ON work8_twin_observations BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TWIN_OBSERVATION');END;`);",
+      "imagePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-twin-runtime.js",
+      "lineEnd": 45,
+      "lineStart": 27,
+      "sha256": "1cc30f3c15d33840a2501089b04e04e60d625ec046b20619230d559144af7e16"
+    },
+    "backend/dist/runtime/commerce-runtime/governed/work8-twin-runtime.js:73-84": {
+      "excerpt": "                const t = this.worker.enqueue(workspace, p.owner, taskId), fixture = acceptanceScenario(workspace, p.owner, this.worker.engine.clock());\n                // Deterministic distinct identities throughout the existing labelled acceptance plan.\n                const names = { 'cj-product-fixture': 'fixture-product-' + suffix, 'cj-variant-fixture': 'fixture-variant-' + suffix, 'cj-sku-fixture': 'FIXTURE-' + suffix, 'order-fixture': 'fixture-order-' + suffix, 'shipment-fixture': 'fixture-shipment-' + suffix, 'Synthetic storage organiser': 'Synthetic organiser ' + String(i + 1) };\n                const replace = (v) => typeof v === 'string' ? (names[v] ?? v) : Array.isArray(v) ? v.map(replace) : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, replace(x)])) : v;\n                const f = replace(fixture), intent = digest({ candidate: f.candidate, listing: f.listing });\n                for (const step of f.steps)\n                    if (step.command.type === 'review' || step.command.type === 'approve')\n                        step.command.digest = intent;\n                t.steps = f.steps.slice(0, 9);\n                t.steps.splice(4, 0, { actor: f.actors.EXECUTOR, command: { type: 'publication_intent', capacity: { account: 'isolated-fixture', marketplace: 'SG', mode: 'NEW_ASIN', asin: null, newAsinRemaining: 1000, unsoldRemaining: 1000, requestsPerSecond: 1, eligibility: 'ELIGIBLE', provenance: f.candidate.offer.provenance } } });\n                this.store.db.prepare('UPDATE commerce_runtime_tasks SET record=? WHERE workspace=? AND id=?').run(JSON.stringify(t), workspace, taskId);\n                tasks.push({ taskId, missionId: t.mission, productId: f.candidate.productId, sku: f.candidate.offer.sku, planDigest: digest(t.steps) });",
+      "imagePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-twin-runtime.js",
+      "lineEnd": 84,
+      "lineStart": 73,
+      "sha256": "1cc30f3c15d33840a2501089b04e04e60d625ec046b20619230d559144af7e16"
+    },
+    "backend/dist/runtime/commerce-runtime/governed/work8-twin.js:10-18": {
+      "excerpt": "    now;\n    constructor(store, now = Date.now) {\n        this.store = store;\n        this.now = now;\n        store.db.exec(`CREATE TABLE IF NOT EXISTS work8_twin_events(workspace TEXT NOT NULL,session TEXT NOT NULL,version INTEGER NOT NULL,request TEXT NOT NULL,record TEXT NOT NULL,PRIMARY KEY(workspace,session,version),UNIQUE(workspace,request));\n   CREATE TRIGGER IF NOT EXISTS immutable_twin_update BEFORE UPDATE ON work8_twin_events BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TWIN_EVENT');END;\n   CREATE TRIGGER IF NOT EXISTS immutable_twin_delete BEFORE DELETE ON work8_twin_events BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TWIN_EVENT');END;`);\n    }\n    history(p, sessionId) {",
+      "imagePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-twin.js",
+      "lineEnd": 18,
+      "lineStart": 10,
+      "sha256": "13f8cf4cf1ce04911c5bc39c1b4349331f5c2c0aefc1f497d2a179a80d892137"
+    },
+    "backend/dist/runtime/pillow-chat-request-store.js:145-157": {
+      "excerpt": "    }\n    catch (error) {\n        if (requireRedisDurability) {\n            throw new PillowDurableStoreUnavailableError(undefined, { cause: error });\n        }\n    }\n    // In strict Tier-0 mode, only expose a state transition in process memory\n    // after Redis has acknowledged it. This keeps memory from contradicting the\n    // durable source of truth when SETEX fails after a successful PING.\n    touchMemory(rec);\n    preservePillowReceipt(rec);\n}\nfunction cloneRecord(rec) {",
+      "imagePath": "/app/backend/dist/runtime/pillow-chat-request-store.js",
+      "lineEnd": 157,
+      "lineStart": 145,
+      "sha256": "bc7fde495c4bac93df8858178d92472321328fffb42b613b02840e024f2cd239"
+    },
+    "backend/dist/runtime/pillow-request-receipts.js:4-32": {
+      "excerpt": "export function requestReceiptPath() {\n    const root = process.env.RAILWAY_VOLUME_MOUNT_PATH;\n    return root && process.env.EMPIRE_RUNTIME_PROFILE === 'LOCKED_COMMISSIONING_V1'\n        ? path.join(root, 'commissioning', 'pillow-request-receipts.sqlite') : null;\n}\n/** Evidence copy only: never used to dispatch, replay, or authorize a request. */\nexport function archivePillowRequest(r) {\n    const filename = requestReceiptPath();\n    if (!filename || !r.workspaceId)\n        return;\n    if (fs.realpathSync(path.dirname(filename)) !== path.dirname(filename))\n        throw Error('RECEIPT_PATH');\n    if (!fs.existsSync(filename))\n        fs.closeSync(fs.openSync(filename, 'wx', 0o600));\n    if (!fs.lstatSync(filename).isFile() || fs.realpathSync(filename) !== filename)\n        throw Error('RECEIPT_PATH');\n    // Explicit projection excludes session tokens, queue inputs and credentials.\n    const body = JSON.stringify({ requestId: r.requestId, sessionId: r.sessionId, workspaceId: r.workspaceId,\n        createdAt: r.createdAt, updatedAt: r.updatedAt, status: r.status, failureClass: r.failureClass,\n        deliveryState: r.deliveryState, observability: r.observability, attemptCount: r.attemptCount,\n        messagePreview: r.messagePreview, lastError: r.lastError, upstreamStatus: r.upstreamStatus, finalResult: r.finalResult });\n    const db = new DatabaseSync(filename, { allowExtension: false, timeout: 1000 });\n    try {\n        db.exec('PRAGMA trusted_schema=OFF; PRAGMA synchronous=FULL; CREATE TABLE IF NOT EXISTS receipts(workspace TEXT, request TEXT, session TEXT, updated TEXT, body TEXT, PRIMARY KEY(workspace,request)) STRICT; CREATE INDEX IF NOT EXISTS receipt_session ON receipts(workspace,session,updated)');\n        db.prepare('INSERT INTO receipts VALUES(?,?,?,?,?) ON CONFLICT(workspace,request) DO UPDATE SET session=excluded.session,updated=excluded.updated,body=excluded.body WHERE excluded.updated>=receipts.updated').run(r.workspaceId, r.requestId, r.sessionId, r.updatedAt, body);\n    }\n    finally {\n        db.close();\n    }",
+      "imagePath": "/app/backend/dist/runtime/pillow-request-receipts.js",
+      "lineEnd": 32,
+      "lineStart": 4,
+      "sha256": "80be9f18bfe53e4bab63ecdef49ce4077958edbecb6f9a154c859c551ff3569f"
+    },
+    "backend/dist/runtime/tier0-isolated-primary.js:560-565": {
+      "excerpt": "    registerOwnerCommissioningReadback(app, authenticate);\n    registerFinancialCentre(app, authenticate);\n    registerGovernedCommerce(app, authenticate);\n    installAssuranceRuntime(app);\n    registerAdvisorRoutes(app, authenticate);\n    registerTier0LoginRoute(app, sessionStore, requireSharedSessionStore);",
+      "imagePath": "/app/backend/dist/runtime/tier0-isolated-primary.js",
+      "lineEnd": 565,
+      "lineStart": 560,
+      "sha256": "d27f10f3bd0a9deab9d20591b723883e9e6947361e1fbe8af46b8934cd17bbcc"
+    },
+    "backend/src/assurance/control-plane.mjs:14-27": {
+      "excerpt": " constructor({root,now=Date.now,revision,runbooks={},deploymentVerifier=null}){\n  if(!path.isAbsolute(root)||fs.realpathSync(root)!==root||!key(revision))throw Error('CONTROL_PLANE_CONFIGURATION');\n  this.now=now;this.revision=revision;this.deploymentVerifier=deploymentVerifier;this.runbooks=Object.freeze({...runbooks});\n  for(const [id,r]of Object.entries(runbooks))if(!key(id)||!key(r.version)||!['A','B','C'].includes(r.authority)||!key(r.capability)||!Number.isInteger(r.maxAttempts)||r.maxAttempts<1||r.maxAttempts>10||!Number.isInteger(r.cooldownMs)||r.cooldownMs<0||!Number.isInteger(r.timeoutMs)||r.timeoutMs<1||r.timeoutMs>60000||typeof r.execute!=='function'||typeof r.verify!=='function')throw Error('RUNBOOK_CONTRACT');\n  const filename=path.join(root,'assurance.sqlite');if(fs.existsSync(filename)&&(fs.realpathSync(filename)!==filename||!fs.lstatSync(filename).isFile()))throw Error('CONTROL_PLANE_PATH');\n  this.db=new DatabaseSync(filename,{timeout:1000,allowExtension:false});\n  this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA trusted_schema=OFF;\n   CREATE TABLE IF NOT EXISTS cp_records(workspace TEXT NOT NULL,kind TEXT NOT NULL,id TEXT NOT NULL,body TEXT NOT NULL,PRIMARY KEY(workspace,kind,id)) STRICT;\n   CREATE TABLE IF NOT EXISTS cp_events(seq INTEGER PRIMARY KEY AUTOINCREMENT,workspace TEXT NOT NULL,at INTEGER NOT NULL,type TEXT NOT NULL,body TEXT NOT NULL) STRICT;\n   CREATE INDEX IF NOT EXISTS cp_event_workspace ON cp_events(workspace,seq);\n   CREATE TRIGGER IF NOT EXISTS cp_event_no_update BEFORE UPDATE ON cp_events BEGIN SELECT RAISE(ABORT,'IMMUTABLE_EVENT'); END;\n   CREATE TRIGGER IF NOT EXISTS cp_event_no_delete BEFORE DELETE ON cp_events BEGIN SELECT RAISE(ABORT,'IMMUTABLE_EVENT'); END;`);\n }\n close(){this.db.close();}",
+      "imagePath": "/app/backend/src/assurance/control-plane.mjs",
+      "lineEnd": 27,
+      "lineStart": 14,
+      "sha256": "ce7d4e862a3b3f28cb485fe9dbd4b2cba1d572eda46d611048f783828229d107"
+    },
+    "backend/src/assurance/independent-assurance.mjs:56-65": {
+      "excerpt": "export class AssuranceStore {\n  constructor(filename) {\n    this.db = new DatabaseSync(filename, { timeout: 1000 });\n    this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL;\n      CREATE TABLE IF NOT EXISTS assurance_cycles (\n        id TEXT PRIMARY KEY, scheduled_at INTEGER NOT NULL UNIQUE, started_at INTEGER NOT NULL,\n        completed_at INTEGER, receipt TEXT);\n    `);\n  }\n  begin(id, scheduledAt, startedAt) {",
+      "imagePath": "/app/backend/src/assurance/independent-assurance.mjs",
+      "lineEnd": 65,
+      "lineStart": 56,
+      "sha256": "0ad30a3bb583b53b141be4bb64c12b51e8434cf47fb3d6fa0737eb6b41a2c9fe"
+    },
+    "backend/src/assurance/internal-collectors.mjs:25-27": {
+      "excerpt": "export function createSpendingCollector(filename,store,clock=Date.now){\n  store.db.exec('CREATE TABLE IF NOT EXISTS assurance_ledger_baseline(id TEXT PRIMARY KEY,digest TEXT NOT NULL)');\n  return async()=>{",
+      "imagePath": "/app/backend/src/assurance/internal-collectors.mjs",
+      "lineEnd": 27,
+      "lineStart": 25,
+      "sha256": "4018787673cd303d1f76e862361760f6267d658b7e10295d03bee13d353507f7"
+    },
+    "backend/src/assurance/internal-collectors.mjs:25-35": {
+      "excerpt": "export function createSpendingCollector(filename,store,clock=Date.now){\n  store.db.exec('CREATE TABLE IF NOT EXISTS assurance_ledger_baseline(id TEXT PRIMARY KEY,digest TEXT NOT NULL)');\n  return async()=>{\n    const stat=fs.lstatSync(filename);if(!stat.isFile()||stat.nlink!==1||stat.size>16*1024*1024||fs.realpathSync(filename)!==filename||!fs.existsSync(filename+'.initialized'))throw Error('Ledger unavailable');\n    const db=new DatabaseSync(filename,{readOnly:true,allowExtension:false,timeout:100});let rows;\n    try{\n      db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF; BEGIN');\n      if(db.prepare('PRAGMA application_id').get()?.application_id!==1162430793||db.prepare('PRAGMA user_version').get()?.user_version!==1||db.prepare('PRAGMA quick_check').get()?.quick_check!=='ok')throw Error('Ledger invalid');\n      rows=db.prepare('SELECT id,timestamp,reserved_micro_usd,estimated_micro_usd FROM calls ORDER BY id LIMIT 10001').all();\n      if(rows.length>10000)throw Error('Ledger exceeds bound');db.exec('COMMIT');\n    }finally{if(db.isTransaction)db.exec('ROLLBACK');db.close();}",
+      "imagePath": "/app/backend/src/assurance/internal-collectors.mjs",
+      "lineEnd": 35,
+      "lineStart": 25,
+      "sha256": "4018787673cd303d1f76e862361760f6267d658b7e10295d03bee13d353507f7"
+    },
+    "backend/src/assurance/permanent-worker.mjs:18-34": {
+      "excerpt": "const paths=assurancePaths(process.env.RAILWAY_VOLUME_MOUNT_PATH);\nlet store,redis,runtime,workers,scheduler,spending,persistence,freshness;\nlet stopping=false;for(const s of ['SIGTERM','SIGINT'])process.on(s,()=>{stopping=true;});\nawait capture.run(async()=>{\nstore=new AssuranceStore(paths.database);fs.chmodSync(paths.database,0o600);\nredis=new Redis(process.env.REDIS_URL,{maxRetriesPerRequest:1,connectTimeout:5000,lazyConnect:true,enableOfflineQueue:false});\nredis.on('error',()=>{console.error(JSON.stringify({event:'assurance_redis_unavailable',scope:'pillow-omissions'}));});\ntry{await redis.connect();}catch{console.error(JSON.stringify({event:'assurance_redis_connect_failed',remainingCollectorsContinue:true}));}\ntry{await runSafeLiveProbe();}catch{console.error(JSON.stringify({event:'safe_assurance_probe_failed',inferenceCalls:0,productionRecordsMutated:0}));}\ntry{await runSafeDiscrepancyProbe(process.env.RAILWAY_VOLUME_MOUNT_PATH);}catch{console.error(JSON.stringify({event:'safe_assurance_discrepancy_probe_failed',inferenceCalls:0,productionRecordsMutated:0}));}\nruntime=createRuntimeCollector({origin:process.env.ASSURANCE_RUNTIME_ORIGIN,expectedRevision:process.env.RAILWAY_GIT_COMMIT_SHA});\nworkers=createWorkerCollector({origin:process.env.ASSURANCE_RUNTIME_ORIGIN});\nscheduler=createInspectorCollector(paths.database+'.watchdog');\nspending=createSpendingCollector(process.env.RAILWAY_VOLUME_MOUNT_PATH+'/commissioning/openai-october-2026.sqlite',store);\npersistence=createStorageCollector(path.dirname(paths.reasoning));\nfreshness=createEvidenceFreshnessCollector(path.dirname(paths.reasoning));\n});",
+      "imagePath": "/app/backend/src/assurance/permanent-worker.mjs",
+      "lineEnd": 34,
+      "lineStart": 18,
+      "sha256": "ca774d237f7d37d8ae88deea98e5e5286107fc6e452f4b5f61046829fb805e86"
+    },
+    "deployment/locked-runtime.cjs:42-49": {
+      "excerpt": "  const keys=['VISUAL_MEMORY_STORAGE_ROOT','SESSION_CONTINUITY_STORAGE_ROOT','EMPIRE_OWNER_WRITE_POLICY','WORK8_ISOLATED_APPLICATION_GRANT','EMPIRE_LOCKED_REDIS_HOST','WORK8_CONTROLLER_JOURNAL_PATH','WORK8_RUNTIME_UID','WORK8_RUNTIME_GID','WORK8_WRITER_ISOLATION_LIBRARY','WORK8_WRITER_ISOLATION_SHA256','EMPIRE_BRAIN_WORKER_PORT','EMPIRE_GENERATION_DIRECTORY','EMPIRE_GENERATION','EMPIRE_CUTOVER_DIGEST','EMPIRE_GENERATION_DEVICE','EMPIRE_GENERATION_INODE',...intelligenceKeys,...verifierKeys,'INTELLIGENCE_ENABLED','INTELLIGENCE_DISABLED','COMMISSIONING_OPERATOR_TOKEN_SHA256','COMMISSIONING_OPERATOR_EXPIRES_AT','ANTHROPIC_API_KEY','GOOGLE_AI_API_KEY','OPENAI_API_KEY','PATH','HOME','TMPDIR','LANG','TZ','PORT','REDIS_URL','FOUNDER_EMAIL','FOUNDER_PASSWORD','ADMIN_EMAIL','ADMIN_PASSWORD','SESSION_SECRET','CORS_ORIGIN','RAILWAY_VOLUME_MOUNT_PATH','RAILWAY_PROJECT_ID','RAILWAY_ENVIRONMENT_ID','RAILWAY_SERVICE_ID','RAILWAY_GIT_COMMIT_SHA','RAILWAY_DEPLOYMENT_ID'];\n  const env=Object.fromEntries(keys.filter(k=>input[k]!==undefined).map(k=>[k,input[k]]));\n  env.ASSURANCE_RUNTIME_ORIGIN=assuranceRuntimeOrigin(input);\n  Object.assign(env,{EMPIRE_RUNTIME_PROFILE:PROFILE,NODE_ENV:'production',NODE_OPTIONS:'--max-old-space-size=1536 --require='+JSON.stringify(path.join(__dirname,'runtime-generation-preload.cjs')),DATABASE_PATH:database,\n    DEFAULT_LLM_PROVIDER:'openai',DEFAULT_LLM_MODEL:'gpt-6.1-sol',EMPIRE_ENGINEERING_TEST_MODE:'true',EMPIRE_TIER0_ISOLATION:'true',EMPIRE_ENABLE_EXTENSION_ROUTES:'false',EMPIRE_REQUIRE_DATA_VOLUME:'true',EMPIRE_PERSISTENCE_GATE:'strict',\n    EMPIRE_SHUTDOWN_TIMEOUT_MS:'15000',EMPIREAI_REPO_ROOT:path.resolve(__dirname,'..'),SHADOW_CEO_DATA_DIR:database+'.shadow',\n    REDIS_OPTIONAL:'false',WORKER_CONCURRENCY:'1',HOST:'0.0.0.0',LIVE_PAYMENT_ENABLED:'false',LIVE_CJ_FULFILLMENT_ENABLED:'false',META_ADS_LAUNCH_ENABLED:'false',PRODUCTION_DEPLOYMENT_ENABLED:'false',LIVE_OPS_PRODUCTION_NOT_ELIGIBLE:'true',COMMERCE_READINESS_BLOCKED:'true'});\n  return env;",
+      "imagePath": "/app/deployment/locked-runtime.cjs",
+      "lineEnd": 49,
+      "lineStart": 42,
+      "sha256": "e0a2067c02ac66f1aafda7c1ce845dc1c5f8052bd2be1ca035c450237c022bd2"
+    },
+    "deployment/locked-runtime.cjs:45-49": {
+      "excerpt": "  Object.assign(env,{EMPIRE_RUNTIME_PROFILE:PROFILE,NODE_ENV:'production',NODE_OPTIONS:'--max-old-space-size=1536 --require='+JSON.stringify(path.join(__dirname,'runtime-generation-preload.cjs')),DATABASE_PATH:database,\n    DEFAULT_LLM_PROVIDER:'openai',DEFAULT_LLM_MODEL:'gpt-6.1-sol',EMPIRE_ENGINEERING_TEST_MODE:'true',EMPIRE_TIER0_ISOLATION:'true',EMPIRE_ENABLE_EXTENSION_ROUTES:'false',EMPIRE_REQUIRE_DATA_VOLUME:'true',EMPIRE_PERSISTENCE_GATE:'strict',\n    EMPIRE_SHUTDOWN_TIMEOUT_MS:'15000',EMPIREAI_REPO_ROOT:path.resolve(__dirname,'..'),SHADOW_CEO_DATA_DIR:database+'.shadow',\n    REDIS_OPTIONAL:'false',WORKER_CONCURRENCY:'1',HOST:'0.0.0.0',LIVE_PAYMENT_ENABLED:'false',LIVE_CJ_FULFILLMENT_ENABLED:'false',META_ADS_LAUNCH_ENABLED:'false',PRODUCTION_DEPLOYMENT_ENABLED:'false',LIVE_OPS_PRODUCTION_NOT_ELIGIBLE:'true',COMMERCE_READINESS_BLOCKED:'true'});\n  return env;",
+      "imagePath": "/app/deployment/locked-runtime.cjs",
+      "lineEnd": 49,
+      "lineStart": 45,
+      "sha256": "e0a2067c02ac66f1aafda7c1ce845dc1c5f8052bd2be1ca035c450237c022bd2"
+    },
+    "pillow/dist/mission-runtime/mission-manager.js:551-565": {
+      "excerpt": "    ensureRecord(state, config) {\n        const missions = this.store.listMissions();\n        this.engineRecord = {\n            engineId: MISSION_RUNTIME_ID,\n            workerId: config.workerId,\n            operationalState: state,\n            healthStatus: state === \"failed\" ? \"failed\" : \"healthy\",\n            totalMissions: missions.length,\n            totalReports: this.store.listReports().length,\n            lastReportId: this.store.listReports().at(-1)?.reportId ?? null,\n            supportedCapabilities: [...MSR_CAPABILITIES],\n            integrationTargets: [...config.integrationTargets],\n            metadataVersion: MSR_METADATA_VERSION,\n        };\n    }",
+      "imagePath": "/app/pillow/dist/mission-runtime/mission-manager.js",
+      "lineEnd": 565,
+      "lineStart": 551,
+      "sha256": "f52b4b2e387ff82c6e3d2e431ea6a8b2cda82cbea33292eeb105affce2cfb82c"
+    },
+    "pillow/dist/mission-runtime/mission-manager.js:57-65": {
+      "excerpt": "    ensureSeeded(_config) {\n        if (this.seeded)\n            return;\n        this.seeded = true;\n        this.ensureRecord(\"active\", _config);\n    }\n    getEngineRecord() {\n        return this.engineRecord\n            ? {",
+      "imagePath": "/app/pillow/dist/mission-runtime/mission-manager.js",
+      "lineEnd": 65,
+      "lineStart": 57,
+      "sha256": "f52b4b2e387ff82c6e3d2e431ea6a8b2cda82cbea33292eeb105affce2cfb82c"
+    },
+    "pillow/dist/mission-runtime/mission-persistence.js:152-166": {
+      "excerpt": "    withDatabase(create, operation) {\n        const directory = path.dirname(this.filename);\n        const exists = fs.existsSync(this.filename);\n        if (!exists && !create)\n            return null;\n        if (!exists) {\n            fs.mkdirSync(directory, { recursive: true, mode: 0o700 });\n            try {\n                fs.closeSync(fs.openSync(this.filename, \"wx\", 0o600));\n            }\n            catch (error) {\n                if (error.code !== \"EEXIST\")\n                    throw error;\n            }\n        }",
+      "imagePath": "/app/pillow/dist/mission-runtime/mission-persistence.js",
+      "lineEnd": 166,
+      "lineStart": 152,
+      "sha256": "0dc807071927c6058754b9bdac1e00b1d45a01655d60f20f6b8d1e08fef502c4"
+    },
+    "pillow/dist/mission-runtime/mission-persistence.js:243-273": {
+      "excerpt": "    }\n    save(state) { this.saveSnapshot(state); }\n    saveSnapshot(state, migratingDigest) {\n        validateSnapshot(state);\n        const envelope = JSON.stringify({ version: 3, scope: this.scope, state });\n        if (Buffer.byteLength(envelope) > MAX_SNAPSHOT_BYTES)\n            throw new Error(\"Mission snapshot capacity exceeded; history was not discarded\");\n        this.withDatabase(true, db => {\n            db.exec(\"BEGIN IMMEDIATE\");\n            let committed = false;\n            try {\n                const current = this.readRow(db);\n                this.assertLegacyLineage(current, migratingDigest);\n                if ((current?.revision ?? null) !== this.expectedRevision ||\n                    (current ? fingerprint(Buffer.from(current.envelope)) : null) !== this.expectedFingerprint) {\n                    throw new Error(\"Mission snapshot changed in another writer; reload before retrying\");\n                }\n                if (migratingDigest && current)\n                    throw new Error(\"Migration refuses to overwrite existing mission history\");\n                const revision = (current?.revision ?? 0) + 1;\n                if (!Number.isSafeInteger(revision))\n                    throw new Error(\"Mission snapshot revision capacity exceeded\");\n                db.exec(`CREATE TABLE IF NOT EXISTS mission_snapshot (\n          id INTEGER PRIMARY KEY CHECK(id=1), revision INTEGER NOT NULL CHECK(revision>0),\n          envelope TEXT NOT NULL CHECK(length(CAST(envelope AS BLOB))<=${MAX_SNAPSHOT_BYTES}),\n          legacy_sha256 TEXT\n        ) STRICT;\n        PRAGMA application_id=${APPLICATION_ID}; PRAGMA user_version=3;`);\n                db.prepare(\"INSERT INTO mission_snapshot(id,revision,envelope,legacy_sha256) VALUES(1,?,?,?) ON CONFLICT(id) DO UPDATE SET revision=excluded.revision,envelope=excluded.envelope,legacy_sha256=excluded.legacy_sha256\")\n                    .run(revision, envelope, migratingDigest ?? current?.legacy_sha256 ?? null);\n                // Re-read the migration source before committing; never alter/delete it.",
+      "imagePath": "/app/pillow/dist/mission-runtime/mission-persistence.js",
+      "lineEnd": 273,
+      "lineStart": 243,
+      "sha256": "0dc807071927c6058754b9bdac1e00b1d45a01655d60f20f6b8d1e08fef502c4"
+    },
+    "pillow/dist/mission-runtime/mission-runtime-controller.js:10-13": {
+      "excerpt": "    initialize() {\n        this.manager.ensureSeeded(this.config);\n        this.status = \"active\";\n    }",
+      "imagePath": "/app/pillow/dist/mission-runtime/mission-runtime-controller.js",
+      "lineEnd": 13,
+      "lineStart": 10,
+      "sha256": "9edece36964ae0055dda1a4e90fa35d3326dd611146bf0b6da0284aaf2d49b1e"
+    },
+    "pillow/dist/mission-runtime/mission-store.js:22-27": {
+      "excerpt": "    constructor(persistenceFile, persistenceScope = null) {\n        this.persistence = persistenceFile ? new MissionSnapshotFile(persistenceFile, persistenceScope) : null;\n        const recovered = this.persistence?.load();\n        if (recovered)\n            this.restore(recovered);\n    }",
+      "imagePath": "/app/pillow/dist/mission-runtime/mission-store.js",
+      "lineEnd": 27,
+      "lineStart": 22,
+      "sha256": "09d092f516b0a324383531ecb6f035419fce5c35c2c63214f3110d6260d9b27c"
+    },
+    "pillow/dist/mission-runtime/mission-store.js:41-49": {
+      "excerpt": "    transaction(operation) {\n        if (!this.persistence || this.transactionDepth > 0)\n            return operation();\n        const before = this.snapshot();\n        this.transactionDepth += 1;\n        try {\n            const result = operation();\n            this.persistence.save(this.snapshot());\n            return result;",
+      "imagePath": "/app/pillow/dist/mission-runtime/mission-store.js",
+      "lineEnd": 49,
+      "lineStart": 41,
+      "sha256": "09d092f516b0a324383531ecb6f035419fce5c35c2c63214f3110d6260d9b27c"
+    },
+    "pillow/dist/session.js:4202-4207": {
+      "excerpt": "    missionRuntime = createMissionRuntime(result, {\n        persistenceScope: canonicalMissionScope(process.env.FOUNDER_EMAIL),\n        persistenceFile: resolveMissionPersistenceFile(process.env.DATABASE_PATH, process.env.NODE_ENV === \"production\" || Boolean(process.env.RAILWAY_DEPLOYMENT_ID)),\n    });\n    await missionRuntime.initialize();\n    wireEngineIntegrations(missionRuntime, {",
+      "imagePath": "/app/pillow/dist/session.js",
+      "lineEnd": 4207,
+      "lineStart": 4202,
+      "sha256": "74c24fe66fb76b180fd8add142beb7518db94f8575c32a812bc06bd23d72f04a"
+    }
+  },
+  "status": "SOURCE_DERIVED_APPLICABILITY_NOT_NATIVE_ACCEPTANCE",
+  "stores": [
+    {
+      "absenceClassification": "REQUIRED_INITIALIZER_MUST_HAVE_COMPLETED",
+      "absencePermissionIsConditional": false,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "intelligence",
+      "ifPresentIdentity": null,
+      "ifPresentRequiredTables": [
+        "objects",
+        "jobs",
+        "schedules",
+        "quotas"
+      ],
+      "reason": "Locked primary registers Advisor routes and Intelligence routes. registerIntelligence calls seedResourceGaps before optionally starting the disabled polling loop. seedResourceGaps calls store.get, whose use() creates and initializes the file. INTELLIGENCE_ENABLED=false does not skip this initializer.",
+      "relativePath": "commissioning/intelligence.sqlite",
+      "requiredPresent": {
+        "fullExamination": true,
+        "nativePreflight": true
+      },
+      "sourceEvidence": [
+        "backend/dist/runtime/tier0-isolated-primary.js:560-565",
+        "backend/dist/advisor/routes.js:53-55",
+        "backend/dist/intelligence/routes.js:26-32",
+        "backend/dist/intelligence/runtime.js:148-149",
+        "backend/dist/intelligence/store.js:32-61"
+      ]
+    },
+    {
+      "absenceClassification": "MUST_MATERIALIZE_BY_CANONICAL_TWIN_BUSINESS_BASELINE",
+      "absencePermissionIsConditional": true,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "pillowMemory",
+      "ifPresentIdentity": {
+        "applicationId": 1161907507,
+        "userVersion": 1
+      },
+      "ifPresentRequiredTables": [
+        "identity",
+        "records",
+        "events"
+      ],
+      "reason": "Startup may only construct the lazy wrapper. The full examination completes canonical twin publication_intent/prepare/intercept actions; source calls enforceOwnerSafety, which reads memory.safetyPolicy, whose use() initializes the database even when no owner policy exists. Therefore absent startup is valid, absent full business baseline is not.",
+      "relativePath": "commissioning/pillow-institutional.sqlite",
+      "requiredPresent": {
+        "fullExamination": true,
+        "nativePreflight": false
+      },
+      "sourceEvidence": [
+        "backend/dist/runtime/commerce-runtime/governed/runtime.js:51-54",
+        "backend/dist/runtime/commerce-runtime/governed/work8-twin-runtime.js:73-84",
+        "backend/dist/runtime/commerce-runtime/governed/safety-admission.js:1-15",
+        "backend/dist/institutional-memory/store.js:29-65",
+        "backend/dist/institutional-memory/store.js:285-288"
+      ]
+    },
+    {
+      "absenceClassification": "LAZY_DOMAIN_NOT_ACTIVATED_BY_THIS_EXAMINATION",
+      "absencePermissionIsConditional": true,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "pillowRequests",
+      "ifPresentIdentity": null,
+      "ifPresentRequiredTables": [
+        "receipts"
+      ],
+      "reason": "Created by archivePillowRequest for an actual durable chat request with workspaceId. The exact examination uses authentication and canonical commerce endpoints; no Pillow chat request is admitted. Absence is valid only while no such request occurred and the initialized isolated baseline was absent.",
+      "relativePath": "commissioning/pillow-request-receipts.sqlite",
+      "requiredPresent": {
+        "fullExamination": false,
+        "nativePreflight": false
+      },
+      "sourceEvidence": [
+        "backend/dist/runtime/pillow-request-receipts.js:4-32",
+        "backend/dist/runtime/pillow-chat-request-store.js:145-157"
+      ]
+    },
+    {
+      "absenceClassification": "LAZY_DOMAIN_NOT_ACTIVATED_BY_THIS_EXAMINATION",
+      "absencePermissionIsConditional": true,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "pillowReasoning",
+      "ifPresentIdentity": null,
+      "ifPresentRequiredTables": [
+        "transcripts",
+        "browser_history",
+        "canonical_conversations",
+        "pending_learning"
+      ],
+      "reason": "ReasoningState constructor is lazy; use() initializes the store when conversation canonicalization/history/load/save/learning is used. PillowSessionStore constructor does not call durable(); no chat or reasoning session occurs in this exact commerce lifecycle. Empty absent domain is not fabricated as an initialized transcript.",
+      "relativePath": "commissioning/pillow-reasoning.sqlite",
+      "requiredPresent": {
+        "fullExamination": false,
+        "nativePreflight": false
+      },
+      "sourceEvidence": [
+        "backend/dist/orchestration/pillow-host/reasoning-state.js:17-45",
+        "backend/dist/orchestration/pillow-host/session-store.js:11-37",
+        "backend/dist/orchestration/pillow-host/session-store.js:42-53"
+      ]
+    },
+    {
+      "absenceClassification": "REQUIRED_INITIALIZER_MUST_HAVE_COMPLETED",
+      "absencePermissionIsConditional": false,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "communications",
+      "ifPresentIdentity": {
+        "applicationId": 1161906007,
+        "userVersion": 1
+      },
+      "ifPresentRequiredTables": [
+        "communications",
+        "access_audit",
+        "oauth_clients",
+        "oauth_codes",
+        "oauth_tokens",
+        "advisor_tasks",
+        "advisor_task_events"
+      ],
+      "reason": "Locked primary onReady creates AssuranceRuntime; its AdvisorTaskGateway constructor unconditionally invokes AdvisorStore.use to install advisor task tables. Store use materializes base communication/OAuth tables. No sent message is required.",
+      "relativePath": "commissioning/communications.sqlite",
+      "requiredPresent": {
+        "fullExamination": true,
+        "nativePreflight": true
+      },
+      "sourceEvidence": [
+        "backend/dist/assurance/runtime.js:78-90",
+        "backend/dist/assurance/runtime.js:384-391",
+        "backend/dist/assurance/advisor-agent.js:17-24",
+        "backend/dist/advisor/store.js:7-39"
+      ]
+    },
+    {
+      "absenceClassification": "LAZY_DOMAIN_NOT_ACTIVATED_BY_THIS_EXAMINATION",
+      "absencePermissionIsConditional": true,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "liveCostCentre",
+      "ifPresentIdentity": {
+        "applicationId": 1162430793,
+        "userVersion": 1
+      },
+      "ifPresentRequiredTables": [
+        "calls"
+      ],
+      "reason": "inferenceLedger creates the database and .initialized marker only when entered. No provider credentials/inference/chat operation exists in the isolated controller. Source Assurance spending collector only opens this file read-only and reports unavailable if absent; it never initializes the ledger. A missing file with an existing .initialized marker is always failure.",
+      "relativePath": "commissioning/openai-october-2026.sqlite",
+      "requiredPresent": {
+        "fullExamination": false,
+        "nativePreflight": false
+      },
+      "sourceEvidence": [
+        "backend/dist/brain/llm/locked-inference.js:26-59",
+        "backend/dist/brain/llm/locked-provider-orchestration.js:17-35",
+        "backend/src/assurance/internal-collectors.mjs:25-35"
+      ]
+    },
+    {
+      "absenceClassification": "REQUIRED_INITIALIZER_MUST_HAVE_COMPLETED",
+      "absencePermissionIsConditional": false,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "assurance",
+      "ifPresentIdentity": null,
+      "ifPresentRequiredTables": [
+        "cp_records",
+        "cp_events",
+        "assurance_cycles",
+        "assurance_ledger_baseline"
+      ],
+      "reason": "Locked primary onReady materializes AssuranceControlPlane; admitted permanent Assurance worker independently creates AssuranceStore then spending-baseline table before ready. Current-source discrepancy probe/proof pairs are separate mandatory artifact inventory, never substituted for this main store.",
+      "relativePath": "commissioning/assurance.sqlite",
+      "requiredPresent": {
+        "fullExamination": true,
+        "nativePreflight": true
+      },
+      "sourceEvidence": [
+        "backend/dist/assurance/runtime.js:357-369",
+        "backend/dist/assurance/runtime.js:384-391",
+        "backend/src/assurance/control-plane.mjs:14-27",
+        "backend/src/assurance/independent-assurance.mjs:56-65",
+        "backend/src/assurance/permanent-worker.mjs:18-34",
+        "backend/src/assurance/internal-collectors.mjs:25-27"
+      ]
+    },
+    {
+      "absenceClassification": "REQUIRED_INITIALIZER_MUST_HAVE_COMPLETED",
+      "absencePermissionIsConditional": false,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "financialEvidence",
+      "ifPresentIdentity": null,
+      "ifPresentRequiredTables": [
+        "financial_evidence"
+      ],
+      "reason": "Initial Assurance cycle synchronously calls readWork8FinancialProbe(productionFinance()) before its later async stages. productionFinance constructs FinancialCentre, which creates financial_evidence and .initialized marker. Exceptions are caught as unavailable, so an absence must not be converted into preservation PASS. retainProductionFinance itself is deliberately non-creating, but the actual cycle is the required initializer.",
+      "relativePath": "finance/evidence.sqlite",
+      "requiredPresent": {
+        "fullExamination": true,
+        "nativePreflight": true
+      },
+      "sourceEvidence": [
+        "backend/dist/assurance/runtime.js:151-164",
+        "backend/dist/assurance/runtime.js:384-391",
+        "backend/dist/finance/financial-centre.js:59-83",
+        "backend/dist/finance/financial-centre.js:275-295"
+      ]
+    },
+    {
+      "absenceClassification": "REQUIRED_INITIALIZER_MUST_HAVE_COMPLETED",
+      "absencePermissionIsConditional": false,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "commerce",
+      "ifPresentIdentity": {
+        "applicationId": 1162038605,
+        "userVersion": 1
+      },
+      "ifPresentRequiredTables": [
+        "commerce_runtime_receipts",
+        "commerce_runtime_tasks",
+        "work8_twin_events",
+        "work8_twin_authority",
+        "work8_twin_admissions",
+        "work8_twin_observations",
+        "work8_twin_scheduler"
+      ],
+      "reason": "Governed commerce onReady unconditionally constructs productionCommerce for a volume. Constructor creates canonical receipt/task schema and all Work8 twin schemas; full examination additionally requires real committed canonical orders, histories, finance and authority checked by existing browser/offline readers. No row fabrication is authorized.",
+      "relativePath": "commerce/runtime.sqlite",
+      "requiredPresent": {
+        "fullExamination": true,
+        "nativePreflight": true
+      },
+      "sourceEvidence": [
+        "backend/dist/runtime/commerce-runtime/governed/runtime.js:51-61",
+        "backend/dist/runtime/commerce-runtime/governed/runtime.js:314-317",
+        "backend/dist/runtime/commerce-runtime/governed/store.js:10-48",
+        "backend/dist/runtime/commerce-runtime/governed/work8-twin.js:10-18",
+        "backend/dist/runtime/commerce-runtime/governed/work8-twin-runtime.js:27-45",
+        "backend/dist/runtime/commerce-runtime/governed/work8-twin-authority.js:10-17"
+      ]
+    },
+    {
+      "absenceClassification": "REQUIRED_INITIALIZER_MUST_HAVE_COMPLETED",
+      "absencePermissionIsConditional": false,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "brain",
+      "ifPresentIdentity": null,
+      "ifPresentRequiredTables": [
+        "audit_logs",
+        "memory_records",
+        "financial_ledger_events"
+      ],
+      "reason": "Brain initializes cached SQL.js database; disk absence at ready is expected for this delayed-export prerequisite. Existing live hook must persist actual initialized same cached instance under its fence, after which native independent readback requires present=true and exact full schema/logical baseline. No constructor is used in independent readback.",
+      "relativePath": "commissioning/empireai-brain.db",
+      "requiredPresent": {
+        "fullExamination": true,
+        "nativePreflight": true
+      },
+      "sourceEvidence": [
+        "backend/dist/brain/database.js:28-76"
+      ]
+    },
+    {
+      "absenceClassification": "LAZY_DOMAIN_NOT_ACTIVATED_BY_THIS_EXAMINATION",
+      "absencePermissionIsConditional": true,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "missions",
+      "ifPresentIdentity": {
+        "applicationId": 1162695506,
+        "rowRule": "If present, original source readRow requires exactly one id=1 authoritative revision>=1 snapshot; do not initialize for examination.",
+        "userVersion": 3
+      },
+      "ifPresentRequiredTables": [
+        "mission_snapshot"
+      ],
+      "reason": "Pillow boot creates/initializes MissionRuntime, but its store constructor only loads existing persistence. MissionSnapshotFile.withDatabase(false) returns null when absent; initialize\u2192ensureSeeded\u2192ensureRecord changes only process-local engine record. File is created only on actual mission-store mutation/save. Canonical commerce twin missions live in commerce/runtime.sqlite and do not activate this separate Pillow mission snapshot.",
+      "relativePath": "commissioning/empireai-brain.db.missions.sqlite",
+      "requiredPresent": {
+        "fullExamination": false,
+        "nativePreflight": false
+      },
+      "sourceEvidence": [
+        "pillow/dist/session.js:4202-4207",
+        "pillow/dist/mission-runtime/mission-store.js:22-27",
+        "pillow/dist/mission-runtime/mission-store.js:41-49",
+        "pillow/dist/mission-runtime/mission-runtime-controller.js:10-13",
+        "pillow/dist/mission-runtime/mission-manager.js:57-65",
+        "pillow/dist/mission-runtime/mission-manager.js:551-565",
+        "pillow/dist/mission-runtime/mission-persistence.js:152-166",
+        "pillow/dist/mission-runtime/mission-persistence.js:243-273"
+      ]
+    },
+    {
+      "absenceClassification": "LAZY_DOMAIN_NOT_ACTIVATED_BY_THIS_EXAMINATION",
+      "absencePermissionIsConditional": true,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "execution",
+      "ifPresentIdentity": {
+        "applicationId": 1162691928,
+        "userVersion": 1
+      },
+      "ifPresentRequiredTables": [
+        "execution_meta",
+        "execution_jobs",
+        "execution_events"
+      ],
+      "reason": "Mission authority executor is only constructed with explicit MISSION_AUTHORITY_EXECUTOR_ENABLED=true. Exact locked-runtime environment allowlist omits that option; examination does not admit mission-authority execution. Store database() would create its dedicated schema if used, but its constructor is lazy.",
+      "relativePath": "commissioning/empireai-brain.db.mission-execution.sqlite",
+      "requiredPresent": {
+        "fullExamination": false,
+        "nativePreflight": false
+      },
+      "sourceEvidence": [
+        "backend/dist/orchestration/pillow-host/routes/mission-runtime-routes.js:28-48",
+        "backend/dist/orchestration/pillow-host/mission-execution/store.js:15-38",
+        "backend/dist/orchestration/pillow-host/mission-execution/store.js:53-65",
+        "deployment/locked-runtime.cjs:42-49"
+      ]
+    },
+    {
+      "absenceClassification": "LAZY_DOMAIN_NOT_ACTIVATED_BY_THIS_EXAMINATION",
+      "absencePermissionIsConditional": true,
+      "allPresentBaselineStateMustBePreserved": true,
+      "id": "shadow",
+      "ifPresentIdentity": null,
+      "ifPresentRequiredTables": [
+        "shadow_ceo_records"
+      ],
+      "reason": "Shadow repository is lazily opened by Shadow routes/chat operational admission or dedicated full recovery capture, none executed by this A5 commerce lifecycle. Merely registering routes does not open it. withExistingShadowCapture opens captureReadOnly and refuses missing stores; it does not authorize creating a replacement. If existing, full logical state must be preserved.",
+      "relativePath": "commissioning/empireai-brain.db.shadow/shadow-ceo.db",
+      "requiredPresent": {
+        "fullExamination": false,
+        "nativePreflight": false
+      },
+      "sourceEvidence": [
+        "backend/dist/orchestration/shadow-ceo-integration/routes.js:12-19",
+        "backend/dist/orchestration/shadow-ceo-integration/routes.js:42-76",
+        "backend/dist/orchestration/shadow-ceo/repository.js:28-51",
+        "backend/dist/orchestration/shadow-ceo-integration/coordinated-sqlite-capture.js:29-37",
+        "deployment/locked-runtime.cjs:45-49"
+      ]
+    }
+  ],
+  "wholeRowsAccepted": []
+}

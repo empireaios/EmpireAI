@@ -1,0 +1,147 @@
+"""Bounded build-only CANDIDATE packages. Never include runtime mounts or secrets."""
+import gzip, hashlib, json, os, pathlib, re, stat, subprocess, time
+
+CONTINUATION_MAX_BYTES = 2 * 1024**3
+# V28 retains only new evidence. Prior V27 candidate bytes are imported, never reuploaded.
+PRIOR_DIAGNOSTIC_ARTIFACT_BYTES = 0
+MAX_BYTES = CONTINUATION_MAX_BYTES - PRIOR_DIAGNOSTIC_ARTIFACT_BYTES
+ZIP_ENVELOPE_RESERVE = 2 * 1024**2
+MAX_PAYLOAD_BYTES = MAX_BYTES - ZIP_ENVELOPE_RESERVE
+EVIDENCE_RESERVE = 16 * 1024**2
+ROLES = ('backend', 'normal', 'recovery')
+PATTERNS = (
+ ('github-token', re.compile(rb'(?:gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,})')),
+ ('resend-token', re.compile(rb'(?<![A-Za-z0-9_])re_[A-Za-z0-9]{32,}')),
+ ('aws-access-key', re.compile(rb'AKIA[A-Z0-9]{16}')),
+ ('private-key-material', re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----[\r\n]+[A-Za-z0-9+/=\r\n]{64,}')),
+)
+
+def sha(path):
+ with path.open('rb') as f:return hashlib.file_digest(f, 'sha256').hexdigest()
+
+def directory_bytes(root):
+ if not root.exists():return 0
+ total=0
+ for p in root.iterdir():
+  info=p.lstat()
+  assert stat.S_ISREG(info.st_mode) and info.st_nlink==1 and not p.is_symlink(), 'NONREGULAR_ARTIFACT_REFUSED'
+  total+=info.st_size
+ return total
+
+def scan_context(context):
+ files=0;byte_count=0;public_fixture_databases=[]
+ for p in sorted(context.rglob('*')):
+  if p.is_symlink():
+   assert p.resolve().is_relative_to(context.resolve()), 'BUILD_SYMLINK_ESCAPE_REFUSED'
+   continue
+  if not p.is_file():continue
+  assert '.git' not in p.relative_to(context).parts, 'BUILD_GIT_METADATA_REFUSED'
+  relative=p.relative_to(context)
+  assert p.name != '.env', 'BUILD_RUNTIME_ENV_REFUSED'
+  if p.suffix.lower() in {'.db','.sqlite','.sqlite3','.db-wal','.db-shm'}:
+   # Exact public source / npm package fixtures are not live runtime databases.
+   # No examination runtime has started or produced credentials at this point.
+   assert any(part in {'test','tests','fixtures','__fixtures__','examples'} for part in relative.parts[:-1]), 'BUILD_RUNTIME_DATA_REFUSED'
+   public_fixture_databases.append({'path':str(relative),'sha256':sha(p),'bytes':p.stat().st_size,'provenance':'public source or dependency fixture; never mounted as examination state'})
+  files+=1;byte_count+=p.stat().st_size;tail=b''
+  with p.open('rb') as stream:
+   while chunk:=stream.read(1024*1024):
+    sample=tail+chunk
+    for category,pattern in PATTERNS:
+     assert not pattern.search(sample), 'BUILD_SECRET_PATTERN_REFUSED:'+category
+    tail=sample[-8192:]
+ return {'regularFilesScanned':files,'bytesScanned':byte_count,'categories':[c for c,_ in PATTERNS],'matches':0,'nonfixtureDatabaseFilenamesRefused':True,'publicFixtureDatabases':public_fixture_databases,'escapingSymlinksRefused':True}
+
+class BoundedCompressedWriter:
+ def __init__(self, stream, limit):self.stream,self.limit=stream,limit
+ def write(self,data):
+  assert self.stream.tell()+len(data)<=self.limit, 'COMPRESSED_CANDIDATE_BYTES_BOUND'
+  return self.stream.write(data)
+ def flush(self):return self.stream.flush()
+ def tell(self):return self.stream.tell()
+
+def write_index(directory, schema, **extra):
+ entries=[]
+ for p in sorted(directory.iterdir()):
+  if p.name=='artifact-index.json':continue
+  info=p.lstat();assert stat.S_ISREG(info.st_mode) and info.st_nlink==1 and not p.is_symlink()
+  entries.append({'path':p.name,'bytes':info.st_size,'sha256':sha(p)})
+ (directory/'artifact-index.json').write_text(json.dumps({'schema':schema,'maxBytes':MAX_BYTES,'continuationMaxBytes':CONTINUATION_MAX_BYTES,'priorDiagnosticArtifactBytes':PRIOR_DIAGNOSTIC_ARTIFACT_BYTES,'maxPayloadBytes':MAX_PAYLOAD_BYTES,'zipEnvelopeReserveBytes':ZIP_ENVELOPE_RESERVE,'files':entries,**extra},indent=2)+'\n')
+
+def prepare(root, private, evidence, images, components, generated):
+ assert not generated, 'RUNTIME_SECRETS_EXIST_BEFORE_CANDIDATE_RETENTION'
+ candidates=root/'native-transition-candidates';candidates.mkdir()
+ scans={}
+ for role in ROLES:
+  scans[role]=scan_context(private/(role+'-context'))
+  image=json.loads(subprocess.check_output(['docker','image','inspect',images[role]]))[0]
+  assert image['Id']==images[role]
+  labels=image['Config']['Labels']
+  assert labels['org.opencontainers.image.revision']==components[role]['commit']
+  assert labels['io.empireai.source-tree']==components[role]['tree']
+  permitted={'PATH','NODE_VERSION','YARN_VERSION','NODE_ENV','NEXT_TELEMETRY_DISABLED'}
+  assert all(item.split('=',1)[0] in permitted for item in image['Config'].get('Env',[])), 'UNREVIEWED_IMAGE_ENVIRONMENT'
+  scans[role]['imageConfigEnvironmentAllowlistPassed']=True
+ policy=pathlib.Path(__file__).with_name('package-exclusions.json')
+ (candidates/policy.name).write_bytes(policy.read_bytes())
+ bindings={'policySha256':sha(policy),'scannerExceptions':[]}
+ for name in ['backend-packaging-removal.json','backend-packaging-image-smoke.json']:
+  source=evidence/name;receipt=json.loads(source.read_text())
+  assert receipt['status'] in {'PASS','EXACT_FIVE_UNUSED_ASM_VARIANTS_REMOVED_BEFORE_IMAGE_BUILD'}
+  (candidates/name).write_bytes(source.read_bytes());bindings[name]={'sha256':sha(source),'status':receipt['status']}
+ smoke=json.loads((evidence/'backend-packaging-image-smoke.json').read_text())
+ assert smoke['nodeVersion']=='v22.23.2' and smoke['imageId']==images['backend'] and smoke['networkDisabled'] is True
+ bindings['runtimeNodeVersion']=smoke['nodeVersion'];bindings['actualImageId']=smoke['imageId']
+ (candidates/'candidate-secret-scan.json').write_text(json.dumps({'schema':'work8-candidate-secret-scan-v1','generatedRuntimeSecretsExist':False,'providerCredentialsSupplied':False,'productionDataSupplied':False,'source':'reviewed exact public application checkouts and compiled outputs only; five exact independently classified unused ASM distribution files omitted before Docker COPY','precisePackaging':bindings,'scans':scans},indent=2)+'\n')
+ for role in ROLES:
+  target=candidates/(role+'-image.tar.gz');partial=private/(role+'-image.partial')
+  limit=MAX_PAYLOAD_BYTES-directory_bytes(candidates)-directory_bytes(evidence)-EVIDENCE_RESERVE
+  assert limit>0
+  proc=subprocess.Popen(['docker','save',images[role]],stdout=subprocess.PIPE,stderr=subprocess.DEVNULL)
+  try:
+   with partial.open('wb') as raw:
+    with gzip.GzipFile(filename='',fileobj=BoundedCompressedWriter(raw,limit),mode='wb',mtime=0) as dst:
+     while chunk:=proc.stdout.read(1024*1024):dst.write(chunk)
+   assert proc.wait(timeout=120)==0, 'DOCKER_SAVE_FAILED'
+   partial.replace(target)
+  finally:
+   if proc.poll() is None:proc.kill()
+   proc.stdout.close();proc.wait(timeout=10)
+   if partial.exists():partial.unlink()
+  components[role]['archiveFile']=target.name
+  components[role]['archiveBytes']=target.stat().st_size
+  components[role]['archiveSha256']=sha(target)
+  components[role]['acceptance']='CANDIDATE_NOT_ACCEPTED'
+ (candidates/'immutable-images.json').write_text(json.dumps(components,indent=2)+'\n')
+ (candidates/'CANDIDATES.txt').write_text('CANDIDATES — NOT ACCEPTED RELEASES\nThree exact application images built once before examination runtime credentials or data exist.\nBackend packaging omits only the five hash-bound unused ASM distribution files identified by package-exclusions.json; source pins, runtime WASM implementation, package metadata, README and LICENSE remain unchanged. The removal and actual-image Node 22.23.2 smoke receipts are included.\nVerify each compressed archive against immutable-images.json archiveSha256 and the packaging recipe, not source labels alone.\nRestore bytes with: gzip -dc ROLE-image.tar.gz | docker load\nVerify docker image inspect ID and revision/tree labels against immutable-images.json.\nDo not deploy these images without applicable authority and a compatible reviewed runtime policy.\nThis archive was created before any examination runtime database or generated session secret existed; no provider credential was supplied. Any public source/dependency fixture database is separately identified by the scan receipt and is never examination state.\nThe GitHub artifact upload digest identifies the outer Actions ZIP; per-image hashes identify inner compressed archives.\nSeven-day Actions retention is time-limited; retain the verified archive through an authorised evidence route before expiry if further reuse is needed.\n')
+ write_index(candidates,'work8-candidate-upload-v1',secretScanPassed=True,beforeRuntimeSecrets=True,candidateStatus='CANDIDATE_NOT_ACCEPTED')
+ assert directory_bytes(candidates)+directory_bytes(evidence)<=MAX_PAYLOAD_BYTES-EVIDENCE_RESERVE, 'AGGREGATE_CANDIDATE_BYTES_BOUND'
+ return candidates
+
+def reuse(root, evidence, manifest):
+ candidates=root/'native-transition-candidates'
+ imported=json.loads((evidence/'retained-import-result.json').read_text())
+ assert imported['status']=='PASS_RETAINED_BYTES_LOADED_DRIVER_READY'
+ artifact_id=imported['artifactId'];digest=imported['outerArchiveSha256']
+ assert artifact_id==13058526104 and digest=='1f3bd66ce343c2739274a0e8003a7f51f7d2c22b45e0c67c7106d3d6eb9249c6'
+ index=json.loads((candidates/'artifact-index.json').read_text());assert index['schema']=='work8-candidate-upload-v1'
+ assert index['secretScanPassed'] is True and index['beforeRuntimeSecrets'] is True
+ expected={r['path']:r for r in index['files']}
+ assert {p.name for p in candidates.iterdir()}==set(expected)|{'artifact-index.json'}
+ # The importer verified each exact member and all 24 layer references once.
+ # Only immutable identity/metadata is checked here; no second layer scan.
+ assert sha(candidates/'artifact-index.json')==imported['indexSha256']
+ for name,entry in expected.items():
+  p=candidates/name;assert p.is_file() and not p.is_symlink() and p.stat().st_size==entry['bytes'], 'CANDIDATE_BYTES_CHANGED'
+ components=json.loads((candidates/'immutable-images.json').read_text());images={}
+ for role in ROLES:
+  component=components[role];assert component['commit']==manifest[role]['commit'] and component['tree']==manifest[role]['tree']
+  image=json.loads(subprocess.check_output(['docker','image','inspect',component['image']]))[0]
+  assert image['Id']==component['image']
+  labels=image['Config']['Labels'];assert labels['org.opencontainers.image.revision']==component['commit'] and labels['io.empireai.source-tree']==component['tree']
+  assert any(x['role']==role and x['image']==component['image'] and x['archiveSha256']==component['archiveSha256'] for x in imported['images'])
+  images[role]=component['image']
+ assert directory_bytes(evidence)<=MAX_PAYLOAD_BYTES
+ receipt={'schema':'work8-candidate-upload-receipt-v1','status':'RETAINED_CANDIDATES_NOT_ACCEPTED','artifactId':artifact_id,'githubOuterArtifactSha256':digest,'candidateIndexSha256':imported['indexSha256'],'candidateBytes':directory_bytes(candidates),'retentionDays':7,'archiveBytesVerifiedBeforeExamination':True,'buildsRepeated':False,'providerUploadReceiptSource':'prior-run Actions artifact metadata plus exact outer ZIP/index checks in retained-import-result.json','sourceRunId':41243779489,'newCandidateUpload':False,'retentionRenewed':False,'sourceExpiresAtUTC':imported['sourceExpiresAtUTC']}
+ (evidence/'candidate-upload-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+ return images,components

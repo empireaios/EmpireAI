@@ -1,0 +1,12 @@
+{
+  "schema": "WORK8_V65_REUSED_NATIVE_BINARY_V1",
+  "status": "PASS_EXACT_ADMITTED_BYTES_RECOVERED",
+  "archive": "v53-executable-release-20261102/packages/backend-6c1e63b-derived-image.tar.gz",
+  "archiveBytes": 201715406,
+  "archiveSha256": "8aa72fac4c3a99a1b1013f0d30349298616a00dc526d881a6bf0f7f1abe20863",
+  "layerSha256": "721e600a9032c97dede83c3a1948cc15ed539daa47c5083e6b292952ce3d19b2",
+  "binarySha256": "5048f19ec38c708dd1b139f7a3f60cb8eb5e9146cd4fdb6e978caffbcac87a1b",
+  "compiled": false,
+  "downloaded": false,
+  "sourceSha256": "2f17b9f9e6202ae78ea98ce2575f49b8d65d56c183c9460af98409c9254d541c"
+}

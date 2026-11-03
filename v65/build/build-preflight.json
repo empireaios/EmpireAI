@@ -1,0 +1,92 @@
+{
+  "schema": "work8-v55-frontend-build-preflight-v1",
+  "createdAtUTC": "2026-11-02T08:23:56.112294+00:00",
+  "components": [
+    {
+      "name": "normal",
+      "commit": "750483b3152f2c9c65a65b6381c8c94f081b9eb1",
+      "tree": "f589a8f0f94fbcdf113f162abac11d03c19acc25",
+      "webTree": "7f103c54281e57a41104d21de5e83056c1de8f12",
+      "lockSHA256": "84f99595b7564d9196b0eeb25c054b290801bfe2e3a148f61ab2c9c2871d37b4",
+      "sourceUnmodified": true,
+      "contracts": [
+        {
+          "path": "lib/owner/runtime-identity.mjs",
+          "sha256": "b9cdb78d52c9ed7d9a00a30bc9bb8fdd87d3d0ee0732d148b4ebe2e19e7c8fe6"
+        },
+        {
+          "path": "lib/owner/runtime-release-identity.test.ts",
+          "sha256": "bd8727b0f6d650739d847cb8fe6c3ea3ea8231bf70b39afe931669f4dfeb9c60"
+        },
+        {
+          "path": "components/owner/work8/TwinMedia.tsx",
+          "sha256": "9d44550044dc091a3c111ba5a2e4b194d64cd98ef3693eef5273b876902ce332"
+        },
+        {
+          "path": "components/owner/work7/QualificationDossier.tsx",
+          "sha256": "8ba05160d555cd642910efcb3646b0c572a2c9479a6f512f7d63e4fe7e708565"
+        },
+        {
+          "path": "components/owner/work8/TwinWorkspace.tsx",
+          "sha256": "19022bf021e1d40e68f0c7f9d89c63de0145d57fac3711ddce1749512bf86f04"
+        }
+      ],
+      "backendBinding": "6c1e63ba20619ee480742fd87dc810ca93152e22"
+    },
+    {
+      "name": "recovery",
+      "commit": "94d34cab7b0739849839ea3c66e50c8fdd3a2b27",
+      "tree": "5da61811a035b9504d74f699df8b164cc7f9f0ac",
+      "webTree": "386fcd25cbfe44141765dbd1b1a4b578faab0ca6",
+      "lockSHA256": "84f99595b7564d9196b0eeb25c054b290801bfe2e3a148f61ab2c9c2871d37b4",
+      "sourceUnmodified": true,
+      "contracts": [
+        {
+          "path": "lib/owner/runtime-identity.mjs",
+          "sha256": "d55731a5606a42607be57ed857adf6d9f1961896250b78ee599bece7f56a9217"
+        },
+        {
+          "path": "lib/owner/runtime-release-identity.test.ts",
+          "sha256": "d9b1a5c9fa329b8b5131c81ad7bcffca3187c96e8914f416aa98fb78285b383b"
+        },
+        {
+          "path": "components/owner/work8/TwinMedia.tsx",
+          "sha256": "9d44550044dc091a3c111ba5a2e4b194d64cd98ef3693eef5273b876902ce332"
+        },
+        {
+          "path": "components/owner/work7/QualificationDossier.tsx",
+          "sha256": "8ba05160d555cd642910efcb3646b0c572a2c9479a6f512f7d63e4fe7e708565"
+        },
+        {
+          "path": "components/owner/work8/TwinWorkspace.tsx",
+          "sha256": "19022bf021e1d40e68f0c7f9d89c63de0145d57fac3711ddce1749512bf86f04"
+        }
+      ],
+      "backendBinding": "6c1e63ba20619ee480742fd87dc810ca93152e22"
+    }
+  ],
+  "runtime": {
+    "node": "22.23.2",
+    "npm": "10.9.8",
+    "platform": "linux-x64-glibc2.39",
+    "toolchainReceipt": "toolchain/acquisition-receipt.json"
+  },
+  "sharp": {
+    "version": "0.34.5",
+    "linuxX64": "0.34.5",
+    "libvipsLinuxX64": "1.2.4",
+    "remedy": "npm rebuild --offline without --build-from-source",
+    "lockChanged": false
+  },
+  "authority": {
+    "directive": "V55 exact frontend local packaging authorized",
+    "newPaidHostedOperations": 0,
+    "newProviderReservationUSD": 0,
+    "maximumEachBuildSeconds": 180,
+    "newInfrastructure": false,
+    "productionOperations": false
+  },
+  "artifactFormat": "Runnable Next standalone tar.gz with Node22.23.2, static/public assets, source/dependency/provenance and per-member hashes. No OCI image identity asserted.",
+  "qualificationScope": "New exact frontend package build and affected Node22 identity predicates only. Not historical CI relabeling, backend runtime startup or owner acceptance.",
+  "environmentLimit": "Existing host security restrictions retained. User/network namespace creation refused EPERM; no original isolated runtime/controller qualification inferred. No retries or bypass attempted."
+}

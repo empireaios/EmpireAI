@@ -1,0 +1,81 @@
+{
+  "schema": "work8-v32-upload-authority-selftest-v1",
+  "status": "PASS_TARGETED_UPLOAD_AUTHORITY_REFERENCE",
+  "allPassed": true,
+  "cases": [
+    {
+      "name": "new-stage-a-reservation-permitted",
+      "expected": "PERMIT",
+      "observed": "PERMIT",
+      "passed": true,
+      "processExit": 0,
+      "safeGateCategories": [],
+      "actualWrapperExecuted": true,
+      "canonicalUploaderExecuted": true,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "firstCausalFallbackVerified": false,
+      "rawOutputRetained": false
+    },
+    {
+      "name": "new-stage-b-shared-reservation-permitted",
+      "expected": "PERMIT",
+      "observed": "PERMIT",
+      "passed": true,
+      "processExit": 0,
+      "safeGateCategories": [],
+      "actualWrapperExecuted": true,
+      "canonicalUploaderExecuted": true,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "firstCausalFallbackVerified": false,
+      "rawOutputRetained": false
+    },
+    {
+      "name": "old-reservation-refused",
+      "expected": "REFUSE",
+      "observed": "REFUSE",
+      "passed": true,
+      "processExit": 1,
+      "safeGateCategories": [
+        "RESERVATION_ID_REFUSED"
+      ],
+      "actualWrapperExecuted": true,
+      "canonicalUploaderExecuted": false,
+      "stdoutSha256": "a67f84e6f2770e5dc91649f62f426f6721854ca7780ae1621ca57ed2ba5e9945",
+      "stderrSha256": "335158a4eaabfe53bbe58afae3edd2297a55582028b0bcb92e8f724e6a74a107",
+      "firstCausalFallbackVerified": false,
+      "rawOutputRetained": false
+    }
+  ],
+  "passed": 3,
+  "total": 3,
+  "scope": "One exact reservation identifier reference changed; actual preceding scan and canonical uploader invoked, unchanged accepted29 suite reused without rerun.",
+  "priorAcceptedReceiptSha256": "13ddd6b4e66579e4913388f6fcb3b831610e940bf4a98ed764e90a1b6467432f",
+  "scannerAlgorithmUnchanged": true,
+  "canonicalUploaderUnchanged": true,
+  "applicationStartup": false,
+  "network": false,
+  "sourceBindings": [
+    {
+      "path": "scripts/work8/native-transition/retained-upload-preflight.py",
+      "bytes": 4639,
+      "sha256": "0a673bd343930a7c002597c27d7ebf22c69288a15a33570866542b67ef9bf625"
+    },
+    {
+      "path": "scripts/work8/native-transition/upload-preflight.py",
+      "bytes": 2418,
+      "sha256": "9582affdb55540970c05cf9e720ae9aceea5c897a03f3235230aedc4e7ef1e32"
+    },
+    {
+      "path": "scripts/work8/native-transition/candidate_packages.py",
+      "bytes": 11261,
+      "sha256": "7a605ea3229e3cd2ea0aca062d719b829291d7775c8b526d39baca13de0186b0"
+    },
+    {
+      "path": "scripts/work8/native-transition/upload-contract-selftest.py",
+      "bytes": 12147,
+      "sha256": "62d9e8472741a5e9dc599b5cf3dabec6afb814b544526decdc91364d6ac957b7"
+    }
+  ]
+}

@@ -1,0 +1,875 @@
+{
+  "schema": "work8-v62-execution-controller-manifest-v1",
+  "files": [
+    {
+      "path": "node_modules/playwright/LICENSE",
+      "bytes": 11601,
+      "sha256": "45873d00a0dd243596deb4aa23b2493b3d1f0671921bf2538ea431d7380220eb"
+    },
+    {
+      "path": "node_modules/playwright/NOTICE",
+      "bytes": 254,
+      "sha256": "6d602191187b35b9b01d2cffa01c8469c2c8d9de8a96f1bf868e0f264f51c81d"
+    },
+    {
+      "path": "node_modules/playwright/README.md",
+      "bytes": 11282,
+      "sha256": "b141b40be2abbbb6b111c5c270c674ac11af9122b8c438abb34484f5e8614c98"
+    },
+    {
+      "path": "node_modules/playwright/ThirdPartyNotices.txt",
+      "bytes": 705,
+      "sha256": "b17ac0bd6f4b8207e440639cc8e0ba1bf1d9eaf9b12236764ab93b346c7abd8e"
+    },
+    {
+      "path": "node_modules/playwright/cli.js",
+      "bytes": 698,
+      "sha256": "5e79302a6aad7d835d92d5ae6b4244c91cf61b28e94d7917279090e6c231f7a1"
+    },
+    {
+      "path": "node_modules/playwright/index.d.ts",
+      "bytes": 636,
+      "sha256": "b07f64ff6ec710998a62b07377fbda0ab4c313ba1f0055bfe9faa22cffedd47c"
+    },
+    {
+      "path": "node_modules/playwright/index.js",
+      "bytes": 648,
+      "sha256": "4e98f65f0a9d9bcab8cffc0c5cfdd87fd3f5b0be74fc494ff166a466b204cd44"
+    },
+    {
+      "path": "node_modules/playwright/index.mjs",
+      "bytes": 704,
+      "sha256": "a0f5715ea22354f922791a9c53dc012d5d5c067ff9cc4cd35ffb7cd272071a9f"
+    },
+    {
+      "path": "node_modules/playwright/jsx-runtime.js",
+      "bytes": 942,
+      "sha256": "2fefb7ec3a42dcf1cea35ca7e3eb107507c4d80821b1d6abf6cfc9bca36498f0"
+    },
+    {
+      "path": "node_modules/playwright/jsx-runtime.mjs",
+      "bytes": 764,
+      "sha256": "a6ae8df3a36f154f433b01fe1592170500f5fbe7798f6dacdfea5b492f31d1a6"
+    },
+    {
+      "path": "node_modules/playwright/lib/agents/agentParser.js",
+      "bytes": 3475,
+      "sha256": "a2f630c1c2c9eafa0a3ca9cdbeaa26e74801615bc572e3fce226acb662ceb0eb"
+    },
+    {
+      "path": "node_modules/playwright/lib/agents/copilot-setup-steps.yml",
+      "bytes": 646,
+      "sha256": "7483c252e2225d90cf7b66b461772a9e16e189cd45f689f48519872571e1a345"
+    },
+    {
+      "path": "node_modules/playwright/lib/agents/generateAgents.js",
+      "bytes": 16958,
+      "sha256": "3bae7bde1d05c0fbaaa1a82ce7a39732ff52904de575fe88e69c391a6c41478e"
+    },
+    {
+      "path": "node_modules/playwright/lib/agents/playwright-test-coverage.prompt.md",
+      "bytes": 1294,
+      "sha256": "8e8a32e98c7069c8af29a088a91999c81dafbeb09a144b143ebe888b48b94355"
+    },
+    {
+      "path": "node_modules/playwright/lib/agents/playwright-test-generate.prompt.md",
+      "bytes": 175,
+      "sha256": "6031c3eacf1e55d527a0397066b64d134d9f925fd7286bcc78646e714611da10"
+    },
+    {
+      "path": "node_modules/playwright/lib/agents/playwright-test-generator.agent.md",
+      "bytes": 3336,
+      "sha256": "0a61b313ff2573198fc89c7ab5b7e7db1c557193a470104ac90b2d6a0332be80"
+    },
+    {
+      "path": "node_modules/playwright/lib/agents/playwright-test-heal.prompt.md",
+      "bytes": 105,
+      "sha256": "19f2bea9648ddac89b90b40a3f87b50c276d416677f8bb2fbcdac894cdb6946b"
+    },
+    {
+      "path": "node_modules/playwright/lib/agents/playwright-test-healer.agent.md",
+      "bytes": 2891,
+      "sha256": "b3e1d85219df5ead7e3ef0dc69959b0263cc16e885f71d5b64bafdf97e6f9215"
+    },
+    {
+      "path": "node_modules/playwright/lib/agents/playwright-test-plan.prompt.md",
+      "bytes": 196,
+      "sha256": "6ce2c51b356b4e89ac1e3c2b8b3ff0a390c7b518c1d4d24f019f9eb179cd6669"
+    },
+    {
+      "path": "node_modules/playwright/lib/agents/playwright-test-planner.agent.md",
+      "bytes": 2808,
+      "sha256": "bf4baa68205aa04c4512a80bcc6a5362d3aaa76ae9165f05a9d5a29e1d34c0fd"
+    },
+    {
+      "path": "node_modules/playwright/lib/cli/reportActions.js",
+      "bytes": 3603,
+      "sha256": "4eeceedf9588d69a153f018aa548e00b73e5f61cb39bb05f0fc87c06131af2b3"
+    },
+    {
+      "path": "node_modules/playwright/lib/cli/testActions.js",
+      "bytes": 9372,
+      "sha256": "44a4770714406134d1135b77d3b4388b557a7decb7f24094e637b6a5d517dd48"
+    },
+    {
+      "path": "node_modules/playwright/lib/common/index.js",
+      "bytes": 116916,
+      "sha256": "8f2588ccdb7ce2d245fdbe3222ba67817293799dff1ba2e58303f0d558b6526f"
+    },
+    {
+      "path": "node_modules/playwright/lib/common/index.js.txt",
+      "bytes": 1399,
+      "sha256": "8527825c8efc985a83f7a2b9baaac44d20c39aa19ead2cc6d574cdedb758aa91"
+    },
+    {
+      "path": "node_modules/playwright/lib/errorContext.js",
+      "bytes": 4552,
+      "sha256": "ffc1843cebb3e90e1674c07ee2607a4a63152eff609e5f9865bbb2f9eb02e9a1"
+    },
+    {
+      "path": "node_modules/playwright/lib/globals.js",
+      "bytes": 1935,
+      "sha256": "f5922eb1fb6051900157492eb9c218e62d07378eed135bca4b2f173ed1184d1c"
+    },
+    {
+      "path": "node_modules/playwright/lib/index.js",
+      "bytes": 35668,
+      "sha256": "cb793062d359fd495f10e0916523f52c76a47fd0b6c4195451dabcd48638e862"
+    },
+    {
+      "path": "node_modules/playwright/lib/isomorphic.js",
+      "bytes": 8191,
+      "sha256": "3d61508f951aa9518adb4bf6594d61dfd1099c95a1a4f0af809a58ccebc59025"
+    },
+    {
+      "path": "node_modules/playwright/lib/isomorphic.js.txt",
+      "bytes": 267,
+      "sha256": "36c16ae5721dfe8ac2555e84d26b5895b7ca113e7304bd3735a16d56b5a71b3c"
+    },
+    {
+      "path": "node_modules/playwright/lib/loader/loaderProcessEntry.js",
+      "bytes": 1262,
+      "sha256": "45681332f4178770c204b33e5b8dcbba940baf3bc6fc86506bab24027cb513f3"
+    },
+    {
+      "path": "node_modules/playwright/lib/loader/loaderProcessEntry.js.txt",
+      "bytes": 234,
+      "sha256": "0fc4ad550d17a23e9f1cbc78f646e57461f4feb22253dd5220034ef44091005c"
+    },
+    {
+      "path": "node_modules/playwright/lib/matchers/expect.js",
+      "bytes": 546200,
+      "sha256": "b22e4f194830dceb0eb67ceb44523f49bbf49f96fba50cc097b677e94ef360d7"
+    },
+    {
+      "path": "node_modules/playwright/lib/matchers/expect.js.LICENSE",
+      "bytes": 36528,
+      "sha256": "78b2f60563d28cb3f9ea17e4cdc0657681e641e2f72766771d9e2da9ca94c065"
+    },
+    {
+      "path": "node_modules/playwright/lib/matchers/expect.js.txt",
+      "bytes": 3357,
+      "sha256": "33ffab6ebe6e66e7c056060f80e50e517efabeabd39d092f5d3497f02a28cf44"
+    },
+    {
+      "path": "node_modules/playwright/lib/mcp/test/browserBackend.js",
+      "bytes": 4889,
+      "sha256": "7143473e53c8b76720e42efab95f55227807590d2818104223d5df6ac46b681e"
+    },
+    {
+      "path": "node_modules/playwright/lib/mcp/test/generatorTools.js",
+      "bytes": 5427,
+      "sha256": "3c53feaeb9fc2ff728f334cb31f9b7211e65b20c692c7585459c3c97bdd13a12"
+    },
+    {
+      "path": "node_modules/playwright/lib/mcp/test/plannerTools.js",
+      "bytes": 6379,
+      "sha256": "715abc888d9ea30b532b75c6f09aa34101ab15c1eeb959c50cf9dedcf3a459ac"
+    },
+    {
+      "path": "node_modules/playwright/lib/mcp/test/seed.js",
+      "bytes": 3239,
+      "sha256": "f36f7fb76d4ed33225e80be208cccc9757d363a9d1527cf560736c0f1e5edd31"
+    },
+    {
+      "path": "node_modules/playwright/lib/mcp/test/streams.js",
+      "bytes": 1577,
+      "sha256": "8affc240a6a90ee2dbdedcde9927018efe426ec0d390bcd1ee4f0464e75adc0f"
+    },
+    {
+      "path": "node_modules/playwright/lib/mcp/test/testBackend.js",
+      "bytes": 4067,
+      "sha256": "dcd8d09366617f13213ce544efb5fe47df5a87258ae93545d4d0738623f43ad1"
+    },
+    {
+      "path": "node_modules/playwright/lib/mcp/test/testContext.js",
+      "bytes": 11637,
+      "sha256": "74ff4273ea12e6353d4860c9452387b643d7d8899fbd4951389ba94d18df5e37"
+    },
+    {
+      "path": "node_modules/playwright/lib/mcp/test/testTool.js",
+      "bytes": 1104,
+      "sha256": "2a8f17d0a61ccb8a4ca9c52a3255d624deca989c0b06281d579629c664f8cc8e"
+    },
+    {
+      "path": "node_modules/playwright/lib/mcp/test/testTools.js",
+      "bytes": 3714,
+      "sha256": "14710b5f34246005d974762b83a2a50e5cc17130af841cd3bc447811d69c6af7"
+    },
+    {
+      "path": "node_modules/playwright/lib/package.js",
+      "bytes": 2013,
+      "sha256": "544a18417ea51dd4c8a9f3dbc4e2b47e46c80f452e0cd23d55e9b3680bc6241e"
+    },
+    {
+      "path": "node_modules/playwright/lib/program.js",
+      "bytes": 14316,
+      "sha256": "d453e49272d33d592cac3c55e06536e5451bec135fa8d80d6b134fd5e072c88b"
+    },
+    {
+      "path": "node_modules/playwright/lib/runner/index.js",
+      "bytes": 304701,
+      "sha256": "6dcf135a144b0f243848128bb68e0a25898b8ad764a34326f36ab45d9a9e1685"
+    },
+    {
+      "path": "node_modules/playwright/lib/runner/index.js.txt",
+      "bytes": 2918,
+      "sha256": "26875e6a0ad15371cb3c5dc79a8b1cb5a3388ca6d70458f2d44f6a52b105558c"
+    },
+    {
+      "path": "node_modules/playwright/lib/transform/babelBundle.js",
+      "bytes": 2901663,
+      "sha256": "01511e45db7646e2a12890de8d7866caa0754c8799db6407a6345236f4bed0c4"
+    },
+    {
+      "path": "node_modules/playwright/lib/transform/babelBundle.js.LICENSE",
+      "bytes": 123004,
+      "sha256": "6e396aded640f0bd2671d57442575ce8172aa1371b2dece6c5d4048f2f38f34c"
+    },
+    {
+      "path": "node_modules/playwright/lib/transform/babelBundle.js.txt",
+      "bytes": 21645,
+      "sha256": "558b7f01e0e090114e1e0aee9a5b913cd22185add68c508b3ea8234e129dd7c8"
+    },
+    {
+      "path": "node_modules/playwright/lib/transform/esmLoader.js",
+      "bytes": 290393,
+      "sha256": "f4e708ea08083676777a7699c82417d16fa08113f197fbc070ccffb9e8db2beb"
+    },
+    {
+      "path": "node_modules/playwright/lib/transform/esmLoader.js.LICENSE",
+      "bytes": 17406,
+      "sha256": "3cec0c446526a449e4613b0defee0adb585f88f1d7fdba919421226d69be078e"
+    },
+    {
+      "path": "node_modules/playwright/lib/transform/esmLoader.js.txt",
+      "bytes": 2725,
+      "sha256": "94d16740d422f0b5a7c99fe7f38d6f6a5b35348ef6903ef662f1e019e42a4557"
+    },
+    {
+      "path": "node_modules/playwright/lib/util.js",
+      "bytes": 14295,
+      "sha256": "874c55495773da8c5a2ec46551c2265937bf08446231c09a8b5966e8bea2b1f7"
+    },
+    {
+      "path": "node_modules/playwright/lib/worker/workerProcessEntry.js",
+      "bytes": 75653,
+      "sha256": "cc8274565200e5f5aeecc80aef9518526ff82a32c36e2a2b06e445c238cebcc6"
+    },
+    {
+      "path": "node_modules/playwright/lib/worker/workerProcessEntry.js.txt",
+      "bytes": 661,
+      "sha256": "8503383c20eca96b7f79a65c33f2cf8c08a739c5e67ca10e3f04a6b53b31ea47"
+    },
+    {
+      "path": "node_modules/playwright/package.json",
+      "bytes": 1416,
+      "sha256": "ca170ec143a88ed3043ac953eb3b2377b2b97304104f4e1e23316684ce2c35af"
+    },
+    {
+      "path": "node_modules/playwright/test.d.ts",
+      "bytes": 673,
+      "sha256": "3f00324f263189b385c3a9383b1f4dae6237697bcf0801f96aa35c340512d79c"
+    },
+    {
+      "path": "node_modules/playwright/test.js",
+      "bytes": 806,
+      "sha256": "b97fa53a6ab864f51c9c48b5e4647d0acae45ba2948c5d78e38bfeb56755d974"
+    },
+    {
+      "path": "node_modules/playwright/test.mjs",
+      "bytes": 1400,
+      "sha256": "1deb265617d0e87b6d05bf8b3d5bf73cd4b788665c249c609a01b94ceff2eea1"
+    },
+    {
+      "path": "node_modules/playwright/types/test.d.ts",
+      "bytes": 395437,
+      "sha256": "138c4489023da880e7219a31b8049ef9cba13d90c5d7cf9538148001d7066f50"
+    },
+    {
+      "path": "node_modules/playwright/types/testReporter.d.ts",
+      "bytes": 31392,
+      "sha256": "cc31504f31abcd7263a1daed018ef8109fa255464b0c0b962f39ab3548787f9e"
+    },
+    {
+      "path": "node_modules/playwright-core/LICENSE",
+      "bytes": 11601,
+      "sha256": "45873d00a0dd243596deb4aa23b2493b3d1f0671921bf2538ea431d7380220eb"
+    },
+    {
+      "path": "node_modules/playwright-core/NOTICE",
+      "bytes": 254,
+      "sha256": "6d602191187b35b9b01d2cffa01c8469c2c8d9de8a96f1bf868e0f264f51c81d"
+    },
+    {
+      "path": "node_modules/playwright-core/README.md",
+      "bytes": 120,
+      "sha256": "d16ff7f8e38fa1fc954f695ad551cdc118d9c9bdd5f3d83203901f4c317d7d7e"
+    },
+    {
+      "path": "node_modules/playwright-core/ThirdPartyNotices.txt",
+      "bytes": 676,
+      "sha256": "a549d329bad8806fe279f0ecae0fc0270dec7e7c2dc8ec10f90e394f7c32b144"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/install_media_pack.ps1",
+      "bytes": 174,
+      "sha256": "bc20f049badf021e3a53bdb4156603caa5ef482c9a9a251f927605e676a44171"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/install_webkit_wsl.ps1",
+      "bytes": 1464,
+      "sha256": "bc61beda37a808eef27d39ce684baa792f6d17737a25a432b1a84d3b591ab815"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_chrome_beta_linux.sh",
+      "bytes": 1217,
+      "sha256": "dc8c22b9dde76583cece2857575b88094299615f3136a3c598149710c45dee3a"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_chrome_beta_mac.sh",
+      "bytes": 563,
+      "sha256": "a92eaeb4ebcf5633a4e9c981481e14c80764fc81b6fcbc0565398e50ff319433"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_chrome_beta_win.ps1",
+      "bytes": 957,
+      "sha256": "b6d9e44742feafb98d5edc56fa20042949973cf30d141a1c5b4fb384096967c5"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_chrome_stable_linux.sh",
+      "bytes": 1212,
+      "sha256": "dc72ab3567a4ce43bd8353d4ecf41f1d9c03e870169367cd3ed9043aabf67dd1"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_chrome_stable_mac.sh",
+      "bytes": 519,
+      "sha256": "bb43a96c192a6cc81524ade0264686fff7809c019a89f7db0a9849635879c3be"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_chrome_stable_win.ps1",
+      "bytes": 923,
+      "sha256": "3d96c4e2f4ebbb3fad44cf3ba58d9cf90af1c9fb3073e3b27d45a74cf005515b"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_msedge_beta_linux.sh",
+      "bytes": 1494,
+      "sha256": "10b26f35dbc2000b94edf1172d803a29c5873a4eb8d523afbc687997b642767e"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_msedge_beta_mac.sh",
+      "bytes": 377,
+      "sha256": "0036d738bc90d686100d81f328ba0003bf07863f5500b792c8da391d149750fa"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_msedge_beta_win.ps1",
+      "bytes": 874,
+      "sha256": "b173c378a59f0cc38033cee702de1f44f09276c9b2270d1a650ebe66ee312433"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_msedge_dev_linux.sh",
+      "bytes": 1489,
+      "sha256": "00e4947e7a4f8339c6db09c87976d808583c07f9179e4aa7694d88614b82fe95"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_msedge_dev_mac.sh",
+      "bytes": 372,
+      "sha256": "6f899e3b311f742c24ca37ff9e32298e8290514ffc14bf588cc51556a29da4c0"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_msedge_dev_win.ps1",
+      "bytes": 869,
+      "sha256": "46f7f98c81cb0abe687d7f4a5afea9b897a38d2a6dd6f6662fbd847f7a22bd51"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_msedge_stable_linux.sh",
+      "bytes": 1507,
+      "sha256": "ec0a31a5f09c565e108473a1850895a4458ab00c713ac1de3aa2001912e4668f"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_msedge_stable_mac.sh",
+      "bytes": 371,
+      "sha256": "3af1e893527ff2257aa2dbc3b259a053b92f45c3eadb13e38eba46e87902655d"
+    },
+    {
+      "path": "node_modules/playwright-core/bin/reinstall_msedge_stable_win.ps1",
+      "bytes": 856,
+      "sha256": "40bb5fcbfcebbbe2ce43c6e736e7c5deefc5be03b6e9c6914423c06ec1f591be"
+    },
+    {
+      "path": "node_modules/playwright-core/browsers.json",
+      "bytes": 1780,
+      "sha256": "f306eed529599b1eaf2f8a85db9de2b23e1a3fe36c2b66434b7c9434fb627a99"
+    },
+    {
+      "path": "node_modules/playwright-core/cli.js",
+      "bytes": 839,
+      "sha256": "f1c4075aef116c766092250d7f37b3249a7cee6465d953207fc38c8f6145becd"
+    },
+    {
+      "path": "node_modules/playwright-core/index.d.ts",
+      "bytes": 634,
+      "sha256": "7a8ec10b0834eb7183e4bfcd929838ac77583828e343211bb73676d1e47f6f01"
+    },
+    {
+      "path": "node_modules/playwright-core/index.js",
+      "bytes": 697,
+      "sha256": "a58fb2cec4293e7dcf73c58a179898a4f3986666451a19da4e731fa3af63265b"
+    },
+    {
+      "path": "node_modules/playwright-core/index.mjs",
+      "bytes": 1063,
+      "sha256": "3d36e2132d3c8b62397d23f0bb4177336aaee503203ae2a2c90fbeb5bf3317dd"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/bootstrap.js",
+      "bytes": 3481,
+      "sha256": "4637f4dbfef9cfc01baeb5f5d2cb63fa0901522c96915ea2227290558d27123e"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/coreBundle.js",
+      "bytes": 3425603,
+      "sha256": "9393fa79e1c67c74edc26b610d65a4f7ed73d345a762465cc88340a33a2454ac"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/entry/cliDaemon.js",
+      "bytes": 197,
+      "sha256": "062f256fb29a7bf91793a014b9c3f1f9cf2dc6b12e40a8a2ebba88a630ae16a0"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/entry/dashboardApp.js",
+      "bytes": 108,
+      "sha256": "209962c6eaeef11629f226d6a2ab33ec7a2480754242b6e19590a9e6eb71d126"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/entry/mcp.js",
+      "bytes": 442,
+      "sha256": "cc87dc0020cb41caebbf04f50e42bc7835b033a6d80e9c3f0a3d0b3dbdf341c7"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/entry/oopBrowserDownload.js",
+      "bytes": 120,
+      "sha256": "87567cdbd67dd2f50bb232d47d3784701ece7c81e39c0287bb7d1b466b68cf06"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/package.js",
+      "bytes": 2112,
+      "sha256": "9f938e1d44a0dd231b1660ca62f7dae964859b79cbdc370b8542c5d375ca3c05"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/server/chromium/appIcon.png",
+      "bytes": 16565,
+      "sha256": "6ba994f05c5cf18e22d9b6bef9898fbdec6ad4d4d77f5187d0609cb42d72d01e"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/server/electron/loader.js",
+      "bytes": 5100,
+      "sha256": "8f4f2c20933e7bef2bbed9a1b455278ad1461aa919b0386f360aee5b2580149d"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/serverRegistry.js",
+      "bytes": 247102,
+      "sha256": "e9db9d4eaa8c3690f700ea3047af7b0b6e0b16937a969589678c51db92272ae9"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/serverRegistry.js.LICENSE",
+      "bytes": 18617,
+      "sha256": "5cf540fe55a2ba9bcf0eb76e739b454faa8581e2f1a0f777602ef0855534302e"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/cli-client/channelSessions.js",
+      "bytes": 7087,
+      "sha256": "6b9c613e87340f48ad7182addd7495a8ff3fbe55feb1bbd0ce04f59f1552e126"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/cli-client/cli.js",
+      "bytes": 153,
+      "sha256": "dfde8e9dfde30c4b3914eb25ba1c5a8524ec64651d866171d75cd7b41a827180"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/cli-client/help.json",
+      "bytes": 38111,
+      "sha256": "d63f1c7e006b1bdfbe656e6bea2b4dca9e1b6c17f8c806fdaca656fef71d234d"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/cli-client/minimist.js",
+      "bytes": 4106,
+      "sha256": "1d200627373a367e0097f1abeaaa4d67cde2c33f2e5efca5cb55222c7667adc3"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/cli-client/output.js",
+      "bytes": 11703,
+      "sha256": "2eace914547a487b2aa1dc34af787fe92168f0b7b3dde24f2b127e817cc9b2b4"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/cli-client/program.js",
+      "bytes": 16059,
+      "sha256": "4a3ece6f75a707e6af71c1dde8650080e7819421594f251b9397e2e45e89cbb8"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/cli-client/registry.js",
+      "bytes": 6662,
+      "sha256": "c11d278e05542808ba37bdb032018eccf9dc78377f8025bd74fa906ae009ca30"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/cli-client/session.js",
+      "bytes": 9519,
+      "sha256": "716e87fc77251129adf8c66374cccc6788f76a02b4b33692c7e63a01a659cb5c"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/dashboard/appIcon.png",
+      "bytes": 18945,
+      "sha256": "38037bcf18c7f9b950da2e1a2d8800d38fb27637ccda293d38368a3704b67f18"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-cli/SKILL.md",
+      "bytes": 12587,
+      "sha256": "29c0b669a524d42b51934d7db9144c1c07a566d0549ae6fb6ccd810e5a3cf61b"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/element-attributes.md",
+      "bytes": 665,
+      "sha256": "bf19aa4671e0a50a0fefa9c790f39124e803060eefe395042b723c29fcb7faa2"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/playwright-tests.md",
+      "bytes": 1690,
+      "sha256": "c5b0719fef2cfdff50bd744051b2f9afc119775db4b48e9b2882c1cf3886797c"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/request-mocking.md",
+      "bytes": 2182,
+      "sha256": "54e801c9663fc2b6d68ceb058cb1c360724c2499f42acc7852a68e83e5b5f37c"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/running-code.md",
+      "bytes": 5642,
+      "sha256": "d95c539a5990b71d02d8bdf1d9414df16191eb6cff95b0063820518b7a13dcb2"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/session-management.md",
+      "bytes": 5671,
+      "sha256": "cd3e261b8763bf952f1e371b876cb78d054379afec85482f9250633e1b7e6c44"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md",
+      "bytes": 5198,
+      "sha256": "9ac47f9ae4a1aedcd2077f8ac9ab1ba6bee1962cb83ff51adcd36fb6d83b5ec6"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/test-generation.md",
+      "bytes": 16114,
+      "sha256": "12f54cfa718d9e559bad918120a4ca4f11c933167713d1b9c5f99872eddaf749"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/tracing.md",
+      "bytes": 3440,
+      "sha256": "792e0ac7705e56ac48df84c0f5400221ce86107897c671590a64a4ea6a82508e"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-cli/references/video-recording.md",
+      "bytes": 5387,
+      "sha256": "8555ab5400df0d90e66318aacc0a8a4418fbf872e7463824d55d5c41615abd83"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-component-testing/SKILL.md",
+      "bytes": 10027,
+      "sha256": "77bc6f8d1de57ac8f8996ae860c1cfc446f18f48e78cc643b43389e5a97d5c66"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-component-testing/references/gallery-spec.md",
+      "bytes": 6199,
+      "sha256": "0ca25dde6112eb379f56eb618585b64dc2dfd13c2f7f956ac7eabbd76a68912b"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-component-testing/references/migration.md",
+      "bytes": 4758,
+      "sha256": "0afda2e933235ad5c538c914e75c2469c160cd3be7650bd4ec86bef9efae8d63"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-component-testing/references/react.md",
+      "bytes": 2921,
+      "sha256": "2a9661c3bff8d12064d50aa71c4e0fe120bcf6e9f243f2506a1ad90b0edf2f90"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-component-testing/references/vue.md",
+      "bytes": 3180,
+      "sha256": "5a01334a5521d6728f7d0e87751efb0723d6a7e3f715f994fdf96b88853966c1"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/skills/playwright-trace/SKILL.md",
+      "bytes": 4712,
+      "sha256": "df85506bfa8a445c961efa1ac244cca733667b717711bcc99c1f93994c29d5dc"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/utils/extension.js",
+      "bytes": 4260,
+      "sha256": "ed1a56cb9a6b4643a6a1dea604c541a4e3a4be8d8971edcfe53c7dc9cceefe98"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/tools/utils/socketConnection.js",
+      "bytes": 3317,
+      "sha256": "973c2bea70a1f1445f4673f99e9fa351e50a2ec9fd93d7381b2c41bb4de764dd"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/utilsBundle.js",
+      "bytes": 3239355,
+      "sha256": "580f571bf063e2256b51b3946a035bc452fc0e22808d5547b198baea39923a32"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/utilsBundle.js.LICENSE",
+      "bytes": 122225,
+      "sha256": "57945338cba4878e373646733528017fbe3db1503ec2b431fd30d2a390c70c33"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/dashboard/assets/codicon-DCmgc-ay.ttf",
+      "bytes": 80340,
+      "sha256": "0f1d5219934e96e83b8db162d60b4d8c09b5de1e7d38031cbafe4a3c0f2889c9"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/dashboard/assets/firefox-1bWoP6pv.svg",
+      "bytes": 7488,
+      "sha256": "3f3742d1e78c0db6c2d3531250f70c30675ee5310de32fa89befaf738c54efd0"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/dashboard/assets/firefox-beta-k3eOH_eK.svg",
+      "bytes": 9280,
+      "sha256": "7eab5ffdc25903ba33a7202f7fffa1999f119c7be45a39e9e703c118904f917a"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/dashboard/assets/firefox-nightly-Cp5nfeDT.svg",
+      "bytes": 9143,
+      "sha256": "f311c074b0fa999fcd6b73441301fb54ee87a48ff3bf05f318647928110476da"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/dashboard/assets/index-CyWAfh-p.js",
+      "bytes": 324278,
+      "sha256": "33abc7596e49d241e5b397141073e73bb2fb7eec9880bb1e0e2e6d0f673a150e"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/dashboard/assets/index-DhC616m4.css",
+      "bytes": 131922,
+      "sha256": "b4adaf3c09a3a3a4d17d0268255113d0bbacd2045cfab47ed69a78e0b9bdbd78"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/dashboard/assets/safari-na3_-uQk.svg",
+      "bytes": 5254,
+      "sha256": "80fd72ca5eb8545f1981277b31f4f92951d469d4efebd078e4086b676fe517dc"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/dashboard/index.html",
+      "bytes": 1078,
+      "sha256": "3c127919b93d9a2a621ec5aa5be8565680edc6e961e62d028914549d22bcb218"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/dashboard/playwright-logo.svg",
+      "bytes": 5645,
+      "sha256": "511524a1c145819303a18fb71870a4307c3e740f9e9722f7686a2b42b0995b6c"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/htmlReport/index.html",
+      "bytes": 464,
+      "sha256": "ce7c098020a0eb9ce10edd416245ea6da50dfeaab18dfd0a2176979d22643be6"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/htmlReport/report.css",
+      "bytes": 99364,
+      "sha256": "afa5c8f204098c79eb093e9354d82488a2ccaa771b45453cd4d1e9a075779cb8"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/htmlReport/report.js",
+      "bytes": 415216,
+      "sha256": "f0941744b2ef35b91eafb3d6099f5d4acb342ddbb3000ff293b6e3abf80d29ac"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/recorder/assets/codeMirrorModule--QdMvsKi.css",
+      "bytes": 6251,
+      "sha256": "20be824a82832b62cc04642d31da3c609fd280b23f1cdcb1e622c4f40aac5ab8"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/recorder/assets/codeMirrorModule-CwYYHbcZ.js",
+      "bytes": 307374,
+      "sha256": "b673acf747a1667bbd90b96d9de583d69905b0bd78a196b2a7979a573f5171fd"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/recorder/assets/codicon-DCmgc-ay.ttf",
+      "bytes": 80340,
+      "sha256": "0f1d5219934e96e83b8db162d60b4d8c09b5de1e7d38031cbafe4a3c0f2889c9"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/recorder/assets/index-DYjdXIbE.js",
+      "bytes": 358249,
+      "sha256": "f3c0288840bedb5739649f7fe938a30f57469d46d6ca1e56ee885a0860b98df9"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/recorder/assets/index-l_lX622x.css",
+      "bytes": 85451,
+      "sha256": "01eecbef954379cb99bf36502849ff6e503887bd8a131a5d02dd5d8c23b6106f"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/recorder/index.html",
+      "bytes": 1078,
+      "sha256": "d8a974540383c01c031dd7f317d4276675ecc562747986e6d70234751127e891"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/recorder/playwright-logo.svg",
+      "bytes": 5033,
+      "sha256": "6b0a4367bdeab10995bc239278f04c68c10e48adbec15e799e01909a0d66dcb9"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/assets/codeMirrorModule-rXmQmLUY.js",
+      "bytes": 307393,
+      "sha256": "bb0f7c41f9889e4195c2504878e38061288881f426498434c9955479828f7e66"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/assets/defaultSettingsView-B-dXF5JN.js",
+      "bytes": 643184,
+      "sha256": "2ce8be133fe21a4abd7d8330d9b443092dc2ce28826f191442c14989f9d55b15"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/assets/urlMatch-L3liM589.js",
+      "bytes": 2510,
+      "sha256": "1bc6321e32d11c31a452bc75896f0b344e6153321854d9f1658818be7f845c16"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/assets/xtermModule-BuZfJS5v.js",
+      "bytes": 288730,
+      "sha256": "17584c22ad7d49f3c3c9e07e8b2655203cd33e60c1cb527356eabfda6a59c830"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/codeMirrorModule.-QdMvsKi.css",
+      "bytes": 6251,
+      "sha256": "20be824a82832b62cc04642d31da3c609fd280b23f1cdcb1e622c4f40aac5ab8"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/codicon.DCmgc-ay.ttf",
+      "bytes": 80340,
+      "sha256": "0f1d5219934e96e83b8db162d60b4d8c09b5de1e7d38031cbafe4a3c0f2889c9"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/defaultSettingsView.BLFoOugd.css",
+      "bytes": 105310,
+      "sha256": "72241b3112ab609ca0e06195e85e02cb373799217cd5f24a07d61d9273c4ad3e"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/index.B_TqY17P.css",
+      "bytes": 2055,
+      "sha256": "08a212fcacae1866f44f065654afcc4c7d03409c68c74b3315c5bda17a0ca003"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/index.KZ4wOW1K.js",
+      "bytes": 6566,
+      "sha256": "53e2227532161670bc601e241a7a9af00ac54826a9dd2ef9c15b8c1f77e92e63"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/index.html",
+      "bytes": 2363,
+      "sha256": "e2218af9284b6e1c2ec3b547320857778a323fd1473d90620153e967223c5721"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/manifest.webmanifest",
+      "bytes": 429,
+      "sha256": "d8540500603a32a39fe7e5a0375dc0f9ebafd11118e06a846db7efc608223ab9"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/playwright-logo.svg",
+      "bytes": 5033,
+      "sha256": "6b0a4367bdeab10995bc239278f04c68c10e48adbec15e799e01909a0d66dcb9"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/snapshot.B_Jk1wbt.js",
+      "bytes": 650,
+      "sha256": "d4d09e05451d107d8e1a6bbd041405fe518b9fd2833890e4ebaaad83b7f554f5"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/snapshot.html",
+      "bytes": 389,
+      "sha256": "c608c8899c95c5a74d3f556e20146c3d852b9df85ae2854c659a7cc773c9b727"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/sw.bundle.js",
+      "bytes": 93459,
+      "sha256": "cfd6662a71914516efe90a5a6f3da2bbe5db6e442939b868ca465f765d33723f"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/uiMode.C7UW1sC9.css",
+      "bytes": 54341,
+      "sha256": "c194e703ad4697e31c5e9b8d1e4f75f201a1fbe9940620fa6319dfa5543707b4"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/uiMode.Dzuouizj.js",
+      "bytes": 37932,
+      "sha256": "a584f96f0797144552430d7a04f7e3b84b1baaa0b781a664b1512339ec1c760b"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/uiMode.html",
+      "bytes": 727,
+      "sha256": "32b260f173708fe088834efe8eff0f9d92af0c7e2e6c987cd8e197f0a066742f"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/xtermModule.kHJ-D0s7.css",
+      "bytes": 2853,
+      "sha256": "0dd60056134e6a2994a86b59a1e9789b9f04e92924da109aef8c923acaf08ce5"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/webp_codec.LICENSE",
+      "bytes": 8841,
+      "sha256": "995c7ee35aceb7666829b7a501ca89c0864e12b493c1174b155774ab1e03d831"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/webp_codec.wasm",
+      "bytes": 565369,
+      "sha256": "164cd9583a3e4d081f767d3b41ff0a730443dc7535fcc5caff83561463384b79"
+    },
+    {
+      "path": "node_modules/playwright-core/lib/xdg-open",
+      "bytes": 32416,
+      "sha256": "7d759d54f0d4ce1beeb34ee62c587985b5042374e8de237b0dcb8cd47aa698cf"
+    },
+    {
+      "path": "node_modules/playwright-core/package.json",
+      "bytes": 876,
+      "sha256": "07c47543631fef9508760365dee9fbe958c562093ec8d122543949ed231f233f"
+    },
+    {
+      "path": "node_modules/playwright-core/types/protocol.d.ts",
+      "bytes": 823302,
+      "sha256": "b836eed98b79fabb54f1df73252a0ce178b8df4a89794251ade2fa0c5e52b678"
+    },
+    {
+      "path": "node_modules/playwright-core/types/structs.d.ts",
+      "bytes": 2455,
+      "sha256": "c9b9179b7291c8562eb0fb781219ddbdcf36149ebd7bd355e5b4a553d6b60b81"
+    },
+    {
+      "path": "node_modules/playwright-core/types/types.d.ts",
+      "bytes": 1110840,
+      "sha256": "6c688250f2b7061cec3a17ab8797671137b653f8c4e81a6df3190cb112a7579a"
+    },
+    {
+      "path": "package.json",
+      "bytes": 56,
+      "sha256": "826ed975e5cca6e12916064cacd7d5b532403e842e7cbd688088dc36f15229f1"
+    }
+  ]
+}

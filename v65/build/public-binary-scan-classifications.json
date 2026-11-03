@@ -1,0 +1,171 @@
+{
+  "schema": "work8-v65-reviewed-public-binary-classifications-v1",
+  "status": "PASS_INDEPENDENT_PUBLIC_CONSTANT_CLASSIFICATION",
+  "reviewer": "/root/v65_equivalence",
+  "atUTC": "2026-11-03T07:19:55.892680+00:00",
+  "entries": [
+    {
+      "roles": [
+        "backend"
+      ],
+      "paths": [
+        "usr/lib/x86_64-linux-gnu/libgnutls.so.30.34.3"
+      ],
+      "sha256": "779b25d20249988bea2c1aa6bbeb218f5ae7ea8a9d30ce4f54ea37372965cc4b",
+      "bytes": 2209528,
+      "categories": [
+        "private-key-material"
+      ],
+      "expectedMatchCounts": {
+        "private-key-material": 5
+      },
+      "expectedMatches": [
+        {
+          "category": "private-key-material",
+          "offset": 1586912,
+          "bytes": 175,
+          "sha256": "c41dc6cc1361b41b23dc261c959bed84bae2387ae3f196b1a60b0c61dd195d5b"
+        },
+        {
+          "category": "private-key-material",
+          "offset": 1587136,
+          "bytes": 130,
+          "sha256": "ac1e3b0c79d47689562ef8e864681b377afea59a786db073f647704adfcc82f4"
+        },
+        {
+          "category": "private-key-material",
+          "offset": 1587296,
+          "bytes": 126,
+          "sha256": "d1dc75186fa035add68642556d4cdf68b2a1b74b4b60761b17f08fca7c79a606"
+        },
+        {
+          "category": "private-key-material",
+          "offset": 1589056,
+          "bytes": 198,
+          "sha256": "a3d8965527fc3e07ed347c6d68cc95cc5511ae90a6ed7b9e9d443eceb2f5eaff"
+        },
+        {
+          "category": "private-key-material",
+          "offset": 1590880,
+          "bytes": 1645,
+          "sha256": "7f173f65ea04836d5d5fab00afa67897e71dbc01662db9bcbe807b8507b20487"
+        }
+      ],
+      "classification": "Exact immutable public GnuTLS cryptographic self-test known-answer constants, not EmpireAI/provider/session credentials. Every complete PEM constant in this binary matches an upstream named self-test constant byte-for-byte; the five scanner matches are within these known constants.",
+      "primaryEvidence": {
+        "url": "https://github.com/gnutls/gnutls/blob/3.7.9/lib/crypto-selftests-pk.c",
+        "gitBlob": "9b7c692a8fc59aba8beeb365b4db75e158ba6a28",
+        "sourceSHA256": "c3d79122e072177f55dc30a98f68b949c0f36f6159a363aae9512a22a9280ed0",
+        "binaryPackage": "libgnutls30 3.7.9-2+deb12u7 amd64",
+        "fullPEMConstantsCompared": 9,
+        "fullPEMByteEquality": true,
+        "receipt": "v65/receipts/independent-gnutls-selftest-provenance.json"
+      }
+    },
+    {
+      "roles": [
+        "backend"
+      ],
+      "paths": [
+        "usr/lib/x86_64-linux-gnu/libunistring.so.2.2.0"
+      ],
+      "sha256": "bc5951aa3d6eaba20ff9688efa3420dc95785aae3709ec48ff6df46d6f409ee5",
+      "bytes": 1792040,
+      "categories": [
+        "aws-access-key"
+      ],
+      "expectedMatchCounts": {
+        "aws-access-key": 1
+      },
+      "expectedMatches": [
+        {
+          "category": "aws-access-key",
+          "offset": 1572878,
+          "bytes": 20,
+          "sha256": "9103350cce17b3e46c97994f20396b630eb81b4359990e7c184f2d79253a55d4"
+        }
+      ],
+      "classification": "Credential-shaped substring embedded in the immutable compiled Unicode-name word dictionary. The sole match is internal to a longer374-character alphanumeric run, surrounded by alphabetically ordered Unicode word names; it is not a delimited credential or runtime-generated data.",
+      "primaryEvidence": {
+        "url": "https://github.com/coreutils/gnulib/blob/master/lib/uniname/uniname.c",
+        "sourceSHA256": "cc3b279d3741d2f9a4799cee717d0e1fbb3d6c725a9792dde8c4718818c3b2b8",
+        "sourceDescription": "Primary GNU implementation describes generated immediate-data unicode_name_words table and indexed word lookup. Exact binary hash and local structural readback are the classification binding; current source is explanatory, not an exact historical byte match.",
+        "binaryPackage": "libunistring2 1.0-2 amd64",
+        "receipt": "v65/receipts/independent-binary-scan-metadata.json",
+        "inference": "Compiled public Unicode word-data attribution from exact binary provenance, uninterrupted longer data run and surrounding sorted Unicode-name dictionary; no authentication attempted."
+      }
+    },
+    {
+      "roles": [
+        "backend",
+        "normal",
+        "recovery"
+      ],
+      "paths": [
+        "usr/local/bin/node",
+        "runtime/bin/node"
+      ],
+      "sha256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
+      "bytes": 124836408,
+      "categories": [
+        "aws-access-key"
+      ],
+      "expectedMatchCounts": {
+        "aws-access-key": 6
+      },
+      "expectedMatches": [
+        {
+          "category": "aws-access-key",
+          "offset": 52694615,
+          "bytes": 20,
+          "sha256": "dd1062592008b469ab470e086133641f1561c58d0a394f5db052d1fd549cf381"
+        },
+        {
+          "category": "aws-access-key",
+          "offset": 52697659,
+          "bytes": 20,
+          "sha256": "dd1062592008b469ab470e086133641f1561c58d0a394f5db052d1fd549cf381"
+        },
+        {
+          "category": "aws-access-key",
+          "offset": 52708270,
+          "bytes": 20,
+          "sha256": "c98632a43b87b026c7b43292b55e72b8886b0c02a0f30e1b3987ec076fc26850"
+        },
+        {
+          "category": "aws-access-key",
+          "offset": 52708822,
+          "bytes": 20,
+          "sha256": "810838e901766bc5c6114c58d108fc00da674aaf6e4a21e13e08b98631d0cd95"
+        },
+        {
+          "category": "aws-access-key",
+          "offset": 52709314,
+          "bytes": 20,
+          "sha256": "810838e901766bc5c6114c58d108fc00da674aaf6e4a21e13e08b98631d0cd95"
+        },
+        {
+          "category": "aws-access-key",
+          "offset": 52709806,
+          "bytes": 20,
+          "sha256": "810838e901766bc5c6114c58d108fc00da674aaf6e4a21e13e08b98631d0cd95"
+        }
+      ],
+      "classification": "Six credential-shaped substrings inside one embedded3339588-byte base64 WASM payload. Full payload exactly matches public Node22.23.2 deps/amaro/dist/index.js and decodes to a2504689-byte WASM-v1 module. These are generated binary encoding, not credentials.",
+      "primaryEvidence": {
+        "url": "https://github.com/nodejs/node/blob/v22.23.2/deps/amaro/dist/index.js",
+        "gitBlob": "b0f6fd4d1087809b7ed46ad6e037ea251c674f48",
+        "sourceSHA256": "f73bade45f856ff90b7610bac8422ac5d8e19b8d7f2788b0ed94453328dd59f2",
+        "base64PayloadSHA256": "4b9d94c1d1b4ef6d3a54c3cd1f7266781bf2c9288ecb29daacb1ea85dfd0f6ee",
+        "fullPayloadByteEquality": true,
+        "decodedWasmHeader": true,
+        "receipt": "v65/receipts/independent-node-primary-source-provenance.json"
+      }
+    }
+  ],
+  "enforcement": "Only exact roles, member paths, whole-fileSHA256, sizes, categories and expected match counts are admitted. Continue scanning every byte/category; refuse changed files, extra category/match, broaderpath, unmatched classified expected count, any unclassified match. No generic binary/library/PEM exception.",
+  "applicationAcceptance": false,
+  "rawMatchedBytesIncluded": false,
+  "authenticationProbesPerformed": false,
+  "sourceArchiveSHA256": "8aa72fac4c3a99a1b1013f0d30349298616a00dc526d881a6bf0f7f1abe20863"
+}

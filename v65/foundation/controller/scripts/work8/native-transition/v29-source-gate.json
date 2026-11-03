@@ -1,0 +1,192 @@
+{
+  "schema": "work8-v29-independent-source-gate-v1",
+  "reviewer": "independent_v29",
+  "reviewedAtUTC": "2026-11-01T00:24:06.131691+00:00",
+  "status": "PASS_INDEPENDENT_SOURCE_AND_LOCAL_PREFLIGHT",
+  "approved": true,
+  "scope": "ONE_EXACT_HARNESS_ONLY_NONPRODUCTION_CANDIDATE_CONDITIONAL_ON_REMOTE_TREE_AND_ACTUAL_HOSTED_PHASE_A",
+  "parentCommit": "3df45ab9714fe2e73ee6521dc00772f0f70a9c3c",
+  "parentTree": "81165e2b4e0f377dd4fa365f97b670bc056ff7c1",
+  "branch": "work8/v29-20261101-private-handoff",
+  "remoteReviewRequiredBeforeBranchCreation": true,
+  "phaseARequiredBeforeApplicationStartup": true,
+  "files": [
+    {
+      "path": ".github/workflows/work8-v29-private-handoff-20261101.yml",
+      "bytes": 3677,
+      "sha256": "354f67435959a347c5018dad4ff3e4f618bc00bd1b2e726bb7e8c98be175d773"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 1157,
+      "sha256": "91e134994950a94fcffb9810de0759438109f552476a206f42b5ae14cbcc5495"
+    },
+    {
+      "path": "scripts/work8/native-transition/browser.mjs",
+      "bytes": 19902,
+      "sha256": "2d313b1933e9ae0885ac21c6c9edf7f3bc627245011a40fec1022b530350a2e3"
+    },
+    {
+      "path": "scripts/work8/native-transition/candidate_packages.py",
+      "bytes": 11261,
+      "sha256": "7a605ea3229e3cd2ea0aca062d719b829291d7775c8b526d39baca13de0186b0"
+    },
+    {
+      "path": "scripts/work8/native-transition/canonical-comparator.mjs",
+      "bytes": 13102,
+      "sha256": "f1f98c7200fd17883c2547486a8913e9bf0d055af0e810eec23db1dedf65cc16"
+    },
+    {
+      "path": "scripts/work8/native-transition/capture-canonical-persistence.mjs",
+      "bytes": 4624,
+      "sha256": "61ce4858f486d8c7b7005ccf0cef00a46c9c1da68a5a092666e0f41c690debdf"
+    },
+    {
+      "path": "scripts/work8/native-transition/components.json",
+      "bytes": 402,
+      "sha256": "1511f21cb02fe26e2b7a6322dc3f0a90ab8d56ff4de5e9d04aebe945e07b52c7"
+    },
+    {
+      "path": "scripts/work8/native-transition/coordinator.mjs",
+      "bytes": 13596,
+      "sha256": "08ed0c12e343c7c0635cc624a7cae0f6f0a54bab9f78f28b1a0edfe1508e3fbf"
+    },
+    {
+      "path": "scripts/work8/native-transition/examine-v26.py",
+      "bytes": 25804,
+      "sha256": "52b62c7613588c89e5d228e7046ad879c352a93cfbb2dbd55dd96ba29ec294b8"
+    },
+    {
+      "path": "scripts/work8/native-transition/handoff_preflight.py",
+      "bytes": 7268,
+      "sha256": "0322a147475df3d46e1d7473708082c146e783f042e75e0585b876287db17850"
+    },
+    {
+      "path": "scripts/work8/native-transition/normal-schema.json",
+      "bytes": 35145,
+      "sha256": "086649bf180ee01715cf9a749bcf077359c90a20a1ebabab117bdaaf7961507d"
+    },
+    {
+      "path": "scripts/work8/native-transition/offline-commerce-readback.mjs",
+      "bytes": 17211,
+      "sha256": "ad0daa88235598eb7ecbaf1595fa04fb64301ab260abfabd2e0f6c978e465d8b"
+    },
+    {
+      "path": "scripts/work8/native-transition/offline-readback.mjs",
+      "bytes": 1861,
+      "sha256": "0e8cfa2093e632d14ed247573d3d8dae6925dd31bacee330a139cdf8786ab5da"
+    },
+    {
+      "path": "scripts/work8/native-transition/prepare-base-candidates.py",
+      "bytes": 10643,
+      "sha256": "1ad3db05e026219bda99b0227a60f2ad3868eee0edb02dbf21bf5db25c6fa8e0"
+    },
+    {
+      "path": "scripts/work8/native-transition/private-exchanges.mjs",
+      "bytes": 1974,
+      "sha256": "a41c06eb0dcbb5f27a8f30dfbea7a9b28f0b9e80a6b0fe289b173de765267572"
+    },
+    {
+      "path": "scripts/work8/native-transition/private-handoff-preflight.mjs",
+      "bytes": 8486,
+      "sha256": "475887fd52f5da127956ca06b36c498ab80f289215efb6f9d7ff9d4bf5957c53"
+    },
+    {
+      "path": "scripts/work8/native-transition/private-handoff.mjs",
+      "bytes": 14713,
+      "sha256": "7f45fb8350647a49063d70c6249e69e44e920b557884940c89aef7bb8f722aff"
+    },
+    {
+      "path": "scripts/work8/native-transition/private_contract.py",
+      "bytes": 6547,
+      "sha256": "dbe1ab78fdd4702e04ccc06658ecebfca5caff6f53a39e5a406a0eb878d21eae"
+    },
+    {
+      "path": "scripts/work8/native-transition/recovery-schema.json",
+      "bytes": 6992,
+      "sha256": "2304d66dfeed54b3a195262382eb0c313ecfc427fe3ce9bb94f5042e87b96820"
+    },
+    {
+      "path": "scripts/work8/native-transition/retained-components.json",
+      "bytes": 539,
+      "sha256": "4200228fd1a4469e652e1dc87a793ed1ed77d57bbc2506167211192380f62bb0"
+    },
+    {
+      "path": "scripts/work8/native-transition/retained-upload-preflight.py",
+      "bytes": 795,
+      "sha256": "6729ea15a9a4b8337a43822c4fdcd82f636e80673607d175932d7d1f03b9d134"
+    },
+    {
+      "path": "scripts/work8/native-transition/upload-preflight.py",
+      "bytes": 2418,
+      "sha256": "9582affdb55540970c05cf9e720ae9aceea5c897a03f3235230aedc4e7ef1e32"
+    },
+    {
+      "path": "scripts/work8/native-transition/v26-build-plan.json",
+      "bytes": 6750,
+      "sha256": "101fd7b60be5dcbbafe3ec33b4106de1d8e335cd5b1fb67d078ab6f4b4b5617f"
+    },
+    {
+      "path": "scripts/work8/native-transition/v28-source-gate.json",
+      "bytes": 5256,
+      "sha256": "0e92730e4e7c92c972c38de9ae03d8f5b5aa738ac7b355884189b85a0ffb0eb1"
+    },
+    {
+      "path": "scripts/work8/native-transition/verify-v28-gate.py",
+      "bytes": 3436,
+      "sha256": "0e2a0799df581d45cb8827466c95157fd75f378c143b9e2d0ddcbb91d6dea74c"
+    },
+    {
+      "path": "scripts/work8/native-transition/verify-v29-gate.py",
+      "bytes": 3652,
+      "sha256": "c97221c09a1b877b6b536dde3774dd9f93eea93fc9838351d7659b98c71504f2"
+    },
+    {
+      "path": "scripts/work8/native-transition/whole-app-readback.mjs",
+      "bytes": 14868,
+      "sha256": "f4d9ac44b41ee107193487b131090758ba2e5c287157ea0f80122bd2ad92a6af"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 1336,
+      "sha256": "52e15dfc2d2cb137512a3d44beab36815f80b229826e2a979db5c680749c22bf"
+    }
+  ],
+  "requiredDeletions": [
+    ".github/workflows/work8-v28-canonical-return-20261101.yml"
+  ],
+  "targetedTests": {
+    "status": "PASS",
+    "helperCases": 10,
+    "helperReceiptSha256": "3b588a3abfe3305ab0ee7721628503ca92f4f2f58984cbc66e22854eafe153c8",
+    "controllerChecks": 10,
+    "controllerReceiptSha256": "d2ff3f5985cc0aa9527835e2c1f5c6cd2e829a636bdfd77b98e13dad804b1274",
+    "scope": "CHANGED_HANDOFF_BOUNDARY_ONLY; LOCAL_DIFFERENT_OWNER_HOSTED_CONTRACT_NOT_PROVEN",
+    "actualHostedPhaseARequired": true,
+    "acceptedComparatorTestsRepeated": false
+  },
+  "contract": {
+    "status": "PASS",
+    "sha256": "7fab124a8cea2b4fc3daaae704336cf8cf47c17e7dd6e061c2bf36f53e2e5d8e",
+    "privateContractSha256": "33bb081ea20ba798aacce8f2079a789ead69824e34e237de452190d9fd9069e6",
+    "originalAssertionGroups": 10,
+    "sourceFilesVerified": 28,
+    "actualHostedIdentityProofPending": true
+  },
+  "limits": {
+    "executions": 1,
+    "maximumMinutes": 30,
+    "noAutomaticRetry": true,
+    "maximumAdditionalArtifactsBytes": 2147483648,
+    "retentionDays": 7,
+    "previousReservedUSD": 3.85,
+    "additionalMaximumReservedUSD": 0.5,
+    "maximumAggregateReservedUSD": 4.35,
+    "unreservedUSD": 5.65,
+    "aggregateAllowanceUSD": 10,
+    "actualChargesKnown": false
+  },
+  "applicationBuilds": 0,
+  "candidateReuploads": 0,
+  "wholeRowsAccepted": []
+}

@@ -1,7 +1,0 @@
-{
-  "schema": "work8-v65-review-channel-v1",
-  "status": "NO_ACK_ISSUED",
-  "purpose": "Independent reviewer receipts for the V65 A5 run only",
-  "applicationAcceptance": false,
-  "nativeLaunchAuthorized": false
-}

@@ -1,0 +1,142 @@
+{
+  "schema": "work8-v28-independent-source-gate-v1",
+  "reviewer": "independent_v28",
+  "reviewedAtUTC": "2026-10-31T23:29:59.583746+00:00",
+  "status": "PASS_INDEPENDENT_SOURCE_AND_LOCAL_PREFLIGHT",
+  "approved": true,
+  "scope": "ONE_EXACT_HARNESS_ONLY_NONPRODUCTION_CANDIDATE",
+  "parentCommit": "07517caaf1a355d9d3b552439815f6bb1fdb348f",
+  "parentTree": "8fbbb65117dc170cd251c7aab8959b88d6af505d",
+  "branch": "work8/v28-20261101-canonical-return",
+  "remoteReviewRequiredBeforeBranchCreation": true,
+  "files": [
+    {
+      "path": ".github/workflows/work8-v28-canonical-return-20261101.yml",
+      "sha256": "f24744121ca4c0b38c7a68842b135faff818685cb6c8b48361571abad134cc08",
+      "bytes": 3634
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "sha256": "97aa8ee161df1442c719844972d977f01098e61215f1d97b0b7a1a3b7b238d10",
+      "bytes": 1106
+    },
+    {
+      "path": "scripts/work8/native-transition/browser.mjs",
+      "sha256": "6db221ea776e9946ddab02a75b02b7f99cbabc523c64d370b7fa66f370d4b3c8",
+      "bytes": 19918
+    },
+    {
+      "path": "scripts/work8/native-transition/candidate_packages.py",
+      "sha256": "7a605ea3229e3cd2ea0aca062d719b829291d7775c8b526d39baca13de0186b0",
+      "bytes": 11261
+    },
+    {
+      "path": "scripts/work8/native-transition/canonical-comparator.mjs",
+      "sha256": "f1f98c7200fd17883c2547486a8913e9bf0d055af0e810eec23db1dedf65cc16",
+      "bytes": 13102
+    },
+    {
+      "path": "scripts/work8/native-transition/capture-canonical-persistence.mjs",
+      "sha256": "723e0f7b6c0effa6e18b39e3d7cfcda90ca61aae41502349b6bc79c9a41622d6",
+      "bytes": 4116
+    },
+    {
+      "path": "scripts/work8/native-transition/components.json",
+      "sha256": "1511f21cb02fe26e2b7a6322dc3f0a90ab8d56ff4de5e9d04aebe945e07b52c7",
+      "bytes": 402
+    },
+    {
+      "path": "scripts/work8/native-transition/coordinator.mjs",
+      "sha256": "1f634ba8103cdba3e0fbb9552ea5b812352981bd52ab952404ae7de86222e115",
+      "bytes": 13607
+    },
+    {
+      "path": "scripts/work8/native-transition/examine-v26.py",
+      "sha256": "d3890535cb35f6e4a6daf81fa5eea01fd3d9e21e969ee3fd64c965556affe72a",
+      "bytes": 24883
+    },
+    {
+      "path": "scripts/work8/native-transition/normal-schema.json",
+      "sha256": "086649bf180ee01715cf9a749bcf077359c90a20a1ebabab117bdaaf7961507d",
+      "bytes": 35145
+    },
+    {
+      "path": "scripts/work8/native-transition/offline-commerce-readback.mjs",
+      "sha256": "631399aa2bb5a31e6e3aff7cad7aed79d90d601975eb013b708aa9fd770a0b4a",
+      "bytes": 17116
+    },
+    {
+      "path": "scripts/work8/native-transition/offline-readback.mjs",
+      "sha256": "0e8cfa2093e632d14ed247573d3d8dae6925dd31bacee330a139cdf8786ab5da",
+      "bytes": 1861
+    },
+    {
+      "path": "scripts/work8/native-transition/prepare-base-candidates.py",
+      "sha256": "18b10785489ac1e3ae57dd682395f0f07685da2239ed87dacb4e958703e32f59",
+      "bytes": 10644
+    },
+    {
+      "path": "scripts/work8/native-transition/recovery-schema.json",
+      "sha256": "2304d66dfeed54b3a195262382eb0c313ecfc427fe3ce9bb94f5042e87b96820",
+      "bytes": 6992
+    },
+    {
+      "path": "scripts/work8/native-transition/retained-upload-preflight.py",
+      "sha256": "6729ea15a9a4b8337a43822c4fdcd82f636e80673607d175932d7d1f03b9d134",
+      "bytes": 795
+    },
+    {
+      "path": "scripts/work8/native-transition/upload-preflight.py",
+      "sha256": "9582affdb55540970c05cf9e720ae9aceea5c897a03f3235230aedc4e7ef1e32",
+      "bytes": 2418
+    },
+    {
+      "path": "scripts/work8/native-transition/verify-v28-gate.py",
+      "sha256": "0e2a0799df581d45cb8827466c95157fd75f378c143b9e2d0ddcbb91d6dea74c",
+      "bytes": 3436
+    },
+    {
+      "path": "scripts/work8/native-transition/whole-app-readback.mjs",
+      "sha256": "b7db6690262592902b15ec81acb4f5c7c06d77bcc16f1adad8b7f752939ae3c5",
+      "bytes": 14790
+    },
+    {
+      "path": "vercel.json",
+      "sha256": "757801ad44c76f3e2938cd6a5eda730e6b0711ecad0dff170dd6f84232861b0f",
+      "bytes": 1285
+    }
+  ],
+  "requiredDeletions": [
+    ".github/workflows/work8-v27-stage-b-20261101.yml"
+  ],
+  "targetedTests": {
+    "status": "PASS",
+    "receiptSha256": "ed3f8e3a99bb73248c6567de3930b1fa099e2080934b32bcc1b1c6fa0717d8e0",
+    "comparatorReceiptSha256": "7753590055db17d9d0b48c2102dbe9854b1abac9704a179878862ecdfd16c6ed",
+    "actualRouteAndReplayReceiptSha256": "f7fb91772b9ae60d703fc2fc0cd09bdc8ae7cb6cb517a446be4d44841674d321",
+    "controllerIntegrationReceiptSha256": "c0e3c5cfcf17a6f0b429eadbf322cb2b7c5d4a411ec6442af4fca8127290a4ee",
+    "comparatorCases": 37,
+    "actualRouteAndReplayControls": 24,
+    "integrationChecks": 7
+  },
+  "contract": {
+    "status": "PASS",
+    "sha256": "7a665263a4abf7a1a55865f176ecf3eb0f427278762ef45ffd6f8b14d43709f5",
+    "originalAssertionGroups": 10,
+    "sourceFilesVerified": 14
+  },
+  "limits": {
+    "executions": 1,
+    "maximumMinutes": 30,
+    "noAutomaticRetry": true,
+    "maximumAdditionalArtifactsBytes": 2147483648,
+    "retentionDays": 7,
+    "previousReservedUSD": 3.35,
+    "additionalMaximumReservedUSD": 0.5,
+    "maximumAggregateReservedUSD": 3.85,
+    "actualChargesKnown": false
+  },
+  "applicationBuilds": 0,
+  "candidateReuploads": 0,
+  "wholeRowsAccepted": []
+}

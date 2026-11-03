@@ -1,0 +1,100 @@
+{
+  "schema": "work8-v29-phase-b-private-contract-v1",
+  "phaseAPassedBeforeApplicationStartup": true,
+  "backend": {
+    "image": "sha256:65382b8f19482851212fe7a21746ca7ad7bf5af5708fec8f083165ac42e61573",
+    "user": "0:0",
+    "readOnlyRootfs": true,
+    "capAdd": [
+      "CAP_CHOWN",
+      "CAP_DAC_OVERRIDE",
+      "CAP_KILL",
+      "CAP_SETGID",
+      "CAP_SETUID",
+      "CAP_SYS_PTRACE"
+    ],
+    "capDrop": [
+      "ALL"
+    ],
+    "securityOpt": [
+      "no-new-privileges"
+    ],
+    "groupAdd": [],
+    "privileged": false,
+    "mounts": [
+      {
+        "destination": "/control",
+        "rw": true,
+        "type": "bind",
+        "mode": "",
+        "propagation": "rprivate"
+      },
+      {
+        "destination": "/evidence",
+        "rw": true,
+        "type": "bind",
+        "mode": "",
+        "propagation": "rprivate"
+      },
+      {
+        "destination": "/examination",
+        "rw": false,
+        "type": "bind",
+        "mode": "",
+        "propagation": "rprivate"
+      },
+      {
+        "destination": "/run/empire-policy",
+        "rw": false,
+        "type": "bind",
+        "mode": "",
+        "propagation": "rprivate"
+      }
+    ]
+  },
+  "browser": {
+    "image": "sha256:fee853fafa59550d162cef52bca02d907694b44ebf6ef9fb075bcc0c65d8dedb",
+    "user": "1001:1001",
+    "readOnlyRootfs": false,
+    "capAdd": [],
+    "capDrop": [],
+    "securityOpt": [],
+    "groupAdd": [],
+    "privileged": false,
+    "mounts": [
+      {
+        "destination": "/control",
+        "rw": true,
+        "type": "bind",
+        "mode": "",
+        "propagation": "rprivate"
+      },
+      {
+        "destination": "/evidence",
+        "rw": true,
+        "type": "bind",
+        "mode": "",
+        "propagation": "rprivate"
+      },
+      {
+        "destination": "/examination",
+        "rw": false,
+        "type": "bind",
+        "mode": "",
+        "propagation": "rprivate"
+      },
+      {
+        "destination": "/frontend-package",
+        "rw": false,
+        "type": "bind",
+        "mode": "",
+        "propagation": "rprivate"
+      }
+    ]
+  },
+  "status": "PASS_EXACT_PRIVATE_CONTRACT_REUSED",
+  "v61IdentityRebinding": {
+    "historicalContractUnchangedExceptBackendImage": true,
+    "historicalBackendImage": "sha256:abd6eb113ccf07678eba6f2386e9828afc029981e4d31bf266cd389b77d50d3e"
+  }
+}

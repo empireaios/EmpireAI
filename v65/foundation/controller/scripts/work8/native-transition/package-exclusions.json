@@ -1,0 +1,59 @@
+{
+  "schema": "work8-v23-exact-sqljs-runtime-packaging-v1",
+  "sourceCommit": "8cd7ac029b9f23b36b02c84df62492d47275311d",
+  "sourceTree": "d2e6863fa995f32be526a98bff80dffa8f8cbc00",
+  "packageName": "sql.js",
+  "packageVersion": "1.14.1",
+  "packageRoot": "backend/node_modules/sql.js",
+  "packageJsonSha256": "4c661e7817ffe4076bcc3f79f3a8085cb0a87685e6c21d50fd203a85b0c80bc2",
+  "lockfilePath": "backend/package-lock.json",
+  "lockfileSha256": "ac637e1e0329d484c8eac12ccd47a0cd6a82a51df592e94495d325c79062b13f",
+  "canonicalConsumerPath": "backend/src/brain/sqlite-database.ts",
+  "canonicalConsumerSha256": "ac7f5b343446085be2b19c0608dba4e59ae14c7e614b66d4adc1788f4fc59351",
+  "defaultEntry": "dist/sql-wasm.js",
+  "classificationReviewSha256": "3897d84ede4e4aa409af7df2b2dfd3b1edf042b16fc090b2a89a19b748e1f441",
+  "diagnosticRunId": 41185532863,
+  "diagnosticArtifactBytes": 16804,
+  "classification": "INDEPENDENTLY_VERIFIED_NON_SECRET_GENERATED_BINARY_ENCODING_COLLISION",
+  "reason": "Five unused alternative asm.js distributions; actual application imports sql.js default Node entry, which is the retained WASM loader. No source or lockfile edits; no detector exception.",
+  "remove": [
+    {
+      "path": "backend/node_modules/sql.js/dist/sql-asm-debug.js",
+      "sha256": "3de0af495b3aee18e3a8f20ff200c56bff8f2f95a8218444abc71e955bf390ec",
+      "bytes": 5635290,
+      "rule": "aws-access-key"
+    },
+    {
+      "path": "backend/node_modules/sql.js/dist/sql-asm-memory-growth.js",
+      "sha256": "400a9820e6bbe03215fa3103e4c289326d0ff72cabed3aa425f2bdb54fb06575",
+      "bytes": 1361297,
+      "rule": "aws-access-key"
+    },
+    {
+      "path": "backend/node_modules/sql.js/dist/sql-asm.js",
+      "sha256": "ddabd44184435b2189fa5f98dacc6b9512723aced2a87581e26ed17a46256c09",
+      "bytes": 1355857,
+      "rule": "aws-access-key"
+    },
+    {
+      "path": "backend/node_modules/sql.js/dist/worker.sql-asm-debug.js",
+      "sha256": "6da2e77bb1fd628e0e61df64dd024020248f469c2789fa89e88f01b793ed3b7f",
+      "bytes": 5638727,
+      "rule": "aws-access-key"
+    },
+    {
+      "path": "backend/node_modules/sql.js/dist/worker.sql-asm.js",
+      "sha256": "d63a938f30f91a035df998a6a503766a9da7cc2fe6dea201061c8f54f891ccd7",
+      "bytes": 1359294,
+      "rule": "aws-access-key"
+    }
+  ],
+  "preserve": {
+    "LICENSE": "60a3f6e4d7b29b4321359e683b36cf198d24f58e24582070f56e6fa89d5ee2be",
+    "README.md": "99b30cf6b097d588d553c26b50d8cd10695f7a25f128c6aaa227c75d806cc6b2",
+    "dist/sql-wasm.js": "77d6435bac506af0e3c59636dce9d22b1b14156348bc327f41a1577f3212360f",
+    "dist/sql-wasm.wasm": "438c88f666dc054ce4e9395f80fe9db4218b1a3c379960454880f048a7898aed"
+  },
+  "scannerExceptions": [],
+  "applicationPinsChanged": false
+}
