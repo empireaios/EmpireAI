@@ -19,9 +19,10 @@ def atomic(path,value,exclusive=False):
  if exclusive:os.link(temporary,path);temporary.unlink()
  else:os.replace(temporary,path)
 
-def capture(argv,cwd,env,*,label,receipts,seconds=30):
+def capture(argv,cwd,env,*,label,receipts,seconds=30,maximum_stream_bytes=MAX_STREAM,maximum_seconds=30,plain_diagnostic_codes=False):
  assert re.fullmatch('[a-z0-9-]{1,100}',label),'CAPTURE_FIXED_LABEL_REQUIRED'
- assert 0<seconds<=30,'CAPTURE_DEADLINE_BOUND'
+ assert type(maximum_seconds) is int and 0<maximum_seconds<=1800 and 0<seconds<=maximum_seconds,'CAPTURE_DEADLINE_BOUND'
+ assert type(maximum_stream_bytes) is int and 0<maximum_stream_bytes<=128*1024**2,'CAPTURE_STREAM_BOUND'
  receipts=pathlib.Path(receipts);receipts.mkdir(mode=0o700,parents=True,exist_ok=True)
  buffers=[bytearray(),bytearray()];hashes=[hashlib.sha256(),hashlib.sha256()];counts=[0,0]
  selector=selectors.DefaultSelector();started=time.monotonic();stop=None;proc=None;complete=True
@@ -35,7 +36,7 @@ def capture(argv,cwd,env,*,label,receipts,seconds=30):
     chunk=os.read(key.fd,16384)
     if not chunk:selector.unregister(key.fileobj);continue
     index=key.data;counts[index]+=len(chunk);hashes[index].update(chunk)
-    if counts[index]>=MAX_STREAM:stop='CAPTURE_OUTPUT_BOUND';complete=False;break
+    if counts[index]>=maximum_stream_bytes:stop='CAPTURE_OUTPUT_BOUND';complete=False;break
     buffers[index].extend(chunk)
    if stop:break
   if stop:
@@ -64,7 +65,10 @@ def capture(argv,cwd,env,*,label,receipts,seconds=30):
   if isinstance(code,str) and re.fullmatch('(?:ERR_[A-Z0-9_]{1,80}|MODULE_NOT_FOUND|E[A-Z]{1,30})',code):codes.append(code)
   if row.get('errorClass') in ('Error','TypeError','RangeError','SyntaxError','ReferenceError'):error_class=row['errorClass']
  codes=sorted(set(codes))[:16]
- receipt={'schema':'work8-v65-bounded-capture-v1','commandLabel':label,'status':'FAIL' if stop else 'PASS_CAPTURE_ONLY','code':codes[0] if stop and codes else stop or 'CAPTURE_COMPLETE','stopCause':stop,'exitCode':proc.returncode if proc else None,'stdoutBytes':counts[0],'stderrBytes':counts[1],'stdoutSHA256':hashes[0].hexdigest(),'stderrSHA256':hashes[1].hexdigest(),'knownDiagnosticCodes':codes,'errorClass':error_class,'streamComplete':complete,'maximumStreamBytes':MAX_STREAM,'maximumSeconds':seconds,'elapsedSeconds':round(time.monotonic()-started,3),'rawOutputExported':False,'applicationAcceptance':False}
+ if plain_diagnostic_codes:
+  fixed=re.findall(rb'(?<![A-Z0-9_])(?:TS[0-9]{3,6}|EACCES|EROFS|EPERM|ENOENT|ENOMEM|ENOSPC|ETIMEDOUT)(?![A-Z0-9_])',bytes(buffers[0])+bytes(buffers[1]))
+  codes=sorted(set(codes)|{code.decode('ascii') for code in fixed})[:16]
+ receipt={'schema':'work8-v65-bounded-capture-v1','commandLabel':label,'status':'FAIL' if stop else 'PASS_CAPTURE_ONLY','code':codes[0] if stop and codes else stop or 'CAPTURE_COMPLETE','stopCause':stop,'exitCode':proc.returncode if proc else None,'stdoutBytes':counts[0],'stderrBytes':counts[1],'stdoutSHA256':hashes[0].hexdigest(),'stderrSHA256':hashes[1].hexdigest(),'knownDiagnosticCodes':codes,'errorClass':error_class,'streamComplete':complete,'maximumStreamBytes':maximum_stream_bytes,'maximumSeconds':seconds,'elapsedSeconds':round(time.monotonic()-started,3),'rawOutputExported':False,'applicationAcceptance':False}
  if stop=='CAPTURE_OS_ERROR':receipt['errno']=os_errno
  if stop:
   first=receipts/'first-capture-failure.json'

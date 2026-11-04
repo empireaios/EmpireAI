@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
-"""Collect only public image metadata before dependency/application execution.
+"""V75 collect attributable executor observations before application execution.
 
 Runner v2.338.2 JobExtension reads runner-root/.setup_info and prints public
 groups in Set up job. This collector reads that same metadata file, located
 through an actual Runner.Worker ancestor; it does not claim to read the provider
-log. A final independent provider-log comparison is still required.
+log. Display-label disagreement is retained, not interpreted as harmless or as
+native incompatibility. Actual executor security and external review are separate
+mandatory gates. A final independent provider-log comparison is still required.
 """
 import argparse
 import hashlib
 import json
 import os
 import pathlib
+import platform
 import re
 import stat
 import sys
@@ -112,7 +115,10 @@ def ancestor_runner_root():
         if executable.name == "Runner.Worker":
             require(executable.is_absolute() and executable.parent.name == "bin", "RUNNER_WORKER_PATH_REFUSED")
             require(not str(executable).endswith(" (deleted)"), "RUNNER_WORKER_DELETED")
-            return executable.parent.parent, {"discoveredThrough": "actual-ancestor-proc-exe", "ancestorDepth": len(visited), "executableBasename": "Runner.Worker"}
+            require(len(parent_fields) >= 20, "PROCESS_START_IDENTITY_REQUIRED")
+            executable_stat = executable.stat()
+            require(stat.S_ISREG(executable_stat.st_mode) and executable_stat.st_uid in (0, os.getuid()) and not executable_stat.st_mode & 0o022, "RUNNER_WORKER_EXECUTABLE_OWNER_MODE")
+            return executable.parent.parent, {"discoveredThrough": "actual-ancestor-proc-exe", "ancestorDepth": len(visited), "executableBasename": "Runner.Worker", "pid": pid, "startTicks": int(parent_fields[19]), "executableDevice": executable_stat.st_dev, "executableInode": executable_stat.st_ino, "executableOwnerUid": executable_stat.st_uid}
         require(len(parent_fields) > 1, "PROCESS_PARENT_REQUIRED")
         pid = int(parent_fields[1])
     raise Refusal("RUNNER_WORKER_ANCESTOR_BOUND")
@@ -140,11 +146,47 @@ def bind_current_identity(identity, env):
     require(identity.get('runId') == run_id and identity.get('runAttempt') == 1 and identity.get('workflowCommit') == source and identity.get('jobKey') == env.get('GITHUB_JOB'), 'IDENTITY_CURRENT_RUN_BINDING')
     require(identity.get('sessionId') == f'github-actions:{run_id}:1:{job_id}', 'IDENTITY_SESSION_BINDING')
     require(identity.get('runnerImageVersion') == env.get('ImageVersion'), 'IDENTITY_ENV_IMAGE_VERSION_CHANGED')
+    require(type(identity.get('runnerId')) is int and identity['runnerId'] > 0 and isinstance(identity.get('runnerName'), str) and 0 < len(identity['runnerName']) <= 256, 'SERVICE_RUNNER_IDENTITY_REQUIRED')
+    require(all(isinstance(identity.get(k), str) and re.fullmatch(r'[0-9a-f]{64}', identity[k]) for k in ('serviceRunSHA256', 'serviceJobSHA256')), 'SERVICE_IDENTITY_RECEIPTS_REQUIRED')
     return {'runId': run_id, 'runAttempt': 1, 'jobId': job_id, 'workflowCommit': source, 'sessionId': identity['sessionId']}
 
 
+def environment_observations():
+    """Direct current-kernel observations, not an image-build attestation."""
+    boot_id = pathlib.Path('/proc/sys/kernel/random/boot_id').read_text().strip()
+    require(re.fullmatch(r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}', boot_id), 'KERNEL_BOOT_IDENTITY_REQUIRED')
+    namespaces = {name: os.readlink('/proc/self/ns/' + name) for name in ('pid', 'mnt', 'net', 'user')}
+    require(all(re.fullmatch(r'[a-z]+:\[[0-9]+\]', value) for value in namespaces.values()), 'KERNEL_NAMESPACE_OBSERVATIONS_REQUIRED')
+    observed = {'system': platform.system(), 'machine': platform.machine(), 'kernelRelease': platform.release(), 'bootIdSHA256': hashlib.sha256(boot_id.encode()).hexdigest(), 'hostNamespaces': namespaces}
+    require(observed['system'] == 'Linux' and observed['machine'] == 'x86_64' and 0 < len(observed['kernelRelease']) <= 256, 'ACTUAL_HOST_ARCHITECTURE_REQUIRED')
+    return observed
+
+
+def write_receipt(output, result):
+    """Exclusive private durable handoff; never replace or follow a link."""
+    output = pathlib.Path(output)
+    output.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+    parent = output.parent.lstat()
+    require(output.parent.resolve() == output.parent and stat.S_ISDIR(parent.st_mode) and parent.st_uid == os.getuid() and stat.S_IMODE(parent.st_mode) == 0o700, 'PRIVATE_RECEIPT_DIRECTORY_REQUIRED')
+    fd = os.open(output, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW | os.O_CLOEXEC, 0o600)
+    try:
+        os.fchmod(fd, 0o600)
+        with os.fdopen(fd, 'w', encoding='utf-8', closefd=False) as stream:
+            json.dump(result, stream, sort_keys=True, indent=2)
+            stream.write('\n')
+            stream.flush()
+            os.fsync(fd)
+    finally:
+        os.close(fd)
+    directory_fd = os.open(output.parent, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)
+    try:
+        os.fsync(directory_fd)
+    finally:
+        os.close(directory_fd)
+
+
 def collect(output):
-    result = {"schema": "work8-runtime-image-provenance-v1", "status": "REFUSED", "recordedAtEpoch": time.time(), "nativeAdmissionGranted": False, "applicationAcceptance": False, "providerSetupLogObserved": False, "independentArtifactReviewRequiredBeforeNative": True, "terminalProviderSetupLogComparisonRequiredBeforeAcceptance": True, "oldV65DiscrepancyResolved": False}
+    result = {"schema": "work8-v75-executor-observations-v1", "status": "REFUSED", "recordedAtEpoch": time.time(), "nativeAdmissionGranted": False, "applicationAcceptance": False, "providerSetupLogObserved": False, "independentArtifactReviewRequiredBeforeNative": True, "terminalProviderSetupLogComparisonRequiredBeforeAcceptance": True, "oldV65DiscrepancyResolved": False, "imageBuildIdentityEstablished": False, "metadataEqualityIsAdmissionRequirement": False}
     try:
         identity_raw, identity_meta = read_stable_metadata(output.parent / 'runner-identity.json')
         identity = json.loads(identity_raw, object_pairs_hook=unique_object)
@@ -154,17 +196,15 @@ def collect(output):
         setup_raw, setup_meta = read_stable_metadata(root / ".setup_info")
         image_raw, image_meta = read_stable_metadata(pathlib.Path("/imagegeneration/imagedata.json"))
         observations, matches = compare_metadata(setup_raw, image_raw, os.environ.get("ImageOS"), os.environ.get("ImageVersion"))
-        result.update(observations=observations, files={"runnerSetupInfo": setup_meta, "imageData": image_meta}, workerDiscovery=discovery)
-        require(matches, "CURRENT_RUNTIME_IMAGE_METADATA_DISAGREEMENT")
-        result.update(status="PASS_CURRENT_RUNTIME_METADATA_AGREEMENT_ONLY", code=None)
+        result.update(observations=observations, files={"runnerSetupInfo": setup_meta, "imageData": image_meta}, workerDiscovery=discovery, actualEnvironment=environment_observations())
+        # Classification C does not establish a cause or excuse a native failure.
+        # This stage only preserves observations; no application may start here.
+        result.update(status="OBSERVED_CURRENT_EXECUTOR_METADATA", code=None, metadataAgreement=matches, diagnosticCode=None if matches else "CURRENT_RUNTIME_IMAGE_METADATA_DISAGREEMENT", discrepancyCause="NOT_OBSERVED" if matches else "UNRESOLVED", metadataDisagreementProvenHarmless=False)
         code = 0
     except (Refusal, OSError, ValueError, TypeError, KeyError) as exc:
         result["code"] = str(exc) if isinstance(exc, Refusal) else type(exc).__name__
         code = 17
-    output.parent.mkdir(parents=True, exist_ok=True)
-    with output.open("x", encoding="utf-8") as stream:
-        json.dump(result, stream, sort_keys=True, indent=2)
-        stream.write("\n")
+    write_receipt(output, result)
     return code, result
 
 

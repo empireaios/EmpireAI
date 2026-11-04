@@ -16,8 +16,9 @@ from runtime_common import atomic,bounded_process,Refusal as RuntimeRefusal
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
 CONTROLLER_SHA='daa27901f6f19e62c1f2069c7843cbc2806c9b6e77b050082e7e38507b214e04'
 DRIVER_SHA='49d50e3d985e0a544780422f8ad56c9a10311d835bbea667f8c384ccf9d9e480'
-REVIEW_REF='work8/v66-review-20261103'
-LAUNCH_REF='refs/heads/work8/v66-a5-20261103'
+REVIEW_REF='work8/v75-review-20261104'
+LAUNCH_REF='refs/heads/work8/v75-a5-20261104'
+WORKFLOW_PATH='.github/workflows/work8-v75-a5.yml'
 ENV_KEYS=('GITHUB_ACTIONS','GITHUB_REPOSITORY','GITHUB_REPOSITORY_ID','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_SHA','GITHUB_JOB','RUNNER_OS','RUNNER_ARCH')
 
 def load_module(name,path):
@@ -75,6 +76,25 @@ def run(root,args,seconds=60,maximum=2*1024*1024,expected=(0,),env=None):
   raise Refusal('RUNTIME_COMMAND_FAILED')
  return result.stdout
 
+def preserve_first_failure(root,stage,exc):
+ code=str(exc) if isinstance(exc,Refusal) and re.fullmatch('[A-Z0-9_]{1,100}',str(exc)) else 'ADAPTER_'+type(exc).__name__.upper()
+ p=root/'runtime-evidence/first-runtime-failure.json'
+ if not p.exists():atomic(p,{'schema':'work8-v65-runtime-first-failure-v1','stage':stage,'code':code,'errno':getattr(exc,'errno',None),'rawOutputRetained':False,'applicationAcceptance':False},exclusive=True)
+
+def guard_controls(root):
+ """Run source-bound rejection controls; a pass never qualifies this host."""
+ tests=HERE.parent/'tests'
+ require(tests.is_dir() and (tests/'run_guard_controls.py').is_file(),'GUARD_CONTROL_SOURCE_REQUIRED')
+ receipt=root/'runtime-evidence/guard-controls.json'
+ require(not receipt.exists(),'GUARD_CONTROLS_ALREADY_ATTEMPTED')
+ env=clean_env(root)
+ for key in ('ImageOS','ImageVersion'):
+  require(key in os.environ,'CURRENT_GUARD_IMAGE_OBSERVATIONS_REQUIRED');env[key]=os.environ[key]
+ run(root,['/usr/bin/python3','-B',str(tests/'run_guard_controls.py'),'--output',str(receipt)],100,1024*1024,env=env)
+ observed=json.loads(receipt.read_text())
+ require(observed['status']=='PASS_SOURCE_BOUND_REJECTION_CONTROLS' and observed['testsRun']>0 and observed['failures']==[] and observed['errors']==[] and observed['actualRunnerQualified'] is False,'GUARD_REJECTION_CONTROLS_REQUIRED')
+ return observed
+
 class NoRedirect(urllib.request.HTTPRedirectHandler):
  def redirect_request(self,*args,**kwargs):raise Refusal('GITHUB_API_REDIRECT_REFUSED')
 
@@ -102,13 +122,16 @@ def identity(root,job_name):
  repo=api('/repos/'+REPOSITORY);require(repo['id']==int(REPOSITORY_ID) and repo['visibility']=='public' and not repo['archived'],'PUBLIC_ACTIVE_REPOSITORY_REQUIRED')
  run_id=os.environ['GITHUB_RUN_ID'];r=api('/repos/'+REPOSITORY+'/actions/runs/'+run_id)
  require(str(r['id'])==run_id and r['run_attempt']==1 and r['head_sha']==os.environ['GITHUB_SHA'] and r['event']=='create' and r['status']=='in_progress','CURRENT_FIRST_RUN_SERVICE_BINDING')
+ require(r.get('path')==WORKFLOW_PATH and r.get('head_branch')==LAUNCH_REF.removeprefix('refs/heads/'),'EXACT_WORKFLOW_PATH_BRANCH_REQUIRED')
  jobs=api('/repos/'+REPOSITORY+'/actions/runs/'+run_id+'/attempts/1/jobs?per_page=100');require(jobs['total_count']==1 and len(jobs['jobs'])==1,'ONE_JOB_REQUIRED');j=jobs['jobs'][0]
  require(j['name']==job_name and j['status']=='in_progress' and 'ubuntu-24.04' in j['labels'] and 'self-hosted' not in j['labels'],'CURRENT_STANDARD_HOSTED_JOB_REQUIRED')
+ require(type(j.get('runner_id')) is int and j['runner_id']>0 and j.get('runner_name')==os.environ.get('RUNNER_NAME'),'SERVICE_AND_PROCESS_RUNNER_BINDING')
  started=datetime.datetime.fromisoformat(j['started_at'].replace('Z','+00:00')).timestamp()
  require(started<=time.time() and time.time()-started<900,'FRESH_JOB_START_REQUIRED')
  image=os.environ.get('ImageVersion');require(image and os.environ.get('ImageOS')=='ubuntu24','ACTUAL_UBUNTU24_IMAGE_REQUIRED')
  disk=shutil.disk_usage(root);memory=int(next(x.split()[1] for x in pathlib.Path('/proc/meminfo').read_text().splitlines() if x.startswith('MemTotal:')))*1024
  result={'schema':'work8-v65-current-github-identity-v1','provider':'github-actions','repository':REPOSITORY,'repositoryId':REPOSITORY_ID,'runId':run_id,'runAttempt':1,'jobId':j['id'],'jobKey':os.environ['GITHUB_JOB'],'workflowCommit':r['head_sha'],'sessionId':'github-actions:'+run_id+':1:'+str(j['id']),'jobStartedAtEpoch':started,'timeoutSeconds':18000,'expiresAtEpoch':started+18000,'runnerImageVersion':image,'runnerName':j.get('runner_name'),'runnerId':j.get('runner_id'),'runnerGroupName':j.get('runner_group_name'),'labels':j['labels'],'hostUid':os.getuid(),'hostGid':os.getgid(),'architecture':'amd64','hostArtifactEgress':'github-provider-endpoints','nativeNetworkPolicy':'docker-internal-no-published-ports','ports':[],'productionMounts':[],'observedCapacity':{'cpus':os.cpu_count(),'memoryBytes':memory,'diskTotalBytes':disk.total,'diskFreeBytes':disk.free},'serviceRunSHA256':hashlib.sha256(json.dumps(r,sort_keys=True).encode()).hexdigest(),'serviceJobSHA256':hashlib.sha256(json.dumps(j,sort_keys=True).encode()).hexdigest(),'observedAtEpoch':time.time(),'applicationStarted':False}
+ result.update(workflowPath=WORKFLOW_PATH,serviceRunObserved={k:r.get(k) for k in ('id','run_attempt','head_sha','head_branch','event','path','status')},serviceJobObserved={k:j.get(k) for k in ('id','run_id','name','status','runner_id','runner_name','runner_group_id','runner_group_name','labels','started_at')})
  atomic(root/'runner-identity.json',result,exclusive=True)
  code,provenance=collect_runtime_provenance(root/'runtime-image-provenance.json')
  require(code==0,'CURRENT_RUNTIME_IMAGE_PROVENANCE_REQUIRED')
@@ -181,6 +204,8 @@ def prepare(root):
 
 def qualify(root,authority_file):
  identity=json.loads((root/'runner-identity.json').read_text());validate_image_provenance(json.loads((root/'runtime-image-provenance.json').read_text()),identity);packages=json.loads((root/'v65-packages.json').read_text());backend=packages['backend'];name='work8-v65-a5-'+identity['runId'];socket=pathlib.Path('/run/docker.sock');st=socket.lstat()
+ provenance=json.loads((root/'runtime-image-provenance.json').read_text());validate_current_executor_continuity(provenance,identity)
+ controls=json.loads((root/'runtime-evidence/guard-controls.json').read_text());require(controls['status']=='PASS_SOURCE_BOUND_REJECTION_CONTROLS' and controls['actualRunnerQualified'] is False,'GUARD_REJECTION_CONTROLS_REQUIRED')
  require(socket.resolve()==socket and stat.S_ISSOCK(st.st_mode) and st.st_uid==0 and stat.S_IMODE(st.st_mode)==0o660 and (st.st_gid in os.getgroups() or st.st_gid==os.getgid()),'ROOT_OWNED_ACCESSIBLE_DOCKER_SOCKET_REQUIRED')
  info=json.loads(run(root,['docker','info','--format','{{json .}}'],20));require(info['CgroupVersion']=='2' and 'seccomp' in str(info['SecurityOptions']),'CGROUP2_SECCOMP_REQUIRED')
  require(info['NCPU']>=4 and info['MemTotal']>=12*1024**3,'NATIVE_CAPACITY_BELOW_REVIEWED_FLOOR')
@@ -214,30 +239,63 @@ def qualify(root,authority_file):
  atomic(root/'critical-image-readback.json',critical,exclusive=True)
  smoke=json.loads(run(root,['docker','run',*safe_options,'--mount','type=bind,src='+str(script)+',dst=/examination,readonly','--entrypoint','timeout',backend['image'],'--signal=KILL','25s','node','/examination/packaging-smoke.mjs','/app/backend/node_modules/sql.js','-'],30,16384))
  require(smoke['status']=='PASS' and smoke['applicationAcceptance'] is False and smoke['databaseBytesRetained'] is False,'ACTUAL_IMAGE_SQLJS_PACKAGING_SMOKE_REQUIRED');atomic(root/'sqljs-packaging-smoke.json',smoke,exclusive=True)
+ # Qualification-only read-only observer. The original application and native
+ # isolation library remain byte-identical; successful loading is measured
+ # inside the actual protected Node process, not inferred from compilation.
+ observer=root/'runtime/native-security-observer.node';observer_receipt=root/'runtime/native-observer-build.json'
+ try:
+  run(root,['/usr/bin/python3','-B',str(HERE.parent/'build/build-native-observer.py'),'--source',str(root/'runtime/native-security-observer.c'),'--output',str(observer),'--receipt',str(observer_receipt)],75,131072)
+ except Refusal:
+  if observer_receipt.is_file():
+   regular(observer_receipt,16384);failure=json.loads(observer_receipt.read_text());code=failure.get('firstCause')
+   if isinstance(code,str) and re.fullmatch('[A-Z_]{1,80}',code):
+    preserve_first_failure(root,'qualify-observer-build',Refusal(code));raise Refusal(code) from None
+  raise
+ finally:
+  if observer_receipt.is_file():
+   regular(observer_receipt,16384);atomic(root/'runtime-evidence/dumpability-observer-build.json',json.loads(observer_receipt.read_text()),exclusive=True)
+ run(root,['sudo','-n','chown','0:0',str(observer),str(observer_receipt)],10)
+ run(root,['sudo','-n','chmod','0444',str(observer),str(observer_receipt)],10)
  private=root/'qualification-private';private.mkdir(mode=0o700);control=private/'control';control.mkdir(mode=0o700);nonce=secrets.token_hex(32);atomic(control/'qualification-request.json',{'schema':'work8-v62-private-exchange-probe-v1','nonce':nonce},exclusive=True)
- cname=name+'-qualification';network=name+'-qualification-network';created=False
+ cname=name+'-qualification';network=name+'-qualification-network';created=False;primary_failure=None
  try:
   options=['--pull','never','--network','none','--read-only','--user','0:0','--cap-drop','ALL','--memory','256m','--cpus','1','--pids-limit','32','--security-opt','no-new-privileges']
   for cap in CAPABILITIES:options+=['--cap-add',cap]
   args=['docker','run','--name',cname,'--label','work8.native='+name,*options,'--mount','type=bind,src='+str(root/'runtime')+',dst=/qualification,readonly','--mount','type=bind,src='+str(control)+',dst=/control','--entrypoint','node',backend['image'],'/qualification/native-probe.cjs']
   raw=run(root,args,30,16384,expected=(0,1));rows=[json.loads(x) for x in raw.decode().splitlines() if x.startswith('{')];require(len(rows)==1,'NATIVE_CAPABILITY_RECEIPT_REQUIRED');row=rows[0];atomic(root/'runtime-evidence/native-capability-observation.json',row,exclusive=True)
-  allowed_probe_steps={'OPERATOR_IDENTITY','NATIVE_LIBRARY_IDENTITY','READONLY_ROOT','NATIVE_LIBRARY_ADMISSION','WRITER_PROCESS_START','WRITER_IDENTITY_AND_DENIAL','CROSS_PRINCIPAL_PROC_ATTESTATION','THREAD_SYNCHRONIZED_FILTERS','PRIVATE_FILE_EXCHANGE'}
+  allowed_probe_steps={'OPERATOR_IDENTITY','NATIVE_LIBRARY_IDENTITY','READONLY_ROOT','NATIVE_LIBRARY_ADMISSION','WRITER_PROCESS_START','WRITER_IDENTITY_AND_DENIAL','CROSS_PRINCIPAL_PROC_ATTESTATION','THREAD_SYNCHRONIZED_FILTERS','PRIVATE_FILE_EXCHANGE','OBSERVER_IDENTITY','PROTECTED_ENTRYPOINTS','CURRENT_NON_DUMPABILITY','PROTECTED_ENTRYPOINT_DENIAL','NAMESPACE_OBSERVATIONS','NATIVE_DIAGNOSTIC_COMPLETENESS'}
   failure='NATIVE_CAPABILITY_'+row['assertion'] if row.get('assertion') in allowed_probe_steps else 'NATIVE_CAPABILITY_PROBE_FAILED'
+  if row.get('status')!='PASS_NATIVE_CAPABILITY_ONLY':
+   child=row.get('childFailure') or {};leaf=child.get('errorCode') or row.get('errorCode')
+   if isinstance(leaf,str) and re.fullmatch('[A-Z_0-9]{1,80}',leaf):failure=leaf
   require(row['status']=='PASS_NATIVE_CAPABILITY_ONLY',failure)
   response=json.loads((control/'qualification-response.json').read_text());require(response=={'schema':'work8-v62-private-exchange-response-v1','nonceSHA256':hashlib.sha256(nonce.encode()).hexdigest()},'PRIVATE_EXCHANGE_READBACK_FAILED')
   d=json.loads(run(root,['docker','inspect',cname],10))[0];h=d['HostConfig'];require(d['State']['ExitCode']==0 and h['ReadonlyRootfs'] and not h['Privileged'] and h['NetworkMode']=='none' and exact_capabilities(h['CapAdd']) and h['CapDrop']==['ALL'] and h['PidsLimit']==32 and h['Memory']==268435456 and not h['PortBindings'],'NATIVE_CONTAINER_CONFIG_CHANGED')
   require(d['Image']==backend['image'] and d['Config']['User']=='0:0' and not any(x.startswith(('GH_TOKEN=','GITHUB_TOKEN=','ACTIONS_RUNTIME_TOKEN=')) for x in d['Config']['Env']),'NATIVE_IDENTITY_OR_CREDENTIAL_EXCLUSION_FAILED')
   run(root,['docker','network','create','--internal','--label','work8.native='+name,network],15);created=True;net=json.loads(run(root,['docker','network','inspect',network],10))[0];require(net['Internal'] is True and net['Driver']=='bridge' and not net['Containers'],'INTERNAL_ISOLATED_NETWORK_REQUIRED')
   q={'schema':'work8-v65-native-qualification-v1','status':'PASS_CURRENT_EXECUTOR_NATIVE_PREREQUISITES','sessionId':identity['sessionId'],'criticalImageReadbackSHA256':sha(root/'critical-image-readback.json'),'sqlJsPackagingSmokeSHA256':sha(root/'sqljs-packaging-smoke.json'),'dockerSocketPath':str(socket),'dockerSocket':{'uid':st.st_uid,'gid':st.st_gid,'mode':stat.S_IMODE(st.st_mode),'dev':st.st_dev,'ino':st.st_ino},'dockerEngineId':info['ID'],'dockerInfo':{k:info.get(k) for k in ('ServerVersion','CgroupVersion','CgroupDriver','Driver','NCPU','MemTotal','SecurityOptions')},'storageCapacity':{'measuredFrontendLogicalBytes':expanded_frontends,'requiredRemainingBytes':required_free,'actualFreeBytes':shutil.disk_usage(root).free,'privateStoreReserveBytes':1024**3},'requiredCapabilities':CAPABILITIES,'seccompTSYNC':row['seccompTSYNC'],'crossPrincipalProcReadback':row['crossPrincipalProcReadback'],'readonlyRootVerified':row['readonlyRootVerified'],'privateFileExchangeVerified':True,'internalNetworkVerified':True,'noPublishedPortsVerified':True,'providerCredentialsExcluded':True,'dependencyImages':DEPENDENCY_IMAGES,'dependencyObservations':deps,'hostNodeVersion':'v22.23.2','hostNodeSHA256':NODE_SHA,'nativeObservation':row,'applicationStarted':False,'wholeRowsAccepted':[]}
+  q.update(executionMode='actual-github-runner',executionRoot=str(root),observedAtEpoch=time.time(),hostNamespaces=provenance['actualEnvironment']['hostNamespaces'],backendImageSHA256=backend['image'].removeprefix('sha256:'),containerObservation={'image':d['Image'],'user':d['Config']['User'],'privileged':h['Privileged'],'readonlyRootfs':h['ReadonlyRootfs'],'capAdd':CAPABILITIES if exact_capabilities(h['CapAdd']) else h['CapAdd'],'capDrop':h['CapDrop'],'networkMode':h['NetworkMode'],'pidMode':h['PidMode'],'ipcMode':h['IpcMode'],'utsMode':h['UTSMode'],'usernsMode':h['UsernsMode'],'cgroupnsMode':h['CgroupnsMode'],'publishedPorts':h['PortBindings'] or {},'providerCredentialsExcluded':not any(x.startswith(('GH_TOKEN=','GITHUB_TOKEN=','ACTIONS_RUNTIME_TOKEN=')) for x in d['Config']['Env']),'mounts':[{'type':m['Type'],'source':m['Source'],'destination':m['Destination'],'rw':m['RW'],'propagation':m['Propagation']} for m in d['Mounts']]})
+ except BaseException as exc:
+  primary_failure=exc;preserve_first_failure(root,'qualify',exc);raise
  finally:
-  run(root,['docker','rm','-fv',cname],15)
-  if created:run(root,['docker','network','rm',network],15)
-  # Probe only wrote fixed non-secret response, root-owned files chowned1001.
-  shutil.rmtree(private)
+  cleanup_errors=[]
+  for action,args in [('qualification-container',['docker','rm','-fv',cname]),*([('qualification-network',['docker','network','rm',network])] if created else [])]:
+   try:run(root,args,15)
+   except BaseException as exc:cleanup_errors.append({'action':action,'errorClass':type(exc).__name__})
+  try:shutil.rmtree(private)
+  except BaseException as exc:cleanup_errors.append({'action':'qualification-private-directory','errorClass':type(exc).__name__})
+  atomic(root/'runtime-evidence/qualification-cleanup.json',{'schema':'work8-v75-qualification-cleanup-v1','status':'PASS' if not cleanup_errors else 'FAIL','errors':cleanup_errors,'primaryFailurePreserved':primary_failure is not None,'applicationStarted':False},exclusive=True)
+  if cleanup_errors and primary_failure is None:raise Refusal('QUALIFICATION_CLEANUP_FAILED')
  # Exercise the unchanged seven first-error controls on this exact copied controller.
  diagnostics=root/'diagnostic-controls';env=clean_env(root);env.update(WORK8_TEST_NODE=str(root/'bin/node'),WORK8_TEST_MEMBERSHIP=str(root/'runtime/runtime-membership-bootstrap.mjs'),WORK8_TEST_EVIDENCE=str(diagnostics))
  script=root/'controller/scripts/work8/native-transition';run(root,['/usr/bin/python3','-B',str(script/'test_command_diagnostics.py')],120,1024*1024,env=env)
  diagnostic=json.loads((diagnostics/'negative-control-result.json').read_text());require(diagnostic['status']=='PASS' and diagnostic['testsRun']==7 and diagnostic['testsPassed']==7,'SEVEN_FIRST_ERROR_CONTROLS_REQUIRED');q['diagnosticControlsSHA256']=sha(diagnostics/'negative-control-result.json')
+ q['diagnosticControls']=diagnostic
+ q['observerBuildSHA256']=sha(root/'runtime-evidence/dumpability-observer-build.json')
+ q['guardControlsSHA256']=sha(root/'runtime-evidence/guard-controls.json')
+ q['evidenceBindings']={key:sha(root/path) for key,path in {'runnerIdentitySHA256':'runner-identity.json','runtimeImageProvenanceSHA256':'runtime-image-provenance.json','nativeObservationSHA256':'runtime-evidence/native-capability-observation.json','criticalImageReadbackSHA256':'critical-image-readback.json','diagnosticControlsSHA256':'diagnostic-controls/negative-control-result.json'}.items()}
+ validate_current_executor_continuity(provenance,identity);validate_executor_security(q,identity,provenance)
+ validate_qualification_evidence(q,identity,controls,json.loads((root/'runtime-evidence/dumpability-observer-build.json').read_text()),sha(HERE/'github_contract.py'))
  atomic(root/'native-qualification.json',q,exclusive=True)
  launch=json.loads(pathlib.Path(authority_file).read_text());require(launch['schema']=='work8-v65-reviewed-launch-plan-v1','REVIEWED_LAUNCH_PLAN_REQUIRED');launch['workflowCommit']=identity['workflowCommit'];atomic(root/'launch-contract.json',launch,exclusive=True)
  c={'schema':SCHEMA,'campaignId':name,'executor':identity,'runnerIdentitySHA256':sha(root/'runner-identity.json'),'runtimeImageProvenanceSHA256':sha(root/'runtime-image-provenance.json'),'authority':launch['authority'],'durationPlan':launch['durationPlan'],'dependencyImages':DEPENDENCY_IMAGES,'sources':SOURCES,'packageManifestSHA256':sha(root/'v65-packages.json'),'controllerManifestSHA256':sha(script/'controller-manifest.json'),'driverManifestSHA256':DRIVER_SHA,'sourceIdentitiesSHA256':sha(root/'source-identities.json'),'nativeQualificationSHA256':sha(root/'native-qualification.json'),'launchContractSHA256':sha(root/'launch-contract.json'),'packageDeliverySHA256':sha(root/'package-delivery.json')}
@@ -278,6 +336,7 @@ def await_review(root,stage,artifact_id,artifact_digest,max_seconds=1500):
 
 def native(root,stage):
  c=json.loads((root/'run-contract.json').read_text());validate_contract(c,time.time());require_remaining_lifetime(c,stage,time.time())
+ validate_current_executor_continuity(json.loads((root/'runtime-image-provenance.json').read_text()),c['executor'])
  receipt=root/('controller-supervisor-'+stage+'.json');attempt=root/('controller-supervisor-'+stage+'-attempt.json');require(not receipt.exists() and not attempt.exists(),'NATIVE_PHASE_ALREADY_ATTEMPTED')
  env=clean_env(root);env.update(WORK8_EXECUTION_ROOT=str(root),WORK8_EXECUTOR_ID=c['executor']['sessionId'],WORK8_RUN_CONTRACT_SHA256=sha(root/'run-contract.json'),WORK8_SOURCE_REVIEW_SHA256=sha(root/'source-review.json'))
  if stage=='full':env['WORK8_PREFLIGHT_REVIEW_SHA256']=sha(root/'preflight-review.json')
@@ -297,11 +356,12 @@ def exporter(root):
  # Explicit new provider receipts only; original secret scan, per-file,
  # logical2MiB and compressed512KiB bounds remain exactly unchanged.
  module.TOP_NAMES.update({'runtime-image-provenance.json','component-checkpoint-summary.json','launch-readiness.json','runner-identity.json','artifact-service-packages.json','artifact-service-final.json','review-transport-packages-and-executor.json','review-transport-preflight.json'})
+ module.RUNTIME_NAMES.update({'guard-controls.json','qualification-cleanup.json','dumpability-observer-build.json'})
  return module
 
 def review_export(root):
  e=exporter(root);dest=root/'review-exports/packages-and-executor';dest.mkdir(parents=True,mode=0o700)
- names=['runtime-image-provenance.json','runner-identity.json','v65-packages.json','source-identities.json','package-delivery.json','native-qualification.json','run-contract.json','launch-contract.json','package-source-scan.json','artifact-service-packages.json','critical-image-readback.json','sqljs-packaging-smoke.json','diagnostic-controls/negative-control-result.json','controller/scripts/work8/native-transition/controller-manifest.json','native-transition-driver/controller-manifest.json']
+ names=['runtime-image-provenance.json','runner-identity.json','v65-packages.json','source-identities.json','package-delivery.json','native-qualification.json','run-contract.json','launch-contract.json','package-source-scan.json','artifact-service-packages.json','critical-image-readback.json','sqljs-packaging-smoke.json','diagnostic-controls/negative-control-result.json','runtime-evidence/guard-controls.json','runtime-evidence/native-capability-observation.json','runtime-evidence/qualification-cleanup.json','runtime-evidence/dumpability-observer-build.json','controller/scripts/work8/native-transition/controller-manifest.json','native-transition-driver/controller-manifest.json']
  files={name:e.safe_bytes(root/name) for name in names}
  # Only schema-checked build receipt metadata, never build logs, source snapshots,
  # generated application databases, credentials, or native private directories.
@@ -404,10 +464,11 @@ def final_export(root,build_root=None):
  return result
 
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('command',choices=['identity','prepare','qualify','package-export','artifact-check','review-export','await-review','native','native-export','cleanup','final-export']);parser.add_argument('--root',required=True);parser.add_argument('--job-name');parser.add_argument('--authority-file');parser.add_argument('--build-root');parser.add_argument('--max-seconds',type=int,default=1500);parser.add_argument('--stage',choices=['packages-and-executor','preflight','full']);parser.add_argument('--label',choices=['preflight','packages','final']);parser.add_argument('--artifact-id');parser.add_argument('--artifact-digest');args=parser.parse_args();root=pathlib.Path(args.root)
+ parser=argparse.ArgumentParser();parser.add_argument('command',choices=['identity','guard-controls','prepare','qualify','package-export','artifact-check','review-export','await-review','native','native-export','cleanup','final-export']);parser.add_argument('--root',required=True);parser.add_argument('--job-name');parser.add_argument('--authority-file');parser.add_argument('--build-root');parser.add_argument('--max-seconds',type=int,default=1500);parser.add_argument('--stage',choices=['packages-and-executor','preflight','full']);parser.add_argument('--label',choices=['preflight','packages','final']);parser.add_argument('--artifact-id');parser.add_argument('--artifact-digest');args=parser.parse_args();root=pathlib.Path(args.root)
  try:
   require(root.is_absolute() and root.resolve()==root,'CANONICAL_ROOT_REQUIRED')
   if args.command=='identity':result=identity(root,args.job_name)
+  elif args.command=='guard-controls':result=guard_controls(root)
   elif args.command=='prepare':result=prepare(root)
   elif args.command=='qualify':result=qualify(root,args.authority_file)
   elif args.command=='package-export':preserve_build_failure(root,args.build_root);result=package_export(root)

@@ -7,6 +7,7 @@ single attempt. Raw build logs stay private. No application process is launched.
 """
 import argparse, base64, gzip, hashlib, importlib.util, io, json, os, pathlib, shutil
 import subprocess, tarfile, time, re
+from capture_diagnostics import capture, CaptureFailure, failure_fields
 
 HERE = pathlib.Path(__file__).resolve().parent
 COMMIT = '6c1e63ba20619ee480742fd87dc810ca93152e22'
@@ -54,19 +55,17 @@ def main():
         assert remaining > 0, 'BACKEND_BUILD_DEADLINE'
         command_label=label or stage+'-'+pathlib.Path(cmd[0]).name
         assert re.fullmatch('[a-z0-9-]{1,100}',command_label), 'BUILD_COMMAND_LABEL'
+        # Use the same bounded capture and process-group termination as the
+        # reviewed probes. Git's public source archive has a distinct finite
+        # byte bound; compiler/registry diagnostics never accumulate unbounded.
+        maximum_bytes=128*1024**2 if cmd==['git','archive','HEAD'] else 4*1024**2
         try:
-            p = subprocess.run(cmd, cwd=cwd, env=env, stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE, timeout=min(maximum, remaining))
-        except subprocess.TimeoutExpired as exc:
-            receipt['commandFailure']={'commandLabel':command_label,'exitCode':None,'knownDiagnosticCodes':['COMMAND_TIMEOUT'],'stdoutSHA256':hashlib.sha256(exc.stdout or b'').hexdigest(),'stderrSHA256':hashlib.sha256(exc.stderr or b'').hexdigest(),'rawOutputsExported':False}
+            return capture(cmd,cwd,env,label=command_label,receipts=out/'capture-receipts',
+                           seconds=min(maximum,remaining),maximum_seconds=1800,
+                           maximum_stream_bytes=maximum_bytes,plain_diagnostic_codes=True)
+        except CaptureFailure as exc:
+            receipt['commandFailure']={'code':exc.receipt['code'],**failure_fields(exc),'rawOutputsExported':False}
             raise
-        combined=p.stdout+p.stderr
-        (logs / (str(len(list(logs.iterdir()))) + '.log')).write_bytes(combined[-2*1024*1024:])
-        if p.returncode:
-            codes=sorted({x.decode() for x in re.findall(rb'(?<![A-Z0-9_])(?:TS[0-9]{3,5}|EACCES|EROFS|EPERM|ENOENT|ENOMEM|ENOSPC|ETIMEDOUT)(?![A-Z0-9_])',combined)})[:16]
-            receipt['commandFailure']={'commandLabel':command_label,'exitCode':p.returncode,'knownDiagnosticCodes':codes,'stdoutSHA256':hashlib.sha256(p.stdout).hexdigest(),'stderrSHA256':hashlib.sha256(p.stderr).hexdigest(),'rawOutputsExported':False}
-        assert p.returncode == 0, 'COMMAND_NONZERO_' + str(p.returncode)
-        return p.stdout
 
     try:
         assert run(['git','rev-parse','HEAD']).decode().strip() == COMMIT, 'BACKEND_COMMIT_MISMATCH'
@@ -214,7 +213,7 @@ ENTRYPOINT ["node","/app/deployment/locked-runtime.cjs"]
                               'Complete original A5-08/A5-09 lifecycle and independent whole-row review']
     except Exception as exc:
         receipt['firstError']={'stage':stage,'class':type(exc).__name__,
-                               'code':str(exc) if isinstance(exc,AssertionError) else 'BOUNDED_BUILD_OPERATION_FAILED'}
+                               'code':str(exc) if isinstance(exc,(AssertionError,CaptureFailure)) else 'BOUNDED_BUILD_OPERATION_FAILED'}
         receipt['firstError'].update(receipt.get('commandFailure',{}))
         raise
     finally:
