@@ -18,13 +18,13 @@
     },
     {
       "path": ".github/workflows/work8-v81-qualification.yml",
-      "bytes": 2724,
-      "sha256": "0f7d91b621cb452dcddd33380e67416f0b0d8af259e18482572de30b0818e5a7"
+      "bytes": 2728,
+      "sha256": "a87d91ba21b5458ddf0851df79df81cd2b8abb2ece754199c929ef1f19bc0e3a"
     },
     {
       "path": "qualification/README.md",
-      "bytes": 7277,
-      "sha256": "4da21a759e41801305949f29474a33bf0e55ecdadb3483a766cfaaecafe7f3f7"
+      "bytes": 8405,
+      "sha256": "c56b06042b35acd00e5beff542e835296d1346b266fbd0ab2c3bea1a24108bad"
     },
     {
       "path": "qualification/backend-alias-probe-spec.json",
@@ -43,8 +43,8 @@
     },
     {
       "path": "qualification/config.json",
-      "bytes": 2058,
-      "sha256": "4c2d69c6829cac9291e0ec49fc19607361fc214f583d5b5e7804ddb3c03bfe0f"
+      "bytes": 2272,
+      "sha256": "39ad03a988b5e204f5e5f103e89a6608c6345e377706362884690af6a357f9ff"
     },
     {
       "path": "qualification/expected-reconstruction-inputs.json",
@@ -98,8 +98,8 @@
     },
     {
       "path": "qualification/qualify_only.py",
-      "bytes": 54230,
-      "sha256": "12a2feaff8225a523eedc6f44c592a5e36fb5dddb092dd8f094d2d5162a3e63c"
+      "bytes": 55358,
+      "sha256": "5d154403a9c050d23448ae2b475644257cb9d114601a1beaca44fe49ab71a64a"
     },
     {
       "path": "qualification/verify_evidence.py",

@@ -126,17 +126,17 @@ def validate_authority(config, approval=None, manifest_sha=None):
     a = config.get('authority', {})
     need(a.get('scope') == 'one-qualification-only-attempt' and a.get('ownerDecisionRecorded') is True and a.get('maximumAttempts') == 1, 'SEPARATE_QUALIFICATION_APPROVAL_REQUIRED')
     need(a.get('reservationCommitted') is True and a.get('providerBillingBoundVerified') is True, 'QUALIFICATION_RESERVATION_AND_BILLING_REQUIRED')
-    need({k: a.get(k) for k in ('work8CeilingUSD', 'priorOverallHoldsUSD', 'priorA5HoldsUSD', 'availableBeforeReservationUSD')} == {'work8CeilingUSD':'100.00', 'priorOverallHoldsUSD':'12.11', 'priorA5HoldsUSD':'2.16', 'availableBeforeReservationUSD':'7.84'}, 'CURRENT_LEDGER_REQUIRED')
+    need({k: a.get(k) for k in ('work8CeilingUSD', 'priorOverallHoldsUSD', 'priorA5HoldsUSD', 'availableBeforeReservationUSD')} == {'work8CeilingUSD':'100.00', 'priorOverallHoldsUSD':'12.12', 'priorA5HoldsUSD':'2.17', 'availableBeforeReservationUSD':'7.83'}, 'CURRENT_LEDGER_REQUIRED')
     reserve, exposure = amount(a.get('reservationUSD')), amount(a.get('maximumProspectiveUSD'))
     need(Decimal('0.000152') <= exposure <= reserve <= Decimal('0.01'), 'QUALIFICATION_FINANCIAL_CAP_REQUIRED')
-    need(amount(a.get('currentOverallHoldsUSD')) == Decimal('12.11') + reserve and amount(a.get('currentA5HoldsUSD')) == Decimal('2.16') + reserve and amount(a.get('remainingUnreservedUSD')) == Decimal('7.84') - reserve, 'QUALIFICATION_LEDGER_ARITHMETIC')
+    need(amount(a.get('currentOverallHoldsUSD')) == Decimal('12.12') + reserve and amount(a.get('currentA5HoldsUSD')) == Decimal('2.17') + reserve and amount(a.get('remainingUnreservedUSD')) == Decimal('7.83') - reserve, 'QUALIFICATION_LEDGER_ARITHMETIC')
     need(all(a.get(k) is False for k in ('automaticRetries','applicationExecutionAuthorized','packageRebuildAuthorized','packageReuploadAuthorized','productionOperations','protectedDataTransfer','commerceActivation')), 'QUALIFICATION_SCOPE_LOCKS_REQUIRED')
     need(guard.digest_string(a.get('billingEvidenceSHA256')), 'CURRENT_BILLING_EVIDENCE_REQUIRED')
     need(guard.digest_string(config.get('packageApplicabilityProofSHA256')), 'REVIEWED_COMPLETE_PACKAGE_APPLICABILITY_REQUIRED')
     need(isinstance(approval, dict) and approval.get('schema') == 'work8-v81-owner-qualification-approval-v1' and approval.get('recordedOwnerApproval') is True, 'OWNER_APPROVAL_RECEIPT_REQUIRED')
     need(approval.get('scope') == a['scope'] and approval.get('maximumAttempts') == 1 and approval.get('applicationExecutionAuthorized') is False, 'OWNER_QUALIFICATION_SCOPE_REQUIRED')
     need(guard.digest_string(manifest_sha) and approval.get('sourceManifestSHA256') == manifest_sha and approval.get('reservationUSD') == a['reservationUSD'] and approval.get('maximumProspectiveUSD') == a['maximumProspectiveUSD'], 'APPROVAL_SOURCE_AND_EXPOSURE_BINDING_REQUIRED')
-    need(config.get('repository') == guard.REPOSITORY and config.get('repositoryId') == guard.REPOSITORY_ID and config.get('workflowPath') == '.github/workflows/work8-v81-qualification.yml' and config.get('launchRef') == 'refs/heads/work8/v81-qualification-20261105' and config.get('jobName') == 'A5 V81 security and handoff qualification', 'EXACT_QUALIFICATION_ROUTE_REQUIRED')
+    need(config.get('repository') == guard.REPOSITORY and config.get('repositoryId') == guard.REPOSITORY_ID and config.get('workflowPath') == '.github/workflows/work8-v81-qualification.yml' and config.get('launchRef') == 'refs/heads/work8/v86-qualification-20261107' and config.get('jobName') == 'A5 V86 security and handoff qualification', 'EXACT_QUALIFICATION_ROUTE_REQUIRED')
     limits = config.get('limits', {})
     need(limits == {'jobTimeoutSeconds':3600,'runStepSeconds':2580,'cleanupSeconds':480,'uploadSeconds':180,'artifactVerificationSeconds':120,'exportLogicalBytes':8388608,'exportFiles':128,'maximumServiceZipBytes':16777216,'artifactObjects':1,'retentionDays':1}, 'QUALIFICATION_EXPOSURE_LIMITS_REQUIRED')
     return a
@@ -414,6 +414,27 @@ def handoff(campaign, artifact, driver, name):
     return prepared,result
 
 
+def canonical_prepared_inventory(rows):
+    """Validate the complete file map, then order canonical POSIX path keys.
+
+    Filesystem traversal and manifest serialization may have different orders.
+    Neither operand is trusted: reject malformed or duplicate entries before
+    comparing the full path/size/SHA256 map under the same ordering contract.
+    """
+    need(isinstance(rows, list) and 0 < len(rows) <= 20000,
+         'PREPARED_INVENTORY_SIZE_BOUND')
+    indexed = {}
+    for row in rows:
+        need(isinstance(row, dict) and set(row) == {'path', 'bytes', 'sha256'},
+             'PREPARED_INVENTORY_ENTRY_SCHEMA')
+        name = guard.relative_name(row['path'])
+        need(name not in indexed, 'PREPARED_DUPLICATE_INVENTORY_PATH')
+        need(type(row['bytes']) is int and row['bytes'] >= 0 and
+             guard.digest_string(row['sha256']), 'PREPARED_INVENTORY_ENTRY_IDENTITY')
+        indexed[name] = {'path': name, 'bytes': row['bytes'], 'sha256': row['sha256']}
+    return [indexed[name] for name in sorted(indexed)]
+
+
 def independent_prepared_inventory(prepared, handoff_result):
     """Second filesystem walk independent of adapter's admission implementation.
 
@@ -438,7 +459,9 @@ def independent_prepared_inventory(prepared, handoff_result):
             name=p.relative_to(root).as_posix()
             need(not name.endswith(('.pyc','.pyo')) and '__pycache__' not in p.relative_to(root).parts,'PREPARED_CACHE_FILE_REFUSED')
             rows.append({'path':name,'bytes':s.st_size,'sha256':digest(p)})
-        need(rows==sorted(expected['files'],key=lambda row:row['path']),'PREPARED_EXACT_INDEXED_INVENTORY_CHANGED')
+        rows = canonical_prepared_inventory(rows)
+        expected_rows = canonical_prepared_inventory(expected['files'])
+        need(rows == expected_rows, 'PREPARED_EXACT_INDEXED_INVENTORY_CHANGED')
         observations[label]={'manifestSHA256':manifest_sha,'filesVerified':len(rows),'inventory':rows,'cacheFilesCreated':0,'symlinksAccepted':0}
     receipt={'schema':'work8-v81-independent-prepared-inventory-v1','status':'PASS_SECOND_FILESYSTEM_WALK','method':'lstat plus SHA256 every regular file, exact manifest/inventory equality, no links/cache files','observations':observations,'applicationStarted':False,'wholeRowAcceptanceClaimed':False}
     atomic(prepared/'independent-prepared-inventory.json',receipt,exclusive=True)

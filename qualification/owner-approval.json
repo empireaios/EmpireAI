@@ -4,15 +4,15 @@
   "scope": "one-qualification-only-attempt",
   "maximumAttempts": 1,
   "applicationExecutionAuthorized": false,
-  "sourceManifestSHA256": "71618afffe31592d4f4d1ba26fa43923c166a3109895d15ef2de713debb3cd41",
+  "sourceManifestSHA256": "26e5bce179e2a00eb23429089b40b498f16aca43e3042e242b9879c1a5b99875",
   "reservationUSD": "0.01",
   "maximumProspectiveUSD": "0.01",
-  "reviewedEngineeringTree": "98df78ad67f866bc0b57e60e9924c04bd52f2ebc",
-  "ownerDecision": "V85 A5 actual-runner qualification conditional owner authorisation, 2026-11-05; current owner continuation: Close work 8, take it till the end, 2026-11-07.",
-  "activationScope": "Existing reviewed workflow route and authority metadata only; complete executable implementations unchanged.",
-  "reservationId": "V85-A5-QUALIFICATION-98df78ad-ONCE",
-  "reservationReused": true,
-  "newReservationCreated": false,
+  "reviewedEngineeringTree": "78b0a76f62911231c85808e77ceb98b0dcb45bd5",
+  "ownerDecision": "PROPOSED ACTIVATION BYTES ONLY: operative exclusively after the owner separately approves this exact source and one bounded qualification; the actual dated owner approval and reservation must be recorded externally before publication or launch.",
+  "activationScope": "Exact reviewed qualification-only metadata activation; no executable implementation change from the inert engineering commit.",
+  "reservationId": "V86-A5-QUALIFICATION-INVENTORY-ONCE",
+  "reservationReused": false,
+  "newReservationCreated": true,
   "billingEvidenceSHA256": "32dec4db33affa74a27736dc94073b733af115f199fa376016c3debdf0efcd4e",
   "maxJobMinutes": 60,
   "automaticRetries": false,
@@ -22,5 +22,9 @@
     "A5-09",
     "full-A5-examination"
   ],
-  "recordedAtUTC": "2026-11-07T01:07:08.431012+00:00"
+  "proposalStatus": "PROPOSED_ACTIVATION_REQUIRES_EXTERNAL_OWNER_APPROVAL",
+  "baselineV85Commit": "e1e3825fb636c96492ac0dee8530238e17cf7cbf",
+  "previousReservationId": "V85-A5-QUALIFICATION-98df78ad-ONCE",
+  "previousAttemptConsumed": true,
+  "externalApprovalAndReservationMustExistBeforePublication": true
 }

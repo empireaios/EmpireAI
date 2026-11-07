@@ -1,24 +1,43 @@
-# V84 complete qualification correction
+# V86 inventory correction and qualification proposal
 
-This is the runnable V85 qualification release derived from reviewed engineering
-tree `98df78ad67f866bc0b57e60e9924c04bd52f2ebc`. The V85 owner decision
-permits one qualification-only attempt. The source-bound approval records the
-complete release manifest; its exact commit and tree must be independently
-checked before creating the fresh launch branch. All executable controller,
-security, package and qualification implementations remain unchanged.
+This proposed activation derives from published V85 commit
+`e1e3825fb636c96492ac0dee8530238e17cf7cbf`, tree
+`67b998f2932a249b72416d5126e10c4d46fdb962`. V85 run42363866171
+failed before native qualification. Its one-attempt approval is consumed.
 
-The single standard public-repository ubuntu-24.04 job has a hard 60-minute
-limit: checkout 2, work 43, cleanup 8, upload 3, artifact service readback 2,
-with 2 minutes unallocated. No retry, package build or package upload is
-included. One sanitized metadata artifact is bounded to 8 MiB logical bytes,
-128 allowlisted files, 16 MiB service ZIP and one-day retention.
+The complete prepared controller and driver inventories are now independently
+validated as canonical relative POSIX path/size/SHA256 maps, with duplicate
+paths refused, then compared under one deterministic string ordering. No
+application package, original controller implementation or security guard is
+changed. The exact retained controller101 and driver174 file contents are
+the real filesystem operands used for the corrected comparator positive.
 
-The existing V85 reservation `V85-A5-QUALIFICATION-98df78ad-ONCE` is reused:
-US$0.01 maximum exposure, US$12.12 aggregate holds, US$2.17 A5 holds and
-US$7.83 unreserved A5 authority under the US$100 Work 8 ceiling. No second
-reservation was created. Fresh public-standard-runner and artifact-storage
-billing evidence is bound by SHA256 in config.json. Actual provider charges
-remain unconfirmed; no account-wide billing settings are asserted.
+These are proposed activation bytes, not evidence of an owner decision or
+an existing reservation. The separately preserved inert engineering checkout
+retains false gates and zero new reservation. The activated metadata in this
+proposal becomes operative only after external exact-source owner approval
+and a real once-only reservation receipt, both checked before publication.
+The proposed fresh route is `work8/v86-qualification-20261107`. Publication
+and one qualification attempt require separate exact-source owner approval.
+A separately named activation proposal identifies the exact metadata delta
+and derived tree; proposed bytes alone are never evidence of owner consent.
+
+The proposed standard public ubuntu-24.04 job retains the60-minute cap:
+checkout2, work43, cleanup8, upload3, artifact service readback2, reserve2.
+No retry, package build or package upload. One sanitized metadata artifact
+is bounded to8MiB logical bytes,128 allowlisted files,16MiB service ZIP
+and one-day retention. Existing evidence schema/artifact prefix remains V81
+for compatibility; exact source, fresh launch route and provider IDs bind V86.
+
+Current recorded holds remain US$12.12 total /US$2.17 A5 /US$7.83 unreserved
+A5. The optional new qualification proposal is US$0.01 maximum exposure and
+reservation. Only after approval would holds become US$12.13 /US$2.18 /
+US$7.82. Actual provider charges remain unconfirmed. The US$100 planning
+ceiling is not per-run authority.
+
+The local host cannot execute UID/GID1001. Complete sequential preparation
+under that principal remains NOT EXECUTED locally; full filesystem comparator
+validation is not a substitute for the actual hosted sequence.
 
 Original controller and `github_contract.py` principal/security checks remain
 unchanged. This route cannot start initialized Brain, application lifecycle,

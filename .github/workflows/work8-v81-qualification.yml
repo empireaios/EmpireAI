@@ -1,4 +1,4 @@
-name: Work 8 V81 security and handoff qualification only
+name: Work 8 V86 security and handoff qualification only
 
 on:
   create:
@@ -8,17 +8,17 @@ permissions:
   actions: read
 
 concurrency:
-  group: work8-v81-qualification-20261105
+  group: work8-v86-qualification-20261107
   cancel-in-progress: false
 
 jobs:
   qualification:
-    name: A5 V81 security and handoff qualification
-    # V85 owner-approved qualification only. Exact fresh route, one reserved attempt.
+    name: A5 V86 security and handoff qualification
+    # V86 qualification only; activate solely after external exact-source owner approval.
     if: >-
       github.repository == 'empireaios/EmpireAI' &&
       github.event.ref_type == 'branch' &&
-      github.event.ref == 'work8/v81-qualification-20261105' &&
+      github.event.ref == 'work8/v86-qualification-20261107' &&
       github.run_attempt == 1
     runs-on: ubuntu-24.04
     timeout-minutes: 60
