@@ -6,7 +6,8 @@ compiler, changed lock, unmatched preserved executable, or image error stops thi
 single attempt. Raw build logs stay private. No application process is launched.
 """
 import argparse, base64, gzip, hashlib, importlib.util, io, json, os, pathlib, shutil
-import subprocess, tarfile, time, re
+import subprocess, tarfile, time, re, sys
+sys.dont_write_bytecode=True
 from capture_diagnostics import capture, CaptureFailure, failure_fields
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -23,6 +24,11 @@ def load_module(name, path):
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
+def reconstruction_env():
+    env = {k:v for k,v in os.environ.items() if k in {'PATH','HOME','TMPDIR','LANG','LC_ALL'}}
+    env.update(PYTHONDONTWRITEBYTECODE='1', RAILWAY_GIT_COMMIT_SHA=COMMIT, CI='true', NPM_CONFIG_AUDIT='false', NPM_CONFIG_FUND='false')
+    return env
 
 def main():
     ap = argparse.ArgumentParser()
@@ -47,8 +53,7 @@ def main():
                'commit':COMMIT, 'tree':TREE, 'baseImage':NODE,
                'applicationRuntimeStarted':False, 'acceptanceGranted':False,
                'rawLogsPublic':False, 'automaticRetry':False}
-    env = {k:v for k,v in os.environ.items() if k in {'PATH','HOME','TMPDIR','LANG','LC_ALL'}}
-    env.update(RAILWAY_GIT_COMMIT_SHA=COMMIT, CI='true', NPM_CONFIG_AUDIT='false', NPM_CONFIG_FUND='false')
+    env = reconstruction_env()
 
     def run(cmd, cwd=src, maximum=300, label=None):
         remaining = deadline - time.monotonic()

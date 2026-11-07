@@ -1,0 +1,80 @@
+name: Work 8 V81 security and handoff qualification only
+
+on:
+  create:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: work8-v81-qualification-20261105
+  cancel-in-progress: false
+
+jobs:
+  qualification:
+    name: A5 V81 security and handoff qualification
+    # V85 owner-approved qualification only. Exact fresh route, one reserved attempt.
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v81-qualification-20261105' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out exact reviewed source
+        id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Qualify retained-package handoff and current native security only
+        id: qualification
+        timeout-minutes: 43
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 -B qualification/qualify_only.py run
+          --campaign "$RUNNER_TEMP/v81-qualification-$GITHUB_RUN_ID"
+
+      - name: Preserve first cause and clean only this qualification
+        id: final
+        if: ${{ always() && steps.checkout.outcome == 'success' }}
+        timeout-minutes: 8
+        run: >-
+          python3 -B qualification/qualify_only.py finalize
+          --campaign "$RUNNER_TEMP/v81-qualification-$GITHUB_RUN_ID"
+
+      - name: Preserve bounded sanitized qualification metadata
+        id: artifact
+        if: ${{ always() && steps.final.outputs.export_ready == 'true' }}
+        timeout-minutes: 3
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v81-qualification-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v81-qualification-${{ github.run_id }}/export/
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+
+      - name: Verify one bounded artifact service receipt
+        if: ${{ always() && steps.artifact.outcome == 'success' }}
+        timeout-minutes: 2
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 -B qualification/qualify_only.py artifact-check
+          --campaign "$RUNNER_TEMP/v81-qualification-$GITHUB_RUN_ID"
+          --artifact-id '${{ steps.artifact.outputs.artifact-id }}'
+          --artifact-digest '${{ steps.artifact.outputs.artifact-digest }}'

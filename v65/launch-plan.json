@@ -1,6 +1,6 @@
 {
   "schema": "work8-v65-reviewed-launch-plan-v1",
-  "status": "OWNER_APPROVED_ONE_ATTEMPT_PENDING_DURABLE_RELEASE_BINDING",
+  "status": "V81_LOCAL_PREPARATION_ONLY_V75_AUTHORITY_CONSUMED",
   "scope": "V75 original-security candidate for one coherent isolated A5 job. This is an engineering candidate, not execution authority. Actual runner qualification, independent package/executor acknowledgment, initialized Brain preflight and independent preflight acknowledgment must all pass on the same active runner before the single native examination. No automatic retry or successor.",
   "authority": {
     "ownerDirective": "EMPIREAI_V75_EXPLICIT_SINGLE_EXECUTION_APPROVAL",
@@ -9,13 +9,13 @@
     "priorOverallHoldsUSD": 12.09,
     "priorA5HoldsUSD": 2.14,
     "availableBeforeReservationUSD": 7.86,
-    "reservationUSD": 1,
+    "reservationUSD": 0,
     "proposedReservationUSD": 1,
-    "maximumProspectiveUSD": 0.127,
+    "maximumProspectiveUSD": 0,
     "currentOverallHoldsUSD": 13.09,
     "currentA5HoldsUSD": 3.14,
     "remainingUnreservedUSD": 6.86,
-    "reservationCommitted": true,
+    "reservationCommitted": false,
     "renewed": false,
     "productionOperations": false,
     "protectedDataTransfer": false,
@@ -23,10 +23,10 @@
     "subscriptions": false,
     "automaticRecreate": false,
     "automaticRerun": false,
-    "ownerDecisionRecorded": true,
-    "ownerApprovalReceiptSHA256": "6f3e18696671ec71ac09eaa03feaf8ceda3c4d5726945ee259f7a42a794fd2ea",
-    "approvalScope": "one-qualified-a5-attempt",
-    "maximumAttempts": 1
+    "ownerDecisionRecorded": false,
+    "ownerApprovalReceiptSHA256": null,
+    "approvalScope": "none-local-reuse-preparation-only",
+    "maximumAttempts": 0
   },
   "durationPlan": {
     "setupSeconds": 7800,
@@ -174,5 +174,17 @@
     ".github/workflows/work8-v75-a5.yml: change only the documented job release gate from false to true",
     "v65/launch-plan.json: record ownerDecisionRecorded/ownerApprovalReceiptSHA256, one reservation and exact current ledger arithmetic; mark status, ownerApproval and releaseGateEnabled operative only from the actual owner decision",
     "v65/launch-plan.json: bind independently reviewed final release source/commit through external release receipt (avoid a self-referential commit hash inside its own tree)"
-  ]
+  ],
+  "inheritedExecutionProposalApplicability": "HISTORICAL_V75_ONLY_CONSUMED_NOT_A_V81_EXECUTION_REQUEST",
+  "inheritedAuthorityNumbersApplicability": "HISTORICAL_V75_RESERVATION_ARITHMETIC_NOT_CURRENT_LEDGER_NOT_AUTHORITY",
+  "observedFinancialSnapshot": {
+    "work8PlanningCeilingUSD": 100,
+    "aggregateHoldsUSD": 12.11,
+    "A5HoldsUSD": 2.16,
+    "unreservedA5AuthorityUSD": 7.84,
+    "actualProviderChargesUSD": null,
+    "actualChargesStatus": "UNCONFIRMED",
+    "newReservationCreated": false,
+    "newExecutionApproval": false
+  }
 }

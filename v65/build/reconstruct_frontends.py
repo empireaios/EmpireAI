@@ -6,7 +6,8 @@ accepted prebuilt-Sharp remedy. New archive/build IDs are recorded honestly.
 No production endpoint or provider credential is passed to build processes.
 """
 import argparse, datetime, gzip, hashlib, json, os, pathlib, platform, re
-import selectors, shutil, signal, subprocess, tarfile, time, urllib.request
+import selectors, shutil, signal, subprocess, tarfile, time, urllib.request, sys
+sys.dont_write_bytecode=True
 from retained_candidate_packages import BoundedCompressedWriter
 from scan_package_archives import scan_frontend_stage
 from capture_diagnostics import capture as diagnostic_capture, CaptureFailure, node_probe_source, failure_fields, atomic as diagnostic_atomic
@@ -153,6 +154,11 @@ def package(root,repo,spec,node,backend,build,env):
             with p.open('rb') as f:tf.addfile(info,f)
     return {'commit':spec['commit'],'tree':spec['tree'],'file':target.name,'bytes':target.stat().st_size,'sha256':sha(target),'membersSHA256':sha(stage/'MEMBERS.json'),'members':len(members),'buildId':build_id}
 
+def reconstruction_env(root):
+    root=pathlib.Path(root)
+    env={'PYTHONDONTWRITEBYTECODE':'1','PATH':'/usr/bin:/bin','HOME':str(root/'home'),'LANG':'C.UTF-8','CI':'1','NEXT_TELEMETRY_DISABLED':'1','npm_config_audit':'false','npm_config_fund':'false','npm_config_fetch_retries':'0','npm_config_fetch_timeout':'30000','npm_config_cache':str(root/'npm-cache'),'npm_config_update_notifier':'false'}
+    return env
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--root',required=True);parser.add_argument('--backend-manifest',required=True);parser.add_argument('--toolchain-cache');parser.add_argument('--execution-root',required=True,type=pathlib.Path);args=parser.parse_args()
     root=pathlib.Path(args.root).absolute()
@@ -169,7 +175,7 @@ def main():
         need(pathlib.PurePosixPath(backend['file']).name==backend['file'],'BACKEND_FILENAME')
         backend_archive=backend_manifest.parent/'artifacts'/backend['file']
         need(backend_archive.is_file() and not backend_archive.is_symlink() and backend_archive.stat().st_size==backend['bytes'] and sha(backend_archive)==backend['sha256'],'BACKEND_ARCHIVE_READBACK')
-        env={'PATH':'/usr/bin:/bin','HOME':str(root/'home'),'LANG':'C.UTF-8','CI':'1','NEXT_TELEMETRY_DISABLED':'1','npm_config_audit':'false','npm_config_fund':'false','npm_config_fetch_retries':'0','npm_config_fetch_timeout':'30000','npm_config_cache':str(root/'npm-cache'),'npm_config_update_notifier':'false'}
+        env=reconstruction_env(root)
         step='toolchain';node,npm=acquire(root,env,logs,args.toolchain_cache);env['PATH']=str(node.parent)+':/usr/bin:/bin'
         bare=root/'source.git';command(['git','init','--bare',str(bare)],root,env,logs,'git-init',30)
         command(['git','--git-dir',str(bare),'remote','add','origin','https://github.com/empireaios/EmpireAI.git'],root,env,logs,'git-origin',30)

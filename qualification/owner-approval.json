@@ -1,0 +1,26 @@
+{
+  "schema": "work8-v81-owner-qualification-approval-v1",
+  "recordedOwnerApproval": true,
+  "scope": "one-qualification-only-attempt",
+  "maximumAttempts": 1,
+  "applicationExecutionAuthorized": false,
+  "sourceManifestSHA256": "71618afffe31592d4f4d1ba26fa43923c166a3109895d15ef2de713debb3cd41",
+  "reservationUSD": "0.01",
+  "maximumProspectiveUSD": "0.01",
+  "reviewedEngineeringTree": "98df78ad67f866bc0b57e60e9924c04bd52f2ebc",
+  "ownerDecision": "V85 A5 actual-runner qualification conditional owner authorisation, 2026-11-05; current owner continuation: Close work 8, take it till the end, 2026-11-07.",
+  "activationScope": "Existing reviewed workflow route and authority metadata only; complete executable implementations unchanged.",
+  "reservationId": "V85-A5-QUALIFICATION-98df78ad-ONCE",
+  "reservationReused": true,
+  "newReservationCreated": false,
+  "billingEvidenceSHA256": "32dec4db33affa74a27736dc94073b733af115f199fa376016c3debdf0efcd4e",
+  "maxJobMinutes": 60,
+  "automaticRetries": false,
+  "stopBefore": [
+    "initialized-Brain",
+    "A5-08",
+    "A5-09",
+    "full-A5-examination"
+  ],
+  "recordedAtUTC": "2026-11-07T01:07:08.431012+00:00"
+}

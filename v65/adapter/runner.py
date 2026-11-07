@@ -147,7 +147,15 @@ def replace_assignments(path,replacements):
  for start,end,new in sorted(edits,reverse=True):lines[start:end]=[new]
  path.write_text(''.join(lines))
 
-def fetch_driver(root):
+def fetch_driver(root,retained_driver=None):
+ if retained_driver is not None:
+  retained_driver=pathlib.Path(retained_driver)
+  require(retained_driver.is_absolute() and retained_driver.resolve()==retained_driver,'CANONICAL_RETAINED_DRIVER_REQUIRED')
+  verify_manifest_diagnostic(retained_driver,retained_driver/'controller-manifest.json',DRIVER_SHA,'native-driver')
+  target=root/'native-transition-driver';require(not target.exists(),'FRESH_DRIVER_DESTINATION_REQUIRED')
+  shutil.copytree(retained_driver,target)
+  verify_manifest_diagnostic(target,target/'controller-manifest.json',DRIVER_SHA,'native-driver')
+  return
  target=root/'native-transition-driver';target.mkdir(mode=0o700)
  sources=json.loads((FOUNDATION/'driver/sources.json').read_text())
  for row in sources:
@@ -166,29 +174,80 @@ def fetch_driver(root):
     with p.open('xb') as out:shutil.copyfileobj(t.extractfile(member),out)
     p.chmod(0o755 if member.mode&0o111 else 0o644)
  shutil.copyfile(FOUNDATION/'driver/package.json',target/'package.json');shutil.copyfile(FOUNDATION/'driver/controller-manifest.json',target/'controller-manifest.json')
- verify_manifest(target,target/'controller-manifest.json',DRIVER_SHA)
+ verify_manifest_diagnostic(target,target/'controller-manifest.json',DRIVER_SHA,'native-driver')
+
+def open_indexed_no_follow(directory,name):
+ require(pathlib.Path(directory).resolve()==pathlib.Path(directory),'DIAGNOSTIC_CANONICAL_DIRECTORY_REQUIRED')
+ parts=pathlib.PurePosixPath(relative_name(name)).parts
+ parent=os.open(directory,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW)
+ try:
+  for part in parts[:-1]:
+   child=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=parent);os.close(parent);parent=child
+  return os.open(parts[-1],os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK,dir_fd=parent)
+ finally:os.close(parent)
+
+def verify_manifest_diagnostic(directory,path,digest,context):
+ # Diagnostic classification never changes the strict refusal or reads a link.
+ require(context in ('historical-controller','assembled-controller','native-driver'),'MANIFEST_DIAGNOSTIC_CONTEXT_REQUIRED')
+ try:return verify_manifest(directory,path,digest)
+ except Exception as exc:
+  diagnostic={'schema':'work8-manifest-failure-diagnostic-v2','context':context,'expectedManifestSHA256':digest,'unknownRawPathsExported':False,'indexedPublicPathsExported':True,'indexedPublicPathsOnly':True,'rawContentsExported':False,'maximumPathHashes':32,'maximumEntries':20000,'maximumHashBytes':64*1024*1024}
+  try:
+   expected={row['path']:row for row in pinned_json(path,digest)['files']}
+   require(0<len(expected)<=20000,'MANIFEST_DIAGNOSTIC_SIZE_BOUND')
+   observed=set();links=set();nonregular=set();modified=set();overflow=False;entries=0;hash_bytes=0;unhashed=set()
+   for item in pathlib.Path(directory).rglob('*'):
+    entries+=1
+    if entries>20000:overflow=True;break
+    name=item.relative_to(directory).as_posix();mode=item.lstat().st_mode
+    if stat.S_ISLNK(mode):links.add(name);observed.add(name)
+    elif stat.S_ISREG(mode):
+     if item!=pathlib.Path(path):observed.add(name)
+    elif not stat.S_ISDIR(mode):nonregular.add(name);observed.add(name)
+   extra=observed-set(expected);missing=set(expected)-observed
+   for name in sorted(set(expected)&observed-links-nonregular):
+    item=pathlib.Path(directory)/name;row=expected[name]
+    # No-follow, single-link regular descriptor; do not race into a symlink.
+    try:fd=open_indexed_no_follow(directory,name)
+    except OSError:modified.add(name);continue
+    with os.fdopen(fd,'rb') as stream:
+     before=os.fstat(stream.fileno())
+     if not stat.S_ISREG(before.st_mode) or before.st_nlink!=1 or before.st_size!=row['bytes']:
+      modified.add(name);continue
+     if hash_bytes+before.st_size>64*1024*1024:unhashed.add(name);continue
+     got=hashlib.file_digest(stream,'sha256').hexdigest();hash_bytes+=before.st_size;after=os.fstat(stream.fileno())
+     if got!=row['sha256'] or (before.st_size,before.st_mtime_ns,before.st_ctime_ns)!=(after.st_size,after.st_mtime_ns,after.st_ctime_ns):modified.add(name)
+   hashed=lambda values:sorted(hashlib.sha256(x.encode()).hexdigest() for x in values)[:32]
+   diagnostic.update(expectedFiles=len(expected),observedFiles=len(observed),observedInventoryComplete=not overflow,extraFiles=len(extra),missingFiles=len(missing) if not overflow else None,modifiedFiles=len(modified),symlinks=len(links),nonregularFiles=len(nonregular),hashedBytes=hash_bytes,unhashedIndexedFiles=len(unhashed),extraRelativePathSHA256=hashed(extra),missingRelativePathSHA256=hashed(missing) if not overflow else [],modifiedRelativePathSHA256=hashed(modified),symlinkRelativePathSHA256=hashed(links),nonregularRelativePathSHA256=hashed(nonregular),indexedPublicPaths={'missing':sorted(missing)[:32] if not overflow else [],'modified':sorted(modified)[:32],'symlinks':sorted(links&set(expected))[:32],'nonregular':sorted(nonregular&set(expected))[:32]},truncated=overflow or bool(unhashed) or any(len(v)>32 for v in (extra,missing,modified,links,nonregular)))
+  except Exception:
+   diagnostic.update(diagnosticStatus='INVENTORY_DIAGNOSTIC_UNAVAILABLE')
+  exc.manifestDiagnostic=diagnostic
+  raise
 
 def controller_manifest(path):
  files=[{'path':p.relative_to(path).as_posix(),'bytes':p.stat().st_size,'sha256':sha(p)} for p in sorted(path.rglob('*')) if p.is_file() and p.name!='controller-manifest.json']
  atomic(path/'controller-manifest.json',{'schema':'work8-v65-execution-controller-manifest-v1','historicalControllerManifestSHA256':CONTROLLER_SHA,'files':files})
  return sha(path/'controller-manifest.json')
 
-def prepare(root):
+def prepare(root,retained_driver=None):
  require(root.resolve()==root and stat.S_IMODE(root.stat().st_mode)==0o700 and root.stat().st_uid==1001,'PRIVATE_EXECUTION_ROOT_REQUIRED')
+ origin_path=root/'package-origin.json';reused=origin_path.exists()
+ if reused:
+  origin=json.loads(origin_path.read_text());regular(origin_path,16384);require(origin.get('schema')=='work8-v81-preserved-package-reuse-v1' and origin.get('rebuiltThisExecution') is False and origin.get('applicationStarted') is False and origin.get('historicalRunId')==41860150363 and origin.get('artifactSHA256')=='39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755' and origin.get('packageManifestSHA256')=='ec74f2565b34867d6164382a666f429ad998fec2bb57a98e540d19e1b9665fa4' and sha(root/'v65-packages.json')==origin['packageManifestSHA256'],'TRUTHFUL_PACKAGE_REUSE_SCOPE_REQUIRED')
  packages=json.loads((root/'v65-packages.json').read_text());require(set(packages['frontends'])=={'normal','recovery'},'BOTH_FRONTENDS_REQUIRED')
  for role,pin in [('backend',packages['backend']),*packages['frontends'].items()]:
   require({k:pin[k] for k in ('commit','tree')}==SOURCES[role],'EXACT_SOURCE_PINS_REQUIRED');regular(root/'artifacts'/relative_name(pin['file']));require(sha(root/'artifacts'/pin['file'])==pin['sha256'],'CANDIDATE_ARCHIVE_HASH')
- source=FOUNDATION/'controller/scripts/work8/native-transition';verify_manifest(source,source/'controller-manifest.json',CONTROLLER_SHA)
+ source=FOUNDATION/'controller/scripts/work8/native-transition';verify_manifest_diagnostic(source,source/'controller-manifest.json',CONTROLLER_SHA,'historical-controller')
  destination=root/'controller';require(not destination.exists(),'CONTROLLER_ASSEMBLY_ALREADY_ATTEMPTED');shutil.copytree(FOUNDATION/'controller',destination)
  script=destination/'scripts/work8/native-transition';replace_assignments(script/'current_packages.py',{'BACKEND':packages['backend'],'FRONTENDS':packages['frontends']})
- p=script/'current_packages.py';p.write_text(p.read_text().replace('"packageRebuilt": False','"packageRebuilt": True').replace('Verify/import the existing V55 distributions. Never build or publish packages.','Verify/import independently admitted V65 source-equivalent distributions.'))
+ p=script/'current_packages.py';p.write_text(p.read_text().replace('"packageRebuilt": False','"packageRebuilt": '+str(not reused)).replace('Verify/import the existing V55 distributions. Never build or publish packages.','Verify/import independently admitted V65 source-equivalent distributions.'))
  p=script/'examine-v26.py';text=p.read_text();old="assert underlying_contract==accepted_private_contract['backend'],'ACCEPTED_PRIVATE_BACKEND_CONTRACT_CHANGED'";require(text.count(old)==1,'EXACT_PRIVATE_CONTRACT_REBINDING_REQUIRED')
  text=text.replace(old,"assert underlying_contract=={**accepted_private_contract['backend'],'image':current_packages.BACKEND['image']},'ACCEPTED_PRIVATE_BACKEND_CONTRACT_CHANGED'")
- require(text.count("'packagesRebuilt':False")==1,'EXACT_REBUILT_RECEIPT_REQUIRED');p.write_text(text.replace("'packagesRebuilt':False","'packagesRebuilt':True"))
+ require(text.count("'packagesRebuilt':False")==1,'EXACT_REBUILT_RECEIPT_REQUIRED');p.write_text(text.replace("'packagesRebuilt':False","'packagesRebuilt':"+str(not reused)))
  shutil.copyfile(HERE/'github_contract.py',script/'execution_contract.py')
  for p in script.glob('*.py'):compile(p.read_bytes(),str(p),'exec')
- controller_sha=controller_manifest(script);verify_manifest(script,script/'controller-manifest.json',controller_sha)
- fetch_driver(root)
+ controller_sha=controller_manifest(script);verify_manifest_diagnostic(script,script/'controller-manifest.json',controller_sha,'assembled-controller')
+ fetch_driver(root,retained_driver)
  shutil.copytree(FOUNDATION/'runtime',root/'runtime')
  node=root/'bin/node';node.parent.mkdir(mode=0o755)
  with tarfile.open(root/'artifacts'/packages['frontends']['normal']['file'],'r:gz') as t:
@@ -198,12 +257,22 @@ def prepare(root):
  cp=load_module('v65_current_packages',script/'current_packages.py')
  observations={'backend':cp.verify_backend(root/'artifacts'/cp.BACKEND['file']),'frontends':{role:cp.verify_frontend(root/'artifacts'/pin['file'],role) for role,pin in cp.FRONTENDS.items()}}
  inventory={p.name for p in (root/'artifacts').iterdir()};require(inventory=={p['file'] for p in [cp.BACKEND,*cp.FRONTENDS.values()]},'COMPLETE_EXCLUSIVE_PACKAGE_INVENTORY')
- atomic(root/'package-delivery.json',{'schema':'work8-v65-runner-local-package-qualification-v1','status':'PASS_COMPLETE_LOCAL_SHA256_PENDING_INDEPENDENT_EQUIVALENCE','delivery':'source-reconstruction-on-this-runner','packageManifestSHA256':sha(root/'v65-packages.json'),'observations':observations,'applicationStarted':False,'wholeRowsAccepted':[]},exclusive=True)
+ atomic(root/'package-delivery.json',{'schema':'work8-v65-runner-local-package-qualification-v1','status':'PASS_COMPLETE_LOCAL_SHA256_PENDING_INDEPENDENT_EQUIVALENCE','delivery':'preserved-exact-artifact-reuse' if reused else 'source-reconstruction-on-this-runner','rebuiltThisExecution':not reused,'historicalReconstructionRunId':origin.get('historicalRunId') if reused else None,'packageManifestSHA256':sha(root/'v65-packages.json'),'observations':observations,'applicationStarted':False,'wholeRowsAccepted':[]},exclusive=True)
  atomic(root/'source-identities.json',{'schema':'work8-v65-reconstructed-source-identities-v1','components':SOURCES,'historicalControllerManifestSHA256':CONTROLLER_SHA,'controllerManifestSHA256':controller_sha,'packageManifestSHA256':sha(root/'v65-packages.json'),'historicalPackageBytesClaimed':False,'independentlyAdmitted':False},exclusive=True)
  return {'status':'COMPLETE_CURRENT_PACKAGES_VERIFIED_AWAITING_EXTERNAL_EQUIVALENCE','controllerManifestSHA256':controller_sha,'packageManifestSHA256':sha(root/'v65-packages.json')}
 
-def qualify(root,authority_file):
- identity=json.loads((root/'runner-identity.json').read_text());validate_image_provenance(json.loads((root/'runtime-image-provenance.json').read_text()),identity);packages=json.loads((root/'v65-packages.json').read_text());backend=packages['backend'];name='work8-v65-a5-'+identity['runId'];socket=pathlib.Path('/run/docker.sock');st=socket.lstat()
+def qualify(root,authority_file,*,qualification_only=False):
+ identity=json.loads((root/'runner-identity.json').read_text())
+ qualification_marker_sha=None
+ if qualification_only:
+  # Separately admitted wrapper authority must exist before any native action.
+  marker_path=root/'qualification-only-authority.json';marker_stat=regular(marker_path,32768)
+  require(marker_stat.st_uid==marker_stat.st_gid==1001 and stat.S_IMODE(marker_stat.st_mode)==0o600,'PRIVATE_QUALIFICATION_AUTHORITY_REQUIRED')
+  marker=json.loads(marker_path.read_text())
+  require(marker.get('schema')=='work8-v81-qualification-only-authority-v1' and marker.get('sessionId')==identity['sessionId'] and marker.get('workflowCommit')==identity['workflowCommit'] and marker.get('maximumAttempts')==1 and marker.get('applicationExecutionAuthorized') is False and digest_string(marker.get('approvalReceiptSHA256')) and digest_string(marker.get('sourceManifestSHA256')),'EXPLICIT_QUALIFICATION_ONLY_AUTHORITY_REQUIRED')
+  require(not any((root/name).exists() for name in ('run-contract.json','launch-contract.json','source-review.json','preflight-review.json')),'QUALIFICATION_ONLY_FULL_CONTRACT_REFUSED')
+  qualification_marker_sha=sha(marker_path)
+ validate_image_provenance(json.loads((root/'runtime-image-provenance.json').read_text()),identity);packages=json.loads((root/'v65-packages.json').read_text());backend=packages['backend'];name='work8-v65-a5-'+identity['runId'];socket=pathlib.Path('/run/docker.sock');st=socket.lstat()
  provenance=json.loads((root/'runtime-image-provenance.json').read_text());validate_current_executor_continuity(provenance,identity)
  controls=json.loads((root/'runtime-evidence/guard-controls.json').read_text());require(controls['status']=='PASS_SOURCE_BOUND_REJECTION_CONTROLS' and controls['actualRunnerQualified'] is False,'GUARD_REJECTION_CONTROLS_REQUIRED')
  require(socket.resolve()==socket and stat.S_ISSOCK(st.st_mode) and st.st_uid==0 and stat.S_IMODE(st.st_mode)==0o660 and (st.st_gid in os.getgroups() or st.st_gid==os.getgid()),'ROOT_OWNED_ACCESSIBLE_DOCKER_SOCKET_REQUIRED')
@@ -297,6 +366,13 @@ def qualify(root,authority_file):
  validate_current_executor_continuity(provenance,identity);validate_executor_security(q,identity,provenance)
  validate_qualification_evidence(q,identity,controls,json.loads((root/'runtime-evidence/dumpability-observer-build.json').read_text()),sha(HERE/'github_contract.py'))
  atomic(root/'native-qualification.json',q,exclusive=True)
+ if qualification_only:
+  # V81 wrapper admits separately scoped authority before calling this function.
+  # This early return deliberately never creates launch/run contracts or ACKs.
+  marker_path=root/'qualification-only-authority.json';regular(marker_path,32768)
+  require(sha(marker_path)==qualification_marker_sha,'QUALIFICATION_ONLY_AUTHORITY_CHANGED')
+  require(not any((root/name).exists() for name in ('run-contract.json','launch-contract.json','source-review.json','preflight-review.json')),'QUALIFICATION_ONLY_FULL_CONTRACT_REFUSED')
+  return {'status':'CURRENT_NATIVE_CAPABILITY_OBSERVED_NO_APPLICATION_AUTHORITY','sessionId':identity['sessionId'],'nativeQualificationSHA256':sha(root/'native-qualification.json'),'applicationStarted':False,'applicationExecutionAuthorized':False,'wholeRowsAccepted':[]}
  launch=json.loads(pathlib.Path(authority_file).read_text());require(launch['schema']=='work8-v65-reviewed-launch-plan-v1','REVIEWED_LAUNCH_PLAN_REQUIRED');launch['workflowCommit']=identity['workflowCommit'];atomic(root/'launch-contract.json',launch,exclusive=True)
  c={'schema':SCHEMA,'campaignId':name,'executor':identity,'runnerIdentitySHA256':sha(root/'runner-identity.json'),'runtimeImageProvenanceSHA256':sha(root/'runtime-image-provenance.json'),'authority':launch['authority'],'durationPlan':launch['durationPlan'],'dependencyImages':DEPENDENCY_IMAGES,'sources':SOURCES,'packageManifestSHA256':sha(root/'v65-packages.json'),'controllerManifestSHA256':sha(script/'controller-manifest.json'),'driverManifestSHA256':DRIVER_SHA,'sourceIdentitiesSHA256':sha(root/'source-identities.json'),'nativeQualificationSHA256':sha(root/'native-qualification.json'),'launchContractSHA256':sha(root/'launch-contract.json'),'packageDeliverySHA256':sha(root/'package-delivery.json')}
  validate_contract(c,time.time());atomic(root/'run-contract.json',c,exclusive=True)
@@ -400,15 +476,15 @@ def cleanup(root):
  ident=root/'runner-identity.json'
  if not ident.exists():return {'status':'NO_EXECUTOR_IDENTITY_NO_RESOURCES_STARTED','applicationAcceptance':False}
  identity=json.loads(ident.read_text());prefix='work8-v65-a5-'+identity['runId'];removed=[];networks=[]
- for typ,query in [('container',['docker','ps','-aq','--filter','label=work8.native']),('network',['docker','network','ls','-q','--filter','label=work8.native'])]:
+ for typ,query in [('container',['docker','ps','-aq','--filter','label=work8.native='+prefix]),('network',['docker','network','ls','-q','--filter','label=work8.native='+prefix])]:
   ids=run(root,query,10).decode().split()
   for item in ids:
-   require(re.fullmatch('[a-f0-9]{12,64}',item) is not None,'CLEANUP_ID_REFUSED');args=['docker','inspect',item] if typ=='container' else ['docker','network','inspect',item];d=json.loads(run(root,args,10))[0];labels=(d['Config'].get('Labels') or {}) if typ=='container' else (d.get('Labels') or {});require(labels.get('work8.native','').startswith(prefix),'FOREIGN_RESOURCE_REFUSED')
+   require(re.fullmatch('[a-f0-9]{12,64}',item) is not None,'CLEANUP_ID_REFUSED');args=['docker','inspect',item] if typ=='container' else ['docker','network','inspect',item];d=json.loads(run(root,args,10))[0];labels=(d['Config'].get('Labels') or {}) if typ=='container' else (d.get('Labels') or {});require(labels.get('work8.native')==prefix,'FOREIGN_RESOURCE_REFUSED')
    if typ=='container':run(root,['docker','stop','--time','15',item],25);run(root,['docker','rm','-fv',item],20);removed.append(item)
    else:run(root,['docker','network','rm',item],15);networks.append(item)
  private=root/'private'
  if private.exists():
-  require(private.resolve()==private and private.stat().st_uid==1001 and stat.S_IMODE(private.stat().st_mode)==0o700,'PRIVATE_CLEANUP_ROOT_REFUSED')
+  require(private.resolve()==private and private.stat().st_uid==private.stat().st_gid==1001 and stat.S_IMODE(private.stat().st_mode)==0o700,'PRIVATE_CLEANUP_ROOT_REFUSED')
   # User-owned controller parent only; sudo can remove app-owned fixture files
   # only after this exact fresh private root binding has been verified.
   run(root,['sudo','-n','/bin/rm','-rf','--',str(private)],30)
@@ -464,12 +540,12 @@ def final_export(root,build_root=None):
  return result
 
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('command',choices=['identity','guard-controls','prepare','qualify','package-export','artifact-check','review-export','await-review','native','native-export','cleanup','final-export']);parser.add_argument('--root',required=True);parser.add_argument('--job-name');parser.add_argument('--authority-file');parser.add_argument('--build-root');parser.add_argument('--max-seconds',type=int,default=1500);parser.add_argument('--stage',choices=['packages-and-executor','preflight','full']);parser.add_argument('--label',choices=['preflight','packages','final']);parser.add_argument('--artifact-id');parser.add_argument('--artifact-digest');args=parser.parse_args();root=pathlib.Path(args.root)
+ parser=argparse.ArgumentParser();parser.add_argument('command',choices=['identity','guard-controls','prepare','qualify','package-export','artifact-check','review-export','await-review','native','native-export','cleanup','final-export']);parser.add_argument('--root',required=True);parser.add_argument('--retained-driver');parser.add_argument('--job-name');parser.add_argument('--authority-file');parser.add_argument('--build-root');parser.add_argument('--max-seconds',type=int,default=1500);parser.add_argument('--stage',choices=['packages-and-executor','preflight','full']);parser.add_argument('--label',choices=['preflight','packages','final']);parser.add_argument('--artifact-id');parser.add_argument('--artifact-digest');args=parser.parse_args();root=pathlib.Path(args.root)
  try:
   require(root.is_absolute() and root.resolve()==root,'CANONICAL_ROOT_REQUIRED')
   if args.command=='identity':result=identity(root,args.job_name)
   elif args.command=='guard-controls':result=guard_controls(root)
-  elif args.command=='prepare':result=prepare(root)
+  elif args.command=='prepare':result=prepare(root,args.retained_driver)
   elif args.command=='qualify':result=qualify(root,args.authority_file)
   elif args.command=='package-export':preserve_build_failure(root,args.build_root);result=package_export(root)
   elif args.command=='artifact-check':result=artifact_check(root,args.artifact_id,args.artifact_digest,args.label)
@@ -484,6 +560,7 @@ def main():
   if isinstance(exc,SystemExit):raise
   code=str(exc) if isinstance(exc,Refusal) and re.fullmatch('[A-Z0-9_]{1,100}',str(exc)) else 'ADAPTER_'+type(exc).__name__.upper()
   receipt={'schema':'work8-v65-runtime-first-failure-v1','stage':args.command,'code':code,'errno':getattr(exc,'errno',None),'rawOutputRetained':False,'applicationAcceptance':False}
+  if hasattr(exc,'manifestDiagnostic'):receipt['manifestDiagnostic']=exc.manifestDiagnostic
   p=root/'runtime-evidence/first-runtime-failure.json'
   if not root.exists() and root.is_absolute() and root.resolve()==root:root.mkdir(mode=0o700,parents=True)
   if root.exists() and root.resolve()==root and root.stat().st_uid==os.getuid() and stat.S_IMODE(root.stat().st_mode)==0o700 and not p.exists():atomic(p,receipt,exclusive=True)

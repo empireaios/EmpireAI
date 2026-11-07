@@ -20,7 +20,7 @@ jobs:
     # recreate this branch. Review-branch events cannot run this job; workflow
     # run_number is deliberately not an admission predicate.
     if: >-
-      true &&
+      false &&
       github.repository == 'empireaios/EmpireAI' &&
       github.event.ref_type == 'branch' &&
       github.event.ref == 'work8/v75-a5-20261104' &&

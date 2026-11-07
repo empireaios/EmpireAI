@@ -1,0 +1,484 @@
+{
+  "schema": "work8-v84-original-contract-q01-q03-operands-v1",
+  "status": "PASS_RETAINED_RECONSTRUCTION_AND_CURRENT_PACKAGE_INPUTS",
+  "artifactSHA256": "39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755",
+  "packageManifestSHA256": "ec74f2565b34867d6164382a666f429ad998fec2bb57a98e540d19e1b9665fa4",
+  "historicalReconstruction": {
+    "status": "PASS_EXACT_HISTORICAL_RECONSTRUCTION_EVIDENCE",
+    "metadataFilesVerified": 41,
+    "historicalRunId": 41860150363,
+    "historicalJobId": 126679410501,
+    "historicalWorkflowCommit": "87428f7fd4977a0669e8cff90242a784e9947a34",
+    "historicalBuildRecipesSHA256": {
+      "v65/build/reconstruct-backend.py": "3ba7911d5cb5fe89d76bcd48adc0ca5c35e0e19814eed1de89275a21c432087e",
+      "v65/build/reconstruct_frontends.py": "095d2239a83aaf8054e3df5589aeef9d5de69b2526606a3592ebbba8655e9cb3",
+      "v65/build/reconstruct_all.py": "09aed1f149aff6aed1e4758919283486c6c11eed1927c80dbb9ff53cd647bf01",
+      "v65/build/component_checkpoints.py": "cbd24d856919a1779d9668f97358b79535e1d422f4eb3d308fb2c9eac76a9dbb"
+    },
+    "repository": "empireaios/EmpireAI",
+    "components": {
+      "backend": {
+        "source": {
+          "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+          "tree": "a78aa0e0a91c1e765afb23e70fe05c75cddc836e"
+        },
+        "archiveSHA256": "b99d11a65d40d6a6a197da6ba805e72a72ac55d4551ad13f31930ec5eeadbcb6",
+        "buildReceiptSHA256": "02a3b878cf6ec0f47b2d8b06724201abb92388accdb7f0f911472bf8fae1f477",
+        "verifiedImmutableInputCount": 13,
+        "baseImage": "node:22.23.2-bookworm-slim@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+        "freshGitCheckoutClaimed": false
+      },
+      "normal": {
+        "source": {
+          "commit": "750483b3152f2c9c65a65b6381c8c94f081b9eb1",
+          "tree": "f589a8f0f94fbcdf113f162abac11d03c19acc25"
+        },
+        "archiveSHA256": "391b15ded61649159291a4cad6f8071ce1fdf05f2e0f3732d3b1cf695a43e1d9",
+        "buildReceiptSHA256": "fdaf219eeeb18ff80b067ae1e06e209bee6dae65d5143cf3596ef9d9da60f73d",
+        "sourceCaptureChecks": 9,
+        "runtimeCaptureChecks": 5,
+        "historicalObservedValues": {
+          "sharp-native-load": "0.34.5",
+          "node-runtime-version": "v22.23.2",
+          "next-package-version": "16.2.9",
+          "sharp-binary-package-version": "0.34.5",
+          "libvips-package-version": "1.2.4"
+        },
+        "freshNativeLoadClaimed": false
+      },
+      "recovery": {
+        "source": {
+          "commit": "94d34cab7b0739849839ea3c66e50c8fdd3a2b27",
+          "tree": "5da61811a035b9504d74f699df8b164cc7f9f0ac"
+        },
+        "archiveSHA256": "2c9a14895e7888ef5f29964a894b9ab99c4affb6ed038f83e5039c2ddf781167",
+        "buildReceiptSHA256": "9e1b4897bbdbfdb82700012f4030def74b0a7887841d4a199cfb338b25f88bc7",
+        "sourceCaptureChecks": 9,
+        "runtimeCaptureChecks": 5,
+        "historicalObservedValues": {
+          "sharp-native-load": "0.34.5",
+          "node-runtime-version": "v22.23.2",
+          "next-package-version": "16.2.9",
+          "sharp-binary-package-version": "0.34.5",
+          "libvips-package-version": "1.2.4"
+        },
+        "freshNativeLoadClaimed": false
+      }
+    },
+    "freshNativeQualificationClaimed": false,
+    "originalReconstructionMainReexecuted": false
+  },
+  "currentFrontendInputs": {
+    "normal": {
+      "role": "normal",
+      "archiveSHA256": "391b15ded61649159291a4cad6f8071ce1fdf05f2e0f3732d3b1cf695a43e1d9",
+      "source": {
+        "commit": "750483b3152f2c9c65a65b6381c8c94f081b9eb1",
+        "tree": "f589a8f0f94fbcdf113f162abac11d03c19acc25"
+      },
+      "lock": {
+        "sha256": "84f99595b7564d9196b0eeb25c054b290801bfe2e3a148f61ab2c9c2871d37b4",
+        "gitBlob": "da23c5f7d5e54174f467a2090078ee2cd141b6e1",
+        "bytes": 251356,
+        "lockfileVersion": 3,
+        "lockedPackageEntries": 468,
+        "resolvedIntegrityEntries": 467,
+        "sourceLockChanged": false
+      },
+      "toolchainIdentityVerified": true,
+      "sourceContracts": [
+        {
+          "path": "lib/owner/runtime-identity.mjs",
+          "sha256": "b9cdb78d52c9ed7d9a00a30bc9bb8fdd87d3d0ee0732d148b4ebe2e19e7c8fe6"
+        },
+        {
+          "path": "lib/owner/runtime-release-identity.test.ts",
+          "sha256": "bd8727b0f6d650739d847cb8fe6c3ea3ea8231bf70b39afe931669f4dfeb9c60"
+        },
+        {
+          "path": "components/owner/work8/TwinMedia.tsx",
+          "sha256": "9d44550044dc091a3c111ba5a2e4b194d64cd98ef3693eef5273b876902ce332"
+        },
+        {
+          "path": "components/owner/work7/QualificationDossier.tsx",
+          "sha256": "8ba05160d555cd642910efcb3646b0c572a2c9479a6f512f7d63e4fe7e708565"
+        },
+        {
+          "path": "components/owner/work8/TwinWorkspace.tsx",
+          "sha256": "19022bf021e1d40e68f0c7f9d89c63de0145d57fac3711ddce1749512bf86f04"
+        }
+      ],
+      "installedPackageVersions": [
+        {
+          "path": "node_modules/@img/colour",
+          "version": "1.1.0",
+          "lockIntegrity": "sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ=="
+        },
+        {
+          "path": "node_modules/@img/sharp-libvips-linux-x64",
+          "version": "1.2.4",
+          "lockIntegrity": "sha512-tJxiiLsmHc9Ax1bz3oaOYBURTXGIRDODBqhveVHonrHJ9/+k89qbLl0bcJns+e4t4rvaNBxaEZsFtSfAdquPrw=="
+        },
+        {
+          "path": "node_modules/@img/sharp-linux-x64",
+          "version": "0.34.5",
+          "lockIntegrity": "sha512-MEzd8HPKxVxVenwAa+JRPwEC7QFjoPWuS5NZnBt6B3pu7EG2Ge0id1oLHZpPJdn3OQK+BQDiw9zStiHBTJQQQQ=="
+        },
+        {
+          "path": "node_modules/@next/env",
+          "version": "16.2.9",
+          "lockIntegrity": "sha512-ki5VxxXfzD/9TDe13wyeTKIjQTAwBVpnr8KhRDUr8ltMUq1/NBpWNT5tiPoxiGl+PHM4X2ahSOiPk6iAimIzPg=="
+        },
+        {
+          "path": "node_modules/@swc/helpers",
+          "version": "0.5.15",
+          "lockIntegrity": "sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g=="
+        },
+        {
+          "path": "node_modules/baseline-browser-mapping",
+          "version": "2.10.38",
+          "lockIntegrity": "sha512-31/02mVB4yuQU6adKk5SlY6m+mxDwUq5KZkyYgnLrrKl7TEm1+3PyDtDBz2kOv/wxZz41GHsvV1A/u6RmiyBvw=="
+        },
+        {
+          "path": "node_modules/caniuse-lite",
+          "version": "1.0.30001799",
+          "lockIntegrity": "sha512-hG1bReV+OUU+MOqK4t/ZWI0tZOyz3rqS9XuhOUz1cIcbwBKjOyJEJuw9ER5JuNyqxNk8u/JUVbGibBOL1yrjFw=="
+        },
+        {
+          "path": "node_modules/client-only",
+          "version": "0.0.1",
+          "lockIntegrity": "sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA=="
+        },
+        {
+          "path": "node_modules/detect-libc",
+          "version": "2.1.2",
+          "lockIntegrity": "sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ=="
+        },
+        {
+          "path": "node_modules/nanoid",
+          "version": "3.3.14",
+          "lockIntegrity": "sha512-U9kYi5bpVMEI31yC8iw4bJJp0avcHXA0W8/wNfLfnvJYzihQo2ZRPYPvpAAd570HAcCBjCTN7vnr+v4StKl1IQ=="
+        },
+        {
+          "path": "node_modules/next/node_modules/postcss",
+          "version": "8.4.31",
+          "lockIntegrity": "sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ=="
+        },
+        {
+          "path": "node_modules/next",
+          "version": "16.2.9",
+          "lockIntegrity": "sha512-MEOJiq/UvuezAdqVSceHbqDgZt1kDw2tpGVOlsdIoJsQdbN2JY2hpVG4xnXGkbdJUOEWhnRfiu/O4Hpc9Juwww=="
+        },
+        {
+          "path": "node_modules/picocolors",
+          "version": "1.1.1",
+          "lockIntegrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="
+        },
+        {
+          "path": "node_modules/react",
+          "version": "19.2.4",
+          "lockIntegrity": "sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ=="
+        },
+        {
+          "path": "node_modules/react-dom",
+          "version": "19.2.4",
+          "lockIntegrity": "sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ=="
+        },
+        {
+          "path": "node_modules/sharp/node_modules/semver",
+          "version": "7.8.5",
+          "lockIntegrity": "sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA=="
+        },
+        {
+          "path": "node_modules/sharp",
+          "version": "0.34.5",
+          "lockIntegrity": "sha512-Ou9I5Ft9WNcCbXrU9cMgPBcCK8LiwLqcbywW3t4oDV37n1pzpuNLsYiAV8eODnjbtQlSDwZ2cUEeQz4E54Hltg=="
+        },
+        {
+          "path": "node_modules/source-map-js",
+          "version": "1.2.1",
+          "lockIntegrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="
+        },
+        {
+          "path": "node_modules/styled-jsx",
+          "version": "5.1.6",
+          "lockIntegrity": "sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA=="
+        }
+      ],
+      "applicationExecuted": false,
+      "freshLoad": "NOT_EXECUTED_BY_THIS_STATIC_OPERAND"
+    },
+    "recovery": {
+      "role": "recovery",
+      "archiveSHA256": "2c9a14895e7888ef5f29964a894b9ab99c4affb6ed038f83e5039c2ddf781167",
+      "source": {
+        "commit": "94d34cab7b0739849839ea3c66e50c8fdd3a2b27",
+        "tree": "5da61811a035b9504d74f699df8b164cc7f9f0ac"
+      },
+      "lock": {
+        "sha256": "84f99595b7564d9196b0eeb25c054b290801bfe2e3a148f61ab2c9c2871d37b4",
+        "gitBlob": "da23c5f7d5e54174f467a2090078ee2cd141b6e1",
+        "bytes": 251356,
+        "lockfileVersion": 3,
+        "lockedPackageEntries": 468,
+        "resolvedIntegrityEntries": 467,
+        "sourceLockChanged": false
+      },
+      "toolchainIdentityVerified": true,
+      "sourceContracts": [
+        {
+          "path": "lib/owner/runtime-identity.mjs",
+          "sha256": "d55731a5606a42607be57ed857adf6d9f1961896250b78ee599bece7f56a9217"
+        },
+        {
+          "path": "lib/owner/runtime-release-identity.test.ts",
+          "sha256": "d9b1a5c9fa329b8b5131c81ad7bcffca3187c96e8914f416aa98fb78285b383b"
+        },
+        {
+          "path": "components/owner/work8/TwinMedia.tsx",
+          "sha256": "9d44550044dc091a3c111ba5a2e4b194d64cd98ef3693eef5273b876902ce332"
+        },
+        {
+          "path": "components/owner/work7/QualificationDossier.tsx",
+          "sha256": "8ba05160d555cd642910efcb3646b0c572a2c9479a6f512f7d63e4fe7e708565"
+        },
+        {
+          "path": "components/owner/work8/TwinWorkspace.tsx",
+          "sha256": "19022bf021e1d40e68f0c7f9d89c63de0145d57fac3711ddce1749512bf86f04"
+        }
+      ],
+      "installedPackageVersions": [
+        {
+          "path": "node_modules/@img/colour",
+          "version": "1.1.0",
+          "lockIntegrity": "sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ=="
+        },
+        {
+          "path": "node_modules/@img/sharp-libvips-linux-x64",
+          "version": "1.2.4",
+          "lockIntegrity": "sha512-tJxiiLsmHc9Ax1bz3oaOYBURTXGIRDODBqhveVHonrHJ9/+k89qbLl0bcJns+e4t4rvaNBxaEZsFtSfAdquPrw=="
+        },
+        {
+          "path": "node_modules/@img/sharp-linux-x64",
+          "version": "0.34.5",
+          "lockIntegrity": "sha512-MEzd8HPKxVxVenwAa+JRPwEC7QFjoPWuS5NZnBt6B3pu7EG2Ge0id1oLHZpPJdn3OQK+BQDiw9zStiHBTJQQQQ=="
+        },
+        {
+          "path": "node_modules/@next/env",
+          "version": "16.2.9",
+          "lockIntegrity": "sha512-ki5VxxXfzD/9TDe13wyeTKIjQTAwBVpnr8KhRDUr8ltMUq1/NBpWNT5tiPoxiGl+PHM4X2ahSOiPk6iAimIzPg=="
+        },
+        {
+          "path": "node_modules/@swc/helpers",
+          "version": "0.5.15",
+          "lockIntegrity": "sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g=="
+        },
+        {
+          "path": "node_modules/baseline-browser-mapping",
+          "version": "2.10.38",
+          "lockIntegrity": "sha512-31/02mVB4yuQU6adKk5SlY6m+mxDwUq5KZkyYgnLrrKl7TEm1+3PyDtDBz2kOv/wxZz41GHsvV1A/u6RmiyBvw=="
+        },
+        {
+          "path": "node_modules/caniuse-lite",
+          "version": "1.0.30001799",
+          "lockIntegrity": "sha512-hG1bReV+OUU+MOqK4t/ZWI0tZOyz3rqS9XuhOUz1cIcbwBKjOyJEJuw9ER5JuNyqxNk8u/JUVbGibBOL1yrjFw=="
+        },
+        {
+          "path": "node_modules/client-only",
+          "version": "0.0.1",
+          "lockIntegrity": "sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA=="
+        },
+        {
+          "path": "node_modules/detect-libc",
+          "version": "2.1.2",
+          "lockIntegrity": "sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ=="
+        },
+        {
+          "path": "node_modules/nanoid",
+          "version": "3.3.14",
+          "lockIntegrity": "sha512-U9kYi5bpVMEI31yC8iw4bJJp0avcHXA0W8/wNfLfnvJYzihQo2ZRPYPvpAAd570HAcCBjCTN7vnr+v4StKl1IQ=="
+        },
+        {
+          "path": "node_modules/next/node_modules/postcss",
+          "version": "8.4.31",
+          "lockIntegrity": "sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ=="
+        },
+        {
+          "path": "node_modules/next",
+          "version": "16.2.9",
+          "lockIntegrity": "sha512-MEOJiq/UvuezAdqVSceHbqDgZt1kDw2tpGVOlsdIoJsQdbN2JY2hpVG4xnXGkbdJUOEWhnRfiu/O4Hpc9Juwww=="
+        },
+        {
+          "path": "node_modules/picocolors",
+          "version": "1.1.1",
+          "lockIntegrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="
+        },
+        {
+          "path": "node_modules/react",
+          "version": "19.2.4",
+          "lockIntegrity": "sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ=="
+        },
+        {
+          "path": "node_modules/react-dom",
+          "version": "19.2.4",
+          "lockIntegrity": "sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ=="
+        },
+        {
+          "path": "node_modules/sharp/node_modules/semver",
+          "version": "7.8.5",
+          "lockIntegrity": "sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA=="
+        },
+        {
+          "path": "node_modules/sharp",
+          "version": "0.34.5",
+          "lockIntegrity": "sha512-Ou9I5Ft9WNcCbXrU9cMgPBcCK8LiwLqcbywW3t4oDV37n1pzpuNLsYiAV8eODnjbtQlSDwZ2cUEeQz4E54Hltg=="
+        },
+        {
+          "path": "node_modules/source-map-js",
+          "version": "1.2.1",
+          "lockIntegrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="
+        },
+        {
+          "path": "node_modules/styled-jsx",
+          "version": "5.1.6",
+          "lockIntegrity": "sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA=="
+        }
+      ],
+      "applicationExecuted": false,
+      "freshLoad": "NOT_EXECUTED_BY_THIS_STATIC_OPERAND"
+    }
+  },
+  "currentBackendInputs": {
+    "archiveSHA256": "b99d11a65d40d6a6a197da6ba805e72a72ac55d4551ad13f31930ec5eeadbcb6",
+    "source": {
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "tree": "a78aa0e0a91c1e765afb23e70fe05c75cddc836e"
+    },
+    "image": "sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
+    "immutableFilesReadBack": [
+      {
+        "path": "app/backend/Dockerfile",
+        "bytes": 362,
+        "sha256": "36c58a6e47777a3545fa4f4f222d31f7e5a50e0c8eb0f268d79804e0708d1d34",
+        "gitBlob": "5644cdc302b1c389d56ed29e285ae791224040e3"
+      },
+      {
+        "path": "app/backend/package.json",
+        "bytes": 12487,
+        "sha256": "8a501520e561cc7ae1e0a295f121b38a7ab499a43521bc26ef75f77dd9671c0b",
+        "gitBlob": "e4b633ddacac24821251dfc4adfd497e4240e502"
+      },
+      {
+        "path": "app/package.json",
+        "bytes": 2729,
+        "sha256": "042ee40d2c50ceb722547cae25696fdc84f20e05558a8d3b46af27712b0f3432",
+        "gitBlob": "df28a62d2bfd832570d7d531b71e68df1f4c3eb0"
+      },
+      {
+        "path": "app/pillow/package.json",
+        "bytes": 16424,
+        "sha256": "658453fa94190c2c2f1b2992af9bd93e93449fda0f42ebafe834a3375bcced66",
+        "gitBlob": "d4a79029ead281e5f9a6fbb8eb8c3a799246b613"
+      },
+      {
+        "path": "app/backend/scripts/record-runtime-revision.cjs",
+        "bytes": 632,
+        "sha256": "8d9cbbef43fa37bc7a96738acd26712459eade61e1c8a472266e83c9214942c4",
+        "gitBlob": "d3119fe912cfd51c11439c872bfa5b8f8982f9ec"
+      },
+      {
+        "path": "app/deployment/native/runtime-writer-isolation.c",
+        "bytes": 3452,
+        "sha256": "2f17b9f9e6202ae78ea98ce2575f49b8d65d56c183c9460af98409c9254d541c",
+        "gitBlob": "7678fc0332a8daea71f46b01803c29b2acb4ceb4"
+      },
+      {
+        "path": "app/deployment/build-runtime.md",
+        "bytes": 3517,
+        "sha256": "ad0a6bcfba2160bff1c1ad0f3b77fe037b67d0b210abd446f176237098ce6c4b",
+        "gitBlob": "f98764d6d833449308a7f14bcd1d2283744d74e1"
+      },
+      {
+        "path": "app/backend/tsconfig.json",
+        "bytes": 491,
+        "sha256": "85836155905deadf6a3ea89cdd59467ad3f93e576047fde6b9384631228a9b2b",
+        "gitBlob": "81cc6e5bb12174e5e41c49cd80e274bb619707e0"
+      },
+      {
+        "path": "app/pillow/tsconfig.json",
+        "bytes": 491,
+        "sha256": "bcc77ba804e7f45080cfa2b00bd70a25ab5e4aaa6a860b56efa2c5075c034b7c",
+        "gitBlob": "4d8eea9021b1a1f93a6b2da91f31fe5dd5640b6f"
+      },
+      {
+        "path": "app/backend/package-lock.json",
+        "bytes": 78029,
+        "sha256": "ac637e1e0329d484c8eac12ccd47a0cd6a82a51df592e94495d325c79062b13f",
+        "gitBlob": "b890be83361c7b1214a7dd18c1be9fc9b5a093bd",
+        "lock": {
+          "sha256": "ac637e1e0329d484c8eac12ccd47a0cd6a82a51df592e94495d325c79062b13f",
+          "gitBlob": "b890be83361c7b1214a7dd18c1be9fc9b5a093bd",
+          "bytes": 78029,
+          "lockfileVersion": 3,
+          "lockedPackageEntries": 173,
+          "resolvedIntegrityEntries": 170,
+          "sourceLockChanged": false
+        }
+      },
+      {
+        "path": "app/pillow/package-lock.json",
+        "bytes": 16802,
+        "sha256": "53f3c989531a4a86b99eb544b1e90c6df367c091acb4c23115ca787079b2dde2",
+        "gitBlob": "32d40b537bd941d6662668dfa1cefb82ca978c6e",
+        "lock": {
+          "sha256": "53f3c989531a4a86b99eb544b1e90c6df367c091acb4c23115ca787079b2dde2",
+          "gitBlob": "32d40b537bd941d6662668dfa1cefb82ca978c6e",
+          "bytes": 16802,
+          "lockfileVersion": 3,
+          "lockedPackageEntries": 33,
+          "resolvedIntegrityEntries": 32,
+          "sourceLockChanged": false
+        }
+      },
+      {
+        "path": "app/scripts/verify-build-runtime.mjs",
+        "bytes": 5841,
+        "sha256": "3ada8d45f44c638bbb553739dc4245775b62cf7ec725975eaef1ed2699c848c4",
+        "gitBlob": "7a08fcf905ee7d43ee61f29fa36c892f130724c1"
+      },
+      {
+        "path": "app/scripts/sync-pillow-governance.mjs",
+        "bytes": 1670,
+        "sha256": "8677c01408d1e2d11d138093051342413aa2ce7f9d5359fe3ad8d65bf161ee68",
+        "gitBlob": "0a2d19f4c13987644014a3c7aa20064ebe8156b4"
+      },
+      {
+        "path": "app/package-lock.json",
+        "bytes": 68427,
+        "sha256": "29750bccbf14c72b9bdccfe03a041a525c7e84f32005a973b5bd3bf16c4ab04d",
+        "gitBlob": "fbd0c81a86377a4209e45a60ffac5590aed2dd3b",
+        "lock": {
+          "sha256": "29750bccbf14c72b9bdccfe03a041a525c7e84f32005a973b5bd3bf16c4ab04d",
+          "gitBlob": "fbd0c81a86377a4209e45a60ffac5590aed2dd3b",
+          "bytes": 68427,
+          "lockfileVersion": 3,
+          "lockedPackageEntries": 154,
+          "resolvedIntegrityEntries": 153,
+          "sourceLockChanged": false
+        }
+      }
+    ],
+    "allThreeDependencyLocksVerified": true,
+    "imagePlatform": "linux/amd64",
+    "loadedImageClaimed": false
+  },
+  "Q01": "PASS_SOURCE_RECONSTRUCTION_ATTRIBUTION_REUSED",
+  "Q02": "PASS_CURRENT_LOCK_AND_PINNED_BUILD_INPUT_BYTES",
+  "Q03": "HISTORICAL_REMEDY_PROVEN_FRESH_ISOLATED_LOADING_STILL_REQUIRED",
+  "Q04": "REQUIRES_COMPLETE_CURRENT_EXTRACTION_LOADING",
+  "Q05": "REQUIRES_COMPLETE_DIFFERENCE_ADJUDICATION",
+  "originalReconstructionMainReexecuted": false,
+  "packagesRebuilt": false,
+  "wholeRowAcceptanceClaimed": false,
+  "applicationStarted": false
+}

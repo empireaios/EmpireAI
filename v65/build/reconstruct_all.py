@@ -5,6 +5,7 @@ Inputs are public immutable sources plus reviewed controller/native bytes.
 Success means packages exist for independent qualification, never A5 PASS.
 """
 import argparse, datetime, json, os, pathlib, re, shutil, stat, sys, time
+sys.dont_write_bytecode=True
 from reconstruct_frontends import Refusal, acquire, atomic, command, need, sha
 from scan_package_archives import scan_packages, classifications
 from component_checkpoints import seal as seal_component
@@ -82,6 +83,12 @@ def finalize_package_scan(execution,candidate):
     atomic(execution/'package-source-scan.json',scan)
     return scan
 
+def reconstruction_env(root,hosted=True):
+    root=pathlib.Path(root)
+    env={'PYTHONDONTWRITEBYTECODE':'1','PATH':'/usr/bin:/bin','HOME':str(root/'home'),'LANG':'C.UTF-8','CI':'true','GITHUB_ACTIONS':'true','NEXT_TELEMETRY_DISABLED':'1','npm_config_audit':'false','npm_config_fund':'false','npm_config_fetch_retries':'0','npm_config_fetch_timeout':'30000','npm_config_cache':str(root/'npm-cache'),'npm_config_update_notifier':'false'}
+    if not hosted:env.pop('GITHUB_ACTIONS')
+    return env
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument('--root',required=True,type=pathlib.Path)
@@ -95,7 +102,7 @@ def main():
     for name in ('logs','home','tool-preparation','runtime-bin'):(root/name).mkdir(mode=0o700)
     execution=args.execution_root.absolute() if args.execution_root else root/'execution'
     logs=root/'logs';started=time.monotonic();stage='execution-seed';steps=[]
-    env={'PATH':'/usr/bin:/bin','HOME':str(root/'home'),'LANG':'C.UTF-8','CI':'true','GITHUB_ACTIONS':'true','NEXT_TELEMETRY_DISABLED':'1','npm_config_audit':'false','npm_config_fund':'false','npm_config_fetch_retries':'0','npm_config_fetch_timeout':'30000','npm_config_cache':str(root/'npm-cache'),'npm_config_update_notifier':'false'}
+    env=reconstruction_env(root)
     try:
         validate_execution_seed(execution)
         stage='prebuild-capacity'
@@ -115,14 +122,14 @@ def main():
         steps.append(command(['git','fetch','--depth=1','origin',BACKEND],src,env,logs,'backend-fetch',300))
         steps.append(command(['git','checkout','--detach',BACKEND],src,env,logs,'backend-checkout',120))
         backend=root/'backend-build';stage='backend-reconstruction'
-        steps.append(command(['python3',str(HERE/'reconstruct-backend.py'),'--source',str(src),'--controller',str(ctl),'--output',str(backend),'--max-seconds','1200'],root,env,logs,'backend-reconstruction',1260))
+        steps.append(command(['python3','-B',str(HERE/'reconstruct-backend.py'),'--source',str(src),'--controller',str(ctl),'--output',str(backend),'--max-seconds','1200'],root,env,logs,'backend-reconstruction',1260))
         manifest=backend/'backend-manifest.json'
         need(manifest.is_file(),'BACKEND_MANIFEST_REQUIRED')
         stage='backend-local-component-checkpoint'
         backend_pin=json.loads(manifest.read_text())
         seal_component(execution,'backend',backend_pin,backend/'artifacts'/backend_pin['file'],[manifest,backend/'evidence/backend-build-result.json',backend/'evidence/backend-packaging-removal.json'])
         front=root/'frontend-build';stage='frontend-reconstruction'
-        steps.append(command(['python3',str(HERE/'reconstruct_frontends.py'),'--root',str(front),'--backend-manifest',str(manifest),'--toolchain-cache',str(root/'tool-preparation/toolchain'),'--execution-root',str(execution)],root,env,logs,'frontend-reconstruction',1800))
+        steps.append(command(['python3','-B',str(HERE/'reconstruct_frontends.py'),'--root',str(front),'--backend-manifest',str(manifest),'--toolchain-cache',str(root/'tool-preparation/toolchain'),'--execution-root',str(execution)],root,env,logs,'frontend-reconstruction',1800))
         candidate=json.loads((front/'v65-packages.json').read_text())
         artifacts=execution/'artifacts';artifacts.mkdir(mode=0o700)
         for role,item in [('backend',candidate['backend']),*candidate['frontends'].items()]:
