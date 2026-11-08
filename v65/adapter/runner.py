@@ -14,8 +14,10 @@ FOUNDATION=HERE.parent/'foundation'
 sys.path.insert(0,str(FOUNDATION/'runtime'))
 from runtime_common import atomic,bounded_process,Refusal as RuntimeRefusal
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
-CONTROLLER_SHA='daa27901f6f19e62c1f2069c7843cbc2806c9b6e77b050082e7e38507b214e04'
+CONTROLLER_SHA='65d8cab9f9c1ed99e254ad6598b1b2b04b049755be5e0fc5cfee0e7326f2a3d6'
 DRIVER_SHA='49d50e3d985e0a544780422f8ad56c9a10311d835bbea667f8c384ccf9d9e480'
+MEMBERSHIP_CONTROLLER_SHA='59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b'
+MEMBERSHIP_CONTROLLER_BYTES=20923
 REVIEW_REF='work8/v75-review-20261104'
 LAUNCH_REF='refs/heads/work8/v75-a5-20261104'
 WORKFLOW_PATH='.github/workflows/work8-v75-a5.yml'
@@ -229,6 +231,67 @@ def controller_manifest(path):
  atomic(path/'controller-manifest.json',{'schema':'work8-v65-execution-controller-manifest-v1','historicalControllerManifestSHA256':CONTROLLER_SHA,'files':files})
  return sha(path/'controller-manifest.json')
 
+def diagnostic_runtime_file(directory,name,expected_sha,expected_bytes,owner=None,mode=0o644):
+ """Read one pinned runtime operand without following an ancestor or file link."""
+ fd=open_indexed_no_follow(directory,name)
+ with os.fdopen(fd,'rb') as stream:
+  before=os.fstat(stream.fileno())
+  require(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and before.st_size==expected_bytes and stat.S_IMODE(before.st_mode)==mode,'DIAGNOSTIC_RUNTIME_REGULAR_IDENTITY')
+  require(owner is None or (before.st_uid,before.st_gid)==owner,'DIAGNOSTIC_RUNTIME_OWNER')
+  data=stream.read(expected_bytes+1);after=os.fstat(stream.fileno())
+  require(len(data)==expected_bytes and hashlib.sha256(data).hexdigest()==expected_sha,'DIAGNOSTIC_RUNTIME_HASH')
+  require((before.st_dev,before.st_ino,before.st_size,before.st_mtime_ns,before.st_ctime_ns)==(after.st_dev,after.st_ino,after.st_size,after.st_mtime_ns,after.st_ctime_ns) and after.st_nlink==1,'DIAGNOSTIC_RUNTIME_CHANGED_DURING_READ')
+ return {'path':name,'bytes':expected_bytes,'sha256':expected_sha,'uid':before.st_uid,'gid':before.st_gid,'mode':mode,'nlink':before.st_nlink}
+
+def diagnostic_membership_operand(root):
+ """The fixture consumes the controller, never the distinct IPC bootstrap.
+
+ This file-only helper grants no hosted, principal, or native authority. The
+ enclosing prepare/qualify entrypoints retain their original UID1001 gates.
+ """
+ root=pathlib.Path(root);s=root.lstat()
+ require(root.is_absolute() and root.resolve()==root and stat.S_ISDIR(s.st_mode) and (s.st_uid,s.st_gid)==(os.getuid(),os.getgid()) and stat.S_IMODE(s.st_mode)==0o700,'DIAGNOSTIC_PRIVATE_PREPARED_ROOT')
+ runtime=root/'runtime';rs=runtime.lstat()
+ require(runtime.resolve()==runtime and stat.S_ISDIR(rs.st_mode) and (rs.st_uid,rs.st_gid)==(s.st_uid,s.st_gid) and stat.S_IMODE(rs.st_mode)==0o755,'DIAGNOSTIC_RUNTIME_DIRECTORY')
+ overlays=root/'controller/scripts/work8/native-transition/startup-overlays.json';regular(overlays,32768)
+ require(json.loads(overlays.read_bytes())['originalMembershipControllerSha256']==MEMBERSHIP_CONTROLLER_SHA,'DIAGNOSTIC_FIXTURE_CONTROLLER_PIN')
+ source=diagnostic_runtime_file(FOUNDATION/'runtime','runtime-membership-controller.cjs',MEMBERSHIP_CONTROLLER_SHA,MEMBERSHIP_CONTROLLER_BYTES)
+ prepared=diagnostic_runtime_file(runtime,'runtime-membership-controller.cjs',MEMBERSHIP_CONTROLLER_SHA,MEMBERSHIP_CONTROLLER_BYTES,(s.st_uid,s.st_gid))
+ return {'source':source,'prepared':prepared,'fixturePinSHA256':MEMBERSHIP_CONTROLLER_SHA,'fixtureManifestSHA256':sha(overlays)}
+
+def diagnostic_runtime_inventory(root):
+ """Verify the complete fresh runtime copy before generated native files exist."""
+ source=FOUNDATION/'runtime';target=root/'runtime';expected={};expected_directories={};observed=set();observed_directories=set()
+ for item in source.rglob('*'):
+  name=relative_name(item.relative_to(source).as_posix());s=item.lstat()
+  require(stat.S_ISDIR(s.st_mode) or stat.S_ISREG(s.st_mode),'DIAGNOSTIC_SOURCE_RUNTIME_LINK_OR_SPECIAL')
+  require(not (item.name=='__pycache__' or item.suffix in ('.pyc','.pyo')),'DIAGNOSTIC_RUNTIME_CACHE_REFUSED')
+  require(not stat.S_IMODE(s.st_mode)&0o022,'DIAGNOSTIC_RUNTIME_WRITABLE_SOURCE')
+  if stat.S_ISDIR(s.st_mode):expected_directories[name]=stat.S_IMODE(s.st_mode);continue
+  regular(item,1024*1024);expected[name]={'bytes':s.st_size,'sha256':sha(item),'mode':stat.S_IMODE(s.st_mode)}
+ require(0<len(expected)<=128,'DIAGNOSTIC_RUNTIME_INVENTORY_BOUND')
+ for item in target.rglob('*'):
+  name=relative_name(item.relative_to(target).as_posix());s=item.lstat()
+  require(stat.S_ISDIR(s.st_mode) or stat.S_ISREG(s.st_mode),'DIAGNOSTIC_PREPARED_RUNTIME_LINK_OR_SPECIAL')
+  require(not (item.name=='__pycache__' or item.suffix in ('.pyc','.pyo')),'DIAGNOSTIC_RUNTIME_CACHE_REFUSED')
+  if stat.S_ISREG(s.st_mode):observed.add(name)
+  else:
+   observed_directories.add(name)
+   require(name in expected_directories and stat.S_IMODE(s.st_mode)==expected_directories[name] and (s.st_uid,s.st_gid)==(root.stat().st_uid,root.stat().st_gid),'DIAGNOSTIC_RUNTIME_DIRECTORY_IDENTITY')
+ require(observed==set(expected) and observed_directories==set(expected_directories),'DIAGNOSTIC_RUNTIME_EXACT_INVENTORY')
+ owner=(root.stat().st_uid,root.stat().st_gid)
+ rows=[diagnostic_runtime_file(target,name,pin['sha256'],pin['bytes'],owner,pin['mode']) for name,pin in sorted(expected.items())]
+ return {'schema':'work8-v87-diagnostic-runtime-materialization-v1','status':'PASS_EXACT_CONTROLLER_AND_COMPLETE_RUNTIME_COPY','membership':diagnostic_membership_operand(root),'runtimeFiles':rows,'verificationBoundary':'COMPLETE_FRESH_RUNTIME_COPY_BEFORE_DIAGNOSTIC_EXECUTION','applicationStarted':False,'hostedPrincipalClaimed':False}
+
+def diagnostic_control_invocation(root):
+ """Return the same validated seven-control command used by hosted qualify."""
+ diagnostic_membership_operand(root)
+ node=root/'bin/node';regular(node,124836408)
+ require(node.stat().st_size==124836408 and sha(node)==NODE_SHA and stat.S_IMODE(node.stat().st_mode)==0o755 and (node.stat().st_uid,node.stat().st_gid)==(root.stat().st_uid,root.stat().st_gid),'DIAGNOSTIC_NODE_IDENTITY')
+ env=clean_env(root);env.update(WORK8_TEST_NODE=str(node),WORK8_TEST_MEMBERSHIP=str(root/'runtime/runtime-membership-controller.cjs'),WORK8_TEST_EVIDENCE=str(root/'diagnostic-controls'))
+ script=root/'controller/scripts/work8/native-transition'
+ return ['/usr/bin/python3','-B',str(script/'test_command_diagnostics.py')],env
+
 def prepare(root,retained_driver=None):
  require(root.resolve()==root and stat.S_IMODE(root.stat().st_mode)==0o700 and root.stat().st_uid==1001,'PRIVATE_EXECUTION_ROOT_REQUIRED')
  origin_path=root/'package-origin.json';reused=origin_path.exists()
@@ -248,7 +311,9 @@ def prepare(root,retained_driver=None):
  for p in script.glob('*.py'):compile(p.read_bytes(),str(p),'exec')
  controller_sha=controller_manifest(script);verify_manifest_diagnostic(script,script/'controller-manifest.json',controller_sha,'assembled-controller')
  fetch_driver(root,retained_driver)
+ diagnostic_runtime_file(FOUNDATION/'runtime','runtime-membership-controller.cjs',MEMBERSHIP_CONTROLLER_SHA,MEMBERSHIP_CONTROLLER_BYTES)
  shutil.copytree(FOUNDATION/'runtime',root/'runtime')
+ diagnostic_runtime=diagnostic_runtime_inventory(root)
  node=root/'bin/node';node.parent.mkdir(mode=0o755)
  with tarfile.open(root/'artifacts'/packages['frontends']['normal']['file'],'r:gz') as t:
   m=t.getmember('runtime/bin/node');require(m.isfile() and m.size==124836408,'HOST_NODE_MEMBER_IDENTITY')
@@ -256,6 +321,8 @@ def prepare(root,retained_driver=None):
  node.chmod(0o755);require(sha(node)==NODE_SHA,'HOST_NODE_HASH');require(run(root,[str(node),'--version']).strip()==b'v22.23.2','HOST_NODE_VERSION')
  cp=load_module('v65_current_packages',script/'current_packages.py')
  observations={'backend':cp.verify_backend(root/'artifacts'/cp.BACKEND['file']),'frontends':{role:cp.verify_frontend(root/'artifacts'/pin['file'],role) for role,pin in cp.FRONTENDS.items()}}
+ diagnostic_runtime.update(packageManifestSHA256=sha(root/'v65-packages.json'),backendArchiveSHA256=cp.BACKEND['sha256'],backendImage=cp.BACKEND['image'])
+ atomic(root/'diagnostic-runtime.json',diagnostic_runtime,exclusive=True)
  inventory={p.name for p in (root/'artifacts').iterdir()};require(inventory=={p['file'] for p in [cp.BACKEND,*cp.FRONTENDS.values()]},'COMPLETE_EXCLUSIVE_PACKAGE_INVENTORY')
  atomic(root/'package-delivery.json',{'schema':'work8-v65-runner-local-package-qualification-v1','status':'PASS_COMPLETE_LOCAL_SHA256_PENDING_INDEPENDENT_EQUIVALENCE','delivery':'preserved-exact-artifact-reuse' if reused else 'source-reconstruction-on-this-runner','rebuiltThisExecution':not reused,'historicalReconstructionRunId':origin.get('historicalRunId') if reused else None,'packageManifestSHA256':sha(root/'v65-packages.json'),'observations':observations,'applicationStarted':False,'wholeRowsAccepted':[]},exclusive=True)
  atomic(root/'source-identities.json',{'schema':'work8-v65-reconstructed-source-identities-v1','components':SOURCES,'historicalControllerManifestSHA256':CONTROLLER_SHA,'controllerManifestSHA256':controller_sha,'packageManifestSHA256':sha(root/'v65-packages.json'),'historicalPackageBytesClaimed':False,'independentlyAdmitted':False},exclusive=True)
@@ -356,8 +423,9 @@ def qualify(root,authority_file,*,qualification_only=False):
   atomic(root/'runtime-evidence/qualification-cleanup.json',{'schema':'work8-v75-qualification-cleanup-v1','status':'PASS' if not cleanup_errors else 'FAIL','errors':cleanup_errors,'primaryFailurePreserved':primary_failure is not None,'applicationStarted':False},exclusive=True)
   if cleanup_errors and primary_failure is None:raise Refusal('QUALIFICATION_CLEANUP_FAILED')
  # Exercise the unchanged seven first-error controls on this exact copied controller.
- diagnostics=root/'diagnostic-controls';env=clean_env(root);env.update(WORK8_TEST_NODE=str(root/'bin/node'),WORK8_TEST_MEMBERSHIP=str(root/'runtime/runtime-membership-bootstrap.mjs'),WORK8_TEST_EVIDENCE=str(diagnostics))
- script=root/'controller/scripts/work8/native-transition';run(root,['/usr/bin/python3','-B',str(script/'test_command_diagnostics.py')],120,1024*1024,env=env)
+ diagnostics=root/'diagnostic-controls';args,env=diagnostic_control_invocation(root)
+ require(critical['files']['/app/deployment/runtime-membership-controller.cjs']['sha256']==MEMBERSHIP_CONTROLLER_SHA and critical['files']['/app/deployment/runtime-membership-controller.cjs']['bytes']==MEMBERSHIP_CONTROLLER_BYTES,'DIAGNOSTIC_CONTROLLER_CURRENT_IMAGE_JOIN')
+ script=root/'controller/scripts/work8/native-transition';run(root,args,120,1024*1024,env=env)
  diagnostic=json.loads((diagnostics/'negative-control-result.json').read_text());require(diagnostic['status']=='PASS' and diagnostic['testsRun']==7 and diagnostic['testsPassed']==7,'SEVEN_FIRST_ERROR_CONTROLS_REQUIRED');q['diagnosticControlsSHA256']=sha(diagnostics/'negative-control-result.json')
  q['diagnosticControls']=diagnostic
  q['observerBuildSHA256']=sha(root/'runtime-evidence/dumpability-observer-build.json')

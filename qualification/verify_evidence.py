@@ -191,6 +191,8 @@ def native(files, identity, observations, root, packages):
     smoke = value('sqljs-packaging-smoke.json'); policy = decode((root/'v65/foundation/controller/scripts/work8/native-transition/package-exclusions.json').read_bytes())
     need(smoke['schema'] == 'work8-v23-retained-sqljs-smoke-v1' and smoke['status'] == 'PASS' and smoke['nodeVersion'] == 'v22.23.2' and smoke['resolvedRelative'] == policy['defaultEntry'] and smoke['sourcePackageVersion'] == policy['packageVersion'] and all(smoke[k] is True for k in ('exactRetainedFileHashesVerified','removedVariantsAbsent','createInsertSelect','exportReloadReadback')) and smoke['syntheticRowCount'] == 1 and 0 < smoke['exportedBytes'] <= 1024*1024 and guard.digest_string(smoke['exportedSha256']) and all(smoke[k] is False for k in ('databaseBytesRetained','applicationAcceptance','providerAccess')), 'READBACK_ACTUAL_SQLJS_SMOKE')
     diagnostic = q['diagnosticControls']
+    diagnostic_runtime(files, root, required=True)
+    diagnostic_evidence(files, root, required=True)
     need(diagnostic['schema'] == 'work8-v62-first-error-negative-controls-v1' and diagnostic['node'] == 'v22.23.2' and diagnostic['nativeApplicationStarted'] is diagnostic['containerExecution'] is False and len(diagnostic['tests']) == 7, 'READBACK_ACTUAL_FIRST_ERROR_CONTROLS')
     expected_tests = {'actual-child-protected-entrypoint','timeout-with-valid-child-partial','invalid-utf8-before-valid-child-receipt','unterminated-stdout-separate-stderr-frame','real-spawn-oserror-cleanup-overwrite-refused','secret-suppression-through-coordinator','later-parent-failure-cannot-replace-child'}
     need({r['id'] for r in diagnostic['tests']} == expected_tests and all(r['status'] == 'PASS' for r in diagnostic['tests']), 'READBACK_COMPLETE_DIAGNOSTIC_NEGATIVES')
@@ -276,6 +278,114 @@ def backend_alias(files, root, proof, q, identity):
     need(cleanup['schema'] == 'work8-v84-backend-alias-cleanup-v1' and cleanup['status'] == 'PASS' and cleanup['errors'] == [] and cleanup['primaryFailurePreserved'] is cleanup['applicationStarted'] is False, 'READBACK_BACKEND_ALIAS_CLEANUP')
     need(value('package-applicability-static.json')['requiredNativeChecks'] == ['PROTECTED_BACKEND_ALIAS_RESOLUTION'], 'READBACK_BACKEND_REQUIRED_NATIVE_GATE')
 
+def diagnostic_runtime(files, root, required=False, expected_principal=(1001,1001)):
+    """Join the materialized controller to exact source/package bytes.
+
+    The real hosted verifier always uses UID/GID1001. A local read-only witness
+    may supply its measured principal without claiming hosted qualification.
+    """
+    name = 'prepared/diagnostic-runtime.json'
+    if name not in files:
+        need(not required, 'READBACK_DIAGNOSTIC_RUNTIME_REQUIRED')
+        return {'status':'NOT_EXECUTED'}
+    root = pathlib.Path(root).resolve(); row = decode(files[name])
+    need(set(row) == {'schema','status','membership','runtimeFiles','verificationBoundary','applicationStarted','hostedPrincipalClaimed','packageManifestSHA256','backendArchiveSHA256','backendImage'}, 'READBACK_DIAGNOSTIC_RUNTIME_FIELDS')
+    need(row['schema'] == 'work8-v87-diagnostic-runtime-materialization-v1' and row['status'] == 'PASS_EXACT_CONTROLLER_AND_COMPLETE_RUNTIME_COPY' and row['verificationBoundary'] == 'COMPLETE_FRESH_RUNTIME_COPY_BEFORE_DIAGNOSTIC_EXECUTION' and row['applicationStarted'] is row['hostedPrincipalClaimed'] is False, 'READBACK_DIAGNOSTIC_RUNTIME_SCOPE')
+    package_raw = files['prepared/v65-packages.json']; packages = decode(package_raw)
+    need(digest(package_raw) == row['packageManifestSHA256'] == original_contract.PACKAGE_MANIFEST_SHA256 and row['backendArchiveSHA256'] == packages['backend']['sha256'] and row['backendImage'] == packages['backend']['image'], 'READBACK_DIAGNOSTIC_RUNTIME_PACKAGE_BINDING')
+    uid,gid = expected_principal
+    need(type(uid) is type(gid) is int and uid >= 0 and gid >= 0, 'READBACK_DIAGNOSTIC_EXPECTED_PRINCIPAL')
+    runtime = root/'v65/foundation/runtime'; expected=[]
+    for path in sorted(runtime.iterdir(),key=lambda p:p.name):
+        need(not path.is_symlink() and path.is_file() and stat.S_ISREG(path.lstat().st_mode) and path.stat().st_nlink == 1, 'READBACK_DIAGNOSTIC_SOURCE_RUNTIME_REGULAR')
+        raw = path.read_bytes()
+        expected.append({'path':path.name,'bytes':len(raw),'sha256':digest(raw),'uid':uid,'gid':gid,'mode':stat.S_IMODE(path.stat().st_mode),'nlink':1})
+    need(row['runtimeFiles'] == expected, 'READBACK_DIAGNOSTIC_COMPLETE_RUNTIME_COPY')
+    operand = next(item for item in expected if item['path'] == 'runtime-membership-controller.cjs')
+    need(operand['bytes'] == 20923 and operand['sha256'] == '59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b' and operand['mode'] == 0o644, 'READBACK_DIAGNOSTIC_EXACT_CONTROLLER_OPERAND')
+    manifest_raw = (root/'v65/foundation/controller/scripts/work8/native-transition/startup-overlays.json').read_bytes()
+    pin = decode(manifest_raw)['originalMembershipControllerSha256']
+    need(row['membership'] == {'source':operand,'prepared':operand,'fixturePinSHA256':pin,'fixtureManifestSHA256':digest(manifest_raw)} and pin == operand['sha256'], 'READBACK_DIAGNOSTIC_FIXTURE_CONTROLLER_JOIN')
+    return {'status':'PASS_EXACT_SOURCE_AND_PACKAGE_BOUND_RUNTIME','filesVerified':len(expected),'membershipSHA256':pin,'uid':uid,'gid':gid,'hostedPrincipalClaimed':False}
+
+def diagnostic_evidence(files, root, required=False):
+    """Independently join every sanitized control receipt, also on failed runs.
+
+    Exported raw stderr, arbitrary exception text, unknown case paths and
+    first-error replacements are never accepted as diagnostic evidence.
+    """
+    root = pathlib.Path(root).resolve()
+    prefix = 'prepared/diagnostic-controls/'
+    summary_name = prefix+'negative-control-result.json'
+    ids = {'actual-child-protected-entrypoint','timeout-with-valid-child-partial',
+           'invalid-utf8-before-valid-child-receipt','unterminated-stdout-separate-stderr-frame',
+           'real-spawn-oserror-cleanup-overwrite-refused','secret-suppression-through-coordinator',
+           'later-parent-failure-cannot-replace-child'}
+    present = {name for name in files if name.startswith(prefix)}
+    if summary_name not in files:
+        need(not required and not present, 'READBACK_DIAGNOSTIC_SUMMARY_REQUIRED')
+        return {'status':'NOT_EXECUTED','casesVerified':0}
+    diagnostic = decode(files[summary_name])
+    need(set(diagnostic) == {'schema','status','testsRun','testsPassed','testsFailed','node','actualCoordinatorFunctionSource','actualControllerInvocation','nativeApplicationStarted','containerExecution','uploadAndIndependentReadback','tests','caseEvidenceSchema','firstFailedControl','source'}, 'READBACK_DIAGNOSTIC_SUMMARY_FIELDS')
+    need(diagnostic['schema'] == 'work8-v62-first-error-negative-controls-v1' and diagnostic['caseEvidenceSchema'] == 'work8-v87-diagnostic-control-case-v1', 'READBACK_DIAGNOSTIC_EVIDENCE_SCHEMA')
+    need(diagnostic['node'] == 'v22.23.2' and diagnostic['nativeApplicationStarted'] is diagnostic['containerExecution'] is False, 'READBACK_DIAGNOSTIC_EXECUTION_SCOPE')
+    tests = diagnostic['tests']
+    need(isinstance(tests,list) and 0 < len(tests) == diagnostic['testsRun'] <= 7 and len({r['id'] for r in tests}) == len(tests) and {r['id'] for r in tests} <= ids, 'READBACK_DIAGNOSTIC_EXACT_CONTROL_SET')
+    need([r['sequence'] for r in tests] == list(range(1,len(tests)+1)) and all(set(r) == {'id','status','sequence','files','cleanup'} and r['status'] in ('PASS','FAIL') for r in tests), 'READBACK_DIAGNOSTIC_CONTROL_ORDER')
+    passed = sum(row['status'] == 'PASS' for row in tests)
+    need(diagnostic['testsPassed'] == passed and diagnostic['testsFailed'] == len(tests)-passed and diagnostic['status'] == ('PASS' if passed == len(tests) == 7 else 'FAIL'), 'READBACK_DIAGNOSTIC_EXACT_RESULT_COUNTS')
+    controller = root/'v65/foundation/controller/scripts/work8/native-transition'
+    source = controller/'test_command_diagnostics.py'
+    source_sha = digest(source.read_bytes()); source_lines = len(source.read_text().splitlines())
+    native_diagnostics = qualify_only.runner.load_module('v87_independent_safe_diagnostic', controller/'native_diagnostics.py')
+    expected = {summary_name}
+    expected_assertions = {name:'ENOENT' for name in ids}
+    expected_assertions.update({'actual-child-protected-entrypoint':'OPERATOR_PATH_NOT_PROTECTED','secret-suppression-through-coordinator':'UNCLASSIFIED_NATIVE_STARTUP_ERROR','real-spawn-oserror-cleanup-overwrite-refused':'UNKNOWN'})
+    for row in tests:
+        name = prefix+'cases/'+row['id']+'.json'; expected.add(name)
+        need(name in files and len(row['files']) == 1, 'READBACK_DIAGNOSTIC_CASE_REQUIRED')
+        descriptor = row['files'][0]
+        need(descriptor == {'path':'cases/'+row['id']+'.json','bytes':len(files[name]),'sha256':digest(files[name])}, 'READBACK_DIAGNOSTIC_CASE_BYTE_JOIN')
+        cleanup = row['cleanup']
+        need(set(cleanup) == {'status','privateTemporaryDirectoryRemoved','caseSHA256BeforeCleanup','caseSHA256AfterCleanup'}, 'READBACK_DIAGNOSTIC_CLEANUP_FIELDS')
+        need(cleanup['status'] in ('PASS','FAIL','NOT_CREATED') and type(cleanup['privateTemporaryDirectoryRemoved']) is bool, 'READBACK_DIAGNOSTIC_CLEANUP_RESULT')
+        if cleanup['status'] == 'PASS':
+            need(cleanup['privateTemporaryDirectoryRemoved'] is True and cleanup['caseSHA256BeforeCleanup'] == cleanup['caseSHA256AfterCleanup'] == descriptor['sha256'], 'READBACK_DIAGNOSTIC_CUSTODY_SURVIVES_CLEANUP')
+        else:
+            need(row['status'] == 'FAIL', 'READBACK_DIAGNOSTIC_FAILED_CLEANUP_NOT_PASS')
+            if cleanup['status'] == 'NOT_CREATED':
+                need(cleanup['privateTemporaryDirectoryRemoved'] is True and cleanup['caseSHA256BeforeCleanup'] is cleanup['caseSHA256AfterCleanup'] is None, 'READBACK_DIAGNOSTIC_SETUP_FAILURE_SCOPE')
+        case = decode(files[name])
+        need(set(case) == {'schema','id','sequence','firstError','firstErrorSHA256','controlSourceSHA256','capturedBeforeTeardown','rawOutputRetained','applicationStarted'}, 'READBACK_DIAGNOSTIC_CASE_FIELDS')
+        need(case['schema'] == 'work8-v87-diagnostic-control-case-v1' and case['id'] == row['id'] and case['sequence'] == row['sequence'] and case['controlSourceSHA256'] == source_sha and case['capturedBeforeTeardown'] is True and case['rawOutputRetained'] is case['applicationStarted'] is False, 'READBACK_DIAGNOSTIC_CASE_SOURCE_CUSTODY')
+        first = case['firstError']
+        if first is None:
+            need(row['status'] == 'FAIL' and case['firstErrorSHA256'] is None, 'READBACK_DIAGNOSTIC_FIRST_ERROR_REQUIRED')
+        else:
+            need(isinstance(first,dict) and native_diagnostics.sanitize(first) == first and case['firstErrorSHA256'] == digest(canonical(first)+b'\n'), 'READBACK_DIAGNOSTIC_SANITIZED_FIRST_ERROR')
+            if row['status'] == 'PASS':
+                need(first['assertion'] == expected_assertions[row['id']], 'READBACK_DIAGNOSTIC_EXPECTED_FIRST_ASSERTION')
+                need(first['operation'] == ('EXECUTE_REVIEWED_COMMAND' if row['id'] == 'real-spawn-oserror-cleanup-overwrite-refused' else 'OBSERVE_ORIGINAL_CHILD_FAILURE'), 'READBACK_DIAGNOSTIC_EXPECTED_OPERATION')
+                need(first['errno'] == (None if row['id'] in ('actual-child-protected-entrypoint','secret-suppression-through-coordinator') else 'ENOENT'), 'READBACK_DIAGNOSTIC_EXPECTED_ERRNO')
+            need(first['rawErrorOrRecordsRetained'] is False, 'READBACK_DIAGNOSTIC_RAW_OUTPUT_REFUSED')
+    failure_pointer = diagnostic['firstFailedControl']
+    if passed != len(tests):
+        name = prefix+'first-failed-control.json'; expected.add(name)
+        need(name in files and failure_pointer == {'path':'first-failed-control.json','bytes':len(files[name]),'sha256':digest(files[name])}, 'READBACK_DIAGNOSTIC_FIRST_FAILED_CONTROL_JOIN')
+        failed = decode(files[name]); first_row = next(row for row in tests if row['status'] == 'FAIL')
+        need(set(failed) == {'schema','id','sequence','caseReceipt','controlFailure','capturedBeforeTeardown','applicationStarted'}, 'READBACK_DIAGNOSTIC_FAILED_CONTROL_FIELDS')
+        need(failed['schema'] == 'work8-v87-first-failed-diagnostic-control-v1' and failed['id'] == first_row['id'] and failed['sequence'] == first_row['sequence'] and failed['caseReceipt'] == first_row['files'][0] and type(failed['capturedBeforeTeardown']) is bool and (failed['capturedBeforeTeardown'] is True or first_row['cleanup']['status'] == 'FAIL') and failed['applicationStarted'] is False, 'READBACK_DIAGNOSTIC_FIRST_FAILURE_ORDER')
+        failure = failed['controlFailure']
+        need(set(failure) == {'exceptionClass','operation','errno','sourceFrames','rawErrorRetained'} and failure['exceptionClass'] in ('AssertionError','OSError','ValueError','RuntimeError','KeyError','TypeError','OTHER') and failure['operation'] == 'ASSERT_DIAGNOSTIC_CONTROL' and (failure['errno'] is None or failure['errno'] in native_diagnostics.ERRNOS) and failure['rawErrorRetained'] is False, 'READBACK_DIAGNOSTIC_FAILURE_SANITIZED')
+        frames = failure['sourceFrames']
+        need(isinstance(frames,list) and 1 <= len(frames) <= 8 and all(isinstance(frame,str) and re.fullmatch(r'test_command_diagnostics\.py:[1-9][0-9]{0,5}:0',frame) and int(frame.split(':')[1]) <= source_lines for frame in frames), 'READBACK_DIAGNOSTIC_FAILURE_SOURCE_FRAME_BOUND')
+    else:
+        need(failure_pointer is None, 'READBACK_DIAGNOSTIC_UNEXPECTED_FAILED_CONTROL')
+    need(present == expected, 'READBACK_DIAGNOSTIC_NO_MISSING_OR_EXTRA_CASES')
+    if required:
+        need(diagnostic['status'] == 'PASS' and passed == 7 and {row['id'] for row in tests} == ids, 'READBACK_DIAGNOSTIC_ALL_SEVEN_REQUIRED')
+    return {'status':diagnostic['status'],'casesVerified':len(tests),'testsPassed':passed,'testsFailed':len(tests)-passed,'firstFailedControl':None if failure_pointer is None else first_row['id'],'beforeTeardownCustodyVerified':True}
+
 def cleanup_positive(files):
     value = lambda n: decode(files[n])
     cleanup = value('cleanup.json')
@@ -291,6 +401,8 @@ def verify(archive, provider, log_bytes, expected_commit, expected_source_manife
     root, source, config, authority, approval_sha = trusted_source(source_root or HERE.parent, expected_source_manifest)
     run, job, artifact, duration = provider_contract(provider, config, expected_commit)
     files = envelope(archive, artifact); value = lambda n: decode(files[n])
+    diagnostic_runtime_custody = diagnostic_runtime(files, root)
+    diagnostic_custody = diagnostic_evidence(files, root)
     common = {'runId':run['id'],'jobId':job['id'],'workflowCommit':expected_commit,'artifactId':artifact['id'],'artifactSHA256':artifact['digest'].removeprefix('sha256:'),'filesVerified':len(files),'jobDurationSeconds':duration,'sourceManifestSHA256':expected_source_manifest,'applicationAcceptance':False,'A5':'PENDING','A5-08':'NOT_EXECUTED','A5-09':'NOT_EXECUTED','actualProviderChargeUSD':None,'financialAuthority':authority,'fullA5AuthorityGranted':False}
     if 'first-failure.json' in files:
         failure = value('first-failure.json')
@@ -312,7 +424,7 @@ def verify(archive, provider, log_bytes, expected_commit, expected_source_manife
             need(prior.get('applicationStarted') is prior.get('applicationExecutionAuthorized') is False and prior.get('wholeRowsAccepted') == [] and prior.get('A5') == 'PENDING' and prior.get('A5-08') == prior.get('A5-09') == 'NOT_EXECUTED', 'READBACK_PARTIAL_RESULT_SCOPE')
         # Incomplete operands remain unavailable; a failed attempt never inherits
         # a technical PASS merely because service attribution and ZIP are valid.
-        return {'schema':'work8-v84-outside-qualification-readback-v1','status':'FAIL_HOSTED_QUALIFICATION','firstCausalFailure':failure,'cleanup':cleanup,'cleanupResult':cleanup.get('status','INCOMPLETE'),'qualificationStageEvidence':'RETAINED_NOT_INDEPENDENTLY_ADJUDICATED' if prior is not None else 'NOT_EXECUTED_OR_INCOMPLETE','nativeQualification':'OBSERVATION_RETAINED_NOT_ADJUDICATED' if 'prepared/native-qualification.json' in files else 'NOT_EXECUTED_OR_INCOMPLETE','completeSequentialHandoff':'OBSERVATION_RETAINED_NOT_ADJUDICATED' if 'prepared/reuse-evidence/sequential-handoff.json' in files else 'NOT_EXECUTED_OR_INCOMPLETE','Q01_Q05':'INCOMPLETE_OVERALL_QUALIFICATION_FAILED',**common}
+        return {'schema':'work8-v84-outside-qualification-readback-v1','status':'FAIL_HOSTED_QUALIFICATION','firstCausalFailure':failure,'cleanup':cleanup,'cleanupResult':cleanup.get('status','INCOMPLETE'),'qualificationStageEvidence':'RETAINED_NOT_INDEPENDENTLY_ADJUDICATED' if prior is not None else 'NOT_EXECUTED_OR_INCOMPLETE','nativeQualification':'OBSERVATION_RETAINED_NOT_ADJUDICATED' if 'prepared/native-qualification.json' in files else 'NOT_EXECUTED_OR_INCOMPLETE','completeSequentialHandoff':'OBSERVATION_RETAINED_NOT_ADJUDICATED' if 'prepared/reuse-evidence/sequential-handoff.json' in files else 'NOT_EXECUTED_OR_INCOMPLETE','Q01_Q05':'INCOMPLETE_OVERALL_QUALIFICATION_FAILED','diagnosticEvidence':diagnostic_custody,'diagnosticRuntime':diagnostic_runtime_custody,**common}
     need(not any('first-runtime-' in n or 'first-reuse-' in n or n == 'export-refusal.json' for n in files), 'READBACK_NO_HIDDEN_CAUSAL_FAILURE')
     need(run['conclusion'] == job['conclusion'] == 'success', 'READBACK_SUCCESSFUL_TERMINAL_RESULT')
     identity, observations = value('identity/runner-identity.json'), value('identity/runtime-image-provenance.json')

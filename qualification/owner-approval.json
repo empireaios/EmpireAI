@@ -4,16 +4,16 @@
   "scope": "one-qualification-only-attempt",
   "maximumAttempts": 1,
   "applicationExecutionAuthorized": false,
-  "sourceManifestSHA256": "26e5bce179e2a00eb23429089b40b498f16aca43e3042e242b9879c1a5b99875",
+  "sourceManifestSHA256": "fedcc4ad8b5c374ce0b0883b7b58f8c662c5647f709051d640d3b66abb3e4c1b",
   "reservationUSD": "0.01",
   "maximumProspectiveUSD": "0.01",
-  "reviewedEngineeringTree": "78b0a76f62911231c85808e77ceb98b0dcb45bd5",
-  "ownerDecision": "PROPOSED ACTIVATION BYTES ONLY: operative exclusively after the owner separately approves this exact source and one bounded qualification; the actual dated owner approval and reservation must be recorded externally before publication or launch.",
+  "reviewedEngineeringTree": "cd7cd559d41090f9dd328ad9ddb0f86447f997dd",
+  "ownerDecision": "PROPOSED ACTIVATION BYTES ONLY. No new hosted run or reservation is currently authorised. Operative solely after separate owner approval of this exact source and a separately recorded once-only USD0.01 reservation before publication/launch.",
   "activationScope": "Exact reviewed qualification-only metadata activation; no executable implementation change from the inert engineering commit.",
-  "reservationId": "V86-A5-QUALIFICATION-INVENTORY-ONCE",
+  "reservationId": "V87-A5-QUALIFICATION-DIAGNOSTIC-ONCE",
   "reservationReused": false,
-  "newReservationCreated": true,
-  "billingEvidenceSHA256": "32dec4db33affa74a27736dc94073b733af115f199fa376016c3debdf0efcd4e",
+  "newReservationCreated": false,
+  "billingEvidenceSHA256": "6b26b89b4c92d3be8b1ebd076c2a8653cf6f1f5f5fbcdbf0f4caffc4dda7cbc8",
   "maxJobMinutes": 60,
   "automaticRetries": false,
   "stopBefore": [
@@ -24,7 +24,8 @@
   ],
   "proposalStatus": "PROPOSED_ACTIVATION_REQUIRES_EXTERNAL_OWNER_APPROVAL",
   "baselineV85Commit": "e1e3825fb636c96492ac0dee8530238e17cf7cbf",
-  "previousReservationId": "V85-A5-QUALIFICATION-98df78ad-ONCE",
+  "previousReservationId": "V86-A5-QUALIFICATION-INVENTORY-ONCE",
   "previousAttemptConsumed": true,
-  "externalApprovalAndReservationMustExistBeforePublication": true
+  "externalApprovalAndReservationMustExistBeforePublication": true,
+  "baselineV86Commit": "d19be71bbaa3d91c12b8394eae18dfb52d0867ec"
 }

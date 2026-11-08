@@ -161,9 +161,9 @@
       "sha256": "8626383b9fa8b2fcb45ed815c796469e751500ccdcea85d5b180f635c8a61329"
     },
     {
-      "bytes": 47235,
+      "bytes": 47274,
       "path": "native-diagnostic-codes.json",
-      "sha256": "3f14f257bd5ace641415bebfee5ddb7d2b88b69b3e414797fb4bd2db9e1bfd07"
+      "sha256": "72a8237ac096f0bad3c00862534fd123b375c1026fa33979a2aedfb925a36601"
     },
     {
       "bytes": 5811,
@@ -341,9 +341,9 @@
       "sha256": "ab757e373369ae885029b08c969c1c5459b69cbe3836b4bda8cff2f91f64bf02"
     },
     {
-      "bytes": 8505,
+      "bytes": 16366,
       "path": "test_command_diagnostics.py",
-      "sha256": "7666c159f2c0e430869587a7c7712896395f76b09dd13625802a6508c2184a06"
+      "sha256": "93f82c9ab5b6b00614185d5d65c8daafac8a03f9f15c556d8342b00ce42e62de"
     },
     {
       "bytes": 12147,

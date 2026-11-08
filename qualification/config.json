@@ -3,23 +3,23 @@
   "repository": "empireaios/EmpireAI",
   "repositoryId": "1275922460",
   "workflowPath": ".github/workflows/work8-v81-qualification.yml",
-  "launchRef": "refs/heads/work8/v86-qualification-20261107",
-  "jobName": "A5 V86 security and handoff qualification",
+  "launchRef": "refs/heads/work8/v87-qualification-20261108",
+  "jobName": "A5 V87 security and handoff qualification",
   "released": true,
   "authority": {
     "scope": "one-qualification-only-attempt",
     "ownerDecisionRecorded": true,
     "maximumAttempts": 1,
     "work8CeilingUSD": "100.00",
-    "priorOverallHoldsUSD": "12.12",
-    "priorA5HoldsUSD": "2.17",
-    "availableBeforeReservationUSD": "7.83",
+    "priorOverallHoldsUSD": "12.13",
+    "priorA5HoldsUSD": "2.18",
+    "availableBeforeReservationUSD": "7.82",
     "reservationCommitted": true,
     "reservationUSD": "0.01",
     "maximumProspectiveUSD": "0.01",
-    "currentOverallHoldsUSD": "12.13",
-    "currentA5HoldsUSD": "2.18",
-    "remainingUnreservedUSD": "7.82",
+    "currentOverallHoldsUSD": "12.14",
+    "currentA5HoldsUSD": "2.19",
+    "remainingUnreservedUSD": "7.81",
     "providerBillingBoundVerified": true,
     "automaticRetries": false,
     "applicationExecutionAuthorized": false,
@@ -28,7 +28,7 @@
     "productionOperations": false,
     "protectedDataTransfer": false,
     "commerceActivation": false,
-    "billingEvidenceSHA256": "32dec4db33affa74a27736dc94073b733af115f199fa376016c3debdf0efcd4e"
+    "billingEvidenceSHA256": "6b26b89b4c92d3be8b1ebd076c2a8653cf6f1f5f5fbcdbf0f4caffc4dda7cbc8"
   },
   "limits": {
     "jobTimeoutSeconds": 3600,
@@ -49,11 +49,12 @@
     "calculation": "16MiB maximum service ZIP *26 hourly billing boundaries /(28*24) *USD0.25/GiB-month, rounded up; actual charge unconfirmed.",
     "newReservationCommitted": false,
     "maximumProspectiveUSD": "0.01",
-    "proposedOverallHoldsUSD": "12.13",
-    "proposedA5HoldsUSD": "2.18",
-    "proposedRemainingUnreservedUSD": "7.82",
-    "previousV85AttemptConsumed": true
+    "proposedOverallHoldsUSD": "12.14",
+    "proposedA5HoldsUSD": "2.19",
+    "proposedRemainingUnreservedUSD": "7.81",
+    "previousV85AttemptConsumed": true,
+    "previousV86AttemptConsumed": true
   },
-  "packageApplicabilityProofSHA256": "8dba6f823d07095138161c32de7813a0341f188a9a95f3251421f295a4f2863c",
-  "engineeringStatus": "V86_PROPOSED_ACTIVATION_EXTERNAL_OWNER_APPROVAL_REQUIRED"
+  "packageApplicabilityProofSHA256": "ba649b4d98d748291afc67e32da17f45b3e5fe988cc44357a5cfda736901c1cb",
+  "engineeringStatus": "V87_PROPOSED_ACTIVATION_EXTERNAL_EXACT_SOURCE_OWNER_APPROVAL_REQUIRED"
 }

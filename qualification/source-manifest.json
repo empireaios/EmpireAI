@@ -19,12 +19,12 @@
     {
       "path": ".github/workflows/work8-v81-qualification.yml",
       "bytes": 2728,
-      "sha256": "a87d91ba21b5458ddf0851df79df81cd2b8abb2ece754199c929ef1f19bc0e3a"
+      "sha256": "1297a2acca16bfc82573da19f99fc41813f6f43d92f4ba76ff3c9b899c910271"
     },
     {
       "path": "qualification/README.md",
-      "bytes": 8405,
-      "sha256": "c56b06042b35acd00e5beff542e835296d1346b266fbd0ab2c3bea1a24108bad"
+      "bytes": 9487,
+      "sha256": "30e57469a111989b9bbca31e8ef40f4966b3b9e0d741bde66fbd1fa6fdbd5d20"
     },
     {
       "path": "qualification/backend-alias-probe-spec.json",
@@ -43,8 +43,8 @@
     },
     {
       "path": "qualification/config.json",
-      "bytes": 2272,
-      "sha256": "39ad03a988b5e204f5e5f103e89a6608c6345e377706362884690af6a357f9ff"
+      "bytes": 2325,
+      "sha256": "ee7cb616c8e9fac85b0141a1c4fcfbc6daf1eb8ddc348b8b0f5b8c376d0d15dc"
     },
     {
       "path": "qualification/expected-reconstruction-inputs.json",
@@ -78,8 +78,8 @@
     },
     {
       "path": "qualification/package-applicability-proof.json.gz",
-      "bytes": 7502374,
-      "sha256": "8dba6f823d07095138161c32de7813a0341f188a9a95f3251421f295a4f2863c"
+      "bytes": 7502989,
+      "sha256": "ba649b4d98d748291afc67e32da17f45b3e5fe988cc44357a5cfda736901c1cb"
     },
     {
       "path": "qualification/package_applicability.py",
@@ -98,13 +98,13 @@
     },
     {
       "path": "qualification/qualify_only.py",
-      "bytes": 55358,
-      "sha256": "5d154403a9c050d23448ae2b475644257cb9d114601a1beaca44fe49ab71a64a"
+      "bytes": 55834,
+      "sha256": "2a11a3d6a51b939565364aed6127e099536aed63372766ec95523fd232713bd8"
     },
     {
       "path": "qualification/verify_evidence.py",
-      "bytes": 50395,
-      "sha256": "2e56c8552a8d9b468ca09668b72acccd3b7b438f5d69b2655bfb4e5898e495c4"
+      "bytes": 62451,
+      "sha256": "7c715b743e04d8d7972f2f2e95a67acfdab17793fbb0fc965b85ed5e088ea6ca"
     },
     {
       "path": "v65/adapter/collect_runtime_image_provenance.py",
@@ -123,8 +123,8 @@
     },
     {
       "path": "v65/adapter/runner.py",
-      "bytes": 62117,
-      "sha256": "1ad2cd8b36d2b052aa45787ab89d7e8d064921e5935c56797f7b39236e1cd8ce"
+      "bytes": 68210,
+      "sha256": "94f330fc790999928a469aff4648136ab685737edaab55da3193b014bf587dbc"
     },
     {
       "path": "v65/build/backend-immutable-inputs/source-metadata.json",
@@ -293,8 +293,8 @@
     },
     {
       "path": "v65/foundation/controller/scripts/work8/native-transition/controller-manifest.json",
-      "bytes": 16221,
-      "sha256": "daa27901f6f19e62c1f2069c7843cbc2806c9b6e77b050082e7e38507b214e04"
+      "bytes": 16222,
+      "sha256": "65d8cab9f9c1ed99e254ad6598b1b2b04b049755be5e0fc5cfee0e7326f2a3d6"
     },
     {
       "path": "v65/foundation/controller/scripts/work8/native-transition/coordinator.mjs",
@@ -378,8 +378,8 @@
     },
     {
       "path": "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic-codes.json",
-      "bytes": 47235,
-      "sha256": "3f14f257bd5ace641415bebfee5ddb7d2b88b69b3e414797fb4bd2db9e1bfd07"
+      "bytes": 47274,
+      "sha256": "72a8237ac096f0bad3c00862534fd123b375c1026fa33979a2aedfb925a36601"
     },
     {
       "path": "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs",
@@ -558,8 +558,8 @@
     },
     {
       "path": "v65/foundation/controller/scripts/work8/native-transition/test_command_diagnostics.py",
-      "bytes": 8505,
-      "sha256": "7666c159f2c0e430869587a7c7712896395f76b09dd13625802a6508c2184a06"
+      "bytes": 16366,
+      "sha256": "93f82c9ab5b6b00614185d5d65c8daafac8a03f9f15c556d8342b00ce42e62de"
     },
     {
       "path": "v65/foundation/controller/scripts/work8/native-transition/upload-contract-selftest.py",
@@ -765,6 +765,11 @@
       "path": "v65/foundation/runtime/runtime-membership-bootstrap.mjs",
       "bytes": 3973,
       "sha256": "84bd06b3cd85727cf8f48ee2668065361349323e5285429f63b90978b7856ea5"
+    },
+    {
+      "path": "v65/foundation/runtime/runtime-membership-controller.cjs",
+      "bytes": 20923,
+      "sha256": "59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b"
     },
     {
       "path": "v65/foundation/runtime/runtime_common.py",

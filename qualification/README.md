@@ -1,47 +1,55 @@
-# V86 inventory correction and qualification proposal
+# V87 exact diagnostic operand and failed-case evidence correction
 
-This proposed activation derives from published V85 commit
-`e1e3825fb636c96492ac0dee8530238e17cf7cbf`, tree
-`67b998f2932a249b72416d5126e10c4d46fdb962`. V85 run42363866171
-failed before native qualification. Its one-attempt approval is consumed.
+Baseline: published V86 commit `d19be71bbaa3d91c12b8394eae18dfb52d0867ec`,
+complete tree `c08210849a27ed6edb51b894094858639fe430b0`. Its single
+qualification run42366947579/job128386891399 failed in the seven diagnostic
+controls. That authority is consumed. These are proposal-only activation bytes, not
+evidence of owner consent or a real reservation. The separate inert engineering
+commit retains false gates. No new execution approval, reservation, publication
+or dispatch exists; external approval and reservation must precede publication.
 
-The complete prepared controller and driver inventories are now independently
-validated as canonical relative POSIX path/size/SHA256 maps, with duplicate
-paths refused, then compared under one deterministic string ordering. No
-application package, original controller implementation or security guard is
-changed. The exact retained controller101 and driver174 file contents are
-the real filesystem operands used for the corrected comparator positive.
+The original V85 canonical inventory correction remains intact. V86 independently
+proved two full UID/GID1001 preparation handoffs, each101 controller/174 driver
+files, and both complete frontend extraction inventories. Those scoped successes
+remain accepted evidence; they are not a complete Q01-Q05 qualification result.
 
-These are proposed activation bytes, not evidence of an owner decision or
-an existing reservation. The separately preserved inert engineering checkout
-retains false gates and zero new reservation. The activated metadata in this
-proposal becomes operative only after external exact-source owner approval
-and a real once-only reservation receipt, both checked before publication.
-The proposed fresh route is `work8/v86-qualification-20261107`. Publication
-and one qualification attempt require separate exact-source owner approval.
-A separately named activation proposal identifies the exact metadata delta
-and derived tree; proposed bytes alone are never evidence of owner consent.
+V87 recovers the exact unchanged membership controller from the retained backend
+package into foundation/runtime and the prepared runtime. Its required SHA256 is
+`59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b`,
+20923 bytes. It is distinct from the bootstrap. Before the seven controls, the
+adapter verifies canonical regular single-link operands, exact sizes/hashes,
+permissions/ownership, complete runtime materialization and the fixture pin;
+it joins the controller to the current protected backend image readback.
+No application archive is rebuilt or reuploaded. The fixture identity guard
+and original seven diagnostic assertions remain mandatory.
 
-The proposed standard public ubuntu-24.04 job retains the60-minute cap:
-checkout2, work43, cleanup8, upload3, artifact service readback2, reserve2.
-No retry, package build or package upload. One sanitized metadata artifact
-is bounded to8MiB logical bytes,128 allowlisted files,16MiB service ZIP
-and one-day retention. Existing evidence schema/artifact prefix remains V81
-for compatibility; exact source, fresh launch route and provider IDs bind V86.
+Each diagnostic case preserves its sanitized first structured error, operation,
+allowlisted errno and bounded source frames before teardown. A first failing
+control has a separate immutable receipt. Fixed allowlisted case exports,
+byte/hash joins and outside readback cover successful and failed suites; raw
+stderr, arbitrary exception text and private data are not exported. The known
+public FIXTURE_ORIGINAL_SOURCE_CHANGED refusal is explicitly classified.
 
-Current recorded holds remain US$12.12 total /US$2.17 A5 /US$7.83 unreserved
-A5. The optional new qualification proposal is US$0.01 maximum exposure and
-reservation. Only after approval would holds become US$12.13 /US$2.18 /
-US$7.82. Actual provider charges remain unconfirmed. The US$100 planning
-ceiling is not per-run authority.
+A future exact-source activation proposal uses only
+`work8/v87-qualification-20261108`, one standard public ubuntu-24.04 job and
+one attempt. It is operative only after separately recorded external owner
+approval and one real reservation. Proposed source metadata is not consent.
+The bound remains60 minutes: checkout2, work43, cleanup8, upload3, service
+readback2, reserve2. One metadata artifact is limited to8MiB logical bytes,
+128 files,16MiB service ZIP and one-day retention. No retries, package build,
+package upload, initialized Brain, A5-08, A5-09 or full application lifecycle.
+Legacy V81 receipt/artifact prefixes remain for compatibility; exact source,
+fresh branch and actual provider run/job identities bind the successor.
 
-The local host cannot execute UID/GID1001. Complete sequential preparation
-under that principal remains NOT EXECUTED locally; full filesystem comparator
-validation is not a substitute for the actual hosted sequence.
+Current holds: US$12.13 aggregate, US$2.18 A5, US$7.82 unreserved A5.
+No new reservation exists. A separately approved US$0.01 proposal would yield
+US$12.14 aggregate, US$2.19 A5, US$7.81 unreserved. Actual charges remain
+unconfirmed. The US$100 planning ceiling is not per-run authority.
 
-Original controller and `github_contract.py` principal/security checks remain
-unchanged. This route cannot start initialized Brain, application lifecycle,
-A5-08 or A5-09. Pillow remains NOT_BORN, commerce LOCKED and Work9 INACTIVE.
+The local host maps only UID0. Local actual diagnostic operand execution does
+not bypass or prove the UID1001 preparation principal or native container
+isolation. Those remain actual-runner conditions for a future authorised job.
+Pillow NOT_BORN, Commerce LOCKED, Work9 INACTIVE; PR113 draft/unmerged.
 
 The executable positive sequence is:
 
@@ -58,7 +66,9 @@ The executable positive sequence is:
    retained-package reconstruction-to-controller preparation CLI, including real
    child/grandchild imports with bytecode suppression. Independently walk both
    manifests, all file hashes and exact cache-free inventory. No application
-   package is rebuilt; original reconstruction mains are not rerun.
+   package is rebuilt; original reconstruction mains are not rerun. The exact
+   pinned membership controller and complete runtime copy are materialized and
+   verified before diagnostic invocation.
 4. Reconcile Q01-Q03 against exact retained source/reconstruction metadata,
    lockfiles, toolchains, recipes and current package bytes. Independently hash
    every current archive member against the full Q05 comparison. This static
@@ -73,6 +83,9 @@ The executable positive sequence is:
 7. Execute original native security qualification with operator0 and restricted
    writer65534. Verify private exchange, process namespaces, capabilities,
    non-dumpability and the original security observations on the current worker.
+   Run all seven first-error controls against the exact prepared controller and
+   membership-controller operand; preserve failed-case structured evidence before
+   teardown and require all seven PASS before continuing.
 8. In the same protected carrier contract, resolve backend aliases and read the
    exact source-bound metadata/hash set. This probe neither imports Pillow nor
    initializes Brain. Only its actual observation can satisfy Q05's required

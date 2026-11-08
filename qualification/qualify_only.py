@@ -72,6 +72,13 @@ PREPARED_NAMES = {
     'runtime-evidence/dumpability-observer-build.json',
     'runtime-evidence/receipt-cleanup.json',
     'diagnostic-controls/negative-control-result.json',
+    'diagnostic-runtime.json',
+    'diagnostic-controls/first-failed-control.json',
+    *('diagnostic-controls/cases/'+name+'.json' for name in (
+        'actual-child-protected-entrypoint', 'timeout-with-valid-child-partial',
+        'invalid-utf8-before-valid-child-receipt', 'unterminated-stdout-separate-stderr-frame',
+        'real-spawn-oserror-cleanup-overwrite-refused', 'secret-suppression-through-coordinator',
+        'later-parent-failure-cannot-replace-child')),
     'reuse-evidence/sequential-handoff.json',
     'reuse-evidence/first-reuse-failure.json',
     'reuse-evidence/backend-child.json', 'reuse-evidence/backend-grandchild.json',
@@ -126,17 +133,17 @@ def validate_authority(config, approval=None, manifest_sha=None):
     a = config.get('authority', {})
     need(a.get('scope') == 'one-qualification-only-attempt' and a.get('ownerDecisionRecorded') is True and a.get('maximumAttempts') == 1, 'SEPARATE_QUALIFICATION_APPROVAL_REQUIRED')
     need(a.get('reservationCommitted') is True and a.get('providerBillingBoundVerified') is True, 'QUALIFICATION_RESERVATION_AND_BILLING_REQUIRED')
-    need({k: a.get(k) for k in ('work8CeilingUSD', 'priorOverallHoldsUSD', 'priorA5HoldsUSD', 'availableBeforeReservationUSD')} == {'work8CeilingUSD':'100.00', 'priorOverallHoldsUSD':'12.12', 'priorA5HoldsUSD':'2.17', 'availableBeforeReservationUSD':'7.83'}, 'CURRENT_LEDGER_REQUIRED')
+    need({k: a.get(k) for k in ('work8CeilingUSD', 'priorOverallHoldsUSD', 'priorA5HoldsUSD', 'availableBeforeReservationUSD')} == {'work8CeilingUSD':'100.00', 'priorOverallHoldsUSD':'12.13', 'priorA5HoldsUSD':'2.18', 'availableBeforeReservationUSD':'7.82'}, 'CURRENT_LEDGER_REQUIRED')
     reserve, exposure = amount(a.get('reservationUSD')), amount(a.get('maximumProspectiveUSD'))
     need(Decimal('0.000152') <= exposure <= reserve <= Decimal('0.01'), 'QUALIFICATION_FINANCIAL_CAP_REQUIRED')
-    need(amount(a.get('currentOverallHoldsUSD')) == Decimal('12.12') + reserve and amount(a.get('currentA5HoldsUSD')) == Decimal('2.17') + reserve and amount(a.get('remainingUnreservedUSD')) == Decimal('7.83') - reserve, 'QUALIFICATION_LEDGER_ARITHMETIC')
+    need(amount(a.get('currentOverallHoldsUSD')) == Decimal('12.13') + reserve and amount(a.get('currentA5HoldsUSD')) == Decimal('2.18') + reserve and amount(a.get('remainingUnreservedUSD')) == Decimal('7.82') - reserve, 'QUALIFICATION_LEDGER_ARITHMETIC')
     need(all(a.get(k) is False for k in ('automaticRetries','applicationExecutionAuthorized','packageRebuildAuthorized','packageReuploadAuthorized','productionOperations','protectedDataTransfer','commerceActivation')), 'QUALIFICATION_SCOPE_LOCKS_REQUIRED')
     need(guard.digest_string(a.get('billingEvidenceSHA256')), 'CURRENT_BILLING_EVIDENCE_REQUIRED')
     need(guard.digest_string(config.get('packageApplicabilityProofSHA256')), 'REVIEWED_COMPLETE_PACKAGE_APPLICABILITY_REQUIRED')
     need(isinstance(approval, dict) and approval.get('schema') == 'work8-v81-owner-qualification-approval-v1' and approval.get('recordedOwnerApproval') is True, 'OWNER_APPROVAL_RECEIPT_REQUIRED')
     need(approval.get('scope') == a['scope'] and approval.get('maximumAttempts') == 1 and approval.get('applicationExecutionAuthorized') is False, 'OWNER_QUALIFICATION_SCOPE_REQUIRED')
     need(guard.digest_string(manifest_sha) and approval.get('sourceManifestSHA256') == manifest_sha and approval.get('reservationUSD') == a['reservationUSD'] and approval.get('maximumProspectiveUSD') == a['maximumProspectiveUSD'], 'APPROVAL_SOURCE_AND_EXPOSURE_BINDING_REQUIRED')
-    need(config.get('repository') == guard.REPOSITORY and config.get('repositoryId') == guard.REPOSITORY_ID and config.get('workflowPath') == '.github/workflows/work8-v81-qualification.yml' and config.get('launchRef') == 'refs/heads/work8/v86-qualification-20261107' and config.get('jobName') == 'A5 V86 security and handoff qualification', 'EXACT_QUALIFICATION_ROUTE_REQUIRED')
+    need(config.get('repository') == guard.REPOSITORY and config.get('repositoryId') == guard.REPOSITORY_ID and config.get('workflowPath') == '.github/workflows/work8-v81-qualification.yml' and config.get('launchRef') == 'refs/heads/work8/v87-qualification-20261108' and config.get('jobName') == 'A5 V87 security and handoff qualification', 'EXACT_QUALIFICATION_ROUTE_REQUIRED')
     limits = config.get('limits', {})
     need(limits == {'jobTimeoutSeconds':3600,'runStepSeconds':2580,'cleanupSeconds':480,'uploadSeconds':180,'artifactVerificationSeconds':120,'exportLogicalBytes':8388608,'exportFiles':128,'maximumServiceZipBytes':16777216,'artifactObjects':1,'retentionDays':1}, 'QUALIFICATION_EXPOSURE_LIMITS_REQUIRED')
     return a
