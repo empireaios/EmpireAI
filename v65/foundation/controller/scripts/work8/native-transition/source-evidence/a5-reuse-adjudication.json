@@ -1,0 +1,1919 @@
+{
+  "schema": "empireai-v61-a5-reuse-adjudication-v1",
+  "createdAt": "2026-11-03T00:18:53.726101+00:00",
+  "reviewer": "independent v61_reuse_adjudication agent",
+  "scope": "Read-only source impact and historical assertion reuse mapping; not runtime execution, complete-row acceptance, O42 review or release approval.",
+  "verdict": "PRESERVE_EIGHT_HISTORICAL_GROUPS_CURRENT_RUNTIME_REUSE_CONDITIONAL",
+  "wholeRowA5": "PENDING",
+  "newAcceptedOriginalRequirementIds": [],
+  "acceptedCounts": {
+    "starting": 48,
+    "endingFromThisReview": 48,
+    "outstanding": 16
+  },
+  "inputs": {
+    "authoritativeV60Tracker": {
+      "path": "v60/output/Work8-Critical-Path-Tracker-20261030.json",
+      "bytes": 1407624,
+      "sha256": "d148a3fa13644bb86ebcbaf4e95250e5e4e116b3254ac922d51299d08fd43120"
+    },
+    "originalA5Contract": {
+      "path": "v61/receipts/a5-register-row.json",
+      "bytes": 117004,
+      "sha256": "ea7b1f7bdd1106271e6a55f958a94be26eb9fcbd767d2493f000663719b0ad5f"
+    },
+    "exactSourceComparisonReceipts": {
+      "path": "v61/receipts/a5-source-comparisons.json",
+      "bytes": 52212,
+      "sha256": "2ef7ed675f6c63c40084e66162dd06f215d9f974d52062e8407309c328ad0318"
+    }
+  },
+  "sources": {
+    "historicalAccepted": {
+      "backend": {
+        "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+      },
+      "normal": {
+        "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+        "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+      },
+      "recovery": {
+        "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+        "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+      }
+    },
+    "requiredCurrent": {
+      "backend": {
+        "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+        "tree": "a78aa0e0a91c1e765afb23e70fe05c75cddc836e"
+      },
+      "normal": {
+        "commit": "750483b3152f2c9c65a65b6381c8c94f081b9eb1",
+        "tree": "f589a8f0f94fbcdf113f162abac11d03c19acc25"
+      },
+      "recovery": {
+        "commit": "94d34cab7b0739849839ea3c66e50c8fdd3a2b27",
+        "tree": "5da61811a035b9504d74f699df8b164cc7f9f0ac"
+      }
+    }
+  },
+  "packagePinsRetainedFromV60NotDownloadedByThisLane": {
+    "backend": {
+      "archiveBytes": 201715406,
+      "archiveSha256": "8aa72fac4c3a99a1b1013f0d30349298616a00dc526d881a6bf0f7f1abe20863",
+      "image": "sha256:65382b8f19482851212fe7a21746ca7ad7bf5af5708fec8f083165ac42e61573"
+    },
+    "normal": {
+      "archiveBytes": 65287594,
+      "archiveSha256": "61b6418b72436c065decb2defcba1df683b449e87cd97c53fce32cfe55a3c9bb",
+      "format": "Node standalone tar.gz; not OCI image"
+    },
+    "recovery": {
+      "archiveBytes": 65305287,
+      "archiveSha256": "c2baf7edaa135c7722e424bbe13e2cb47c7b0b46ef06b6fcc42fe8718a9cd000",
+      "format": "Node standalone tar.gz; not OCI image"
+    },
+    "frontendRuntime": "Node 22.23.2; npm 10.9.8; linux-x64; glibc 2.39",
+    "frontendLockSha256": "84f99595b7564d9196b0eeb25c054b290801bfe2e3a148f61ab2c9c2871d37b4",
+    "jointBackendFrontendStartup": "NOT_PROVEN_BY_SEPARATE_FRONTEND_STARTUP"
+  },
+  "exactComparisons": [
+    {
+      "component": "backend",
+      "repository_full_name": "empireaios/EmpireAI",
+      "base": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+      "head": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "status": "ahead",
+      "ahead_by": 1,
+      "behind_by": 0,
+      "total_commits": 1,
+      "too_large": null,
+      "base_commit": {
+        "sha": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/commits/94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "html_url": "https://github.com/empireaios/EmpireAI/commit/94aa919c7c39c4c9bf2c14b636232da028dba72d"
+      },
+      "merge_base_commit": {
+        "sha": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/commits/94aa919c7c39c4c9bf2c14b636232da028dba72d",
+        "html_url": "https://github.com/empireaios/EmpireAI/commit/94aa919c7c39c4c9bf2c14b636232da028dba72d"
+      },
+      "files": [
+        {
+          "filename": "backend/src/assurance/permanent-inspector.mjs",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 1,
+          "changes": 8,
+          "previous_filename": null
+        },
+        {
+          "filename": "backend/src/assurance/safe-discrepancy-probe.mjs",
+          "status": "modified",
+          "additions": 11,
+          "deletions": 8,
+          "changes": 19,
+          "previous_filename": null
+        },
+        {
+          "filename": "backend/src/validation/tests/assurance-discrepancy-probe.test.mjs",
+          "status": "modified",
+          "additions": 90,
+          "deletions": 5,
+          "changes": 95,
+          "previous_filename": null
+        },
+        {
+          "filename": "backend/src/validation/tests/assurance-supervisor.test.mjs",
+          "status": "modified",
+          "additions": 6,
+          "deletions": 4,
+          "changes": 10,
+          "previous_filename": null
+        },
+        {
+          "filename": "deployment/assurance-discrepancy-readback.cjs",
+          "status": "added",
+          "additions": 110,
+          "deletions": 0,
+          "changes": 110,
+          "previous_filename": null
+        },
+        {
+          "filename": "deployment/assurance-discrepancy-readback.test.mjs",
+          "status": "added",
+          "additions": 120,
+          "deletions": 0,
+          "changes": 120,
+          "previous_filename": null
+        },
+        {
+          "filename": "deployment/assurance-inspector-entrypoint.test.mjs",
+          "status": "added",
+          "additions": 30,
+          "deletions": 0,
+          "changes": 30,
+          "previous_filename": null
+        },
+        {
+          "filename": "deployment/assurance-supervisor.cjs",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 1,
+          "changes": 5,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "component": "normal",
+      "repository_full_name": "empireaios/EmpireAI",
+      "base": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+      "head": "750483b3152f2c9c65a65b6381c8c94f081b9eb1",
+      "status": "ahead",
+      "ahead_by": 2,
+      "behind_by": 0,
+      "total_commits": 2,
+      "too_large": null,
+      "base_commit": {
+        "sha": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/commits/30002da6bb219fe16f6fd9c88109102d1d09e38d",
+        "html_url": "https://github.com/empireaios/EmpireAI/commit/30002da6bb219fe16f6fd9c88109102d1d09e38d"
+      },
+      "merge_base_commit": {
+        "sha": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/commits/30002da6bb219fe16f6fd9c88109102d1d09e38d",
+        "html_url": "https://github.com/empireaios/EmpireAI/commit/30002da6bb219fe16f6fd9c88109102d1d09e38d"
+      },
+      "files": [
+        {
+          "filename": "empireai-web/lib/owner/runtime-identity.mjs",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "empireai-web/lib/owner/runtime-release-identity.test.ts",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 4,
+          "changes": 8,
+          "previous_filename": null
+        }
+      ]
+    },
+    {
+      "component": "recovery",
+      "repository_full_name": "empireaios/EmpireAI",
+      "base": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+      "head": "94d34cab7b0739849839ea3c66e50c8fdd3a2b27",
+      "status": "ahead",
+      "ahead_by": 2,
+      "behind_by": 0,
+      "total_commits": 2,
+      "too_large": null,
+      "base_commit": {
+        "sha": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/commits/a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+        "html_url": "https://github.com/empireaios/EmpireAI/commit/a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232"
+      },
+      "merge_base_commit": {
+        "sha": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+        "url": "https://api.github.com/repos/empireaios/EmpireAI/commits/a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+        "html_url": "https://github.com/empireaios/EmpireAI/commit/a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232"
+      },
+      "files": [
+        {
+          "filename": "empireai-web/lib/owner/runtime-identity.mjs",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "changes": 2,
+          "previous_filename": null
+        },
+        {
+          "filename": "empireai-web/lib/owner/runtime-release-identity.test.ts",
+          "status": "modified",
+          "additions": 4,
+          "deletions": 4,
+          "changes": 8,
+          "previous_filename": null
+        }
+      ]
+    }
+  ],
+  "frontendRuntimeIdentityBlobs": [
+    {
+      "component": "normal_old",
+      "gitBlob": "c55d13a3aca0a3df50f69b9694d5eb8d9e0c1517",
+      "sha256": "dfe00f3cb952a326cae9870027e2c43724a018a8a2fe568ff4ee37809a4fa072",
+      "url": "https://github.com/empireaios/EmpireAI/blob/30002da6bb219fe16f6fd9c88109102d1d09e38d/empireai-web/lib/owner/runtime-identity.mjs"
+    },
+    {
+      "component": "normal_new",
+      "gitBlob": "d76cc9f2aaa5ff6f2fc973bb1c76a43c58319228",
+      "sha256": "b9cdb78d52c9ed7d9a00a30bc9bb8fdd87d3d0ee0732d148b4ebe2e19e7c8fe6",
+      "url": "https://github.com/empireaios/EmpireAI/blob/750483b3152f2c9c65a65b6381c8c94f081b9eb1/empireai-web/lib/owner/runtime-identity.mjs"
+    },
+    {
+      "component": "recovery_old",
+      "gitBlob": "7d4b8959d8d6d8f8d4dd4add1555ac712e048ba5",
+      "sha256": "9c78d35859972a6ebf48daab4d1944b3e346a810b2afb5dfe0ed21fe1c9dadeb",
+      "url": "https://github.com/empireaios/EmpireAI/blob/a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232/empireai-web/lib/owner/runtime-identity.mjs"
+    },
+    {
+      "component": "recovery_new",
+      "gitBlob": "15b7f44efbd90604661b6f24bde34539364b89ba",
+      "sha256": "d55731a5606a42607be57ed857adf6d9f1961896250b78ee599bece7f56a9217",
+      "url": "https://github.com/empireaios/EmpireAI/blob/94d34cab7b0739849839ea3c66e50c8fdd3a2b27/empireai-web/lib/owner/runtime-identity.mjs"
+    }
+  ],
+  "comparisonInterpretation": {
+    "backend": "Exactly eight changed files over one ahead commit: four causal Assurance runtime/deployment files and four tests. No Brain, session, commerce, native-filter, capture/restore implementation or dependency-lock file occurs in the returned change set.",
+    "frontends": "Each comparison reports exactly two changed files over two ahead commits: runtime-identity.mjs and its test. Only expected backend revision changes in the runtime predicate.",
+    "limit": "Unchanged-path equality is inferred from bounded GitHub compare results, which returned no too_large flag. Current file blob and byte hashes below were read from the local exact current commit. Historical files for these paths were not separately downloaded. Source comparison is not runnable-image equivalence or current execution PASS."
+  },
+  "unchangedMechanicsCurrentPins": [
+    {
+      "path": "deployment/locked-runtime.cjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "5d5ce83d1e1cb4ea8709412239587e43e11e4336",
+      "bytes": 8752,
+      "sha256": "e0a2067c02ac66f1aafda7c1ce845dc1c5f8052bd2be1ca035c450237c022bd2"
+    },
+    {
+      "path": "deployment/locked-supervision.cjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "8d471fa11622bae36c8357ab614af936efa45b5a",
+      "bytes": 2873,
+      "sha256": "1fc0959d5b654aa91c0ab58a860dc59a498ffbbb3934eb469bc2e1687d919b84"
+    },
+    {
+      "path": "deployment/locked-state-bundle.cjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "1fb7ccee3ecddabf7708e44cefef6f4d956f4fc8",
+      "bytes": 4934,
+      "sha256": "29c3662730d1732e63272fd7323a776d70d1225e3601fe984ee62e2d5ec428b1"
+    },
+    {
+      "path": "deployment/observer-capture.cjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "7577f4ba86edc65181fc62bd89b9c372f708a73a",
+      "bytes": 2460,
+      "sha256": "c9513c42c917b774b605a7d2e5cd454d01d7cc88dcd7508bf341cfed8272bc1b"
+    },
+    {
+      "path": "deployment/runtime-brain-broker.cjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "1a0f6ed24bba5655bc39a18f71e7b010004fff54",
+      "bytes": 2759,
+      "sha256": "c2806cf03db26f15016b75f7d66961b057e67c4ecd89787d0abf1f8b41814ba9"
+    },
+    {
+      "path": "deployment/runtime-native-lock-broker.cjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "f4219b0b1f9a65fd0cc02daa0a245120b77b7b66",
+      "bytes": 3913,
+      "sha256": "65386face6f2890d31c7bf385583380162596ac5ae8f9e7acd472d7751abeb9c"
+    },
+    {
+      "path": "deployment/runtime-native-lock-client.cjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "aa1e8db1150caf92eb62e80d1f6543abf49d0eb2",
+      "bytes": 1307,
+      "sha256": "e72f184dd6141fb65cc9a4506d5edc548e8a67d8ac843ffcf0d2a206e0bfad95"
+    },
+    {
+      "path": "deployment/native/runtime-writer-isolation.c",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "7678fc0332a8daea71f46b01803c29b2acb4ceb4",
+      "bytes": 3452,
+      "sha256": "2f17b9f9e6202ae78ea98ce2575f49b8d65d56c183c9460af98409c9254d541c"
+    },
+    {
+      "path": "deployment/work8-session-continuity-recovery.cjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "8bd63362218f7188c1de6eeff6878a9868619618",
+      "bytes": 3965,
+      "sha256": "7f550713d3af4b48065ecf3f31e72cd3a9735ddcfe082e11b370058a7efed3c1"
+    },
+    {
+      "path": "backend/src/brain/database.ts",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "05e51b419db0e2396907b7a7eb588b7ac03f86f9",
+      "bytes": 74967,
+      "sha256": "6c3b19ba7d3d4e08989f6d1652e84004956cf784302c9afb102437d9efa055f9"
+    },
+    {
+      "path": "backend/src/brain/sqlite-database.ts",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "87c7801afe1be12ecedda40c1d7b6a85195c379a",
+      "bytes": 28180,
+      "sha256": "ac7f5b343446085be2b19c0608dba4e59ae14c7e614b66d4adc1788f4fc59351"
+    },
+    {
+      "path": "backend/src/brain/quiesced-sqlite-save.ts",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "e8637bf000b0a4b66cd6fda2dbff660c64f8a3c1",
+      "bytes": 585,
+      "sha256": "4f25c47d4a493d4914cda74206039e3e6f0f1630248eae50083abc2d2e0bb1c3"
+    },
+    {
+      "path": "backend/src/runtime/owner-write-restriction.ts",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "0770f8f38c1d10122b8042c525aa7c4b598196d7",
+      "bytes": 3704,
+      "sha256": "ec0edaf624414ceb0a631f7fef967d93915d6e48aad466f2dea101416f6bcdf4"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "b9f7c5b6b57811d35809c32511a8fc0be6f2fc4a",
+      "bytes": 27206,
+      "sha256": "3a186bfb12e34a9d0bfb1501adaa416b9c1221a56f0906ccda9ad37c9fcf3293"
+    },
+    {
+      "path": "backend/package-lock.json",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "b890be83361c7b1214a7dd18c1be9fc9b5a093bd",
+      "bytes": 78029,
+      "sha256": "ac637e1e0329d484c8eac12ccd47a0cd6a82a51df592e94495d325c79062b13f"
+    },
+    {
+      "path": "package-lock.json",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "fbd0c81a86377a4209e45a60ffac5590aed2dd3b",
+      "bytes": 68427,
+      "sha256": "29750bccbf14c72b9bdccfe03a041a525c7e84f32005a973b5bd3bf16c4ab04d"
+    },
+    {
+      "path": "pillow/package-lock.json",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "32d40b537bd941d6662668dfa1cefb82ca978c6e",
+      "bytes": 16802,
+      "sha256": "53f3c989531a4a86b99eb544b1e90c6df367c091acb4c23115ca787079b2dde2"
+    }
+  ],
+  "changedCausalRuntimeCurrentPins": [
+    {
+      "path": "backend/src/assurance/permanent-inspector.mjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "2df87fd8c596d5d093a03d8583c90bd0d831fc58",
+      "bytes": 2490,
+      "sha256": "70f6cb3563331baca9343967366bde38ed0f0b42852cc63ef483cbfae06e90fc"
+    },
+    {
+      "path": "backend/src/assurance/safe-discrepancy-probe.mjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "3e44968a20e230c511492e6dbd06955b74d892fe",
+      "bytes": 3472,
+      "sha256": "6fcead1d4f98579c0227a67dae53670a158cc7e42478f1cb507fee6f178801c7"
+    },
+    {
+      "path": "deployment/assurance-discrepancy-readback.cjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "2f6c36029d50026b9ec607460580d2671eb36d0f",
+      "bytes": 6992,
+      "sha256": "06458c2b2eecfda41708729c0d7ba4f19dc37c913a0c71e3f4e9d15049a3139f"
+    },
+    {
+      "path": "deployment/assurance-supervisor.cjs",
+      "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "gitBlob": "bdccb6c601828e06349d6eeee408c7357d4316af",
+      "bytes": 6466,
+      "sha256": "e49baca21653562b3c00532907762027a4782473c14ba12b0d4fca9719daec21"
+    }
+  ],
+  "changedAssuranceCausalEffects": [
+    "Replaces forbidden fresh-child discrepancy readback with IPC request to an already admitted independent inspector; supervisor registers relay children and closes relay during stop.",
+    "Inspector installs discrepancy reader only with connected IPC, guards readback using capture.run, and closes reader before control-plane close.",
+    "Probe does not reuse cached historical proof. It creates fresh UUID-named SQLite/proof files under the existing commissioning directory on each invocation.",
+    "Independent reader validates canonical path, O_RDONLY/O_NOFOLLOW, regular single-link bounded file, absence of nonempty WAL/journal, read-only SQLite, committed receipt digest, expected process separation and IPC challenge/timeout."
+  ],
+  "additionalDurablePaths": {
+    "rootExpression": "RAILWAY_VOLUME_MOUNT_PATH",
+    "directory": "commissioning",
+    "paths": [
+      "commissioning/assurance-probe-<UUID>.sqlite",
+      "commissioning/assurance-discrepancy-proof-v2-<UUID>.json"
+    ],
+    "proofMode": "0600; exclusive create",
+    "readbackHandling": "Do not silently omit newly generated files from declared whole-application topology. Record source-bound inventory and attributable expected additions. Preserve SQLite consistency and make any permitted dynamic classification explicit; this review does not waive original no-loss or committed-state assertions."
+  },
+  "groups": [
+    {
+      "id": "A5-01",
+      "originalAssertion": "Distinct compatible NORMAL to RECOVERY to NORMAL in one coherent execution; code return must not roll business data back.",
+      "historicalStatus": "SATISFIED",
+      "historicalEvidence": [
+        {
+          "path": "v29-continuation/hosted/evidence/transition-browser-result.json",
+          "sha256": "46750f529abcc7641c9ea1c5e1d44e4f246230d9516a05e96e6a572049cdb3da",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/exact-components.json",
+          "sha256": "0152cf25f592fc9a3dd08064c53807145288beae11becd040ac1cb368e4ceb21",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/runner-result.json",
+          "sha256": "1e45b5c00e643a63c686fda18b6132264ad31d9c814e8d50e26c5970b42f79c6",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/accepted-evidence-reuse-review.json",
+          "sha256": "63a9c02d2fc0b66d3ccca0b5ad431e2fbd564c5b2fa2b29008300ee67c8e4a89",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "5dacbfb9ae54ee12df5cc92c57cca2e723fd16f7514dd6f911cb4f1f436fb7ac",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "2e6409b3350e7b7747ddd19ec105e4f9a9b50c630cec70146c138fab9199af44",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "bf36e4a4ec7ea832f549dd127fda64792b6498d5143bf66c3ba2714c5ef8136d",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "f1982e617ae068cdddf43e28016f53e62d4722f2f431c54d35ec2eae5d71b1a9",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/a5-whole-row-reconciliation.json",
+          "sha256": "3b09492792e2d566199f13b82ed0b9b5e87f4ea20938a31c26e9593bcbc1bf1d",
+          "sourceIdentity": {
+            "controllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "controllerTree": "783d681556ebea548f911a5056b0772ae115ea1f",
+            "run": 41273296167,
+            "job": 124750315764,
+            "acceptedV29Components": {
+              "backend": {
+                "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+                "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+              },
+              "normal": {
+                "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+                "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+              },
+              "recovery": {
+                "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+                "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+              }
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Original ten assertion groups reconciled independently; eight accepted groups explicitly preserved, two remain pending."
+        }
+      ],
+      "reuseVerdict": "PRESERVE_HISTORICAL_ACCEPTANCE_WITH_ORIGINAL_SCOPE",
+      "currentCandidateApplicability": "Transition implementation unchanged in bounded source comparisons. Frontend backend-identity expectation changes to 6c1e63b and package format changes from historical OCI images to V55 standalone archives. Coherent final examination must bind its actual launches to this exact current set."
+    },
+    {
+      "id": "A5-02",
+      "originalAssertion": "Canonical simulated orders and financial events derive from the real isolated runtime and one coherent owner/workspace/session/mission dataset.",
+      "historicalStatus": "SATISFIED",
+      "historicalEvidence": [
+        {
+          "path": "v29-continuation/hosted/evidence/normal-commerce-independent-readback.json",
+          "sha256": "fa80e927542e74b7f8265f7974720b71181e1002036cc210f0e0d3143735a2d5",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/final-commerce-independent-readback.json",
+          "sha256": "278fd7e91fad2c6ee7300a69f11cf15de3983002a35019c9d44a900d7fb7d92d",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/accepted-evidence-reuse-review.json",
+          "sha256": "63a9c02d2fc0b66d3ccca0b5ad431e2fbd564c5b2fa2b29008300ee67c8e4a89",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "5dacbfb9ae54ee12df5cc92c57cca2e723fd16f7514dd6f911cb4f1f436fb7ac",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "2e6409b3350e7b7747ddd19ec105e4f9a9b50c630cec70146c138fab9199af44",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "bf36e4a4ec7ea832f549dd127fda64792b6498d5143bf66c3ba2714c5ef8136d",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "f1982e617ae068cdddf43e28016f53e62d4722f2f431c54d35ec2eae5d71b1a9",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/a5-whole-row-reconciliation.json",
+          "sha256": "3b09492792e2d566199f13b82ed0b9b5e87f4ea20938a31c26e9593bcbc1bf1d",
+          "sourceIdentity": {
+            "controllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "controllerTree": "783d681556ebea548f911a5056b0772ae115ea1f",
+            "run": 41273296167,
+            "job": 124750315764,
+            "acceptedV29Components": {
+              "backend": {
+                "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+                "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+              },
+              "normal": {
+                "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+                "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+              },
+              "recovery": {
+                "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+                "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+              }
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Original ten assertion groups reconciled independently; eight accepted groups explicitly preserved, two remain pending."
+        }
+      ],
+      "reuseVerdict": "PRESERVE_HISTORICAL_ACCEPTANCE_WITH_ORIGINAL_SCOPE",
+      "currentCandidateApplicability": "Business runtime and canonical dataset construction paths unchanged. Retain historical runtime-derived simulated dataset evidence. Final baseline must be actual initialized live application state in the one current examination; do not substitute disconnected fixtures."
+    },
+    {
+      "id": "A5-03",
+      "originalAssertion": "Authenticated owner/workspace-bounded read-only RECOVERY frontend displays canonical preserved orders and financial events under the original security contract.",
+      "historicalStatus": "SATISFIED",
+      "historicalEvidence": [
+        {
+          "path": "v29-continuation/hosted/evidence/transition-browser-result.json",
+          "sha256": "46750f529abcc7641c9ea1c5e1d44e4f246230d9516a05e96e6a572049cdb3da",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/recovery-commerce-independent-readback.json",
+          "sha256": "ff6e36708086908f653fc21152288323567e400632a7ecd4a3ff73937bded870",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/recovery-schema-comparison.json",
+          "sha256": "28becdcac2819b7389cd617142748d268e7d17b2fccd898308dd65e05236eff1",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/accepted-evidence-reuse-review.json",
+          "sha256": "63a9c02d2fc0b66d3ccca0b5ad431e2fbd564c5b2fa2b29008300ee67c8e4a89",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "5dacbfb9ae54ee12df5cc92c57cca2e723fd16f7514dd6f911cb4f1f436fb7ac",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "2e6409b3350e7b7747ddd19ec105e4f9a9b50c630cec70146c138fab9199af44",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "bf36e4a4ec7ea832f549dd127fda64792b6498d5143bf66c3ba2714c5ef8136d",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "f1982e617ae068cdddf43e28016f53e62d4722f2f431c54d35ec2eae5d71b1a9",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/a5-whole-row-reconciliation.json",
+          "sha256": "3b09492792e2d566199f13b82ed0b9b5e87f4ea20938a31c26e9593bcbc1bf1d",
+          "sourceIdentity": {
+            "controllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "controllerTree": "783d681556ebea548f911a5056b0772ae115ea1f",
+            "run": 41273296167,
+            "job": 124750315764,
+            "acceptedV29Components": {
+              "backend": {
+                "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+                "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+              },
+              "normal": {
+                "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+                "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+              },
+              "recovery": {
+                "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+                "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+              }
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Original ten assertion groups reconciled independently; eight accepted groups explicitly preserved, two remain pending."
+        }
+      ],
+      "reuseVerdict": "PRESERVE_HISTORICAL_ACCEPTANCE_WITH_ORIGINAL_SCOPE",
+      "currentCandidateApplicability": "Recovery presentation and authority predicate remain unchanged except expected backend revision. Runtime identity must prove current backend, RECOVERY RESTRICTED, NOT_BORN, LOCKED, operational false and transport_and_storage_only."
+    },
+    {
+      "id": "A5-04",
+      "originalAssertion": "Populated canonical order/mission history, financial event identities/amounts/currencies and source relationships remain unchanged through RECOVERY and return.",
+      "historicalStatus": "SATISFIED",
+      "historicalEvidence": [
+        {
+          "path": "v29-continuation/hosted/evidence/returned-comparison.json",
+          "sha256": "4683cef6abb6a8b4bf68dc572661830c4548982402f9b4e95719ed58c4263f45",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/replayed-comparison.json",
+          "sha256": "3d7f1002b49f73faefd54f38ce7085a63245c5942f44553f74742d1b368387e1",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/final-commerce-independent-readback.json",
+          "sha256": "278fd7e91fad2c6ee7300a69f11cf15de3983002a35019c9d44a900d7fb7d92d",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/accepted-evidence-reuse-review.json",
+          "sha256": "63a9c02d2fc0b66d3ccca0b5ad431e2fbd564c5b2fa2b29008300ee67c8e4a89",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "5dacbfb9ae54ee12df5cc92c57cca2e723fd16f7514dd6f911cb4f1f436fb7ac",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "2e6409b3350e7b7747ddd19ec105e4f9a9b50c630cec70146c138fab9199af44",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "bf36e4a4ec7ea832f549dd127fda64792b6498d5143bf66c3ba2714c5ef8136d",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "f1982e617ae068cdddf43e28016f53e62d4722f2f431c54d35ec2eae5d71b1a9",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/a5-whole-row-reconciliation.json",
+          "sha256": "3b09492792e2d566199f13b82ed0b9b5e87f4ea20938a31c26e9593bcbc1bf1d",
+          "sourceIdentity": {
+            "controllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "controllerTree": "783d681556ebea548f911a5056b0772ae115ea1f",
+            "run": 41273296167,
+            "job": 124750315764,
+            "acceptedV29Components": {
+              "backend": {
+                "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+                "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+              },
+              "normal": {
+                "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+                "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+              },
+              "recovery": {
+                "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+                "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+              }
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Original ten assertion groups reconciled independently; eight accepted groups explicitly preserved, two remain pending."
+        }
+      ],
+      "reuseVerdict": "PRESERVE_HISTORICAL_ACCEPTANCE_WITH_ORIGINAL_SCOPE",
+      "currentCandidateApplicability": "Commerce, mission and finance schema/business paths unchanged. Reuse historical accepted identities and ordering evidence; current A5-08 logical comparison must cover the complete coherent examination dataset including all mandatory stores."
+    },
+    {
+      "id": "A5-05",
+      "originalAssertion": "Replay does not duplicate records, advance completed tasks or restore revoked scheduler/model authority.",
+      "historicalStatus": "SATISFIED",
+      "historicalEvidence": [
+        {
+          "path": "v29-continuation/hosted/evidence/transition-browser-result.json",
+          "sha256": "46750f529abcc7641c9ea1c5e1d44e4f246230d9516a05e96e6a572049cdb3da",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/replayed-commerce-independent-readback.json",
+          "sha256": "79f8f78d1de69d1506a6c436e35dc403be9321a00eee614b18bde6d9b6a86dc6",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/final-commerce-independent-readback.json",
+          "sha256": "278fd7e91fad2c6ee7300a69f11cf15de3983002a35019c9d44a900d7fb7d92d",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/accepted-evidence-reuse-review.json",
+          "sha256": "63a9c02d2fc0b66d3ccca0b5ad431e2fbd564c5b2fa2b29008300ee67c8e4a89",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "5dacbfb9ae54ee12df5cc92c57cca2e723fd16f7514dd6f911cb4f1f436fb7ac",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "2e6409b3350e7b7747ddd19ec105e4f9a9b50c630cec70146c138fab9199af44",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "bf36e4a4ec7ea832f549dd127fda64792b6498d5143bf66c3ba2714c5ef8136d",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "f1982e617ae068cdddf43e28016f53e62d4722f2f431c54d35ec2eae5d71b1a9",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/a5-whole-row-reconciliation.json",
+          "sha256": "3b09492792e2d566199f13b82ed0b9b5e87f4ea20938a31c26e9593bcbc1bf1d",
+          "sourceIdentity": {
+            "controllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "controllerTree": "783d681556ebea548f911a5056b0772ae115ea1f",
+            "run": 41273296167,
+            "job": 124750315764,
+            "acceptedV29Components": {
+              "backend": {
+                "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+                "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+              },
+              "normal": {
+                "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+                "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+              },
+              "recovery": {
+                "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+                "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+              }
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Original ten assertion groups reconciled independently; eight accepted groups explicitly preserved, two remain pending."
+        }
+      ],
+      "reuseVerdict": "PRESERVE_HISTORICAL_ACCEPTANCE_WITH_ORIGINAL_SCOPE",
+      "currentCandidateApplicability": "Replay and revoked-authority runtime paths unchanged. Retain accepted replay evidence and include protected replay in the current coherent sequence required for complete A5-08/09 comparison."
+    },
+    {
+      "id": "A5-06",
+      "originalAssertion": "Same authenticated session and protected cookie survive the version sequence; RECOVERY remains read-only with no authority bypass.",
+      "historicalStatus": "SATISFIED",
+      "historicalEvidence": [
+        {
+          "path": "v29-continuation/hosted/evidence/transition-browser-result.json",
+          "sha256": "46750f529abcc7641c9ea1c5e1d44e4f246230d9516a05e96e6a572049cdb3da",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/transition-http-observations.json",
+          "sha256": "d769a180c294e49db6869aaf80b192c60c02593efa0f76a18afcc3b771f7ca0b",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/isolation.json",
+          "sha256": "4ab0da437b8003e1a508a3a6dec0eef56c0d72fd1f21f3ebf9fa5cd818fe0dc8",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/accepted-evidence-reuse-review.json",
+          "sha256": "63a9c02d2fc0b66d3ccca0b5ad431e2fbd564c5b2fa2b29008300ee67c8e4a89",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "5dacbfb9ae54ee12df5cc92c57cca2e723fd16f7514dd6f911cb4f1f436fb7ac",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "2e6409b3350e7b7747ddd19ec105e4f9a9b50c630cec70146c138fab9199af44",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "bf36e4a4ec7ea832f549dd127fda64792b6498d5143bf66c3ba2714c5ef8136d",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "f1982e617ae068cdddf43e28016f53e62d4722f2f431c54d35ec2eae5d71b1a9",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/a5-whole-row-reconciliation.json",
+          "sha256": "3b09492792e2d566199f13b82ed0b9b5e87f4ea20938a31c26e9593bcbc1bf1d",
+          "sourceIdentity": {
+            "controllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "controllerTree": "783d681556ebea548f911a5056b0772ae115ea1f",
+            "run": 41273296167,
+            "job": 124750315764,
+            "acceptedV29Components": {
+              "backend": {
+                "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+                "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+              },
+              "normal": {
+                "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+                "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+              },
+              "recovery": {
+                "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+                "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+              }
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Original ten assertion groups reconciled independently; eight accepted groups explicitly preserved, two remain pending."
+        }
+      ],
+      "reuseVerdict": "PRESERVE_HISTORICAL_ACCEPTANCE_WITH_ORIGINAL_SCOPE",
+      "currentCandidateApplicability": "Session and cookie handling paths unchanged. Both frontend predicates still differ correctly by RELEASED versus RESTRICTED; only expectedBackendRevision changes. Current sequence must preserve the actual shared session and prove mode-appropriate admission."
+    },
+    {
+      "id": "A5-07",
+      "originalAssertion": "Accepted coordinated snapshot/fresh-target restore mechanics remain applicable to the final candidate and declared topology.",
+      "historicalStatus": "SATISFIED",
+      "historicalEvidence": [
+        {
+          "path": "v29-continuation/hosted/evidence/retained-import-result.json",
+          "sha256": "45e2a22e0f40584707792d8f661675167e647b1241b6aa0b9b9424856aa8a424",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/exact-components.json",
+          "sha256": "0152cf25f592fc9a3dd08064c53807145288beae11becd040ac1cb368e4ceb21",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/native-storage-child-bindings.json",
+          "sha256": "21acb2ac8338ff68ade249c2976810514e7344f6e7afbe22eea38e38e9a6a69a",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/accepted-evidence-reuse-review.json",
+          "sha256": "63a9c02d2fc0b66d3ccca0b5ad431e2fbd564c5b2fa2b29008300ee67c8e4a89",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "5dacbfb9ae54ee12df5cc92c57cca2e723fd16f7514dd6f911cb4f1f436fb7ac",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "2e6409b3350e7b7747ddd19ec105e4f9a9b50c630cec70146c138fab9199af44",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "bf36e4a4ec7ea832f549dd127fda64792b6498d5143bf66c3ba2714c5ef8136d",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "f1982e617ae068cdddf43e28016f53e62d4722f2f431c54d35ec2eae5d71b1a9",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/a5-whole-row-reconciliation.json",
+          "sha256": "3b09492792e2d566199f13b82ed0b9b5e87f4ea20938a31c26e9593bcbc1bf1d",
+          "sourceIdentity": {
+            "controllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "controllerTree": "783d681556ebea548f911a5056b0772ae115ea1f",
+            "run": 41273296167,
+            "job": 124750315764,
+            "acceptedV29Components": {
+              "backend": {
+                "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+                "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+              },
+              "normal": {
+                "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+                "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+              },
+              "recovery": {
+                "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+                "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+              }
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Original ten assertion groups reconciled independently; eight accepted groups explicitly preserved, two remain pending."
+        }
+      ],
+      "reuseVerdict": "PRESERVE_HISTORICAL_ACCEPTANCE_WITH_ORIGINAL_SCOPE",
+      "currentCandidateApplicability": "Coordinated capture, bundle and restore mechanics unchanged by backend comparison. Final candidate source mapping is available; applicability remains conditional on verified current launch topology and complete declared state inventory. Changed Assurance IPC admission/capture/drain and fresh probe files require explicit inclusion or attributable classification. Do not rerun accepted O33 merely to reproduce its evidence."
+    },
+    {
+      "id": "A5-08",
+      "originalAssertion": "Declared whole-application canonical stores, control files, native files and generation authority preserve their committed state through the coherent business transition.",
+      "historicalStatus": "UNSATISFIED",
+      "historicalEvidence": [
+        {
+          "path": "v30-continuation/independent-review/preflight-provider-terminal-readback.json",
+          "sha256": "ec15cc1b55cb924b347f475f64cd9db99f171ad138f1959ba30d2a08b736f6a4",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/hosted-preflight/job-124727496997-sanitized.log",
+          "sha256": "556bee39aed23281794380a7c040d3fdfa846f086a0da1fe64541d82f19bc334",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/preflight-failure-classification.json",
+          "sha256": "81e8468f0e2953c817e9211dfda3fc24b467fb7d70b78a202e4dcacbc6071ba4",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/local-module-preflight-review.json",
+          "sha256": "3fc80a6c0063b09bea33ba30023558946b49ce404765e21de5388ffe032875d2",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "5dacbfb9ae54ee12df5cc92c57cca2e723fd16f7514dd6f911cb4f1f436fb7ac",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "2e6409b3350e7b7747ddd19ec105e4f9a9b50c630cec70146c138fab9199af44",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "bf36e4a4ec7ea832f549dd127fda64792b6498d5143bf66c3ba2714c5ef8136d",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "f1982e617ae068cdddf43e28016f53e62d4722f2f431c54d35ec2eae5d71b1a9",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/a5-whole-row-reconciliation.json",
+          "sha256": "3b09492792e2d566199f13b82ed0b9b5e87f4ea20938a31c26e9593bcbc1bf1d",
+          "sourceIdentity": {
+            "controllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "controllerTree": "783d681556ebea548f911a5056b0772ae115ea1f",
+            "run": 41273296167,
+            "job": 124750315764,
+            "acceptedV29Components": {
+              "backend": {
+                "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+                "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+              },
+              "normal": {
+                "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+                "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+              },
+              "recovery": {
+                "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+                "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+              }
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Original ten assertion groups reconciled independently; eight accepted groups explicitly preserved, two remain pending."
+        }
+      ],
+      "reuseVerdict": "REMAINS_UNSATISFIED",
+      "currentCandidateApplicability": "No new runtime evidence generated by this source mapping. Requires actual initialized live Brain baseline and coherent whole-application transition, orderly drain and independent final readback."
+    },
+    {
+      "id": "A5-09",
+      "originalAssertion": "Return-to-NORMAL application is viable, orderly drain persists state, and independent final database readback agrees.",
+      "historicalStatus": "UNSATISFIED",
+      "historicalEvidence": [
+        {
+          "path": "v30-continuation/independent-review/preflight-provider-terminal-readback.json",
+          "sha256": "ec15cc1b55cb924b347f475f64cd9db99f171ad138f1959ba30d2a08b736f6a4",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/hosted-preflight/job-124727496997-sanitized.log",
+          "sha256": "556bee39aed23281794380a7c040d3fdfa846f086a0da1fe64541d82f19bc334",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/preflight-failure-classification.json",
+          "sha256": "81e8468f0e2953c817e9211dfda3fc24b467fb7d70b78a202e4dcacbc6071ba4",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/local-module-preflight-review.json",
+          "sha256": "3fc80a6c0063b09bea33ba30023558946b49ce404765e21de5388ffe032875d2",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "5dacbfb9ae54ee12df5cc92c57cca2e723fd16f7514dd6f911cb4f1f436fb7ac",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "2e6409b3350e7b7747ddd19ec105e4f9a9b50c630cec70146c138fab9199af44",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "bf36e4a4ec7ea832f549dd127fda64792b6498d5143bf66c3ba2714c5ef8136d",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "f1982e617ae068cdddf43e28016f53e62d4722f2f431c54d35ec2eae5d71b1a9",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent PENDING adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/a5-whole-row-reconciliation.json",
+          "sha256": "3b09492792e2d566199f13b82ed0b9b5e87f4ea20938a31c26e9593bcbc1bf1d",
+          "sourceIdentity": {
+            "controllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "controllerTree": "783d681556ebea548f911a5056b0772ae115ea1f",
+            "run": 41273296167,
+            "job": 124750315764,
+            "acceptedV29Components": {
+              "backend": {
+                "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+                "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+              },
+              "normal": {
+                "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+                "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+              },
+              "recovery": {
+                "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+                "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+              }
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Original ten assertion groups reconciled independently; eight accepted groups explicitly preserved, two remain pending."
+        }
+      ],
+      "reuseVerdict": "REMAINS_UNSATISFIED",
+      "currentCandidateApplicability": "No new runtime evidence generated by this source mapping. Requires actual initialized live Brain baseline and coherent whole-application transition, orderly drain and independent final readback."
+    },
+    {
+      "id": "A5-10",
+      "originalAssertion": "Examination is bounded and isolated, preserves reusable packages and accepted evidence, and causes no commercial or production effects.",
+      "historicalStatus": "SATISFIED",
+      "historicalEvidence": [
+        {
+          "path": "v29-continuation/hosted/evidence/workflow-budget.json",
+          "sha256": "c6ddaf66f6aaa95153bc4702b4c6b655efd27191b637ea58f0bd1126d3c550ee",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/retained-import-result.json",
+          "sha256": "45e2a22e0f40584707792d8f661675167e647b1241b6aa0b9b9424856aa8a424",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/runner-result.json",
+          "sha256": "1e45b5c00e643a63c686fda18b6132264ad31d9c814e8d50e26c5970b42f79c6",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v29-continuation/hosted/evidence/artifact-index.json",
+          "sha256": "c0fc495d3f8b046bbb425f05819e1ffff73d575ff21965df5df34549160ed626",
+          "sourceIdentity": {
+            "backend": {
+              "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+              "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+            },
+            "normal": {
+              "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+              "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+            },
+            "recovery": {
+              "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+              "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v30-continuation/independent-review/accepted-evidence-reuse-review.json",
+          "sha256": "63a9c02d2fc0b66d3ccca0b5ad431e2fbd564c5b2fa2b29008300ee67c8e4a89",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "5dacbfb9ae54ee12df5cc92c57cca2e723fd16f7514dd6f911cb4f1f436fb7ac",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v31-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "2e6409b3350e7b7747ddd19ec105e4f9a9b50c630cec70146c138fab9199af44",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-evidence-verification.json",
+          "sha256": "bf36e4a4ec7ea832f549dd127fda64792b6498d5143bf66c3ba2714c5ef8136d",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/stage-a-failure-classification.json",
+          "sha256": "f1982e617ae068cdddf43e28016f53e62d4722f2f431c54d35ec2eae5d71b1a9",
+          "sourceIdentity": {
+            "exactReceiptIdentity": "Retained immutable path and SHA256; native candidate identity not asserted beyond source fields within that receipt.",
+            "laterAdjudicationControllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "laterAdjudicationControllerTree": "783d681556ebea548f911a5056b0772ae115ea1f"
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Retained independent SATISFIED adjudication; exact accepted readback and declared scope preserved."
+        },
+        {
+          "path": "v32-continuation/independent-review/a5-whole-row-reconciliation.json",
+          "sha256": "3b09492792e2d566199f13b82ed0b9b5e87f4ea20938a31c26e9593bcbc1bf1d",
+          "sourceIdentity": {
+            "controllerCommit": "cead64d9edb18d0f9925100c9c5ba5426d6ad0c9",
+            "controllerTree": "783d681556ebea548f911a5056b0772ae115ea1f",
+            "run": 41273296167,
+            "job": 124750315764,
+            "acceptedV29Components": {
+              "backend": {
+                "commit": "94aa919c7c39c4c9bf2c14b636232da028dba72d",
+                "tree": "ad538f63dc1e2dfe392fea1cacb565d361e9a9e2"
+              },
+              "normal": {
+                "commit": "30002da6bb219fe16f6fd9c88109102d1d09e38d",
+                "tree": "7e10008697f2bfcaced8540b2ce381d0207b24e5"
+              },
+              "recovery": {
+                "commit": "a021a85f38d9d89e82aa76fc3ad4dfd1d9cdd232",
+                "tree": "ee41aac9306ced7acce3c64c08d9e3d58c5941b4"
+              }
+            }
+          },
+          "independentReviewer": "independent_v31",
+          "readbackMethod": "Original ten assertion groups reconciled independently; eight accepted groups explicitly preserved, two remain pending."
+        }
+      ],
+      "reuseVerdict": "PRESERVE_HISTORICAL_ACCEPTANCE_WITH_ORIGINAL_SCOPE",
+      "currentCandidateApplicability": "Preserve historical bounded-isolation acceptance. V61 financial and executor controls are separately conditional and must be satisfied before dispatch; historical cost/termination receipts cannot establish current billing controls."
+    }
+  ],
+  "currentCoherentExaminationMustEstablish": [
+    "Exact V55 standalone launches, actual compatible backend launch and identity responses; package hashes and launch configuration bound to one examination without rebuilding packages.",
+    "Initialized native cached SQL.js Brain captured through the live Brain hook before transition, with original logical schema, row identities and attributable baseline operands.",
+    "One runtime-derived isolated owner/workspace/session/mission dataset, distinct NORMAL -> RECOVERY -> NORMAL, protected replay and actual session/authority continuity.",
+    "Complete declared mandatory stores, control/native files and generation authority, including explicit handling of changed Assurance outputs and capture participation.",
+    "Viable returned NORMAL, correct time-derived presentation, awaited native writer drain, and independent final persisted Brain plus whole-application logical readback.",
+    "No duplication, restored revoked authority, unexpected mutation/deletion or unexplained data loss; independent reconciliation of both remaining groups and the eight retained accepted histories."
+  ],
+  "knownPreflightBoundary": "V32 controller cead64d9edb18d0f9925100c9c5ba5426d6ad0c9 failed entrypoint_contract.py child-startup-selftest before initialized application state. This source mapping supplies no causal execution remedy or launch qualification.",
+  "operations": {
+    "githubReadOnlyCalls": {
+      "compareCommits": 3,
+      "fetchCommit": 1,
+      "fetchFile": 4
+    },
+    "localExactCommitReads": true,
+    "testsRun": 0,
+    "builds": 0,
+    "packageDownloads": 0,
+    "externalMutations": 0,
+    "providerExecution": 0,
+    "sourceEdits": 0
+  },
+  "financialTreatment": "V61 supersedes old blanket A5 suspension conditionally: overall planning allowance USD100 and up to USD10 prospective A5 exposure subject to billing/termination qualification. Existing USD9.95 reservation is not assumed expenditure or newly duplicated. This source-only lane makes no billing reconciliation claim.",
+  "nextBoundary": "Qualified final coherent A5-08/09 examination after harness remedy, current standalone launch binding, complete state inventory and financial/executor preflight are independently satisfied."
+}

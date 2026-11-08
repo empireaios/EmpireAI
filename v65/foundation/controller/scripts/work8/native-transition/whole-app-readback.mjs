@@ -4,6 +4,7 @@ import {writeControlPrivate} from './private-exchanges.mjs';
 import {independentBrainReadback} from './independent-brain-readback.mjs';
 import {verifyAuditProjectionSources,projectAddedAuditRows} from './audit-lifecycle-projection.mjs';
 import {verifyStoreApplicability} from './store-applicability.mjs';
+import {captureSchemaInventory,assertSchemaInventoryPreserved} from './schema-inventory.mjs';
 // Source-declared bounded, read-only logical inventory. No raw database rows leave this process.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -19,14 +20,16 @@ const json=x=>JSON.stringify(x,(_,v)=>typeof v==='bigint'?String(v):v);
 const requiredDomains=['runtime','workers','scheduler','pillow-omissions','marketplace-orders','supplier-fulfilment-tracking','listing-drift','money-transactions','refunds-reimbursements','provider-accounting','evidence-freshness','authority-spending','persistence-backups-recovery'];
 const validTime=n=>Number.isSafeInteger(n)&&n>=0;
 const q=x=>'"'+x.replaceAll('"','""')+'"';
-const state={schema:'work8-v26-whole-app-logical-inventory-v1',phase,stores:{},controls:{},native:{},generation:{},assuranceArtifacts:{}};
+const state={schema:'work8-v26-whole-app-logical-inventory-v1',phase,stores:{},fullSchemas:{},controls:{},native:{},generation:{},assuranceArtifacts:{}};
 const receipt={schema:state.schema,phase,status:'FAIL',readOnlySqlite:true,sourceDeclaredSqliteStores:Object.keys(contract.SQL).length,rawRowsRetained:false,wholeRowsAccepted:[],dynamicDiagnosticChanges:[]};
 let brainAuditRows=[];
 function dbSnapshot(file,domain){
- if(!fs.existsSync(file))return {present:false};
+ assert.ok(typeof domain==='string'&&domain.length>0&&!Object.hasOwn(state.fullSchemas,domain),'DECLARED_STORE_SCHEMA_CHANGED:DUPLICATE_DOMAIN');
+ if(!fs.existsSync(file)){state.fullSchemas[domain]={present:false};return {present:false};}
  const st=fs.lstatSync(file);assert.ok(st.isFile()&&!st.isSymbolicLink()&&st.nlink===1);assert.equal(fs.realpathSync(file),file);
  const db=new DatabaseSync(file,{readOnly:true,allowExtension:false,timeout:2000});
  try{db.exec('PRAGMA query_only=ON; BEGIN');assert.equal(db.prepare('PRAGMA integrity_check').get().integrity_check,'ok');
+  state.fullSchemas[domain]=captureSchemaInventory(db);
   const tables={};const names=db.prepare("SELECT name,sql FROM sqlite_schema WHERE type='table' ORDER BY name").all();assert.ok(names.length<=2000);
   for(const {name,sql} of names){const rows=db.prepare('SELECT * FROM '+q(name)+' LIMIT 50001').all();assert.ok(rows.length<=50000);const hashes=rows.map(r=>sha(json(r))).sort();tables[name]={schemaSha256:sha(sql||''),count:rows.length,hashes,logicalSha256:sha(json(hashes))};if(name==='sqlite_sequence')tables[name].sequences=Object.fromEntries(rows.map(r=>[r.name,Number(r.seq)]));
    if(domain==='brain'&&name==='audit_logs')brainAuditRows=rows;
@@ -70,11 +73,14 @@ try{
  const brainReadback=independentBrainReadback(path.join(root,contract.SQL.brain));
  assert.deepEqual(brainReadback.logicalStore,state.stores.brain,'INDEPENDENT_BRAIN_READER_DISAGREES');
  assert.equal(brainReadback.schemaObjectsSha256,liveBaseline.attestation.schemaObjectsSha256,'LIVE_BRAIN_FULL_SCHEMA_CHANGED');
+ assert.equal(state.fullSchemas.brain.schemaObjectsSha256,brainReadback.schemaObjectsSha256,'INDEPENDENT_BRAIN_READER_DISAGREES');
  if(phase==='normal')assert.deepEqual(state.stores.brain,liveBaseline.logicalStore,'MATERIALIZED_NORMAL_BRAIN_NOT_LIVE_BASELINE');
  receipt.brainLiveBaseline={instanceId:liveBaseline.attestation.instanceId,pid:liveBaseline.attestation.pid,source:liveBaseline.attestation.source,generation:liveBaseline.attestation.runtimeGeneration,readyAt:liveBaseline.attestation.readyAt,observedAt:liveBaseline.attestation.observedAt,baselineLogicalSha256:liveBaseline.attestation.logicalStoreSha256,currentLogicalSha256:sha(json(state.stores.brain)),fullSchemaSha256:brainReadback.schemaObjectsSha256,fullSchemaPreserved:true,method:liveBaseline.attestation.method,readbackExportSha256:brainReadback.exportSha256};
  for(const relative of contract.CONTROL)state.controls[relative]=fileSnapshot(path.join(root,relative));
  for(const id of Object.keys(contract.NATIVE)){state.native[id]=nativeSnapshot(contract.nativeRoot(root,id));assert.equal(state.native[id].present,true,'REQUIRED_NATIVE_ROOT_MISSING');}
- state.generation=dbSnapshot(path.join(root,'authority/generation.sqlite'));assert.equal(state.generation.present,true,'GENERATION_AUTHORITY_MISSING');
+ state.generation=dbSnapshot(path.join(root,'authority/generation.sqlite'),'generation');assert.equal(state.generation.present,true,'GENERATION_AUTHORITY_MISSING');
+ assert.deepEqual(Object.keys(state.fullSchemas).sort(),[...Object.keys(contract.SQL),'generation'].sort(),'DECLARED_STORE_SCHEMA_CHANGED:INCOMPLETE_INVENTORY');
+ receipt.fullSchemas=state.fullSchemas;
  state.assuranceArtifacts=captureAssuranceArtifacts(root);
  receipt.assuranceArtifacts={source:state.assuranceArtifacts.source,pairCount:Object.keys(state.assuranceArtifacts.artifacts).length,logicalSha256:sha(json(state.assuranceArtifacts)),rawRowsRetained:false};
  receipt.stores=Object.fromEntries(Object.entries(state.stores).map(([id,s])=>[id,{...s,tables:s.tables&&Object.fromEntries(Object.entries(s.tables).map(([name,{hashes,mutableRows,...t}])=>[name,t]))}]));
@@ -88,6 +94,7 @@ try{
  if(phase==='normal')receipt.privateHandoff=writeControlPrivate('whole-app-baseline.json',json(state));
  else{
   const baseline=auditBaseline;
+  assertSchemaInventoryPreserved(baseline.fullSchemas,state.fullSchemas);
   assert.deepEqual(state.storeApplicability,baseline.storeApplicability,'DECLARED_STORE_APPLICABILITY_CHANGED');
   receipt.assuranceArtifacts.preservation=compareAssuranceArtifacts(baseline.assuranceArtifacts,state.assuranceArtifacts);
   assert.deepEqual(state.generation,baseline.generation,'GENERATION_AUTHORITY_CHANGED');

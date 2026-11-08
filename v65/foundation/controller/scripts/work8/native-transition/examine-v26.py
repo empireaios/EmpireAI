@@ -42,8 +42,21 @@ PLAN=CONTRACT['durationPlan']
 BUDGET={'startedAtEpoch':time.time(),'maximumSeconds':PLAN['preflightSeconds' if PREFLIGHT else 'examinationSeconds']+PLAN['cleanupSeconds']+PLAN['evidenceExportSeconds'],'cleanupAndUploadReserveSeconds':PLAN['cleanupSeconds']+PLAN['evidenceExportSeconds'],'stageMaximumArtifactBytes':(128 if PREFLIGHT else 1920)*1024**2}
 (OUT/'workflow-budget.json').write_text(json.dumps(BUDGET,indent=2)+'\n')
 START=time.monotonic();stage='preflight';result={'status':'FAIL','wholeRowsAccepted':[],'productionAccess':False,'genuineOwnerObservation':False,'phaseAStatus':'NOT_STARTED','phaseBStarted':False,'sessionId':CONTRACT['executor']['sessionId'],'runContractSHA256':os.environ['WORK8_RUN_CONTRACT_SHA256'],'sourceReviewSHA256':os.environ['WORK8_SOURCE_REVIEW_SHA256'],'launchContractSHA256':CONTRACT['launchContractSHA256'],'controllerManifestSHA256':CONTRACT['controllerManifestSHA256'],'automaticRerun':False}
+STAGE_SECONDS=PLAN['preflightSeconds' if PREFLIGHT else 'examinationSeconds']
+TIME_BUDGET={'schema':'work8-v95-native-time-budget-v1','stage':STAGE_NAME,'stageSeconds':STAGE_SECONDS,'startedAtEpochMs':int(BUDGET['startedAtEpoch']*1000),'browserReserveSeconds':390,'coordinatorReserveSeconds':60,'externalKillGraceSeconds':30}
+TIME_BUDGET['stageDeadlineEpochMs']=TIME_BUDGET['startedAtEpochMs']+STAGE_SECONDS*1000
+TIME_BUDGET['finalTailSeconds']={'browserExit':20,'nativeDrain':25,'independentFinalReadbacks':240,'coordinatorExit':20,'margin':25}
+assert sum(TIME_BUDGET['finalTailSeconds'].values())==TIME_BUDGET['browserReserveSeconds']-TIME_BUDGET['coordinatorReserveSeconds']
+(OUT/'native-time-budget.json').write_text(json.dumps(TIME_BUDGET,indent=2)+'\n')
 MAX_OUTPUT=BUDGET['stageMaximumArtifactBytes']
 container_lifecycle=[]
+policy_lifecycle=[]
+
+def child_timeout(role):
+ reserve={'anchor':0,'coordinator':30,'browser':360}[role]
+ seconds=int((TIME_BUDGET['stageDeadlineEpochMs']-time.time()*1000)/1000)-reserve
+ assert 0<seconds<=STAGE_SECONDS,'NATIVE_CHILD_DEADLINE_EXPIRED'
+ return seconds
 
 def output_bytes():
  total=0
@@ -146,10 +159,16 @@ def independent_readbacks(phase,capture=False):
  return all(v=='PASS' for v in outcomes.values())
 def set_policy(released):
  p=PRIVATE/'policy/control.json'
- if not released:p.unlink();return
  import datetime
- v={'schema':1,'mode':'RELEASED','approvalSha256':hashlib.sha256(b'Final owner directive: isolated noncommercial technical version transition only').hexdigest(),'expiresAt':(datetime.datetime.now(datetime.timezone.utc)+datetime.timedelta(minutes=12)).isoformat()}
- q=p.with_suffix('.tmp');q.write_text(json.dumps(v));q.chmod(0o444);run(['sudo','-n','chown','0:0',str(q)]);q.replace(p)
+ expiry_ms=TIME_BUDGET['stageDeadlineEpochMs']-(60 if PREFLIGHT else 390)*1000
+ if not released:p.unlink()
+ else:
+  assert expiry_ms>time.time()*1000,'CAMPAIGN_EXAMINATION_BOUND'
+  expires=datetime.datetime.fromtimestamp(expiry_ms/1000,datetime.timezone.utc).isoformat()
+  v={'schema':1,'mode':'RELEASED','approvalSha256':hashlib.sha256(b'Final owner directive: isolated noncommercial technical version transition only').hexdigest(),'expiresAt':expires}
+  q=p.with_suffix('.tmp');q.write_text(json.dumps(v));q.chmod(0o444);run(['sudo','-n','chown','0:0',str(q)]);q.replace(p)
+ policy_lifecycle.append({'mode':'RELEASED' if released else 'RESTRICTED','observedAtEpochMs':int(time.time()*1000),'absoluteReleaseExpiryEpochMs':expiry_ms,'releaseExpiryExtended':False,'privatePolicyPresent':p.exists()})
+ (OUT/'owner-policy-lifecycle.json').write_text(json.dumps({'schema':'work8-v95-bounded-owner-policy-lifecycle-v1','stage':STAGE_NAME,'maximumReleaseWindowSeconds':STAGE_SECONDS-(60 if PREFLIGHT else 390),'transitions':policy_lifecycle},indent=2)+'\n')
 def capture_frontend_origin(require_contract=False):
  if NAMES['frontend'] not in created:return
  state=inspect(NAMES['frontend'])['State']
@@ -221,9 +240,10 @@ try:
    reused_module=json.loads((SCRIPT/'v32-reused-module-preflight.json').read_text())
    assert reused_module['status']=='PASS_ACTUAL_SQLJS_MODULE_LIFECYCLE' and len(reused_module['checks'])==10
    (OUT/'accepted-module-preflight-reused.json').write_text(json.dumps({'schema':'work8-v32-reused-module-proof-v1','runId':41269718274,'checks':10,'repeated':False,'receiptSha256':hashlib.sha256((SCRIPT/'v32-reused-module-preflight.json').read_bytes()).hexdigest(),'nativeApplicationProofRequiredSeparately':True},indent=2)+'\n')
-   assert time.time()-BUDGET['startedAtEpoch']<BUDGET['maximumSeconds']-290,'INSUFFICIENT_NATIVE_PREFLIGHT_CAPACITY'
+   assert TIME_BUDGET['stageDeadlineEpochMs']-time.time()*1000>600000,'INSUFFICIENT_NATIVE_PREFLIGHT_CAPACITY'
   else:
-   assert time.time()-BUDGET['startedAtEpoch']<BUDGET['maximumSeconds']-700,'INSUFFICIENT_REMAINING_ACCEPTANCE_CAPACITY'
+   assert TIME_BUDGET['stageDeadlineEpochMs']-time.time()*1000>1300000,'INSUFFICIENT_REMAINING_ACCEPTANCE_CAPACITY'
+  private_write(PRIVATE/'control/native-time-budget.json',TIME_BUDGET)
   private_write(PRIVATE/'control/component-identities.json',components)
   values={key:secrets.token_hex(32) for key in ['founder','admin','session','redis']};generated=list(values.values())
   (PRIVATE/'backend.env').write_text('EXPECTED_BACKEND='+MANIFEST['backend']['commit']+'\nFOUNDER_PASSWORD='+values['founder']+'\nADMIN_PASSWORD='+values['admin']+'\nSESSION_SECRET='+values['session']+'\nREDIS_URL=redis://:'+values['redis']+'@transition-redis:6379/0\n')
@@ -233,10 +253,10 @@ try:
   stage='native-preflight-application-start' if PREFLIGHT else 'phase-b-authorised-application-start';result['phaseBStarted']=not PREFLIGHT
   set_policy(True);run(['docker','network','create','--internal','--label','work8.native='+LABEL,NETWORK]);network_created=True
   run(['docker','run','-d','--name',NAMES['redis'],'--label','work8.native='+LABEL,'--pull','never','--network',NETWORK,'--network-alias','transition-redis','--memory','128m','--cpus','0.5','--pids-limit','64','--read-only','--user','999:999','--cap-drop','ALL','--security-opt','no-new-privileges','--tmpfs','/data:rw,noexec,nosuid,size=32m','--mount','type=bind,src='+str(PRIVATE/'redis.conf')+',dst=/redis.conf,readonly',REDIS,'redis-server','/redis.conf']);created.append(NAMES['redis'])
-  run(['docker','run','-d','--name',NAMES['anchor'],'--label','work8.native='+LABEL,'--pull','never','--network',NETWORK,'--memory','64m','--cpus','0.1','--pids-limit','32','--read-only','--cap-drop','ALL','--security-opt','no-new-privileges',NODE,'node','-e','setTimeout(()=>process.exit(0),650000)']);created.append(NAMES['anchor'])
+  run(['docker','run','-d','--name',NAMES['anchor'],'--label','work8.native='+LABEL,'--pull','never','--network',NETWORK,'--memory','64m','--cpus','0.1','--pids-limit','32','--read-only','--cap-drop','ALL','--security-opt','no-new-privileges',NODE,'node','-e','setTimeout(()=>process.exit(0),Math.max(0,'+str(TIME_BUDGET['stageDeadlineEpochMs'])+'-Date.now()))'],timeout=30);created.append(NAMES['anchor'])
   cmd=['docker','run','-d','--name',NAMES['backend'],'--label','work8.native='+LABEL,'--pull','never','--network',NETWORK,'--network-alias','native-backend','--memory','5g','--cpus','2','--pids-limit','256',*backend_options(PRIVATE,SCRIPT),'--env-file',str(PRIVATE/'backend.env')]
   for overlay_source,overlay_target in operator_mounts:cmd+=['--mount','type=bind,src='+str(overlay_source)+',dst='+overlay_target+',readonly']
-  cmd+=['--entrypoint','timeout',images['backend'],'--signal=KILL','650s','node','/examination/coordinator.mjs'];run(cmd);created.append(NAMES['backend'])
+  cmd+=['--entrypoint','timeout',images['backend'],'--signal=KILL',str(child_timeout('coordinator'))+'s','node','/examination/coordinator.mjs'];run(cmd,timeout=30);created.append(NAMES['backend'])
   live_contract={'schema':'work8-v30-private-contract-v1','acceptedHandoffReused':True,'onlyAddedApplicationMounts':[dest for _,dest in operator_mounts],'backend':safe_docker_contract(inspect(NAMES['backend']))}
   assert live_contract['backend']['user']=='0:0' and live_contract['backend']['readOnlyRootfs'] is True and live_contract['backend']['privileged'] is False
   accepted_private_contract=json.loads((SCRIPT/'accepted-v29-private-contract.json').read_text())
@@ -272,7 +292,7 @@ try:
    run(['docker','exec','--user','65534:65534',NAMES['backend'],'node','-e',"const fs=require('fs');let denied=false;try{fs.writeFileSync('/run/empire-policy/control.json','forbidden')}catch(e){denied=['EROFS','EACCES','EPERM'].includes(e.code)}if(!denied)process.exit(1)"])
    (PRIVATE/'evidence/isolation.json').write_text(json.dumps({'internalNetwork':True,'publishedPorts':False,'externalCredentials':False,'policyReadonlyMount':True,'runtimePolicyWriteRefused':True,'actualNativeApplication':True,'syntheticOwnerOnly':True,'components':components},indent=2))
    start_front('normal','NORMAL');stage='normal-view'
-   run(['docker','run','-d','--name',NAMES['browser'],'--label','work8.native='+LABEL,'--pull','never','--network','container:'+NAMES['anchor'],'--memory','2g','--cpus','1','--pids-limit','128','--shm-size','256m',*browser_options(PRIVATE,SCRIPT,ROOT/'native-transition-driver'),'--env-file',str(PRIVATE/'browser.env'),'--entrypoint','timeout',BROWSER,'--signal=KILL','500s','node','/examination/browser.mjs']);created.append(NAMES['browser'])
+   run(['docker','run','-d','--name',NAMES['browser'],'--label','work8.native='+LABEL,'--pull','never','--network','container:'+NAMES['anchor'],'--memory','2g','--cpus','1','--pids-limit','128','--shm-size','256m',*browser_options(PRIVATE,SCRIPT,ROOT/'native-transition-driver'),'--env-file',str(PRIVATE/'browser.env'),'--entrypoint','timeout',BROWSER,'--signal=KILL',str(child_timeout('browser'))+'s','node','/examination/browser.mjs'],timeout=30);created.append(NAMES['browser'])
    live_contract['browser']=safe_docker_contract(inspect(NAMES['browser']))
    assert live_contract['browser']==accepted_private_contract['browser'],'ACCEPTED_PRIVATE_BROWSER_CONTRACT_CHANGED'
    live_contract['status']='PASS_ACCEPTED_PRIVATE_CONTRACT_WITH_REVIEWED_READONLY_STARTUP_OBSERVERS';(OUT/'phase-b-private-contract.json').write_text(json.dumps(live_contract,indent=2)+'\n')

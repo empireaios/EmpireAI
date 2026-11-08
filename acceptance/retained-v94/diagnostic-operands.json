@@ -1,0 +1,26 @@
+{
+  "coordinatorRetainFirstSHA256": "ec0268ecc3f5d5dc33c9a85ad61c9fb2e2844efe2c265ef9c5b11737939677a6",
+  "examineRunASTSHA256": "3c78414c38c9c7ea059ab8205ad0674e786c8c5b6b1ff9acb37fc5b21fcb3335",
+  "files": {
+    "child-diagnostic-collector.mjs": "f3c18e87181d8d1c46d438ecdcbb27fd8a05ec93c1e74e51e119ff198daa8102",
+    "child-startup-diagnostic.cjs": "81f0574a34aaf50abb697c1fc04ec327fbb0c72cb82da972322dda039ebb61cc",
+    "child-startup-fixture.cjs": "dff7437bf236651be45fffd19db8bf3d3a0b74b5866c350e61b684334c120b4b",
+    "command_diagnostics.py": "a1edd3743434f0b3cda54d9184b402f9a9f92928ee5ad88f99b2afd4fa88734d",
+    "diagnostic-pipeline-control.mjs": "999dfa59446e8c70f5f0797af7d23e514d2f24e60ec29c5f0ea4a03550e91ce5",
+    "native-diagnostic-codes.json": "72a8237ac096f0bad3c00862534fd123b375c1026fa33979a2aedfb925a36601",
+    "native-diagnostic.mjs": "c8185dac3a4458e338911606bdd11ffa23e0c07d5e3e4705e3703fde1ee35a9f",
+    "native_diagnostics.py": "f37238eab6025e226508ae08321a22d2fed328b3d5cfe097f4c975c1e0c7de59",
+    "startup-overlays.json": "fcac575de5437aa37caa87fc06332c2cfe013d3ec2104b774ecc9022d4ee68fe",
+    "test_command_diagnostics.py": "93f82c9ab5b6b00614185d5d65c8daafac8a03f9f15c556d8342b00ce42e62de"
+  },
+  "historicalEvidence": {
+    "artifactId": 13616930561,
+    "artifactSHA256": "6450dca99a0e50c04ce41d874eabd9adc4ca0fdc337f8bbe9c82b0d2c69d2915",
+    "diagnosticControlsSHA256": "2aeaecbf74d66b1368a9b55a2e01500dbdc54bd2d8e54bd98b882e95cc8e5dbf",
+    "jobId": 128724128654,
+    "runId": 42478186509,
+    "workflowCommit": "f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8"
+  },
+  "schema": "work8-v95-retained-diagnostic-operands-v1",
+  "scope": "Historical seven diagnostic controls only; complete historical controller inventory is not current-candidate evidence."
+}

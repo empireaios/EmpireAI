@@ -1,0 +1,45 @@
+{
+  "schema": "work8-v95-external-release-v1",
+  "status": "NONOPERATIVE_TEMPLATE_NO_OWNER_DECISION_OR_RESERVATION",
+  "repository": "empireaios/EmpireAI",
+  "launchBranch": "work8/v95-a5-20261108",
+  "workflowPath": ".github/workflows/work8-v95-a5.yml",
+  "maximumAttempts": 0,
+  "source": {
+    "tree": null,
+    "parent": "f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8",
+    "manifestSHA256": null,
+    "workflowSHA256": null
+  },
+  "launchPlan": null,
+  "ownerApprovalReceipt": {
+    "schema": "work8-v95-owner-approval-v1",
+    "ownerDecisionRecorded": false,
+    "directive": "EMPIREAI_V95_SEPARATE_NATIVE_EXECUTION_APPROVAL",
+    "scope": "none-native-preparation-only",
+    "maximumAttempts": 0,
+    "maximumJobSeconds": 0,
+    "maximumAdditionalExposureUSD": "0.00",
+    "maximumReservationUSD": "0.00",
+    "noAutomaticRetry": true,
+    "approvedSource": null,
+    "reservationId": null
+  },
+  "reservationReceipt": {
+    "schema": "work8-v95-reservation-v1",
+    "recordType": "ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE",
+    "status": "NOT_CREATED",
+    "reservationId": null,
+    "ownerApprovalSHA256": null,
+    "approvedSource": null,
+    "before": {
+      "aggregateHoldsUSD": "12.15",
+      "A5HoldsUSD": "2.20",
+      "unreservedA5AuthorityUSD": "7.80"
+    },
+    "after": null,
+    "reservationUSD": "0.00"
+  },
+  "ownerApprovalSHA256": null,
+  "reservationReceiptSHA256": null
+}

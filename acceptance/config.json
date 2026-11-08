@@ -1,0 +1,40 @@
+{
+  "schema": "work8-v95-native-preparation-config-v1",
+  "status": "PREPARATION_ONLY_EXTERNAL_OWNER_RELEASE_REQUIRED",
+  "localOwnerDecisionRecorded": false,
+  "localReservationCommitted": false,
+  "requiresExternalRelease": true,
+  "launchBranch": "work8/v95-a5-20261108",
+  "reviewBranch": "work8/v95-review-20261108",
+  "workflowPath": ".github/workflows/work8-v95-a5.yml",
+  "externalReleasePath": "acceptance/v95-release.json",
+  "requiredParent": "f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8",
+  "maximumAttempts": 1,
+  "maximumJobSeconds": 18000,
+  "artifactRetentionDays": 7,
+  "maximumObservedArtifactRetentionSeconds": 608400,
+  "maximumBillableArtifactHoursIncludingRounding": 170,
+  "qualificationCampaignMayRepeat": false,
+  "applicationPackagesMayRebuild": false,
+  "retainedInputArtifactId": 13340201255,
+  "retainedInputArtifactSHA256": "39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755",
+  "retainedInputArtifactBytes": 338251567,
+  "currentAuthority": {
+    "ownerDecisionRecorded": false,
+    "reservationCommitted": false,
+    "additionalAttemptsAuthorized": 0,
+    "newReservationUSD": 0,
+    "actualProviderChargeUSD": null
+  },
+  "operatingLocks": {
+    "acceptedRequirements": 48,
+    "outstandingRequirements": 16,
+    "wholeRowTarget": "A5",
+    "PR113": "DRAFT_UNMERGED",
+    "Pillow": "NOT_BORN",
+    "Commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "productionRailwayMutation": false,
+    "protectedDataTransfer": false
+  }
+}

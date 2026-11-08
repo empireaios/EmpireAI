@@ -5,9 +5,11 @@ import {createRequire} from 'node:module';
 import {createHash} from 'node:crypto';
 import {getDefaultResultOrder} from 'node:dns';
 import {compareSnapshots,validateRecoverySchema} from './canonical-comparator.mjs';
+import {nativeDeadline} from './native-time-budget.mjs';
 
 const {chromium}=createRequire('/frontend-package/package.json')('playwright');
-const origin='http://localhost:43117',backend='http://native-backend:43100',deadline=Date.now()+480000;
+const origin='http://localhost:43117',backend='http://native-backend:43100';
+let deadline;
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const sha=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const read=name=>JSON.parse(fs.readFileSync('/control/'+name,'utf8'));
@@ -39,7 +41,8 @@ function validateFrozen(snapshot){
  for(const r of snapshot.records){equal(Object.keys(r.orders).length,1,'ORDER_COUNT_NOT_ONE');equal(r.version,10,'POPULATED_HISTORY_NOT_TEN');check(r.finance.events.length>0,'COMMITTED_FINANCE_EVENTS_ABSENT');equal(r.finance.actualCashMovement,0,'FINANCE_ACTUAL_CASH_NONZERO');equal(r.finance.classification,'SIMULATION_EXCLUDED_FROM_ACTUALS','FINANCE_CLASSIFICATION_CHANGED');check(Object.values(r.orders).every(o=>o.order.integrationMode==='SANDBOX'&&o.outcome==='DELIVERED'),'ORDER_ISOLATION_OR_OUTCOME_INVALID');}
 }
 try{
- equal(getDefaultResultOrder(),'ipv4first','DNS_ORDER_INCORRECT');check(/^work8-v62-a5-[a-z0-9-]{1,48}$/.test(process.env.EXAM_ID??''),'EXAM_ID_INVALID');
+ deadline=nativeDeadline('browser');
+ equal(getDefaultResultOrder(),'ipv4first','DNS_ORDER_INCORRECT');check(/^work8-v65-a5-[0-9]{1,20}$/.test(process.env.EXAM_ID??''),'EXAM_ID_INVALID');
  const views=read('component-identities.json');check(views.normal.artifactKind==='standalone-archive'&&views.recovery.artifactKind==='standalone-archive'&&/^[a-f0-9]{64}$/.test(views.normal.archiveSHA256)&&/^[a-f0-9]{64}$/.test(views.recovery.archiveSHA256)&&views.normal.archiveSHA256!==views.recovery.archiveSHA256&&views.normal.commit!==views.recovery.commit&&views.normal.buildId!==views.recovery.buildId,'FRONTEND_VERSIONS_NOT_DISTINCT');
  const runtimeReceipt=JSON.parse(fs.readFileSync('/evidence/actual-runtime-ready.json','utf8'));check(typeof runtimeReceipt.generation==='string'&&runtimeReceipt.generation.length>0,'GENERATION_RECEIPT_MISSING');const generation=runtimeReceipt.generation;
  const minimumCreatedAt=Math.max(Date.parse(views.normal.packagedAndIndependentlyReadBackBeforeUTC),Date.parse(views.recovery.packagedAndIndependentlyReadBackBeforeUTC));check(Number.isFinite(minimumCreatedAt),'COMPONENT_VERIFIED_AVAILABILITY_BOUND_INVALID');

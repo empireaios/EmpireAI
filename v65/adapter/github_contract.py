@@ -17,7 +17,11 @@ import subprocess
 import time
 
 SCHEMA='work8-v65-github-execution-contract-v1'
-OWNER_DIRECTIVE='EMPIREAI_V75_EXPLICIT_SINGLE_EXECUTION_APPROVAL'
+OWNER_DIRECTIVE='EMPIREAI_V95_SEPARATE_NATIVE_EXECUTION_APPROVAL'
+NATIVE_RESERVATION_ID='V95-A5-NATIVE-ONCE-20261108'
+ARTIFACT_LIMITS={'maximumObjects':3,'maximumCumulativeServiceZipBytes':128*1024**2,'retentionDays':7,'maximumObservedRetentionSeconds':169*3600,'maximumUploadPayloadBytes':64*1024**2,'zipEnvelopeReserveBytes':16*1024**2}
+V94_DIAGNOSTIC_EVIDENCE={'runId':42478186509,'jobId':128724128654,'artifactId':13616930561,'artifactSHA256':'6450dca99a0e50c04ce41d874eabd9adc4ca0fdc337f8bbe9c82b0d2c69d2915','workflowCommit':'f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8','diagnosticControlsSHA256':'2aeaecbf74d66b1368a9b55a2e01500dbdc54bd2d8e54bd98b882e95cc8e5dbf'}
+FRESH_ADMISSION_MODE='V95_FRESH_EXECUTOR_ADMISSION_REUSING_V94_DIAGNOSTICS'
 REPOSITORY='empireaios/EmpireAI'
 REPOSITORY_ID='1275922460'
 CAPABILITIES=['SETUID','SETGID','CHOWN','DAC_OVERRIDE','KILL','SYS_PTRACE']
@@ -61,16 +65,45 @@ def verify_manifest(directory,path,digest,max_files=20000):
 
 def validate_authority(a):
  require(a['ownerDirective']==OWNER_DIRECTIVE,'CURRENT_OWNER_AUTHORITY_REQUIRED')
- require(a['work8CeilingUSD']==100 and a['existingAdditionalA5USD']==10 and a['priorOverallHoldsUSD']==12.09 and a['priorA5HoldsUSD']==2.14 and a['availableBeforeReservationUSD']==7.86,'CURRENT_FINANCIAL_AUTHORITY_REQUIRED')
- require(a.get('ownerDecisionRecorded') is True and digest_string(a.get('ownerApprovalReceiptSHA256')) and a.get('approvalScope')=='one-qualified-a5-attempt' and a.get('maximumAttempts')==1,'SEPARATE_EXPLICIT_OWNER_DECISION_REQUIRED')
+ require(a['work8CeilingUSD']==100 and a['existingAdditionalA5USD']==10 and a['priorOverallHoldsUSD']==12.15 and a['priorA5HoldsUSD']==2.20 and a['availableBeforeReservationUSD']==7.80,'CURRENT_FINANCIAL_AUTHORITY_REQUIRED')
+ require(a.get('ownerDecisionRecorded') is True and digest_string(a.get('ownerApprovalReceiptSHA256')) and a.get('approvalScope')=='one-native-a5-08-09-attempt' and type(a.get('maximumAttempts')) is int and a['maximumAttempts']==1,'SEPARATE_EXPLICIT_OWNER_DECISION_REQUIRED')
  require(a.get('reservationCommitted') is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')
+ require(a.get('reservationId')==NATIVE_RESERVATION_ID and digest_string(a.get('reservationReceiptSHA256')),'DISTINCT_FULL_NATIVE_RESERVATION_REQUIRED')
  for key in ('reservationUSD','maximumProspectiveUSD'):
-  require(type(a[key]) in (int,float) and math.isfinite(a[key]) and 0<=a[key]<=7.86,'FINITE_CURRENT_EXPOSURE_REQUIRED')
- require(0<a['maximumProspectiveUSD']<=0.127 and 0<a['reservationUSD']<=1.00,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED')
+  require(type(a[key]) in (int,float) and math.isfinite(a[key]) and 0<=a[key]<=7.80,'FINITE_CURRENT_EXPOSURE_REQUIRED')
+ require(a['maximumProspectiveUSD']==0.01 and a['reservationUSD']==0.01,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED')
  require(a['maximumProspectiveUSD']<=a['reservationUSD'],'EXPOSURE_EXCEEDS_RESERVATION')
- require(round(a['priorOverallHoldsUSD']+a['reservationUSD'],2)==a['currentOverallHoldsUSD'] and round(a['priorA5HoldsUSD']+a['reservationUSD'],2)==a['currentA5HoldsUSD'] and round(7.86-a['reservationUSD'],2)==a['remainingUnreservedUSD'] and a['reservationCommitted'] is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')
+ require(round(a['priorOverallHoldsUSD']+a['reservationUSD'],2)==a['currentOverallHoldsUSD'] and round(a['priorA5HoldsUSD']+a['reservationUSD'],2)==a['currentA5HoldsUSD'] and round(a['availableBeforeReservationUSD']-a['reservationUSD'],2)==a['remainingUnreservedUSD'] and a['reservationCommitted'] is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')
  require(all(a[k] is False for k in ('renewed','productionOperations','protectedDataTransfer','commerceActivation','subscriptions','automaticRecreate','automaticRerun')),'ORIGINAL_OPERATING_LOCKS_REQUIRED')
  return a
+
+def validate_current_artifact_listing(listing,executor):
+ """Validate complete current-job service metadata without creating an object."""
+ rows=listing.get('artifacts',[])
+ require(type(listing.get('total_count')) is int and isinstance(rows,list) and listing['total_count']==len(rows)<=ARTIFACT_LIMITS['maximumObjects'],'CUMULATIVE_ARTIFACT_OBJECT_BOUND')
+ ids=set();total=0
+ for row in rows:
+  require(type(row.get('id')) is int and row['id']>0 and row['id'] not in ids,'CURRENT_ARTIFACT_ID_REQUIRED');ids.add(row['id'])
+  run=row.get('workflow_run',{})
+  require(str(run.get('id'))==str(executor['runId']) and run.get('head_sha')==executor['workflowCommit'] and row.get('expired') is False,'CURRENT_ARTIFACT_BINDING')
+  require(type(row.get('size_in_bytes')) is int and row['size_in_bytes']>=0 and isinstance(row.get('digest'),str) and row['digest'].startswith('sha256:') and digest_string(row['digest'][7:]),'CURRENT_ARTIFACT_MEASUREMENT_REQUIRED')
+  try:
+   created=datetime.datetime.fromisoformat(row['created_at'].replace('Z','+00:00'));expires=datetime.datetime.fromisoformat(row['expires_at'].replace('Z','+00:00'))
+   retention=(expires-created).total_seconds()
+  except (KeyError,TypeError,ValueError):raise Refusal('ARTIFACT_RETENTION_BOUND') from None
+  require(created.tzinfo is not None and expires.tzinfo is not None and 0<retention<=ARTIFACT_LIMITS['maximumObservedRetentionSeconds'],'ARTIFACT_RETENTION_BOUND')
+  total+=row['size_in_bytes']
+ require(total<=ARTIFACT_LIMITS['maximumCumulativeServiceZipBytes'],'CUMULATIVE_ARTIFACT_EXPOSURE_BOUND')
+ return {'cumulativeObjects':len(rows),'cumulativeServiceZipBytes':total}
+
+def validate_preupload_size(payload_bytes,listing,executor):
+ """Reserve a conservative ZIP envelope before a single bounded upload."""
+ current=validate_current_artifact_listing(listing,executor)
+ require(type(payload_bytes) is int and 0<payload_bytes<=ARTIFACT_LIMITS['maximumUploadPayloadBytes'],'ARTIFACT_UPLOAD_PAYLOAD_BOUND')
+ require(current['cumulativeObjects']<ARTIFACT_LIMITS['maximumObjects'],'CUMULATIVE_ARTIFACT_OBJECT_BOUND')
+ prospective=current['cumulativeServiceZipBytes']+payload_bytes+ARTIFACT_LIMITS['zipEnvelopeReserveBytes']
+ require(prospective<=ARTIFACT_LIMITS['maximumCumulativeServiceZipBytes'],'PREUPLOAD_ARTIFACT_EXPOSURE_BOUND')
+ return {**current,'payloadBytes':payload_bytes,'maximumProspectiveServiceZipBytes':prospective,'retentionDays':ARTIFACT_LIMITS['retentionDays']}
 
 def validate_contract(c,now,env=None):
  env=os.environ if env is None else env
@@ -87,7 +120,7 @@ def validate_contract(c,now,env=None):
  require(e['hostArtifactEgress']=='github-provider-endpoints' and e['nativeNetworkPolicy']=='docker-internal-no-published-ports','TRUTHFUL_NETWORK_PHASE_BINDING_REQUIRED')
  require(type(e.get('runnerId')) is int and e['runnerId']>0 and isinstance(e.get('runnerName'),str) and 0<len(e['runnerName'])<=256 and all(digest_string(e.get(k)) for k in ('serviceRunSHA256','serviceJobSHA256')),'ATTRIBUTABLE_PROVIDER_RUNNER_REQUIRED')
  require(e['ports']==[] and e['productionMounts']==[] and e['runnerImageVersion'],'PRIVATE_NONPRODUCTION_RUNNER_REQUIRED')
- require(type(e['timeoutSeconds']) is int and 0<e['timeoutSeconds']<=21600,'FINITE_JOB_TIMEOUT_REQUIRED')
+ require(type(e['timeoutSeconds']) is int and e['timeoutSeconds']==18000,'FINITE_JOB_TIMEOUT_REQUIRED')
  require(e['expiresAtEpoch']==e['jobStartedAtEpoch']+e['timeoutSeconds'] and e['jobStartedAtEpoch']<=now<e['expiresAtEpoch'],'ACTUAL_JOB_DEADLINE_REQUIRED')
  validate_authority(c['authority'])
  require(c['dependencyImages']==DEPENDENCY_IMAGES,'EXACT_DEPENDENCY_PINS_REQUIRED')
@@ -182,6 +215,11 @@ def validate_executor_security(q,e,p):
  require(bindings['criticalImageReadbackSHA256']==q.get('criticalImageReadbackSHA256') and bindings['diagnosticControlsSHA256']==q.get('diagnosticControlsSHA256'),'NATIVE_EVIDENCE_BINDING_DISAGREEMENT')
  diagnostic=q.get('diagnosticControls',{})
  require(diagnostic.get('status')=='PASS' and diagnostic.get('testsRun')==7 and diagnostic.get('testsPassed')==7,'SEVEN_FIRST_ERROR_CONTROLS_REQUIRED')
+ if q.get('evidenceMode')==FRESH_ADMISSION_MODE:
+  require(q.get('historicalDiagnosticEvidence')==V94_DIAGNOSTIC_EVIDENCE and q.get('diagnosticControlsSHA256')==V94_DIAGNOSTIC_EVIDENCE['diagnosticControlsSHA256'],'EXACT_PRESERVED_V94_DIAGNOSTICS_REQUIRED')
+  require(str(e['runId'])!=str(V94_DIAGNOSTIC_EVIDENCE['runId']) and e['jobId']!=V94_DIAGNOSTIC_EVIDENCE['jobId'],'FRESH_EXECUTOR_DISTINCT_FROM_CONSUMED_QUALIFICATION')
+ elif q.get('evidenceMode') is not None:
+  raise Refusal('NATIVE_EVIDENCE_MODE_REFUSED')
  require(q.get('requiredCapabilities')==CAPABILITIES and all(q.get(k) is True for k in ('seccompTSYNC','crossPrincipalProcReadback','readonlyRootVerified','privateFileExchangeVerified','internalNetworkVerified','noPublishedPortsVerified','providerCredentialsExcluded')),'ORIGINAL_NATIVE_BOUNDARIES_REQUIRED')
  require(q.get('dependencyImages')==DEPENDENCY_IMAGES and q.get('hostNodeVersion')=='v22.23.2' and q.get('dockerInfo',{}).get('CgroupVersion')=='2' and 'seccomp' in str(q.get('dockerInfo',{}).get('SecurityOptions')) and isinstance(q.get('dockerEngineId'),str) and bool(q['dockerEngineId']),'COMPATIBLE_NATIVE_RUNTIME_REQUIRED')
  row=q.get('nativeObservation',{})
@@ -260,7 +298,10 @@ def verify_source_identity(root,c):
  require(s['schema']=='work8-v65-reconstructed-source-identities-v1' and s['components']==SOURCES,'CURRENT_SOURCE_PROVENANCE_REQUIRED')
  ack=pinned_json(pathlib.Path(root)/'source-review.json',os.environ.get('WORK8_SOURCE_REVIEW_SHA256'))
  verify_ack(ack,c,'packages-and-executor',package_bindings(c),time.time())
- return {**s,'packagedAndIndependentlyReadBackBeforeUTC':ack['reviewedAtUTC'],'packageReadbackEvidenceSHA256':os.environ['WORK8_SOURCE_REVIEW_SHA256']}
+ reference='source-evidence/a5-reuse-adjudication.json';expected='54291e5ac344910a46568d220be52b1d6efffda7c3329fb14d4e85125e6b7045'
+ proof=pathlib.Path(root)/'controller/scripts/work8/native-transition'/reference
+ require(regular(proof,105412).st_size==105412,'EXACT_HISTORICAL_REUSE_PROOF_SIZE_REQUIRED');pinned_json(proof,expected)
+ return {**s,'packagedAndIndependentlyReadBackBeforeUTC':ack['reviewedAtUTC'],'packageReadbackEvidenceSHA256':os.environ['WORK8_SOURCE_REVIEW_SHA256'],'evidenceReferences':[{'reference':reference,'bytes':105412,'sha256':expected,'readBackThisExecution':True,'scope':'PRESERVED_EIGHT_SATISFIED_GROUPS_NOT_CURRENT_A5_08_09_ACCEPTANCE'}]}
 
 def require_remaining_lifetime(c,stage,now):
  require(stage in ('preflight','full'),'STAGE_REQUIRED');p=c['durationPlan']
@@ -286,6 +327,7 @@ def gate(root,controller,stage):
  require(sha(root/'runner-identity.json')==c['runnerIdentitySHA256'],'CURRENT_RUNNER_IDENTITY_RECEIPT_CHANGED')
  validate_current_executor_continuity(p,c['executor'])
  q=pinned_json(root/'native-qualification.json',c['nativeQualificationSHA256'])
+ require(q.get('evidenceMode')==FRESH_ADMISSION_MODE,'V95_FRESH_EXECUTOR_ADMISSION_REQUIRED')
  validate_executor_security(q,c['executor'],p)
  require('sha256:'+q['backendImageSHA256']==BACKEND['image'],'QUALIFIED_BACKEND_PACKAGE_CHANGED')
  require(q['executionRoot']==str(root),'QUALIFIED_EXECUTION_ROOT_CHANGED')

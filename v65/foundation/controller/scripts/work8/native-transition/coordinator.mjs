@@ -10,12 +10,14 @@ import {createRequire} from 'node:module';
 import {DatabaseSync} from 'node:sqlite';
 import {once} from 'node:events';
 import {verifyStoragePreflight} from './storage-preflight.mjs';
+import {nativeDeadline} from './native-time-budget.mjs';
 import {preparePathContract} from '/app/scripts/work8/o33-permissions.mjs';
 const require=createRequire('/app/backend/package.json'),Redis=require('ioredis');
 const {MembershipJournal,processIdentity}=require('/app/deployment/runtime-membership-controller.cjs');
 const {resolveRuntimeRevision}=require('/app/deployment/runtime-revision.cjs');
 const sha=x=>createHash('sha256').update(x).digest('hex'),pause=ms=>new Promise(r=>setTimeout(r,ms));
-const source=process.env.EXPECTED_BACKEND,deadline=Date.now()+600000,evidence='/evidence',control='/control';
+const source=process.env.EXPECTED_BACKEND,evidence='/evidence',control='/control';
+let deadline;
 const receipt={schema:'work8-native-transition-runtime-v1',status:'FAIL',source,actualNativeApplication:false,productionAccess:false,wholeRowsAccepted:[]};
 let drainStartedAtMs=null,drainCompletedAtMs=null;
 let runtime,paths,output='',drained=false,lastHealth={},brainReady,brainCaptureDone=false,causalStage='NATIVE_COORDINATOR_SETUP',firstNativeFailure=null,runtimeClosed=Promise.resolve();
@@ -55,6 +57,7 @@ async function drain(){if(drained||!runtime)return;const members=census().member
  const guard=members.find(m=>m.role==='containment-guard');assert.ok(guard);const exit=once(runtime,'exit');drainStartedAtMs=Date.now();process.kill(guard.pid,'SIGTERM');const hard=setTimeout(()=>runtime.kill('SIGKILL'),25000);try{const [code,signal]=await exit;assert.equal(code,0);assert.equal(signal,null);for(const m of members){const now=processIdentity(m.pid);assert.ok(!now||now.startTicks!==m.startTicks||now.state==='Z');}drained=true;drainCompletedAtMs=Date.now();receipt.actualNativeWritersDrained=true;}finally{clearTimeout(hard);}}
 process.on('SIGTERM',()=>{void drain().catch(()=>{}).finally(()=>process.exit(1));});
 try{
+ deadline=nativeDeadline('coordinator');
  write('last-startup-observation.json',{...startupMetadata(),phase:'BOOTSTRAP'});
  assert.equal(process.versions.node,'22.23.2');assert.equal(process.getuid(),0);assert.match(source,/^[a-f0-9]{40}$/);assert.equal(resolveRuntimeRevision('/app',source),source);
  const u=new URL(process.env.REDIS_URL);assert.equal(u.hostname,'transition-redis');assert.equal(u.pathname,'/0');assert.ok(u.password);

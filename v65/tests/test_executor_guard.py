@@ -38,7 +38,7 @@ def fixture():
  return q,e,p
 
 def authority_fixture():
- a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':12.09,'priorA5HoldsUSD':2.14,'availableBeforeReservationUSD':7.86,'ownerDecisionRecorded':True,'ownerApprovalReceiptSHA256':H,'approvalScope':'one-qualified-a5-attempt','maximumAttempts':1,'reservationCommitted':True,'reservationUSD':1,'maximumProspectiveUSD':0.127,'currentOverallHoldsUSD':13.09,'currentA5HoldsUSD':3.14,'remainingUnreservedUSD':6.86}
+ a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':12.15,'priorA5HoldsUSD':2.20,'availableBeforeReservationUSD':7.80,'ownerDecisionRecorded':True,'ownerApprovalReceiptSHA256':H,'approvalScope':'one-native-a5-08-09-attempt','maximumAttempts':1,'reservationCommitted':True,'reservationUSD':0.01,'maximumProspectiveUSD':0.01,'reservationId':g.NATIVE_RESERVATION_ID,'reservationReceiptSHA256':H,'currentOverallHoldsUSD':12.16,'currentA5HoldsUSD':2.21,'remainingUnreservedUSD':7.79}
  a.update({k:False for k in ('renewed','productionOperations','protectedDataTransfer','commerceActivation','subscriptions','automaticRecreate','automaticRerun')})
  return a
 
@@ -206,7 +206,7 @@ class AdmissionControls(unittest.TestCase):
  def test_consumed_v70_approval_refused(self):
   with self.assertRaisesRegex(g.Refusal,'CURRENT_OWNER_AUTHORITY_REQUIRED'):g.validate_authority({'ownerDirective':'EMPIREAI_V70_A5_EXECUTION_APPROVAL'})
  def test_candidate_unapproved_plan_refused(self):
-  a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':12.09,'priorA5HoldsUSD':2.14,'availableBeforeReservationUSD':7.86,'ownerDecisionRecorded':False}
+  a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':12.15,'priorA5HoldsUSD':2.20,'availableBeforeReservationUSD':7.80,'ownerDecisionRecorded':False}
   with self.assertRaisesRegex(g.Refusal,'SEPARATE_EXPLICIT_OWNER_DECISION_REQUIRED'):g.validate_authority(a)
 
 if __name__=='__main__':unittest.main(verbosity=2)

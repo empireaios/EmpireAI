@@ -4,7 +4,7 @@
 Provider credentials are used only by identity/review methods and are excluded
 from every build, Docker, diagnostic and native subprocess environment.
 """
-import argparse,ast,base64,datetime,hashlib,importlib.util,io,json,os,pathlib,re,secrets,shutil,stat,subprocess,sys,tarfile,time,urllib.error,urllib.parse,urllib.request
+import argparse,ast,base64,datetime,hashlib,importlib.util,io,json,os,pathlib,re,secrets,shutil,signal,stat,subprocess,sys,tarfile,time,urllib.error,urllib.parse,urllib.request
 sys.dont_write_bytecode=True
 from github_contract import *
 from collect_runtime_image_provenance import collect as collect_runtime_provenance
@@ -14,13 +14,13 @@ FOUNDATION=HERE.parent/'foundation'
 sys.path.insert(0,str(FOUNDATION/'runtime'))
 from runtime_common import atomic,bounded_process,Refusal as RuntimeRefusal
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
-CONTROLLER_SHA='65d8cab9f9c1ed99e254ad6598b1b2b04b049755be5e0fc5cfee0e7326f2a3d6'
+CONTROLLER_SHA='399e241ccf38db2dd97260d70543cfcadc23d19902ea4dd6b7aeb74712d18131'
 DRIVER_SHA='49d50e3d985e0a544780422f8ad56c9a10311d835bbea667f8c384ccf9d9e480'
 MEMBERSHIP_CONTROLLER_SHA='59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b'
 MEMBERSHIP_CONTROLLER_BYTES=20923
-REVIEW_REF='work8/v75-review-20261104'
-LAUNCH_REF='refs/heads/work8/v75-a5-20261104'
-WORKFLOW_PATH='.github/workflows/work8-v75-a5.yml'
+REVIEW_REF='work8/v95-review-20261108'
+LAUNCH_REF='refs/heads/work8/v95-a5-20261108'
+WORKFLOW_PATH='.github/workflows/work8-v95-a5.yml'
 ENV_KEYS=('GITHUB_ACTIONS','GITHUB_REPOSITORY','GITHUB_REPOSITORY_ID','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_SHA','GITHUB_JOB','RUNNER_OS','RUNNER_ARCH')
 
 def load_module(name,path):
@@ -100,21 +100,30 @@ def guard_controls(root):
 class NoRedirect(urllib.request.HTTPRedirectHandler):
  def redirect_request(self,*args,**kwargs):raise Refusal('GITHUB_API_REDIRECT_REFUSED')
 
-def api(path,allow_missing=False):
+def api(path,allow_missing=False,*,deadline=None):
  require(path.startswith('/repos/'+REPOSITORY+'/') or path=='/repos/'+REPOSITORY,'API_SCOPE_REFUSED')
  token=os.environ.get('GH_TOKEN');require(token and '\n' not in token,'SCOPED_READ_TOKEN_REQUIRED')
  request=urllib.request.Request('https://api.github.com'+path,headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'EmpireAI-V65-read-only-review'})
+ window=30;old_handler=None
+ if deadline is not None:
+  remaining=deadline-time.monotonic();require(remaining>0,'INDEPENDENT_REVIEW_DEADLINE');window=min(window,remaining)
+  require(signal.getitimer(signal.ITIMER_REAL)==(0.0,0.0),'NESTED_API_DEADLINE_REFUSED')
+  old_handler=signal.getsignal(signal.SIGALRM)
+  def expire(signum,frame):raise Refusal('INDEPENDENT_REVIEW_DEADLINE' if time.monotonic()>=deadline else 'GITHUB_READ_API_DEADLINE')
+  signal.signal(signal.SIGALRM,expire);signal.setitimer(signal.ITIMER_REAL,window)
  try:
-  with urllib.request.build_opener(NoRedirect).open(request,timeout=30) as response:
+  with urllib.request.build_opener(NoRedirect).open(request,timeout=window) as response:
    data=response.read(4*1024*1024+1);require(len(data)<=4*1024*1024,'API_RESPONSE_BOUND');return json.loads(data)
  except urllib.error.HTTPError as exc:
   if exc.code==404 and allow_missing:return None
   raise Refusal('GITHUB_READ_API_HTTP_'+str(exc.code)) from None
+ finally:
+  if deadline is not None:signal.setitimer(signal.ITIMER_REAL,0);signal.signal(signal.SIGALRM,old_handler)
 
-def identity(root,job_name):
+def identity(root,job_name,authority_file=None):
  # Refuse an unreleased successor before reconstruction or provider inspection.
  # The workflow allocation already exists; this gate cannot undo that allocation.
- launch=json.loads((HERE.parent/'launch-plan.json').read_text())
+ launch=json.loads((pathlib.Path(authority_file) if authority_file else HERE.parent/'launch-plan.json').read_text())
  require(launch.get('schema')=='work8-v65-reviewed-launch-plan-v1','REVIEWED_LAUNCH_PLAN_REQUIRED')
  validate_authority(launch['authority'])
  require(os.getuid()==os.geteuid()==os.getgid()==os.getegid()==1001,'ORIGINAL_HOST_PRINCIPAL_REQUIRED')
@@ -328,8 +337,14 @@ def prepare(root,retained_driver=None):
  atomic(root/'source-identities.json',{'schema':'work8-v65-reconstructed-source-identities-v1','components':SOURCES,'historicalControllerManifestSHA256':CONTROLLER_SHA,'controllerManifestSHA256':controller_sha,'packageManifestSHA256':sha(root/'v65-packages.json'),'historicalPackageBytesClaimed':False,'independentlyAdmitted':False},exclusive=True)
  return {'status':'COMPLETE_CURRENT_PACKAGES_VERIFIED_AWAITING_EXTERNAL_EQUIVALENCE','controllerManifestSHA256':controller_sha,'packageManifestSHA256':sha(root/'v65-packages.json')}
 
-def qualify(root,authority_file,*,qualification_only=False):
+def qualify(root,authority_file,*,qualification_only=False,acceptance_admission=False):
  identity=json.loads((root/'runner-identity.json').read_text())
+ require(not (qualification_only and acceptance_admission),'EXCLUSIVE_ADMISSION_SCOPE_REQUIRED')
+ if acceptance_admission:
+  launch=pinned_json(pathlib.Path(authority_file),sha(pathlib.Path(authority_file)))
+  validate_authority(launch['authority'])
+  retained=load_module('v95_retained_diagnostics',HERE.parent.parent/'acceptance/retained_diagnostics.py')
+  retained_evidence=retained.admit(root)
  qualification_marker_sha=None
  if qualification_only:
   # Separately admitted wrapper authority must exist before any native action.
@@ -422,10 +437,15 @@ def qualify(root,authority_file,*,qualification_only=False):
   except BaseException as exc:cleanup_errors.append({'action':'qualification-private-directory','errorClass':type(exc).__name__})
   atomic(root/'runtime-evidence/qualification-cleanup.json',{'schema':'work8-v75-qualification-cleanup-v1','status':'PASS' if not cleanup_errors else 'FAIL','errors':cleanup_errors,'primaryFailurePreserved':primary_failure is not None,'applicationStarted':False},exclusive=True)
   if cleanup_errors and primary_failure is None:raise Refusal('QUALIFICATION_CLEANUP_FAILED')
- # Exercise the unchanged seven first-error controls on this exact copied controller.
- diagnostics=root/'diagnostic-controls';args,env=diagnostic_control_invocation(root)
+ # V95 reuses the exact independently read-back seven-control receipt. The
+ # newly allocated host is admitted separately; this does not repeat Q01-Q05.
+ diagnostics=root/'diagnostic-controls'
  require(critical['files']['/app/deployment/runtime-membership-controller.cjs']['sha256']==MEMBERSHIP_CONTROLLER_SHA and critical['files']['/app/deployment/runtime-membership-controller.cjs']['bytes']==MEMBERSHIP_CONTROLLER_BYTES,'DIAGNOSTIC_CONTROLLER_CURRENT_IMAGE_JOIN')
- script=root/'controller/scripts/work8/native-transition';run(root,args,120,1024*1024,env=env)
+ script=root/'controller/scripts/work8/native-transition'
+ if acceptance_admission:
+  q.update(evidenceMode='V95_FRESH_EXECUTOR_ADMISSION_REUSING_V94_DIAGNOSTICS',historicalDiagnosticEvidence=retained_evidence,qualificationCampaignRepeated=False)
+ else:
+  args,env=diagnostic_control_invocation(root);run(root,args,120,1024*1024,env=env)
  diagnostic=json.loads((diagnostics/'negative-control-result.json').read_text());require(diagnostic['status']=='PASS' and diagnostic['testsRun']==7 and diagnostic['testsPassed']==7,'SEVEN_FIRST_ERROR_CONTROLS_REQUIRED');q['diagnosticControlsSHA256']=sha(diagnostics/'negative-control-result.json')
  q['diagnosticControls']=diagnostic
  q['observerBuildSHA256']=sha(root/'runtime-evidence/dumpability-observer-build.json')
@@ -446,36 +466,38 @@ def qualify(root,authority_file,*,qualification_only=False):
  validate_contract(c,time.time());atomic(root/'run-contract.json',c,exclusive=True)
  return {'status':'PACKAGE_AND_NATIVE_PREREQUISITES_OBSERVED_EXTERNAL_REVIEW_PENDING','applicationStarted':False,'bindings':package_bindings(c)}
 
-def service_artifact(c,artifact_id,digest):
+def service_artifact(c,artifact_id,digest,*,deadline=None):
  require(re.fullmatch('[0-9]+',str(artifact_id)) is not None,'ARTIFACT_ID_REQUIRED')
  digest=digest.removeprefix('sha256:');require(digest_string(digest),'ARTIFACT_DIGEST_REQUIRED')
- a=api('/repos/'+REPOSITORY+'/actions/artifacts/'+str(artifact_id));require(a['id']==int(artifact_id) and not a['expired'] and a['workflow_run']['id']==int(c['executor']['runId']) and a['workflow_run']['head_sha']==c['executor']['workflowCommit'],'CURRENT_ARTIFACT_BINDING')
+ a=api('/repos/'+REPOSITORY+'/actions/artifacts/'+str(artifact_id),deadline=deadline);require(a['id']==int(artifact_id) and not a['expired'] and a['workflow_run']['id']==int(c['executor']['runId']) and a['workflow_run']['head_sha']==c['executor']['workflowCommit'],'CURRENT_ARTIFACT_BINDING')
  require(a.get('digest')=='sha256:'+digest,'SERVICE_ARTIFACT_DIGEST_MISMATCH')
- created=datetime.datetime.fromisoformat(a['created_at'].replace('Z','+00:00')).timestamp();expiry=datetime.datetime.fromisoformat(a['expires_at'].replace('Z','+00:00')).timestamp();require(0<expiry-created<=7*86400+3600,'ARTIFACT_RETENTION_BOUND')
- listing=api('/repos/'+REPOSITORY+'/actions/runs/'+str(c['executor']['runId'])+'/artifacts?per_page=100');require(listing['total_count']==len(listing['artifacts'])<=4 and sum(x['size_in_bytes'] for x in listing['artifacts'])<=2*1024**3,'CUMULATIVE_ARTIFACT_EXPOSURE_BOUND')
- return {'id':a['id'],'name':a['name'],'sha256':digest,'bytes':a['size_in_bytes'],'createdAtUTC':a['created_at'],'expiresAtUTC':a['expires_at'],'cumulativeObjects':len(listing['artifacts']),'cumulativeServiceZipBytes':sum(x['size_in_bytes'] for x in listing['artifacts'])}
+ created=datetime.datetime.fromisoformat(a['created_at'].replace('Z','+00:00')).timestamp();expiry=datetime.datetime.fromisoformat(a['expires_at'].replace('Z','+00:00')).timestamp();require(0<expiry-created<=ARTIFACT_LIMITS['maximumObservedRetentionSeconds'],'ARTIFACT_RETENTION_BOUND')
+ listing=api('/repos/'+REPOSITORY+'/actions/runs/'+str(c['executor']['runId'])+'/artifacts?per_page=100',deadline=deadline);bounds=validate_current_artifact_listing(listing,c['executor'])
+ require(any(x['id']==a['id'] and x['digest']==a['digest'] and x['size_in_bytes']==a['size_in_bytes'] for x in listing['artifacts']),'ARTIFACT_LISTING_READBACK_DISAGREEMENT')
+ return {'id':a['id'],'name':a['name'],'sha256':digest,'bytes':a['size_in_bytes'],'createdAtUTC':a['created_at'],'expiresAtUTC':a['expires_at'],**bounds}
 
 def await_review(root,stage,artifact_id,artifact_digest,max_seconds=1500):
- c=json.loads((root/'run-contract.json').read_text());validate_contract(c,time.time());artifact=service_artifact(c,artifact_id,artifact_digest)
+ require(type(max_seconds) is int and 0<max_seconds<=1500,'EXTERNAL_REVIEW_TIME_BOUND');deadline=time.monotonic()+max_seconds
+ c=json.loads((root/'run-contract.json').read_text());validate_contract(c,time.time());artifact=service_artifact(c,artifact_id,artifact_digest,deadline=deadline)
  expected=package_bindings(c)
  if stage=='preflight':expected.update(runContractSHA256=sha(root/'run-contract.json'),runnerResultSHA256=sha(root/'evidence/preflight/runner-result.json'),artifactIndexSHA256=sha(root/'evidence/preflight/artifact-index.json'))
  destination=root/('source-review.json' if stage=='packages-and-executor' else 'preflight-review.json');require(not destination.exists(),'INDEPENDENT_ACK_ALREADY_COMMITTED')
- require(type(max_seconds) is int and 0<max_seconds<=1500,'EXTERNAL_REVIEW_TIME_BOUND');limit=max_seconds;start=time.monotonic();filename='v65-review/'+str(c['executor']['runId'])+'/'+stage+'.json'
- while time.monotonic()-start<limit:
+ filename='v65-review/'+str(c['executor']['runId'])+'/'+stage+'.json'
+ while time.monotonic()<deadline:
   require_remaining_lifetime(c,'preflight' if stage=='packages-and-executor' else 'full',time.time())
-  ref=api('/repos/'+REPOSITORY+'/git/ref/heads/'+REVIEW_REF,allow_missing=True)
+  ref=api('/repos/'+REPOSITORY+'/git/ref/heads/'+REVIEW_REF,allow_missing=True,deadline=deadline)
   if ref:
    commit=ref['object']['sha'];require(re.fullmatch('[a-f0-9]{40}',commit) is not None and commit!=c['executor']['workflowCommit'],'DISTINCT_REVIEW_COMMIT_REQUIRED')
-   ci=api('/repos/'+REPOSITORY+'/commits/'+commit+'?per_page=1')
+   ci=api('/repos/'+REPOSITORY+'/commits/'+commit+'?per_page=1',deadline=deadline)
    # API-linked GitHub identity, not arbitrary git author/email strings.
    require((ci.get('author') or {}).get('login')=='empireaios' and (ci.get('author') or {}).get('id')==295548100,'TRUSTED_EXTERNAL_REVIEW_AUTHOR_REQUIRED')
-   file=api('/repos/'+REPOSITORY+'/contents/'+filename+'?ref='+commit,allow_missing=True)
+   file=api('/repos/'+REPOSITORY+'/contents/'+filename+'?ref='+commit,allow_missing=True,deadline=deadline)
    if file:
     require(file['type']=='file' and file['encoding']=='base64' and file['size']<=32768,'ACK_REGULAR_SIZE_BOUND');data=base64.b64decode(file['content'],validate=False);require(len(data)==file['size'],'ACK_COMPLETE_BYTES_REQUIRED');ack=json.loads(data)
     verify_ack(ack,c,stage,expected,time.time());require(ack['artifactId']==artifact['id'] and ack['artifactSHA256']==artifact['sha256'],'INDEPENDENT_ACK_CURRENT_ARTIFACT_REQUIRED')
-    atomic(destination,ack,exclusive=True);atomic(root/('review-transport-'+stage+'.json'),{'schema':'work8-v65-external-review-transport-v1','reviewCommit':commit,'reviewAuthorLogin':'empireaios','reviewAuthorId':295548100,'ackSHA256':sha(destination),'artifact':artifact,'applicationAcceptance':False},exclusive=True)
+    require(time.monotonic()<deadline,'INDEPENDENT_REVIEW_DEADLINE');atomic(destination,ack,exclusive=True);atomic(root/('review-transport-'+stage+'.json'),{'schema':'work8-v65-external-review-transport-v1','reviewCommit':commit,'reviewAuthorLogin':'empireaios','reviewAuthorId':295548100,'ackSHA256':sha(destination),'artifact':artifact,'applicationAcceptance':False},exclusive=True)
     return {'status':'EXTERNAL_REVIEW_ACKNOWLEDGED','stage':stage,'ackSHA256':sha(destination),'applicationAcceptance':False}
-  time.sleep(15)
+  time.sleep(min(15,max(0,deadline-time.monotonic())))
  raise Refusal('INDEPENDENT_REVIEW_DEADLINE')
 
 def native(root,stage):
@@ -499,13 +521,17 @@ def exporter(root):
  module=load_module('v65_exporter',root/'runtime/export-evidence.py' if (root/'runtime/export-evidence.py').exists() else FOUNDATION/'runtime/export-evidence.py')
  # Explicit new provider receipts only; original secret scan, per-file,
  # logical2MiB and compressed512KiB bounds remain exactly unchanged.
- module.TOP_NAMES.update({'runtime-image-provenance.json','component-checkpoint-summary.json','launch-readiness.json','runner-identity.json','artifact-service-packages.json','artifact-service-final.json','review-transport-packages-and-executor.json','review-transport-preflight.json'})
+ module.TOP_NAMES.update({'runtime-image-provenance.json','component-checkpoint-summary.json','launch-readiness.json','runner-identity.json','artifact-service-packages.json','artifact-service-final.json','review-transport-packages-and-executor.json','review-transport-preflight.json','package-origin.json','candidate-artifact-service.json','candidate-download.json'})
  module.RUNTIME_NAMES.update({'guard-controls.json','qualification-cleanup.json','dumpability-observer-build.json'})
+ module.TOP_NAMES.update({'external-release.json','release-transport.json','acceptance-source-admission.json','operative-launch-plan.json','artifact-return-provider.json','single-launch-readback.json','upload-bounds/packages-and-executor.json','upload-bounds/preflight.json'})
+ for operation in ('identity','download','prepare','admission','review-export','await-review-packages-and-executor','native-preflight','native-export-preflight','await-review-preflight','native-full','cleanup','final-export'):
+  module.TOP_NAMES.add('acceptance-attempts/'+operation+'.json')
+ module.STAGE_NAMES.update({'native-time-budget','owner-policy-lifecycle'})
  return module
 
 def review_export(root):
  e=exporter(root);dest=root/'review-exports/packages-and-executor';dest.mkdir(parents=True,mode=0o700)
- names=['runtime-image-provenance.json','runner-identity.json','v65-packages.json','source-identities.json','package-delivery.json','native-qualification.json','run-contract.json','launch-contract.json','package-source-scan.json','artifact-service-packages.json','critical-image-readback.json','sqljs-packaging-smoke.json','diagnostic-controls/negative-control-result.json','runtime-evidence/guard-controls.json','runtime-evidence/native-capability-observation.json','runtime-evidence/qualification-cleanup.json','runtime-evidence/dumpability-observer-build.json','controller/scripts/work8/native-transition/controller-manifest.json','native-transition-driver/controller-manifest.json']
+ names=['runtime-image-provenance.json','runner-identity.json','v65-packages.json','source-identities.json','package-delivery.json','native-qualification.json','run-contract.json','launch-contract.json','package-origin.json','candidate-artifact-service.json','candidate-download.json','critical-image-readback.json','sqljs-packaging-smoke.json','diagnostic-controls/negative-control-result.json','runtime-evidence/guard-controls.json','runtime-evidence/native-capability-observation.json','runtime-evidence/qualification-cleanup.json','runtime-evidence/dumpability-observer-build.json','controller/scripts/work8/native-transition/controller-manifest.json','native-transition-driver/controller-manifest.json']
  files={name:e.safe_bytes(root/name) for name in names}
  # Only schema-checked build receipt metadata, never build logs, source snapshots,
  # generated application databases, credentials, or native private directories.
@@ -543,20 +569,44 @@ def artifact_check(root,artifact_id,digest,label):
 def cleanup(root):
  ident=root/'runner-identity.json'
  if not ident.exists():return {'status':'NO_EXECUTOR_IDENTITY_NO_RESOURCES_STARTED','applicationAcceptance':False}
- identity=json.loads(ident.read_text());prefix='work8-v65-a5-'+identity['runId'];removed=[];networks=[]
- for typ,query in [('container',['docker','ps','-aq','--filter','label=work8.native='+prefix]),('network',['docker','network','ls','-q','--filter','label=work8.native='+prefix])]:
-  ids=run(root,query,10).decode().split()
-  for item in ids:
-   require(re.fullmatch('[a-f0-9]{12,64}',item) is not None,'CLEANUP_ID_REFUSED');args=['docker','inspect',item] if typ=='container' else ['docker','network','inspect',item];d=json.loads(run(root,args,10))[0];labels=(d['Config'].get('Labels') or {}) if typ=='container' else (d.get('Labels') or {});require(labels.get('work8.native')==prefix,'FOREIGN_RESOURCE_REFUSED')
-   if typ=='container':run(root,['docker','stop','--time','15',item],25);run(root,['docker','rm','-fv',item],20);removed.append(item)
-   else:run(root,['docker','network','rm',item],15);networks.append(item)
+ identity=json.loads(ident.read_text());require(re.fullmatch('[0-9]{1,20}',str(identity['runId'])) is not None,'CLEANUP_RUN_ID_REFUSED');prefix='work8-v65-a5-'+str(identity['runId']);removed=[];networks=[]
+ authorised_labels=(prefix,prefix+'-preflight',prefix+'-full');started=time.monotonic();deadline=started+600;errors=[];inventory=[]
+ def bounded(args,seconds):
+  remaining=deadline-time.monotonic();require(remaining>0,'CLEANUP_GLOBAL_DEADLINE');return run(root,args,min(seconds,remaining))
+ def failed(operation,error):
+  errors.append({'operation':operation,'errorClass':type(error).__name__,'code':str(error) if isinstance(error,Refusal) else 'SCOPED_CLEANUP_OPERATION_FAILED'})
+ def query_for(typ,label):return ['docker','ps','-aq','--filter','label=work8.native='+label] if typ=='container' else ['docker','network','ls','-q','--filter','label=work8.native='+label]
+ for typ in ('container','network'):
+  for label in authorised_labels:
+   try:
+    ids=bounded(query_for(typ,label),10).decode().split();require(len(ids)<=64,'CLEANUP_INVENTORY_BOUND');require(all(re.fullmatch('[a-f0-9]{12,64}',item) is not None for item in ids),'CLEANUP_ID_REFUSED')
+   except Exception as error:failed(typ+'-inventory',error);continue
+   for item in ids:
+    try:
+     args=['docker','inspect',item] if typ=='container' else ['docker','network','inspect',item];d=json.loads(bounded(args,10))[0];labels=(d['Config'].get('Labels') or {}) if typ=='container' else (d.get('Labels') or {});require(labels.get('work8.native')==label,'FOREIGN_RESOURCE_REFUSED')
+    except Exception as error:failed(typ+'-identity',error);continue
+    if typ=='container':
+     try:bounded(['docker','stop','--time','15',item],25)
+     except Exception as error:failed('container-stop',error)
+     try:bounded(['docker','rm','-fv',item],20);removed.append(item)
+     except Exception as error:failed('container-remove',error)
+    else:
+     try:bounded(['docker','network','rm',item],15);networks.append(item)
+     except Exception as error:failed('network-remove',error)
+ for typ in ('container','network'):
+  for label in authorised_labels:
+   try:
+    remaining=bounded(query_for(typ,label),10).decode().split();require(len(remaining)<=64 and all(re.fullmatch('[a-f0-9]{12,64}',item) is not None for item in remaining),'CLEANUP_READBACK_BOUND');inventory.append({'type':typ,'label':label,'remainingCount':len(remaining)});require(not remaining,'SCOPED_CLEANUP_RESOURCES_REMAIN')
+   except Exception as error:failed(typ+'-final-readback',error)
+ empty=len(inventory)==6 and all(row['remainingCount']==0 for row in inventory)
  private=root/'private'
  if private.exists():
-  require(private.resolve()==private and private.stat().st_uid==private.stat().st_gid==1001 and stat.S_IMODE(private.stat().st_mode)==0o700,'PRIVATE_CLEANUP_ROOT_REFUSED')
-  # User-owned controller parent only; sudo can remove app-owned fixture files
-  # only after this exact fresh private root binding has been verified.
-  run(root,['sudo','-n','/bin/rm','-rf','--',str(private)],30)
- result={'schema':'work8-v65-cleanup-v1','status':'PASS_SCOPED_CLEANUP','containersRemoved':removed,'networksRemoved':networks,'privateTemporaryDataRemoved':not private.exists(),'sharedDockerDaemonStopped':False,'applicationAcceptance':False};atomic(root/'runtime-evidence/receipt-cleanup.json',result);return result
+  try:
+   require(empty,'LIVE_NATIVE_RESOURCE_PRIVATE_DATA_RETAINED');require(private.resolve()==private and private.stat().st_uid==private.stat().st_gid==1001 and stat.S_IMODE(private.stat().st_mode)==0o700,'PRIVATE_CLEANUP_ROOT_REFUSED')
+   # Remove only the bound fresh root after independent resource disappearance.
+   bounded(['sudo','-n','/bin/rm','-rf','--',str(private)],30)
+  except Exception as error:failed('private-root-remove',error)
+ result={'schema':'work8-v65-cleanup-v1','status':'PASS_SCOPED_CLEANUP' if not errors and empty and not private.exists() else 'FAIL_SCOPED_CLEANUP','authorisedLabels':list(authorised_labels),'independentEmptyInventoryReadback':empty,'finalInventory':inventory,'containersRemoved':removed,'networksRemoved':networks,'privateTemporaryDataRemoved':not private.exists(),'sharedDockerDaemonStopped':False,'applicationAcceptance':False,'globalBudgetSeconds':600,'elapsedSeconds':round(time.monotonic()-started,3),'errors':errors[:64],'errorCount':len(errors)};atomic(root/'runtime-evidence/receipt-cleanup.json',result);require(result['status']=='PASS_SCOPED_CLEANUP','SCOPED_CLEANUP_FAILED');return result
 
 def preserve_build_failure(root,build_root):
  if build_root:
@@ -608,13 +658,14 @@ def final_export(root,build_root=None):
  return result
 
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('command',choices=['identity','guard-controls','prepare','qualify','package-export','artifact-check','review-export','await-review','native','native-export','cleanup','final-export']);parser.add_argument('--root',required=True);parser.add_argument('--retained-driver');parser.add_argument('--job-name');parser.add_argument('--authority-file');parser.add_argument('--build-root');parser.add_argument('--max-seconds',type=int,default=1500);parser.add_argument('--stage',choices=['packages-and-executor','preflight','full']);parser.add_argument('--label',choices=['preflight','packages','final']);parser.add_argument('--artifact-id');parser.add_argument('--artifact-digest');args=parser.parse_args();root=pathlib.Path(args.root)
+ parser=argparse.ArgumentParser();parser.add_argument('command',choices=['identity','guard-controls','prepare','qualify','acceptance-admission','package-export','artifact-check','review-export','await-review','native','native-export','cleanup','final-export']);parser.add_argument('--root',required=True);parser.add_argument('--retained-driver');parser.add_argument('--job-name');parser.add_argument('--authority-file');parser.add_argument('--build-root');parser.add_argument('--max-seconds',type=int,default=1500);parser.add_argument('--stage',choices=['packages-and-executor','preflight','full']);parser.add_argument('--label',choices=['preflight','packages','final']);parser.add_argument('--artifact-id');parser.add_argument('--artifact-digest');args=parser.parse_args();root=pathlib.Path(args.root)
  try:
   require(root.is_absolute() and root.resolve()==root,'CANONICAL_ROOT_REQUIRED')
-  if args.command=='identity':result=identity(root,args.job_name)
+  if args.command=='identity':result=identity(root,args.job_name,args.authority_file)
   elif args.command=='guard-controls':result=guard_controls(root)
   elif args.command=='prepare':result=prepare(root,args.retained_driver)
   elif args.command=='qualify':result=qualify(root,args.authority_file)
+  elif args.command=='acceptance-admission':result=qualify(root,args.authority_file,acceptance_admission=True)
   elif args.command=='package-export':preserve_build_failure(root,args.build_root);result=package_export(root)
   elif args.command=='artifact-check':result=artifact_check(root,args.artifact_id,args.artifact_digest,args.label)
   elif args.command=='review-export':result=review_export(root)
