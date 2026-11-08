@@ -1,0 +1,291 @@
+{
+  "schema": "work8-v95-external-release-v1",
+  "status": "OWNER_APPROVED_EXTERNAL_RELEASE",
+  "repository": "empireaios/EmpireAI",
+  "launchBranch": "work8/v95-a5-20261108",
+  "workflowPath": ".github/workflows/work8-v95-a5.yml",
+  "maximumAttempts": 1,
+  "source": {
+    "tree": "2f612ad0912ff83ae5a2dc8a8948e4e622a51851",
+    "parent": "f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8",
+    "manifestSHA256": "1a32b6292b06e13ac1f92896908b7e591215a7836f07b1b432dbb0193ddd6bbb",
+    "workflowSHA256": "8e3832192c4bd97dd21031a2dc67e90bc5e84a9061e1acbbd33f7ebd8aa61bf6"
+  },
+  "launchPlan": {
+    "schema": "work8-v65-reviewed-launch-plan-v1",
+    "status": "OWNER_APPROVED_EXTERNAL_RELEASE",
+    "scope": "One proposed isolated A5-08/A5-09 native examination on one fresh standard GitHub runner. Preserve V94 Q01-Q05 PASS and reuse exact retained application packages. Observe only current-runner admission facts before independent package/executor ACK, genuinely initialized Brain preflight and independent preflight ACK. No package rebuild, package reupload, repeated qualification campaign, automatic retry or second job.",
+    "authority": {
+      "ownerDirective": "EMPIREAI_V95_SEPARATE_NATIVE_EXECUTION_APPROVAL",
+      "work8CeilingUSD": 100,
+      "existingAdditionalA5USD": 10,
+      "priorOverallHoldsUSD": 12.15,
+      "priorA5HoldsUSD": 2.2,
+      "availableBeforeReservationUSD": 7.8,
+      "reservationId": "V95-A5-NATIVE-ONCE-20261108",
+      "reservationReceiptSHA256": "22352e0c6addc51fddb60c086218b2772c59d5047083d5768a05786d7efde2d8",
+      "reservationUSD": 0.01,
+      "proposedReservationUSD": 0.01,
+      "maximumProspectiveUSD": 0.01,
+      "proposedMaximumProspectiveUSD": 0.01,
+      "currentOverallHoldsUSD": 12.16,
+      "currentA5HoldsUSD": 2.21,
+      "remainingUnreservedUSD": 7.79,
+      "reservationCommitted": true,
+      "ownerDecisionRecorded": true,
+      "ownerApprovalReceiptSHA256": "516af12483a6fa07ce5a708f5caef60920a0b8a3e25c0204d911d9c55149f8fb",
+      "approvalScope": "one-native-a5-08-09-attempt",
+      "maximumAttempts": 1,
+      "renewed": false,
+      "productionOperations": false,
+      "protectedDataTransfer": false,
+      "commerceActivation": false,
+      "subscriptions": false,
+      "automaticRecreate": false,
+      "automaticRerun": false
+    },
+    "durationPlan": {
+      "setupSeconds": 3600,
+      "deliverySeconds": 1800,
+      "preflightSeconds": 900,
+      "examinationSeconds": 1500,
+      "cleanupSeconds": 600,
+      "evidenceExportSeconds": 1800,
+      "reviewSeconds": 3000
+    },
+    "durationInterpretation": {
+      "setupSeconds": "Checkout, actual identity, one retained archive download/verification, controller assembly and fresh-host security admission; no package reconstruction.",
+      "deliverySeconds": "Bounded retained input metadata delivery, service readback and executor/preflight artifact delivery allowance; independent review waiting is separately allocated.",
+      "reviewSeconds": "Two independent ACK waits, each at most1500seconds, combined3000seconds; neither wait can authorise native continuation without a valid ACK.",
+      "plannedTotalSeconds": 13200,
+      "hardJobSeconds": 18000,
+      "unallocatedMarginSeconds": 4800,
+      "actualDurationsMeasured": false,
+      "nativePreflightMinimumRemainingSeconds": 7860,
+      "nativeFullMinimumRemainingSeconds": 3960,
+      "firstFailureStopsRemainingNativeStages": true,
+      "workflowStepTimeoutUpperBoundSeconds": 12600,
+      "workflowStepTimeoutInterpretation": "Exact proposed workflow step maxima sum210minutes (12600seconds), within the300minute job ceiling. Conservative phase allocations total220minutes and reserve80minutes further margin. Identity6minutes, retained download12minutes and final provider readback5minutes cover their bounded API/socket operations; each ACK has one strict complete1500second deadline inside26minute step; cleanup11minutes leaves60seconds after the600second cleanup bound to preserve its failure receipt. Native gates reserve cleanup, export and review time; hosted durations remain unmeasured."
+    },
+    "artifactLimits": {
+      "maximumObjects": 3,
+      "retentionDays": 7,
+      "maximumCumulativeServiceZipBytes": 134217728,
+      "maximumCandidateUploadPayloadBytes": 0,
+      "maximumQualificationMetadataBytes": 67108864,
+      "maximumExecutorMetadataBytes": 67108864,
+      "maximumNativeUploadPayloadBytes": 1048576,
+      "nativeEvidenceCompressedArchiveBytes": 524288,
+      "nativeEvidenceLogicalBytes": 2097152,
+      "zipEnvelopeAndMetadataReserveBytesPerObject": 16777216,
+      "maximumDeclaredPayloadPlusAllEnvelopesBytes": 119537664,
+      "maximumObservedRetentionSeconds": 608400,
+      "overwrite": false,
+      "workflowArtifactRetries": 0,
+      "cacheUploads": 0,
+      "packageReuploads": 0,
+      "publicArtifactsRequireSanitizedEvidence": true,
+      "allowedArtifactStages": [
+        "executor",
+        "preflight",
+        "final-or-failure"
+      ],
+      "retainedInputArtifactExcludedFromNewRunCumulativeCount": 13340201255
+    },
+    "billingCalculation": {
+      "publicStandardUbuntuComputeUSD": 0,
+      "storagePriceUSDPerGiBMonth": 0.25,
+      "assumedFreeStorageGiB": 0,
+      "maximumStorageGiB": 0.125,
+      "maximumRetentionDays": 7,
+      "conservativeMonthDays": 28,
+      "unroundedMaximumStorageUSD": "0.007905505952380952380952380952",
+      "roundedStorageEstimateUSD": 0.00790551,
+      "maximumAdditionalExposureUSD": 0.01,
+      "proposedReservationUSD": 0.01,
+      "actualChargesObservedForThisRun": null,
+      "maximumObservedRetentionSeconds": 608400,
+      "maximumBillableHoursIncludingRounding": 170,
+      "formula": "0.125GiB *170hours /(28days *24hours) *0.25USD/GiB-month =0.00790550595238095USD; proposed additional authority and hold0.01USD.",
+      "retentionInterpretation": "Request7days to allow recovery after a Work interruption; service metadata must show no more than169hours from created_at to expires_at; reserve a further hourly accounting boundary. Byte cap is checked before upload with an envelope reserve and after upload from provider metadata. The0.01USD ceiling also leaves margin above the storage estimate for billing rounding.",
+      "pricingEvidenceURL": "https://docs.github.com/en/billing/concepts/product-billing/github-actions",
+      "pricingEvidenceReviewedDateUTC": "2026-11-08",
+      "publicStandardRunnerAndRepositoryReverificationRequiredBeforeRelease": true,
+      "accountingHoldIsNotProviderCharge": true,
+      "existingQualificationHoldExcludedFromNewProposalArithmetic": false,
+      "existingQualificationHoldTreatment": "The consumed V92-A5-QUALIFICATION-ONCE-20261108 hold0.01USD is already included in12.15/2.20 and is neither duplicated nor released. This full native proposal would be a distinct future0.01USD hold only after separate approval.",
+      "maximumMonthlyRoundingAllowanceUSD": "0.000244140625",
+      "maximumStorageAndRoundingUSD": "0.008149646577380952380952380952",
+      "roundedStorageAndRoundingBoundUSD": 0.00814965,
+      "monthlyRoundingInterpretation": "Conservatively allow two nearest-MiB monthly rounding boundaries (one fullMiB-month at0.25USD/GiB-month), even though the current November window stays within one month; this is an estimate allowance, not an observed charge."
+    },
+    "releaseConditions": [
+      "Complete independent review of this exact full native candidate, original A5 assertion coverage and ordered lifecycle before requesting one separate owner decision. V94 qualification approval is consumed.",
+      "Bind the future exact owner decision, reservation receipt, source manifest, workflow SHA256, complete tree and exact sole parent f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8 in an external release record on the non-launching review branch. No operative approval or reservation exists in this source template.",
+      "After separate approval only, create one distinct V95-A5-NATIVE-ONCE-20261108 accounting reservation0.01USD from7.80USD unreserved A5 authority; preserve the consumed qualification hold. Projected totals12.16/2.21/7.79 are not current holds.",
+      "Before any future launch publication, independently read back provider state, repository public visibility, exact source tree/parent/workflow and absence of an existing matching run. Unknown state is not authority to repeat a write.",
+      "Require retained input13340201255 from run41860150363 unexpired and exact digest39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755. Download/reuse it once; do not recreate packages or upload another package copy.",
+      "Create work8/v95-a5-20261108 once only after all pre-dispatch conditions pass. Never move/delete/recreate a launched branch and never rerun a job or failed phase. Keep every historical workflow inert.",
+      "Preserve V94 Q01-Q05 PASS and immutable diagnostic evidence. New runner admission must independently attribute current UID1001, protected principals, actual daemon/process boundary, capacities, dependency identities and isolated network to the same active job. Historical worker receipts cannot authorize a future VM.",
+      "Independent safe artifact readback must bind current package/executor ACK before Brain initialization, then a separate initialized Brain and canonical store preflight ACK before the single coherent lifecycle.",
+      "Enforce three new artifacts total,128MiB cumulative service ZIP cap,7day retention and bounded sanitized preupload inventories. No cache, raw protected state or package uploads.",
+      "First failure stops later native phases, preserves the original cause and triggers bounded campaign-only cleanup and durable artifact return. Only independent original whole-row acceptance may change A5 or48/16."
+    ],
+    "reviewBranch": "work8/v95-review-20261108",
+    "launchBranch": "work8/v95-a5-20261108",
+    "providerReservationIsNotApplicationAcceptance": true,
+    "proposedPostReservationLedgerNotCommitted": {
+      "overallHoldsUSD": 12.16,
+      "A5HoldsUSD": 2.21,
+      "remainingA5USD": 7.79,
+      "reservationUSD": 0.01,
+      "reservationId": "V95-A5-NATIVE-ONCE-20261108",
+      "operative": false
+    },
+    "predecessor": {
+      "runId": 41617721728,
+      "jobId": 125855248620,
+      "runAttempt": 1,
+      "sourceCommit": "2c60f1ee1235410a74ec6c149dbd9c5c3fbbc457",
+      "sourceTree": "c6cb7b856e09dba304e78a12a5945653bb7eda7d",
+      "trackerNativeVersion": 76,
+      "checkpoint": "V74",
+      "disposition": "TERMINAL_FAILURE_CURRENT_RUNTIME_IMAGE_METADATA_DISAGREEMENT_BEFORE_RECONSTRUCTION_OR_NATIVE_EXAMINATION",
+      "singleAttemptAuthorityConsumed": true,
+      "preserved": true,
+      "historicalOnly": true
+    },
+    "launchEventPolicy": {
+      "event": "create",
+      "refType": "branch",
+      "exactBranch": "work8/v95-a5-20261108",
+      "attempt": 1,
+      "runNumberPredicate": false,
+      "freshBranchRequired": true,
+      "branchRecreationAuthorized": false,
+      "reviewBranchMayExecute": false,
+      "historicalBranchesMayExecute": false,
+      "providerStateVerifiedInThisDraft": false,
+      "releaseGateEnabled": false,
+      "externalReleaseRequired": true,
+      "releaseGateFlagInterpretation": "SOURCE_TEMPLATE_ONLY: false records that V95 preparation authorises no publication. The reviewed create workflow separately requires the validated external release record before package loading or native admission."
+    },
+    "ownerApproval": {
+      "directive": "EMPIREAI_V95_SEPARATE_NATIVE_EXECUTION_APPROVAL",
+      "decisionRecorded": false,
+      "receiptSHA256": null,
+      "attemptsRequested": 1,
+      "attemptsAuthorized": 0,
+      "maximumEstimatedAttributableUSD": 0.00814965,
+      "maximumAdditionalExposureUSD": 0.01,
+      "maximumReservationUSD": 0.01,
+      "existingAvailableA5USD": 7.8,
+      "noAutomaticRetry": true,
+      "noBudgetIncrease": true,
+      "soleTarget": "A5",
+      "interpretation": "NONOPERATIVE_PROPOSAL_SNAPSHOT: these source-template fields intentionally remain false/zero after publication; only the separately validated external ownerApprovalReceipt and operative authority can grant one future native attempt."
+    },
+    "executionStages": [
+      {
+        "stage": "retained-packages-and-fresh-executor-admission",
+        "applicationStarted": false,
+        "mandatoryGate": "Preserved immutable Q01-Q05 evidence plus current package identity and live principal/process/daemon/isolation checks, followed by independent current metadata artifact readback ACK; no full qualification rerun."
+      },
+      {
+        "stage": "initialized-Brain-preflight",
+        "applicationStarted": true,
+        "mandatoryGate": "Only after package/executor ACK on same live runner; all 13 declared stores adjudicated by original applicability; independent durable preflight readback ACK required"
+      },
+      {
+        "stage": "A5-08-and-A5-09-examination",
+        "applicationStarted": true,
+        "maximumAttempts": 1,
+        "mandatoryGate": "Only after independent initialized Brain ACK; lifecycle, protected replay, orderly drain and independent final whole-application persistence readback"
+      },
+      {
+        "stage": "cleanup-and-evidence-return",
+        "alwaysAfterQualifiedResourcesMayExist": true,
+        "mandatoryGate": "Campaign-scoped cleanup and bounded sanitized first-causal-failure/final evidence; no automatic retry"
+      }
+    ],
+    "releaseDiffAllowlist": [
+      "No publication is authorised by V95. After a separate owner decision, publish only the independently reviewed exact candidate tree and its exact sole parent.",
+      "The external release record carries the actual owner decision and distinct reservation; the source template never becomes implicit authority.",
+      "Do not alter accepted application packages or historical qualification evidence. Any candidate change invalidates the reviewed candidate identity until independently reviewed."
+    ],
+    "inheritedExecutionProposalApplicability": "HISTORICAL_V75_CONSUMED_PRESERVED_ONLY",
+    "inheritedAuthorityNumbersApplicability": "CURRENT_V95_TEMPLATE_UNAPPROVED; V75_VALUES_NONOPERATIVE",
+    "observedFinancialSnapshot": {
+      "work8PlanningCeilingUSD": 100,
+      "aggregateHoldsUSD": 12.15,
+      "A5HoldsUSD": 2.2,
+      "unreservedA5AuthorityUSD": 7.8,
+      "actualProviderChargesUSD": null,
+      "actualChargesStatus": "V94_ZERO_BILLABLE_COMPUTE_OBSERVED_STORAGE_INVOICE_UNAVAILABLE",
+      "newReservationCreated": false,
+      "newExecutionApproval": false
+    },
+    "preservedQualification": {
+      "runId": 42478186509,
+      "jobId": 128724128654,
+      "artifactId": 13616930561,
+      "sourceCommit": "f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8",
+      "sourceTree": "420ccaf91c7178b503894b8663953effa7654f2a",
+      "status": "PASS_Q01_Q05_QUALIFICATION_ONLY",
+      "singleAttemptAuthorityConsumed": true,
+      "applicationAcceptance": false,
+      "repeatQualificationCampaign": false
+    },
+    "externalOperativePlanRule": "The externally reviewed operative launchPlan must exactly equal this source template except authority and status. ownerApproval and launchEventPolicy.releaseGateEnabled remain explicitly nonoperative proposal snapshots; actual decision/reservation receipts and exact source bindings are validated separately."
+  },
+  "ownerApprovalReceipt": {
+    "schema": "work8-v95-owner-approval-v1",
+    "ownerDecisionRecorded": true,
+    "directive": "EMPIREAI_V95_SEPARATE_NATIVE_EXECUTION_APPROVAL",
+    "scope": "one-native-a5-08-09-attempt",
+    "maximumAttempts": 1,
+    "maximumJobSeconds": 18000,
+    "maximumAdditionalExposureUSD": "0.01",
+    "maximumReservationUSD": "0.01",
+    "noAutomaticRetry": true,
+    "approvedSource": {
+      "tree": "2f612ad0912ff83ae5a2dc8a8948e4e622a51851",
+      "parent": "f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8",
+      "manifestSHA256": "1a32b6292b06e13ac1f92896908b7e591215a7836f07b1b432dbb0193ddd6bbb",
+      "workflowSHA256": "8e3832192c4bd97dd21031a2dc67e90bc5e84a9061e1acbbd33f7ebd8aa61bf6"
+    },
+    "reservationId": "V95-A5-NATIVE-ONCE-20261108",
+    "recordedAtUTC": "2026-11-08T15:07:20.759165+00:00",
+    "ownerDecisionText": "Yes",
+    "decisionContext": "Explicit approval of the preceding exact V95 publication, single US$0.01 reservation and one native A5-08/A5-09 attempt capped at300minutes with no retry.",
+    "proposalSHA256": "d065ca4113f2b7db934b7b0993010e30cf3833252f53e8a2d08c0dc81d593e24"
+  },
+  "reservationReceipt": {
+    "schema": "work8-v95-reservation-v1",
+    "recordType": "ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE",
+    "status": "COMMITTED",
+    "reservationId": "V95-A5-NATIVE-ONCE-20261108",
+    "ownerApprovalSHA256": "516af12483a6fa07ce5a708f5caef60920a0b8a3e25c0204d911d9c55149f8fb",
+    "approvedSource": {
+      "tree": "2f612ad0912ff83ae5a2dc8a8948e4e622a51851",
+      "parent": "f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8",
+      "manifestSHA256": "1a32b6292b06e13ac1f92896908b7e591215a7836f07b1b432dbb0193ddd6bbb",
+      "workflowSHA256": "8e3832192c4bd97dd21031a2dc67e90bc5e84a9061e1acbbd33f7ebd8aa61bf6"
+    },
+    "before": {
+      "aggregateHoldsUSD": "12.15",
+      "A5HoldsUSD": "2.20",
+      "unreservedA5AuthorityUSD": "7.80"
+    },
+    "after": {
+      "aggregateHoldsUSD": "12.16",
+      "A5HoldsUSD": "2.21",
+      "unreservedA5AuthorityUSD": "7.79"
+    },
+    "reservationUSD": "0.01",
+    "recordedAtUTC": "2026-11-08T15:07:20.759165+00:00",
+    "actualProviderChargeUSD": null
+  },
+  "ownerApprovalSHA256": "516af12483a6fa07ce5a708f5caef60920a0b8a3e25c0204d911d9c55149f8fb",
+  "reservationReceiptSHA256": "22352e0c6addc51fddb60c086218b2772c59d5047083d5768a05786d7efde2d8"
+}
