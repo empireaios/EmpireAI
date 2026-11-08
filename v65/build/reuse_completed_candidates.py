@@ -10,6 +10,7 @@ sys.dont_write_bytecode=True
 HERE=pathlib.Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE.parent/'adapter'))
 import github_contract as guard
+from runner import CONTROLLER_SHA
 import reconstruct_all as reconstruction
 import reconstruct_frontends as frontend
 from capture_diagnostics import capture, atomic
@@ -17,7 +18,9 @@ from capture_diagnostics import capture, atomic
 ARTIFACT_SHA='39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755'
 ARTIFACT_BYTES=338251567
 MANIFEST_SHA='ec74f2565b34867d6164382a666f429ad998fec2bb57a98e540d19e1b9665fa4'
-CONTROLLER_SHA='daa27901f6f19e62c1f2069c7843cbc2806c9b6e77b050082e7e38507b214e04'
+# The externally source-bound adapter pin is shared with source admission,
+# preparation and independent readback. Never derive the expected identity
+# from the receipt being verified or keep a separate stale digest here.
 
 
 def load(name,path):

@@ -157,7 +157,18 @@ def cleanup_backend_resolution(prepared):
     prepared=fp.production_root(prepared);root=prepared/'backend-resolution-private'
     if not root.exists() and not root.is_symlink(): return {'status':'NO_BACKEND_ALIAS_SCOPE'}
     fp.private(root);paths=[root,*root.rglob('*')];need(len(paths)<=6,'BACKEND_ALIAS_CLEANUP_SCOPE_BOUND')
+    control=root/'control'
+    if control.exists() or control.is_symlink(): fp.private(control)
+    pending=control/'response.pending'
     for p in paths:
-        s=p.lstat();need(s.st_uid==s.st_gid==1001 and (stat.S_ISDIR(s.st_mode) or (stat.S_ISREG(s.st_mode) and s.st_nlink==1)),'BACKEND_ALIAS_CLEANUP_SCOPE_CHANGED')
+        s=p.lstat()
+        # The exact operator creates this leaf before chown/rename. A killed
+        # operator may leave it UID0-owned. Permit unlink only of that bounded,
+        # canonical, private regular leaf inside the verified UID1001 control
+        # directory; its partial contents are never read, admitted or exported.
+        interrupted_pending=(p==pending and p.resolve()==p and s.st_uid==s.st_gid==0
+                             and stat.S_ISREG(s.st_mode) and s.st_nlink==1
+                             and stat.S_IMODE(s.st_mode)==0o600 and 0<=s.st_size<=16384)
+        need(interrupted_pending or (s.st_uid==s.st_gid==1001 and (stat.S_ISDIR(s.st_mode) or (stat.S_ISREG(s.st_mode) and s.st_nlink==1))),'BACKEND_ALIAS_CLEANUP_SCOPE_CHANGED')
     shutil.rmtree(root);need(not root.exists(),'BACKEND_ALIAS_CLEANUP_INCOMPLETE')
     return {'status':'PASS_BACKEND_ALIAS_PRIVATE_SCOPE_REMOVED'}

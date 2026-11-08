@@ -1,140 +1,91 @@
-# V87 exact diagnostic operand and failed-case evidence correction
+# V92 conditional activation proposal — exact V91 engineering
 
-Baseline: published V86 commit `d19be71bbaa3d91c12b8394eae18dfb52d0867ec`,
-complete tree `c08210849a27ed6edb51b894094858639fe430b0`. Its single
-qualification run42366947579/job128386891399 failed in the seven diagnostic
-controls. That authority is consumed. These are proposal-only activation bytes, not
-evidence of owner consent or a real reservation. The separate inert engineering
-commit retains false gates. No new execution approval, reservation, publication
-or dispatch exists; external approval and reservation must precede publication.
+V90 run 42452615812, job 128644863644, attempt1 is consumed. Published commit
+011bdfcf05c9cd739d74a5e0f39795bd3d74d49f has approved complete tree
+ca14537035a2f958a1b3d339a250348f60dc4a39. Terminal artifact13606024179 SHA256:
+306f18ed734ded714bbe527ab072634abc5b048993e612a0d4a4202041e77dce.
+Never rerun, republish or reserve against that authority.
 
-The original V85 canonical inventory correction remains intact. V86 independently
-proved two full UID/GID1001 preparation handoffs, each101 controller/174 driver
-files, and both complete frontend extraction inventories. Those scoped successes
-remain accepted evidence; they are not a complete Q01-Q05 qualification result.
+The first cause was PINNED_RECEIPT_CHANGED at handoff / verify-role.
+reuse_completed_candidates pinned the stale immutable controller manifest
+ daa27901f6f19e62c1f2069c7843cbc2806c9b6e77b050082e7e38507b214e04;
+the admitted source and runner correctly pinned
+65d8cab9f9c1ed99e254ad6598b1b2b04b049755be5e0fc5cfee0e7326f2a3d6.
+The reuse verifier now imports the adapter's externally source-bound constant.
+It never derives expected identity from observed bytes, skips verification,
+normalizes changed receipt bytes or changes protected principal requirements.
 
-V87 recovers the exact unchanged membership controller from the retained backend
-package into foundation/runtime and the prepared runtime. Its required SHA256 is
-`59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b`,
-20923 bytes. It is distinct from the bootstrap. Before the seven controls, the
-adapter verifies canonical regular single-link operands, exact sizes/hashes,
-permissions/ownership, complete runtime materialization and the fixture pin;
-it joins the controller to the current protected backend image readback.
-No application archive is rebuilt or reuploaded. The fixture identity guard
-and original seven diagnostic assertions remain mandatory.
+The whole-path review also found an interrupted backend-alias cleanup gap:
+the operator writes response.pending as root before changing its owner.
+Cleanup now permits removal only of that exact canonical, <=16KiB, mode0600,
+single-link root-owned regular leaf within the verified UID1001 private control
+directory. Partial responses are not read, admitted or exported. All other
+owner/type/scope restrictions remain. Actual interrupted UID1001 execution is
+still required; metadata fixture tests are not native cleanup evidence.
 
-Each diagnostic case preserves its sanitized first structured error, operation,
-allowlisted errno and bounded source frames before teardown. A first failing
-control has a separate immutable receipt. Fixed allowlisted case exports,
-byte/hash joins and outside readback cover successful and failed suites; raw
-stderr, arbitrary exception text and private data are not exported. The known
-public FIXTURE_ORIGINAL_SOURCE_CHANGED refusal is explicitly classified.
+Q05 rebinding changes only reviewed source hashes for cleanup and qualification
+authority/route changes. All98,812 package dispositions, application packages,
+comparison algorithms and native probe semantics remain unchanged. The source
+manifest indexes every candidate file except itself and the separately bound
+owner-approval record.
 
-A future exact-source activation proposal uses only
-`work8/v87-qualification-20261108`, one standard public ubuntu-24.04 job and
-one attempt. It is operative only after separately recorded external owner
-approval and one real reservation. Proposed source metadata is not consent.
-The bound remains60 minutes: checkout2, work43, cleanup8, upload3, service
-readback2, reserve2. One metadata artifact is limited to8MiB logical bytes,
-128 files,16MiB service ZIP and one-day retention. No retries, package build,
-package upload, initialized Brain, A5-08, A5-09 or full application lifecycle.
-Legacy V81 receipt/artifact prefixes remain for compatibility; exact source,
-fresh branch and actual provider run/job identities bind the successor.
+This is a review-only conditional activation proposal. Its true authority flags
+and US$0.01 reservation describe the state that MUST exist before publication.
+They do not record current consent or create a hold. The immutable V91 base
+592a5ba2bc15de54df1a4b26f411d144ba99a2c6 remains inactive and preserved.
+No publication or hosted execution is currently authorized. Keep the reviewed
+route work8/v91-qualification-20261108 and workflow bytes unchanged.
+Publish these exact bytes only after separate exact-tree owner approval and
+a durable reservation V92-A5-QUALIFICATION-ONCE-20261108. The retained external
+release intent and financial receipt must be independently retrievable. The consumed reservation ID is
+V87-A5-QUALIFICATION-DIAGNOSTIC-ONCE, recorded by the V90 reservation receipt.
 
-Current holds: US$12.13 aggregate, US$2.18 A5, US$7.82 unreserved A5.
-No new reservation exists. A separately approved US$0.01 proposal would yield
-US$12.14 aggregate, US$2.19 A5, US$7.81 unreserved. Actual charges remain
-unconfirmed. The US$100 planning ceiling is not per-run authority.
+Current holds: US$12.14 aggregate, US$2.19 A5, US$7.81 unreserved. These are not
+charges. V90 provider timing reports zero billable compute milliseconds; total
+provider charges remain unconfirmed. A future US$0.01 proposal would yield
+US$12.15/2.20/7.80 only after approval. Limits: one public standard ubuntu-24.04
+job,60min,no retry; one <=16MiB service ZIP, <=8MiB logical/128 files,1-day
+retention. Conservative storage bound US$0.000152 includes26 hourly boundaries
+in a28-day month. No such new hold exists.
 
-The local host maps only UID0. Local actual diagnostic operand execution does
-not bypass or prove the UID1001 preparation principal or native container
-isolation. Those remain actual-runner conditions for a future authorised job.
-Pillow NOT_BORN, Commerce LOCKED, Work9 INACTIVE; PR113 draft/unmerged.
+Recovery starts from the durable V91 checkpoint:
 
-The executable positive sequence is:
+1. Verify saved source/checkpoint hashes and consumed V90 run/reservation.
+2. Recover ANY existing job for the exact future route/commit before a write.
+   A missing branch does not prove that no run occurred. Never delete/recreate
+   a launch branch. Branch-create and attempt==1 are not a cross-session spend
+   lock by themselves. Existing ambiguous operations must be reconciled first.
+3. Verify the complete source, activation diff, receipt-positive/corruption
+   contract and actual retained package operands before publication. Local
+   UID1001/Docker execution is not a prerequisite: the actual identity, twice
+   repeated handoff, native security and protected loading are HOSTED_ONLY.
+   The first such operation is run_campaign -> identity(). Preserve every
+   original requirement; never substitute local UID0 or synthetic observations.
+4. After independent pre-dispatch review, obtain one exact-source bounded owner
+   approval. Record one US$0.01 hold only then. Before any ref write, reconcile
+   the durable once-only intent, unique reservation ID, all matching runs and
+   any existing branch. Missing branch alone does not authorize execution.
+   Never update/delete/recreate a launch ref or rerun a consumed attempt. Recheck retained artifact13340201255,338251567 bytes,
+   SHA25639f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755;
+   observed expiry2026-11-11T15:47:55Z. Do not rebuild unchanged packages.
+5. After later authorized execution, independently retrieve terminal job/logs,
+   sanitized artifact bytes and complete index. Exit status alone is not PASS.
 
-1. Validate exact source inventory, original strict controller manifest,
-   qualification-only source-bound approval and ledger/billing limits. Read the
-   complete compressed Q05 proof, require every old/current object classified,
-   and bind the exact backend alias probe spec before any provider call.
-2. Verify actual UID/GID1001, private directory ownership/mode, provider run/job,
-   Runner.Worker continuity and image provenance. Download only the retained
-   V75 artifact, checking service identity, full size and SHA256. Redirects do
-   not receive GitHub credentials. Drop bearer credentials before subprocesses.
-3. Materialize the existing driver from two pinned public archives and verify
-   its unchanged 174-file manifest. In two fresh private roots, run the actual
-   retained-package reconstruction-to-controller preparation CLI, including real
-   child/grandchild imports with bytecode suppression. Independently walk both
-   manifests, all file hashes and exact cache-free inventory. No application
-   package is rebuilt; original reconstruction mains are not rerun. The exact
-   pinned membership controller and complete runtime copy are materialized and
-   verified before diagnostic invocation.
-4. Reconcile Q01-Q03 against exact retained source/reconstruction metadata,
-   lockfiles, toolchains, recipes and current package bytes. Independently hash
-   every current archive member against the full Q05 comparison. This static
-   result explicitly withholds final applicability pending the native check.
-5. Execute missing/extra/modified/symlink manifest controls and sanitized first
-   diagnostics; bind current identity into the prepared root; execute unchanged
-   principal/security guard controls; load the complete backend OCI image.
-6. Freshly extract BOTH complete frontend distributions. Verify every file and
-   directory, source/archive identities, member hashes, modes and UID1001
-   ownership; reject traversal, links, special/set-id or unindexed/cache files.
-   Check sufficient expansion space before extraction.
-7. Execute original native security qualification with operator0 and restricted
-   writer65534. Verify private exchange, process namespaces, capabilities,
-   non-dumpability and the original security observations on the current worker.
-   Run all seven first-error controls against the exact prepared controller and
-   membership-controller operand; preserve failed-case structured evidence before
-   teardown and require all seven PASS before continuing.
-8. In the same protected carrier contract, resolve backend aliases and read the
-   exact source-bound metadata/hash set. This probe neither imports Pillow nor
-   initializes Brain. Only its actual observation can satisfy Q05's required
-   alias check. Join static and native results by exact proof/spec/archive.
-9. For NORMAL and RECOVERY separately, load the bundled Node and isolated
-   Next/React/ReactDOM/Sharp dependencies from each complete distribution. Check
-   actual runtime compatibility, in-memory Sharp operation, readonly mounts,
-   same-process non-dumpability before/after, process/thread restrictions and
-   protected private response. Rehash every extracted member after loading.
-10. Recheck source inventory; record qualified-current-runner-only status and
-    A5 PENDING. Finalize on success or failure, preserving the first actual
-    causal diagnostic, cleaning exact-labelled resources and private scopes,
-    and independently querying zero remaining scoped containers/networks.
-    Export only bounded public metadata and hashes, then read back the single
-    provider artifact's identity, digest, size and expiry.
+The required hosted sequence remains: source admission; actual worker identity;
+exact retained-package/driver preparation; child/grandchild verify-role and
+controller preparation; independent inventories; repeated handoff; Q01-Q03
+joins; Q05 static archive comparison; manifest negative controls; identity
+handoff; guard controls; backend image load; full NORMAL/RECOVERY extraction;
+native security and seven diagnostics; protected backend alias resolution;
+protected frontend loading; cleanup; bounded upload; independent readback.
+Kernel/Docker/worker identity, UID1001 and restricted UID65534 observations
+require a compatible runner. Complete positive handoff and Q01-Q05 are not
+claimed by this local correction.
 
-`verify_evidence.py` is the outside readback boundary. The independent reviewer
-fetches the terminal provider run, jobs, setup log and artifact, plus the exact
-published source. The verifier checks the ZIP/index, source/provider identity,
-actual sequential and native observations, complete frontend inventories,
-Q01-Q05 joins, cleanup and exposure. Self-authored status words are insufficient.
-The full Q05 comparison remains in exact reviewed source; the upload includes
-its digest and current-member readback, not archives or application source.
-
-Q05 applicability is scoped to the exact qualification and original A5
-entrypoints. Pillow's copied subtree becomes a contained alias to identical
-files; the reviewed reachable import graph has one Pillow identity and no
-parent dependency fallback or location-sensitive loader use. The protected
-native alias observation is still mandatory. Relocated source/stack filenames
-are not claimed identical. Seventeen tooling aliases are outside the admitted
-command set; arbitrary CLI behavior and historical restoration scripts are not
-certified. Changing those entrypoints, loaders or process restrictions requires
-new applicability review.
-
-Early identity/admission failures may use explicitly marked diagnostic-only
-custody with the actual local owner. That grants no native admission and cannot
-be represented as UID1001 success. Unexpected output is not exported. A missing
-underlying cause is recorded as interruption/incomplete, never guessed.
-
-The local controlled host cannot satisfy original UID1001/user-namespace
-conditions. Local filesystem positives and synthetic orchestration fixtures
-are explicitly scoped, not full native evidence. Real qualification and an
-independent terminal readback remain required. A later runner must requalify.
-Even a successful qualification does not close A5: initialized Brain, the
-original whole-application sequence and independent A5-08/A5-09 adjudication
-require a separate complete contract and applicable owner authority.
-
-The bundled q05_js_semantics.cjs and q05-acorn.js are exact offline-comparison
-evidence operands, not commands invoked by qualification. The original executed
-comparison runner and its parser layout are preserved in the checkpoint review
-tree. Hosted Q05 checks the reviewed proof and every current archive object; it
-does not rebuild or regenerate packages or replay the old build.
+Qualification does not initialize Brain or execute A5-08/A5-09. A5 still needs
+one coherent native examination of the original13 canonical stores, NORMAL to
+distinct RECOVERY to NORMAL, protected replay/drain and matching persisted
+whole-application readback. Preserve all64 requirements,48 accepted histories,
+eight satisfied A5 groups, V85/V86/V90 evidence and unchanged application bytes.
+PR113 DRAFT/UNMERGED; Pillow NOT_BORN; Commerce LOCKED; Work9 INACTIVE.
+No production Railway, original-volume, protected-data or commerce action.
