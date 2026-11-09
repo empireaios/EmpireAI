@@ -14,13 +14,13 @@ FOUNDATION=HERE.parent/'foundation'
 sys.path.insert(0,str(FOUNDATION/'runtime'))
 from runtime_common import atomic,bounded_process,Refusal as RuntimeRefusal
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
-CONTROLLER_SHA='c33d2ac9ea332895d89861bd50d9dddddf0f91b929195f0fd41979426b842bb3'
+CONTROLLER_SHA='6cec9e303f09672af3806b84b2370ffc82249af70364f9d846d92d19003ef001'
 DRIVER_SHA='49d50e3d985e0a544780422f8ad56c9a10311d835bbea667f8c384ccf9d9e480'
 MEMBERSHIP_CONTROLLER_SHA='59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b'
 MEMBERSHIP_CONTROLLER_BYTES=20923
-REVIEW_REF='work8/v99-review-20261109'
-LAUNCH_REF='refs/heads/work8/v99-a5-20261109'
-WORKFLOW_PATH='.github/workflows/work8-v99-a5.yml'
+REVIEW_REF='work8/v101-review-20261109'
+LAUNCH_REF='refs/heads/work8/v101-a5-20261109'
+WORKFLOW_PATH='.github/workflows/work8-v101-a5.yml'
 ENV_KEYS=('GITHUB_ACTIONS','GITHUB_REPOSITORY','GITHUB_REPOSITORY_ID','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_SHA','GITHUB_JOB','RUNNER_OS','RUNNER_ARCH')
 
 def load_module(name,path):
@@ -517,7 +517,7 @@ def await_review(root,stage,artifact_id,artifact_digest,max_seconds=1500):
  expected=package_bindings(c)
  if stage=='preflight':expected.update(runContractSHA256=sha(root/'run-contract.json'),runnerResultSHA256=sha(root/'evidence/preflight/runner-result.json'),artifactIndexSHA256=sha(root/'evidence/preflight/artifact-index.json'))
  destination=root/('source-review.json' if stage=='packages-and-executor' else 'preflight-review.json');require(not destination.exists(),'INDEPENDENT_ACK_ALREADY_COMMITTED')
- filename='v99-review/'+str(c['executor']['runId'])+'/'+stage+'.json'
+ filename='v101-review/'+str(c['executor']['runId'])+'/'+stage+'.json'
  while time.monotonic()<deadline:
   require_remaining_lifetime(c,'preflight' if stage=='packages-and-executor' else 'full',time.time())
   ref=api('/repos/'+REPOSITORY+'/git/ref/heads/'+REVIEW_REF,allow_missing=True,deadline=deadline)
@@ -564,7 +564,7 @@ def exporter(root):
  module.TOP_NAMES.update({'provider/retained-evidence.json','external-release.json','release-transport.json','acceptance-source-admission.json','operative-launch-plan.json','artifact-return-provider.json','single-launch-readback.json','upload-bounds/packages-and-executor.json','upload-bounds/preflight.json'})
  for operation in ('identity','download','prepare','admission','review-export','await-review-packages-and-executor','native-preflight','native-export-preflight','await-review-preflight','native-full','cleanup','final-export'):
   module.TOP_NAMES.add('acceptance-attempts/'+operation+'.json')
- module.STAGE_NAMES.update({'native-time-budget','owner-policy-lifecycle'})
+ module.STAGE_NAMES.update({'native-time-budget','owner-policy-lifecycle','first-evidence-handoff-failure'})
  return module
 
 def review_export(root):
@@ -684,8 +684,14 @@ def native_export(root,label):
  require({p.name for p in destination.iterdir()}=={'evidence-export.tar.gz','evidence-export-receipt.json'} and sum(p.stat().st_size for p in destination.iterdir())<=1024**2,'NATIVE_UPLOAD_AGGREGATE_BOUND')
  return result
 
-def final_export(root,build_root=None):
+def final_export(root,build_root=None,source_check=None):
  e=exporter(root);preserve_build_failure(root,build_root)
+ # A full attempt always uses the complete receipt validator, including when
+ # the attempt failed before creating its index. Never downgrade it silently
+ # to a successful partial final evidence return.
+ if any((root/name).exists() for name in ('evidence/full','controller-supervisor-full.json','controller-supervisor-full-attempt.json')):
+  from final_evidence import finalize
+  return finalize(root,e,source_check=source_check)
  # First-error export is allowed before complete run contract exists.
  label='final' if (root/'evidence/full/artifact-index.json').exists() and (root/'evidence/preflight/artifact-index.json').exists() else 'failure'
  if not any((root/x).exists() for x in ('run-contract.json','runtime-evidence/first-runtime-failure.json','runtime-evidence/receipt-cleanup.json')):

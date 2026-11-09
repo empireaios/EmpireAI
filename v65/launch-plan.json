@@ -1,23 +1,23 @@
 {
   "schema": "work8-v65-reviewed-launch-plan-v1",
-  "status": "V99_REVIEWED_CANDIDATE_ONLY_SEPARATE_NATIVE_AUTHORITY_REQUIRED",
-  "scope": "One proposed isolated A5-08/A5-09 native examination on one fresh standard GitHub runner. Preserve V94 Q01-Q05, scoped V95 Brain initialization and V98 frontend startup/security evidence. Reuse exact retained application packages. Observe current-runner admission facts before independent package/executor ACK, newly initialized Brain capture/private-channel preflight and independent preflight ACK. Full acceptance then initializes one coherent native instance and captures its own baseline, transitions NORMAL to RECOVERY to NORMAL_RETURN, verifies replay and orderly drain, and compares final persisted whole-application state. Preflight state is not the full lifecycle baseline. No package rebuild, package reupload, repeated qualification campaign, automatic retry or second job.",
+  "status": "V101_CORRECTION_CANDIDATE_ONLY_NO_EXECUTION_AUTHORITY",
+  "scope": "Conditional future isolated A5-08/A5-09 examination, only if original V100 final evidence cannot be recovered and the complete exporter correction is independently verified. The V101 continuation authorizes no publication, execution, reservation or ACK. One proposed isolated A5-08/A5-09 native examination on one fresh standard GitHub runner. Preserve V94 Q01-Q05, scoped V95 Brain initialization and V98 frontend startup/security evidence. Reuse exact retained application packages. Observe current-runner admission facts before independent package/executor ACK, newly initialized Brain capture/private-channel preflight and independent preflight ACK. Full acceptance then initializes one coherent native instance and captures its own baseline, transitions NORMAL to RECOVERY to NORMAL_RETURN, verifies replay and orderly drain, and compares final persisted whole-application state. Preflight state is not the full lifecycle baseline. No package rebuild, package reupload, repeated qualification campaign, automatic retry or second job.",
   "authority": {
-    "ownerDirective": "EMPIREAI_V99_SEPARATE_NATIVE_EXECUTION_APPROVAL",
+    "ownerDirective": "EMPIREAI_V101_SEPARATE_NATIVE_EXECUTION_APPROVAL",
     "work8CeilingUSD": 100,
     "existingAdditionalA5USD": 10,
-    "priorOverallHoldsUSD": 12.46,
-    "priorA5HoldsUSD": 2.51,
-    "availableBeforeReservationUSD": 7.49,
+    "priorOverallHoldsUSD": 14.57,
+    "priorA5HoldsUSD": 4.62,
+    "availableBeforeReservationUSD": 5.38,
     "reservationId": null,
     "reservationReceiptSHA256": null,
     "reservationUSD": 0,
     "proposedReservationUSD": 2.11,
     "maximumProspectiveUSD": 0,
     "proposedMaximumProspectiveUSD": 2.11,
-    "currentOverallHoldsUSD": 12.46,
-    "currentA5HoldsUSD": 2.51,
-    "remainingUnreservedUSD": 7.49,
+    "currentOverallHoldsUSD": 14.57,
+    "currentA5HoldsUSD": 4.62,
+    "remainingUnreservedUSD": 5.38,
     "reservationCommitted": false,
     "ownerDecisionRecorded": false,
     "ownerApprovalReceiptSHA256": null,
@@ -68,11 +68,11 @@
     "maximumCandidateUploadPayloadBytes": 0,
     "maximumQualificationMetadataBytes": 67108864,
     "maximumExecutorMetadataBytes": 67108864,
-    "maximumNativeUploadPayloadBytes": 1048576,
-    "nativeEvidenceCompressedArchiveBytes": 524288,
-    "nativeEvidenceLogicalBytes": 2097152,
+    "maximumNativeUploadPayloadBytes": 8388608,
+    "nativeEvidenceCompressedArchiveBytes": 7340032,
+    "nativeEvidenceLogicalBytes": 8388608,
     "zipEnvelopeAndMetadataReserveBytesPerObject": 16777216,
-    "maximumDeclaredPayloadPlusAllEnvelopesBytes": 119537664,
+    "maximumDeclaredPayloadPlusAllEnvelopesBytes": 126877696,
     "maximumObservedRetentionSeconds": 608400,
     "overwrite": false,
     "workflowArtifactRetries": 0,
@@ -84,7 +84,13 @@
       "preflight",
       "final-or-failure"
     ],
-    "retainedInputArtifactExcludedFromNewRunCumulativeCount": 13340201255
+    "retainedInputArtifactExcludedFromNewRunCumulativeCount": 13340201255,
+    "maximumPreflightUploadPayloadBytes": 1048576,
+    "maximumFinalUploadPayloadBytes": 8388608,
+    "nativeEvidenceMaximumFileBytes": 2097152,
+    "preflightEvidenceCompressedArchiveBytes": 524288,
+    "preflightEvidenceLogicalBytes": 2097152,
+    "finalOrFailureIsOneObject": true
   },
   "billingCalculation": {
     "publicStandardUbuntuComputeUSD": 0,
@@ -110,7 +116,7 @@
     "logStorageEstimateUSD": "0.05026971726190476190476190475",
     "logPlanningAllowanceIsProviderHardCap": false,
     "logPlanningAllowanceInterpretation": "Conservative source-reviewed planning allowance for one fixed job. Controller and subprocess output is captured and bounded; native command result logging is limited. GitHub emits its own logs, for which no provider byte cap was independently established. Stop before publication if debug, unexpected logging, source changes, a second job, or another billable service makes this allowance unreasonable.",
-    "logBillingUncertainty": "Current GitHub Actions billing documentation says workflow logs and job summaries do not count toward artifact allowance; the 2026-08-27 retention changelog says logs and artifacts count toward billable storage. Conservatively budget logs at the artifact storage rate for 90days, without claiming this is an observed charge.",
+    "logBillingUncertainty": "Current GitHub Actions billing documentation says workflow logs and job summaries do not count toward artifact allowance. Retain the conservative90day log-storage contingency from V100 for this prospective calculation; this is a planning allowance, not an observed charge or provider-enforced log-byte cap.",
     "maximumMonthlyRoundingAllowanceUSD": "0.0009765625",
     "monthlyRoundingInterpretation": "Reserve one fullMiB-month atUS0.25/GiB-month for each of four possible calendar billing periods covering90days.",
     "taxPlanningRate": "0.09",
@@ -140,7 +146,7 @@
     "accountingHoldIsNotProviderCharge": true,
     "publicStandardRunnerAndRepositoryReverificationRequiredBeforeRelease": true,
     "existingConsumedHoldsExcludedFromNewProposalArithmetic": true,
-    "existingQualificationHoldTreatment": "Preserve all historical holds. In particular V95-A5-NATIVE-ONCE-20261108 US0.01 and V97-FRONTEND-STARTUP-ONCE-20261109 US0.30 are consumed accounting holds already included in12.46/2.51/7.49, neither duplicated nor released. Any futureUS2.11 is separate and requires ownerapproval.",
+    "existingQualificationHoldTreatment": "Preserve all historical holds. Consumed V95 US0.01, V98 US0.30 and V100 US2.11 remain separately included in current14.57/4.62/5.38 pending attributable invoice reconciliation. No duplicate hold or release. Any future US2.11 hold is separate, conditional and requires fresh exact-source owner authority.",
     "otherProspectiveCharges": {
       "newHostedServices": 0,
       "packageBuilds": 0,
@@ -164,30 +170,39 @@
       "Newbillableprovider/cache/packageupload/subscription requested",
       "Any failed native stage; preservefirstcause, scopedcleanup, no retry"
     ],
-    "providerFinancialHardCapVerified": false
+    "providerFinancialHardCapVerified": false,
+    "conditionalEstimateOnlyNoAuthority": true,
+    "currentRetainedProviderComputeReadback": {
+      "V95BillableUbuntuMilliseconds": 0,
+      "V98BillableUbuntuMilliseconds": 0,
+      "V100BillableUbuntuMilliseconds": 0,
+      "attributableTotalInvoicesUSD": null,
+      "holdsAreNotActualCharges": true
+    }
   },
   "releaseConditions": [
-    "Complete independent review of the exact full native candidate, original A5 assertion coverage and ordered lifecycle before requesting one separate owner decision. V94 qualification, V95 native and V98 frontend diagnostic authorities are consumed.",
-    "Bind the future exact owner decision, reservation receipt, source manifest, workflow SHA256, complete tree and exact sole parent fbf326f14df64c1cc3717942a490f19af4a87a89 in an external release record on the non-launching review branch. No operative approval or reservation exists in this source template.",
-    "After separate approval only, create one distinct V99-A5-NATIVE-ONCE-20261109 accounting reservation2.11USD from7.49USD unreserved A5 authority; preserve consumed V95 US0.01 and V98 US0.30 holds pending independent actual charge reconciliation. Projected totals14.57/4.62/5.38 are not current holds.",
+    "Recover original V100 final evidence first. Only if it is unavailable may a new coherent examination be indispensable. Complete independent positive and negative export handoff, archive and readback proof plus original A5 assertion/lifecycle review before any fresh owner decision. V94, V95, V98 and V100 attempt authorities, including both V100 ACKs, are consumed.",
+    "Bind a future exact owner decision, distinct reservation receipt, source manifest, workflow SHA256, complete tree and exact sole parent 0c15b91f556b218be8c8f6cc2513c9d5840a9bc7 in the external release record on the non-launching review branch. No operative approval or reservation exists in this template.",
+    "After separate approval only, record one distinct V101-A5-NATIVE-ONCE-20261109 accounting reservation2.11USD from current5.38USD unreserved A5 authority. Preserve consumed V95 US0.01, V98 US0.30 and V100 US2.11 holds pending independent actual invoice reconciliation. Conditional projected totals16.68/6.73/3.27 are not current holds.",
     "Before any future launch publication, independently read back provider state, repository public visibility, exact source tree/parent/workflow and absence of an existing matching run. Unknown state is not authority to repeat a write.",
     "Require retained input13340201255 from run41860150363 unexpired and exact digest39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755. Download/reuse it once; do not recreate packages or upload another package copy.",
-    "Create work8/v99-a5-20261109 once only after all pre-dispatch conditions pass. Never move/delete/recreate a launched branch and never rerun a job or failed phase. Keep every historical workflow inert.",
+    "Create work8/v101-a5-20261109 once only after all pre-dispatch conditions pass. Never move/delete/recreate a launched branch and never rerun a job or failed phase. Keep every historical workflow inert.",
     "Preserve V94 Q01-Q05 PASS, scoped V95 initialization, V96 first-error diagnostics and V98 exact-package frontend startup/security receipts without replay. New runner admission must independently attribute current UID1001, protected principals, actual daemon/process boundary, capacities, dependency identities and isolated network to the same active job. Historical worker receipts cannot authorize a future VM.",
     "Independent safe artifact readback must bind current package/executor ACK before Brain initialization, then a separate initialized Brain and canonical store preflight ACK before the single coherent lifecycle.",
-    "Enforce three new artifacts total,128MiB cumulative service ZIP cap,7day retention and bounded sanitized preupload inventories. No cache, raw protected state or package uploads.",
+    "Enforce three new artifact objects total: executor<=64MiB, preflight<=1MiB, final-or-failure<=8MiB plus16MiB envelope each; declared maximum121MiB within unchanged128MiB cumulative service ZIP cap and7day retention. Final logical evidence<=8MiB, compressed archive<=7MiB, each original file<=2MiB. No cache, raw protected state or package uploads.",
     "First failure stops later native phases, preserves the original cause and triggers bounded campaign-only cleanup and durable artifact return. Only independent original whole-row acceptance may change A5 or48/16.",
-    "Fresh owner approval must explicitly authorize at most two safe machine-readable owner endorsements on existing PR113, one per independent package/executor and preflight ACK; no other messages. The read-only workflow must independently read the authenticated comment owner, exact ACK and review commit digests, current run/stage/artifact and immutable creation time before continuing. Git author attribution alone never authenticates an ACK."
+    "Fresh owner approval must explicitly authorize at most two safe machine-readable owner endorsements on existing PR113, one per independent package/executor and preflight ACK; no other messages. The read-only workflow must independently read the authenticated comment owner, exact ACK and review commit digests, current run/stage/artifact and immutable creation time before continuing. Git author attribution alone never authenticates an ACK.",
+    "Do not request a new execution decision while original export refusal remains unproven or the complete implemented exporter lacks independent positive/negative proof. An exception-handler-only patch is insufficient."
   ],
-  "reviewBranch": "work8/v99-review-20261109",
-  "launchBranch": "work8/v99-a5-20261109",
+  "reviewBranch": "work8/v101-review-20261109",
+  "launchBranch": "work8/v101-a5-20261109",
   "providerReservationIsNotApplicationAcceptance": true,
   "proposedPostReservationLedgerNotCommitted": {
-    "overallHoldsUSD": 14.57,
-    "A5HoldsUSD": 4.62,
-    "remainingA5USD": 5.38,
+    "overallHoldsUSD": 16.68,
+    "A5HoldsUSD": 6.73,
+    "remainingA5USD": 3.27,
     "reservationUSD": 2.11,
-    "reservationId": "V99-A5-NATIVE-ONCE-20261109",
+    "reservationId": "V101-A5-NATIVE-ONCE-20261109",
     "operative": false
   },
   "predecessor": {
@@ -206,7 +221,7 @@
   "launchEventPolicy": {
     "event": "create",
     "refType": "branch",
-    "exactBranch": "work8/v99-a5-20261109",
+    "exactBranch": "work8/v101-a5-20261109",
     "attempt": 1,
     "runNumberPredicate": false,
     "freshBranchRequired": true,
@@ -216,10 +231,10 @@
     "providerStateVerifiedInThisDraft": false,
     "releaseGateEnabled": false,
     "externalReleaseRequired": true,
-    "releaseGateFlagInterpretation": "SOURCE_TEMPLATE_ONLY: false records that V99 preparation authorises no publication. The reviewed create workflow separately requires the validated external release record before package loading or native admission."
+    "releaseGateFlagInterpretation": "SOURCE_TEMPLATE_ONLY: false records that V101 continuation authorises no publication or execution. Only fresh, exact-source owner approval and validated external authority can permit a later single job."
   },
   "ownerApproval": {
-    "directive": "EMPIREAI_V99_SEPARATE_NATIVE_EXECUTION_APPROVAL",
+    "directive": "EMPIREAI_V101_SEPARATE_NATIVE_EXECUTION_APPROVAL",
     "decisionRecorded": false,
     "receiptSHA256": null,
     "attemptsRequested": 1,
@@ -227,11 +242,13 @@
     "maximumEstimatedAttributableUSD": 2.10571545,
     "maximumAdditionalExposureUSD": 2.11,
     "maximumReservationUSD": 2.11,
-    "existingAvailableA5USD": 7.49,
+    "existingAvailableA5USD": 5.38,
     "noAutomaticRetry": true,
     "noBudgetIncrease": true,
     "soleTarget": "A5",
-    "interpretation": "NONOPERATIVE_PROPOSAL_SNAPSHOT: these source-template fields intentionally remain false/zero after publication; only the separately validated external ownerApprovalReceipt and operative authority can grant one future native attempt."
+    "interpretation": "NONOPERATIVE_PROPOSAL_SNAPSHOT: these source-template fields intentionally remain false/zero after publication; only the separately validated external ownerApprovalReceipt and operative authority can grant one future native attempt.",
+    "decisionRequested": false,
+    "approvalReady": false
   },
   "executionStages": [
     {
@@ -257,19 +274,19 @@
     }
   ],
   "releaseDiffAllowlist": [
-    "No publication is authorised by V99. After a separate owner decision, publish only the independently reviewed exact candidate tree and its exact sole parent.",
+    "No publication is authorised by V101. After a separately requested and granted exact-source decision only, publish the independently reviewed complete tree with its exact sole parent.",
     "The external release record carries the actual owner decision and distinct reservation; the source template never becomes implicit authority.",
     "Do not alter accepted application packages or historical qualification evidence. Any candidate change invalidates the reviewed candidate identity until independently reviewed."
   ],
   "inheritedExecutionProposalApplicability": "HISTORICAL_V75_CONSUMED_PRESERVED_ONLY",
-  "inheritedAuthorityNumbersApplicability": "CURRENT_V99_TEMPLATE_UNAPPROVED; V75_VALUES_NONOPERATIVE",
+  "inheritedAuthorityNumbersApplicability": "CURRENT_V101_TEMPLATE_UNAPPROVED; V75_V95_V98_V100_AUTHORITIES_CONSUMED",
   "observedFinancialSnapshot": {
     "work8PlanningCeilingUSD": 100,
-    "aggregateHoldsUSD": 12.46,
-    "A5HoldsUSD": 2.51,
-    "unreservedA5AuthorityUSD": 7.49,
+    "aggregateHoldsUSD": 14.57,
+    "A5HoldsUSD": 4.62,
+    "unreservedA5AuthorityUSD": 5.38,
     "actualProviderChargesUSD": null,
-    "actualChargesStatus": "V95_V98_PROVIDER_COMPUTE_AND_STORAGE_RECONCILIATION_REQUIRES_INDEPENDENT_READBACK; HOLDS_NOT_ACTUAL_CHARGES",
+    "actualChargesStatus": "V95_V98_V100_BILLED_UBUNTU_MILLISECONDS_ZERO; TOTAL_STORAGE_TAX_INVOICES_UNCONFIRMED; HOLDS_NOT_ACTUAL_CHARGES",
     "newReservationCreated": false,
     "newExecutionApproval": false
   },
@@ -305,8 +322,8 @@
     "substitutesForFreshCoherentInstance": false
   },
   "independentAckTransport": {
-    "reviewBranch": "work8/v99-review-20261109",
-    "filePattern": "v99-review/<runId>/<stage>.json",
+    "reviewBranch": "work8/v101-review-20261109",
+    "filePattern": "v101-review/<runId>/<stage>.json",
     "stages": [
       "packages-and-executor",
       "preflight"
@@ -318,5 +335,24 @@
     "sourceTemplateAuthorizesMessages": false,
     "providerWorkflowReadOnly": true,
     "gitCommitAuthorAuthenticatesApproval": false
+  },
+  "approvalReady": false,
+  "ownerApprovalRequested": false,
+  "preservedV100Execution": {
+    "runId": 42551676707,
+    "jobId": 128948427157,
+    "sourceCommit": "0c15b91f556b218be8c8f6cc2513c9d5840a9bc7",
+    "sourceTree": "73b2e3c7af49415ff24ea48f8669811fa859e105",
+    "bothAuthenticatedACKs": "PASS_SCOPED_PRE_NATIVE_EVIDENCE_ONLY",
+    "initializedBrainPreflight": "PASS",
+    "fullNativeCommand": "PROVIDER_SUCCESS_ONLY",
+    "scopedCleanupCommand": "PROVIDER_SUCCESS_ONLY",
+    "finalExport": "FAIL_ACCEPTANCE_REFUSAL_EXIT23",
+    "fullOriginalA5EvidenceReturned": false,
+    "A5WholeRowAccepted": false,
+    "singleAttemptAuthorityConsumed": true,
+    "bothACKAuthoritiesConsumed": true,
+    "accountingHoldUSD": "2.11",
+    "historicEvidenceMayNotSubstituteForNewStateLineage": true
   }
 }

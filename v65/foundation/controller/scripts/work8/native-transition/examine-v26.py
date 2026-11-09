@@ -10,6 +10,7 @@ from private_contract import backend_options,browser_options,private_write,safe_
 from entrypoint_contract import execute as verify_mounted_entrypoints
 from command_diagnostics import invoke as invoke_reviewed_command
 from docker_diagnostics import capture_first as capture_first_docker_error
+from evidence_handoff import transfer as transfer_private_evidence
 
 ROOT=pathlib.Path(os.environ['WORK8_EXECUTION_ROOT'])
 assert ROOT.is_absolute() and ROOT.resolve()==ROOT,'CANONICAL_EXECUTION_ROOT_REQUIRED'
@@ -366,17 +367,11 @@ finally:
  try:
   assert not subprocess.run(['docker','network','ls','-q','--filter','label=work8.native='+LABEL],stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,timeout=10,check=True).stdout.strip()
  except:cleanup_ok=False
- for p in (PRIVATE/'evidence').glob('*') if (PRIVATE/'evidence').exists() else []:
-  if p.is_file() and p.stat().st_size<2*1024*1024:
-   if p.name in {'first-docker-failure.json','first-docker-state-error.json','command-first-exception.json'}:
-    # These receipts belong exclusively to the host command boundary. A child
-    # artifact cannot replace them or supply an unauthenticated daemon cause.
-    result.setdefault('optionalDiagnosticUnavailable',[]).append('private-host-diagnostic-refused')
-   elif p.name=='first-native-failure.json':
-    try:save_first(OUT,sanitize(json.loads(p.read_text())))
-    except Exception:result.setdefault('optionalDiagnosticUnavailable',[]).append('private-first-failure-invalid')
-   elif p.suffix in ['.json','.log']: (OUT/p.name).write_text(redact(p.read_text()))
-   elif p.suffix=='.png':shutil.copyfile(p,OUT/p.name)
+ handoff=transfer_private_evidence(PRIVATE/'evidence',OUT,stage=STAGE_NAME,
+                                  redact=redact,generated=generated,
+                                  save_first=save_first,sanitize=sanitize)
+ result['evidenceHandoff']=handoff
+ if handoff['status']!='PASS_SANITIZED_PRIVATE_EVIDENCE_HANDOFF':result['status']='FAIL'
  result['temporaryContainersAndNetworkRemoved']=cleanup_ok
  if not cleanup_ok:result['status']='FAIL'
  # Exact newly-generated secrets must never enter the upload set.

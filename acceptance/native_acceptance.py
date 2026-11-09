@@ -32,19 +32,19 @@ from runtime_common import atomic
 from retained_evidence import verify_retained_evidence
 
 REPOSITORY = 'empireaios/EmpireAI'
-LAUNCH_BRANCH = 'work8/v99-a5-20261109'
-REVIEW_BRANCH = 'work8/v99-review-20261109'
-WORKFLOW = '.github/workflows/work8-v99-a5.yml'
-RELEASE_PATH = 'acceptance/v99-release.json'
-PARENT = 'fbf326f14df64c1cc3717942a490f19af4a87a89'
-JOB_NAME = 'A5 V99 coherent native acceptance'
-RESERVATION = 'V99-A5-NATIVE-ONCE-20261109'
+LAUNCH_BRANCH = 'work8/v101-a5-20261109'
+REVIEW_BRANCH = 'work8/v101-review-20261109'
+WORKFLOW = '.github/workflows/work8-v101-a5.yml'
+RELEASE_PATH = 'acceptance/v101-release.json'
+PARENT = '0c15b91f556b218be8c8f6cc2513c9d5840a9bc7'
+JOB_NAME = 'A5 V101 coherent native acceptance'
+RESERVATION = 'V101-A5-NATIVE-ONCE-20261109'
 COMMANDS = ('identity', 'download', 'prepare', 'admission', 'review-export',
             'await-review', 'native', 'native-export', 'cleanup',
             'final-export', 'artifact-check')
 MANIFEST_EXCLUSIONS = {'acceptance/source-manifest.json'}
 UPLOAD_BUDGETS = {'packages-and-executor': 64 * 1024**2,
-                  'preflight': 1024**2, 'final': 1024**2}
+                  'preflight': 1024**2, 'final': 8 * 1024**2}
 ENVELOPE_RESERVE = 16 * 1024**2
 ARTIFACT_RETENTION_DAYS = 7
 ACK_AUTHORITY = {'maximumOwnerEndorsements': 2, 'issueNumber': 113,
@@ -53,10 +53,10 @@ ACK_AUTHORITY = {'maximumOwnerEndorsements': 2, 'issueNumber': 113,
                  'otherMessagesAuthorized': False}
 OWNER_ID = 295548100
 MAX_EXPOSURE_USD = '2.11'
-LEDGER_BEFORE = {'aggregateHoldsUSD': '12.46', 'A5HoldsUSD': '2.51',
-                 'unreservedA5AuthorityUSD': '7.49'}
-LEDGER_AFTER = {'aggregateHoldsUSD': '14.57', 'A5HoldsUSD': '4.62',
-                'unreservedA5AuthorityUSD': '5.38'}
+LEDGER_BEFORE = {'aggregateHoldsUSD': '14.57', 'A5HoldsUSD': '4.62',
+                 'unreservedA5AuthorityUSD': '5.38'}
+LEDGER_AFTER = {'aggregateHoldsUSD': '16.68', 'A5HoldsUSD': '6.73',
+                'unreservedA5AuthorityUSD': '3.27'}
 CREDENTIAL_ENV = ('GH_TOKEN', 'GITHUB_TOKEN', 'ACTIONS_RUNTIME_TOKEN')
 DOCKER_OVERRIDE_ENV = ('DOCKER_HOST', 'DOCKER_CONTEXT', 'DOCKER_CONFIG',
                        'DOCKER_TLS_VERIFY', 'DOCKER_CERT_PATH', 'DOCKER_API_VERSION')
@@ -188,9 +188,9 @@ def validate_release(record, source, remote_commit, launch_template):
     need(record.get('ownerApprovalSHA256') == owner_sha and
          record.get('reservationReceiptSHA256') == reservation_sha,
          'EXTERNAL_RECEIPT_CANONICAL_HASH_REQUIRED')
-    need(owner.get('schema') == 'work8-v99-owner-approval-v1' and
+    need(owner.get('schema') == 'work8-v101-owner-approval-v1' and
          owner.get('ownerDecisionRecorded') is True and
-         owner.get('directive') == 'EMPIREAI_V99_SEPARATE_NATIVE_EXECUTION_APPROVAL' and
+         owner.get('directive') == 'EMPIREAI_V101_SEPARATE_NATIVE_EXECUTION_APPROVAL' and
          owner.get('scope') == 'one-native-a5-08-09-attempt' and
          type(owner.get('maximumAttempts')) is int and owner.get('maximumAttempts') == 1 and
          owner.get('maximumJobSeconds') == 18000 and
@@ -201,7 +201,7 @@ def validate_release(record, source, remote_commit, launch_template):
          owner.get('reservationId') == RESERVATION and
          owner.get('independentAckAuthority') == ACK_AUTHORITY,
          'SEPARATE_FULL_NATIVE_OWNER_APPROVAL_REQUIRED')
-    need(reservation.get('schema') == 'work8-v99-reservation-v1' and
+    need(reservation.get('schema') == 'work8-v101-reservation-v1' and
          reservation.get('recordType') == 'ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE' and
          reservation.get('status') == 'COMMITTED' and
          reservation.get('reservationId') == RESERVATION and
@@ -319,7 +319,7 @@ def validate_root(root):
     run_id = os.environ.get('GITHUB_RUN_ID', '')
     temp = Path(os.environ.get('RUNNER_TEMP', '/invalid'))
     need(re.fullmatch('[1-9][0-9]*', run_id) and temp.is_absolute() and
-         root == temp / ('v99-a5-'+run_id), 'EXACT_CURRENT_RUN_ROOT_REQUIRED')
+         root == temp / ('v101-a5-'+run_id), 'EXACT_CURRENT_RUN_ROOT_REQUIRED')
     need(os.getuid() == os.geteuid() == os.getgid() == os.getegid() == 1001,
          'ORIGINAL_HOST_PRINCIPAL_REQUIRED')
     need(os.environ.get('GITHUB_ACTIONS') == 'true' and
@@ -463,6 +463,48 @@ def preupload(root, label, directory):
     return receipt
 
 
+def final_source_check(root):
+    """Revalidate source bytes, without renewing authority or starting work."""
+    current = validate_source()
+    admitted = read_json(root/'acceptance-source-admission.json')
+    need(current == admitted, 'FINAL_CURRENT_SOURCE_ADMISSION_CHANGED')
+    identity = read_json(root/'runner-identity.json')
+    contract = read_json(root/'run-contract.json')
+    need(str(identity.get('runId')) == os.environ.get('GITHUB_RUN_ID') and
+         identity.get('runAttempt') == 1 and os.environ.get('GITHUB_RUN_ATTEMPT') == '1' and
+         identity.get('workflowCommit') == os.environ.get('GITHUB_SHA') == git_value('rev-parse', 'HEAD') and
+         identity.get('sessionId') == 'github-actions:'+str(identity.get('runId'))+':1:'+str(identity.get('jobId')) and
+         all(contract.get('executor', {}).get(k) == identity.get(k)
+             for k in ('runId', 'runAttempt', 'workflowCommit', 'sessionId', 'jobId')),
+         'FINAL_CURRENT_EXECUTOR_SOURCE_MISMATCH')
+    return current
+
+
+def final_upload_ready(root, *, fallback=False):
+    """Publish only a constant boolean after exact archive and budget checks."""
+    if fallback or (root/'final-export/evidence-export-receipt.json').is_file() and \
+            read_json(root/'final-export/evidence-export-receipt.json').get('schema') == 'work8-v101-final-export-receipt-v1':
+        from final_evidence import verify_final_directory
+        verify_final_directory(root/'final-export')
+    preupload(root, 'final', root/'final-export')
+    output = os.environ.get('GITHUB_OUTPUT')
+    if output:
+        path = Path(output)
+        temp = Path(os.environ.get('RUNNER_TEMP', '/invalid'))
+        need(path.is_absolute() and path.resolve() == path and temp in path.parents,
+             'FINAL_OUTPUT_PATH_REFUSED')
+        fd = os.open(path, os.O_WRONLY | os.O_APPEND | os.O_NOFOLLOW | os.O_NONBLOCK)
+        try:
+            observed = os.fstat(fd)
+            need(stat.S_ISREG(observed.st_mode) and observed.st_nlink == 1 and
+                 observed.st_uid == os.getuid() and observed.st_size <= 16384,
+                 'FINAL_OUTPUT_REGULAR_FILE_REQUIRED')
+            need(os.write(fd, b'export_ready=true\n') == 18, 'FINAL_OUTPUT_WRITE_INCOMPLETE')
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+
+
 def execute(args):
     root = validate_root(Path(args.root))
     # Failure return is metadata-only. A missing/changed source manifest must
@@ -532,8 +574,13 @@ def execute(args):
         cleanup_identity(root)
         return runner.cleanup(root)
     if args.command == 'final-export':
-        result = runner.final_export(root)
-        preupload(root, 'final', root/'final-export')
+        try:
+            result = runner.final_export(root, source_check=lambda: final_source_check(root))
+        except runner.RuntimeRefusal as exc:
+            if getattr(exc, 'failureExportReady', False) is True:
+                final_upload_ready(root, fallback=True)
+            raise
+        final_upload_ready(root)
         return result
     if args.command == 'artifact-check':
         need(args.label == 'final', 'FINAL_ARTIFACT_CHECK_REQUIRED')
@@ -562,7 +609,7 @@ def main():
         print(line)
         return 0
     except Exception as exc:
-        code = str(exc) if isinstance(exc, (guard.Refusal, retained.Refusal)) and re.fullmatch('[A-Z0-9_]{1,100}', str(exc)) else 'ACCEPTANCE_'+type(exc).__name__.upper()
+        code = str(exc) if isinstance(exc, (guard.Refusal, retained.Refusal, runner.RuntimeRefusal)) and re.fullmatch('[A-Z0-9_]{1,100}', str(exc)) else 'ACCEPTANCE_'+type(exc).__name__.upper()
         root = Path(args.root)
         # Local metadata only: retain a first cause even if identity never formed.
         # This does not authorize cleanup of any unbound external resource.

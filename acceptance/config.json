@@ -4,11 +4,11 @@
   "localOwnerDecisionRecorded": false,
   "localReservationCommitted": false,
   "requiresExternalRelease": true,
-  "launchBranch": "work8/v99-a5-20261109",
-  "reviewBranch": "work8/v99-review-20261109",
-  "workflowPath": ".github/workflows/work8-v99-a5.yml",
-  "externalReleasePath": "acceptance/v99-release.json",
-  "requiredParent": "fbf326f14df64c1cc3717942a490f19af4a87a89",
+  "launchBranch": "work8/v101-a5-20261109",
+  "reviewBranch": "work8/v101-review-20261109",
+  "workflowPath": ".github/workflows/work8-v101-a5.yml",
+  "externalReleasePath": "acceptance/v101-release.json",
+  "requiredParent": "0c15b91f556b218be8c8f6cc2513c9d5840a9bc7",
   "maximumAttempts": 1,
   "maximumJobSeconds": 18000,
   "artifactRetentionDays": 7,
@@ -41,5 +41,7 @@
   },
   "maximumAdditionalExposureUSD": "2.11",
   "maximumReservationUSD": "2.11",
-  "frontendStartupDiagnosticMayRepeat": false
+  "frontendStartupDiagnosticMayRepeat": false,
+  "approvalReady": false,
+  "ownerApprovalRequested": false
 }

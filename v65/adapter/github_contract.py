@@ -17,8 +17,8 @@ import subprocess
 import time
 
 SCHEMA='work8-v65-github-execution-contract-v1'
-OWNER_DIRECTIVE='EMPIREAI_V99_SEPARATE_NATIVE_EXECUTION_APPROVAL'
-NATIVE_RESERVATION_ID='V99-A5-NATIVE-ONCE-20261109'
+OWNER_DIRECTIVE='EMPIREAI_V101_SEPARATE_NATIVE_EXECUTION_APPROVAL'
+NATIVE_RESERVATION_ID='V101-A5-NATIVE-ONCE-20261109'
 ARTIFACT_LIMITS={'maximumObjects':3,'maximumCumulativeServiceZipBytes':128*1024**2,'retentionDays':7,'maximumObservedRetentionSeconds':169*3600,'maximumUploadPayloadBytes':64*1024**2,'zipEnvelopeReserveBytes':16*1024**2}
 V94_DIAGNOSTIC_EVIDENCE={'runId':42478186509,'jobId':128724128654,'artifactId':13616930561,'artifactSHA256':'6450dca99a0e50c04ce41d874eabd9adc4ca0fdc337f8bbe9c82b0d2c69d2915','workflowCommit':'f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8','diagnosticControlsSHA256':'2aeaecbf74d66b1368a9b55a2e01500dbdc54bd2d8e54bd98b882e95cc8e5dbf'}
 FRESH_ADMISSION_MODE='V99_FRESH_EXECUTOR_ADMISSION_REUSING_V94_V98_EVIDENCE'
@@ -65,13 +65,13 @@ def verify_manifest(directory,path,digest,max_files=20000):
 
 def validate_authority(a):
  require(a['ownerDirective']==OWNER_DIRECTIVE,'CURRENT_OWNER_AUTHORITY_REQUIRED')
- require(a['work8CeilingUSD']==100 and a['existingAdditionalA5USD']==10 and a['priorOverallHoldsUSD']==12.46 and a['priorA5HoldsUSD']==2.51 and a['availableBeforeReservationUSD']==7.49,'CURRENT_FINANCIAL_AUTHORITY_REQUIRED')
+ require(a['work8CeilingUSD']==100 and a['existingAdditionalA5USD']==10 and a['priorOverallHoldsUSD']==14.57 and a['priorA5HoldsUSD']==4.62 and a['availableBeforeReservationUSD']==5.38,'CURRENT_FINANCIAL_AUTHORITY_REQUIRED')
  require(a.get('ownerDecisionRecorded') is True and digest_string(a.get('ownerApprovalReceiptSHA256')) and a.get('approvalScope')=='one-native-a5-08-09-attempt' and type(a.get('maximumAttempts')) is int and a['maximumAttempts']==1,'SEPARATE_EXPLICIT_OWNER_DECISION_REQUIRED')
  require(a.get('independentAckAuthority')=={'maximumOwnerEndorsements':2,'issueNumber':113,'stages':['packages-and-executor','preflight'],'scope':'safe-artifact-acknowledgment-only','otherMessagesAuthorized':False},'EXPLICIT_TWO_SAFE_ACK_ENDORSEMENTS_REQUIRED')
  require(a.get('reservationCommitted') is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')
  require(a.get('reservationId')==NATIVE_RESERVATION_ID and digest_string(a.get('reservationReceiptSHA256')),'DISTINCT_FULL_NATIVE_RESERVATION_REQUIRED')
  for key in ('reservationUSD','maximumProspectiveUSD'):
-  require(type(a[key]) in (int,float) and math.isfinite(a[key]) and 0<=a[key]<=7.49,'FINITE_CURRENT_EXPOSURE_REQUIRED')
+  require(type(a[key]) in (int,float) and math.isfinite(a[key]) and 0<=a[key]<=5.38,'FINITE_CURRENT_EXPOSURE_REQUIRED')
  require(a['maximumProspectiveUSD']==2.11 and a['reservationUSD']==2.11,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED')
  require(a['maximumProspectiveUSD']<=a['reservationUSD'],'EXPOSURE_EXCEEDS_RESERVATION')
  require(round(a['priorOverallHoldsUSD']+a['reservationUSD'],2)==a['currentOverallHoldsUSD'] and round(a['priorA5HoldsUSD']+a['reservationUSD'],2)==a['currentA5HoldsUSD'] and round(a['availableBeforeReservationUSD']-a['reservationUSD'],2)==a['remainingUnreservedUSD'] and a['reservationCommitted'] is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')

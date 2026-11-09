@@ -2,20 +2,20 @@
   "schema": "work8-v99-external-release-v1",
   "status": "NONOPERATIVE_TEMPLATE_NO_OWNER_DECISION_OR_RESERVATION",
   "repository": "empireaios/EmpireAI",
-  "launchBranch": "work8/v99-a5-20261109",
-  "workflowPath": ".github/workflows/work8-v99-a5.yml",
+  "launchBranch": "work8/v101-a5-20261109",
+  "workflowPath": ".github/workflows/work8-v101-a5.yml",
   "maximumAttempts": 0,
   "source": {
     "tree": null,
-    "parent": "fbf326f14df64c1cc3717942a490f19af4a87a89",
+    "parent": "0c15b91f556b218be8c8f6cc2513c9d5840a9bc7",
     "manifestSHA256": null,
     "workflowSHA256": null
   },
   "launchPlan": null,
   "ownerApprovalReceipt": {
-    "schema": "work8-v99-owner-approval-v1",
+    "schema": "work8-v101-owner-approval-v1",
     "ownerDecisionRecorded": false,
-    "directive": "EMPIREAI_V99_SEPARATE_NATIVE_EXECUTION_APPROVAL",
+    "directive": "EMPIREAI_V101_SEPARATE_NATIVE_EXECUTION_APPROVAL",
     "scope": "none-native-preparation-only",
     "maximumAttempts": 0,
     "maximumJobSeconds": 0,
@@ -33,16 +33,16 @@
     }
   },
   "reservationReceipt": {
-    "schema": "work8-v99-reservation-v1",
+    "schema": "work8-v101-reservation-v1",
     "recordType": "ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE",
     "status": "NOT_CREATED",
     "reservationId": null,
     "ownerApprovalSHA256": null,
     "approvedSource": null,
     "before": {
-      "aggregateHoldsUSD": "12.46",
-      "A5HoldsUSD": "2.51",
-      "unreservedA5AuthorityUSD": "7.49"
+      "aggregateHoldsUSD": "14.57",
+      "A5HoldsUSD": "4.62",
+      "unreservedA5AuthorityUSD": "5.38"
     },
     "after": null,
     "reservationUSD": "0.00"

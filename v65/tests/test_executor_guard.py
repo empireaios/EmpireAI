@@ -38,7 +38,7 @@ def fixture():
  return q,e,p
 
 def authority_fixture():
- a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':12.46,'priorA5HoldsUSD':2.51,'availableBeforeReservationUSD':7.49,'ownerDecisionRecorded':True,'ownerApprovalReceiptSHA256':H,'approvalScope':'one-native-a5-08-09-attempt','maximumAttempts':1,'reservationCommitted':True,'reservationUSD':2.11,'maximumProspectiveUSD':2.11,'reservationId':g.NATIVE_RESERVATION_ID,'reservationReceiptSHA256':H,'currentOverallHoldsUSD':14.57,'currentA5HoldsUSD':4.62,'remainingUnreservedUSD':5.38}
+ a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':14.57,'priorA5HoldsUSD':4.62,'availableBeforeReservationUSD':5.38,'ownerDecisionRecorded':True,'ownerApprovalReceiptSHA256':H,'approvalScope':'one-native-a5-08-09-attempt','maximumAttempts':1,'reservationCommitted':True,'reservationUSD':2.11,'maximumProspectiveUSD':2.11,'reservationId':g.NATIVE_RESERVATION_ID,'reservationReceiptSHA256':H,'currentOverallHoldsUSD':16.68,'currentA5HoldsUSD':6.73,'remainingUnreservedUSD':3.27}
  a['independentAckAuthority']={'maximumOwnerEndorsements':2,'issueNumber':113,'stages':['packages-and-executor','preflight'],'scope':'safe-artifact-acknowledgment-only','otherMessagesAuthorized':False}
  a.update({k:False for k in ('renewed','productionOperations','protectedDataTransfer','commerceActivation','subscriptions','automaticRecreate','automaticRerun')})
  return a
@@ -207,7 +207,7 @@ class AdmissionControls(unittest.TestCase):
  def test_consumed_v70_approval_refused(self):
   with self.assertRaisesRegex(g.Refusal,'CURRENT_OWNER_AUTHORITY_REQUIRED'):g.validate_authority({'ownerDirective':'EMPIREAI_V70_A5_EXECUTION_APPROVAL'})
  def test_candidate_unapproved_plan_refused(self):
-  a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':12.46,'priorA5HoldsUSD':2.51,'availableBeforeReservationUSD':7.49,'ownerDecisionRecorded':False}
+  a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':14.57,'priorA5HoldsUSD':4.62,'availableBeforeReservationUSD':5.38,'ownerDecisionRecorded':False}
   with self.assertRaisesRegex(g.Refusal,'SEPARATE_EXPLICIT_OWNER_DECISION_REQUIRED'):g.validate_authority(a)
 
 if __name__=='__main__':unittest.main(verbosity=2)
