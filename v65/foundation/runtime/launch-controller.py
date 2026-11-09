@@ -12,11 +12,44 @@ def remaining_gate(c,phase,now=None):
  require(phase in LIMITS,'CONTROLLER_PHASE_REFUSED')
  require(c['expiresAtEpoch']-(time.time() if now is None else now)>LIMITS[phase]+CLEANUP+EXPORT+MARGIN+(LIMITS['full'] if phase=='preflight' else 0),'CONTROLLER_LIFETIME_RESERVE_REFUSED')
 
-def supervise(args,env,seconds,cleanup_seconds=CLEANUP):
+class NativeFailureCapture:
+ """Bounded stream framing; retain only the caller's allowlisted projection."""
+ PREFIX=b'WORK8_NATIVE_FIRST_FAILURE '
+ MAX_LINE=16384
+ def __init__(self,sanitizer):
+  self.sanitizer=sanitizer;self.buffers={};self.discarding=set();self.first=None
+ def feed(self,stream,data):
+  if self.first is not None or self.sanitizer is None:return False
+  buffer=self.buffers.setdefault(stream,bytearray())
+  for part in data.splitlines(keepends=True):
+   ended=part.endswith(b'\n')
+   if stream in self.discarding:
+    if ended:self.discarding.remove(stream)
+    continue
+   if len(buffer)+len(part)>self.MAX_LINE:
+    buffer.clear()
+    if not ended:self.discarding.add(stream)
+    continue
+   buffer.extend(part)
+   if not ended:continue
+   line=bytes(buffer);buffer.clear()
+   if not line.startswith(self.PREFIX):continue
+   try:
+    value=self.sanitizer(json.loads(line[len(self.PREFIX):].decode('utf-8')))
+    canonical=json.dumps(value,sort_keys=True,separators=(',',':')).encode('utf-8')
+    if (not isinstance(value,dict) or value.get('schema')!='work8-v31-native-first-failure-v1'
+        or value.get('firstFailure') is not True or value.get('rawErrorOrRecordsRetained') is not False
+        or len(canonical)>self.MAX_LINE):continue
+    self.first=json.loads(canonical);self.buffers.clear();self.discarding.clear();return True
+   except Exception:pass # A diagnostic projection must not replace the process cause.
+  return False
+
+def supervise(args,env,seconds,cleanup_seconds=CLEANUP,native_sanitizer=None):
  p=subprocess.Popen(args,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=env,start_new_session=True)
  selector=selectors.DefaultSelector()
  for stream in [p.stdout,p.stderr]:os.set_blocking(stream.fileno(),False);selector.register(stream,selectors.EVENT_READ)
  digest=hashlib.sha256();count=0;start=time.monotonic();cause=None;interrupted=None;requested=False;forced=False
+ capture=NativeFailureCapture(native_sanitizer);sequence=0;native_sequence=None;supervisor_sequence=None
  def signal_group(sig):
   try:os.killpg(p.pid,sig)
   except ProcessLookupError:pass
@@ -28,6 +61,7 @@ def supervise(args,env,seconds,cleanup_seconds=CLEANUP):
    now=time.monotonic()
    if interrupted is None and (requested or now-start>=seconds or count>2*1024*1024):
     cause='EXTERNAL_TERMINATION' if requested else 'CONTROLLER_STAGE_DEADLINE' if now-start>=seconds else 'CONTROLLER_OUTPUT_BOUND';interrupted=now
+    sequence+=1;supervisor_sequence=sequence
     signal_group(signal.SIGINT)
    if interrupted is not None and (now-interrupted>=cleanup_seconds or count>4*1024*1024):
     signal_group(signal.SIGKILL);forced=True
@@ -37,8 +71,10 @@ def supervise(args,env,seconds,cleanup_seconds=CLEANUP):
     data=os.read(key.fd,65536)
     if not data:selector.unregister(key.fileobj);continue
     count+=len(data);digest.update(data)
+    if capture.feed(key.fd,data):sequence+=1;native_sequence=sequence
   p.wait(timeout=5)
-  return {'controllerExitCode':p.returncode,'firstSupervisorCause':cause,'forcedKill':forced,'stdoutAndStderrBytes':count,'combinedOutputSHA256':digest.hexdigest(),'rawOutputRetained':False,'elapsedSeconds':round(time.monotonic()-start,3),'cleanupGraceSeconds':cleanup_seconds,'requiresImmediateRuntimeCleanup':bool(cause) or p.returncode!=0}
+  first_kind=('NATIVE_DIAGNOSTIC' if supervisor_sequence is None or native_sequence is not None and native_sequence<supervisor_sequence else 'SUPERVISOR') if native_sequence is not None or supervisor_sequence is not None else None
+  return {'controllerExitCode':p.returncode,'firstSupervisorCause':cause,'firstNativeFailure':capture.first,'firstObservedFailureKind':first_kind,'nativeFailureObservationSequence':native_sequence,'supervisorCauseObservationSequence':supervisor_sequence,'observationOrderOnly':True,'forcedKill':forced,'stdoutAndStderrBytes':count,'combinedOutputSHA256':digest.hexdigest(),'rawOutputRetained':False,'elapsedSeconds':round(time.monotonic()-start,3),'cleanupGraceSeconds':cleanup_seconds,'requiresImmediateRuntimeCleanup':bool(cause) or p.returncode!=0}
  finally:
   if p.poll() is None:signal_group(signal.SIGKILL);p.wait(timeout=5)
   selector.close();p.stdout.close();p.stderr.close()

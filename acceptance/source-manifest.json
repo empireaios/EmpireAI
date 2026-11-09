@@ -6,8 +6,8 @@
     {
       "bytes": 9645,
       "mode": "100644",
-      "path": ".github/workflows/work8-v101-a5.yml",
-      "sha256": "bcd54a184365aba99680e07e538263c0f84982bbe76e3d369066acf880f788e6"
+      "path": ".github/workflows/work8-v104-a5.yml",
+      "sha256": "70ab7ddbb8f789d98469ae3b2cd2af2d41152221bdd35f3de2168de1ece9d68f"
     },
     {
       "bytes": 259,
@@ -52,10 +52,10 @@
       "sha256": "0da55e90ae7526f1961cd3c0c2c38935242122c3de261b2c611836f6911c3c0c"
     },
     {
-      "bytes": 8897,
+      "bytes": 9429,
       "mode": "100644",
       "path": "acceptance/README.md",
-      "sha256": "d15071f1f95b36532d03a7ffe3e1a939587a5b00c1d5f6835bad2f8434a3f0ff"
+      "sha256": "0f9266612d1b51c3c0216870673f3b8e1159ada606dbe4b0452fc1f2e4c0327e"
     },
     {
       "bytes": 1287,
@@ -67,19 +67,19 @@
       "bytes": 1737,
       "mode": "100644",
       "path": "acceptance/config.json",
-      "sha256": "9d4b217ae5cc2e75a824881bb3ba0645355ae4ee9832001887d5369d41eb54db"
+      "sha256": "afff4cd7672db19eeae57ae5eedfa318fd50a6a3119a02221365aefe39f72b23"
     },
     {
       "bytes": 1578,
       "mode": "100644",
       "path": "acceptance/external-release.template.json",
-      "sha256": "6f65f089a71b1420b3e3e92af916fe67caaea3015a2582ca8c1aa84951f67275"
+      "sha256": "fd4db686aaafe14063b9674ef5853359299f441106fb4c21a04296619f119c78"
     },
     {
       "bytes": 32915,
       "mode": "100644",
       "path": "acceptance/native_acceptance.py",
-      "sha256": "5a58d22814068d46338f1ba560b1ed02635a75102f5cd122c0eb8be312ce6bd7"
+      "sha256": "f37375096eca7258cd69d19f2480c2b34479951ae1c8c11ee89494d33552f135"
     },
     {
       "bytes": 6118,
@@ -181,7 +181,7 @@
       "bytes": 18262,
       "mode": "100644",
       "path": "acceptance/test_orchestration.py",
-      "sha256": "38beba5534b3684ccfa4dbc96209f61e71b0d652941df34e42237d73fbeb8c40"
+      "sha256": "e27d58bda40d20696d0b8ecb5f2e88a99a9ca30d36ce08c3b66756bdfb9ddeed"
     },
     {
       "bytes": 10972,
@@ -202,10 +202,10 @@
       "sha256": "1453015aa9c25e26f3fd33c24753323c40b3ecfbcc12ad3e92cd88a8d79a3bb3"
     },
     {
-      "bytes": 11842,
+      "bytes": 12280,
       "mode": "100644",
       "path": "acceptance/tests/test_v99_admission.py",
-      "sha256": "5fd2bb4c84facef7b341f1b58cc86657e64bfd062a0db497dc383a1a996ef138"
+      "sha256": "8c11f58916677818e815f35dc7eb01cd4aac0a96cc2acd813264cf47508f5a12"
     },
     {
       "bytes": 32681,
@@ -376,22 +376,22 @@
       "sha256": "e65ff89db25d08f87acb16e49a299f6c0fcadcad30b97e0e37b6737f9308c33d"
     },
     {
-      "bytes": 40827,
+      "bytes": 52075,
       "mode": "100644",
       "path": "v65/adapter/final_evidence.py",
-      "sha256": "85cca57aeffe560199274c6640dc7ad2ec1056f0ac6e213e8e19617c00babcec"
+      "sha256": "9a098cb8ffeac063ea0e3f12f96c49d1142fa814080c7e7b889c993ad882ebd4"
     },
     {
       "bytes": 40712,
       "mode": "100644",
       "path": "v65/adapter/github_contract.py",
-      "sha256": "07869f13866de28fe2737ca6167d3b19527dd8fea978ddbfbc73aed76d675b93"
+      "sha256": "022bf8ee1864058db0c6c62db3a5ceaf5b38605195a3d0aa88c54e3d6f9e6317"
     },
     {
-      "bytes": 76960,
+      "bytes": 77361,
       "mode": "100644",
       "path": "v65/adapter/runner.py",
-      "sha256": "57c879362d0dd1a201ae5212957d3d090b01bc456fa5cbfb92faf4722fa5ea67"
+      "sha256": "31f24569594e6d12d9f3a39ff7704b4fbf9f95d0f9e3f1416aa7c900e08a22d8"
     },
     {
       "bytes": 4373,
@@ -592,10 +592,16 @@
       "sha256": "96aaeac9a669501130c2c9900de3c16565dbef0409b87217cbe7472389280f59"
     },
     {
-      "bytes": 13800,
+      "bytes": 13922,
       "mode": "100644",
       "path": "v65/foundation/controller/scripts/work8/native-transition/controller-manifest.json",
-      "sha256": "6cec9e303f09672af3806b84b2370ffc82249af70364f9d846d92d19003ef001"
+      "sha256": "212caa80de6680340b7797b3131fed2130a2fed2725e38796385005f699239ca"
+    },
+    {
+      "bytes": 3571,
+      "mode": "100644",
+      "path": "v65/foundation/controller/scripts/work8/native-transition/controller_failure.py",
+      "sha256": "9deb1f562feb31bb4d58a5f08458eeba351ba7e805ef54c19f2827a154a14665"
     },
     {
       "bytes": 22500,
@@ -640,10 +646,10 @@
       "sha256": "d9cd106cd72b795837d8ee2a321041bd94da489e50578e25f7b022ca51b777ca"
     },
     {
-      "bytes": 37053,
+      "bytes": 37506,
       "mode": "100644",
       "path": "v65/foundation/controller/scripts/work8/native-transition/examine-v26.py",
-      "sha256": "08a6186c5f668375829d314dedc6ab7354c1e8f65fdcb0a25ccc341e2562f5bd"
+      "sha256": "fb5bcd9358c75d6cda0a41b30c44ca8014f339c3426b3f348a4b32645bf5fa4b"
     },
     {
       "bytes": 30366,
@@ -1180,10 +1186,10 @@
       "sha256": "fefe522d88a1a8ecebc52d060246e86ac9c31f3cc896f16550f640b8980bffe6"
     },
     {
-      "bytes": 5026,
+      "bytes": 7167,
       "mode": "100644",
       "path": "v65/foundation/runtime/launch-controller.py",
-      "sha256": "a30401e8de81f73fa6bc1004b2606becbd2eadf8952f866dc3bc943c39692196"
+      "sha256": "1a720cac9be99cd10180298c95dd0d512c1ab71625356102f630e51f50766751"
     },
     {
       "bytes": 10830,
@@ -1222,10 +1228,10 @@
       "sha256": "f01107a42ea45df7959d9157d4c4a1f0fc67ce6dd8f6be6b8876171937fad036"
     },
     {
-      "bytes": 22937,
+      "bytes": 24175,
       "mode": "100644",
       "path": "v65/launch-plan.json",
-      "sha256": "80e2edf8958542f1c9e0f361bee7ca6fc747f49c148010a9c5d547e82c53d117"
+      "sha256": "9506c150c3b54f38dbc7f1c49664909400c6b295283db3793c7c684593201ea3"
     },
     {
       "bytes": 2297,
@@ -1237,7 +1243,13 @@
       "bytes": 27493,
       "mode": "100644",
       "path": "v65/tests/test_executor_guard.py",
-      "sha256": "75708fe573560336ab084c253fa4bd548e05ca887c0d121daa234f4601c989e6"
+      "sha256": "3d5c54c440432d2540ae9a8c0c942e71b706cdc1412b7c8ab58fa9dd380ce192"
+    },
+    {
+      "bytes": 13726,
+      "mode": "100644",
+      "path": "v65/tests/test_failure_return_contract.py",
+      "sha256": "dfc8f6337181491a731db5e1b22b40600a969909e999f3bb3dc160d419fb0c1a"
     },
     {
       "bytes": 21516,
@@ -1252,16 +1264,22 @@
       "sha256": "6cfdefbdc2c9d89db1be158826b28a19607653b48400b741fd765358acf51eef"
     },
     {
+      "bytes": 6456,
+      "mode": "100644",
+      "path": "v65/tests/test_native_supervisor_return.py",
+      "sha256": "a78d2dd09632f78ffabefe3e5b3ebc87af218d956f7c7a047a80fa2e75f917e6"
+    },
+    {
       "bytes": 8985,
       "mode": "100644",
       "path": "v65/tests/test_terminal_guard.py",
       "sha256": "ef0be124c8f62e0b4b132f47427d5687893d0bda33637f9d321163c54c5a1903"
     },
     {
-      "bytes": 17212,
+      "bytes": 17564,
       "mode": "100644",
       "path": "v65/tests/test_v99_orchestration.py",
-      "sha256": "df47cc0b22c3d5288fbbd97c26671ecd6ac2cc40b426f4134d9d6a3e8ef8c234"
+      "sha256": "03e588eed3d3861e47b96d2a292355110e3d8fe0040ab0709e385cadb772481b"
     }
   ],
   "schema": "work8-v99-exact-source-manifest-v1"

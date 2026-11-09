@@ -9,6 +9,7 @@ An export refusal has a separate, tiny, immutable metadata-only return path.
 import gzip
 import hashlib
 import io
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -552,7 +553,170 @@ def handoff_failure_files(root, exporter):
     return files
 
 
-def failure_projections(root):
+# Existing source-pinned schema; no diagnostic vocabulary is reconstructed from
+# runtime strings. Preflight observations remain separate from full failures.
+DIAGNOSTIC_ROOT = Path(__file__).resolve().parents[1]/'foundation/controller/scripts/work8/native-transition'
+HOST_STAGES = frozenset(('actual-initialized-native-live-brain-capture', 'actual-live-brain-baseline',
+    'actual-runtime-start', 'cleanup', 'drain-and-independent-readback',
+    'native-preflight-application-start', 'phase-b-authorised-application-start', 'native-preflight-orderly-drain',
+    'new-private-capture-exchanges-refusal-controls', 'normal-return-version', 'normal-view',
+    'original-mounted-entrypoint-contract-before-startup', 'preflight', 'recovery-version',
+    'retained-v98-frontend-startup-evidence', 'verify-complete-current-package-delivery'))
+BROWSER_STAGES = frozenset(('START', 'NORMAL_AUTHENTICATION_BOOTSTRAP', 'NORMAL_AUTHENTICATION',
+    'NORMAL_IDENTITY', 'CANONICAL_TWIN_CREATE', 'CANONICAL_TWIN_RESUME',
+    'CANONICAL_LABELLED_ADMISSION', 'NATIVE_SCHEDULER_GRANT', 'REAL_TIMER_CANONICAL_PROGRESS',
+    'CANONICAL_PAUSE_AND_REVOKE', 'RECOVERY_SWITCH', 'RECOVERY_WRITES_AND_AUTHORITY_REFUSED',
+    'RECOVERY_AUTHENTICATED_CANONICAL_PRESENTATION', 'NORMAL_RETURN_SWITCH',
+    'NORMAL_RETURN_CANONICAL_EQUALITY', 'NORMAL_RETURN_IDEMPOTENT_REPLAY'))
+
+
+def diagnostic_module(name):
+    spec = importlib.util.spec_from_file_location('v104_export_'+name, DIAGNOSTIC_ROOT/(name+'.py'))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def bounded_browser(value, native):
+    need(isinstance(value, dict), 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+    # These are literal browser assertion/mapping tokens. Unknown uppercase
+    # strings are not accepted just because they look like a safe error code.
+    codes = native.CODES | {'COMPONENT_VERIFIED_AVAILABILITY_BOUND_INVALID'}
+    frames = value.get('sourceFrames')
+    frames = frames if isinstance(frames, list) else []
+    return {'stage': value.get('stage') if value.get('stage') in BROWSER_STAGES else 'UNKNOWN',
+        'firstFailure': True,
+        'name': value.get('name') if value.get('name') in ('Error', 'AssertionError', 'TypeError', 'TimeoutError') else 'OTHER_ERROR',
+        'code': value.get('code') if isinstance(value.get('code'), str) and value['code'] in codes else 'UNCLASSIFIED_ERROR',
+        'sourceFrames': [x for x in frames[:8] if isinstance(x, str) and re.fullmatch(r'browser\.mjs:[0-9]{1,6}:[0-9]{1,6}', x)],
+        'browserConnected': value.get('browserConnected') if type(value.get('browserConnected')) is bool else None,
+        'ownerPageClosed': value.get('ownerPageClosed') if type(value.get('ownerPageClosed')) is bool else None,
+        'arbitraryErrorValuesRetained': False}
+
+
+def diagnostic_bindings(root, phase):
+    result = {'phase': phase, 'scope': 'PHASE_DIAGNOSTIC_NOT_ACCEPTANCE',
+              'crossProducerCausalOrder': 'NOT_ESTABLISHED'}
+    for name, key in (('run-contract.json', 'runContractSHA256'),
+                      ('evidence/'+phase+'/stage-start.json', 'stageStartSHA256')):
+        try:
+            result[key] = sha(regular_bytes(root/name, MAX_FILE))
+        except Exception:
+            pass
+    return result
+
+
+def native_failure_projections(root, exporter):
+    """Retain independent producers without promoting an earlier observation
+    (including a successful preflight drain diagnostic) into the fatal cause.
+    """
+    files = {}
+    try:
+        native = diagnostic_module('native_diagnostics')
+    except Exception:
+        native = None
+    try:
+        docker = diagnostic_module('docker_diagnostics')
+    except Exception:
+        docker = None
+    names = ['evidence/'+phase+'/first-native-failure.json' for phase in ('preflight', 'full')]
+    names += ['evidence/full/'+name for name in ('first-controller-failure.json',
+        'runner-result.json', 'browser-stderr-sanitized.json', 'transition-browser-result.json',
+        'command-first-exception.json', 'first-docker-failure.json', 'first-docker-state-error.json',
+        'host-private-handoff-first-failure.json', 'private-handoff-first-failure.json')]
+    names += ['controller-supervisor-full.json']
+    for name in names:
+        if not (root/name).exists():
+            continue
+        phase = 'preflight' if '/preflight/' in name else 'full'
+        projection = {'schema': 'work8-v104-native-failure-projection-v1', 'sourcePath': name,
+            'status': 'UNAVAILABLE_OR_INVALID', 'rawOutputRetained': False,
+            'applicationAcceptance': False, **diagnostic_bindings(root, phase)}
+        try:
+            raw = regular_bytes(root/name, MAX_FAILURE)
+            projection['sourceReceiptSHA256'] = sha(raw)
+            value = parse(raw)
+            need(isinstance(value, dict), 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+            basename = Path(name).name
+            if basename == 'first-native-failure.json':
+                projection['nativeDiagnostic'] = native.sanitize(value)
+                projection['code'] = projection['nativeDiagnostic']['assertion']
+                projection['fatalCauseAssociation'] = 'NOT_ESTABLISHED_BY_DIAGNOSTIC_ALONE'
+            elif basename == 'first-controller-failure.json':
+                need(value.get('schema') == 'work8-v104-controller-first-failure-v1' and
+                     value.get('firstFailure') is True and value.get('phase') == phase,
+                     'EXPORT_RECEIPT_SCHEMA_REFUSED')
+                projection.update(operation=value.get('operation') if value.get('operation') in
+                    ('EXAMINATION_ASSERTION', 'WAIT_FOR_CONTROL_MARKER', 'OBSERVE_CONTAINER_EXIT',
+                     'OBSERVE_BROWSER_FAILURE', 'EXECUTE_REVIEWED_COMMAND') else 'UNKNOWN',
+                    stage=value.get('stage') if value.get('stage') in HOST_STAGES else 'UNKNOWN',
+                    controllerException=native.sanitize(value['safeFirstFailure']))
+                markers = ('browser-complete.json', 'live-brain-captured.json', 'normal-complete.json',
+                    'normal-observed.json', 'recovery-complete.json', 'replayed-observed.json',
+                    'returned-observed.json', 'runtime-drained.json', 'runtime-ready.json')
+                if value.get('marker') in markers:
+                    projection['marker'] = value['marker']
+                if value.get('role') in ('backend', 'browser'):
+                    projection['role'] = value['role']
+                if isinstance(value.get('browserFailure'), dict):
+                    projection['browserFailure'] = bounded_browser(value['browserFailure'], native)
+            elif basename == 'runner-result.json':
+                projection.update(stage=value.get('failedStage') if value.get('failedStage') in HOST_STAGES else 'UNKNOWN',
+                    controllerStatus=value.get('status') if value.get('status') in ('FAIL', 'PASS_AWAITING_INDEPENDENT_TECHNICAL_REVIEW') else 'UNKNOWN')
+            elif basename in ('browser-stderr-sanitized.json', 'transition-browser-result.json'):
+                if basename == 'browser-stderr-sanitized.json':
+                    need(value.get('schema') == 'work8-browser-sanitized-stderr-v1' and
+                         isinstance(value.get('diagnostics'), list) and len(value['diagnostics']) <= 1,
+                         'EXPORT_RECEIPT_SCHEMA_REFUSED')
+                    candidates = value['diagnostics']
+                else:
+                    candidates = [{**value['failure'], 'stage': value.get('failedStage')}] if isinstance(value.get('failure'), dict) else []
+                projection['browserDiagnostics'] = [bounded_browser(row, native) for row in candidates]
+            elif basename in ('host-private-handoff-first-failure.json', 'private-handoff-first-failure.json'):
+                need(value.get('schema') in ('WORK8_HOST_PRIVATE_HANDOFF_FAILURE_V1', 'WORK8_PRIVATE_HANDOFF_FAILURE_V1'),
+                     'EXPORT_RECEIPT_SCHEMA_REFUSED')
+                projection.update(operation=native.token(value.get('operation')),
+                    errno=value.get('errno') if value.get('errno') in native.ERRNOS else None,
+                    numericErrno=native.integer(value.get('numericErrno')),
+                    identity=native.identity(value.get('identity')))
+            elif basename == 'command-first-exception.json':
+                need(value.get('schema') == 'work8-v61-command-output-metadata-v1', 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+                projection.update(operation='EXECUTE_REVIEWED_COMMAND',
+                    commandException=native.command_exception(value.get('exception', {})),
+                    exitCode=value.get('exitCode') if type(value.get('exitCode')) is int and -255 <= value['exitCode'] <= 255 else None)
+                if isinstance(value.get('safeFirstFailure'), dict):
+                    projection['nativeDiagnostic'] = native.sanitize(value['safeFirstFailure'])
+            elif basename.startswith('first-docker-'):
+                projection['dockerDiagnostic'] = docker.validate(value)
+            else:
+                need(value.get('schema') == 'work8-v65-controller-supervisor-v1' and value.get('phase') == phase,
+                     'EXPORT_RECEIPT_SCHEMA_REFUSED')
+                projection.update(operation='SUPERVISE_NATIVE_CONTROLLER',
+                    controllerExitCode=value.get('controllerExitCode') if type(value.get('controllerExitCode')) is int and -255 <= value['controllerExitCode'] <= 255 else None,
+                    firstSupervisorCause=value.get('firstSupervisorCause') if value.get('firstSupervisorCause') in
+                        (None, 'EXTERNAL_TERMINATION', 'CONTROLLER_STAGE_DEADLINE', 'CONTROLLER_OUTPUT_BOUND') else 'UNKNOWN',
+                    firstObservedFailureKind=value.get('firstObservedFailureKind') if value.get('firstObservedFailureKind') in
+                        (None, 'NATIVE_DIAGNOSTIC', 'SUPERVISOR') else 'UNKNOWN', observationOrderOnly=True)
+                for key in ('nativeFailureObservationSequence', 'supervisorCauseObservationSequence'):
+                    projection[key] = native.integer(value.get(key))
+                if isinstance(value.get('firstNativeFailure'), dict):
+                    projection['nativeDiagnostic'] = native.sanitize(value['firstNativeFailure'])
+            projection['status'] = 'BOUNDED_CAUSAL_METADATA_ONLY'
+            data = encoded(projection)
+            need(len(data) <= MAX_FAILURE and not any(pattern.search(data) for pattern in exporter.PATTERNS),
+                 'EXPORT_HANDOFF_DIAGNOSTIC_SECRET_REFUSED')
+        except Exception:
+            # Invalid input produces fixed metadata only, never partially
+            # projected unsafe values or a replacement for another first cause.
+            projection = {key: projection[key] for key in ('schema', 'sourcePath', 'rawOutputRetained',
+                'applicationAcceptance', 'phase', 'scope', 'crossProducerCausalOrder', 'sourceReceiptSHA256',
+                'runContractSHA256', 'stageStartSHA256') if key in projection}
+            projection['status'] = 'UNAVAILABLE_OR_INVALID'
+        files['prior-cause-projections/'+name.replace('/', '-')] = encoded(projection)
+    return files
+
+
+def failure_projections(root, exporter):
     """Closed-schema cleanup and prior-cause metadata, never arbitrary errors."""
     files = {}
     cleanup_path = root/'runtime-evidence/receipt-cleanup.json'
@@ -593,9 +757,7 @@ def failure_projections(root):
         'ACTUAL_NATIVE_STARTUP_DEADLINE', 'SAFE_CAUSAL_RECEIPT_UNAVAILABLE',
     }
     for name in ('runtime-evidence/first-runtime-failure.json',
-                 'runtime-evidence/first-runtime-command-failure.json',
-                 'evidence/preflight/first-native-failure.json',
-                 'evidence/full/first-native-failure.json'):
+                 'runtime-evidence/first-runtime-command-failure.json'):
         if not (root/name).exists():
             continue
         projection = {'schema': 'work8-v101-prior-cause-projection-v1', 'sourcePath': name,
@@ -616,6 +778,7 @@ def failure_projections(root):
         except Exception:
             pass
         files['prior-cause-projections/'+name.replace('/', '-')]=encoded(projection)
+    files.update(native_failure_projections(root, exporter))
     return files
 
 
@@ -693,7 +856,7 @@ def finalize(root, exporter, source_check=None):
         # A partial full archive is never selected by the upload path. Only
         # this explicitly constructed bounded metadata package is exported.
         failure_files = {'first-export-failure.json': raw, **handoff_failure_files(root, exporter),
-                         **failure_projections(root)}
+                         **failure_projections(root, exporter)}
         write_archive(final, failure_files, 'failure', MAX_FAILURE)
         verify_final_directory(final)
         failure = Refusal(parse(raw)['code'])

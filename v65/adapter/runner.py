@@ -14,13 +14,13 @@ FOUNDATION=HERE.parent/'foundation'
 sys.path.insert(0,str(FOUNDATION/'runtime'))
 from runtime_common import atomic,bounded_process,Refusal as RuntimeRefusal
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
-CONTROLLER_SHA='6cec9e303f09672af3806b84b2370ffc82249af70364f9d846d92d19003ef001'
+CONTROLLER_SHA='212caa80de6680340b7797b3131fed2130a2fed2725e38796385005f699239ca'
 DRIVER_SHA='49d50e3d985e0a544780422f8ad56c9a10311d835bbea667f8c384ccf9d9e480'
 MEMBERSHIP_CONTROLLER_SHA='59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b'
 MEMBERSHIP_CONTROLLER_BYTES=20923
-REVIEW_REF='work8/v101-review-20261109'
-LAUNCH_REF='refs/heads/work8/v101-a5-20261109'
-WORKFLOW_PATH='.github/workflows/work8-v101-a5.yml'
+REVIEW_REF='work8/v104-review-20261109'
+LAUNCH_REF='refs/heads/work8/v104-a5-20261109'
+WORKFLOW_PATH='.github/workflows/work8-v104-a5.yml'
 ENV_KEYS=('GITHUB_ACTIONS','GITHUB_REPOSITORY','GITHUB_REPOSITORY_ID','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_SHA','GITHUB_JOB','RUNNER_OS','RUNNER_ARCH')
 
 def load_module(name,path):
@@ -517,7 +517,7 @@ def await_review(root,stage,artifact_id,artifact_digest,max_seconds=1500):
  expected=package_bindings(c)
  if stage=='preflight':expected.update(runContractSHA256=sha(root/'run-contract.json'),runnerResultSHA256=sha(root/'evidence/preflight/runner-result.json'),artifactIndexSHA256=sha(root/'evidence/preflight/artifact-index.json'))
  destination=root/('source-review.json' if stage=='packages-and-executor' else 'preflight-review.json');require(not destination.exists(),'INDEPENDENT_ACK_ALREADY_COMMITTED')
- filename='v101-review/'+str(c['executor']['runId'])+'/'+stage+'.json'
+ filename='v104-review/'+str(c['executor']['runId'])+'/'+stage+'.json'
  while time.monotonic()<deadline:
   require_remaining_lifetime(c,'preflight' if stage=='packages-and-executor' else 'full',time.time())
   ref=api('/repos/'+REPOSITORY+'/git/ref/heads/'+REVIEW_REF,allow_missing=True,deadline=deadline)
@@ -551,7 +551,12 @@ def native(root,stage):
   atomic(root/'launch-readiness.json',{'schema':'work8-v65-launch-readiness-v1','verdict':'A5 LAUNCH READY — PASS','scope':'Admitted packages and isolated executor; application assertions still require actual native preflight and examination','sessionId':c['executor']['sessionId'],'packageAndExecutorReviewSHA256':sha(root/'source-review.json'),'runContractSHA256':sha(root/'run-contract.json'),'applicationAcceptance':False},exclusive=True)
  atomic(attempt,{'schema':'work8-v65-native-attempt-v1','stage':stage,'sessionId':c['executor']['sessionId'],'startedAtEpoch':time.time()},exclusive=True)
  supervisor=load_module('v65_supervisor',root/'runtime/launch-controller.py')
- script=root/'controller/scripts/work8/native-transition/run-native-examination.py';observed=supervisor.supervise(['/usr/bin/python3','-B',str(script),'--preflight-v62-native-brain' if stage=='preflight' else '--examine-v62-native-brain'],env,900 if stage=='preflight' else 1500,600)
+ diagnostics=load_module('v104_native_diagnostics',FOUNDATION/'controller/scripts/work8/native-transition/native_diagnostics.py')
+ def safe_native(value):
+  safe=diagnostics.sanitize(value)
+  require(not any(pattern.search(json.dumps(safe).encode()) for pattern in exporter(root).PATTERNS),'SAFE_NATIVE_DIAGNOSTIC_SECRET_REFUSED')
+  return safe
+ script=root/'controller/scripts/work8/native-transition/run-native-examination.py';observed=supervisor.supervise(['/usr/bin/python3','-B',str(script),'--preflight-v62-native-brain' if stage=='preflight' else '--examine-v62-native-brain'],env,900 if stage=='preflight' else 1500,600,native_sanitizer=safe_native)
  result={'schema':'work8-v65-controller-supervisor-v1','phase':stage,'sessionId':c['executor']['sessionId'],'status':'CONTROLLER_EXITED_ZERO_REQUIRES_INDEPENDENT_REVIEW' if observed['controllerExitCode']==0 and not observed['firstSupervisorCause'] else 'FAIL_CLOSED','wholeRowsAccepted':[],**observed};atomic(receipt,result,exclusive=True)
  require(result['status']=='CONTROLLER_EXITED_ZERO_REQUIRES_INDEPENDENT_REVIEW','NATIVE_CONTROLLER_FIRST_FAILURE');return result
 
@@ -564,7 +569,7 @@ def exporter(root):
  module.TOP_NAMES.update({'provider/retained-evidence.json','external-release.json','release-transport.json','acceptance-source-admission.json','operative-launch-plan.json','artifact-return-provider.json','single-launch-readback.json','upload-bounds/packages-and-executor.json','upload-bounds/preflight.json'})
  for operation in ('identity','download','prepare','admission','review-export','await-review-packages-and-executor','native-preflight','native-export-preflight','await-review-preflight','native-full','cleanup','final-export'):
   module.TOP_NAMES.add('acceptance-attempts/'+operation+'.json')
- module.STAGE_NAMES.update({'native-time-budget','owner-policy-lifecycle','first-evidence-handoff-failure'})
+ module.STAGE_NAMES.update({'native-time-budget','owner-policy-lifecycle','first-evidence-handoff-failure','first-controller-failure'})
  return module
 
 def review_export(root):

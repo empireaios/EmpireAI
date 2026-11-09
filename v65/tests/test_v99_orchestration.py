@@ -1,4 +1,4 @@
-"""V101 changed-boundary source controls. No Docker/native/application PASS."""
+"""V104 changed-boundary source controls. No Docker/native/application PASS."""
 import ast
 import base64
 import copy
@@ -88,8 +88,8 @@ class RetainedStartupControls(unittest.TestCase):
         self.assertFalse(plan['authority']['reservationCommitted'])
         self.assertEqual(plan['authority']['reservationUSD'], 0)
 
-    def test_consumed_v95_v100_authority_and_old_ledger_are_refused(self):
-        for changes in ({'ownerDirective': 'EMPIREAI_V99_SEPARATE_NATIVE_EXECUTION_APPROVAL'}, {'reservationId': 'V99-A5-NATIVE-ONCE-20261109'}, {'priorOverallHoldsUSD': 12.46}, {'priorA5HoldsUSD': 2.51}, {'availableBeforeReservationUSD': 7.49}, {'ownerDirective': 'EMPIREAI_V95_SEPARATE_NATIVE_EXECUTION_APPROVAL'}, {'reservationId': 'V95-A5-NATIVE-ONCE-20261108'}, {'priorOverallHoldsUSD': 12.15}, {'maximumProspectiveUSD': .01}, {'independentAckAuthority': None}):
+    def test_consumed_v95_v100_v103_authority_and_old_ledger_are_refused(self):
+        for changes in ({'ownerDirective': 'EMPIREAI_V101_SEPARATE_NATIVE_EXECUTION_APPROVAL'}, {'reservationId': 'V101-A5-NATIVE-ONCE-20261109'}, {'ownerDirective': 'EMPIREAI_V103_SEPARATE_NATIVE_EXECUTION_APPROVAL'}, {'reservationId': 'V103-A5-NATIVE-ONCE-20261109'}, {'priorOverallHoldsUSD': 14.57}, {'priorA5HoldsUSD': 4.62}, {'availableBeforeReservationUSD': 5.38}, {'ownerDirective': 'EMPIREAI_V99_SEPARATE_NATIVE_EXECUTION_APPROVAL'}, {'reservationId': 'V99-A5-NATIVE-ONCE-20261109'}, {'priorOverallHoldsUSD': 12.46}, {'priorA5HoldsUSD': 2.51}, {'availableBeforeReservationUSD': 7.49}, {'ownerDirective': 'EMPIREAI_V95_SEPARATE_NATIVE_EXECUTION_APPROVAL'}, {'reservationId': 'V95-A5-NATIVE-ONCE-20261108'}, {'priorOverallHoldsUSD': 12.15}, {'maximumProspectiveUSD': .01}, {'independentAckAuthority': None}):
             with self.subTest(changes=changes):
                 a = authority_fixture()
                 a.update(changes)

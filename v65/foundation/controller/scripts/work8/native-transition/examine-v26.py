@@ -9,6 +9,7 @@ from native_diagnostics import save_first,from_error,parse_stream,emit_fallback,
 from private_contract import backend_options,browser_options,private_write,safe_docker_contract
 from entrypoint_contract import execute as verify_mounted_entrypoints
 from command_diagnostics import invoke as invoke_reviewed_command
+from controller_failure import preserve as preserve_controller_failure
 from docker_diagnostics import capture_first as capture_first_docker_error
 from evidence_handoff import transfer as transfer_private_evidence
 
@@ -326,6 +327,11 @@ try:
    assert inspect(NAMES['backend'])['State']['ExitCode']==0
    result.update(status='PASS_AWAITING_INDEPENDENT_TECHNICAL_REVIEW',distinctFrontendTransition=True,newerCommittedRecordsPreserved=True,canonicalBusinessData=True,wholeRowsAccepted=[],independentAuditLogLifecycleReviewRequired=True,candidateBytes=candidate_packages.directory_bytes(ROOT/'artifacts'))
 except Exception as error:
+ # Retain the host exception separately from earlier child observations and
+ # before cleanup. Diagnostic write failure cannot replace the original error.
+ result['controllerFailurePreserved']=preserve_controller_failure(OUT,error,stage,STAGE_NAME,
+     make_failure=from_error,parse_browser=sanitized_browser_stderr,
+     browser_file=PRIVATE/'control/browser-first-failure.json')
  causal=PRIVATE/'evidence/first-native-failure.json'
  if causal.is_file() and not causal.is_symlink() and causal.stat().st_size<=16384:
   try:save_first(OUT,sanitize(json.loads(causal.read_text())))

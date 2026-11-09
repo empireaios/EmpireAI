@@ -24,14 +24,14 @@ def fixture():
     binding = {'tree': '3'*40, 'parent': entry.PARENT,
                'manifestSHA256': source['sourceManifestSHA256'],
                'workflowSHA256': source['workflowSHA256']}
-    owner = {'schema': 'work8-v101-owner-approval-v1', 'ownerDecisionRecorded': True,
-             'directive': 'EMPIREAI_V101_SEPARATE_NATIVE_EXECUTION_APPROVAL',
+    owner = {'schema': 'work8-v104-owner-approval-v1', 'ownerDecisionRecorded': True,
+             'directive': 'EMPIREAI_V104_SEPARATE_NATIVE_EXECUTION_APPROVAL',
              'scope': 'one-native-a5-08-09-attempt', 'maximumAttempts': 1,
              'maximumJobSeconds': 18000, 'maximumAdditionalExposureUSD': '2.11',
              'maximumReservationUSD': '2.11', 'noAutomaticRetry': True,
              'approvedSource': binding, 'reservationId': entry.RESERVATION,
              'independentAckAuthority': entry.ACK_AUTHORITY}
-    reservation = {'schema': 'work8-v101-reservation-v1',
+    reservation = {'schema': 'work8-v104-reservation-v1',
                    'recordType': 'ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE',
                    'status': 'COMMITTED', 'reservationId': entry.RESERVATION,
                    'approvedSource': binding, 'reservationUSD': '2.11',
@@ -40,8 +40,8 @@ def fixture():
     plan['status'] = 'OWNER_APPROVED_EXTERNAL_RELEASE'
     plan['authority'].update(ownerDecisionRecorded=True, approvalScope='one-native-a5-08-09-attempt',
         maximumAttempts=1, reservationCommitted=True, reservationId=entry.RESERVATION,
-        reservationUSD=2.11, maximumProspectiveUSD=2.11, currentOverallHoldsUSD=16.68,
-        currentA5HoldsUSD=6.73, remainingUnreservedUSD=3.27,
+        reservationUSD=2.11, maximumProspectiveUSD=2.11, currentOverallHoldsUSD=18.79,
+        currentA5HoldsUSD=8.84, remainingUnreservedUSD=1.16,
         independentAckAuthority=copy.deepcopy(entry.ACK_AUTHORITY))
     record = {'schema': 'work8-v99-external-release-v1', 'repository': entry.REPOSITORY,
               'launchBranch': entry.LAUNCH_BRANCH, 'workflowPath': entry.WORKFLOW,
