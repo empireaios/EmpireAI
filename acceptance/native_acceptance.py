@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 import re
 import stat
+import subprocess
+import urllib.parse
 import sys
 import time
 
@@ -27,15 +29,16 @@ import runner
 import reuse_completed_candidates as reuse
 import qualify_only as retained
 from runtime_common import atomic
+from retained_evidence import verify_retained_evidence
 
 REPOSITORY = 'empireaios/EmpireAI'
-LAUNCH_BRANCH = 'work8/v95-a5-20261108'
-REVIEW_BRANCH = 'work8/v95-review-20261108'
-WORKFLOW = '.github/workflows/work8-v95-a5.yml'
-RELEASE_PATH = 'acceptance/v95-release.json'
-PARENT = 'f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8'
-JOB_NAME = 'A5 V95 coherent native acceptance'
-RESERVATION = 'V95-A5-NATIVE-ONCE-20261108'
+LAUNCH_BRANCH = 'work8/v99-a5-20261109'
+REVIEW_BRANCH = 'work8/v99-review-20261109'
+WORKFLOW = '.github/workflows/work8-v99-a5.yml'
+RELEASE_PATH = 'acceptance/v99-release.json'
+PARENT = 'fbf326f14df64c1cc3717942a490f19af4a87a89'
+JOB_NAME = 'A5 V99 coherent native acceptance'
+RESERVATION = 'V99-A5-NATIVE-ONCE-20261109'
 COMMANDS = ('identity', 'download', 'prepare', 'admission', 'review-export',
             'await-review', 'native', 'native-export', 'cleanup',
             'final-export', 'artifact-check')
@@ -44,6 +47,19 @@ UPLOAD_BUDGETS = {'packages-and-executor': 64 * 1024**2,
                   'preflight': 1024**2, 'final': 1024**2}
 ENVELOPE_RESERVE = 16 * 1024**2
 ARTIFACT_RETENTION_DAYS = 7
+ACK_AUTHORITY = {'maximumOwnerEndorsements': 2, 'issueNumber': 113,
+                 'stages': ['packages-and-executor', 'preflight'],
+                 'scope': 'safe-artifact-acknowledgment-only',
+                 'otherMessagesAuthorized': False}
+OWNER_ID = 295548100
+MAX_EXPOSURE_USD = '2.11'
+LEDGER_BEFORE = {'aggregateHoldsUSD': '12.46', 'A5HoldsUSD': '2.51',
+                 'unreservedA5AuthorityUSD': '7.49'}
+LEDGER_AFTER = {'aggregateHoldsUSD': '14.57', 'A5HoldsUSD': '4.62',
+                'unreservedA5AuthorityUSD': '5.38'}
+CREDENTIAL_ENV = ('GH_TOKEN', 'GITHUB_TOKEN', 'ACTIONS_RUNTIME_TOKEN')
+DOCKER_OVERRIDE_ENV = ('DOCKER_HOST', 'DOCKER_CONTEXT', 'DOCKER_CONFIG',
+                       'DOCKER_TLS_VERIFY', 'DOCKER_CERT_PATH', 'DOCKER_API_VERSION')
 
 
 def need(value, code):
@@ -61,28 +77,36 @@ def canonical(value):
 
 def read_json(path, maximum=1024*1024):
     p = Path(path)
-    s = p.lstat()
-    need(p.resolve() == p and stat.S_ISREG(s.st_mode) and s.st_nlink == 1 and
-         0 < s.st_size <= maximum, 'ACCEPTANCE_REGULAR_BOUNDED_JSON_REQUIRED')
-    return json.loads(p.read_bytes())
+    fd = os.open(p, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    with os.fdopen(fd, 'rb') as stream:
+        observed = os.fstat(stream.fileno())
+        need(p.is_absolute() and p.resolve() == p and
+             stat.S_ISREG(observed.st_mode) and observed.st_nlink == 1 and
+             0 < observed.st_size <= maximum, 'ACCEPTANCE_REGULAR_BOUNDED_JSON_REQUIRED')
+        raw = stream.read(maximum + 1)
+    need(len(raw) == observed.st_size, 'ACCEPTANCE_JSON_SIZE_CHANGED')
+    return json.loads(raw)
 
 
 def source_inventory(root=SOURCE):
     root = Path(root)
+    need(root.is_absolute() and root.resolve() == root, 'CANONICAL_ACCEPTANCE_SOURCE_REQUIRED')
     rows = []
     for path in sorted(root.rglob('*')):
         relative = path.relative_to(root)
-        if '.git' in relative.parts:
+        if relative.parts[0] == '.git':
             continue
-        mode = path.lstat().st_mode
+        need('.git' not in relative.parts, 'ACCEPTANCE_NESTED_GIT_REFUSED')
+        need('__pycache__' not in relative.parts and path.suffix not in ('.pyc', '.pyo'),
+             'ACCEPTANCE_SOURCE_CACHE_REFUSED')
+        observed = path.lstat()
+        mode = observed.st_mode
         need(not stat.S_ISLNK(mode), 'ACCEPTANCE_SOURCE_LINK_REFUSED')
         if stat.S_ISDIR(mode):
             continue
-        need(stat.S_ISREG(mode) and path.stat().st_nlink == 1,
+        need(stat.S_ISREG(mode) and observed.st_nlink == 1 and not mode & 0o6000,
              'ACCEPTANCE_SOURCE_SPECIAL_FILE_REFUSED')
         name = relative.as_posix()
-        need('__pycache__' not in relative.parts and path.suffix not in ('.pyc', '.pyo'),
-             'ACCEPTANCE_SOURCE_CACHE_REFUSED')
         if name in MANIFEST_EXCLUSIONS:
             continue
         data = path.read_bytes()
@@ -95,25 +119,46 @@ def validate_source(root=SOURCE):
     root = Path(root)
     manifest_path = root / 'acceptance/source-manifest.json'
     manifest = read_json(manifest_path, 4*1024**2)
-    need(manifest.get('schema') == 'work8-v95-exact-source-manifest-v1' and
+    need(manifest.get('schema') == 'work8-v99-exact-source-manifest-v1' and
          manifest.get('exclusions') == sorted(MANIFEST_EXCLUSIONS),
          'ACCEPTANCE_SOURCE_MANIFEST_SCHEMA')
     rows = source_inventory(root)
     need(manifest.get('files') == rows and len(rows) > 0,
          'ACCEPTANCE_COMPLETE_SOURCE_INVENTORY_CHANGED')
     config = read_json(root / 'acceptance/config.json')
-    need(config.get('localOwnerDecisionRecorded') is False and
-         config.get('localReservationCommitted') is False and
-         config.get('requiresExternalRelease') is True and
-         config.get('launchBranch') == LAUNCH_BRANCH and
-         config.get('reviewBranch') == REVIEW_BRANCH and
-         config.get('workflowPath') == WORKFLOW and
-         config.get('artifactRetentionDays') == ARTIFACT_RETENTION_DAYS and
-         config.get('maximumObservedArtifactRetentionSeconds') == 169*3600 and
-         config.get('maximumBillableArtifactHoursIncludingRounding') == 170 and
-         config.get('requiredParent') == PARENT,
-         'ACCEPTANCE_FAIL_CLOSED_CONFIG_REQUIRED')
-    return {'schema': 'work8-v95-source-admission-v1',
+    expected = {
+        'schema': 'work8-v99-native-preparation-config-v1',
+        'status': 'PREPARATION_ONLY_EXTERNAL_OWNER_RELEASE_REQUIRED',
+        'localOwnerDecisionRecorded': False, 'localReservationCommitted': False,
+        'requiresExternalRelease': True, 'launchBranch': LAUNCH_BRANCH,
+        'reviewBranch': REVIEW_BRANCH, 'workflowPath': WORKFLOW,
+        'externalReleasePath': RELEASE_PATH, 'requiredParent': PARENT,
+        'maximumAttempts': 1, 'maximumJobSeconds': 18000,
+        'maximumAdditionalExposureUSD': MAX_EXPOSURE_USD,
+        'maximumReservationUSD': MAX_EXPOSURE_USD,
+        'artifactRetentionDays': ARTIFACT_RETENTION_DAYS,
+        'maximumObservedArtifactRetentionSeconds': 169*3600,
+        'maximumBillableArtifactHoursIncludingRounding': 170,
+        'qualificationCampaignMayRepeat': False,
+        'frontendStartupDiagnosticMayRepeat': False,
+        'applicationPackagesMayRebuild': False,
+        'retainedInputArtifactId': 13340201255,
+        'retainedInputArtifactBytes': 338251567,
+        'retainedInputArtifactSHA256': '39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755',
+    }
+    need(all(type(config.get(k)) is type(v) and config.get(k) == v
+             for k, v in expected.items()), 'ACCEPTANCE_FAIL_CLOSED_CONFIG_REQUIRED')
+    need(config.get('currentAuthority') == {
+        'ownerDecisionRecorded': False, 'reservationCommitted': False,
+        'additionalAttemptsAuthorized': 0, 'newReservationUSD': '0.00',
+        'actualProviderChargeUSD': None}, 'LOCAL_EXECUTION_AUTHORITY_REFUSED')
+    need(config.get('operatingLocks') == {
+        'acceptedRequirements': 48, 'outstandingRequirements': 16, 'wholeRowTarget': 'A5',
+        'PR113': 'DRAFT_UNMERGED', 'Pillow': 'NOT_BORN', 'Commerce': 'LOCKED',
+        'Work9': 'INACTIVE', 'productionRailwayMutation': False,
+        'originalVolumeAlteration': False, 'protectedDataTransfer': False,
+        'commerceActivation': False}, 'ACCEPTANCE_OPERATING_LOCKS_CHANGED')
+    return {'schema': 'work8-v99-source-admission-v1',
             'sourceManifestSHA256': digest(manifest_path.read_bytes()),
             'workflowSHA256': digest((root / WORKFLOW).read_bytes()),
             'filesVerified': len(rows), 'sourceBytesChanged': False,
@@ -122,20 +167,19 @@ def validate_source(root=SOURCE):
 
 def validate_release(record, source, remote_commit, launch_template):
     """Pure validation. Never treats a source template as owner authority."""
-    need(record.get('schema') == 'work8-v95-external-release-v1',
-         'EXTERNAL_V95_RELEASE_REQUIRED')
+    need(record.get('schema') == 'work8-v99-external-release-v1',
+         'EXTERNAL_V99_RELEASE_REQUIRED')
     need(record.get('repository') == REPOSITORY and
          record.get('launchBranch') == LAUNCH_BRANCH and
          record.get('workflowPath') == WORKFLOW and
-         record.get('maximumAttempts') == 1,
+         type(record.get('maximumAttempts')) is int and record.get('maximumAttempts') == 1,
          'EXTERNAL_RELEASE_EXACT_ROUTE_REQUIRED')
     binding = record.get('source', {})
-    need(re.fullmatch('[a-f0-9]{40}', str(binding.get('tree', ''))) and
-         binding.get('tree') == remote_commit['tree']['sha'] and
-         binding.get('parent') == PARENT and
-         [p['sha'] for p in remote_commit['parents']] == [PARENT] and
-         binding.get('manifestSHA256') == source['sourceManifestSHA256'] and
-         binding.get('workflowSHA256') == source['workflowSHA256'],
+    need(binding == {'tree': remote_commit['tree']['sha'], 'parent': PARENT,
+                     'manifestSHA256': source['sourceManifestSHA256'],
+                     'workflowSHA256': source['workflowSHA256']} and
+         re.fullmatch('[a-f0-9]{40}', str(binding.get('tree', ''))) and
+         [p['sha'] for p in remote_commit['parents']] == [PARENT],
          'EXTERNAL_RELEASE_EXACT_SOURCE_REQUIRED')
     owner = record.get('ownerApprovalReceipt', {})
     reservation = record.get('reservationReceipt', {})
@@ -144,29 +188,28 @@ def validate_release(record, source, remote_commit, launch_template):
     need(record.get('ownerApprovalSHA256') == owner_sha and
          record.get('reservationReceiptSHA256') == reservation_sha,
          'EXTERNAL_RECEIPT_CANONICAL_HASH_REQUIRED')
-    need(owner.get('schema') == 'work8-v95-owner-approval-v1' and
+    need(owner.get('schema') == 'work8-v99-owner-approval-v1' and
          owner.get('ownerDecisionRecorded') is True and
-         owner.get('directive') == 'EMPIREAI_V95_SEPARATE_NATIVE_EXECUTION_APPROVAL' and
+         owner.get('directive') == 'EMPIREAI_V99_SEPARATE_NATIVE_EXECUTION_APPROVAL' and
          owner.get('scope') == 'one-native-a5-08-09-attempt' and
-         owner.get('maximumAttempts') == 1 and
+         type(owner.get('maximumAttempts')) is int and owner.get('maximumAttempts') == 1 and
          owner.get('maximumJobSeconds') == 18000 and
-         owner.get('maximumAdditionalExposureUSD') == '0.01' and
-         owner.get('maximumReservationUSD') == '0.01' and
+         owner.get('maximumAdditionalExposureUSD') == MAX_EXPOSURE_USD and
+         owner.get('maximumReservationUSD') == MAX_EXPOSURE_USD and
          owner.get('noAutomaticRetry') is True and
          owner.get('approvedSource') == binding and
-         owner.get('reservationId') == RESERVATION,
+         owner.get('reservationId') == RESERVATION and
+         owner.get('independentAckAuthority') == ACK_AUTHORITY,
          'SEPARATE_FULL_NATIVE_OWNER_APPROVAL_REQUIRED')
-    need(reservation.get('schema') == 'work8-v95-reservation-v1' and
+    need(reservation.get('schema') == 'work8-v99-reservation-v1' and
          reservation.get('recordType') == 'ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE' and
          reservation.get('status') == 'COMMITTED' and
          reservation.get('reservationId') == RESERVATION and
          reservation.get('ownerApprovalSHA256') == owner_sha and
          reservation.get('approvedSource') == binding and
-         reservation.get('before') == {'aggregateHoldsUSD': '12.15', 'A5HoldsUSD': '2.20',
-                                       'unreservedA5AuthorityUSD': '7.80'} and
-         reservation.get('after') == {'aggregateHoldsUSD': '12.16', 'A5HoldsUSD': '2.21',
-                                      'unreservedA5AuthorityUSD': '7.79'} and
-         reservation.get('reservationUSD') == '0.01',
+         reservation.get('before') == LEDGER_BEFORE and
+         reservation.get('after') == LEDGER_AFTER and
+         reservation.get('reservationUSD') == MAX_EXPOSURE_USD,
          'EXACT_UNIQUE_NATIVE_RESERVATION_REQUIRED')
     plan = record.get('launchPlan', {})
     fixed = lambda item: {k: v for k, v in item.items() if k not in ('authority', 'status')}
@@ -179,6 +222,12 @@ def validate_release(record, source, remote_commit, launch_template):
          'OPERATIVE_AUTHORITY_RECEIPTS_REQUIRED')
     guard.validate_authority(authority)
     return plan
+
+
+def git_value(*args):
+    return subprocess.check_output(['git', '-C', str(SOURCE), *args], timeout=5,
+        env={'PATH': '/usr/bin:/bin', 'LANG': 'C.UTF-8'}, stderr=subprocess.DEVNULL,
+        text=True).strip()
 
 
 def fetch_release(source):
@@ -201,7 +250,9 @@ def fetch_release(source):
     need(len(raw) == item['size'], 'EXTERNAL_RELEASE_COMPLETE_BYTES_REQUIRED')
     record = json.loads(raw)
     commit = runner.api('/repos/'+REPOSITORY+'/git/commits/'+os.environ['GITHUB_SHA'])
-    need(commit['sha'] == os.environ['GITHUB_SHA'], 'ACTUAL_SOURCE_COMMIT_REQUIRED')
+    need(commit['sha'] == os.environ['GITHUB_SHA'] == git_value('rev-parse', 'HEAD') and
+         commit['tree']['sha'] == git_value('rev-parse', 'HEAD^{tree}'),
+         'ACTUAL_REMOTE_LOCAL_SOURCE_REQUIRED')
     plan = validate_release(record, source, commit, read_json(SOURCE/'v65/launch-plan.json'))
     return record, plan, {'reviewCommit': review_commit,
                          'reviewAuthorLogin': author['login'], 'reviewAuthorId': author['id'],
@@ -209,26 +260,57 @@ def fetch_release(source):
                          'sourceTree': commit['tree']['sha'], 'parent': PARENT}
 
 
+def validate_launch_actor(run, environment=None):
+    """Provider authentication, not forgeable commit author attribution."""
+    environment = os.environ if environment is None else environment
+    expected = {'id': OWNER_ID, 'login': 'empireaios', 'type': 'User'}
+    actors = {}
+    for key in ('actor', 'triggering_actor'):
+        actor = run.get(key)
+        need(isinstance(actor, dict) and type(actor.get('id')) is int and
+             all(actor.get(field) == value for field, value in expected.items()),
+             'AUTHENTICATED_OWNER_LAUNCH_REQUIRED')
+        actors[key] = {field: actor[field] for field in expected}
+    for key, value in [('GITHUB_ACTOR_ID', str(OWNER_ID)),
+                       ('GITHUB_ACTOR', 'empireaios'),
+                       ('GITHUB_TRIGGERING_ACTOR', 'empireaios')]:
+        if key in environment:
+            need(environment[key] == value, 'OWNER_LAUNCH_ENVIRONMENT_DISAGREEMENT')
+    return {**actors, 'authenticationBasis': 'CURRENT_PROVIDER_RUN_ACTOR_AND_TRIGGERING_ACTOR'}
+
+
 def single_launch_readback():
-    """A new run attempt1 cannot reuse the one grant after branch recreation."""
-    path = ('/repos/'+REPOSITORY+'/actions/workflows/'+WORKFLOW.rsplit('/', 1)[1]+
-            '/runs?branch='+LAUNCH_BRANCH+'&per_page=100')
+    """A new run attempt1 cannot reuse the grant after branch recreation."""
+    current = runner.api('/repos/'+REPOSITORY+'/actions/runs/'+os.environ['GITHUB_RUN_ID'])
+    need(str(current.get('id')) == os.environ['GITHUB_RUN_ID'] and
+         current.get('run_attempt') == 1 and current.get('event') == 'create' and
+         current.get('head_branch') == LAUNCH_BRANCH and
+         current.get('head_sha') == os.environ['GITHUB_SHA'] and
+         current.get('path') == WORKFLOW and current.get('status') == 'in_progress',
+         'SOLE_CURRENT_LAUNCH_RUN_REQUIRED')
+    actor = validate_launch_actor(current)
+    need(type(current.get('workflow_id')) is int and current['workflow_id'] > 0,
+         'CURRENT_WORKFLOW_SERVICE_ID_REQUIRED')
+    # A fresh create-only workflow need not exist on the default branch.
+    path = ('/repos/'+REPOSITORY+'/actions/workflows/'+str(current['workflow_id'])+
+            '/runs?branch='+urllib.parse.quote(LAUNCH_BRANCH, safe='')+'&per_page=100')
     listing = runner.api(path)
     runs = listing.get('workflow_runs', [])
     need(type(listing.get('total_count')) is int and
          listing['total_count'] == 1 and isinstance(runs, list) and len(runs) == 1,
          'EXACTLY_ONE_LAUNCH_RUN_REQUIRED')
-    current = runs[0]
-    need(str(current.get('id')) == os.environ['GITHUB_RUN_ID'] and
-         current.get('run_attempt') == 1 and current.get('event') == 'create' and
-         current.get('head_branch') == LAUNCH_BRANCH and
-         current.get('head_sha') == os.environ['GITHUB_SHA'] and
-         current.get('path') == WORKFLOW,
+    listed = runs[0]
+    need(all(listed.get(k) == current.get(k) for k in
+             ('id', 'run_attempt', 'event', 'head_branch', 'head_sha', 'path', 'workflow_id')),
          'SOLE_CURRENT_LAUNCH_RUN_REQUIRED')
-    return {'schema': 'work8-v95-single-launch-readback-v1',
-            'workflowPath': WORKFLOW, 'launchBranch': LAUNCH_BRANCH,
-            'runId': current['id'], 'runAttempt': 1, 'matchingRuns': 1,
+    need(validate_launch_actor(listed) == actor, 'LISTED_LAUNCH_ACTOR_CHANGED')
+    return {'schema': 'work8-v99-single-launch-readback-v1',
+            'workflowPath': WORKFLOW, 'workflowId': current['workflow_id'],
+            'launchBranch': LAUNCH_BRANCH, 'runId': current['id'],
+            'sourceCommit': current['head_sha'], 'runAttempt': 1, 'matchingRuns': 1,
+            'authenticatedLaunch': actor,
             'completeProviderListingSHA256': digest(canonical(listing)),
+            'providerRunSHA256': digest(canonical(current)),
             'observedAtEpoch': time.time(), 'automaticRetry': False}
 
 
@@ -237,10 +319,12 @@ def validate_root(root):
     run_id = os.environ.get('GITHUB_RUN_ID', '')
     temp = Path(os.environ.get('RUNNER_TEMP', '/invalid'))
     need(re.fullmatch('[1-9][0-9]*', run_id) and temp.is_absolute() and
-         root == temp / ('v95-a5-'+run_id), 'EXACT_CURRENT_RUN_ROOT_REQUIRED')
+         root == temp / ('v99-a5-'+run_id), 'EXACT_CURRENT_RUN_ROOT_REQUIRED')
     need(os.getuid() == os.geteuid() == os.getgid() == os.getegid() == 1001,
          'ORIGINAL_HOST_PRINCIPAL_REQUIRED')
-    need(os.environ.get('GITHUB_REPOSITORY') == REPOSITORY and
+    need(os.environ.get('GITHUB_ACTIONS') == 'true' and
+         os.environ.get('GITHUB_EVENT_NAME') == 'create' and
+         os.environ.get('GITHUB_REPOSITORY') == REPOSITORY and
          os.environ.get('GITHUB_REPOSITORY_ID') == guard.REPOSITORY_ID and
          os.environ.get('GITHUB_REF') == 'refs/heads/'+LAUNCH_BRANCH and
          os.environ.get('GITHUB_RUN_ATTEMPT') == '1' and
@@ -259,6 +343,21 @@ def admitted_plan(root, source):
     identity = read_json(root/'runner-identity.json')
     commit = {'tree': {'sha': transport['sourceTree']}, 'parents': [{'sha': PARENT}]}
     plan = validate_release(record, source, commit, read_json(SOURCE/'v65/launch-plan.json'))
+    launch = read_json(root/'single-launch-readback.json')
+    proof = verify_retained_evidence(SOURCE)
+    need(proof == read_json(root/'retained-evidence-admission.json'),
+         'RETAINED_NATIVE_EVIDENCE_CHANGED')
+    need(launch.get('schema') == 'work8-v99-single-launch-readback-v1' and
+         str(launch.get('runId')) == os.environ['GITHUB_RUN_ID'] and
+         launch.get('runAttempt') == launch.get('matchingRuns') == 1 and
+         launch.get('sourceCommit') == os.environ['GITHUB_SHA'] and
+         launch.get('workflowPath') == WORKFLOW and launch.get('launchBranch') == LAUNCH_BRANCH and
+         launch.get('automaticRetry') is False and
+         validate_launch_actor(launch.get('authenticatedLaunch', {})) == launch['authenticatedLaunch'],
+         'ADMITTED_AUTHENTICATED_LAUNCH_CHANGED')
+    need(git_value('rev-parse', 'HEAD') == os.environ['GITHUB_SHA'] and
+         git_value('rev-parse', 'HEAD^{tree}') == transport['sourceTree'],
+         'ADMITTED_GIT_SOURCE_CHANGED')
     need(identity['workflowCommit'] == os.environ.get('GITHUB_SHA') ==
          transport['actualSourceCommit'] and
          source == read_json(root/'acceptance-source-admission.json') and
@@ -272,13 +371,13 @@ def mark_attempt(root, command, stage=None):
     need(re.fullmatch('[a-z-]+', suffix), 'ACCEPTANCE_COMMAND_SCOPE')
     path = root/'acceptance-attempts'/(suffix+'.json')
     need(not path.exists(), 'ACCEPTANCE_OPERATION_ALREADY_ATTEMPTED')
-    atomic(path, {'schema': 'work8-v95-operation-attempt-v1', 'operation': suffix,
+    atomic(path, {'schema': 'work8-v99-operation-attempt-v1', 'operation': suffix,
                   'runId': os.environ.get('GITHUB_RUN_ID'), 'attempt': 1,
                   'startedAtEpoch': time.time(), 'automaticRetry': False}, exclusive=True)
 
 
 def drop_credentials():
-    for name in ('GH_TOKEN', 'GITHUB_TOKEN', 'ACTIONS_RUNTIME_TOKEN'):
+    for name in CREDENTIAL_ENV + DOCKER_OVERRIDE_ENV:
         os.environ.pop(name, None)
 
 
@@ -304,25 +403,26 @@ def artifact_return(root, artifact_id, artifact_digest):
     run_id = os.environ['GITHUB_RUN_ID']
     repo = runner.api('/repos/'+REPOSITORY)
     need(str(repo['id']) == guard.REPOSITORY_ID and repo['visibility'] == 'public' and
-         not repo['archived'], 'PUBLIC_ACTIVE_REPOSITORY_REQUIRED')
+         repo.get('private') is False and not repo['archived'], 'PUBLIC_ACTIVE_REPOSITORY_REQUIRED')
     run = runner.api('/repos/'+REPOSITORY+'/actions/runs/'+run_id)
     need(str(run['id']) == run_id and run['run_attempt'] == 1 and
          run['head_sha'] == os.environ['GITHUB_SHA'] and run['event'] == 'create' and
          run['path'] == WORKFLOW and run['head_branch'] == LAUNCH_BRANCH and
          run['status'] == 'in_progress', 'CURRENT_ARTIFACT_RETURN_RUN_REQUIRED')
+    actor = validate_launch_actor(run)
     jobs = runner.api('/repos/'+REPOSITORY+'/actions/runs/'+run_id+'/attempts/1/jobs?per_page=100')
     need(jobs['total_count'] == len(jobs['jobs']) == 1, 'ONE_JOB_REQUIRED')
     job = jobs['jobs'][0]
     need(job['name'] == JOB_NAME and job['status'] == 'in_progress' and
-         'ubuntu-24.04' in job['labels'] and 'self-hosted' not in job['labels'] and
+         job.get('run_id') == int(run_id) and job['labels'] == ['ubuntu-24.04'] and
          job.get('runner_name') == os.environ.get('RUNNER_NAME') and
          type(job.get('runner_id')) is int and job['runner_id'] > 0,
          'CURRENT_ARTIFACT_RETURN_HOST_REQUIRED')
     executor = {'runId': run_id, 'workflowCommit': run['head_sha']}
     result = runner.service_artifact({'executor': executor}, artifact_id, artifact_digest)
     atomic(root/'artifact-return-provider.json', {
-        'schema': 'work8-v95-artifact-return-provider-v1', **executor,
-        'jobId': job['id'], 'runnerId': job['runner_id'],
+        'schema': 'work8-v99-artifact-return-provider-v1', **executor,
+        'jobId': job['id'], 'runnerId': job['runner_id'], 'authenticatedLaunch': actor,
         'serviceRunSHA256': digest(canonical(run)),
         'serviceJobSHA256': digest(canonical(job)),
         'readOnlyProviderAttribution': True, 'nativeAdmissionGranted': False}, exclusive=True)
@@ -356,7 +456,7 @@ def preupload(root, label, directory):
     ceiling = size + ENVELOPE_RESERVE
     need(sum(row['maximumServiceZipBytes'] for row in previous)+ceiling <= 128*1024**2,
          'PREUPLOAD_CUMULATIVE_SERVICE_BOUND')
-    receipt = {'schema': 'work8-v95-preupload-bound-v1', 'label': label,
+    receipt = {'schema': 'work8-v99-preupload-bound-v1', 'label': label,
                'files': rows, 'logicalBytes': size, 'maximumServiceZipBytes': ceiling,
                'retentionDays': ARTIFACT_RETENTION_DAYS, 'overwrite': False, 'packageArchivesIncluded': False}
     atomic(state/(label+'.json'), receipt, exclusive=True)
@@ -369,11 +469,13 @@ def execute(args):
     # not erase the first refusal or authorize a new native operation.
     source = None if args.command in ('cleanup', 'final-export', 'artifact-check') else validate_source()
     if args.command == 'identity':
+        need(os.environ.get('RUNNER_DEBUG') != '1', 'PROVIDER_RUNNER_DEBUG_REFUSED')
         need(os.environ.get('GITHUB_REF') == 'refs/heads/'+LAUNCH_BRANCH and
              os.environ.get('GITHUB_RUN_ATTEMPT') == '1' and not root.exists(),
              'NEW_BRANCH_FIRST_ATTEMPT_FRESH_ROOT_REQUIRED')
-        record, plan, transport = fetch_release(source)
         launch_readback = single_launch_readback()
+        record, plan, transport = fetch_release(source)
+        retained_proof = verify_retained_evidence(SOURCE)
         control = root.parent/(root.name+'-release-admission')
         need(not control.exists(), 'RELEASE_ADMISSION_ALREADY_ATTEMPTED')
         control.mkdir(mode=0o700)
@@ -383,6 +485,7 @@ def execute(args):
         for name, value in [('external-release.json', record), ('operative-launch-plan.json', plan),
                             ('release-transport.json', transport),
                             ('single-launch-readback.json', launch_readback),
+                            ('retained-evidence-admission.json', retained_proof),
                             ('acceptance-source-admission.json', source)]:
             atomic(root/name, value, exclusive=True)
         for name in ('home', 'logs', 'reuse-evidence', 'runtime-evidence'):
@@ -449,7 +552,14 @@ def main():
     args = parser.parse_args()
     try:
         result = execute(args)
-        print(json.dumps(result, sort_keys=True))
+        # Detailed evidence remains in bounded allowlisted artifacts, never logs.
+        raw = canonical(result)
+        summary = {'operation': args.command, 'status': 'PASS_OPERATION',
+                   'resultSHA256': digest(raw), 'resultBytes': len(raw),
+                   'rawOutputRetained': False, 'wholeRowsAccepted': []}
+        line = json.dumps(summary, sort_keys=True)
+        need(len(line.encode()) <= 2048, 'CONSOLE_SUMMARY_BOUND')
+        print(line)
         return 0
     except Exception as exc:
         code = str(exc) if isinstance(exc, (guard.Refusal, retained.Refusal)) and re.fullmatch('[A-Z0-9_]{1,100}', str(exc)) else 'ACCEPTANCE_'+type(exc).__name__.upper()

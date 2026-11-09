@@ -1,0 +1,36 @@
+{
+  "artifact": {
+    "digest": "sha256:22e9f1b1bd9ba1de469c4249b9fb933a91872b3530db78293f7648345e044238",
+    "id": 13640304481,
+    "size_in_bytes": 13818,
+    "workflow_run": {
+      "head_branch": "work8/v97-frontend-startup-20261109",
+      "head_repository_id": 1275922460,
+      "head_sha": "fbf326f14df64c1cc3717942a490f19af4a87a89",
+      "id": 42539444860,
+      "repository_id": 1275922460
+    }
+  },
+  "artifactCount": 1,
+  "executedJobs": 1,
+  "extractedFromSHA256": "5c39f539f4ccc08585390beb2b484938b02ae24c20f991b3912159b52221a65c",
+  "job": {
+    "conclusion": "success",
+    "head_sha": "fbf326f14df64c1cc3717942a490f19af4a87a89",
+    "id": 128910880107,
+    "run_attempt": 1,
+    "run_id": 42539444860,
+    "status": "completed"
+  },
+  "run": {
+    "conclusion": "success",
+    "head_sha": "fbf326f14df64c1cc3717942a490f19af4a87a89",
+    "id": 42539444860,
+    "path": ".github/workflows/work8-v97-frontend-startup.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "schema": "work8-v99-retained-provider-extract-v1",
+  "scope": "HISTORICAL_FRONTEND_ONLY_NO_CURRENT_AUTHORITY",
+  "tree": "dfac35790ff7af1ad6dceaa0cdf6ee1a37796aa5"
+}

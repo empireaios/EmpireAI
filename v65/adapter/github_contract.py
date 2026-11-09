@@ -17,11 +17,11 @@ import subprocess
 import time
 
 SCHEMA='work8-v65-github-execution-contract-v1'
-OWNER_DIRECTIVE='EMPIREAI_V95_SEPARATE_NATIVE_EXECUTION_APPROVAL'
-NATIVE_RESERVATION_ID='V95-A5-NATIVE-ONCE-20261108'
+OWNER_DIRECTIVE='EMPIREAI_V99_SEPARATE_NATIVE_EXECUTION_APPROVAL'
+NATIVE_RESERVATION_ID='V99-A5-NATIVE-ONCE-20261109'
 ARTIFACT_LIMITS={'maximumObjects':3,'maximumCumulativeServiceZipBytes':128*1024**2,'retentionDays':7,'maximumObservedRetentionSeconds':169*3600,'maximumUploadPayloadBytes':64*1024**2,'zipEnvelopeReserveBytes':16*1024**2}
 V94_DIAGNOSTIC_EVIDENCE={'runId':42478186509,'jobId':128724128654,'artifactId':13616930561,'artifactSHA256':'6450dca99a0e50c04ce41d874eabd9adc4ca0fdc337f8bbe9c82b0d2c69d2915','workflowCommit':'f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8','diagnosticControlsSHA256':'2aeaecbf74d66b1368a9b55a2e01500dbdc54bd2d8e54bd98b882e95cc8e5dbf'}
-FRESH_ADMISSION_MODE='V95_FRESH_EXECUTOR_ADMISSION_REUSING_V94_DIAGNOSTICS'
+FRESH_ADMISSION_MODE='V99_FRESH_EXECUTOR_ADMISSION_REUSING_V94_V98_EVIDENCE'
 REPOSITORY='empireaios/EmpireAI'
 REPOSITORY_ID='1275922460'
 CAPABILITIES=['SETUID','SETGID','CHOWN','DAC_OVERRIDE','KILL','SYS_PTRACE']
@@ -65,17 +65,29 @@ def verify_manifest(directory,path,digest,max_files=20000):
 
 def validate_authority(a):
  require(a['ownerDirective']==OWNER_DIRECTIVE,'CURRENT_OWNER_AUTHORITY_REQUIRED')
- require(a['work8CeilingUSD']==100 and a['existingAdditionalA5USD']==10 and a['priorOverallHoldsUSD']==12.15 and a['priorA5HoldsUSD']==2.20 and a['availableBeforeReservationUSD']==7.80,'CURRENT_FINANCIAL_AUTHORITY_REQUIRED')
+ require(a['work8CeilingUSD']==100 and a['existingAdditionalA5USD']==10 and a['priorOverallHoldsUSD']==12.46 and a['priorA5HoldsUSD']==2.51 and a['availableBeforeReservationUSD']==7.49,'CURRENT_FINANCIAL_AUTHORITY_REQUIRED')
  require(a.get('ownerDecisionRecorded') is True and digest_string(a.get('ownerApprovalReceiptSHA256')) and a.get('approvalScope')=='one-native-a5-08-09-attempt' and type(a.get('maximumAttempts')) is int and a['maximumAttempts']==1,'SEPARATE_EXPLICIT_OWNER_DECISION_REQUIRED')
+ require(a.get('independentAckAuthority')=={'maximumOwnerEndorsements':2,'issueNumber':113,'stages':['packages-and-executor','preflight'],'scope':'safe-artifact-acknowledgment-only','otherMessagesAuthorized':False},'EXPLICIT_TWO_SAFE_ACK_ENDORSEMENTS_REQUIRED')
  require(a.get('reservationCommitted') is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')
  require(a.get('reservationId')==NATIVE_RESERVATION_ID and digest_string(a.get('reservationReceiptSHA256')),'DISTINCT_FULL_NATIVE_RESERVATION_REQUIRED')
  for key in ('reservationUSD','maximumProspectiveUSD'):
-  require(type(a[key]) in (int,float) and math.isfinite(a[key]) and 0<=a[key]<=7.80,'FINITE_CURRENT_EXPOSURE_REQUIRED')
- require(a['maximumProspectiveUSD']==0.01 and a['reservationUSD']==0.01,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED')
+  require(type(a[key]) in (int,float) and math.isfinite(a[key]) and 0<=a[key]<=7.49,'FINITE_CURRENT_EXPOSURE_REQUIRED')
+ require(a['maximumProspectiveUSD']==2.11 and a['reservationUSD']==2.11,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED')
  require(a['maximumProspectiveUSD']<=a['reservationUSD'],'EXPOSURE_EXCEEDS_RESERVATION')
  require(round(a['priorOverallHoldsUSD']+a['reservationUSD'],2)==a['currentOverallHoldsUSD'] and round(a['priorA5HoldsUSD']+a['reservationUSD'],2)==a['currentA5HoldsUSD'] and round(a['availableBeforeReservationUSD']-a['reservationUSD'],2)==a['remainingUnreservedUSD'] and a['reservationCommitted'] is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')
  require(all(a[k] is False for k in ('renewed','productionOperations','protectedDataTransfer','commerceActivation','subscriptions','automaticRecreate','automaticRerun')),'ORIGINAL_OPERATING_LOCKS_REQUIRED')
  return a
+
+def frontend_reuse_receipt(proof,backend,frontends):
+ """Admit retained exact-source startup proof, never a new native observation."""
+ require(proof.get('schema')=='work8-v99-retained-evidence-reuse-v1' and proof.get('status')=='VERIFIED_HISTORICAL_EVIDENCE_ONLY','REVIEWED_RETAINED_EVIDENCE_REQUIRED')
+ require(all(proof.get(k) is False for k in ('qualificationRepeated','frontendDiagnosticRepeated','currentNativeLifecycleAccepted','currentExecutionAuthority')),'HISTORICAL_EVIDENCE_SCOPE_REQUIRED')
+ startup=proof.get('frontendStartup',{})
+ require(all(startup.get(k)==v for k,v in {'runId':42539444860,'jobId':128910880107,'artifactId':13640304481,'artifactSHA256':'22e9f1b1bd9ba1de469c4249b9fb933a91872b3530db78293f7648345e044238','sourceCommit':'fbf326f14df64c1cc3717942a490f19af4a87a89','sourceTree':'dfac35790ff7af1ad6dceaa0cdf6ee1a37796aa5','normal':'PASS_NATIVE_STARTUP_AND_READINESS','recovery':'PASS_NATIVE_STARTUP_AND_READINESS','security':'PASS','firstErrorPreservation':'PASS','cleanupAndIndependentReadback':'PASS','originalA5Acceptance':False}.items()),'EXACT_V98_FRONTEND_STARTUP_EVIDENCE_REQUIRED')
+ packages=proof.get('packageIdentities',{})
+ require(packages.get('carrier')==backend and packages.get('normal')==frontends['normal'] and packages.get('recovery')==frontends['recovery'],'RETAINED_FRONTEND_PACKAGE_IDENTITY_CHANGED')
+ require(proof.get('compatibleSourceSHA256',{}).get('currentPackages')=='e45e24497297805ad086dfff2048d9e5dc24b2c8918b55195affad217b773024','RETAINED_FRONTEND_LAUNCH_SOURCE_CHANGED')
+ return {'schema':'work8-v99-frontend-startup-evidence-reuse-v1','status':'PASS_RETAINED_V98_STARTUP_EVIDENCE_ONLY','historicalEvidence':startup,'normalArchiveSHA256':frontends['normal']['sha256'],'recoveryArchiveSHA256':frontends['recovery']['sha256'],'carrierImage':backend['image'],'frontendStartedThisPreflight':False,'qualificationRepeated':False,'currentNativeLifecycleAccepted':False,'businessEventsCreated':False}
 
 def validate_current_artifact_listing(listing,executor):
  """Validate complete current-job service metadata without creating an object."""
@@ -129,6 +141,7 @@ def validate_contract(c,now,env=None):
  require(p['preflightSeconds']<=900 and p['examinationSeconds']<=1500 and p['cleanupSeconds']>=600 and p['evidenceExportSeconds']>=1800,'NATIVE_AND_CLEANUP_BOUNDS_REQUIRED')
  require(sum(p.values())<=e['timeoutSeconds'],'DURATION_PLAN_EXCEEDS_JOB_TIMEOUT')
  require(c['sources']==SOURCES,'EXACT_SOURCE_COMMIT_TREE_REQUIRED')
+ require(digest_string(c.get('retainedEvidenceSHA256')),'SOURCE_BOUND_RETAINED_EVIDENCE_REQUIRED')
  return c
 
 def validate_image_provenance(p,e):
@@ -291,7 +304,7 @@ def verify_ack(ack,c,stage,expected,now):
  return ack
 
 def package_bindings(c):
- return {k:c[k] for k in ('packageManifestSHA256','controllerManifestSHA256','driverManifestSHA256','sourceIdentitiesSHA256','nativeQualificationSHA256','launchContractSHA256','runnerIdentitySHA256','runtimeImageProvenanceSHA256')}
+ return {k:c[k] for k in ('packageManifestSHA256','controllerManifestSHA256','driverManifestSHA256','sourceIdentitiesSHA256','nativeQualificationSHA256','launchContractSHA256','runnerIdentitySHA256','runtimeImageProvenanceSHA256','retainedEvidenceSHA256')}
 
 def verify_source_identity(root,c):
  s=pinned_json(pathlib.Path(root)/'source-identities.json',c['sourceIdentitiesSHA256'])
@@ -320,6 +333,8 @@ def gate(root,controller,stage):
  verify_manifest(controller,controller/'controller-manifest.json',c['controllerManifestSHA256'])
  verify_manifest(root/'native-transition-driver',root/'native-transition-driver/controller-manifest.json',c['driverManifestSHA256'])
  package=pinned_json(root/'v65-packages.json',c['packageManifestSHA256'])
+ retained=pinned_json(root/'provider/retained-evidence.json',c['retainedEvidenceSHA256'])
+ frontend_reuse_receipt(retained,BACKEND,FRONTENDS)
  require(package['backend']==BACKEND and package['frontends']==FRONTENDS,'CURRENT_PACKAGE_IDENTITY_CHANGED')
  for pin in [BACKEND,*FRONTENDS.values()]:archive_identity(root/'artifacts'/pin['file'],pin)
  actual={p.name for p in (root/'artifacts').iterdir()};require(actual=={x['file'] for x in [BACKEND,*FRONTENDS.values()]},'UNINDEXED_PACKAGE_OR_PARTIAL_REFUSED')
@@ -327,7 +342,7 @@ def gate(root,controller,stage):
  require(sha(root/'runner-identity.json')==c['runnerIdentitySHA256'],'CURRENT_RUNNER_IDENTITY_RECEIPT_CHANGED')
  validate_current_executor_continuity(p,c['executor'])
  q=pinned_json(root/'native-qualification.json',c['nativeQualificationSHA256'])
- require(q.get('evidenceMode')==FRESH_ADMISSION_MODE,'V95_FRESH_EXECUTOR_ADMISSION_REQUIRED')
+ require(q.get('evidenceMode')==FRESH_ADMISSION_MODE,'V99_FRESH_EXECUTOR_ADMISSION_REQUIRED')
  validate_executor_security(q,c['executor'],p)
  require('sha256:'+q['backendImageSHA256']==BACKEND['image'],'QUALIFIED_BACKEND_PACKAGE_CHANGED')
  require(q['executionRoot']==str(root),'QUALIFIED_EXECUTION_ROOT_CHANGED')
@@ -354,4 +369,4 @@ def gate(root,controller,stage):
   verify_ack(ack,c,'preflight',expected,time.time())
   result=json.loads((root/'evidence/preflight/runner-result.json').read_text())
   require(result['status']=='PASS_ACTUAL_NATIVE_LIVE_BRAIN_PREFLIGHT_AWAITING_INDEPENDENT_REVIEW' and result['temporaryContainersAndNetworkRemoved'] is True and result['privateTemporaryDataRemoved'] is True,'ACTUAL_CLEAN_PREFLIGHT_REQUIRED')
- return c
+ return {**c,'retainedEvidence':retained}

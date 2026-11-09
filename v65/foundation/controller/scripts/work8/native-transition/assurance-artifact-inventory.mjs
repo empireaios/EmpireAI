@@ -44,6 +44,19 @@ function database(file,expected){
  }finally{db?.close();fs.closeSync(fd);}
 }
 
+function completedProof(file,id){
+ const {fd,stat}=openFile(file,65536);let bytes,body;
+ try{bytes=fs.readFileSync(fd);body=JSON.parse(bytes);stable(file,stat);}finally{fs.closeSync(fd);}
+ assert.equal(body.schema,'isolated-assurance-discrepancy-v2');assert.equal(body.revision,revision);
+ assert.equal(body.isolatedSyntheticSource,true);assert.equal(body.productionRecordsMutated,0);assert.equal(body.inferenceCalls,0);assert.equal(body.commerceWrites,0);assert.equal(body.pillowSelfReportUsed,false);
+ for(const [key,value] of Object.entries({runtimeDiscrepancy:'FAIL',unavailableCollector:'SOURCE_UNAVAILABLE',staleEvidence:'STALE',authorityDiscrepancy:'FAIL',interruptedCycle:'ASSURANCE_OVERDUE',missedCycle:'ASSURANCE_OVERDUE',reopenedInIndependentProcess:true,freshProcessRestart:false}))assert.equal(body.checks?.[key],value);
+ const r=body.readback;assert.equal(r.challenge,id);assert.match(r.receiptDigest,/^[0-9a-f]{64}$/);
+ assert.ok(Number.isSafeInteger(r.writerPid)&&r.writerPid>0&&Number.isSafeInteger(r.readerPid)&&r.readerPid>0&&r.writerPid!==r.readerPid);
+ assert.equal(r.scope,'existing-independent-process-committed-readback');assert.equal(r.freshProcessRestart,false);
+
+ return {proof:{bytes:bytes.length,sha256:sha(bytes)},receiptDigest:r.receiptDigest};
+}
+
 export function captureAssuranceArtifacts(root){
  const dir=path.resolve(root,'commissioning');assert.equal(fs.realpathSync(dir),dir);
  const names=fs.readdirSync(dir).sort(),probes=new Map(),proofs=new Map();assert.ok(names.length<=20000);
@@ -65,15 +78,8 @@ export function captureAssuranceArtifacts(root){
  assert.deepEqual([...probes.keys()].sort(),[...proofs.keys()].sort(),'ASSURANCE_PROBE_PROOF_PAIR_MISSING');
  const artifacts={};
  for(const id of [...probes.keys()].sort()){
-  const file=path.join(dir,proofs.get(id)),{fd,stat}=openFile(file,65536);let bytes,body;
-  try{bytes=fs.readFileSync(fd);body=JSON.parse(bytes);stable(file,stat);}finally{fs.closeSync(fd);}
-  assert.equal(body.schema,'isolated-assurance-discrepancy-v2');assert.equal(body.revision,revision);
-  assert.equal(body.isolatedSyntheticSource,true);assert.equal(body.productionRecordsMutated,0);assert.equal(body.inferenceCalls,0);assert.equal(body.commerceWrites,0);assert.equal(body.pillowSelfReportUsed,false);
-  for(const [key,value] of Object.entries({runtimeDiscrepancy:'FAIL',unavailableCollector:'SOURCE_UNAVAILABLE',staleEvidence:'STALE',authorityDiscrepancy:'FAIL',interruptedCycle:'ASSURANCE_OVERDUE',missedCycle:'ASSURANCE_OVERDUE',reopenedInIndependentProcess:true,freshProcessRestart:false}))assert.equal(body.checks?.[key],value);
-  const r=body.readback;assert.equal(r.challenge,id);assert.match(r.receiptDigest,/^[0-9a-f]{64}$/);
-  assert.ok(Number.isSafeInteger(r.writerPid)&&r.writerPid>0&&Number.isSafeInteger(r.readerPid)&&r.readerPid>0&&r.writerPid!==r.readerPid);
-  assert.equal(r.scope,'existing-independent-process-committed-readback');assert.equal(r.freshProcessRestart,false);
-  artifacts[id]={proof:{bytes:bytes.length,sha256:sha(bytes)},database:database(path.join(dir,probes.get(id)),r.receiptDigest)};
+  const completed=completedProof(path.join(dir,proofs.get(id)),id);
+  artifacts[id]={proof:completed.proof,database:database(path.join(dir,probes.get(id)),completed.receiptDigest)};
  }
  return {schema:'work8-v61-current-assurance-artifact-inventory-v1',source:revision,artifacts,rawRowsRetained:false};
 }
@@ -82,4 +88,68 @@ export function compareAssuranceArtifacts(baseline,current){
  assert.equal(current.schema,baseline.schema);assert.equal(current.source,baseline.source);
  for(const [id,prior] of Object.entries(baseline.artifacts))assert.deepEqual(current.artifacts[id],prior,'COMMITTED_ASSURANCE_PROBE_OR_PROOF_CHANGED');
  return {preserved:Object.keys(baseline.artifacts).length,added:Object.keys(current.artifacts).filter(id=>!(id in baseline.artifacts)).length,classification:'SOURCE_DEFINED_DIAGNOSTIC_ARTIFACTS_NO_HEALTH_ACCEPTANCE'};
+}
+
+// Before the coordinator permits the first capture, wait for the application's
+// already-running Assurance initializer to finish publishing its immutable pair.
+// This read-only prerequisite does not hold or replace the whole-app capture
+// fence, does not assert health, and does not confer A5 acceptance. The original
+// full inventory and later independent preservation comparisons remain strict.
+export function createAssuranceStartupPrerequisite(root){
+ const completed=new Map();
+ return ()=>{
+  const dir=path.resolve(root,'commissioning');
+  let directory;try{directory=fs.lstatSync(dir);}catch(error){if(error?.code==='ENOENT')return null;throw error;}
+  assert.ok(directory.isDirectory()&&!directory.isSymbolicLink(),'ASSURANCE_ARTIFACT_FILE_REFUSED');
+  assert.equal(fs.realpathSync(dir),dir);
+  const names=fs.readdirSync(dir).sort(),probes=new Map(),proofs=new Map();assert.ok(names.length<=20000);
+  for(const name of names){
+   let match;
+   if(match=name.match(probe)){probes.set(match[1],name);continue;}
+   if(match=name.match(proof)){proofs.set(match[1],name);continue;}
+   if(name.startsWith('assurance-probe-')){
+    const base=name.replace(/-(wal|shm|journal)$/,'');
+    assert.ok(base!==name&&probe.test(base),'UNDECLARED_ASSURANCE_PROBE_FILE');
+    const st=fs.lstatSync(path.join(dir,name));
+    assert.ok(st.isFile()&&!st.isSymbolicLink()&&st.nlink===1&&st.size<=4*1024*1024,'ASSURANCE_SIDECAR_REFUSED');
+    assert.ok(names.includes(base),'ORPHAN_ASSURANCE_SIDECAR');
+   }
+   if(name.startsWith('assurance-discrepancy-proof-v2-'))assert.fail('UNDECLARED_ASSURANCE_PROOF_FILE');
+  }
+  assert.ok(probes.size<=64,'CURRENT_ASSURANCE_PROBE_REQUIRED');
+  for(const name of probes.values()){const st=fs.lstatSync(path.join(dir,name));assert.ok(st.isFile()&&!st.isSymbolicLink()&&st.nlink===1&&st.size<=4*1024*1024,'ASSURANCE_ARTIFACT_FILE_REFUSED');}
+  for(const id of proofs.keys())assert.ok(probes.has(id),'ASSURANCE_PROBE_PROOF_PAIR_MISSING');
+  for(const id of completed.keys())assert.ok(probes.has(id)&&proofs.has(id),'COMMITTED_ASSURANCE_PROBE_OR_PROOF_CHANGED');
+  for(const [id,name] of proofs){
+   let published;
+   try{published=completedProof(path.join(dir,name),id);}
+   catch(error){
+    // writeFileSync publishes a proof only after the database is committed and
+    // independently read back. A first concurrent partial write may finish;
+    // an already observed completed proof must never become partial or change.
+    const inProgress=error instanceof SyntaxError||error?.message==='ASSURANCE_ARTIFACT_CHANGED_DURING_READ';
+    if(inProgress&&!completed.has(id))continue;
+    throw error;
+   }
+   const current={proof:published.proof,database:database(path.join(dir,probes.get(id)),published.receiptDigest)};
+   if(completed.has(id))assert.deepEqual(current,completed.get(id),'COMMITTED_ASSURANCE_PROBE_OR_PROOF_CHANGED');
+   else completed.set(id,current);
+  }
+  if(probes.size===0||completed.size!==probes.size||proofs.size!==probes.size)return null;
+  // Re-run the unchanged complete inventory, including sidecar, integrity,
+  // schema, source, independent-reader and committed-receipt digest assertions.
+  const inventory=captureAssuranceArtifacts(root);
+  assert.deepEqual(inventory.artifacts,Object.fromEntries([...completed].sort(([a],[b])=>a.localeCompare(b))),'COMMITTED_ASSURANCE_PROBE_OR_PROOF_CHANGED');
+  return {schema:'work8-v99-assurance-startup-prerequisite-v1',status:'READY_REQUIRED_IMMUTABLE_ASSURANCE_ARTIFACTS_ONLY',source:inventory.source,pairCount:completed.size,logicalSha256:sha(json(inventory)),readOnly:true,wholeApplicationSnapshot:false,healthAcceptance:false,wholeRowsAccepted:[],rawRowsRetained:false};
+ };
+}
+
+// Metadata only: no raw assertion text, filesystem path, row or protected value.
+export function safeAssuranceStartupFailure(error){
+ const codes=new Set(['ASSURANCE_ARTIFACT_FILE_REFUSED','ASSURANCE_ARTIFACT_CHANGED_DURING_READ','ASSURANCE_PROBE_UNCOMMITTED','ASSURANCE_PROOF_DATABASE_DIGEST_MISMATCH','UNDECLARED_ASSURANCE_PROBE_FILE','ASSURANCE_SIDECAR_REFUSED','ORPHAN_ASSURANCE_SIDECAR','UNDECLARED_ASSURANCE_PROOF_FILE','CURRENT_ASSURANCE_PROBE_REQUIRED','ASSURANCE_PROBE_PROOF_PAIR_MISSING','COMMITTED_ASSURANCE_PROBE_OR_PROOF_CHANGED']);
+ const errnos=new Set(['ENOENT','EACCES','EPERM','ELOOP','ENOTDIR','EISDIR','EIO','EBUSY']);
+ const classes=new Set(['AssertionError','SyntaxError','TypeError','RangeError','Error']);
+ const firstLine=String(error?.message??'').split('\n')[0];
+ const sourceFrames=[...String(error?.stack??'').matchAll(/(?:^|[\s/(])assurance-artifact-inventory\.mjs:([0-9]{1,6}):([0-9]{1,6})(?=[)\s]|$)/gm)].slice(0,8).map(m=>'assurance-artifact-inventory.mjs:'+m[1]+':'+m[2]);
+ return {schema:'work8-v99-safe-assurance-startup-failure-v1',firstFailure:true,operation:'VALIDATE_REQUIRED_IMMUTABLE_ASSURANCE_ARTIFACTS',code:codes.has(firstLine)?firstLine:error?.code==='ERR_SQLITE_ERROR'?'ASSURANCE_SQLITE_READ_REFUSED':'ASSURANCE_PROOF_CONTRACT_REFUSED',errorClass:classes.has(error?.name)?error.name:'Error',errno:errnos.has(error?.code)?error.code:null,sourceFrames,sourceSHA256:sha(fs.readFileSync(new URL(import.meta.url))),rawOutputRetained:false,rawRecordsRetained:false};
 }

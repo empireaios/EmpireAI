@@ -1,0 +1,156 @@
+{
+  "baseline": {
+    "accepted": 48,
+    "certification": "NO_GO",
+    "missionStatus": "IN_PROGRESS",
+    "outstanding": 16,
+    "satisfiedA5Groups": 8
+  },
+  "checkpointKey": "v94A5PublicationRecovery20261108",
+  "execution": {
+    "Q01_Q05": {
+      "Q01": {
+        "evidence": [
+          {
+            "bytes": 16001,
+            "path": "prepared/original-contract-q01-q03.json",
+            "sha256": "f4f3ac67c29a55f3801d5e724dcecd6053b5f6c14ce3f6b2bcfbf9168e002e24"
+          },
+          {
+            "bytes": 504,
+            "path": "prepared/package-origin.json",
+            "sha256": "721c3da78a94956fa9bd24d8758ad71b4b9b0bb4f84c221c42bb2c48fe0338c4"
+          },
+          {
+            "bytes": 270,
+            "path": "candidate-download.json",
+            "sha256": "e29e1ad040ebe42320a0833110461feb951652b66f7f8513872445b521d1f4cc"
+          }
+        ],
+        "meaning": "Source reconstruction attribution reused from retained immutable packages; no reconstruction rebuild",
+        "verdict": "PASS_QUALIFICATION_ONLY"
+      },
+      "Q02": {
+        "evidence": [
+          {
+            "bytes": 16001,
+            "path": "prepared/original-contract-q01-q03.json",
+            "sha256": "f4f3ac67c29a55f3801d5e724dcecd6053b5f6c14ce3f6b2bcfbf9168e002e24"
+          },
+          {
+            "bytes": 301,
+            "path": "identity/source-admission.json",
+            "sha256": "aaa376060eab534905c63bbaa0826e19901298a75b07c5f56cbfd9612726c3c3"
+          },
+          {
+            "bytes": 301,
+            "path": "source-inventory-final.json",
+            "sha256": "aaa376060eab534905c63bbaa0826e19901298a75b07c5f56cbfd9612726c3c3"
+          }
+        ],
+        "meaning": "Current dependency locks and immutable pinned build inputs verified",
+        "verdict": "PASS_QUALIFICATION_ONLY"
+      },
+      "Q03": {
+        "evidence": [
+          {
+            "bytes": 16001,
+            "path": "prepared/original-contract-q01-q03.json",
+            "sha256": "f4f3ac67c29a55f3801d5e724dcecd6053b5f6c14ce3f6b2bcfbf9168e002e24"
+          },
+          {
+            "bytes": 3556,
+            "path": "prepared/frontend-normal-loading.json",
+            "sha256": "e0154522d55881cbc68cce1c4b716c0441affd5a9de604602111490dc5c68634"
+          },
+          {
+            "bytes": 3558,
+            "path": "prepared/frontend-recovery-loading.json",
+            "sha256": "b81f754fb82fe4ceb9d92858f209a426f645cd68961e1e0590580a7baac349f4"
+          }
+        ],
+        "meaning": "Historical remedy plus current protected NORMAL/RECOVERY dependency loading observed",
+        "verdict": "PASS_QUALIFICATION_ONLY"
+      },
+      "Q04": {
+        "evidence": [
+          {
+            "bytes": 693,
+            "path": "repeated-preparation.json",
+            "sha256": "b326cb5a40a6f32a9631755b77ef6f70f45d7245f35eed9e680be4d7778d6def"
+          },
+          {
+            "bytes": 25412,
+            "path": "prepared/native-qualification.json",
+            "sha256": "e773773db2dacaf9b82a641885b38ad3399b5921e6353711c6903253db35e8d8"
+          },
+          {
+            "bytes": 2675,
+            "path": "prepared/frontend-extraction.json",
+            "sha256": "a5fd75f43fd29d3b656d3b35a8770cf1186acc2b114d7867997081de02d19e4c"
+          },
+          {
+            "bytes": 16807,
+            "path": "prepared/diagnostic-controls/negative-control-result.json",
+            "sha256": "2aeaecbf74d66b1368a9b55a2e01500dbdc54bd2d8e54bd98b882e95cc8e5dbf"
+          },
+          {
+            "bytes": 4151,
+            "path": "manifest-negative-controls.json",
+            "sha256": "2d2a14a0243b6949c57d090c2115eb9165f53de84ffb057cf32da293a30420e3"
+          }
+        ],
+        "meaning": "Two complete handoffs, strict inventories, complete extraction, backend image loading, native isolation and seven diagnostics observed",
+        "verdict": "PASS_QUALIFICATION_ONLY"
+      },
+      "Q05": {
+        "evidence": [
+          {
+            "bytes": 1126,
+            "path": "prepared/package-applicability-static.json",
+            "sha256": "fd25cbff0633501b01ef0bbb20c88babf456abeed564c41dfb832858478827d5"
+          },
+          {
+            "bytes": 2766,
+            "path": "prepared/backend-resolution.json",
+            "sha256": "0c371d604dc216b3f41e87a5fe384745cdbe2b0776d398a6ce39d183c4260602"
+          },
+          {
+            "bytes": 1025,
+            "path": "prepared/package-applicability.json",
+            "sha256": "fb15ca58058fbfa67f8ef0895b0974212f0810ae1461ff0ab1750e8371607a80"
+          }
+        ],
+        "meaning": "Complete static dispositions joined to required current protected backend alias applicability",
+        "verdict": "PASS_QUALIFICATION_ONLY"
+      }
+    },
+    "artifactBytes": 2514818,
+    "artifactId": 13616930561,
+    "artifactSHA256": "6450dca99a0e50c04ce41d874eabd9adc4ca0fdc337f8bbe9c82b0d2c69d2915",
+    "attempt": 1,
+    "automaticRetry": false,
+    "cleanup": "PASS",
+    "independentAdjudication": "PASS",
+    "independentReadback": "PASS",
+    "jobId": 128724128654,
+    "providerConclusion": "success",
+    "runId": 42478186509
+  },
+  "extractedFromSHA256": "a8f63eba0e5ea06874d4292c9754a7ea098f8b5d4ee35bf484edd991a15be169",
+  "originalCheckpointPreserved": true,
+  "schema": "work8-v99-retained-qualification-checkpoint-extract-v1",
+  "scope": "HISTORICAL_Q01_Q05_ONLY_NOT_CURRENT_HOST_OR_A5_ACCEPTANCE",
+  "source": {
+    "actualCommit": "f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8",
+    "allowedVariance": "Author/committer metadata only; complete tree, sole parent and message unchanged",
+    "fullRemoteFilesVerified": 163,
+    "parent": "011bdfcf05c9cd739d74a5e0f39795bd3d74d49f",
+    "proposedCommit": "d372461cd2034db645f2659485254fdd97549961",
+    "sourceManifestSHA256": "cdea40f977f8056159e6cead737405002fb92ef4cba1d85f11047b009c79d447",
+    "tree": "420ccaf91c7178b503894b8663953effa7654f2a",
+    "workflowPath": ".github/workflows/work8-v81-qualification.yml",
+    "workflowSHA256": "a3c9864b17050f337e412052e4dfd54705db95b990dbd78d24521968ed78c4ad"
+  },
+  "status": "PASS_Q01_Q05_QUALIFICATION_ONLY"
+}

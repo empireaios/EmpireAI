@@ -1,0 +1,20 @@
+{
+  "schema": "work8-v96-independent-diagnostic-tests-v1",
+  "status": "PASS_LOCAL_DIAGNOSTIC_ONLY",
+  "focusedUnitControls": 18,
+  "focusedUnitFailures": 0,
+  "integrationControl": "PASS_ACTUAL_RECORDER_TEARDOWN_SOURCE_EXPORTER_WITH_SIMULATED_DOCKER_RESPONSES",
+  "independentTarPayloadsVerified": 7,
+  "strictDockerSchemasVerified": 2,
+  "exportArchiveSHA256": "df7e6cc08b70a8978e3d29c85d4ef59f01ff792705fd7a8a5eddf8e56a1bb2a8",
+  "sourceSHA256": {
+    "v65/foundation/controller/scripts/work8/native-transition/command_diagnostics.py": "47b929704265ba91775343332b195714f615a26061a5fea6e59546175e7d25ab",
+    "v65/foundation/controller/scripts/work8/native-transition/docker_diagnostics.py": "e330aadcb42433e4c651d8ea6e7929f3fef712a9b441e8ea30b979d265f938bc",
+    "v65/foundation/controller/scripts/work8/native-transition/test_docker_diagnostics.py": "4617656795e8670ea08334561d738f5a7605b66792f6685fc23137e47faa0dc0",
+    "v65/foundation/controller/scripts/work8/native-transition/examine-v26.py": "2e38e09ad268c85424e5d9574740f7aa7dc12679430978076e3ab4f5a85fad5c",
+    "v65/foundation/runtime/export-evidence.py": "fefe522d88a1a8ecebc52d060246e86ac9c31f3cc896f16550f640b8980bffe6"
+  },
+  "actualDockerExecuted": false,
+  "actualApplicationStartupProven": false,
+  "Q01_Q05Repeated": false
+}

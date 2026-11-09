@@ -165,7 +165,7 @@ def set_policy(released):
  else:
   assert expiry_ms>time.time()*1000,'CAMPAIGN_EXAMINATION_BOUND'
   expires=datetime.datetime.fromtimestamp(expiry_ms/1000,datetime.timezone.utc).isoformat()
-  v={'schema':1,'mode':'RELEASED','approvalSha256':hashlib.sha256(b'Final owner directive: isolated noncommercial technical version transition only').hexdigest(),'expiresAt':expires}
+  v={'schema':1,'mode':'RELEASED','approvalSha256':CONTRACT['authority']['ownerApprovalReceiptSHA256'],'expiresAt':expires}
   q=p.with_suffix('.tmp');q.write_text(json.dumps(v));q.chmod(0o444);run(['sudo','-n','chown','0:0',str(q)]);q.replace(p)
  policy_lifecycle.append({'mode':'RELEASED' if released else 'RESTRICTED','observedAtEpochMs':int(time.time()*1000),'absoluteReleaseExpiryEpochMs':expiry_ms,'releaseExpiryExtended':False,'privatePolicyPresent':p.exists()})
  (OUT/'owner-policy-lifecycle.json').write_text(json.dumps({'schema':'work8-v95-bounded-owner-policy-lifecycle-v1','stage':STAGE_NAME,'maximumReleaseWindowSeconds':STAGE_SECONDS-(60 if PREFLIGHT else 390),'transitions':policy_lifecycle},indent=2)+'\n')
@@ -267,11 +267,10 @@ try:
   stage='actual-runtime-start';marker('runtime-ready.json',timeout=245)
   meta=inspect(NAMES['backend']);assert not meta['HostConfig']['PortBindings'];assert next(m for m in meta['Mounts'] if m['Destination']=='/run/empire-policy')['RW'] is False
   if PREFLIGHT:
-   stage='current-standalone-frontend-native-qualification'
-   start_front('normal','PREFLIGHT_NORMAL');start_front('recovery','PREFLIGHT_RECOVERY')
-   capture_frontend_origin(require_contract=True)
-   run(['docker','rm','-f',NAMES['frontend']]);created.remove(NAMES['frontend'])
-   (OUT/'frontend-native-qualification.json').write_text(json.dumps({'status':'PASS_BOTH_EXACT_STANDALONE_FRONTENDS_LOOPBACK_READY','normalArchiveSHA256':current_packages.FRONTENDS['normal']['sha256'],'recoveryArchiveSHA256':current_packages.FRONTENDS['recovery']['sha256'],'carrierImage':images['backend'],'backendEntrypointUsedForFrontend':False,'businessEventsCreated':False},indent=2)+'\n')
+   stage='retained-v98-frontend-startup-evidence'
+   reused_frontend=execution_contract.frontend_reuse_receipt(CONTRACT['retainedEvidence'],current_packages.BACKEND,current_packages.FRONTENDS)
+   reused_frontend['retainedEvidenceSHA256']=CONTRACT['retainedEvidenceSHA256']
+   (OUT/'frontend-native-qualification.json').write_text(json.dumps(reused_frontend,indent=2)+'\n')
    stage='actual-initialized-native-live-brain-capture';signal('capture-live-brain.json',{'mode':'PREFLIGHT'});marker('live-brain-captured.json',timeout=75)
    assert json.loads((PRIVATE/'evidence/live-brain-capture.json').read_text())['status']=='PASS_ACTUAL_NATIVE_LIVE_BRAIN_PREFLIGHT'
    stage='new-private-capture-exchanges-refusal-controls'
@@ -287,7 +286,7 @@ try:
    deadline=time.monotonic()+20
    while inspect(NAMES['backend'])['State']['Running']:assert time.monotonic()<deadline;time.sleep(.2)
    assert inspect(NAMES['backend'])['State']['ExitCode']==0
-   result.update(status='PASS_ACTUAL_NATIVE_LIVE_BRAIN_PREFLIGHT_AWAITING_INDEPENDENT_REVIEW',phaseAStatus='PASS_ACTUAL_NATIVE_LIVE_BRAIN_PREFLIGHT',phaseBStarted=False,businessTransitionStarted=False,frontendStarted=True,frontendQualificationOnly=True,applicationImagesRebuilt=False,wholeRowsAccepted=[])
+   result.update(status='PASS_ACTUAL_NATIVE_LIVE_BRAIN_PREFLIGHT_AWAITING_INDEPENDENT_REVIEW',phaseAStatus='PASS_ACTUAL_NATIVE_LIVE_BRAIN_PREFLIGHT',phaseBStarted=False,businessTransitionStarted=False,frontendStarted=False,frontendQualificationReused=True,preflightStateIsFullLifecycleBaseline=False,applicationImagesRebuilt=False,wholeRowsAccepted=[])
   else:
    run(['docker','exec','--user','65534:65534',NAMES['backend'],'node','-e',"const fs=require('fs');let denied=false;try{fs.writeFileSync('/run/empire-policy/control.json','forbidden')}catch(e){denied=['EROFS','EACCES','EPERM'].includes(e.code)}if(!denied)process.exit(1)"])
    (PRIVATE/'evidence/isolation.json').write_text(json.dumps({'internalNetwork':True,'publishedPorts':False,'externalCredentials':False,'policyReadonlyMount':True,'runtimePolicyWriteRefused':True,'actualNativeApplication':True,'syntheticOwnerOnly':True,'components':components},indent=2))

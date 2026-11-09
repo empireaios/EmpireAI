@@ -38,13 +38,14 @@ def fixture():
  return q,e,p
 
 def authority_fixture():
- a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':12.15,'priorA5HoldsUSD':2.20,'availableBeforeReservationUSD':7.80,'ownerDecisionRecorded':True,'ownerApprovalReceiptSHA256':H,'approvalScope':'one-native-a5-08-09-attempt','maximumAttempts':1,'reservationCommitted':True,'reservationUSD':0.01,'maximumProspectiveUSD':0.01,'reservationId':g.NATIVE_RESERVATION_ID,'reservationReceiptSHA256':H,'currentOverallHoldsUSD':12.16,'currentA5HoldsUSD':2.21,'remainingUnreservedUSD':7.79}
+ a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':12.46,'priorA5HoldsUSD':2.51,'availableBeforeReservationUSD':7.49,'ownerDecisionRecorded':True,'ownerApprovalReceiptSHA256':H,'approvalScope':'one-native-a5-08-09-attempt','maximumAttempts':1,'reservationCommitted':True,'reservationUSD':2.11,'maximumProspectiveUSD':2.11,'reservationId':g.NATIVE_RESERVATION_ID,'reservationReceiptSHA256':H,'currentOverallHoldsUSD':14.57,'currentA5HoldsUSD':4.62,'remainingUnreservedUSD':5.38}
+ a['independentAckAuthority']={'maximumOwnerEndorsements':2,'issueNumber':113,'stages':['packages-and-executor','preflight'],'scope':'safe-artifact-acknowledgment-only','otherMessagesAuthorized':False}
  a.update({k:False for k in ('renewed','productionOperations','protectedDataTransfer','commerceActivation','subscriptions','automaticRecreate','automaticRerun')})
  return a
 
 def contract_fixture():
  q,e,p=fixture();e.update(provider='github-actions',repository=g.REPOSITORY,repositoryId=g.REPOSITORY_ID,jobKey='a5',hostUid=1001,hostGid=1001,architecture='amd64',hostArtifactEgress='github-provider-endpoints',nativeNetworkPolicy='docker-internal-no-published-ports',ports=[],productionMounts=[],timeoutSeconds=18000,jobStartedAtEpoch=100,expiresAtEpoch=18100)
- c={'schema':g.SCHEMA,'executor':e,'campaignId':'work8-v65-a5-123','authority':authority_fixture(),'dependencyImages':g.DEPENDENCY_IMAGES,'sources':copy.deepcopy(g.SOURCES),'durationPlan':{'setupSeconds':7800,'deliverySeconds':2700,'preflightSeconds':900,'examinationSeconds':1500,'cleanupSeconds':600,'evidenceExportSeconds':1800,'reviewSeconds':1800}}
+ c={'schema':g.SCHEMA,'retainedEvidenceSHA256':H,'executor':e,'campaignId':'work8-v65-a5-123','authority':authority_fixture(),'dependencyImages':g.DEPENDENCY_IMAGES,'sources':copy.deepcopy(g.SOURCES),'durationPlan':{'setupSeconds':7800,'deliverySeconds':2700,'preflightSeconds':900,'examinationSeconds':1500,'cleanupSeconds':600,'evidenceExportSeconds':1800,'reviewSeconds':1800}}
  env={'GITHUB_ACTIONS':'true','GITHUB_REPOSITORY':g.REPOSITORY,'GITHUB_REPOSITORY_ID':g.REPOSITORY_ID,'GITHUB_RUN_ID':'123','GITHUB_RUN_ATTEMPT':'1','GITHUB_SHA':W,'GITHUB_JOB':'a5','RUNNER_OS':'Linux','RUNNER_ARCH':'X64'}
  return c,env
 
@@ -206,7 +207,7 @@ class AdmissionControls(unittest.TestCase):
  def test_consumed_v70_approval_refused(self):
   with self.assertRaisesRegex(g.Refusal,'CURRENT_OWNER_AUTHORITY_REQUIRED'):g.validate_authority({'ownerDirective':'EMPIREAI_V70_A5_EXECUTION_APPROVAL'})
  def test_candidate_unapproved_plan_refused(self):
-  a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':12.15,'priorA5HoldsUSD':2.20,'availableBeforeReservationUSD':7.80,'ownerDecisionRecorded':False}
+  a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':12.46,'priorA5HoldsUSD':2.51,'availableBeforeReservationUSD':7.49,'ownerDecisionRecorded':False}
   with self.assertRaisesRegex(g.Refusal,'SEPARATE_EXPLICIT_OWNER_DECISION_REQUIRED'):g.validate_authority(a)
 
 if __name__=='__main__':unittest.main(verbosity=2)

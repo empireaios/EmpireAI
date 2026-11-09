@@ -1,5 +1,4 @@
-"""Reuse immutable V94 diagnostics, never assert that V94 is the current host."""
-import ast
+"""Reuse immutable V94 diagnostics with separately reviewed V96 successors."""
 import hashlib
 import json
 from pathlib import Path
@@ -14,17 +13,16 @@ def require(ok, code):
         raise ValueError(code)
 
 def verify_operands(controller):
+    # Preserve the old evidence verbatim. Changed diagnostics are verified
+    # against their own V96 review and V98 actual Docker failure evidence.
+    from retained_evidence import verify_retained_evidence
+    proof = verify_retained_evidence(HERE.parent, controller)
     pin = json.loads((HERE/'retained-v94/diagnostic-operands.json').read_text())
     receipt = HERE/'retained-v94/diagnostic-controls.json'
     require(digest(receipt.read_bytes()) == pin['historicalEvidence']['diagnosticControlsSHA256'], 'V94_DIAGNOSTIC_RECEIPT_CHANGED')
-    for name, expected in pin['files'].items():
-        path = controller/name
-        require(path.is_file() and not path.is_symlink() and digest(path.read_bytes()) == expected, 'RETAINED_DIAGNOSTIC_OPERAND_CHANGED')
-    text = (controller/'examine-v26.py').read_text()
-    functions = [n for n in ast.parse(text).body if isinstance(n, ast.FunctionDef) and n.name == 'run']
-    require(len(functions) == 1 and digest(ast.get_source_segment(text, functions[0]).encode()) == pin['examineRunASTSHA256'], 'RETAINED_EXAMINER_DIAGNOSTIC_INVOCATION_CHANGED')
-    functions = [x for x in (controller/'coordinator.mjs').read_text().splitlines() if x.startswith('function retainFirst(')]
-    require(len(functions) == 1 and digest(functions[0].encode()) == pin['coordinatorRetainFirstSHA256'], 'RETAINED_FIRST_CAUSE_FUNCTION_CHANGED')
+    require(proof['historicalQualification']['diagnosticControlsSHA256'] == pin['historicalEvidence']['diagnosticControlsSHA256']
+            and proof['diagnosticSuccessor']['originalV94ReceiptChanged'] is False,
+            'RETAINED_DIAGNOSTIC_SUCCESSOR_BINDING')
     return pin['historicalEvidence']
 
 def admit(root):

@@ -1,0 +1,28 @@
+{
+  "schema": "work8-v30-live-brain-ready-v1",
+  "readyAt": "2026-11-08T15:20:25.373Z",
+  "instanceId": "58d4e30f-8ce3-434f-a78c-8d92f59e858c",
+  "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "generation": "4c092d94-2b25-4a04-b495-ade5894ae87e",
+  "identity": {
+    "pid": 100,
+    "startTicks": "47411",
+    "uid": 65534,
+    "gid": 65534,
+    "capabilities": {
+      "CapInh": "0000000000000000",
+      "CapPrm": "0000000000000000",
+      "CapEff": "0000000000000000",
+      "CapBnd": "00000000000800e3",
+      "CapAmb": "0000000000000000"
+    },
+    "noNewPrivileges": true,
+    "seccomp": "2"
+  },
+  "membershipId": "7fdb873e-cc6e-45d1-821f-bc32a99c1801",
+  "moduleSha256": "9c6c9362e83f1ee6119d29855918d441e7016ae447a0e40664594bd54a2e4311",
+  "entrySha256": "4246473ab80cfdfed1823f8aabd899eeff8c4cee679182bbaf3f47584a63cb7d",
+  "diskPresentAtReady": false,
+  "initializedMutationRevision": 295,
+  "actualApplicationInitialized": true
+}

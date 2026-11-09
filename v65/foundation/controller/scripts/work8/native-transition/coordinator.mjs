@@ -11,6 +11,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {once} from 'node:events';
 import {verifyStoragePreflight} from './storage-preflight.mjs';
 import {nativeDeadline} from './native-time-budget.mjs';
+import {createAssuranceStartupPrerequisite,safeAssuranceStartupFailure} from './assurance-artifact-inventory.mjs';
 import {preparePathContract} from '/app/scripts/work8/o33-permissions.mjs';
 const require=createRequire('/app/backend/package.json'),Redis=require('ioredis');
 const {MembershipJournal,processIdentity}=require('/app/deployment/runtime-membership-controller.cjs');
@@ -106,7 +107,19 @@ try{
  brainReady=readNativeReceipt('ready.json',16384);assert.equal(brainReady.source,source);assert.equal(brainReady.generation,generation);assert.equal(brainReady.identity.pid,brainMember.pid);assert.equal(brainReady.identity.startTicks,String(brainMember.startTicks));assert.equal(brainReady.membershipId,brainMember.id);assert.equal(brainReady.entrySha256,overlay.overlaySha256);assert.equal(brainReady.actualApplicationInitialized,true);
  write('live-brain-ready.json',brainReady);
  receipt.actualNativeApplication=true;receipt.runtimeRoles=members.map(m=>({role:m.role,source:m.source,entrySha256:m.entrySha256,uid:m.uid}));
- write('actual-runtime-ready.json',{source,generation,volume:p.volume,redisRunId:redisIdentity.runId,actualNativeApplication:true,syntheticOwnerOnly:true});signal('runtime-ready.json');
+ const assurancePrerequisite=createAssuranceStartupPrerequisite(p.volume);let assuranceStartup=null;
+ causalStage='NATIVE_APPLICATION_READINESS';
+ const observeAssuranceStartup=()=>{
+  if(receipt.assuranceStartupFailure)throw Error('INVALID_ASSURANCE_COMPLETION');
+  const metadata={...startupMetadata(),phase:'REQUIRED_ASSURANCE_ARTIFACTS',startupDeadline:new Date(startupDeadline).toISOString()};
+  write('last-startup-observation.json',{...metadata,assuranceStartup});
+  try{assuranceStartup=assurancePrerequisite();}
+  catch(error){receipt.assuranceStartupFailure=safeAssuranceStartupFailure(error);write('last-startup-observation.json',{...metadata,assuranceStartupFailure:receipt.assuranceStartupFailure});throw Error('INVALID_ASSURANCE_COMPLETION');}
+  write('last-startup-observation.json',{...metadata,assuranceStartup});return assuranceStartup!==null;
+ };
+ await until(observeAssuranceStartup,'ACTUAL_NATIVE_STARTUP_DEADLINE',startupDeadline);
+ receipt.assuranceStartup=assuranceStartup;
+ write('actual-runtime-ready.json',{source,generation,volume:p.volume,redisRunId:redisIdentity.runId,actualNativeApplication:true,syntheticOwnerOnly:true,assuranceStartup});signal('runtime-ready.json');
  await until(async()=>{
   if(!brainCaptureDone&&fs.existsSync(path.join(control,'capture-live-brain.json'))){
    causalStage='NATIVE_BRAIN_CAPTURE_REQUEST';brainCaptureDone=true;const command=JSON.parse(fs.readFileSync(path.join(control,'capture-live-brain.json'),'utf8'));assert.ok(['PREFLIGHT','BASELINE'].includes(command.mode));

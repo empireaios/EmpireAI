@@ -17,10 +17,15 @@ class NativeAuthorityControls(unittest.TestCase):
   a=json.loads((V65/'launch-plan.json').read_text())['authority']
   with self.assertRaisesRegex(g.Refusal,'SEPARATE_EXPLICIT_OWNER_DECISION_REQUIRED'):g.validate_authority(a)
  def test_exact_future_decision_fixture_is_not_execution(self):
-  self.assertEqual(g.validate_authority(authority_fixture())['reservationUSD'],0.01)
+  self.assertEqual(g.validate_authority(authority_fixture())['reservationUSD'],2.11)
  def test_consumed_qualification_reservation_refused(self):
   a=authority_fixture();a['reservationId']='V92-A5-QUALIFICATION-ONCE-20261108'
   with self.assertRaisesRegex(g.Refusal,'DISTINCT_FULL_NATIVE_RESERVATION_REQUIRED'):g.validate_authority(a)
+ def test_consumed_v95_and_v98_reservations_refused(self):
+  for reservation in ('V95-A5-NATIVE-ONCE-20261108','V97-FRONTEND-STARTUP-ONCE-20261109'):
+   with self.subTest(reservation=reservation):
+    a=authority_fixture();a['reservationId']=reservation
+    with self.assertRaisesRegex(g.Refusal,'DISTINCT_FULL_NATIVE_RESERVATION_REQUIRED'):g.validate_authority(a)
  def test_missing_reservation_receipt_refused(self):
   a=authority_fixture();a['reservationReceiptSHA256']=None
   with self.assertRaisesRegex(g.Refusal,'DISTINCT_FULL_NATIVE_RESERVATION_REQUIRED'):g.validate_authority(a)
@@ -39,8 +44,8 @@ class NativeAuthorityControls(unittest.TestCase):
  def test_nan_exposure_refused(self):
   a=authority_fixture();a['maximumProspectiveUSD']=float('nan')
   with self.assertRaisesRegex(g.Refusal,'FINITE_CURRENT_EXPOSURE_REQUIRED'):g.validate_authority(a)
- def test_one_cent_ceiling_refused(self):
-  a=authority_fixture();a['maximumProspectiveUSD']=0.010001
+ def test_above_reviewed_ceiling_refused(self):
+  a=authority_fixture();a['maximumProspectiveUSD']=2.110001
   with self.assertRaisesRegex(g.Refusal,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED'):g.validate_authority(a)
  def test_insufficient_approved_exposure_refused(self):
   a=authority_fixture();a['maximumProspectiveUSD']=0.000001

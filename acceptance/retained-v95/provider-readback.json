@@ -1,0 +1,19 @@
+{
+  "A5_09Executed": false,
+  "actualDockerRootCause": "NOT_PROVEN",
+  "artifactId": 13622647192,
+  "artifactSHA256": "a8f85ee73706fe4152a5f7679080ccc9bf8ef2c9b7eea14743459fb73e40d6bd",
+  "currentAuthority": false,
+  "frontendNeverStarted": true,
+  "jobId": 128771126886,
+  "originalA5CaptureReached": false,
+  "providerReadbackSHA256": {
+    "terminal-provider-artifacts.json": "8761f3fcd0b2ff8be8c3599487211895a98fdd9c3d0700f37983e9babc9e9712",
+    "terminal-provider-jobs.json": "4141288118734c0dc74d56dcfabbada41cd8772a43c141a0ca498da635e60e6e",
+    "terminal-provider-run.json": "0e1b467e6d0b2b4011a714f435e06b724d7c55227f0c5395ca1a34a4bdc52131"
+  },
+  "runId": 42493645384,
+  "schema": "work8-v99-retained-v95-scope-v1",
+  "scope": "HISTORICAL_BRAIN_INITIALIZATION_ONLY",
+  "sourceCommit": "8e06e3a1637519842548d29e03a5cd38bd10f409"
+}

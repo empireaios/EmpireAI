@@ -1,0 +1,226 @@
+{
+  "schema": "empireai-v98-independent-native-frontend-evidence-review-v1",
+  "reviewer": "/root/v98_native_evidence_review",
+  "reviewedAtUTC": "2026-11-09T00:24:25.977718+00:00",
+  "verdict": "PASS_REAL_DOCKER_FRONTEND_STARTUP_SECURITY_DIAGNOSTIC_ONLY",
+  "provider": {
+    "runId": 42539444860,
+    "jobId": 128910880107,
+    "runAttempt": 1,
+    "runConclusion": "success",
+    "jobConclusion": "success",
+    "executedJobs": 1,
+    "jobSeconds": 88.0,
+    "nativeStepSeconds": 59.0,
+    "nativeCompletedBeforeDeadline": true,
+    "sourceCommit": "fbf326f14df64c1cc3717942a490f19af4a87a89",
+    "sourceTree": "dfac35790ff7af1ad6dceaa0cdf6ee1a37796aa5",
+    "independentProviderReadbackSHA256": "5c39f539f4ccc08585390beb2b484938b02ae24c20f991b3912159b52221a65c"
+  },
+  "artifacts": {
+    "artifactId": 13640304481,
+    "zipBytes": 13818,
+    "zipSHA256": "22e9f1b1bd9ba1de469c4249b9fb933a91872b3530db78293f7648345e044238",
+    "tarBytes": 13242,
+    "tarSHA256": "3bae78aee46670e2ed5aa1cded6c38e6e4267be8d5d18b04d16a918bee9ef113",
+    "indexedPayloadsVerified": 28,
+    "tarMembersVerified": 29,
+    "allZipAndTarPayloadBytesIndependentlyVerified": true,
+    "retentionSeconds": 86399.0,
+    "expiresAtUTC": "2026-11-10T00:19:39Z"
+  },
+  "sourceAndPackages": {
+    "exactAdmissionSourcePins": "PASS",
+    "retainedInputArtifactId": 13340201255,
+    "retainedInputSHA256": "39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755",
+    "inputIndexedEntriesVerified": 45,
+    "archivesDelivered": 3,
+    "carrier": {
+      "applicationStarted": false,
+      "archiveSHA256": "b99d11a65d40d6a6a197da6ba805e72a72ac55d4551ad13f31930ec5eeadbcb6",
+      "image": "sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
+      "layersVerified": 10,
+      "packageRebuilt": false,
+      "platform": "linux/amd64",
+      "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+      "tree": "a78aa0e0a91c1e765afb23e70fe05c75cddc836e"
+    },
+    "reviewedControllerFilesVerified": 108,
+    "normal": {
+      "applicationStarted": false,
+      "archiveSHA256": "391b15ded61649159291a4cad6f8071ce1fdf05f2e0f3732d3b1cf695a43e1d9",
+      "artifactKind": "standalone-archive",
+      "buildId": "Cq7Wv1X6rmUNESPzKC5mp",
+      "extracted": true,
+      "extractedReadback": {
+        "applicationStarted": false,
+        "archiveSHA256": "391b15ded61649159291a4cad6f8071ce1fdf05f2e0f3732d3b1cf695a43e1d9",
+        "extractedMembersVerified": 4984,
+        "role": "normal"
+      },
+      "membersVerified": 4983,
+      "node": "22.23.2",
+      "packageRebuilt": false,
+      "role": "normal",
+      "source": "750483b3152f2c9c65a65b6381c8c94f081b9eb1",
+      "tree": "f589a8f0f94fbcdf113f162abac11d03c19acc25"
+    },
+    "recovery": {
+      "applicationStarted": false,
+      "archiveSHA256": "2c9a14895e7888ef5f29964a894b9ab99c4affb6ed038f83e5039c2ddf781167",
+      "artifactKind": "standalone-archive",
+      "buildId": "dvWEdLN24MUT_Wr7AJAJ4",
+      "extracted": true,
+      "extractedReadback": {
+        "applicationStarted": false,
+        "archiveSHA256": "2c9a14895e7888ef5f29964a894b9ab99c4affb6ed038f83e5039c2ddf781167",
+        "extractedMembersVerified": 4992,
+        "role": "recovery"
+      },
+      "membersVerified": 4991,
+      "node": "22.23.2",
+      "packageRebuilt": false,
+      "role": "recovery",
+      "source": "94d34cab7b0739849839ea3c66e50c8fdd3a2b27",
+      "tree": "5da61811a035b9504d74f699df8b164cc7f9f0ac"
+    },
+    "applicationPackagesRebuilt": false,
+    "sourceModified": false
+  },
+  "runtimeIdentity": {
+    "actualHostGid": 1001,
+    "actualHostUid": 1001,
+    "cgroupVersion": "2",
+    "components": [
+      {
+        "name": "Engine",
+        "version": "28.0.4"
+      },
+      {
+        "name": "containerd",
+        "version": "v2.4.2"
+      },
+      {
+        "name": "runc",
+        "version": "1.5.2"
+      },
+      {
+        "name": "docker-init",
+        "version": "0.19.0"
+      }
+    ],
+    "dockerEngineIdSHA256": "22a3bf56c54ebb95781b70f9e162b52ac288cce431918cbece36f000e9964c94",
+    "dockerServerVersion": "28.0.4",
+    "fullRuntimeQualificationRepeated": false,
+    "schema": "work8-v97-frontend-startup-v1",
+    "securityOptions": [
+      "name=apparmor",
+      "name=seccomp,profile=builtin",
+      "name=cgroupns"
+    ]
+  },
+  "roles": {
+    "normal": {
+      "verdict": "PASS",
+      "created": true,
+      "running": true,
+      "readinessHTTP": 200,
+      "readinessAttempts": 1,
+      "liveSecurity": "PASS",
+      "cacheMode": "0700",
+      "cacheUIDGID": "65534:65534",
+      "rootAndBothBindsReadOnly": true,
+      "readonlyProbeErrors": {
+        "controller": "EROFS",
+        "frontend": "EROFS",
+        "root": "EROFS"
+      },
+      "removedInventoryEmpty": true,
+      "packageBytesUnchangedAfterUnmount": true,
+      "fullSourceAndActualCreateArgvHashesIndependentlyReconstructed": true,
+      "archiveSHA256": "391b15ded61649159291a4cad6f8071ce1fdf05f2e0f3732d3b1cf695a43e1d9"
+    },
+    "recovery": {
+      "verdict": "PASS",
+      "created": true,
+      "running": true,
+      "readinessHTTP": 200,
+      "readinessAttempts": 1,
+      "liveSecurity": "PASS",
+      "cacheMode": "0700",
+      "cacheUIDGID": "65534:65534",
+      "rootAndBothBindsReadOnly": true,
+      "readonlyProbeErrors": {
+        "controller": "EROFS",
+        "frontend": "EROFS",
+        "root": "EROFS"
+      },
+      "removedInventoryEmpty": true,
+      "packageBytesUnchangedAfterUnmount": true,
+      "fullSourceAndActualCreateArgvHashesIndependentlyReconstructed": true,
+      "archiveSHA256": "2c9a14895e7888ef5f29964a894b9ab99c4affb6ed038f83e5039c2ddf781167"
+    }
+  },
+  "NORMAL_FRONTEND": "PASS",
+  "RECOVERY_FRONTEND": "PASS",
+  "NATIVE_SECURITY": "PASS",
+  "FIRST_ERROR_PRESERVATION": "PASS",
+  "CLEANUP_AND_INDEPENDENT_READBACK": "PASS",
+  "firstErrorPreservation": {
+    "intentionalFailureOnly": true,
+    "operation": "DOCKER_START",
+    "safeErrorCode": "PROCESS_EXECUTION_FAILED",
+    "errno": "ENOENT",
+    "numericErrno": 2,
+    "actualContainerNeverStarted": true,
+    "actualContainerExitCode": 127,
+    "diagnosticSHA256": {
+      "first-docker-failure.json": "c972cb1d9b6b6da8ae4b0c5676c41f57735dda0057240ab0097b3eec92d69dc1",
+      "first-docker-state-error.json": "b70537c1d08212e2610699024ef803644912313e3da98bb42574a109a9f9e090"
+    },
+    "originalHashesSurviveRealTeardownAndProviderExport": true,
+    "rawSecretsOrUnrestrictedOutputRetained": false,
+    "unexpectedFirstFailure": null,
+    "historicalV95RootCause": "NOT_PROVEN"
+  },
+  "cleanup": {
+    "containers": 0,
+    "networks": 0,
+    "firstProcess": "PASS_SCOPED_CLEANUP",
+    "independentFreshProcess": "PASS_INDEPENDENT_PROCESS_RESOURCE_READBACK",
+    "sharedImagesDeleted": false,
+    "immutableInputRetention": "Until ephemeral runner teardown; not protected or business data"
+  },
+  "acceptanceBoundaries": {
+    "A5_08": "NOT_EXECUTED",
+    "A5_09": "NOT_EXECUTED",
+    "BrainInitialized": false,
+    "BackendApplicationStarted": false,
+    "Q01_Q05Repeated": false,
+    "A5WholeRowAccepted": false,
+    "closureSufficiency": "NOT_YET_PROVEN",
+    "accepted": 48,
+    "outstanding": 16,
+    "automaticRetry": false
+  },
+  "managementAccountability": {
+    "newUnexpectedFailures": [],
+    "V97MissedDefectsEstablishedByThisRun": [],
+    "V97AppArmorPhaseCorrectionConfirmed": "Created profile empty; running docker-default observed in both roles",
+    "historicalV95FailureExplanation": "Missing mount target independently corrected and actual corrected startup now passes; original stderr loss prevents retrospective proof of V95 causal responsibility",
+    "additionalRemedyRequiredForStartupDiagnostic": false
+  },
+  "remainingOriginalA5Operations": [
+    "A5-08 same-instance initialized Brain capture with source/generation/request binding; local HTTP/background/shared-queue and SQL.js fencing, deliberate callback failure/reentry and release",
+    "Private exchange wrong-reader UID65533 and runtime-writer UID65534 rejection controls",
+    "Coherent independently read baseline/recovery/return/final state across all13canonical stores and required Assurance artifacts",
+    "Original authenticated owner session and populated native sandbox fixtures; NORMAL baseline before transition",
+    "Policy-restricted RECOVERY UI/directAPI423 and state presentation equal independent SQL projection",
+    "Return to original NORMAL package with unchanged backend/generation/session; policy expiry preserved; replay original pause/revoke/grant IDs without authority resurrection or state mutation",
+    "Real orderly writer drain with admitted containment guard/coordinator/browser success and no matching live members; forced cleanup is insufficient",
+    "Scoped cleanup and independent complete original acceptance evidence/financial terminal readback"
+  ],
+  "reuseRule": "Preserve V94qualification, V95Brain evidence, V96diagnostics and V97source controls; retain V98positive startup evidence and do not repeat this diagnostic absent a relevant changed boundary. FullA5 may initialize its required same-instance lifecycle fixture without rerunning qualification campaigns.",
+  "fullA5ProposalConstraint": "Historical fullA5 manifests/admission pins remain unchanged and bind pre-V97 source; future exact-source fullA5 contract needs separate reviewed source binding and owner approval. No source modification or fullA5 execution authorized by this review.",
+  "openFindings": []
+}

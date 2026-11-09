@@ -10,7 +10,7 @@ from native_acceptance import SOURCE, MANIFEST_EXCLUSIONS, source_inventory
 
 
 def build(root=SOURCE):
-    return {'schema': 'work8-v95-exact-source-manifest-v1',
+    return {'schema': 'work8-v99-exact-source-manifest-v1',
             'exclusions': sorted(MANIFEST_EXCLUSIONS),
             'files': source_inventory(Path(root))}
 

@@ -1,95 +1,38 @@
-# V95 native examination candidate
+# V99 full A5 admission candidate
 
-This is preparation only. It creates no owner decision, reservation, provider
-object, run, or application acceptance. V94 Q01–Q05 remains historical PASS;
-the single V93/V94 qualification approval is consumed. The tracker remains 48 accepted /
-16 outstanding until its original whole-application acceptance is adjudicated.
+This source proposes one separately approved, isolated original A5-08/A5-09 examination. It grants **zero execution attempts and zero new reservation**. No source publication, job, package build or owner message is performed by this preparation. The authoritative checkpoint remains 48 accepted / 16 outstanding, IN_PROGRESS / NO_GO.
 
-The proposed job reuses exactly artifact 13340201255, 338251567 bytes,
-SHA-256 `39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755`.
-It imports the three complete packages once, prepares the changed controller,
-loads the pinned backend, checks the current host boundary, and imports the
-source-pinned V94 diagnostic receipts. It does not run the Q01–Q05 campaign,
-repeat protected handoffs, reconstruct application packages, or upload another
-package artifact. Current source rejection tests and current host admission
-observations are distinguished from historical qualification evidence.
+The source candidate has sole parent `fbf326f14df64c1cc3717942a490f19af4a87a89`. `source-manifest.json` binds every candidate file except itself, including the complete controller, historical evidence, workflow and tests. Admission verifies the current checkout commit/tree against the provider commit, a distinct external release, and the exact manifest/workflow hashes. Root Git metadata alone is excluded; nested Git metadata, bytecode caches, links, special files and set-ID files are refused.
 
-## Source and external authority
+## Historical evidence and current observations
 
-After all candidate edits are complete, run `python3 -B acceptance/bind_source.py`
-locally to freeze the complete regular-file bytes and Git modes. Its only
-manifest exclusion is the manifest itself; the external record pins that file
-separately. `--check` compares the exact frozen bytes without rewriting them.
-This operation creates no authority. The required single parent is
-`f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8`.
+`retained_evidence.py` verifies the pinned V94 Q01–Q05, scoped V95 initialized Brain, V96 first-error diagnostics and V98 actual frontend startup/security evidence. Its deterministic proof is recorded before package download and reverified before later admitted operations. Historical evidence does not authorize a new job or attest a new host or application instance. The exact retained input artifact is 13340201255 (338251567 bytes; SHA-256 `39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755`). The three application archives and their manifest are reused unchanged. Neither Q01–Q05 nor the separate V98 frontend startup diagnostic is repeated.
 
-Only after a separate owner decision and distinct accounting reservation may
-the nonoperative `external-release.template.json` become an external record at
-`acceptance/v95-release.json` on `work8/v95-review-20261108`. Do not edit the
-candidate to record approval. The record must bind the independently read-back
-complete tree, exact sole parent, complete source manifest SHA-256, and workflow
-SHA-256. Commit metadata may vary only while these bindings remain identical.
-The read-back review commit must have the API-linked author `empireaios` /
-`295548100`; arbitrary Git author strings do not satisfy the transport gate.
+The sequential contract is:
 
-The operative record requires one attempt, one 300-minute job, maximum additional
-exposure US$0.01, maximum reservation US$0.01, and no automatic retry. Its
-`launchPlan` must equal the reviewed `v65/launch-plan.json` except for `status`
-(`OWNER_APPROVED_EXTERNAL_RELEASE`) and the separately validated `authority`.
-The authority must cite the hashes of both embedded receipts. Receipt hashes
-use SHA-256 over UTF-8 `json.dumps(receipt, sort_keys=True,
-separators=(',', ':'))`, **without a trailing newline**. The reservation receipt
-binds the owner receipt hash and the same approved source; its record type is
-`ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE`. Current authority is determined by these
-external receipts and the operative `authority`, not proposal snapshots in the
-source template.
+1. Exact source, authenticated provider launch actor and triggering actor, one current workflow run/attempt/job, public repository, current runner identity, external V99 authority and retained evidence admission.
+2. Download/import the exact existing packages, assemble the reviewed controller, and observe the new runner's principal, daemon, process, mount and security boundaries.
+3. Export bounded package/executor metadata. Require independent artifact readback and the first authenticated owner ACK endorsement before native application initialization.
+4. Initialize one scoped Brain **preflight** instance and exercise the previously unreached live capture, fencing, fault/reentry, 13-store applicability and new private-channel negative controls. Drain and clean this instance; export its sanitized evidence; require the second independent ACK.
+5. Initialize the **full lifecycle instance** and establish its own real initialized Brain baseline. Capture actual committed operational, financial and business state across the original 13 stores. Use this same instance, generation and protected owner session for NORMAL → distinct RECOVERY → NORMAL_RETURN, write restrictions, replay/idempotency, authority continuity, writer drain and final independent whole-application readback. Preflight state and unrelated historical instances cannot supply this baseline.
+6. Perform identity-scoped cleanup, bounded final or first-failure export, and independent provider terminal/artifact/resource readback. Only original A5 assertion adjudication may close A5; a source test or provider success is insufficient.
 
-The distinct future reservation ID is `V95-A5-NATIVE-ONCE-20261108`. Its proposed
-US$0.01 would move holds from 12.15/2.20 to 12.16/2.21 and unreserved A5 authority
-from 7.80 to 7.79. These are proposed values, not a committed hold or an observed
-provider charge. Preserve the prior consumed qualification reservation.
+## Future separate owner release
 
-Never create `work8/v95-a5-20261108` until independent provider readback verifies
-all release gates and confirms no prior matching run. Its creation launches the
-one job. Unknown provider state is not permission to repeat a write. Never
-delete, move, recreate, or rerun the launch branch or job.
+Only a future explicit owner approval can authorize publication of the reviewed exact tree, creation of the fresh launch branch `work8/v99-a5-20261109` once, one job/attempt, and one distinct US$2.11 accounting hold. Review records live on the nonlaunching `work8/v99-review-20261109` branch, at `acceptance/v99-release.json`; the source template is deliberately nonoperative. The release binds the reviewed tree, exact sole parent, source-manifest and workflow SHA-256, `EMPIREAI_V99_SEPARATE_NATIVE_EXECUTION_APPROVAL`, reservation `V99-A5-NATIVE-ONCE-20261109`, and the unchanged reviewed launch plan. Never recreate, move or delete the launch branch after launch; never rerun a failed job or stage.
 
-## Same-host sequence and evidence return
+Future approval also explicitly covers exactly **two safe independent ACK endorsements on PR #113**, one for package/executor evidence and one for preflight evidence, plus their source-bound ACK files. The provider must authenticate each comment's owner account, current job time, run/attempt, exact stage, artifact ID/digest, canonical ACK digest and review commit. Git commit author attribution alone is insufficient. The job has `contents: read`, `actions: read` and `issues: read`; it cannot publish comments or release records. No such messages are authorized or sent now. Other messages, production changes and commerce actions remain unauthorized.
 
-The workflow has one standard `ubuntu-24.04` job with a 300-minute ceiling. All 17
-step timeout maxima sum to 210 minutes. It waits at most 1500 seconds for each
-independent acknowledgment; a deadline cannot substitute for an ACK.
+The existing accounting snapshot is aggregate holds US$12.46 / A5 holds US$2.51 / unreserved A5 authority US$7.49. Only a separately approved future US$2.11 hold would produce US$14.57 / US$4.62 / US$5.38. V95 US$0.01 and V98 US$0.30 holds are consumed authorities retained separately pending actual-charge reconciliation; they are not reused or duplicated. Holds are not provider charges.
 
-The existing external ACK transport remains unchanged. First acknowledge the
-current package/executor metadata artifact at
-`v65-review/<runId>/packages-and-executor.json` on the review branch. Only then
-may actual initialized Brain preflight run. Independently read back and
-acknowledge its artifact at `v65-review/<runId>/preflight.json` before the single
-full native lifecycle. The job cannot create either acknowledgment.
+## Bounds and failure handling
 
-At most three current artifacts are uploaded: executor metadata, preflight,
-and final-or-first-failure evidence. Retention is seven days so an interrupted
-Work session does not immediately lose the independently retrievable evidence.
-Preupload bounds are
-64 MiB/1 MiB/1 MiB with 16 MiB reserved per ZIP envelope, at most 129 metadata files and
-exactly two files in each native export. Declared payload plus envelopes is at
-most 114 MiB, below the 128 MiB cumulative service ZIP cap. Provider readback checks
-actual bytes, digest, count, current run/commit binding, and at most 169 hours
-observed retention; the financial proposal reserves a further hourly boundary.
-At the full 128 MiB cap, 170 billable hours has a base storage estimate of
-US$0.00790551. Including the conservative allowance for two monthly rounding
-boundaries, the total bound is US$0.00814965, within the unchanged US$0.01
-proposed authority.
+The workflow has one standard `ubuntu-24.04` job with a 300-minute hard timeout; step maxima total 210 minutes. The retained phase plan totals 220 minutes, including two 1500-second ACK waits, a 900-second native preflight, a 1500-second full lifecycle and 600-second scoped cleanup. Current-lifetime gates preserve cleanup/export time. Each phase can execute once only. Every refusal stops subsequent native stages and preserves the first failure immutably; cleanup and sanitized failure export remain available even if source admission never completed.
 
-First failure stops subsequent normal workflow stages. Cleanup only touches the
-current identity-bound campaign and has a 600-second global budget inside an
-11-minute workflow step, leaving time to persist its receipt. No identity
-means no resource cleanup authority. Source admission failures still permit
-strictly bounded sanitized first-failure export and read-only provider-bound
-artifact verification; that path never grants source or native admission.
+At most three new artifacts may be uploaded, with a cumulative 128 MiB service ZIP cap and requested seven-day retention. Provider readback allows at most 169 observed hours and accounts for 170 billable hours including rounding. No application archives, protected state or cache are uploaded. Detailed records remain in bounded allowlisted evidence; console output is a fixed summary of at most 2048 bytes per successful entrypoint call. Checkout progress and runner/step debug are disabled; an actual `RUNNER_DEBUG=1` observation refuses admission. Provider credentials and remote Docker overrides are removed before native subprocess work.
 
-Local verification is limited to `python3 -B acceptance/test_orchestration.py -v`
-and other explicitly scoped candidate checks. These tests use synthetic
-in-memory authority and temporary metadata files; they do not obtain authority,
-contact providers, load packages, start Docker, initialize Brain, or execute
-A5-08/A5-09. Final whole-row adjudication remains independent of a green job.
+The US$2.11 ceiling requires the independently reviewed current billing assumptions and public standard-runner restriction to remain true. It includes 300 job minutes, cancellation/rounding tails, artifact and log storage planning, tax and rounding contingencies; it is not an unlimited provider-charge permission. Before any dispatch, reverify current provider visibility/pricing, remaining input retention, cancellation provisions, exact source, zero existing matching launches and the current accounting snapshot. Any mismatch is a stop, not permission to alter source, extend deadlines or retry.
+
+Actual Docker/OCI behavior, new-host isolation, Brain capture, all original A5 transitions/readbacks, cleanup and provider charges remain hosted-only observations. Offline controls establish deterministic admission and sequence compatibility only.
+
+PR #113 remains DRAFT / UNMERGED; Pillow NOT_BORN; Commerce LOCKED; Work 9 INACTIVE. All 64 original requirements, 48 accepted histories and eight satisfied A5 groups are preserved. Production Railway mutation, original-volume alteration, protected-data transfer and commerce activation remain prohibited.

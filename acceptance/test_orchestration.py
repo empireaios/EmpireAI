@@ -24,27 +24,26 @@ def fixture():
     binding = {'tree': '3'*40, 'parent': entry.PARENT,
                'manifestSHA256': source['sourceManifestSHA256'],
                'workflowSHA256': source['workflowSHA256']}
-    owner = {'schema': 'work8-v95-owner-approval-v1', 'ownerDecisionRecorded': True,
-             'directive': 'EMPIREAI_V95_SEPARATE_NATIVE_EXECUTION_APPROVAL',
+    owner = {'schema': 'work8-v99-owner-approval-v1', 'ownerDecisionRecorded': True,
+             'directive': 'EMPIREAI_V99_SEPARATE_NATIVE_EXECUTION_APPROVAL',
              'scope': 'one-native-a5-08-09-attempt', 'maximumAttempts': 1,
-             'maximumJobSeconds': 18000, 'maximumAdditionalExposureUSD': '0.01',
-             'maximumReservationUSD': '0.01', 'noAutomaticRetry': True,
-             'approvedSource': binding, 'reservationId': entry.RESERVATION}
-    reservation = {'schema': 'work8-v95-reservation-v1',
+             'maximumJobSeconds': 18000, 'maximumAdditionalExposureUSD': '2.11',
+             'maximumReservationUSD': '2.11', 'noAutomaticRetry': True,
+             'approvedSource': binding, 'reservationId': entry.RESERVATION,
+             'independentAckAuthority': entry.ACK_AUTHORITY}
+    reservation = {'schema': 'work8-v99-reservation-v1',
                    'recordType': 'ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE',
                    'status': 'COMMITTED', 'reservationId': entry.RESERVATION,
-                   'approvedSource': binding, 'reservationUSD': '0.01',
-                   'before': {'aggregateHoldsUSD': '12.15', 'A5HoldsUSD': '2.20',
-                              'unreservedA5AuthorityUSD': '7.80'},
-                   'after': {'aggregateHoldsUSD': '12.16', 'A5HoldsUSD': '2.21',
-                             'unreservedA5AuthorityUSD': '7.79'}}
+                   'approvedSource': binding, 'reservationUSD': '2.11',
+                   'before': dict(entry.LEDGER_BEFORE), 'after': dict(entry.LEDGER_AFTER)}
     plan = copy.deepcopy(template)
     plan['status'] = 'OWNER_APPROVED_EXTERNAL_RELEASE'
     plan['authority'].update(ownerDecisionRecorded=True, approvalScope='one-native-a5-08-09-attempt',
         maximumAttempts=1, reservationCommitted=True, reservationId=entry.RESERVATION,
-        reservationUSD=0.01, maximumProspectiveUSD=0.01, currentOverallHoldsUSD=12.16,
-        currentA5HoldsUSD=2.21, remainingUnreservedUSD=7.79)
-    record = {'schema': 'work8-v95-external-release-v1', 'repository': entry.REPOSITORY,
+        reservationUSD=2.11, maximumProspectiveUSD=2.11, currentOverallHoldsUSD=14.57,
+        currentA5HoldsUSD=4.62, remainingUnreservedUSD=5.38,
+        independentAckAuthority=copy.deepcopy(entry.ACK_AUTHORITY))
+    record = {'schema': 'work8-v99-external-release-v1', 'repository': entry.REPOSITORY,
               'launchBranch': entry.LAUNCH_BRANCH, 'workflowPath': entry.WORKFLOW,
               'maximumAttempts': 1, 'source': binding, 'launchPlan': plan,
               'ownerApprovalReceipt': owner, 'reservationReceipt': reservation}
@@ -127,15 +126,17 @@ class SourceAndAttemptTests(unittest.TestCase):
     def test_recreated_branch_or_incomplete_run_listing_cannot_reuse_grant(self):
         current = {'id': 99, 'run_attempt': 1, 'event': 'create',
                    'head_branch': entry.LAUNCH_BRANCH, 'head_sha': '8'*40,
-                   'path': entry.WORKFLOW}
+                   'path': entry.WORKFLOW, 'status': 'in_progress', 'workflow_id': 123,
+                   'actor': {'id': entry.OWNER_ID, 'login': 'empireaios', 'type': 'User'},
+                   'triggering_actor': {'id': entry.OWNER_ID, 'login': 'empireaios', 'type': 'User'}}
         with mock.patch.dict(os.environ, GITHUB_RUN_ID='99', GITHUB_SHA='8'*40):
-            with mock.patch.object(entry.runner, 'api', return_value={'total_count': 1, 'workflow_runs': [current]}):
+            with mock.patch.object(entry.runner, 'api', side_effect=[current, {'total_count': 1, 'workflow_runs': [current]}]):
                 self.assertEqual(entry.single_launch_readback()['matchingRuns'], 1)
             for listing in ({'total_count': 0, 'workflow_runs': []},
                             {'total_count': 2, 'workflow_runs': [current]},
                             {'total_count': 2, 'workflow_runs': [current, dict(current, id=98)]},
                             {'total_count': 1, 'workflow_runs': [dict(current, id=98)]}):
-                with self.subTest(listing=listing), mock.patch.object(entry.runner, 'api', return_value=listing):
+                with self.subTest(listing=listing), mock.patch.object(entry.runner, 'api', side_effect=[current, listing]):
                     with self.assertRaises(entry.guard.Refusal):
                         entry.single_launch_readback()
 
@@ -216,15 +217,17 @@ class FailureReturnAndUploadTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)
             run = {'id': 99, 'run_attempt': 1, 'head_sha': '8'*40, 'event': 'create',
-                   'path': entry.WORKFLOW, 'head_branch': entry.LAUNCH_BRANCH, 'status': 'in_progress'}
-            job = {'id': 100, 'name': entry.JOB_NAME, 'status': 'in_progress',
+                   'path': entry.WORKFLOW, 'head_branch': entry.LAUNCH_BRANCH, 'status': 'in_progress',
+                   'actor': {'id': entry.OWNER_ID, 'login': 'empireaios', 'type': 'User'},
+                   'triggering_actor': {'id': entry.OWNER_ID, 'login': 'empireaios', 'type': 'User'}}
+            job = {'id': 100, 'run_id': 99, 'name': entry.JOB_NAME, 'status': 'in_progress',
                    'labels': ['ubuntu-24.04'], 'runner_id': 101, 'runner_name': 'test-runner'}
-            artifact = {'id': 102, 'name': 'v95-test-final', 'expired': False,
+            artifact = {'id': 102, 'name': 'v99-test-final', 'expired': False,
                         'workflow_run': {'id': 99, 'head_sha': '8'*40}, 'size_in_bytes': 1000,
                         'digest': 'sha256:'+'a'*64, 'created_at': '2026-11-08T12:00:00Z',
                         'expires_at': '2026-11-15T12:00:00Z'}
             prefix = '/repos/'+entry.REPOSITORY
-            responses = {prefix: {'id': int(entry.guard.REPOSITORY_ID), 'visibility': 'public', 'archived': False},
+            responses = {prefix: {'id': int(entry.guard.REPOSITORY_ID), 'visibility': 'public', 'private': False, 'archived': False},
                          prefix+'/actions/runs/99': run,
                          prefix+'/actions/runs/99/attempts/1/jobs?per_page=100': {'total_count': 1, 'jobs': [job]},
                          prefix+'/actions/artifacts/102': artifact,

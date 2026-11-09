@@ -14,13 +14,13 @@ FOUNDATION=HERE.parent/'foundation'
 sys.path.insert(0,str(FOUNDATION/'runtime'))
 from runtime_common import atomic,bounded_process,Refusal as RuntimeRefusal
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
-CONTROLLER_SHA='399e241ccf38db2dd97260d70543cfcadc23d19902ea4dd6b7aeb74712d18131'
+CONTROLLER_SHA='c33d2ac9ea332895d89861bd50d9dddddf0f91b929195f0fd41979426b842bb3'
 DRIVER_SHA='49d50e3d985e0a544780422f8ad56c9a10311d835bbea667f8c384ccf9d9e480'
 MEMBERSHIP_CONTROLLER_SHA='59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b'
 MEMBERSHIP_CONTROLLER_BYTES=20923
-REVIEW_REF='work8/v95-review-20261108'
-LAUNCH_REF='refs/heads/work8/v95-a5-20261108'
-WORKFLOW_PATH='.github/workflows/work8-v95-a5.yml'
+REVIEW_REF='work8/v99-review-20261109'
+LAUNCH_REF='refs/heads/work8/v99-a5-20261109'
+WORKFLOW_PATH='.github/workflows/work8-v99-a5.yml'
 ENV_KEYS=('GITHUB_ACTIONS','GITHUB_REPOSITORY','GITHUB_REPOSITORY_ID','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_SHA','GITHUB_JOB','RUNNER_OS','RUNNER_ARCH')
 
 def load_module(name,path):
@@ -312,7 +312,7 @@ def prepare(root,retained_driver=None):
  source=FOUNDATION/'controller/scripts/work8/native-transition';verify_manifest_diagnostic(source,source/'controller-manifest.json',CONTROLLER_SHA,'historical-controller')
  destination=root/'controller';require(not destination.exists(),'CONTROLLER_ASSEMBLY_ALREADY_ATTEMPTED');shutil.copytree(FOUNDATION/'controller',destination)
  script=destination/'scripts/work8/native-transition';replace_assignments(script/'current_packages.py',{'BACKEND':packages['backend'],'FRONTENDS':packages['frontends']})
- p=script/'current_packages.py';p.write_text(p.read_text().replace('"packageRebuilt": False','"packageRebuilt": '+str(not reused)).replace('Verify/import the existing V55 distributions. Never build or publish packages.','Verify/import independently admitted V65 source-equivalent distributions.'))
+ p=script/'current_packages.py';p.write_text(p.read_text().replace('"packageRebuilt": False','"packageRebuilt": '+str(not reused)))
  p=script/'examine-v26.py';text=p.read_text();old="assert underlying_contract==accepted_private_contract['backend'],'ACCEPTED_PRIVATE_BACKEND_CONTRACT_CHANGED'";require(text.count(old)==1,'EXACT_PRIVATE_CONTRACT_REBINDING_REQUIRED')
  text=text.replace(old,"assert underlying_contract=={**accepted_private_contract['backend'],'image':current_packages.BACKEND['image']},'ACCEPTED_PRIVATE_BACKEND_CONTRACT_CHANGED'")
  require(text.count("'packagesRebuilt':False")==1,'EXACT_REBUILT_RECEIPT_REQUIRED');p.write_text(text.replace("'packagesRebuilt':False","'packagesRebuilt':"+str(not reused)))
@@ -343,8 +343,13 @@ def qualify(root,authority_file,*,qualification_only=False,acceptance_admission=
  if acceptance_admission:
   launch=pinned_json(pathlib.Path(authority_file),sha(pathlib.Path(authority_file)))
   validate_authority(launch['authority'])
-  retained=load_module('v95_retained_diagnostics',HERE.parent.parent/'acceptance/retained_diagnostics.py')
+  retained=load_module('v99_retained_diagnostics',HERE.parent.parent/'acceptance/retained_diagnostics.py')
   retained_evidence=retained.admit(root)
+  reuse=load_module('v99_retained_evidence',HERE.parent.parent/'acceptance/retained_evidence.py')
+  proof=reuse.verify_retained_evidence(HERE.parent.parent,root/'controller/scripts/work8/native-transition')
+  packages=json.loads((root/'v65-packages.json').read_text());frontend_reuse_receipt(proof,packages['backend'],packages['frontends'])
+  (root/'provider').mkdir(mode=0o700,exist_ok=True)
+  atomic(root/'provider/retained-evidence.json',proof,exclusive=True)
  qualification_marker_sha=None
  if qualification_only:
   # Separately admitted wrapper authority must exist before any native action.
@@ -437,13 +442,13 @@ def qualify(root,authority_file,*,qualification_only=False,acceptance_admission=
   except BaseException as exc:cleanup_errors.append({'action':'qualification-private-directory','errorClass':type(exc).__name__})
   atomic(root/'runtime-evidence/qualification-cleanup.json',{'schema':'work8-v75-qualification-cleanup-v1','status':'PASS' if not cleanup_errors else 'FAIL','errors':cleanup_errors,'primaryFailurePreserved':primary_failure is not None,'applicationStarted':False},exclusive=True)
   if cleanup_errors and primary_failure is None:raise Refusal('QUALIFICATION_CLEANUP_FAILED')
- # V95 reuses the exact independently read-back seven-control receipt. The
+ # V99 reuses the exact independently read-back seven-control receipt. The
  # newly allocated host is admitted separately; this does not repeat Q01-Q05.
  diagnostics=root/'diagnostic-controls'
  require(critical['files']['/app/deployment/runtime-membership-controller.cjs']['sha256']==MEMBERSHIP_CONTROLLER_SHA and critical['files']['/app/deployment/runtime-membership-controller.cjs']['bytes']==MEMBERSHIP_CONTROLLER_BYTES,'DIAGNOSTIC_CONTROLLER_CURRENT_IMAGE_JOIN')
  script=root/'controller/scripts/work8/native-transition'
  if acceptance_admission:
-  q.update(evidenceMode='V95_FRESH_EXECUTOR_ADMISSION_REUSING_V94_DIAGNOSTICS',historicalDiagnosticEvidence=retained_evidence,qualificationCampaignRepeated=False)
+  q.update(evidenceMode=FRESH_ADMISSION_MODE,historicalDiagnosticEvidence=retained_evidence,qualificationCampaignRepeated=False)
  else:
   args,env=diagnostic_control_invocation(root);run(root,args,120,1024*1024,env=env)
  diagnostic=json.loads((diagnostics/'negative-control-result.json').read_text());require(diagnostic['status']=='PASS' and diagnostic['testsRun']==7 and diagnostic['testsPassed']==7,'SEVEN_FIRST_ERROR_CONTROLS_REQUIRED');q['diagnosticControlsSHA256']=sha(diagnostics/'negative-control-result.json')
@@ -462,7 +467,7 @@ def qualify(root,authority_file,*,qualification_only=False,acceptance_admission=
   require(not any((root/name).exists() for name in ('run-contract.json','launch-contract.json','source-review.json','preflight-review.json')),'QUALIFICATION_ONLY_FULL_CONTRACT_REFUSED')
   return {'status':'CURRENT_NATIVE_CAPABILITY_OBSERVED_NO_APPLICATION_AUTHORITY','sessionId':identity['sessionId'],'nativeQualificationSHA256':sha(root/'native-qualification.json'),'applicationStarted':False,'applicationExecutionAuthorized':False,'wholeRowsAccepted':[]}
  launch=json.loads(pathlib.Path(authority_file).read_text());require(launch['schema']=='work8-v65-reviewed-launch-plan-v1','REVIEWED_LAUNCH_PLAN_REQUIRED');launch['workflowCommit']=identity['workflowCommit'];atomic(root/'launch-contract.json',launch,exclusive=True)
- c={'schema':SCHEMA,'campaignId':name,'executor':identity,'runnerIdentitySHA256':sha(root/'runner-identity.json'),'runtimeImageProvenanceSHA256':sha(root/'runtime-image-provenance.json'),'authority':launch['authority'],'durationPlan':launch['durationPlan'],'dependencyImages':DEPENDENCY_IMAGES,'sources':SOURCES,'packageManifestSHA256':sha(root/'v65-packages.json'),'controllerManifestSHA256':sha(script/'controller-manifest.json'),'driverManifestSHA256':DRIVER_SHA,'sourceIdentitiesSHA256':sha(root/'source-identities.json'),'nativeQualificationSHA256':sha(root/'native-qualification.json'),'launchContractSHA256':sha(root/'launch-contract.json'),'packageDeliverySHA256':sha(root/'package-delivery.json')}
+ c={'schema':SCHEMA,'campaignId':name,'executor':identity,'runnerIdentitySHA256':sha(root/'runner-identity.json'),'runtimeImageProvenanceSHA256':sha(root/'runtime-image-provenance.json'),'authority':launch['authority'],'durationPlan':launch['durationPlan'],'dependencyImages':DEPENDENCY_IMAGES,'sources':SOURCES,'packageManifestSHA256':sha(root/'v65-packages.json'),'controllerManifestSHA256':sha(script/'controller-manifest.json'),'driverManifestSHA256':DRIVER_SHA,'sourceIdentitiesSHA256':sha(root/'source-identities.json'),'nativeQualificationSHA256':sha(root/'native-qualification.json'),'launchContractSHA256':sha(root/'launch-contract.json'),'packageDeliverySHA256':sha(root/'package-delivery.json'),'retainedEvidenceSHA256':sha(root/'provider/retained-evidence.json')}
  validate_contract(c,time.time());atomic(root/'run-contract.json',c,exclusive=True)
  return {'status':'PACKAGE_AND_NATIVE_PREREQUISITES_OBSERVED_EXTERNAL_REVIEW_PENDING','applicationStarted':False,'bindings':package_bindings(c)}
 
@@ -476,27 +481,60 @@ def service_artifact(c,artifact_id,digest,*,deadline=None):
  require(any(x['id']==a['id'] and x['digest']==a['digest'] and x['size_in_bytes']==a['size_in_bytes'] for x in listing['artifacts']),'ARTIFACT_LISTING_READBACK_DISAGREEMENT')
  return {'id':a['id'],'name':a['name'],'sha256':digest,'bytes':a['size_in_bytes'],'createdAtUTC':a['created_at'],'expiresAtUTC':a['expires_at'],**bounds}
 
+def authenticated_ack_endorsement(c,stage,commit,ack_bytes,artifact,*,deadline):
+ """Read one owner-authenticated, immutable PR113 endorsement; never post it."""
+ started=datetime.datetime.fromtimestamp(c['executor']['jobStartedAtEpoch'],datetime.timezone.utc).isoformat().replace('+00:00','Z')
+ path='/repos/'+REPOSITORY+'/issues/113/comments?since='+urllib.parse.quote(started,safe='')+'&per_page=100'
+ comments=api(path,deadline=deadline)
+ require(isinstance(comments,list) and len(comments)<100,'ACK_ENDORSEMENT_COMPLETE_BOUNDED_LIST_REQUIRED')
+ expected={'schema':'work8-v99-independent-ack-endorsement-v1','repository':REPOSITORY,'runId':str(c['executor']['runId']),'runAttempt':1,'stage':stage,'reviewCommit':commit,'ackSHA256':hashlib.sha256(ack_bytes).hexdigest(),'artifactId':artifact['id'],'artifactSHA256':artifact['sha256'],'decision':'PASS','scope':'INDEPENDENT_REVIEW_ONLY_NOT_A5_ACCEPTANCE'}
+ matches=[]
+ for comment in comments:
+  user=comment.get('user') or {}
+  if user.get('login')!='empireaios' or user.get('id')!=295548100 or user.get('type')!='User':continue
+  body=comment.get('body')
+  if not isinstance(body,str) or len(body.encode('utf-8'))>4096:continue
+  try:value=json.loads(body)
+  except (ValueError,TypeError):continue
+  if not isinstance(value,dict) or value.get('schema')!=expected['schema'] or value.get('runId')!=expected['runId'] or value.get('stage')!=stage:continue
+  matches.append((comment,body,value))
+ require(len(matches)<=1,'AMBIGUOUS_ACK_ENDORSEMENT_REFUSED')
+ if not matches:return None
+ comment,body,value=matches[0];user=comment.get('user') or {}
+ require(user.get('login')=='empireaios' and user.get('id')==295548100 and user.get('type')=='User','AUTHENTICATED_ACK_OWNER_REQUIRED')
+ require(value==expected and body==json.dumps(expected,sort_keys=True,separators=(',',':')),'EXACT_CANONICAL_ACK_ENDORSEMENT_REQUIRED')
+ require(type(comment.get('id')) is int and comment['id']>0 and comment.get('issue_url')=='https://api.github.com/repos/'+REPOSITORY+'/issues/113','ACK_ENDORSEMENT_PR_SCOPE_REQUIRED')
+ try:
+  created=datetime.datetime.fromisoformat(comment['created_at'].replace('Z','+00:00')).timestamp()
+  updated=datetime.datetime.fromisoformat(comment['updated_at'].replace('Z','+00:00')).timestamp()
+ except (KeyError,ValueError,TypeError):raise Refusal('ACK_ENDORSEMENT_CURRENT_IMMUTABLE_TIME_REQUIRED') from None
+ require(c['executor']['jobStartedAtEpoch']<=created<=time.time()<c['executor']['expiresAtEpoch'] and updated==created,'ACK_ENDORSEMENT_CURRENT_IMMUTABLE_TIME_REQUIRED')
+ return {'commentId':comment['id'],'issueNumber':113,'ownerLogin':user['login'],'ownerId':user['id'],'createdAtUTC':comment['created_at'],'bodySHA256':hashlib.sha256(body.encode()).hexdigest(),'rawAckSHA256':expected['ackSHA256'],'reviewCommit':commit,'authenticatedBy':'GITHUB_ISSUE_COMMENT_USER','scope':expected['scope']}
+
 def await_review(root,stage,artifact_id,artifact_digest,max_seconds=1500):
  require(type(max_seconds) is int and 0<max_seconds<=1500,'EXTERNAL_REVIEW_TIME_BOUND');deadline=time.monotonic()+max_seconds
  c=json.loads((root/'run-contract.json').read_text());validate_contract(c,time.time());artifact=service_artifact(c,artifact_id,artifact_digest,deadline=deadline)
  expected=package_bindings(c)
  if stage=='preflight':expected.update(runContractSHA256=sha(root/'run-contract.json'),runnerResultSHA256=sha(root/'evidence/preflight/runner-result.json'),artifactIndexSHA256=sha(root/'evidence/preflight/artifact-index.json'))
  destination=root/('source-review.json' if stage=='packages-and-executor' else 'preflight-review.json');require(not destination.exists(),'INDEPENDENT_ACK_ALREADY_COMMITTED')
- filename='v65-review/'+str(c['executor']['runId'])+'/'+stage+'.json'
+ filename='v99-review/'+str(c['executor']['runId'])+'/'+stage+'.json'
  while time.monotonic()<deadline:
   require_remaining_lifetime(c,'preflight' if stage=='packages-and-executor' else 'full',time.time())
   ref=api('/repos/'+REPOSITORY+'/git/ref/heads/'+REVIEW_REF,allow_missing=True,deadline=deadline)
   if ref:
    commit=ref['object']['sha'];require(re.fullmatch('[a-f0-9]{40}',commit) is not None and commit!=c['executor']['workflowCommit'],'DISTINCT_REVIEW_COMMIT_REQUIRED')
    ci=api('/repos/'+REPOSITORY+'/commits/'+commit+'?per_page=1',deadline=deadline)
-   # API-linked GitHub identity, not arbitrary git author/email strings.
+   # Git attribution is consistency metadata, not authenticated review authority.
    require((ci.get('author') or {}).get('login')=='empireaios' and (ci.get('author') or {}).get('id')==295548100,'TRUSTED_EXTERNAL_REVIEW_AUTHOR_REQUIRED')
    file=api('/repos/'+REPOSITORY+'/contents/'+filename+'?ref='+commit,allow_missing=True,deadline=deadline)
    if file:
     require(file['type']=='file' and file['encoding']=='base64' and file['size']<=32768,'ACK_REGULAR_SIZE_BOUND');data=base64.b64decode(file['content'],validate=False);require(len(data)==file['size'],'ACK_COMPLETE_BYTES_REQUIRED');ack=json.loads(data)
     verify_ack(ack,c,stage,expected,time.time());require(ack['artifactId']==artifact['id'] and ack['artifactSHA256']==artifact['sha256'],'INDEPENDENT_ACK_CURRENT_ARTIFACT_REQUIRED')
-    require(time.monotonic()<deadline,'INDEPENDENT_REVIEW_DEADLINE');atomic(destination,ack,exclusive=True);atomic(root/('review-transport-'+stage+'.json'),{'schema':'work8-v65-external-review-transport-v1','reviewCommit':commit,'reviewAuthorLogin':'empireaios','reviewAuthorId':295548100,'ackSHA256':sha(destination),'artifact':artifact,'applicationAcceptance':False},exclusive=True)
-    return {'status':'EXTERNAL_REVIEW_ACKNOWLEDGED','stage':stage,'ackSHA256':sha(destination),'applicationAcceptance':False}
+    require(time.monotonic()<deadline,'INDEPENDENT_REVIEW_DEADLINE')
+    endorsement=authenticated_ack_endorsement(c,stage,commit,data,artifact,deadline=deadline)
+    if endorsement is not None:
+     require(time.monotonic()<deadline,'INDEPENDENT_REVIEW_DEADLINE');atomic(destination,ack,exclusive=True);atomic(root/('review-transport-'+stage+'.json'),{'schema':'work8-v99-authenticated-external-review-transport-v1','reviewCommit':commit,'gitAuthorAttribution':{'login':'empireaios','id':295548100,'authenticatesApproval':False},'ownerEndorsement':endorsement,'rawAckSHA256':hashlib.sha256(data).hexdigest(),'ackSHA256':sha(destination),'artifact':artifact,'applicationAcceptance':False},exclusive=True)
+     return {'status':'EXTERNAL_REVIEW_ACKNOWLEDGED','stage':stage,'ackSHA256':sha(destination),'applicationAcceptance':False}
   time.sleep(min(15,max(0,deadline-time.monotonic())))
  raise Refusal('INDEPENDENT_REVIEW_DEADLINE')
 
@@ -523,7 +561,7 @@ def exporter(root):
  # logical2MiB and compressed512KiB bounds remain exactly unchanged.
  module.TOP_NAMES.update({'runtime-image-provenance.json','component-checkpoint-summary.json','launch-readiness.json','runner-identity.json','artifact-service-packages.json','artifact-service-final.json','review-transport-packages-and-executor.json','review-transport-preflight.json','package-origin.json','candidate-artifact-service.json','candidate-download.json'})
  module.RUNTIME_NAMES.update({'guard-controls.json','qualification-cleanup.json','dumpability-observer-build.json'})
- module.TOP_NAMES.update({'external-release.json','release-transport.json','acceptance-source-admission.json','operative-launch-plan.json','artifact-return-provider.json','single-launch-readback.json','upload-bounds/packages-and-executor.json','upload-bounds/preflight.json'})
+ module.TOP_NAMES.update({'provider/retained-evidence.json','external-release.json','release-transport.json','acceptance-source-admission.json','operative-launch-plan.json','artifact-return-provider.json','single-launch-readback.json','upload-bounds/packages-and-executor.json','upload-bounds/preflight.json'})
  for operation in ('identity','download','prepare','admission','review-export','await-review-packages-and-executor','native-preflight','native-export-preflight','await-review-preflight','native-full','cleanup','final-export'):
   module.TOP_NAMES.add('acceptance-attempts/'+operation+'.json')
  module.STAGE_NAMES.update({'native-time-budget','owner-policy-lifecycle'})
@@ -531,7 +569,7 @@ def exporter(root):
 
 def review_export(root):
  e=exporter(root);dest=root/'review-exports/packages-and-executor';dest.mkdir(parents=True,mode=0o700)
- names=['runtime-image-provenance.json','runner-identity.json','v65-packages.json','source-identities.json','package-delivery.json','native-qualification.json','run-contract.json','launch-contract.json','package-origin.json','candidate-artifact-service.json','candidate-download.json','critical-image-readback.json','sqljs-packaging-smoke.json','diagnostic-controls/negative-control-result.json','runtime-evidence/guard-controls.json','runtime-evidence/native-capability-observation.json','runtime-evidence/qualification-cleanup.json','runtime-evidence/dumpability-observer-build.json','controller/scripts/work8/native-transition/controller-manifest.json','native-transition-driver/controller-manifest.json']
+ names=['provider/retained-evidence.json','runtime-image-provenance.json','runner-identity.json','v65-packages.json','source-identities.json','package-delivery.json','native-qualification.json','run-contract.json','launch-contract.json','package-origin.json','candidate-artifact-service.json','candidate-download.json','critical-image-readback.json','sqljs-packaging-smoke.json','diagnostic-controls/negative-control-result.json','runtime-evidence/guard-controls.json','runtime-evidence/native-capability-observation.json','runtime-evidence/qualification-cleanup.json','runtime-evidence/dumpability-observer-build.json','controller/scripts/work8/native-transition/controller-manifest.json','native-transition-driver/controller-manifest.json']
  files={name:e.safe_bytes(root/name) for name in names}
  # Only schema-checked build receipt metadata, never build logs, source snapshots,
  # generated application databases, credentials, or native private directories.

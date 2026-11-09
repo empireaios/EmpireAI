@@ -1,0 +1,154 @@
+{
+  "schema": "work8-bounded-upload-v1",
+  "exactGeneratedSecretCheck": true,
+  "maxBytes": 2147483648,
+  "stageMaximumArtifactBytes": 134217728,
+  "files": [
+    {
+      "path": "accepted-module-preflight-reused.json",
+      "bytes": 251,
+      "sha256": "8000469c41e54fee951cef5c7aa171e333b77e13a32789fcccec72dc6e2d3308"
+    },
+    {
+      "path": "actual-runtime-ready.json",
+      "bytes": 297,
+      "sha256": "e7fba331ee2a0e6f61c9063cfb5db59a88e6d055b9e43ab7c296b6fa069dd5a6"
+    },
+    {
+      "path": "backend-container.log",
+      "bytes": 205,
+      "sha256": "6de4871a47ece94898eb09300080f811c77ea61673d940f62c9ac13852fa9e84"
+    },
+    {
+      "path": "child-fixture-protected-entrypoint-command.log",
+      "bytes": 2387,
+      "sha256": "66511d144695af96f5eaf3aa9e2d47fe55d1a28fc12ffb4654d73ab4bb4e4c21"
+    },
+    {
+      "path": "child-fixture-system-errno-command.log",
+      "bytes": 2272,
+      "sha256": "3914ede305857722094d1a0761b9d55f81beab791f9f4f70be234089f3516585"
+    },
+    {
+      "path": "child-fixture-untrusted-message-command.log",
+      "bytes": 2296,
+      "sha256": "3630bcdfc946a5bcf16035183328419c26a5ec7d6278c1bae0036653f0ed1813"
+    },
+    {
+      "path": "child-startup-fixture-progress.json",
+      "bytes": 1073,
+      "sha256": "d47c3475c1be3e6f8057c06ca59ae41682763a3ad148a92c4758b0e4eaa8d34e"
+    },
+    {
+      "path": "child-startup-selftest.json",
+      "bytes": 6421,
+      "sha256": "588478beec58b6cf2c9f30e1af4c028c3d51f665ef4837bdcec1ba2376d3fbeb"
+    },
+    {
+      "path": "command-first-exception.json",
+      "bytes": 751,
+      "sha256": "251b974719137dc4ef4b966e119bd3f23ca8d629698a65648d446e9e2c7bf14c"
+    },
+    {
+      "path": "container-lifecycle.json",
+      "bytes": 3169,
+      "sha256": "12d69cd69e25887221265afc15b80c70f63b4c4afae1a599c50c80be090c098f"
+    },
+    {
+      "path": "current-package-import.json",
+      "bytes": 2659,
+      "sha256": "ce7dabcc6915ec518af7847c7e8f51a96780ecd20d84ed9c5894e646568bd8c8"
+    },
+    {
+      "path": "entrypoint-checkout-command.log",
+      "bytes": 752,
+      "sha256": "bac9d192b06f657489c1df74a86005b3363d9b987f20dd946e892fccbfc4c930"
+    },
+    {
+      "path": "entrypoint-corrected-command.log",
+      "bytes": 752,
+      "sha256": "749541bb5a30bdcdd6d674ef862f8b85ae674bb41260a91123f297058af2004d"
+    },
+    {
+      "path": "entrypoint-original-command.log",
+      "bytes": 753,
+      "sha256": "c1b9c03695153c85b787f50a3c2d453d0aece6c6eae10ef686cdf46126bc394d"
+    },
+    {
+      "path": "entrypoint-writer-refusal-command.log",
+      "bytes": 751,
+      "sha256": "0b3b1320d03afde2667c6147e36235ec1515650dd88cee3bbf3d0379ad60ce3f"
+    },
+    {
+      "path": "exact-components.json",
+      "bytes": 401,
+      "sha256": "0f6813399ee5a08faa42cfeaa18f6e00c16dff4f7520427b80c290d0299e6a34"
+    },
+    {
+      "path": "first-native-failure.json",
+      "bytes": 1191,
+      "sha256": "6618bf9a6d08c8a4914b286d73a9abe707c0c2f9ba734fec28fa9ff1e805bb47"
+    },
+    {
+      "path": "last-startup-observation.json",
+      "bytes": 2211,
+      "sha256": "2bceab86acee12222df23ca92ac7fce6e71df493650056ac985598cc311b5e95"
+    },
+    {
+      "path": "live-brain-ready.json",
+      "bytes": 951,
+      "sha256": "6a4c8e293064b40a8a6e117acedff75922efff0776365402fc4915f78eec4e28"
+    },
+    {
+      "path": "mounted-entrypoint-preflight.json",
+      "bytes": 41197,
+      "sha256": "6da50a84d00b51c2486ff46a09c6a473c570a9102bd2b40bbed2d49575235c86"
+    },
+    {
+      "path": "native-storage-child-bindings.json",
+      "bytes": 1660,
+      "sha256": "f6ba5cd1024ab3525984f27a1e6c24418b7c0d59e5ac936ecc3839cdab5bbe7f"
+    },
+    {
+      "path": "native-storage-preflight.json",
+      "bytes": 1468,
+      "sha256": "3f942ae389243630dc4d8ae6c4ed6bf448668e12a0156e1102f5b5f46228af37"
+    },
+    {
+      "path": "native-time-budget.json",
+      "bytes": 433,
+      "sha256": "3a4bfdc25973cd3ac20d4ca256847568c0bf7ae59692c465648aaa6cb6cd8865"
+    },
+    {
+      "path": "owner-policy-lifecycle.json",
+      "bytes": 354,
+      "sha256": "fb0d0ca3693cd1ff09cb26383a133b0ecf0bf186bda5ff343b4d3e3c9e155ae8"
+    },
+    {
+      "path": "phase-b-private-contract.json",
+      "bytes": 2335,
+      "sha256": "6e52369052bb9334de52f9dea5efa3480bc0f33953b2f55c740c707e532e22f7"
+    },
+    {
+      "path": "reused-private-handoff.json",
+      "bytes": 524,
+      "sha256": "5e91a602273f63a089dc57ac79ea6a1ac0d9b580e3384503b9f1243b21525699"
+    },
+    {
+      "path": "runner-result.json",
+      "bytes": 893,
+      "sha256": "6f1c17a845100f1b0eb0717bc824223b17155b216735175ff4b94aa5746f6dce"
+    },
+    {
+      "path": "stage-start.json",
+      "bytes": 586,
+      "sha256": "078f6cc0e5a24b66841c1a8f07f160a73683351d4d73d8f50e8dbf16d3832f55"
+    },
+    {
+      "path": "workflow-budget.json",
+      "bytes": 153,
+      "sha256": "f13423ec51e7c60f29bde519cc3a20479b4c991bcefd81063d515b574c9bd0d1"
+    }
+  ],
+  "setupOnlySanitizedFailure": false
+}
