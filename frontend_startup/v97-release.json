@@ -1,0 +1,69 @@
+{
+  "schema": "work8-v97-external-release-v1",
+  "repository": "empireaios/EmpireAI",
+  "launchBranch": "work8/v97-frontend-startup-20261109",
+  "workflowPath": ".github/workflows/work8-v97-frontend-startup.yml",
+  "maximumAttempts": 1,
+  "source": {
+    "tree": "dfac35790ff7af1ad6dceaa0cdf6ee1a37796aa5",
+    "parent": "8e06e3a1637519842548d29e03a5cd38bd10f409",
+    "manifestSHA256": "d9eaa8a1a13df8c619a8348686932e7bb4108e54bec83214dd22a16a1242813b",
+    "workflowSHA256": "40e90cbe068e70cb35c3c9de2174cc34963c24ea48d8e375b9de69fb231a53f8"
+  },
+  "ownerApprovalReceipt": {
+    "schema": "work8-v97-owner-approval-v1",
+    "ownerDecisionRecorded": true,
+    "directive": "EMPIREAI_V97_SEPARATE_FRONTEND_DIAGNOSTIC_APPROVAL",
+    "actualOwnerDirective": "EMPIREAI \u2014 V98 EXACT-SOURCE FRONTEND DOCKER DIAGNOSTIC APPROVAL",
+    "authorizationBasis": "Explicit owner directive in this conversation on2026-11-09SGT; permits commit-metadata changes only with identical complete tree,parent,manifest andworkflow",
+    "recordedAtUTC": "2026-11-09T00:15:24.327302+00:00",
+    "scope": "one-isolated-normal-recovery-docker-startup-diagnostic",
+    "maximumAttempts": 1,
+    "maximumJobSeconds": 1800,
+    "maximumNativeSeconds": 1200,
+    "maximumAdditionalExposureUSD": "0.30",
+    "maximumReservationUSD": "0.30",
+    "noAutomaticRetry": true,
+    "approvedSource": {
+      "tree": "dfac35790ff7af1ad6dceaa0cdf6ee1a37796aa5",
+      "parent": "8e06e3a1637519842548d29e03a5cd38bd10f409",
+      "manifestSHA256": "d9eaa8a1a13df8c619a8348686932e7bb4108e54bec83214dd22a16a1242813b",
+      "workflowSHA256": "40e90cbe068e70cb35c3c9de2174cc34963c24ea48d8e375b9de69fb231a53f8"
+    },
+    "reservationId": "V97-FRONTEND-STARTUP-ONCE-20261109",
+    "A5AcceptanceAuthorized": false,
+    "businessLifecycleAuthorized": false,
+    "proposedCommit": "cdfcb4459546af1f23e586cdc12f315dfa3ee55c"
+  },
+  "reservationReceipt": {
+    "schema": "work8-v97-reservation-v1",
+    "recordType": "ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE",
+    "status": "COMMITTED",
+    "reservationId": "V97-FRONTEND-STARTUP-ONCE-20261109",
+    "ownerApprovalSHA256": "bc8d2643982d2d062246d4af35eeb7f8b7f3fca633cc193f261f9f04605c0851",
+    "approvedSource": {
+      "tree": "dfac35790ff7af1ad6dceaa0cdf6ee1a37796aa5",
+      "parent": "8e06e3a1637519842548d29e03a5cd38bd10f409",
+      "manifestSHA256": "d9eaa8a1a13df8c619a8348686932e7bb4108e54bec83214dd22a16a1242813b",
+      "workflowSHA256": "40e90cbe068e70cb35c3c9de2174cc34963c24ea48d8e375b9de69fb231a53f8"
+    },
+    "reservationUSD": "0.30",
+    "recordedAtUTC": "2026-11-09T00:15:24.327302+00:00",
+    "before": {
+      "aggregateHoldsUSD": "12.16",
+      "A5HoldsUSD": "2.21",
+      "unreservedA5AuthorityUSD": "7.79"
+    },
+    "after": {
+      "aggregateHoldsUSD": "12.46",
+      "A5HoldsUSD": "2.51",
+      "unreservedA5AuthorityUSD": "7.49"
+    },
+    "existingV95HoldUSD": "0.01",
+    "existingV95HoldDuplicated": false,
+    "actualProviderChargeUSD": null,
+    "financialPreDispatchReviewSHA256": "bfae11bfa1c43d273b30802a6d165f82d024020d44e4a2cd3de6d2824e106173"
+  },
+  "ownerApprovalSHA256": "bc8d2643982d2d062246d4af35eeb7f8b7f3fca633cc193f261f9f04605c0851",
+  "reservationReceiptSHA256": "65fe247b7061264374312a10e7e6f98f354cd118f14021f9b082e01c04bc3ef7"
+}
