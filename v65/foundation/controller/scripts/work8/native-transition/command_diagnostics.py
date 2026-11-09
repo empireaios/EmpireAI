@@ -8,6 +8,7 @@ import subprocess
 import time
 
 from native_diagnostics import from_error, parse_stream, sanitize, save_first
+from docker_diagnostics import capture_first as capture_first_docker_error
 
 
 def _text(value):
@@ -85,6 +86,12 @@ def invoke(args, *, out, stage, timeout, cwd=None, input=None, log=None,
                 'safeFirstFailure': child, 'rawOutputRetained': False}
     failed = exception is not None or exit_code not in expected_exit_codes
     if failed:
+        # Preserve bounded Docker/OCI causality while stderr still exists in memory.
+        # Diagnostic write failure must never replace the original command failure.
+        try:
+            capture_first_docker_error(out, raw_stderr, source='DOCKER_CLI_STDERR', args=args)
+        except (OSError, ValueError, TypeError):
+            metadata['dockerDiagnosticUnavailable'] = True
         cause = child or from_error(exception or RuntimeError('COMMAND_FAILED'), stage,
                                     'EXECUTE_REVIEWED_COMMAND', '', exit_code)
         cause['commandException'] = context

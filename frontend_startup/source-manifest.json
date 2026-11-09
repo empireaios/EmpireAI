@@ -1,0 +1,1136 @@
+{
+  "schema": "work8-v97-complete-source-manifest-v1",
+  "exclusions": [
+    "frontend_startup/source-manifest.json"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/work8-v65-a5.yml",
+      "bytes": 259,
+      "sha256": "8be7b6a851c94c86d9c201ea87e6da3911acdcea8bbf6fe0bb02d97625879e85",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/workflows/work8-v66-a5.yml",
+      "bytes": 8830,
+      "sha256": "43145c0e3b5248188774dfa0353f8aaaa120f6852991cda3813fd1f008b12154",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/workflows/work8-v75-a5.yml",
+      "bytes": 9283,
+      "sha256": "4ee1bbe1a0e1f5291c3a80d2d8b4f1e6c4c160c8de03c6c140971768ad224871",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/workflows/work8-v81-qualification.yml",
+      "bytes": 2728,
+      "sha256": "a3c9864b17050f337e412052e4dfd54705db95b990dbd78d24521968ed78c4ad",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/workflows/work8-v95-a5.yml",
+      "bytes": 7502,
+      "sha256": "8e3832192c4bd97dd21031a2dc67e90bc5e84a9061e1acbbd33f7ebd8aa61bf6",
+      "mode": "100644"
+    },
+    {
+      "path": ".github/workflows/work8-v97-frontend-startup.yml",
+      "bytes": 4517,
+      "sha256": "40e90cbe068e70cb35c3c9de2174cc34963c24ea48d8e375b9de69fb231a53f8",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/README.md",
+      "bytes": 5921,
+      "sha256": "170f1075becc6a475d35f60494a48bd7633cfa59764cdced9079911a2ad82cd5",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/bind_source.py",
+      "bytes": 1287,
+      "sha256": "00272ef58a0008744f6f0d1b90e6cad645788cdd66e8d923ec99fee4c1a44631",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/config.json",
+      "bytes": 1471,
+      "sha256": "3b912e83a3ecf85234bb876d031acd770898fc419d94330c929e03a280933f3f",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/external-release.template.json",
+      "bytes": 1388,
+      "sha256": "e346d8d0b04e5b281f25be9b0b56a52fdb4e9e180d02d46f1ff7329db790ae34",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/native_acceptance.py",
+      "bytes": 23660,
+      "sha256": "dce49774cd48c161da2e9951796e8205d84f08a10f0ac8fcac94af353ac935f6",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/retained-v94/diagnostic-controls.json",
+      "bytes": 16807,
+      "sha256": "2aeaecbf74d66b1368a9b55a2e01500dbdc54bd2d8e54bd98b882e95cc8e5dbf",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/retained-v94/diagnostic-operands.json",
+      "bytes": 1789,
+      "sha256": "07676aff5206fef606997656428a05c6b8659f98b3aa98886d974f23691c8ed4",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/retained_diagnostics.py",
+      "bytes": 2051,
+      "sha256": "62ac3306c47f0c2dcad6799a3e7ac1e853437fbfcd7915c1c3e008dffd4fbb17",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/source-manifest.json",
+      "bytes": 39906,
+      "sha256": "1a32b6292b06e13ac1f92896908b7e591215a7836f07b1b432dbb0193ddd6bbb",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/test_orchestration.py",
+      "bytes": 17852,
+      "sha256": "1e7ef2ed6b6fdff2e23403598e96d1d63b5e623357d08ffb7ecdf95d6245985b",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/tests/test_financial_limits.py",
+      "bytes": 7713,
+      "sha256": "df3ae553518789685bb1a9856f95bd01fe514d7e27106e191cd5cad23a0eaa97",
+      "mode": "100644"
+    },
+    {
+      "path": "acceptance/tests/test_review_deadlines.py",
+      "bytes": 7653,
+      "sha256": "1453015aa9c25e26f3fd33c24753323c40b3ecfbcc12ad3e92cd88a8d79a3bb3",
+      "mode": "100644"
+    },
+    {
+      "path": "frontend_startup/admission.py",
+      "bytes": 32681,
+      "sha256": "f5bc0088448d0a4c8317cc62114e58b4f72b3e4a888cd1f12bbb70c29c48bbd7",
+      "mode": "100644"
+    },
+    {
+      "path": "frontend_startup/config.json",
+      "bytes": 1938,
+      "sha256": "9cdaaf6f2afde642a706b7a7a7049ee289be05f084be5e7d1b8aa7c093230d80",
+      "mode": "100644"
+    },
+    {
+      "path": "frontend_startup/runner.py",
+      "bytes": 45476,
+      "sha256": "69c6e4e95d736bd1ef7706482e39ffa8876444d654f4f3f22ba7da6bff31805e",
+      "mode": "100644"
+    },
+    {
+      "path": "frontend_startup/test_admission.py",
+      "bytes": 21294,
+      "sha256": "30c03dc01c9ad6da52d965c2e1c6669959c25de7fcb667f7772fa953271dc92b",
+      "mode": "100644"
+    },
+    {
+      "path": "frontend_startup/test_runner.py",
+      "bytes": 21330,
+      "sha256": "77b4c5745f3487e5c64088d32db8d3baf083bd1d45de9738eaa6e2c115ea2c5a",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/README.md",
+      "bytes": 6058,
+      "sha256": "802e748290376a36e662db8475b713b28af1ae2a14c4d86f2731758eb68e294e",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/backend-alias-probe-spec.json",
+      "bytes": 7995,
+      "sha256": "d7e425d7a37479f6d6fdd293051a79f66a36f2e052ed063094ce113677629541",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/backend_resolution.py",
+      "bytes": 24545,
+      "sha256": "aa6e25151f66e9a44bdb747dd2d05b8926891f1fcee5a314fc1440bf63e71934",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/build_source_manifest.py",
+      "bytes": 946,
+      "sha256": "73dff53ce49365b9cd526196b9bcbd7b0593d5ee18071ea59fd8702f16df6d09",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/config.json",
+      "bytes": 2618,
+      "sha256": "52692f1f804bdb450a96bcc56928fd293f914e095459498f31e5a53173c6c709",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/expected-reconstruction-inputs.json",
+      "bytes": 20666,
+      "sha256": "4d2537c64016eddddb217038b61a7ba44ce35fe39e763f4c0dd2f5f522d1be30",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/frontend-disposition-index.json",
+      "bytes": 62799,
+      "sha256": "7c4031965b02e1a16716cb681eb6b947328ca0f602def2e01c7415fc321970c3",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/frontend-generated-witness-index.json",
+      "bytes": 1893699,
+      "sha256": "17a6c18c85b5010ae50026422afd0e0dc1b5f79afc9864b05896fecbe924780e",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/frontend_packages.py",
+      "bytes": 35031,
+      "sha256": "c11bdef4a10d11450216800d9e4dc12a40e54569759bc9b1d359bea0213fb058",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/frontend_semantics.py",
+      "bytes": 17814,
+      "sha256": "0f30585a2b19e847ab2ba10ff7ec02a90a3922bc5675b89528b37e41758b2f24",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/original_contract.py",
+      "bytes": 27506,
+      "sha256": "6137b9c9b636bf092f062b28d59c152211abbda0e461272b16101e6616fc7183",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/owner-approval.json",
+      "bytes": 1731,
+      "sha256": "fea15e94f27dc360f839e6297361369442a9b6a9004d9f28aa2be9ceded42eee",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/package-applicability-proof.json.gz",
+      "bytes": 7502987,
+      "sha256": "2efe166ef98874ecc710e294c21fb723d8347ef15e1e32536baed873a3549f4c",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/package_applicability.py",
+      "bytes": 58732,
+      "sha256": "cf15d0cf77bc3c50ef7911fc85bd250be2c2d372736fb7cb8c5d251e4827eee3",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/q05-acorn.js",
+      "bytes": 121634,
+      "sha256": "3c141146168735659c30b29c925fbf9fdf4d12ad85eb83d68e2afb26a1cc248d",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/q05_js_semantics.cjs",
+      "bytes": 22871,
+      "sha256": "87348ff4a3aea81e01fd322c26eacba27074ade6cf40bb3eeffac5adf616119e",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/qualify_only.py",
+      "bytes": 55834,
+      "sha256": "5e5f317fd2f0c0ea133a4a5c9b73c67e19c8a6e877c191b1cf16c7653af41138",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/source-manifest.json",
+      "bytes": 32846,
+      "sha256": "cdea40f977f8056159e6cead737405002fb92ef4cba1d85f11047b009c79d447",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/test_v91_receipt_binding.py",
+      "bytes": 4890,
+      "sha256": "e822ae7c4f1819b4bbd4434e147ed04c1a1a98e417dd3ffff6c5ea5d49e02040",
+      "mode": "100644"
+    },
+    {
+      "path": "qualification/verify_evidence.py",
+      "bytes": 62451,
+      "sha256": "7c715b743e04d8d7972f2f2e95a67acfdab17793fbb0fc965b85ed5e088ea6ca",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/adapter/collect_runtime_image_provenance.py",
+      "bytes": 13063,
+      "sha256": "12f0e610af651b2589217191e0e33896fb5a4a52db588b22ca9d4ef78958c8cb",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/adapter/compare_executor_provenance.py",
+      "bytes": 12477,
+      "sha256": "e65ff89db25d08f87acb16e49a299f6c0fcadcad30b97e0e37b6737f9308c33d",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/adapter/github_contract.py",
+      "bytes": 38193,
+      "sha256": "726f0daaad93022f845216e98492fe1ba8f3b5f7344488376f00522524bb0062",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/adapter/runner.py",
+      "bytes": 72876,
+      "sha256": "e4104521ba53c16e4448e0d99b31fc3fce5dd2462ce5d34063f582b6a408a55d",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/backend-immutable-inputs/source-metadata.json",
+      "bytes": 4373,
+      "sha256": "1eb2323d23ac62a1dc28005774a0419cf3d937992a0b1e33f47e26bc90850a2a",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/backend-native/native.sha256",
+      "bytes": 65,
+      "sha256": "b4cd3d8d8d0cc7928c6585967475ea9a260f6a9484e64bc21d9525abe3829661",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/backend-native/provenance.json",
+      "bytes": 614,
+      "sha256": "44a97cdcc5f6d510f05bd476504ebf160609243e9da6e713b59ca6567e35db7b",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/backend-native/runtime-writer-isolation.so.b64",
+      "bytes": 20633,
+      "sha256": "a78505b91df35e0ecb6d39e306ae7bcc0dfc5effc6a685ead146863cda0e49ac",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/backend-preserved-file-inventory.json",
+      "bytes": 1010620,
+      "sha256": "fb8c160174b6e1e7a762c38cb1bccfeea380e17107fd67f756442ba36fcca3e0",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/build-native-observer.py",
+      "bytes": 3888,
+      "sha256": "b82bb87f80e1986f95da6fda856d08187081c6520fbb36281c91bb4642f5cf76",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/build-preflight.json",
+      "bytes": 3879,
+      "sha256": "d0528e9870f68ce669fe7015c9f3446d6289af4a3d09f55ee82081f6f1bae7c1",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/capture_diagnostics.py",
+      "bytes": 5656,
+      "sha256": "a80d5cccb66713e020ccb6cf4f0badb0155fa9c58e07e566e09c3636473110a2",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/component_checkpoints.py",
+      "bytes": 7256,
+      "sha256": "cbd24d856919a1779d9668f97358b79535e1d422f4eb3d308fb2c9eac76a9dbb",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/public-binary-scan-classifications.json",
+      "bytes": 7253,
+      "sha256": "d23743e68b5a2e922210587fcb0bd3fcd56069dc7142d56b09f5c2b0de1c64b6",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/reconstruct-backend.py",
+      "bytes": 15713,
+      "sha256": "f360ef55049853715b3c1d77b75c748853505e07093fc526b915851495716304",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/reconstruct_all.py",
+      "bytes": 14788,
+      "sha256": "428f9d4906c3cf67cf2040e109c5686373ba4c0f104d23a57f5da7222a55faef",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/reconstruct_frontends.py",
+      "bytes": 18742,
+      "sha256": "3abb3c71b20c3433df4be294217849f1566cf7f9dc9439e9292d0e958a9d2757",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/retained_candidate_packages.py",
+      "bytes": 11261,
+      "sha256": "7a605ea3229e3cd2ea0aca062d719b829291d7775c8b526d39baca13de0186b0",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/reuse_completed_candidates.py",
+      "bytes": 14231,
+      "sha256": "79dacd1d0ec2e0de1494f6b44b5190ae1af76982f0680d3d708656f0bdb211be",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/scan_package_archives.py",
+      "bytes": 7953,
+      "sha256": "d30967c6ab2907769340f771a342cba2b1ed6c7f3177f5e476f1af19aebdb2f1",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/build/toolchain-acquisition.json",
+      "bytes": 859,
+      "sha256": "67fce1e8082a7c5c231b8881d601c31d81d1f19eed4ce8f41e94eebbe6fc55f0",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/accepted-v29-private-contract.json",
+      "bytes": 2331,
+      "sha256": "536ef3deba63e443278eee7165aeac16b25bc28ce397a40339de0106657521fa",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/assurance-artifact-inventory.mjs",
+      "bytes": 6378,
+      "sha256": "11cdb2f91b46df5ab568c425cb17e4deb114e8257a6f7d051a451e075c3c49fd",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/audit-lifecycle-projection.mjs",
+      "bytes": 5773,
+      "sha256": "7bde30a4b605a73c73de8a3c428fb5f4cdcb46ab6f851e9c770d38311df64eeb",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/browser.mjs",
+      "bytes": 20303,
+      "sha256": "284db020ff08cce10d0456ca991b409ccc124ec7e14fe3b57e606189fdcd9c85",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/build-v26-candidates.py",
+      "bytes": 13851,
+      "sha256": "8a795d2df2866e85cadc2dfaa1d7862082482ea7a395e8a4da6c0cba6ade19d5",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/candidate_packages.py",
+      "bytes": 11261,
+      "sha256": "7a605ea3229e3cd2ea0aca062d719b829291d7775c8b526d39baca13de0186b0",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/canonical-comparator.mjs",
+      "bytes": 13102,
+      "sha256": "f1f98c7200fd17883c2547486a8913e9bf0d055af0e810eec23db1dedf65cc16",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/capture-canonical-persistence.mjs",
+      "bytes": 4624,
+      "sha256": "61ce4858f486d8c7b7005ccf0cef00a46c9c1da68a5a092666e0f41c690debdf",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/child-diagnostic-collector.mjs",
+      "bytes": 1199,
+      "sha256": "f3c18e87181d8d1c46d438ecdcbb27fd8a05ec93c1e74e51e119ff198daa8102",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/child-startup-diagnostic.cjs",
+      "bytes": 3614,
+      "sha256": "81f0574a34aaf50abb697c1fc04ec327fbb0c72cb82da972322dda039ebb61cc",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/child-startup-fixture.cjs",
+      "bytes": 1561,
+      "sha256": "dff7437bf236651be45fffd19db8bf3d3a0b74b5866c350e61b684334c120b4b",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/child-startup-selftest.mjs",
+      "bytes": 3848,
+      "sha256": "427a6fc4f418b8c23bd6e1315a59559014bf3f458733e30b9e0685f3d3f671bb",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/command_diagnostics.py",
+      "bytes": 4830,
+      "sha256": "47b929704265ba91775343332b195714f615a26061a5fea6e59546175e7d25ab",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/compile-overlay.cjs",
+      "bytes": 2180,
+      "sha256": "49166e4035923a9f14fc7313f06acd51e435449c358f577315ae97fa93381e3c",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/components.json",
+      "bytes": 402,
+      "sha256": "c2c9a722045321ac9ce8041ebb40f1e2ec33645276b7419bfccb951838ab7de1",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/contracts.test.mjs",
+      "bytes": 5894,
+      "sha256": "96aaeac9a669501130c2c9900de3c16565dbef0409b87217cbe7472389280f59",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/controller-manifest.json",
+      "bytes": 13165,
+      "sha256": "399e241ccf38db2dd97260d70543cfcadc23d19902ea4dd6b7aeb74712d18131",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/coordinator.mjs",
+      "bytes": 21370,
+      "sha256": "132ea300c91bd45ad976ab2270a941861f3fb841d64feeb7dcf66bd34e1e82f9",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/current_packages.py",
+      "bytes": 17270,
+      "sha256": "e45e24497297805ad086dfff2048d9e5dc24b2c8918b55195affad217b773024",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/diagnostic-pipeline-control.mjs",
+      "bytes": 2716,
+      "sha256": "999dfa59446e8c70f5f0797af7d23e514d2f24e60ec29c5f0ea4a03550e91ce5",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/diagnostic_scan.py",
+      "bytes": 12895,
+      "sha256": "3b75fe81ea6e942a31088e815ba1234e2992ae0dce7d14804e13e3ffe1b065dd",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/docker_diagnostics.py",
+      "bytes": 12218,
+      "sha256": "e330aadcb42433e4c651d8ea6e7929f3fef712a9b441e8ea30b979d265f938bc",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/entrypoint_contract.py",
+      "bytes": 6796,
+      "sha256": "e71ccde6d0eab48cfba3d1afb674906d8d7287a2228514ad36e0d389e784a134",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/examine-v26.py",
+      "bytes": 37816,
+      "sha256": "2e38e09ad268c85424e5d9574740f7aa7dc12679430978076e3ab4f5a85fad5c",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/examine.py",
+      "bytes": 30366,
+      "sha256": "7b9471fd1ae07e284d15d3214571f13ac510420113a85d797bcec44ecddaa533",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/execution_contract.py",
+      "bytes": 15516,
+      "sha256": "2fb0a615acc10192ee1e792b87cfb7cfe120b92608433bba67ae392105af8dd5",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/handoff_preflight.py",
+      "bytes": 7268,
+      "sha256": "0322a147475df3d46e1d7473708082c146e783f042e75e0585b876287db17850",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/independent-brain-readback.mjs",
+      "bytes": 2561,
+      "sha256": "8dd1e183293391938cdf4f4657fa1dd31af383bac41de08fdff644f1ba53b6d0",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/live-brain-hook.mjs",
+      "bytes": 10886,
+      "sha256": "53ae9f68b0885a788f361d955b847285d9813ed9c8637f2c1775eeedb258afd4",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/live-brain-index-overlay.js",
+      "bytes": 6287,
+      "sha256": "4246473ab80cfdfed1823f8aabd899eeff8c4cee679182bbaf3f47584a63cb7d",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/live-brain-observation.mjs",
+      "bytes": 4952,
+      "sha256": "b35a488301e905dd5d3463d5a35512164b36de757fc7f3f988e481ffddf95a3d",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/live-brain-overlay.json",
+      "bytes": 876,
+      "sha256": "cd5727df1bbc56109dd7dff0fbc31490472109d372591443604eca1f7f3a00c7",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/live-brain-preflight.mjs",
+      "bytes": 12283,
+      "sha256": "1383d17abdc1a6f96d398fff570c72947e33f9bdce59318e224ccab153a1f2bb",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/mounted-entrypoint-preflight.mjs",
+      "bytes": 6206,
+      "sha256": "8626383b9fa8b2fcb45ed815c796469e751500ccdcea85d5b180f635c8a61329",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic-codes.json",
+      "bytes": 47274,
+      "sha256": "72a8237ac096f0bad3c00862534fd123b375c1026fa33979a2aedfb925a36601",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs",
+      "bytes": 5811,
+      "sha256": "c8185dac3a4458e338911606bdd11ffa23e0c07d5e3e4705e3703fde1ee35a9f",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/native-time-budget.mjs",
+      "bytes": 1335,
+      "sha256": "d6a987fe6d2312052e91bde280f6a4a757ca9be034d9836300108136a2e4627d",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py",
+      "bytes": 7173,
+      "sha256": "f37238eab6025e226508ae08321a22d2fed328b3d5cfe097f4c975c1e0c7de59",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/newtest_current_packages_mounts.py",
+      "bytes": 9874,
+      "sha256": "d1671825c2e3bdbed0ed7dcc1c1ea094b0dccab810d68dc3e73a48f1d0614288",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/normal-schema.json",
+      "bytes": 35145,
+      "sha256": "086649bf180ee01715cf9a749bcf077359c90a20a1ebabab117bdaaf7961507d",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/observed-launcher-loss-guard.cjs",
+      "bytes": 5001,
+      "sha256": "79e588f28c8ed2b431342bc767d85cb7903f74fbc10ab46ae56d8164c4769409",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/observed-locked-runtime.cjs",
+      "bytes": 8978,
+      "sha256": "6ba137982f4d6cb1aaf508b67e27a5feb4492ab224b08949dcf148b4c596da90",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/observed-runtime-membership-bootstrap.mjs",
+      "bytes": 4275,
+      "sha256": "d7fd8190ab9260751bab338dfbad9d84fe936fc97363f6ca97b1d579233d7ff4",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/observed-runtime-writer-controller.cjs",
+      "bytes": 11962,
+      "sha256": "8bce1714fc78082f66d2b1d6581fc957c2a4e069bb6a8d1c50f727a832ebda9e",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/observer-packages.json",
+      "bytes": 2554,
+      "sha256": "1ddee4beb281fcb7981cf66483d3855f6fe60d8135128bc1d65c112eac9f57fa",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/offline-commerce-readback.mjs",
+      "bytes": 17211,
+      "sha256": "ad0daa88235598eb7ecbaf1595fa04fb64301ab260abfabd2e0f6c978e465d8b",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/offline-readback.mjs",
+      "bytes": 1861,
+      "sha256": "0e8cfa2093e632d14ed247573d3d8dae6925dd31bacee330a139cdf8786ab5da",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/origin-observer.cjs",
+      "bytes": 5489,
+      "sha256": "72bd001e3abf830f3667fb59dc56110719236a7e22699817f2e13e8d28c0ed22",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/origin_contract.py",
+      "bytes": 3812,
+      "sha256": "d08f7b6f8ee595b997fa2d4e7d866d04eb0c135880ba345386d46c7179147bf9",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/package-exclusions.json",
+      "bytes": 2740,
+      "sha256": "a014ff4761f492a3078abb9e3af0833e3549764cbce28732a5a203ef57139850",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/packaging-smoke.mjs",
+      "bytes": 2763,
+      "sha256": "a16f53fb112cff6f55574a7e44b2fdb994ba05035dbc892a680348312dbbcff7",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/packaging_corrections.py",
+      "bytes": 4006,
+      "sha256": "e9b80687144d1f2f01995e3d90ce92db339c537f1e28fcb3d1bc3d8c9dd5495b",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/prepare-base-candidates.py",
+      "bytes": 11785,
+      "sha256": "b43616e7e5af0dc83d136ccc699cff05b9d55569ba0dbfaeff354220b826efaa",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/prepare-retained.py",
+      "bytes": 10157,
+      "sha256": "effd94bccd8627806377f0c22565ef4594989eb3ffa43d468c85a3614485b81b",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/private-exchanges.mjs",
+      "bytes": 2054,
+      "sha256": "f7f35aed49e73037110e388cdd6a63fb079cde339b595713aed8052771227461",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/private-handoff-preflight.mjs",
+      "bytes": 8486,
+      "sha256": "475887fd52f5da127956ca06b36c498ab80f289215efb6f9d7ff9d4bf5957c53",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/private-handoff.mjs",
+      "bytes": 14713,
+      "sha256": "7f45fb8350647a49063d70c6249e69e44e920b557884940c89aef7bb8f722aff",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/private_contract.py",
+      "bytes": 6547,
+      "sha256": "dbe1ab78fdd4702e04ccc06658ecebfca5caff6f53a39e5a406a0eb878d21eae",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/recovery-schema.json",
+      "bytes": 6992,
+      "sha256": "2304d66dfeed54b3a195262382eb0c313ecfc427fe3ce9bb94f5042e87b96820",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/retained-components.json",
+      "bytes": 539,
+      "sha256": "4200228fd1a4469e652e1dc87a793ed1ed77d57bbc2506167211192380f62bb0",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/retained-upload-preflight.py",
+      "bytes": 4639,
+      "sha256": "0a673bd343930a7c002597c27d7ebf22c69288a15a33570866542b67ef9bf625",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/run-native-examination.py",
+      "bytes": 3208,
+      "sha256": "76c0d26074245f75781867036b81d4bfcd506d7923b4239027061c8b1c14b99f",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/scan-diagnostic.py",
+      "bytes": 10387,
+      "sha256": "93ea4c6d4e132a01a70dd4f8bb3e7a55dbfb30c156fb0defb1861142f089efa0",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/scan-upload-preflight.py",
+      "bytes": 1853,
+      "sha256": "6bd195d37a7b562a077a181c54e5f3a00494bc77f55870ef3c9bc8981a07edf3",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/schema-inventory.mjs",
+      "bytes": 1083,
+      "sha256": "0197ce70f9abbc02a91cdf41cbbe559e05a245da8229d648ba7f503ceb94c7ca",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/source-evidence/a5-reuse-adjudication.json",
+      "bytes": 105412,
+      "sha256": "54291e5ac344910a46568d220be52b1d6efffda7c3329fb14d4e85125e6b7045",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/source_identity.py",
+      "bytes": 1687,
+      "sha256": "c9687d1fbfc138f559104aa9e93cb8ce7bcceac3fbe3200436886a2100f12afc",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/stage-a-approval.json",
+      "bytes": 3518,
+      "sha256": "04f760f1fb586a73d8d39619e43dc5268a550e333cf6027ba9892ad11a15ff02",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/stage-b-authority.json",
+      "bytes": 611,
+      "sha256": "eea1f52a27efe59e41e3158da566bb4132f6671d65bb971ecc41d15da3da3564",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/startup-overlays.json",
+      "bytes": 2202,
+      "sha256": "fcac575de5437aa37caa87fc06332c2cfe013d3ec2104b774ecc9022d4ee68fe",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/startup_fixture_host.py",
+      "bytes": 4725,
+      "sha256": "3fca9c03651e46a088a11687bb0dc9f5900038324895d13fb3d3eaa6ef3e1a5d",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/storage-preflight.mjs",
+      "bytes": 4272,
+      "sha256": "28093db9610fa1dd801419433fd42e42721b0607e98549db10574585a95c3448",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/store-applicability.json",
+      "bytes": 94979,
+      "sha256": "d015b32b3a3944ae50969f778f27c9dab7f569177e181b9846f22b43379eaaab",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/store-applicability.mjs",
+      "bytes": 4613,
+      "sha256": "ab757e373369ae885029b08c969c1c5459b69cbe3836b4bda8cff2f91f64bf02",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/test_command_diagnostics.py",
+      "bytes": 16366,
+      "sha256": "93f82c9ab5b6b00614185d5d65c8daafac8a03f9f15c556d8342b00ce42e62de",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/test_docker_diagnostics.py",
+      "bytes": 11009,
+      "sha256": "4617656795e8670ea08334561d738f5a7605b66792f6685fc23137e47faa0dc0",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/upload-contract-selftest.py",
+      "bytes": 12147,
+      "sha256": "62d9e8472741a5e9dc599b5cf3dabec6afb814b544526decdc91364d6ac957b7",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/upload-preflight.py",
+      "bytes": 2418,
+      "sha256": "9582affdb55540970c05cf9e720ae9aceea5c897a03f3235230aedc4e7ef1e32",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v26-build-plan.json",
+      "bytes": 6750,
+      "sha256": "101fd7b60be5dcbbafe3ec33b4106de1d8e335cd5b1fb67d078ab6f4b4b5617f",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v28-source-gate.json",
+      "bytes": 5256,
+      "sha256": "0e92730e4e7c92c972c38de9ae03d8f5b5aa738ac7b355884189b85a0ffb0eb1",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v29-source-gate.json",
+      "bytes": 7186,
+      "sha256": "a4b37cde0ad8b2f316dae41f7fac5a98beba9271f68f0d56f7476e4d351b386c",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v30-full-source-gate.json",
+      "bytes": 164,
+      "sha256": "3ddfe8d71c67f6a8b42a77d06589a9eb3f75e714f801fd5028e7fc57535f248b",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v30-full-workflow.template.yml",
+      "bytes": 3659,
+      "sha256": "babe52b8abf09d354b17db844247762e4f36d9806ec8752b0c71b16698999070",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v30-hosted-preflight-acceptance.json",
+      "bytes": 235,
+      "sha256": "37940f5feca9e09abf010b0993abdd55a03f304b2b1dec3483ad23e5c4e4923d",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v30-preflight-source-gate.json",
+      "bytes": 10819,
+      "sha256": "272c219890bbf71c679086e343c8ced188b3204085ca749a80f7b3f5d04c57e1",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v31-full-source-gate.json",
+      "bytes": 137,
+      "sha256": "50620e5341a9afe4add3b2338c6eaddaaa4d94deca23c466c90afacea1442ecc",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v31-full-workflow.template.yml",
+      "bytes": 3678,
+      "sha256": "2456e4a20c3bfe3e5b67a5e4f56929c60525bd71c79d4c44469994baad92a202",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v31-hosted-preflight-acceptance.json",
+      "bytes": 169,
+      "sha256": "526afae36e8fe4b09f83ccb7d9c3aa49e099d847d1ee9b040cab1d57aabf8fb4",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v31-independent-local-preflight-review.json",
+      "bytes": 9136,
+      "sha256": "4cf52fae0e07fa7073e2562f98d6ea5dd37996e0126a6fc082f28373bb0a94f3",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v31-preflight-source-gate.json",
+      "bytes": 14202,
+      "sha256": "401a3d5d0f650e5523b787cb2f85825d3eb3b00741c35b1c1bfdd22cdc41919a",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v31-upload-contract-selftest.json",
+      "bytes": 15432,
+      "sha256": "13ddd6b4e66579e4913388f6fcb3b831610e940bf4a98ed764e90a1b6467432f",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v32-authority.json",
+      "bytes": 3966,
+      "sha256": "30f596a382c83b6ffcae0b2736cf4f34b308f8793c6f80986ed6b2d4795d5046",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v32-child-startup-selftest.json",
+      "bytes": 7220,
+      "sha256": "cc19eb9bd07e1f37969f827a001814cc212cfe81b8e73b791f360fac6499886c",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v32-full-source-gate.json",
+      "bytes": 137,
+      "sha256": "65713fa4b8ed33447a8f8baf424c4dc98b1c679540a65538af64d16cc7a319fa",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v32-full-workflow.template.yml",
+      "bytes": 3678,
+      "sha256": "b99d26177e16ef16b40bc52e9f78160c8534c8a7b61066b7cd7b97b8e3b97e5b",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v32-hosted-preflight-acceptance.json",
+      "bytes": 169,
+      "sha256": "efdc5aa021381cea105a9f8864b55f6cd65dda79df249daecff30fa4020b09bb",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v32-independent-local-preflight-review.json",
+      "bytes": 13169,
+      "sha256": "a242e53135ff47bbc7793102d2a7503b3a8d710b8f1aeba35cd16cbb6c04d188",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v32-mounted-entrypoint-local-selftest.json",
+      "bytes": 3516,
+      "sha256": "642e57f09d65e367b33ac1f0b426d14f58f0556dd2a9304df233ec12dffbbbaa",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v32-preflight-source-gate.json",
+      "bytes": 24206,
+      "sha256": "76935721f4994b58e86ab0e52a764180c67559dc7e7a4050db72b8871e88bd3e",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v32-reused-module-preflight.json",
+      "bytes": 4666,
+      "sha256": "4fc9081deb52cc8df4ab4f85b3d17ab93b2a60ae3e43aa48c6b4a0ba26ba6f7d",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/v32-upload-authority-selftest.json",
+      "bytes": 3003,
+      "sha256": "05e27c84e9406849ae8a06d836f4e66f881e0057a80f39d1ff1d9dea7ab8fced",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/verify-stage-a.py",
+      "bytes": 9482,
+      "sha256": "7a389e1ae9cfa681f4e24d0a38d2a45497cc992c2814a8f04e264fcff454295d",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/verify-v28-gate.py",
+      "bytes": 3436,
+      "sha256": "0e2a0799df581d45cb8827466c95157fd75f378c143b9e2d0ddcbb91d6dea74c",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/verify-v29-gate.py",
+      "bytes": 3652,
+      "sha256": "c97221c09a1b877b6b536dde3774dd9f93eea93fc9838351d7659b98c71504f2",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/verify-v30-gate.py",
+      "bytes": 12441,
+      "sha256": "74c08bd8a2975a0d924c5474fc36d4556707fe0dc15adc43e453b944c40ef152",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/verify-v31-gate.py",
+      "bytes": 14632,
+      "sha256": "6c9bc672804347c9ed4dec3bb19d0e6a092645eab2676cd1f54d2e3a453f1228",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/verify-v32-gate.py",
+      "bytes": 19413,
+      "sha256": "7c51a4deee33cc504ece2dac8082f8685b4bcddbbbf1212c0c45b5f568d1c8e3",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/controller/scripts/work8/native-transition/whole-app-readback.mjs",
+      "bytes": 20082,
+      "sha256": "0356a6607abf514aeb747b0efd1b78e0ef1c54f1188fd7ffe4f95ddb97e34ebf",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/driver/controller-manifest.json",
+      "bytes": 33724,
+      "sha256": "49d50e3d985e0a544780422f8ad56c9a10311d835bbea667f8c384ccf9d9e480",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/driver/package.json",
+      "bytes": 56,
+      "sha256": "826ed975e5cca6e12916064cacd7d5b532403e842e7cbd688088dc36f15229f1",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/driver/sources.json",
+      "bytes": 769,
+      "sha256": "de4a07ee53dc2b9485b47535f64911e0220f2c988b3e50306ff3a7757ba838fa",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/runtime/export-evidence.py",
+      "bytes": 9613,
+      "sha256": "fefe522d88a1a8ecebc52d060246e86ac9c31f3cc896f16550f640b8980bffe6",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/runtime/launch-controller.py",
+      "bytes": 5026,
+      "sha256": "a30401e8de81f73fa6bc1004b2606becbd2eadf8952f866dc3bc943c39692196",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/runtime/native-probe.cjs",
+      "bytes": 10830,
+      "sha256": "750714f91f745947693da302d7778cb5e727b2a2850c773ca66a003fdff41354",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/runtime/native-security-observer.c",
+      "bytes": 1848,
+      "sha256": "5792bad3d38b43de5a53308a382796c5fd05fd7defd736c178178cdd358774bd",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/runtime/qualification-child-observation.cjs",
+      "bytes": 3297,
+      "sha256": "0bd66b0cb3a05c052f63ba092a2a55c47cb0cbd7c255c0a86465ae2ad91eb287",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/runtime/runtime-membership-bootstrap.mjs",
+      "bytes": 3973,
+      "sha256": "84bd06b3cd85727cf8f48ee2668065361349323e5285429f63b90978b7856ea5",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/runtime/runtime-membership-controller.cjs",
+      "bytes": 20923,
+      "sha256": "59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/foundation/runtime/runtime_common.py",
+      "bytes": 7591,
+      "sha256": "f01107a42ea45df7959d9157d4c4a1f0fc67ce6dd8f6be6b8876171937fad036",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/launch-plan.json",
+      "bytes": 14173,
+      "sha256": "478076d0d094df0e575445d2c4129c26e52563f93381080286d18c8d4d8ab754",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/tests/run_guard_controls.py",
+      "bytes": 2297,
+      "sha256": "6b37a2ee7d3b978ffcb6e71d273c172e3a0a408b914c205e4706bd791b2990a7",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/tests/test_executor_guard.py",
+      "bytes": 27264,
+      "sha256": "6c5c4a43ba46142451ec1fdd99ac1f4e2a6ea4cd87157b207c03f658b3ecc4e9",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/tests/test_metadata_guard.py",
+      "bytes": 6823,
+      "sha256": "6cfdefbdc2c9d89db1be158826b28a19607653b48400b741fd765358acf51eef",
+      "mode": "100644"
+    },
+    {
+      "path": "v65/tests/test_terminal_guard.py",
+      "bytes": 8985,
+      "sha256": "ef0be124c8f62e0b4b132f47427d5687893d0bda33637f9d321163c54c5a1903",
+      "mode": "100644"
+    }
+  ]
+}

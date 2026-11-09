@@ -9,7 +9,14 @@ import json
 import os
 import pathlib
 import re
+import stat
 import tarfile
+
+# This is a runtime mountpoint, not an application-package member. The original
+# archives remain byte-identical. Create it before freezing the package bind;
+# an OCI runtime cannot create a missing nested target through a read-only bind.
+FRONTEND_CACHE_DIRECTORY = "app/.next/cache"
+FRONTEND_CACHE_TMPFS = "/frontend/app/.next/cache:rw,noexec,nosuid,nodev,size=64m,mode=0700,uid=65534,gid=65534"
 
 BACKEND = {
     "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
@@ -107,7 +114,9 @@ def verify_frontend(path, role, destination=None):
         require(release["ownerDataIncluded"] is False and release["ownerCredentialsIncluded"] is False, "OWNER_DATA_REFUSED")
         if destination is not None:
             target = pathlib.Path(destination)
-            require(target.is_absolute() and not target.exists(), "FRESH_ABSOLUTE_DESTINATION_REQUIRED")
+            require(target.is_absolute() and target.resolve() == target
+                    and not target.exists() and not target.is_symlink(),
+                    "FRESH_ABSOLUTE_DESTINATION_REQUIRED")
             target.mkdir(mode=0o755)
             for m in members:
                 dest = target / m.name
@@ -117,11 +126,20 @@ def verify_frontend(path, role, destination=None):
                     while chunk := stream.read(1024 * 1024):
                         out.write(chunk)
                 dest.chmod(0o555 if m.mode & 0o111 else 0o444)
+            # Add exactly one empty mountpoint to the extracted layout, never to
+            # the archive. Its immutable underlying directory belongs to the
+            # host extractor; Docker gives the ephemeral mounted cache its
+            # separate UID/GID65534 and0700 permissions from explicit options.
+            cache = target / FRONTEND_CACHE_DIRECTORY
+            require(cache.parent.is_dir() and not cache.exists() and not cache.is_symlink(),
+                    "FRONTEND_CACHE_MOUNTPOINT_CONFLICT")
+            cache.mkdir(mode=0o555)
             # All parent directories remain non-writable to runtime UID 65534.
             for directory in sorted(target.rglob("*"), reverse=True):
                 if directory.is_dir():
                     directory.chmod(0o555)
             target.chmod(0o555)
+            verify_frontend_mount_layout(target)
     return {"role": role, "archiveSHA256": pin["sha256"], "source": pin["commit"],
             "tree": pin["tree"], "membersVerified": pin["members"], "packageRebuilt": False,
             "extracted": destination is not None, "node": "22.23.2", "applicationStarted": False,
@@ -175,7 +193,9 @@ def frontend_argv(role, package_dir, *, name, anchor, label, script_dir):
         require(re.fullmatch(r"work8-[a-z0-9-]{1,100}", value) is not None, "INVALID_ISOLATED_RESOURCE_NAME")
     package_dir, script_dir = pathlib.Path(package_dir), pathlib.Path(script_dir)
     for path in (package_dir, script_dir):
-        require(path.is_absolute() and path.resolve() == path and "," not in str(path), "BIND_PATH_REQUIRED")
+        require(path.is_absolute() and path.resolve() == path and "," not in str(path)
+                and path.is_dir() and not path.is_symlink(), "BIND_PATH_REQUIRED")
+    verify_frontend_mount_layout(package_dir)
     return ["docker", "run", "-d", "--name", name, "--label", "work8.native=" + label,
             "--network", "container:" + anchor, "--pull", "never", "--read-only",
             "--user", "65534:65534", "--cap-drop", "ALL", "--security-opt", "no-new-privileges",
@@ -188,9 +208,48 @@ def frontend_argv(role, package_dir, *, name, anchor, label, script_dir):
             "--mount", "type=bind,src=" + str(script_dir) + ",dst=/examination,readonly",
             "--mount", "type=bind,src=" + str(package_dir) + ",dst=/frontend,readonly",
             "--tmpfs", "/tmp:rw,noexec,nosuid,size=32m",
-            "--tmpfs", "/frontend/app/.next/cache:rw,noexec,nosuid,size=64m",
+            "--tmpfs", FRONTEND_CACHE_TMPFS,
             "--entrypoint", "/frontend/runtime/bin/node", "--workdir", "/frontend/app",
             BACKEND["image"], "/frontend/app/server.js"]
+
+
+def verify_frontend_mount_layout(destination):
+    """Check the deterministic mount prerequisites, without claiming Docker PASS.
+
+    Host ownership must match the admitting extractor. The hosted diagnostic
+    separately requires that host to be UID/GID1001. Local metadata checks may
+    use another host UID; they cannot substitute for the actual principal test.
+    """
+    target = pathlib.Path(destination)
+    require(target.is_absolute() and target.resolve() == target
+            and target.is_dir() and not target.is_symlink(),
+            'CANONICAL_EXTRACTED_DIRECTORY_REQUIRED')
+    directories = ['', 'app', 'app/.next', FRONTEND_CACHE_DIRECTORY, 'runtime', 'runtime/bin']
+    for name in directories:
+        p = target / name
+        require(p.exists() and not p.is_symlink(), 'FRONTEND_MOUNT_DIRECTORY_MISSING')
+        info = p.lstat()
+        require(stat.S_ISDIR(info.st_mode), 'FRONTEND_MOUNT_DIRECTORY_TYPE')
+        require(stat.S_IMODE(info.st_mode) == 0o555, 'FRONTEND_MOUNT_DIRECTORY_MODE')
+        require((info.st_uid, info.st_gid) == (os.geteuid(), os.getegid()),
+                'FRONTEND_MOUNT_DIRECTORY_OWNER')
+    require(not any((target / FRONTEND_CACHE_DIRECTORY).iterdir()),
+            'FRONTEND_CACHE_MOUNTPOINT_NOT_EMPTY')
+    for name, mode in [('runtime/bin/node', 0o555), ('app/server.js', 0o444)]:
+        p = target / name
+        require(p.exists() and not p.is_symlink(), 'FRONTEND_ENTRYPOINT_MISSING')
+        info = p.lstat()
+        require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1
+                and stat.S_IMODE(info.st_mode) == mode
+                and (info.st_uid, info.st_gid) == (os.geteuid(), os.getegid()),
+                'FRONTEND_ENTRYPOINT_METADATA')
+    return {'schema': 'work8-v97-frontend-mount-layout-v1',
+            'status': 'PRE_DISPATCH_PASS', 'applicationPackageBytesChanged': False,
+            'runtimeMountpoint': FRONTEND_CACHE_DIRECTORY, 'mountpointEmpty': True,
+            'underlyingDirectoryMode': '0555', 'underlyingOwnerUid': os.geteuid(),
+            'underlyingOwnerGid': os.getegid(), 'cacheTmpfsMode': '0700',
+            'cacheTmpfsUid': 65534, 'cacheTmpfsGid': 65534,
+            'actualDockerStartup': 'HOSTED_ONLY', 'nativeAcceptanceClaimed': False}
 
 
 def load_backend(path, run):
@@ -213,22 +272,35 @@ def verify_extracted_frontend(archive_path, role, destination):
             and not target.is_symlink(), 'CANONICAL_EXTRACTED_DIRECTORY_REQUIRED')
     paths = list(target.rglob('*'))
     require(not any(p.is_symlink() for p in paths), 'EXTRACTED_SYMLINK_REFUSED')
+    require(all(stat.S_ISREG(p.lstat().st_mode) or stat.S_ISDIR(p.lstat().st_mode)
+                for p in paths), 'EXTRACTED_NONREGULAR_ENTRY_REFUSED')
     with tarfile.open(archive_path, 'r:gz') as archive:
         members = archive.getmembers()
         expected = {member_name(m.name): m for m in members}
         require(len(members) == len(expected), 'DUPLICATE_MEMBER')
         actual = {str(p.relative_to(target)) for p in paths if p.is_file()}
         require(actual == set(expected), 'EXTRACTED_FILE_SET_CHANGED')
+        expected_directories = {FRONTEND_CACHE_DIRECTORY}
+        for name in expected:
+            expected_directories.update(str(p) for p in pathlib.PurePosixPath(name).parents
+                                        if str(p) != '.')
+        actual_directories = {str(p.relative_to(target)) for p in paths if p.is_dir()}
+        require(actual_directories == expected_directories, 'EXTRACTED_DIRECTORY_SET_CHANGED')
         for name, member in expected.items():
             p = target / name
             st = p.lstat()
             require(p.is_file() and st.st_nlink == 1 and st.st_size == member.size,
                     'EXTRACTED_FILE_METADATA_CHANGED')
-            require(st.st_mode & 0o777 == (0o555 if member.mode & 0o111 else 0o444),
+            require(stat.S_IMODE(st.st_mode) == (0o555 if member.mode & 0o111 else 0o444),
                     'EXTRACTED_FILE_WRITABLE_OR_MODE_CHANGED')
+            require((st.st_uid, st.st_gid) == (os.geteuid(), os.getegid()),
+                    'EXTRACTED_FILE_OWNER_CHANGED')
             with p.open('rb') as stream:
                 require(digest(stream) == digest(archive.extractfile(member)), 'EXTRACTED_FILE_DIGEST_CHANGED')
-    require(all(p.stat().st_mode & 0o777 == 0o555 for p in [target,*paths] if p.is_dir()),
+    require(all(stat.S_IMODE(p.stat().st_mode) == 0o555 for p in [target,*paths] if p.is_dir()),
             'EXTRACTED_DIRECTORY_WRITABLE')
+    require(all((p.stat().st_uid, p.stat().st_gid) == (os.geteuid(), os.getegid())
+                for p in [target,*paths] if p.is_dir()), 'EXTRACTED_DIRECTORY_OWNER_CHANGED')
+    verify_frontend_mount_layout(target)
     return {'role':role,'archiveSHA256':FRONTENDS[role]['sha256'],
             'extractedMembersVerified':len(expected),'applicationStarted':False}

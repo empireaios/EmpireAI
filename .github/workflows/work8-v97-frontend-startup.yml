@@ -1,0 +1,122 @@
+name: Work 8 V97 frontend Docker startup diagnostic
+
+on:
+  create:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: work8-v97-frontend-startup-20261109
+  cancel-in-progress: false
+
+jobs:
+  frontend-startup:
+    name: V97 isolated NORMAL and RECOVERY Docker startup
+    # This exact fresh branch is the one launch event AFTER separate approval.
+    # No rerun, branch recreation, matrix, package rebuild, Brain or A5 lifecycle.
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v97-frontend-startup-20261109' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      ACTIONS_STEP_DEBUG: 'false'
+      ACTIONS_RUNNER_DEBUG: 'false'
+
+    # Step ceilings sum to 29 minutes. Native work expires by provider job+20m,
+    # leaving cleanup/export time before the 30m provider ceiling.
+    steps:
+      - name: Check out exact proposed source once
+        id: checkout
+        timeout-minutes: 2
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+
+      - name: Require exact external owner approval and one committed reservation
+        id: admission
+        timeout-minutes: 2
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 -B frontend_startup/admission.py admit
+          --root "$RUNNER_TEMP/v97-frontend-$GITHUB_RUN_ID"
+
+      - name: Download existing exact immutable packages once
+        id: packages
+        timeout-minutes: 6
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 -B frontend_startup/admission.py download
+          --root "$RUNNER_TEMP/v97-frontend-$GITHUB_RUN_ID"
+
+      - name: Qualify protected NORMAL and RECOVERY frontend startup only
+        id: native
+        timeout-minutes: 12
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          python3 -B frontend_startup/runner.py run
+          --root "$RUNNER_TEMP/v97-frontend-$GITHUB_RUN_ID"
+
+      - name: Remove only this diagnostic's scoped containers and network
+        if: always() && steps.checkout.outcome == 'success'
+        id: cleanup
+        timeout-minutes: 3
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          python3 -B frontend_startup/runner.py cleanup
+          --root "$RUNNER_TEMP/v97-frontend-$GITHUB_RUN_ID"
+
+      - name: Independently read back empty resource inventories
+        if: always() && steps.checkout.outcome == 'success'
+        id: readback
+        timeout-minutes: 1
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          python3 -B frontend_startup/runner.py readback
+          --root "$RUNNER_TEMP/v97-frontend-$GITHUB_RUN_ID"
+
+      - name: Export bounded safe evidence after cleanup
+        if: always() && steps.checkout.outcome == 'success'
+        id: export
+        timeout-minutes: 1
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          python3 -B frontend_startup/runner.py export
+          --root "$RUNNER_TEMP/v97-frontend-$GITHUB_RUN_ID"
+
+      - name: Return the single bounded evidence artifact
+        if: always() && steps.export.outcome == 'success'
+        id: artifact
+        timeout-minutes: 2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v97-frontend-startup-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v97-frontend-${{ github.run_id }}/export/
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false

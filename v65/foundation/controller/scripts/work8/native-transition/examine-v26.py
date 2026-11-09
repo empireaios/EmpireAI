@@ -9,6 +9,7 @@ from native_diagnostics import save_first,from_error,parse_stream,emit_fallback,
 from private_contract import backend_options,browser_options,private_write,safe_docker_contract
 from entrypoint_contract import execute as verify_mounted_entrypoints
 from command_diagnostics import invoke as invoke_reviewed_command
+from docker_diagnostics import capture_first as capture_first_docker_error
 
 ROOT=pathlib.Path(os.environ['WORK8_EXECUTION_ROOT'])
 assert ROOT.is_absolute() and ROOT.resolve()==ROOT,'CANONICAL_EXECUTION_ROOT_REQUIRED'
@@ -104,12 +105,11 @@ def capture_container_state(role,checkpoint,payload=None):
    payload=json.loads(response.stdout)[0]
   row=safe_container_state(role,payload,checkpoint);row.update(stage=stage,frontendPhase=front_phase)
   container_lifecycle.append(row)
-  causal=OUT/'first-native-failure.json'
-  if causal.is_file():
-   prior=sanitize(json.loads(causal.read_text()))
-   if prior['containerLifecycle']['role']==role:
-    prior['containerLifecycle']={k:row.get(k) for k in ['role','status','exitCode','oomKilled']}
-    causal.write_text(json.dumps(sanitize(prior),indent=2)+'\n')
+  # The first failure is immutable. Later lifecycle observations are separate.
+  # State.Error is classified in memory before any container is removed.
+  if payload.get('State',{}).get('Error'):
+   capture_first_docker_error(OUT,payload['State']['Error'],
+                             source='CONTAINER_STATE_ERROR',args=['docker','inspect',NAMES[role]])
   (OUT/'container-lifecycle.json').write_text(json.dumps({'schema':'work8-container-lifecycle-v1','snapshots':container_lifecycle,'rawInspectOrEnvironmentRetained':False},indent=2)+'\n')
  except Exception:result.setdefault('optionalDiagnosticUnavailable',[]).append('container-state:'+role)
 def sanitized_browser_stderr(text):
@@ -369,7 +369,11 @@ finally:
  except:cleanup_ok=False
  for p in (PRIVATE/'evidence').glob('*') if (PRIVATE/'evidence').exists() else []:
   if p.is_file() and p.stat().st_size<2*1024*1024:
-   if p.name=='first-native-failure.json':
+   if p.name in {'first-docker-failure.json','first-docker-state-error.json','command-first-exception.json'}:
+    # These receipts belong exclusively to the host command boundary. A child
+    # artifact cannot replace them or supply an unauthenticated daemon cause.
+    result.setdefault('optionalDiagnosticUnavailable',[]).append('private-host-diagnostic-refused')
+   elif p.name=='first-native-failure.json':
     try:save_first(OUT,sanitize(json.loads(p.read_text())))
     except Exception:result.setdefault('optionalDiagnosticUnavailable',[]).append('private-first-failure-invalid')
    elif p.suffix in ['.json','.log']: (OUT/p.name).write_text(redact(p.read_text()))
