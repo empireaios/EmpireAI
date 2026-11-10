@@ -14,13 +14,13 @@ FOUNDATION=HERE.parent/'foundation'
 sys.path.insert(0,str(FOUNDATION/'runtime'))
 from runtime_common import atomic,bounded_process,Refusal as RuntimeRefusal
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
-CONTROLLER_SHA='212caa80de6680340b7797b3131fed2130a2fed2725e38796385005f699239ca'
+CONTROLLER_SHA='8bc32cd2ce51831a5dcc3e08e9ae401f8935372556d935cea6e7fb38f0db8875'
 DRIVER_SHA='49d50e3d985e0a544780422f8ad56c9a10311d835bbea667f8c384ccf9d9e480'
 MEMBERSHIP_CONTROLLER_SHA='59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b'
 MEMBERSHIP_CONTROLLER_BYTES=20923
-REVIEW_REF='work8/v104-review-20261109'
-LAUNCH_REF='refs/heads/work8/v104-a5-20261109'
-WORKFLOW_PATH='.github/workflows/work8-v104-a5.yml'
+REVIEW_REF='work8/v108-review-20261110'
+LAUNCH_REF='refs/heads/work8/v108-a5-20261110'
+WORKFLOW_PATH='.github/workflows/work8-v108-a5.yml'
 ENV_KEYS=('GITHUB_ACTIONS','GITHUB_REPOSITORY','GITHUB_REPOSITORY_ID','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_SHA','GITHUB_JOB','RUNNER_OS','RUNNER_ARCH')
 
 def load_module(name,path):
@@ -517,7 +517,7 @@ def await_review(root,stage,artifact_id,artifact_digest,max_seconds=1500):
  expected=package_bindings(c)
  if stage=='preflight':expected.update(runContractSHA256=sha(root/'run-contract.json'),runnerResultSHA256=sha(root/'evidence/preflight/runner-result.json'),artifactIndexSHA256=sha(root/'evidence/preflight/artifact-index.json'))
  destination=root/('source-review.json' if stage=='packages-and-executor' else 'preflight-review.json');require(not destination.exists(),'INDEPENDENT_ACK_ALREADY_COMMITTED')
- filename='v104-review/'+str(c['executor']['runId'])+'/'+stage+'.json'
+ filename='v108-review/'+str(c['executor']['runId'])+'/'+stage+'.json'
  while time.monotonic()<deadline:
   require_remaining_lifetime(c,'preflight' if stage=='packages-and-executor' else 'full',time.time())
   ref=api('/repos/'+REPOSITORY+'/git/ref/heads/'+REVIEW_REF,allow_missing=True,deadline=deadline)

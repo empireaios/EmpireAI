@@ -16,6 +16,7 @@ const read=name=>JSON.parse(fs.readFileSync('/control/'+name,'utf8'));
 const receipt={schema:'work8-v28-canonical-business-transition-v1',status:'FAIL',syntheticOwnerOnly:true,genuineKingObservation:false,productionEffects:false,wholeRowsAccepted:[],phases:[],operations:[]};
 let browser,ownerPage,stage='START',cleanupMode=false;
 const lifecycle=[];
+const comparisonSequence=[];
 function lifecycleEvent(event,extra={}){lifecycle.push({event,stage,cleanup:cleanupMode,...extra});fs.writeFileSync('/evidence/browser-lifecycle.json',JSON.stringify(lifecycle.slice(-120),null,2)+'\n');}
 function check(value,code){assert.ok(value,code);}
 function equal(actual,expected,code){assert.deepEqual(actual,expected,code);}
@@ -28,9 +29,15 @@ function recordFailure(error){const failure=safeFailure(error);if(!receipt.failu
 function signal(name,value){return writeControlPrivate(name,JSON.stringify(value));}
 async function wait(name){while(!fs.existsSync('/control/'+name)){check(Date.now()<deadline,'OVERALL_TRANSITION_DEADLINE');await pause(50);}}
 function observe(route,response,action){const code=response.body?.code??response.body?.error;receipt.operations.push({stage,route:route.split('?')[0],status:response.status,...(action?{action}:{}),...(typeof code==='string'&&/^[A-Z_]{3,80}$/.test(code)?{code}:{})});fs.writeFileSync('/evidence/transition-http-observations.json',JSON.stringify(receipt.operations,null,2)+'\n');return response;}
-function privateRead(name){try{return read(name);}catch{return {};}}
+function privateRead(name,observations=[]){try{const value=read(name);observations.push('READ_OK');return value;}catch(error){observations.push(error instanceof SyntaxError?'JSON_INVALID':error?.code==='ENOENT'?'MISSING':'READ_FAILED');return {};}}
 function compareRecorded(label,expected,observed,expectedObservation,observedObservation,phase,sourceIdentity){
- const comparison=compareSnapshots({expected,observed,expectedObservation,observedObservation,expectedPersistence:privateRead('normal-persistence.json'),observedPersistence:privateRead(phase+'-persistence.json'),sourceIdentity});
+ const persistenceReads=[];
+ const comparison=compareSnapshots({expected,observed,expectedObservation,observedObservation,expectedPersistence:privateRead('normal-persistence.json',persistenceReads),observedPersistence:privateRead(phase+'-persistence.json',persistenceReads),sourceIdentity});
+ const version=value=>Number.isSafeInteger(value)&&value>=0&&value<=2147483647?value:null;
+ const state=value=>({sessionVersion:version(value?.session?.version),authorityVersion:version(value?.authority?.version),recordVersions:Array.isArray(value?.records)?value.records.slice(0,16).map(record=>version(record?.version)):[],sessionStatus:value?.session?.status==='PAUSED'?'PAUSED':'UNCLASSIFIED',authorityStatus:value?.authority?.status==='REVOKED'?'REVOKED':'UNCLASSIFIED'});
+ comparison.comparisonContext={comparatorId:'WORK8_V28_CANONICAL_COMPARISON_V1',originalPredicate:'A5-09_CANONICAL_AND_PERSISTED_STATE_PRESERVATION',expectedPhase:'NORMAL_FROZEN',observedPhase:{'normal-replay':'NORMAL_REPLAY',returned:'NORMAL_RETURN',replayed:'NORMAL_RETURN_REPLAY'}[label]??'UNCLASSIFIED',expected:state(expected),observed:state(observed),completedSequence:comparisonSequence.slice(0,6),replayScope:'NORMAL_BEFORE_RECOVERY',replayClassification:comparisonSequence.includes('NORMAL_REPLAY_SNAPSHOT_OBSERVED')?'EXACT_DUPLICATE_RESPONSES_IDENTICAL':'NOT_ESTABLISHED',persistenceReads:{expected:persistenceReads[0],observed:persistenceReads[1]}};
+ // Bind this bounded receipt at generation; the exporter also binds its raw bytes.
+ comparison.receiptPayloadSha256=sha(comparison);
  fs.writeFileSync('/evidence/'+label+'-comparison.json',JSON.stringify(comparison,null,2)+'\n');
  return comparison;
 }
@@ -71,13 +78,15 @@ try{
  stage='NATIVE_SCHEDULER_GRANT';const grantRequest={action:'twin_authority',authority:{action:'GRANT',id:sid+'_grant',sessionId:sid,expectedVersion:0,mode:'FIFTEEN_MINUTES'}},grant=await post(grantRequest);equal(grant.scope,'TWIN_SCHEDULER_ONLY','GRANT_SCOPE_INVALID');
  stage='REAL_TIMER_CANONICAL_PROGRESS';const progressDeadline=Date.now()+120000;let progress;
  for(;;){progress=await snapshot();equal(progress.scheduler.intervalMs,5000,'NATIVE_SCHEDULER_CADENCE_CHANGED');check(!progress.tasks.some(t=>t.status==='BLOCKED'),'CANONICAL_NATIVE_TASK_BLOCKED');if(progress.records.length===2&&progress.tasks.length===2&&progress.tasks.every(t=>t.status==='COMPLETE')&&progress.records.every(r=>Object.keys(r.orders).length===1&&r.finance.events?.length>0)&&progress.records.reduce((n,r)=>n+r.finance.events.length,0)===4)break;check(Date.now()<progressDeadline,'CANONICAL_PROGRESS_DEADLINE');await pause(2000);}
- stage='CANONICAL_PAUSE_AND_REVOKE';const pauseRequest={action:'twin_lifecycle',transition:{id:sid+'_pause',sessionId:sid,expectedVersion:progress.session.version,action:'PAUSE'}},paused=await post(pauseRequest);const revokeRequest={action:'twin_authority',authority:{action:'REVOKE',id:sid+'_revoke',sessionId:sid,expectedVersion:progress.authority.version}},revoked=await post(revokeRequest);
+ stage='CANONICAL_PAUSE_AND_REVOKE';const pauseRequest={action:'twin_lifecycle',transition:{id:sid+'_pause',sessionId:sid,expectedVersion:progress.session.version,action:'PAUSE'}},paused=await post(pauseRequest);comparisonSequence.push('PAUSE_APPLIED');const revokeRequest={action:'twin_authority',authority:{action:'REVOKE',id:sid+'_revoke',sessionId:sid,expectedVersion:progress.authority.version}},revoked=await post(revokeRequest);comparisonSequence.push('REVOKE_APPLIED');
  const frozenRead=await observedSnapshot(),frozen=frozenRead.value;validateFrozen(frozen);check(frozen.records.every(r=>Object.values(r.orders).every(o=>Date.parse(o.order.createdAt)>minimumCreatedAt)),'ORDERS_NOT_NEWER_THAN_BOTH_VERSIONS');
- equal(await post(pauseRequest),paused,'PAUSE_REPLAY_NOT_IDENTICAL');equal(await post(revokeRequest),revoked,'REVOKE_REPLAY_NOT_IDENTICAL');const normalReplayRead=await observedSnapshot();
+ comparisonSequence.push('FROZEN_SNAPSHOT_OBSERVED');equal(await post(pauseRequest),paused,'PAUSE_REPLAY_NOT_IDENTICAL');comparisonSequence.push('PAUSE_REPLAY_IDENTICAL');equal(await post(revokeRequest),revoked,'REVOKE_REPLAY_NOT_IDENTICAL');comparisonSequence.push('REVOKE_REPLAY_IDENTICAL');const normalReplayRead=await observedSnapshot();comparisonSequence.push('NORMAL_REPLAY_SNAPSHOT_OBSERVED');
  receipt.privateHandoff=signal('expected-commerce.json',{sessionId:sid,minimumCreatedAt,snapshot:frozen});
  signal('normal-observed.json',{ok:true});await wait('normal-readback-ready.json');
  const normalComparison=compareRecorded('normal-replay',frozen,normalReplayRead.value,frozenRead.observation,normalReplayRead.observation,'normal',views);
- check(normalComparison.pass,'NORMAL_REPLAY_CANONICAL_COMPARISON_FAILED');check(read('normal-readback-ready.json').allPassed,'NORMAL_INDEPENDENT_READBACK_FAILED');
+ // The independent capture/readback ran before this comparison. Preserve its
+ // failure precedence while still writing both sets of diagnostics above.
+ check(read('normal-readback-ready.json').allPassed,'NORMAL_INDEPENDENT_READBACK_FAILED');check(normalComparison.pass,'NORMAL_REPLAY_CANONICAL_COMPARISON_FAILED');
  // A NORMAL same-origin document survives the switch solely to exercise the BFF.
  // The separate RECOVERY history document keeps its original strict CSP intact.
  equal((await page.goto(origin+'/rollback',{waitUntil:'domcontentloaded'})).status(),404,'NORMAL_STABLE_DOCUMENT_UNAVAILABLE');
@@ -99,14 +108,14 @@ try{
  stage='NORMAL_RETURN_CANONICAL_EQUALITY';const returnedRead=await observedSnapshot(),returned=returnedRead.value;
  signal('returned-snapshot-private.json',returnedRead);signal('returned-observed.json',{ok:true});await wait('returned-readback-ready.json');
  const returnComparison=compareRecorded('returned',frozen,returned,frozenRead.observation,returnedRead.observation,'returned',views);
- check(returnComparison.pass,'RETURN_CANONICAL_RECORDS_OR_DERIVED_PRESENTATION_INVALID');check(read('returned-readback-ready.json').allPassed,'RETURNED_INDEPENDENT_READBACK_FAILED');validateFrozen(returned);
+ check(read('returned-readback-ready.json').allPassed,'RETURNED_INDEPENDENT_READBACK_FAILED');check(returnComparison.pass,'RETURN_CANONICAL_RECORDS_OR_DERIVED_PRESENTATION_INVALID');validateFrozen(returned);
  stage='NORMAL_RETURN_IDEMPOTENT_REPLAY';equal(await post(pauseRequest),paused,'RETURN_PAUSE_REPLAY_CHANGED');equal(await post(revokeRequest),revoked,'RETURN_REVOKE_REPLAY_CHANGED');
  // This is the original immutable request, not a new grant. Latest authority must
  // remain REVOKED. Independent SQL readback verifies no row was appended.
  equal(await post(grantRequest),grant,'RETURN_HISTORICAL_GRANT_REPLAY_CHANGED');const replayedRead=await observedSnapshot(),afterReplay=replayedRead.value;
  signal('replayed-snapshot-private.json',replayedRead);signal('replayed-observed.json',{ok:true});await wait('replayed-readback-ready.json');
  const replayComparison=compareRecorded('replayed',frozen,afterReplay,frozenRead.observation,replayedRead.observation,'replayed',views);
- check(replayComparison.pass,'RETURN_REPLAY_MUTATED_CANONICAL_STATE');check(read('replayed-readback-ready.json').allPassed,'REPLAYED_INDEPENDENT_READBACK_FAILED');validateFrozen(afterReplay);await ownerContinuity();
+ check(read('replayed-readback-ready.json').allPassed,'REPLAYED_INDEPENDENT_READBACK_FAILED');check(replayComparison.pass,'RETURN_REPLAY_MUTATED_CANONICAL_STATE');validateFrozen(afterReplay);await ownerContinuity();
  receipt.phases.push({phase:'NORMAL_RETURN',...views.normal,canonicalSnapshotSha256:replayComparison.observedCanonicalSha256,sameOwnerSession:true,canonicalRecordsAndHistoryUnchanged:true,frontendIdempotentPauseAccepted:true,frontendIdempotentRevokeAccepted:true,historicalGrantReplayAddedNoAuthority:true,authorityRemainsRevoked:true,independentFinalDatabaseReadbackRequired:true});
  receipt.returnWriteEvidence={current:'FRONTEND_CANONICAL_IDEMPOTENT_COMMANDS',freshTechnicalRecord:'REUSED_ACCEPTED_V25_41205128907',noUnrelatedRecordAdded:true};receipt.generationSha256=sha(generation);receipt.generationIndependentlyCheckedByController=true;receipt.status='PASS_AWAITING_INDEPENDENT_BUSINESS_REVIEW';signal('browser-complete.json',{ok:true});
 }catch(error){recordFailure(error);}

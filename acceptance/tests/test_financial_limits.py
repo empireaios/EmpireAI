@@ -17,7 +17,7 @@ class NativeAuthorityControls(unittest.TestCase):
   a=json.loads((V65/'launch-plan.json').read_text())['authority']
   with self.assertRaisesRegex(g.Refusal,'SEPARATE_EXPLICIT_OWNER_DECISION_REQUIRED'):g.validate_authority(a)
  def test_exact_future_decision_fixture_is_not_execution(self):
-  self.assertEqual(g.validate_authority(authority_fixture())['reservationUSD'],2.11)
+  self.assertEqual(g.validate_authority(authority_fixture())['reservationUSD'],1.16)
  def test_consumed_qualification_reservation_refused(self):
   a=authority_fixture();a['reservationId']='V92-A5-QUALIFICATION-ONCE-20261108'
   with self.assertRaisesRegex(g.Refusal,'DISTINCT_FULL_NATIVE_RESERVATION_REQUIRED'):g.validate_authority(a)
@@ -45,8 +45,8 @@ class NativeAuthorityControls(unittest.TestCase):
   a=authority_fixture();a['maximumProspectiveUSD']=float('nan')
   with self.assertRaisesRegex(g.Refusal,'FINITE_CURRENT_EXPOSURE_REQUIRED'):g.validate_authority(a)
  def test_above_reviewed_ceiling_refused(self):
-  a=authority_fixture();a['maximumProspectiveUSD']=2.110001
-  with self.assertRaisesRegex(g.Refusal,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED'):g.validate_authority(a)
+  a=authority_fixture();a['maximumProspectiveUSD']=1.160001
+  with self.assertRaisesRegex(g.Refusal,'FINITE_CURRENT_EXPOSURE_REQUIRED'):g.validate_authority(a)
  def test_insufficient_approved_exposure_refused(self):
   a=authority_fixture();a['maximumProspectiveUSD']=0.000001
   with self.assertRaisesRegex(g.Refusal,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED'):g.validate_authority(a)

@@ -32,13 +32,13 @@ from runtime_common import atomic
 from retained_evidence import verify_retained_evidence
 
 REPOSITORY = 'empireaios/EmpireAI'
-LAUNCH_BRANCH = 'work8/v104-a5-20261109'
-REVIEW_BRANCH = 'work8/v104-review-20261109'
-WORKFLOW = '.github/workflows/work8-v104-a5.yml'
-RELEASE_PATH = 'acceptance/v104-release.json'
-PARENT = '98e54697fe06a1a849a9f2c099cf84e646e56ca6'
-JOB_NAME = 'A5 V104 coherent native acceptance'
-RESERVATION = 'V104-A5-NATIVE-ONCE-20261109'
+LAUNCH_BRANCH = 'work8/v108-a5-20261110'
+REVIEW_BRANCH = 'work8/v108-review-20261110'
+WORKFLOW = '.github/workflows/work8-v108-a5.yml'
+RELEASE_PATH = 'acceptance/v108-release.json'
+PARENT = '6aacc930f2b70380adc15d67708d75364cf08753'
+JOB_NAME = 'A5 V108 coherent native acceptance'
+RESERVATION = 'V108-A5-NATIVE-ONCE-20261110'
 COMMANDS = ('identity', 'download', 'prepare', 'admission', 'review-export',
             'await-review', 'native', 'native-export', 'cleanup',
             'final-export', 'artifact-check')
@@ -52,11 +52,11 @@ ACK_AUTHORITY = {'maximumOwnerEndorsements': 2, 'issueNumber': 113,
                  'scope': 'safe-artifact-acknowledgment-only',
                  'otherMessagesAuthorized': False}
 OWNER_ID = 295548100
-MAX_EXPOSURE_USD = '2.11'
-LEDGER_BEFORE = {'aggregateHoldsUSD': '16.68', 'A5HoldsUSD': '6.73',
-                 'unreservedA5AuthorityUSD': '3.27'}
-LEDGER_AFTER = {'aggregateHoldsUSD': '18.79', 'A5HoldsUSD': '8.84',
-                'unreservedA5AuthorityUSD': '1.16'}
+MAX_EXPOSURE_USD = '1.16'
+LEDGER_BEFORE = {'aggregateHoldsUSD': '18.79', 'A5HoldsUSD': '8.84',
+                 'unreservedA5AuthorityUSD': '1.16'}
+LEDGER_AFTER = {'aggregateHoldsUSD': '19.95', 'A5HoldsUSD': '10.00',
+                'unreservedA5AuthorityUSD': '0.00'}
 CREDENTIAL_ENV = ('GH_TOKEN', 'GITHUB_TOKEN', 'ACTIONS_RUNTIME_TOKEN')
 DOCKER_OVERRIDE_ENV = ('DOCKER_HOST', 'DOCKER_CONTEXT', 'DOCKER_CONFIG',
                        'DOCKER_TLS_VERIFY', 'DOCKER_CERT_PATH', 'DOCKER_API_VERSION')
@@ -188,9 +188,9 @@ def validate_release(record, source, remote_commit, launch_template):
     need(record.get('ownerApprovalSHA256') == owner_sha and
          record.get('reservationReceiptSHA256') == reservation_sha,
          'EXTERNAL_RECEIPT_CANONICAL_HASH_REQUIRED')
-    need(owner.get('schema') == 'work8-v104-owner-approval-v1' and
+    need(owner.get('schema') == 'work8-v108-owner-approval-v1' and
          owner.get('ownerDecisionRecorded') is True and
-         owner.get('directive') == 'EMPIREAI_V104_SEPARATE_NATIVE_EXECUTION_APPROVAL' and
+         owner.get('directive') == 'EMPIREAI_V108_SEPARATE_NATIVE_EXECUTION_APPROVAL' and
          owner.get('scope') == 'one-native-a5-08-09-attempt' and
          type(owner.get('maximumAttempts')) is int and owner.get('maximumAttempts') == 1 and
          owner.get('maximumJobSeconds') == 18000 and
@@ -201,7 +201,7 @@ def validate_release(record, source, remote_commit, launch_template):
          owner.get('reservationId') == RESERVATION and
          owner.get('independentAckAuthority') == ACK_AUTHORITY,
          'SEPARATE_FULL_NATIVE_OWNER_APPROVAL_REQUIRED')
-    need(reservation.get('schema') == 'work8-v104-reservation-v1' and
+    need(reservation.get('schema') == 'work8-v108-reservation-v1' and
          reservation.get('recordType') == 'ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE' and
          reservation.get('status') == 'COMMITTED' and
          reservation.get('reservationId') == RESERVATION and
@@ -319,7 +319,7 @@ def validate_root(root):
     run_id = os.environ.get('GITHUB_RUN_ID', '')
     temp = Path(os.environ.get('RUNNER_TEMP', '/invalid'))
     need(re.fullmatch('[1-9][0-9]*', run_id) and temp.is_absolute() and
-         root == temp / ('v104-a5-'+run_id), 'EXACT_CURRENT_RUN_ROOT_REQUIRED')
+         root == temp / ('v108-a5-'+run_id), 'EXACT_CURRENT_RUN_ROOT_REQUIRED')
     need(os.getuid() == os.geteuid() == os.getgid() == os.getegid() == 1001,
          'ORIGINAL_HOST_PRINCIPAL_REQUIRED')
     need(os.environ.get('GITHUB_ACTIONS') == 'true' and

@@ -374,10 +374,7 @@ def validate_success(files):
             'originalA5PredicatesChanged': False, 'applicationAcceptance': False}
 
 
-def write_archive(directory, files, label, maximum=MAX_ARCHIVE):
-    directory = Path(directory)
-    need(not directory.exists(), 'EXPORT_DESTINATION_ALREADY_EXISTS', operation='ARCHIVE_WRITE')
-    directory.mkdir(mode=0o700)
+def archive_payloads(files, label):
     index = {'schema': 'work8-v101-final-export-index-v1', 'label': label,
              'files': [{'path': n, 'bytes': len(b), 'sha256': sha(b)} for n, b in sorted(files.items())],
              'logicalBytes': sum(map(len, files.values())), 'maximumLogicalBytes': MAX_TOTAL,
@@ -385,17 +382,36 @@ def write_archive(directory, files, label, maximum=MAX_ARCHIVE):
     payloads = {**files, 'export-index.json': encoded(index)}
     need(index['logicalBytes'] <= MAX_TOTAL and len(payloads) <= 600,
          'EXPORT_TOTAL_BOUND', operation='ARCHIVE_WRITE')
+    return payloads
+
+
+def archive_stream(stream, payloads):
+    # Size admission and durable writing use exactly this index/tar/gzip format.
+    with gzip.GzipFile(filename='', mode='wb', fileobj=stream, mtime=0) as zipped:
+        with tarfile.open(fileobj=zipped, mode='w|') as archive:
+            for name, data in sorted(payloads.items()):
+                info = tarfile.TarInfo(name)
+                info.size = len(data)
+                info.mode = 0o600
+                info.uid = info.gid = info.mtime = 0
+                archive.addfile(info, io.BytesIO(data))
+
+
+def archive_size(files, label):
+    stream = io.BytesIO()
+    archive_stream(stream, archive_payloads(files, label))
+    return len(stream.getvalue())
+
+
+def write_archive(directory, files, label, maximum=MAX_ARCHIVE):
+    directory = Path(directory)
+    need(not directory.exists(), 'EXPORT_DESTINATION_ALREADY_EXISTS', operation='ARCHIVE_WRITE')
+    payloads = archive_payloads(files, label)
+    directory.mkdir(mode=0o700)
     target = directory/'evidence-export.tar.gz'
     with target.open('xb') as stream:
         os.chmod(target, 0o600)
-        with gzip.GzipFile(filename='', mode='wb', fileobj=stream, mtime=0) as zipped:
-            with tarfile.open(fileobj=zipped, mode='w|') as archive:
-                for name, data in sorted(payloads.items()):
-                    info = tarfile.TarInfo(name)
-                    info.size = len(data)
-                    info.mode = 0o600
-                    info.uid = info.gid = info.mtime = 0
-                    archive.addfile(info, io.BytesIO(data))
+        archive_stream(stream, payloads)
         stream.flush()
         os.fsync(stream.fileno())
     need(target.stat().st_size <= maximum, 'EXPORT_ARCHIVE_BOUND', operation='ARCHIVE_WRITE')
@@ -716,6 +732,340 @@ def native_failure_projections(root, exporter):
     return files
 
 
+# Failure transport preserves the first browser comparison's bounded predicate
+# evidence. Success validation and the comparator itself remain independent.
+COMPARISON_FAILURES = {
+    'NORMAL_REPLAY_CANONICAL_COMPARISON_FAILED': ('normal-replay', 'NORMAL_REPLAY', 'normal'),
+    'RETURN_CANONICAL_RECORDS_OR_DERIVED_PRESENTATION_INVALID': ('returned', 'NORMAL_RETURN', 'returned'),
+    'RETURN_REPLAY_MUTATED_CANONICAL_STATE': ('replayed', 'NORMAL_RETURN_REPLAY', 'replayed'),
+    'NORMAL_INDEPENDENT_READBACK_FAILED': ('normal-replay', 'NORMAL_REPLAY', 'normal'),
+    'RETURNED_INDEPENDENT_READBACK_FAILED': ('returned', 'NORMAL_RETURN', 'returned'),
+    'REPLAYED_INDEPENDENT_READBACK_FAILED': ('replayed', 'NORMAL_RETURN_REPLAY', 'replayed'),
+}
+COMPARISON_CODES = frozenset('''UNCLASSIFIED_SCHEMA_FIELD SCHEMA_TYPE_CHANGED MANDATORY_SCHEMA_KEYS_CHANGED
+VALUE_CHANGED ARRAY_LENGTH_CHANGED PERSISTENCE_INPUT_MISSING SESSION_PERSISTENCE_MISMATCH
+SESSION_DIGEST_MISMATCH AUTHORITY_DIGEST_MISMATCH OWNER_WORKSPACE_NAMESPACE_MISMATCH
+SESSION_CHAIN_DIGEST_INVALID AUTHORITY_CHAIN_DIGEST_INVALID INVALID_READ_INTERVAL SCHEMA_IDENTITY_CHANGED
+SESSION_NOT_FROZEN AUTHORITY_NOT_REVOKED SAFETY_STATE_CHANGED ACCEPTANCE_DATASET_INCOMPLETE
+UNREVIEWED_CLOCK_DEPENDENT_COMMUNICATION PREPARATION_AUTHORITY_NOT_EMPTY PERSISTED_PLAN_COUNT_MISMATCH
+PERSISTED_PLAN_MISSING PLAN_SCOPE_MISMATCH PLAN_DIGEST_MISMATCH COMMITTED_EVENTS_MISMATCH
+PLAN_ASSUMPTIONS_CHANGED COMMITTED_EVENT_PREFIX_MISMATCH FINANCE_COUNTS_MISMATCH CUTOFF_OUTSIDE_READ_INTERVAL
+COMMITTED_EVENT_AFTER_CUTOFF UNREVIEWED_PENDING_FINANCIAL_EVENT FINANCIAL_EVENT_DIGEST_MISMATCH
+INVALID_PLANNED_THRESHOLD AMBIGUOUS_STATUS_READ_INTERVAL INCORRECT_DERIVED_FINANCE_STATUS
+PROBE_TIME_OUTSIDE_READ_INTERVAL INVALID_COMPARATOR_INPUT'''.split())
+COMPARISON_VALUES = frozenset('''WAITING_SIMULATED_PAYOUT_OR_EVENT IN_PROGRESS COMPLETE_SIMULATION
+INCOMPLETE_SIMULATION REVOKED PAUSED NOT_GRANTED LOCKED NOT_BORN SIMULATION
+SIMULATION_EXCLUDED_FROM_ACTUALS SYNTHETIC SANDBOX PASS FAIL'''.split())
+COMPARISON_CLASSES = frozenset('''CLOCK_DERIVED_PRESENTATION CANONICAL_PERSISTED
+CANONICAL_CONTROL_OR_PERSISTED_PROJECTION DERIVED_FROM_CANONICAL_SOURCE
+CANONICAL_OR_EXACT_SOURCE_BOUND_PRESENTATION UNCLASSIFIED_REJECTED'''.split())
+COMPARISON_SEQUENCE = ('PAUSE_APPLIED', 'REVOKE_APPLIED', 'FROZEN_SNAPSHOT_OBSERVED',
+    'PAUSE_REPLAY_IDENTICAL', 'REVOKE_REPLAY_IDENTICAL', 'NORMAL_REPLAY_SNAPSHOT_OBSERVED')
+
+
+def hex_digest(value, length=64):
+    return value if isinstance(value, str) and re.fullmatch('[a-f0-9]{'+str(length)+'}', value) else None
+
+
+def safe_integer(value, maximum=2**53-1):
+    return value if type(value) is int and 0 <= value <= maximum else None
+
+
+def comparison_path(value):
+    if not isinstance(value, str) or len(value) > 1024 or not value.startswith('$'):
+        return None
+    keys = {'canonical', 'tables', 'table', 'scopeSha256', 'count', 'rowsSha256', 'sessionDigest',
+            'authorityDigest', 'plan', 'createdAt', 'sourceDigest', 'assumptions', 'events',
+            'persistence', 'observation', 'length'}
+    for filename in ('normal-schema.json', 'recovery-schema.json'):
+        schema = parse(regular_bytes(DIAGNOSTIC_ROOT/filename, MAX_FILE))
+        for path in schema['paths']:
+            keys.update(k.replace('[]', '') for k in path.split('.') if
+                        re.fullmatch('[A-Za-z_][A-Za-z0-9_]*', k.replace('[]', '')))
+    tail = value[1:]
+    while tail:
+        match = re.match(r'\.([A-Za-z_][A-Za-z0-9_]*)|\[([0-9]{1,10})\]|\[key-sha256:([a-f0-9]{64})\]', tail)
+        if not match or (match[1] is not None and match[1] not in keys):
+            return None
+        tail = tail[match.end():]
+    return value
+
+
+def comparison_context(value, observed_phase):
+    if not isinstance(value, dict):
+        return {'status': 'UNAVAILABLE_OR_INVALID'}
+    try:
+        need(value.get('replayScope') == 'NORMAL_BEFORE_RECOVERY', 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+        reads = value.get('persistenceReads', {})
+        need(isinstance(reads, dict) and all(reads.get(side) in ('READ_OK', 'JSON_INVALID', 'MISSING', 'READ_FAILED')
+             for side in ('expected', 'observed')), 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+        need(value['comparatorId'] == 'WORK8_V28_CANONICAL_COMPARISON_V1' and
+             value['originalPredicate'] == 'A5-09_CANONICAL_AND_PERSISTED_STATE_PRESERVATION' and
+             value['expectedPhase'] == 'NORMAL_FROZEN' and value['observedPhase'] == observed_phase,
+             'EXPORT_RECEIPT_SCHEMA_REFUSED')
+        result = {k: value[k] for k in ('comparatorId', 'originalPredicate', 'expectedPhase', 'observedPhase')}
+        for side in ('expected', 'observed'):
+            state = value[side]
+            need(isinstance(state, dict) and isinstance(state.get('recordVersions'), list) and
+                 len(state['recordVersions']) <= 16, 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+            result[side] = {k: safe_integer(state.get(k), 2**31-1) for k in ('sessionVersion', 'authorityVersion')}
+            result[side].update(recordVersions=[safe_integer(x, 2**31-1) for x in state['recordVersions']],
+                sessionStatus=state.get('sessionStatus') if state.get('sessionStatus') in ('PAUSED', 'UNCLASSIFIED') else 'UNCLASSIFIED',
+                authorityStatus=state.get('authorityStatus') if state.get('authorityStatus') in ('REVOKED', 'UNCLASSIFIED') else 'UNCLASSIFIED')
+        sequence = value['completedSequence']
+        need(isinstance(sequence, list) and tuple(sequence) == COMPARISON_SEQUENCE[:len(sequence)],
+             'EXPORT_RECEIPT_SCHEMA_REFUSED')
+        result.update(completedSequence=sequence, replayScope='NORMAL_BEFORE_RECOVERY',
+            persistenceReads={side: reads[side] for side in ('expected', 'observed')}, replayClassification=value.get('replayClassification')
+            if value.get('replayClassification') in ('EXACT_DUPLICATE_RESPONSES_IDENTICAL', 'NOT_ESTABLISHED') else 'NOT_ESTABLISHED',
+            status='BOUNDED_RECORDED_CONTEXT_ONLY')
+        return result
+    except Exception:
+        return {'status': 'UNAVAILABLE_OR_INVALID'}
+
+
+def project_comparison(value, observed_phase):
+    need(isinstance(value, dict) and value.get('schema') == 'WORK8_V28_CANONICAL_COMPARISON_V1' and
+         all(type(value.get(k)) is bool for k in ('pass', 'canonicalEqual', 'persistenceEqual', 'diagnosticsTruncated')) and
+         isinstance(value.get('diagnostics'), list) and len(value['diagnostics']) <= 32 and
+         isinstance(value.get('observations'), list) and len(value['observations']) <= 32 and
+         safe_integer(value.get('totalIssues'), 2**31-1) is not None,
+         'EXPORT_RECEIPT_SCHEMA_REFUSED')
+    result = {k: value[k] for k in ('schema', 'pass', 'canonicalEqual', 'persistenceEqual', 'totalIssues', 'diagnosticsTruncated')}
+    for key in ('canonicalSha256', 'observedCanonicalSha256', 'persistenceSha256',
+                'observedPersistenceSha256', 'sourceIdentitySha256'):
+        result[key] = hex_digest(value.get(key))
+    rows = []
+    for row in value['diagnostics']:
+        need(isinstance(row, dict), 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+        path = comparison_path(row.get('path'))
+        safe = {'code': row.get('code') if isinstance(row.get('code'), str) and row['code'] in COMPARISON_CODES else 'UNCLASSIFIED_COMPARATOR_CODE',
+            'path': path, 'classification': row.get('classification') if isinstance(row.get('classification'), str) and row['classification'] in COMPARISON_CLASSES else 'UNCLASSIFIED_REJECTED',
+            'expectedSha256': hex_digest(row.get('expectedSha256')), 'observedSha256': hex_digest(row.get('observedSha256'))}
+        if path is None:
+            safe['pathClassification'] = 'UNRECOGNIZED_PATH_REDACTED'
+        for side in ('expectedValue', 'observedValue'):
+            if isinstance(row.get(side), str) and row[side] in COMPARISON_VALUES:
+                safe[side] = row[side]
+        rows.append(safe)
+    result['diagnostics'] = rows
+    result['diagnosticOrder'] = 'ORIGINAL_RECEIPT_ARRAY_ORDER_NOT_GLOBAL_EVENT_ORDER'
+    result['observations'] = []
+    for row in value['observations']:
+        need(isinstance(row, dict), 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+        safe = {'phase': row.get('phase') if row.get('phase') in ('NORMAL', 'RETURNED_NORMAL') else 'UNCLASSIFIED'}
+        for key in ('recordIndex', 'requestStartedAtMs', 'financialCutoffAtMs', 'requestCompletedAtMs', 'nextPlannedEventAtMs'):
+            safe[key] = safe_integer(row.get(key), 15 if key == 'recordIndex' else 2**53-1)
+        for key in ('missionSha256', 'planSha256', 'committedEventsSha256', 'sourceReceiptSha256'):
+            safe[key] = hex_digest(row.get(key))
+        for key in ('displayedStatus', 'verifiedStatus'):
+            safe[key] = row.get(key) if isinstance(row.get(key), str) and row[key] in COMPARISON_VALUES else None
+        result['observations'].append(safe)
+    result['comparisonContext'] = comparison_context(value.get('comparisonContext'), observed_phase)
+    # The producer hashes JSON.stringify before adding the digest field.
+    # Parsed property order and scalar Unicode match that representation. A
+    # non-source numeric domain is unavailable, never falsely called a match.
+    reported = hex_digest(value.get('receiptPayloadSha256'))
+    result['payloadHashStatus'] = 'UNAVAILABLE_LEGACY_OR_INVALID'
+    if reported:
+        result['receiptPayloadSha256'] = reported
+        try:
+            payload = {k: v for k, v in value.items() if k != 'receiptPayloadSha256'}
+            def source_json(item):
+                if item is None or type(item) is bool:
+                    return
+                if type(item) is int and abs(item) <= 2**53-1:
+                    return
+                if isinstance(item, str):
+                    item.encode('utf8')
+                    return
+                if isinstance(item, list):
+                    for child in item:
+                        source_json(child)
+                    return
+                if isinstance(item, dict):
+                    for key, child in item.items():
+                        source_json(key); source_json(child)
+                    return
+                raise ValueError('UNSUPPORTED_SOURCE_JSON_SCALAR')
+            source_json(payload)
+            actual = sha(json.dumps(payload, separators=(',', ':'), ensure_ascii=False, allow_nan=False).encode('utf8'))
+            result['payloadHashStatus'] = 'MATCH' if actual == reported else 'MISMATCH'
+        except (ValueError, UnicodeError, RecursionError):
+            result['payloadHashStatus'] = 'UNAVAILABLE_JSON_REPRESENTATION'
+    result['independentReview'] = 'REQUIRED_BEFORE_ACCEPTANCE'
+    return result
+
+
+def comparison_failure_projection(root, exporter):
+    """Select only the receipt named by a consistent first browser failure.
+    Earlier successful comparisons cannot displace that failure or overflow
+    the bounded return with unrelated receipts.
+    """
+    name = 'prior-cause-projections/first-comparison-failure.json'
+    result = {'schema': 'work8-v107-comparison-failure-projection-v1',
+        'status': 'UNAVAILABLE_OR_INVALID', 'applicationAcceptance': False, 'rawOutputRetained': False,
+        **diagnostic_bindings(root, 'full')}
+    causes = []; associations = []; invalid = False
+    for path, kind in (('evidence/full/first-controller-failure.json', 'controller'),
+                       ('evidence/full/browser-stderr-sanitized.json', 'stderr'),
+                       ('evidence/full/transition-browser-result.json', 'browser')):
+        try:
+            raw = regular_bytes(root/path, MAX_FAILURE); value = parse(raw)
+            need(isinstance(value, dict), 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+            if kind == 'controller':
+                need(value.get('schema') == 'work8-v104-controller-first-failure-v1' and
+                     value.get('firstFailure') is True and value.get('phase') == 'full' and
+                     value.get('operation') == 'OBSERVE_BROWSER_FAILURE', 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+                row = value.get('browserFailure')
+                need(isinstance(row, dict) and row.get('firstFailure') is True, 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+            elif kind == 'stderr':
+                need(value.get('schema') == 'work8-browser-sanitized-stderr-v1' and
+                     value.get('stream') == 'stderr' and value.get('arbitraryStderrRetained') is False and
+                     isinstance(value.get('diagnostics'), list) and len(value['diagnostics']) == 1,
+                     'EXPORT_RECEIPT_SCHEMA_REFUSED')
+                row = value['diagnostics'][0]
+                need(isinstance(row, dict) and row.get('firstFailure') is True, 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+            else:
+                need(value.get('schema') == 'work8-v28-canonical-business-transition-v1' and
+                     value.get('status') == 'FAIL', 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+                row = value.get('failure')
+                need(isinstance(row, dict) and value.get('failedStage') in BROWSER_STAGES, 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+            need(row.get('arbitraryErrorValuesRetained') is False and isinstance(row.get('code'), str),
+                 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+            causes.append(row['code']); associations.append({'sourcePath': path, 'sourceReceiptSHA256': sha(raw)})
+        except FileNotFoundError:
+            pass
+        except Exception:
+            invalid = True
+    if invalid or not causes or len(set(causes)) != 1 or causes[0] not in COMPARISON_FAILURES:
+        # No comparison failure observed: avoid creating a new alleged cause.
+        if not any((root/('evidence/full/'+item[0]+'-comparison.json')).exists() for item in COMPARISON_FAILURES.values()):
+            return {}
+        result['associationStatus'] = 'CONFLICTING_OR_UNAVAILABLE_FIRST_BROWSER_COMPARISON_CAUSE'
+        return {name: encoded(result)}
+    label, observed_phase, capture_phase = COMPARISON_FAILURES[causes[0]]
+    relative = 'evidence/full/'+label+'-comparison.json'
+    result.update(sourcePath=relative, firstBrowserAssertion=causes[0], associationStatus='MATCHED_EXISTING_FIRST_BROWSER_ASSERTION',
+                  associationSources=associations, nativeFailureNotOverwritten=True)
+    try:
+        raw = regular_bytes(root/relative, MAX_FILE)
+        result['originalReceiptSHA256'] = sha(raw)
+        result['comparison'] = project_comparison(parse(raw), observed_phase)
+        result['status'] = 'BOUNDED_COMPARATOR_EVIDENCE_NOT_ACCEPTANCE'
+        try:
+            index = parse(regular_bytes(root/'evidence/full/artifact-index.json', MAX_FILE))
+            rows = [x for x in index['files'] if x.get('path') == label+'-comparison.json']
+            result['stageIndexIdentity'] = 'MATCH' if len(rows) == 1 and rows[0].get('sha256') == sha(raw) and rows[0].get('bytes') == len(raw) else 'MISMATCH'
+        except Exception:
+            result['stageIndexIdentity'] = 'UNAVAILABLE'
+        contract = parse(regular_bytes(root/'run-contract.json', MAX_FILE))
+        result['sourceRevisions'] = {role: {k: hex_digest(contract.get('sources', {}).get(role, {}).get(k), 40)
+            for k in ('commit', 'tree')} for role in ('backend', 'normal', 'recovery')}
+        result['workflowCommit'] = hex_digest(contract.get('executor', {}).get('workflowCommit'), 40)
+    except Exception:
+        result.pop('comparison', None)
+        result['status'] = 'UNAVAILABLE_OR_INVALID'
+    # Context receipts completed before comparison. They are not promoted to
+    # an earlier causal error merely because one outcome is FAIL.
+    context = []
+    for phase in dict.fromkeys(('normal', capture_phase)):
+        for suffix in ('independent-gate', 'persistence-capture'):
+            relative = 'evidence/full/'+phase+'-'+suffix+'.json'
+            row = {'sourcePath': relative, 'status': 'UNAVAILABLE_OR_INVALID', 'phase': phase}
+            try:
+                raw = regular_bytes(root/relative, MAX_FILE); row['originalReceiptSHA256'] = sha(raw); value = parse(raw)
+                need(value.get('phase') == phase, 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+                if suffix == 'independent-gate':
+                    scripts = ('capture-canonical-persistence.mjs', 'offline-commerce-readback.mjs', 'whole-app-readback.mjs')
+                    need(type(value.get('allPassed')) is bool and type(value.get('attempts')) is int and value['attempts'] == 1 and
+                         set(value.get('outcomes', {})) == set(scripts) and
+                         all(value['outcomes'][k] in ('PASS', 'FAIL') for k in scripts), 'EXPORT_RECEIPT_SCHEMA_REFUSED')
+                    row.update(status='BOUNDED_GATE_OUTCOMES', allPassed=value['allPassed'], attempts=1,
+                               outcomeConsistency=value['allPassed'] == all(value['outcomes'][k] == 'PASS' for k in scripts),
+                               outcomes={k: value['outcomes'][k] for k in scripts})
+                else:
+                    need(value.get('schema') == 'work8-v29-private-canonical-capture-v1' and
+                         value.get('status') in ('FAIL', 'PASS_PRIVATE_CANONICAL_CAPTURE') and
+                         value.get('readOnlySqlite') is True and value.get('rawRecordsPublished') is False,
+                         'EXPORT_RECEIPT_SCHEMA_REFUSED')
+                    row.update(status=value['status'], readOnlySqlite=True, rawRecordsPublished=False,
+                        readStartedAtMs=safe_integer(value.get('readStartedAtMs')), readCompletedAtMs=safe_integer(value.get('readCompletedAtMs')),
+                        canonicalSha256=hex_digest(value.get('canonicalSha256')))
+                    native = diagnostic_module('native_diagnostics')
+                    for key in ('safeFailure', 'closeFailure'):
+                        if isinstance(value.get(key), dict):
+                            failure = value[key]
+                            row[key] = {'operation': native.token(failure.get('operation')),
+                                'errno': failure.get('errno') if failure.get('errno') in native.ERRNOS else None,
+                                'rule': native.token(failure.get('rule')),
+                                'classification': failure.get('classification') if failure.get('classification') == phase.upper()+'_CANONICAL_PERSISTENCE' else 'UNCLASSIFIED',
+                                'rawErrorOrRecordsRetained': False}
+            except Exception:
+                row = {k: row[k] for k in ('sourcePath', 'originalReceiptSHA256', 'phase') if k in row}
+                row['status'] = 'UNAVAILABLE_OR_INVALID'
+            context.append(row)
+    result['priorReadbackContext'] = context
+    result['priorReadbackOrder'] = 'GATE_BEFORE_COMPARISON_SOURCE_SEQUENCE_NOT_GLOBAL_FIRST_CAUSE'
+    data = encoded(result)
+    # Finite rows/paths/enum fields are below this logical-only guard. The
+    # unchanged 16 KiB compressed transport bound is admitted separately, with
+    # explicit tail reduction that retains the first comparator diagnostic.
+    if len(data) > 128*1024 or any(pattern.search(data) for pattern in exporter.PATTERNS):
+        result = {k: result[k] for k in ('schema', 'sourcePath', 'originalReceiptSHA256', 'applicationAcceptance',
+            'rawOutputRetained', 'phase', 'scope', 'crossProducerCausalOrder', 'runContractSHA256', 'stageStartSHA256') if k in result}
+        result['status'] = 'PROJECTION_SIZE_OR_SECRET_REFUSED'
+        data = encoded(result)
+    return {name: data}
+
+
+def fit_comparison_transport(files):
+    """The new projection must never break the existing 16 KiB return.
+
+    Reduction affects only supplemental comparison rows, in recorded order.
+    Every reduction is explicit; original hashes/counts and the first diagnostic
+    remain visible. The primary native, controller, cleanup and export receipts
+    are untouched. Admission uses the writer's exact index/tar/gzip bytes.
+    """
+    name = 'prior-cause-projections/first-comparison-failure.json'
+    if name not in files or archive_size(files, 'failure') <= MAX_FAILURE:
+        return
+    value = parse(files[name])
+    comparison = value.get('comparison')
+    if not isinstance(comparison, dict):
+        files.pop(name)
+        return
+    value['transportReduction'] = {'reason': 'UNCHANGED_16_KIB_FAILURE_ARCHIVE_BOUND',
+        'diagnosticRowsOmitted': 0, 'observationRowsOmitted': len(comparison.get('observations', [])),
+        'originalProjectionSHA256': sha(files[name])}
+    comparison['observations'] = []
+    files[name] = encoded(value)
+    while archive_size(files, 'failure') > MAX_FAILURE and len(comparison.get('diagnostics', [])) > 1:
+        comparison['diagnostics'].pop()
+        value['transportReduction']['diagnosticRowsOmitted'] += 1
+        files[name] = encoded(value)
+    if archive_size(files, 'failure') > MAX_FAILURE:
+        for row in comparison.get('diagnostics', []):
+            if row.get('path') is not None:
+                row['originalPathSHA256'] = sha(row['path'].encode())
+                row['path'] = None
+                row['pathClassification'] = 'TRANSPORT_BOUND_PATH_HASH_ONLY'
+        files[name] = encoded(value)
+    # Under a pre-existing saturated producer inventory, keep a small explicit
+    # unavailability record rather than allowing new detail to erase all first
+    # failure evidence. This is a loss of detail, never successful acceptance.
+    if archive_size(files, 'failure') > MAX_FAILURE:
+        value = {key: value[key] for key in ('schema', 'sourcePath', 'originalReceiptSHA256',
+            'firstBrowserAssertion', 'applicationAcceptance', 'rawOutputRetained') if key in value}
+        value.update(status='COMPARISON_DETAIL_UNAVAILABLE_TRANSPORT_BOUND',
+                     originalProjectionSHA256=sha(files[name]))
+        files[name] = encoded(value)
+    if archive_size(files, 'failure') > MAX_FAILURE:
+        # Even the optional unavailability marker cannot fit. Restore the
+        # exact pre-existing payload set; never sacrifice primary evidence.
+        files.pop(name)
+
+
 def failure_projections(root, exporter):
     """Closed-schema cleanup and prior-cause metadata, never arbitrary errors."""
     files = {}
@@ -779,6 +1129,13 @@ def failure_projections(root, exporter):
             pass
         files['prior-cause-projections/'+name.replace('/', '-')]=encoded(projection)
     files.update(native_failure_projections(root, exporter))
+    try:
+        files.update(comparison_failure_projection(root, exporter))
+    except Exception:
+        # Auxiliary diagnostics cannot suppress the immutable primary return.
+        files['prior-cause-projections/first-comparison-failure.json'] = encoded({
+            'schema': 'work8-v107-comparison-failure-projection-v1', 'status': 'UNAVAILABLE_OR_INVALID',
+            'applicationAcceptance': False, 'rawOutputRetained': False})
     return files
 
 
@@ -857,6 +1214,7 @@ def finalize(root, exporter, source_check=None):
         # this explicitly constructed bounded metadata package is exported.
         failure_files = {'first-export-failure.json': raw, **handoff_failure_files(root, exporter),
                          **failure_projections(root, exporter)}
+        fit_comparison_transport(failure_files)
         write_archive(final, failure_files, 'failure', MAX_FAILURE)
         verify_final_directory(final)
         failure = Refusal(parse(raw)['code'])

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic V104 integration controls, not Docker or native acceptance."""
+"""Deterministic V108 integration controls, not Docker or native acceptance."""
 import base64
 import copy
 import contextlib
@@ -115,7 +115,7 @@ class V99SourceSecurityTests(unittest.TestCase):
              mock.patch.object(entry.runner, 'api', side_effect=[run, {'total_count': 1, 'workflow_runs': [run]}]) as api:
             proof = entry.single_launch_readback()
         self.assertEqual(proof['authenticatedLaunch'], entry.validate_launch_actor(run, {}))
-        self.assertIn('/actions/workflows/123/runs?branch=work8%2Fv104-a5-20261109', api.call_args_list[1].args[0])
+        self.assertIn('/actions/workflows/123/runs?branch=work8%2Fv108-a5-20261110', api.call_args_list[1].args[0])
         for key in ('actor', 'triggering_actor'):
             bad = copy.deepcopy(run)
             bad[key]['id'] = 999
@@ -126,7 +126,7 @@ class V99SourceSecurityTests(unittest.TestCase):
 
     def test_actual_provider_runner_debug_refuses_before_release_or_work(self):
         with tempfile.TemporaryDirectory() as d:
-            root = Path(d)/'v104-a5-99'
+            root = Path(d)/'v108-a5-99'
             with mock.patch.object(entry, 'validate_root', return_value=root), \
                  mock.patch.object(entry, 'validate_source', return_value={}), \
                  mock.patch.dict(os.environ, RUNNER_DEBUG='1'), \
@@ -159,7 +159,7 @@ class V99AdmissionIntegrationTests(unittest.TestCase):
         prefix = '/repos/'+entry.REPOSITORY
         responses = {
             prefix+'/actions/runs/99': run,
-            prefix+'/actions/workflows/123/runs?branch=work8%2Fv104-a5-20261109&per_page=100':
+            prefix+'/actions/workflows/123/runs?branch=work8%2Fv108-a5-20261110&per_page=100':
                 {'total_count': 1, 'workflow_runs': [run]},
             prefix+'/git/ref/heads/'+entry.REVIEW_BRANCH: {'object': {'sha': '9'*40}},
             prefix+'/commits/'+'9'*40+'?per_page=1': {'author': {'login': 'empireaios', 'id': entry.OWNER_ID}},
@@ -176,7 +176,7 @@ class V99AdmissionIntegrationTests(unittest.TestCase):
             entry.atomic(root/'runner-identity.json', identity, exclusive=True)
             return identity
         with tempfile.TemporaryDirectory() as d:
-            root = Path(d)/'v104-a5-99'
+            root = Path(d)/'v108-a5-99'
             with mock.patch.dict(os.environ, GITHUB_RUN_ID='99', GITHUB_SHA='8'*40,
                                   GITHUB_REF='refs/heads/'+entry.LAUNCH_BRANCH, GITHUB_RUN_ATTEMPT='1'), \
                  mock.patch.object(entry, 'validate_root', return_value=root), \

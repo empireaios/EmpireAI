@@ -1,23 +1,23 @@
 {
   "schema": "work8-v65-reviewed-launch-plan-v1",
-  "status": "V104_CORRECTION_CANDIDATE_ONLY_NO_EXECUTION_AUTHORITY",
-  "scope": "Conditional future isolated A5-08/A5-09 examination after independent correction and complete success/failure return-contract review. V104 authorizes only read-only recovery, local correction and review; no publication, reservation, ACK or native launch. One proposed isolated A5-08/A5-09 native examination on one fresh standard GitHub runner. Preserve V94 Q01-Q05, scoped V95 Brain initialization and V98 frontend startup/security evidence. Reuse exact retained application packages. Observe current-runner admission facts before independent package/executor ACK, newly initialized Brain capture/private-channel preflight and independent preflight ACK. Full acceptance then initializes one coherent native instance and captures its own baseline, transitions NORMAL to RECOVERY to NORMAL_RETURN, verifies replay and orderly drain, and compares final persisted whole-application state. Preflight state is not the full lifecycle baseline. No package rebuild, package reupload, repeated qualification campaign, automatic retry or second job.",
+  "status": "V108_PREPARATION_CANDIDATE_ONLY_NO_EXECUTION_AUTHORITY",
+  "scope": "V108 prepares fresh exact-source routing and a conditional owner proposal only; no publication, reservation, ACK or native launch is authorized. Preserve the reviewed V107 diagnostic and gate-precedence corrections byte-for-byte; the underlying V106 native comparison cause remains unknown. One proposed isolated A5-08/A5-09 native examination on one fresh standard GitHub runner. Preserve V94 Q01-Q05, scoped V95 Brain initialization and V98 frontend startup/security evidence. Reuse exact retained application packages. Observe current-runner admission facts before independent package/executor ACK, newly initialized Brain capture/private-channel preflight and independent preflight ACK. Full acceptance then initializes one coherent native instance and captures its own baseline, transitions NORMAL to RECOVERY to NORMAL_RETURN, verifies replay and orderly drain, and compares final persisted whole-application state. Preflight state is not the full lifecycle baseline. No package rebuild, package reupload, repeated qualification campaign, automatic retry or second job.",
   "authority": {
-    "ownerDirective": "EMPIREAI_V104_SEPARATE_NATIVE_EXECUTION_APPROVAL",
+    "ownerDirective": "EMPIREAI_V108_SEPARATE_NATIVE_EXECUTION_APPROVAL",
     "work8CeilingUSD": 100,
     "existingAdditionalA5USD": 10,
-    "priorOverallHoldsUSD": 16.68,
-    "priorA5HoldsUSD": 6.73,
-    "availableBeforeReservationUSD": 3.27,
+    "priorOverallHoldsUSD": 18.79,
+    "priorA5HoldsUSD": 8.84,
+    "availableBeforeReservationUSD": 1.16,
     "reservationId": null,
     "reservationReceiptSHA256": null,
     "reservationUSD": 0,
-    "proposedReservationUSD": 2.11,
+    "proposedReservationUSD": 1.16,
     "maximumProspectiveUSD": 0,
-    "proposedMaximumProspectiveUSD": 2.11,
-    "currentOverallHoldsUSD": 16.68,
-    "currentA5HoldsUSD": 6.73,
-    "remainingUnreservedUSD": 3.27,
+    "proposedMaximumProspectiveUSD": 1.16,
+    "currentOverallHoldsUSD": 18.79,
+    "currentA5HoldsUSD": 8.84,
+    "remainingUnreservedUSD": 1.16,
     "reservationCommitted": false,
     "ownerDecisionRecorded": false,
     "ownerApprovalReceiptSHA256": null,
@@ -94,13 +94,9 @@
   },
   "billingCalculation": {
     "publicStandardUbuntuComputeUSD": 0,
-    "paidStandardLinuxFallbackPerMinuteUSD": "0.006",
-    "paidFallbackDoesNotAuthorizePrivateOrLargerRunner": true,
     "maximumJobTimeoutMinutes": 300,
     "providerCancellationTailMinutes": 5,
     "billingMinuteRoundingAllowance": 1,
-    "maximumConservativeBilledMinutes": 306,
-    "paidFallbackComputeUSD": "1.836",
     "storagePriceUSDPerGiBMonth": "0.25",
     "storageUnitBytes": 1073741824,
     "assumedFreeStorageGiB": 0,
@@ -124,15 +120,15 @@
     "invoiceRoundingAllowanceUSD": "0.04",
     "invoiceRoundingInterpretation": "Four separate one-cent reserves across up tofour monthly billing periods; planning allowance, not a provider rounding guarantee.",
     "unroundedMaximumStorageUSD": "0.007905505952380952380952380952",
-    "maximumEstimatedAttributableUSD": "2.105715446428571428571428572",
+    "maximumEstimatedAttributableUSD": "0.1044754464285714285714285714",
     "publicOnlyEstimatedAttributableUSD": "0.1044754464285714285714285714",
     "publicOnlyRoundedPlanningUSD": "0.11",
-    "maximumAdditionalExposureUSD": 2.11,
-    "proposedReservationUSD": 2.11,
+    "maximumAdditionalExposureUSD": 1.16,
+    "proposedReservationUSD": 1.16,
     "accountingCeilingIsNotProviderHardSpendCap": true,
     "actualChargesObservedForThisRun": null,
     "actualStorageInvoiceAccessible": false,
-    "pricingEvidenceReviewedDateUTC": "2026-11-09",
+    "pricingEvidenceReviewedDateUTC": "2026-11-10",
     "pricingEvidenceURLs": [
       "https://docs.github.com/en/billing/reference/actions-runner-pricing",
       "https://docs.github.com/en/billing/concepts/product-billing/github-actions",
@@ -141,12 +137,12 @@
       "https://github.blog/changelog/2026-08-27-actions-retention-will-cover-checks-workflow-runs-and-statuses/",
       "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/basics-of-gst/current-gst-rates"
     ],
-    "formula": "((306minutes*0.006)+(0.125GiB*170hours/672hours*0.25)+(0.0625GiB*2162hours/672hours*0.25)+(4/1024GiB*0.25))*1.09+0.04=2.105715446428571428571428572; round upward to2.11USD.",
+    "formula": "((0publicStandardCompute)+(0.125GiB*170hours/672hours*0.25)+(0.0625GiB*2162hours/672hours*0.25)+(4/1024GiB*0.25))*1.09+0.04=0.1044754464285714285714285714USD; round upward to0.11USD. Proposed1.16USD accounting hold and maximum exposure remain within existing1.16USD unreserved authority and retain1.055524553571428571428571429USD model contingency.",
     "retentionInterpretation": "Request7days; service readback must be <=169hours. Reserve170billablehours. Do not extend retention or reupload packages. Public logs conservatively budgeted90days.",
     "accountingHoldIsNotProviderCharge": true,
     "publicStandardRunnerAndRepositoryReverificationRequiredBeforeRelease": true,
     "existingConsumedHoldsExcludedFromNewProposalArithmetic": true,
-    "existingQualificationHoldTreatment": "Preserve all historical holds. Consumed V95 US0.01, V98 US0.30, V100 US2.11 and V103 US2.11 remain separately included in current16.68/6.73/3.27 pending attributable invoice reconciliation. No duplicate hold or release. Any future US2.11 hold is separate, conditional and requires fresh exact-source owner authority.",
+    "existingQualificationHoldTreatment": "Preserve all historical holds including V106 US2.11. Current aggregate holds18.79USD / A5holds8.84USD / unreserved A5authority1.16USD are accounting holds, not invoices. The proposed fresh1.16USD hold uses the existing remaining authority; no planning-ceiling increase, release or duplicate hold is authorized. Only a future source-bound owner approval and committed distinct reservation can change the ledger.",
     "otherProspectiveCharges": {
       "newHostedServices": 0,
       "packageBuilds": 0,
@@ -165,7 +161,7 @@
       "Workflow notexact reviewed singlejob/attempt1 or jobtimeout exceeds300minutes",
       "Source/logging/output limits differ from reviewedcandidate",
       "Artifactbytes/objectcount/retention exceeds reviewedbudget",
-      "Current tariff/tax/context produces exposure above2.11USD",
+      "Current tariff/tax/context produces exposure above1.16USD",
       "Retained input artifactexpired or identitymismatch",
       "Newbillableprovider/cache/packageupload/subscription requested",
       "Any failed native stage; preservefirstcause, scopedcleanup, no retry"
@@ -178,32 +174,37 @@
       "V100BillableUbuntuMilliseconds": 0,
       "attributableTotalInvoicesUSD": null,
       "holdsAreNotActualCharges": true,
-      "V103BillableUbuntuMilliseconds": 0
-    }
+      "V103BillableUbuntuMilliseconds": 0,
+      "V106BillableUbuntuMilliseconds": 0
+    },
+    "unallocatedPlanningContingencyUSD": "1.055524553571428571428571429",
+    "paidComputeFallbackAuthorized": false,
+    "publicStandardOnlyInterpretation": "All300job minutes and cancellation/rounding tails remain required public standard-runner compute, currently free. A private/larger/paid runner or changed free-compute condition must stop; the historical2.11USD paid-compute contingency is not a required technical prerequisite or authorized fallback.",
+    "maximumComputeMinutesIncludingCancellationAndRounding": 306
   },
   "releaseConditions": [
-    "Preserve recovered V103 terminal failure and prior accepted evidence. Verify the demonstrated native diagnostic-preservation correction, both complete success and controlled-failure return paths, causal ordering, cleanup, bounded export and independent archive readback before proposing fresh execution. The V103 native cause is not recoverable from existing evidence; do not claim it corrected. V94, V95, V98, V100 and V103 attempt authorities, including both V103 ACKs, are consumed.",
-    "Bind a future exact owner decision, distinct reservation receipt, source manifest, workflow SHA256, complete tree and exact sole parent 98e54697fe06a1a849a9f2c099cf84e646e56ca6 in the external release record on the non-launching review branch. No operative approval or reservation exists in this template.",
-    "After separate approval only, record one distinct V104-A5-NATIVE-ONCE-20261109 accounting reservation2.11USD from current3.27USD unreserved A5 authority. Preserve all consumed holds, including V103 US2.11, pending independent actual invoice reconciliation. Conditional projected totals18.79/8.84/1.16 are not current holds.",
+    "Preserve V106 terminal failure and V107 exact local correction evidence. V106 failed NORMAL_REPLAY_CANONICAL_COMPARISON_FAILED before RECOVERY; the precise comparator predicate remains not recoverable. Reuse V107 focused diagnostic-preservation and gate-precedence checks without claiming the native fault repaired. All V104/V105/V106 native and ACK execution authorities are consumed; no replay or retry.",
+    "Bind a future exact owner decision, distinct reservation receipt, source manifest, workflow SHA256, complete tree and exact sole published parent 6aacc930f2b70380adc15d67708d75364cf08753 in the external release on the nonlaunching review branch. Preserve reviewed local V107 predecessor fcd082fee99d903ba735cda1d97743f13dea047f/tree770a10406bb3362767bdf6d6d57e78f64155be7b byte-identically at protected correction paths. Any metadata-only publication exception requires fresh explicit approval; V106 approval is not reused.",
+    "Only after separate exact-source owner approval, record one distinct V108-A5-NATIVE-ONCE-20261110 accounting hold1.16USD within current1.16USD unreserved A5 authority. Baseline remains18.79/8.84/1.16; conditional post-hold totals19.95/10.00/0.00 are not current holds. Preserve all previous holds pending actual billing reconciliation. No A5 planning-ceiling increase or paid runner fallback.",
     "Before any future launch publication, independently read back provider state, repository public visibility, exact source tree/parent/workflow and absence of an existing matching run. Unknown state is not authority to repeat a write.",
     "Require retained input13340201255 from run41860150363 unexpired and exact digest39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755. Download/reuse it once; do not recreate packages or upload another package copy.",
-    "Create work8/v104-a5-20261109 once only after all pre-dispatch conditions pass. Never move/delete/recreate a launched branch and never rerun a job or failed phase. Keep every historical workflow inert.",
+    "Create work8/v108-a5-20261110 once only after all pre-dispatch conditions pass. Never move/delete/recreate a launched branch and never rerun a job or failed phase. Keep every historical workflow inert.",
     "Preserve V94 Q01-Q05 PASS, scoped V95 initialization, V96 first-error diagnostics and V98 exact-package frontend startup/security receipts without replay. New runner admission must independently attribute current UID1001, protected principals, actual daemon/process boundary, capacities, dependency identities and isolated network to the same active job. Historical worker receipts cannot authorize a future VM.",
     "Independent safe artifact readback must bind current package/executor ACK before Brain initialization, then a separate initialized Brain and canonical store preflight ACK before the single coherent lifecycle.",
     "Enforce three new artifact objects total: executor<=64MiB, preflight<=1MiB, final-or-failure<=8MiB plus16MiB envelope each; declared maximum121MiB within unchanged128MiB cumulative service ZIP cap and7day retention. Final logical evidence<=8MiB, compressed archive<=7MiB, each original file<=2MiB. No cache, raw protected state or package uploads.",
     "First failure stops later native phases, preserves the original cause and triggers bounded campaign-only cleanup and durable artifact return. Only independent original whole-row acceptance may change A5 or48/16.",
     "Fresh owner approval must explicitly authorize at most two safe machine-readable owner endorsements on existing PR113, one per independent package/executor and preflight ACK; no other messages. The read-only workflow must independently read the authenticated comment owner, exact ACK and review commit digests, current run/stage/artifact and immutable creation time before continuing. Git author attribution alone never authenticates an ACK.",
-    "No new execution decision is requested until the actual source-permitted native failure-return contract has independent positive/negative proof and exact source, retained packages, current provider state and finance have been reviewed. Correcting diagnostic preservation is not proof that the unknown V103 native fault is repaired."
+    "A new native execution requires separate exact-source owner approval and fresh provider/package/security/financial readback. Proposed1.16USD maximum additional exposure is within existing authority, subject to the strict public standard-runner and reviewed cost assumptions. The corrected failure-return path is locally tested; the unknown V106 comparison fault is not proven repaired. No second job or retry."
   ],
-  "reviewBranch": "work8/v104-review-20261109",
-  "launchBranch": "work8/v104-a5-20261109",
+  "reviewBranch": "work8/v108-review-20261110",
+  "launchBranch": "work8/v108-a5-20261110",
   "providerReservationIsNotApplicationAcceptance": true,
   "proposedPostReservationLedgerNotCommitted": {
-    "overallHoldsUSD": 18.79,
-    "A5HoldsUSD": 8.84,
-    "remainingA5USD": 1.16,
-    "reservationUSD": 2.11,
-    "reservationId": "V104-A5-NATIVE-ONCE-20261109",
+    "overallHoldsUSD": 19.95,
+    "A5HoldsUSD": 10.0,
+    "remainingA5USD": 0.0,
+    "reservationUSD": 1.16,
+    "reservationId": "V108-A5-NATIVE-ONCE-20261110",
     "operative": false
   },
   "predecessor": {
@@ -222,7 +223,7 @@
   "launchEventPolicy": {
     "event": "create",
     "refType": "branch",
-    "exactBranch": "work8/v104-a5-20261109",
+    "exactBranch": "work8/v108-a5-20261110",
     "attempt": 1,
     "runNumberPredicate": false,
     "freshBranchRequired": true,
@@ -232,24 +233,24 @@
     "providerStateVerifiedInThisDraft": false,
     "releaseGateEnabled": false,
     "externalReleaseRequired": true,
-    "releaseGateFlagInterpretation": "SOURCE_TEMPLATE_ONLY: false records that V104 continuation authorises no publication or execution. Only fresh, exact-source owner approval and validated external authority can permit a later single job."
+    "releaseGateFlagInterpretation": "SOURCE_TEMPLATE_ONLY: V108 preparation grants no publication or execution. Only fresh exact-source owner approval including any metadata-only publication exception, validated distinct external reservation within existing authority can permit one future job."
   },
   "ownerApproval": {
-    "directive": "EMPIREAI_V104_SEPARATE_NATIVE_EXECUTION_APPROVAL",
+    "directive": "EMPIREAI_V108_SEPARATE_NATIVE_EXECUTION_APPROVAL",
     "decisionRecorded": false,
     "receiptSHA256": null,
     "attemptsRequested": 1,
     "attemptsAuthorized": 0,
-    "maximumEstimatedAttributableUSD": 2.10571545,
-    "maximumAdditionalExposureUSD": 2.11,
-    "maximumReservationUSD": 2.11,
-    "existingAvailableA5USD": 3.27,
+    "maximumEstimatedAttributableUSD": 0.10447545,
+    "maximumAdditionalExposureUSD": 1.16,
+    "maximumReservationUSD": 1.16,
+    "existingAvailableA5USD": 1.16,
     "noAutomaticRetry": true,
-    "noBudgetIncrease": true,
     "soleTarget": "A5",
     "interpretation": "NONOPERATIVE_PROPOSAL_SNAPSHOT: these source-template fields intentionally remain false/zero after publication; only the separately validated external ownerApprovalReceipt and operative authority can grant one future native attempt.",
     "decisionRequested": false,
-    "approvalReady": false
+    "approvalReady": false,
+    "noBudgetIncrease": true
   },
   "executionStages": [
     {
@@ -275,19 +276,19 @@
     }
   ],
   "releaseDiffAllowlist": [
-    "No publication is authorised by V104. After a separately requested and granted exact-source decision only, publish the independently reviewed complete tree with its exact sole parent.",
+    "No publication is authorized by V108 preparation. After separate exact-source approval only, publish the reviewed complete tree with exact published V106 parent; author/committer metadata differences require a fresh explicit exception and exact remote tree/parent/message/manifest/workflow verification.",
     "The external release record carries the actual owner decision and distinct reservation; the source template never becomes implicit authority.",
     "Do not alter accepted application packages or historical qualification evidence. Any candidate change invalidates the reviewed candidate identity until independently reviewed."
   ],
   "inheritedExecutionProposalApplicability": "HISTORICAL_V75_CONSUMED_PRESERVED_ONLY",
-  "inheritedAuthorityNumbersApplicability": "CURRENT_V104_TEMPLATE_UNAPPROVED; V75_V95_V98_V100_V103_AUTHORITIES_CONSUMED",
+  "inheritedAuthorityNumbersApplicability": "CURRENT_V108_TEMPLATE_UNAPPROVED; V75_V95_V98_V100_V103_V104_V105_V106_EXECUTION_AUTHORITIES_CONSUMED",
   "observedFinancialSnapshot": {
     "work8PlanningCeilingUSD": 100,
-    "aggregateHoldsUSD": 16.68,
-    "A5HoldsUSD": 6.73,
-    "unreservedA5AuthorityUSD": 3.27,
+    "aggregateHoldsUSD": 18.79,
+    "A5HoldsUSD": 8.84,
+    "unreservedA5AuthorityUSD": 1.16,
     "actualProviderChargesUSD": null,
-    "actualChargesStatus": "V95_V98_V100_V103_BILLED_UBUNTU_MILLISECONDS_ZERO; TOTAL_STORAGE_TAX_INVOICES_UNCONFIRMED; HOLDS_NOT_ACTUAL_CHARGES",
+    "actualChargesStatus": "RETAINED_PROVIDER_TIMING_INCLUDING_V106_ZERO_BILLED_UBUNTU_MILLISECONDS; STORAGE_TAX_FINAL_INVOICES_UNCONFIRMED; HOLDS_NOT_CHARGES",
     "newReservationCreated": false,
     "newExecutionApproval": false
   },
@@ -323,8 +324,8 @@
     "substitutesForFreshCoherentInstance": false
   },
   "independentAckTransport": {
-    "reviewBranch": "work8/v104-review-20261109",
-    "filePattern": "v104-review/<runId>/<stage>.json",
+    "reviewBranch": "work8/v108-review-20261110",
+    "filePattern": "v108-review/<runId>/<stage>.json",
     "stages": [
       "packages-and-executor",
       "preflight"
@@ -375,5 +376,31 @@
     "bothACKAuthoritiesConsumed": true,
     "accountingHoldUSD": "2.11",
     "historicEvidenceMayNotSubstituteForNewStateLineage": true
+  },
+  "preservedV106Execution": {
+    "runId": 42635916047,
+    "jobId": 129223903271,
+    "runAttempt": 1,
+    "sourceCommit": "6aacc930f2b70380adc15d67708d75364cf08753",
+    "sourceTree": "a660e62104e15df33c9953f1a9134aa46c57117e",
+    "firstNativeAssertion": "NORMAL_REPLAY_CANONICAL_COMPARISON_FAILED",
+    "firstNativeStage": "CANONICAL_PAUSE_AND_REVOKE",
+    "underlyingComparatorCause": "NOT_RECOVERABLE_FROM_RETURNED_EVIDENCE",
+    "failureArtifact": 13683643040,
+    "failureArtifactSHA256": "b581a4d15c80e45d41cddf12fd9eb21b9e177dee4de8d587eb162090ed182729",
+    "scopedCleanup": "PASS",
+    "bothAuthenticatedACKs": "PASS_SCOPE_ONLY_CONSUMED",
+    "nativeAuthorityConsumed": true,
+    "accountingHoldUSD": "2.11",
+    "A5WholeRowAccepted": false
+  },
+  "reviewedLocalV107Predecessor": {
+    "commit": "fcd082fee99d903ba735cda1d97743f13dea047f",
+    "tree": "770a10406bb3362767bdf6d6d57e78f64155be7b",
+    "published": false,
+    "preservedUnmodified": true,
+    "role": "REVIEWED_CORRECTION_BYTES_PORTED_WITHOUT_CHANGE; NOT_REMOTE_GIT_PARENT",
+    "nativeRootCauseRecovered": false,
+    "nativeAcceptance": false
   }
 }
