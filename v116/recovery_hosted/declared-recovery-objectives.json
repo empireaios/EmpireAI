@@ -1,0 +1,33 @@
+{
+  "schema": "v116-isolated-test1-declared-recovery-objectives-v1",
+  "declaredAtUTC": "2026-11-11T08:30:34.651957+00:00",
+  "declarationState": "PROPOSED_BEFORE_FIRST_NATIVE_TEST1_EXECUTION_REQUIRES_INDEPENDENT_ADMISSION",
+  "authoritySHA256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3",
+  "originalPredicateReferences": [
+    "A2-10 Recovery-point objectives",
+    "A2-11 Recovery-time objectives",
+    "O39-07 No loss, duplication or financial divergence"
+  ],
+  "inputSHA256": {
+    "test1/v116-test1-coordinator.mjs": "c53829760a6d4f363df435f589d52918fbbe9a6340c62ad96140d99d57cfb1f4",
+    "test1/v116-test1-business.mjs": "824ad1e24b08afbd097104e571f6373316264eab633720eead88d60725e6c989"
+  },
+  "RPO": {
+    "threshold": 0,
+    "unit": "acknowledged committed native simulated business receipts and committed simulated finance events in this exact isolated sequence",
+    "cutoff": "Final drained source checkpoint after actual native owner-route admission and unchanged scheduler completion, pause and revoke. Durable checkpoint digest and original event IDs/order/currencies/amounts identify cutoff, not wall-clock timestamps alone.",
+    "verification": "All20nativebusinessreceipts and >=4committedfinanceevents in exact captured checkpoint equal restored native projection and repeated-read/restart projection; second identical replay is ALREADY_APPLIED with unchanged target rows. Count/digest equality includes actual original content.",
+    "limitation": "No zero production loss claim and no claim that post-capture events in every other system domain are continuously replicated."
+  },
+  "RTO": {
+    "thresholdMs": 180000,
+    "start": "Immediately before prepare(target) and materializeRuntimeInspection from complete sealed13-store capture, exactly controller restoreDeadline=Date.now()+180000.",
+    "completion": "After fresh target preparation,13database/control/Redis restoration, native business replay, target seven-role startup/readiness, actual captured-session readback and once-only pending completion, then one controlled restart and1100ms no-replay observation with final writer drain.",
+    "verification": "Existing unchanged controller requires every target/restart step to use one shared restoreDeadline and final Date.now()<restoreDeadline. A PASS proves an upper bound below180000ms; no exact elapsed duration is claimed without additional original timestamp evidence.",
+    "excluded": "Source startup/capture and provider object upload/download are outside this declared RTO; protected off-host restoration and production service recovery are unproved."
+  },
+  "scope": "Scenario-specific foundation examination only. Does not alone satisfy complete A2-10/A2-11, protected vault, whole-system continuous replication or any whole requirement.",
+  "executionAdmission": "No runtime source/deadline change. Root must save declaration and independent scope review before A03 native entry. A01/A02 did not start native coordinator. Actual result remains pending.",
+  "costChangeUSD": "0.00",
+  "wholeRowAccepted": false
+}
