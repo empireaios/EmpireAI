@@ -1,0 +1,38 @@
+{
+  "schema": "v116-isolated-test1-declared-recovery-objectives-v1",
+  "declaredAtUTC": "2026-11-11T09:00:14.514069+00:00",
+  "declarationState": "A04_SUCCESSOR_PREDECLARED_SAME_OBJECTIVES_PENDING_INDEPENDENT_ADMISSION",
+  "authoritySHA256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3",
+  "originalPredicateReferences": [
+    "A2-10 Recovery-point objectives",
+    "A2-11 Recovery-time objectives",
+    "O39-07 No loss, duplication or financial divergence"
+  ],
+  "inputSHA256": {
+    "v116-test1-coordinator.mjs": "9c4bb01fe8f4bdef0681a18f1782d637c88e66f4f95c7a1f867bbecfd870a21c",
+    "v116-test1-business.mjs": "2835520919fb48cb9204bdee27142e9395b263abbbd5dee5a2254c2b374fc491",
+    "v116-hh4-domain-state.mjs": "008df220b3388297eb714d5e9351d834630bb38b613e6c87deedfc8e6764d0ec",
+    "native-commerce-baseline.mjs": "7fd58d4a73074ec5c56472a37f7600054767dc242c1bd7511771f6557eaf1229",
+    "canonical-business-records.mjs": "fdf51e1cdc77984ac3bb0ce3f695da887cba55df2781b4bd2baf273aa1fe6c79"
+  },
+  "RPO": {
+    "threshold": 0,
+    "unit": "acknowledged committed native simulated business receipts and committed simulated finance events in this exact isolated sequence",
+    "cutoff": "Final drained source checkpoint after actual native owner-route admission and unchanged scheduler completion, pause and revoke. Durable checkpoint digest and original event IDs/order/currencies/amounts identify cutoff, not wall-clock timestamps alone.",
+    "verification": "All20nativebusinessreceipts and >=4committedfinanceevents in exact captured checkpoint equal restored native projection and repeated-read/restart projection; second identical replay is ALREADY_APPLIED with unchanged target rows. Count/digest equality includes actual original content.",
+    "limitation": "No zero production loss claim and no claim that post-capture events in every other system domain are continuously replicated."
+  },
+  "RTO": {
+    "thresholdMs": 180000,
+    "start": "Immediately before prepare(target) and materializeRuntimeInspection from complete sealed13-store capture, exactly controller restoreDeadline=Date.now()+180000.",
+    "completion": "After fresh target preparation,13database/control/Redis restoration, native business replay, target seven-role startup/readiness, actual captured-session readback and once-only pending completion, then one controlled restart and1100ms no-replay observation with final writer drain.",
+    "verification": "Existing unchanged controller requires every target/restart step to use one shared restoreDeadline and final Date.now()<restoreDeadline. A PASS proves an upper bound below180000ms; no exact elapsed duration is claimed without additional original timestamp evidence.",
+    "excluded": "Source startup/capture and provider object upload/download are outside this declared RTO; protected off-host restoration and production service recovery are unproved."
+  },
+  "scope": "Scenario-specific foundation examination only. Does not alone satisfy complete A2-10/A2-11, protected vault, whole-system continuous replication or any whole requirement.",
+  "executionAdmission": "Same original RPO0 and shared180s restoration/replay/restart/drain bound, no deadline/source-module relaxation. All original application/recovery module bytes unchanged. Root exactsource review, publication and financial release required before A04.",
+  "costChangeUSD": "0.00",
+  "wholeRowAccepted": false,
+  "priorDeclarationSHA256": "7713e5b6bd2b3342fddbc24e286b3e302dc15882c4a9a1efeb4dea30a914f0d4",
+  "sourceBaselineCondition": "Fresh isolated source commerce enrolled by unchanged native initializeTwinRecoveryTarget while every existing table is empty, before actual seven-role startup. Subsequent native Assurance finance/fulfilment bootstrap rows and enrollment marker/schema are preserved exactly in complete capture and controlled restore; not arbitrary existing business-state restoration."
+}
