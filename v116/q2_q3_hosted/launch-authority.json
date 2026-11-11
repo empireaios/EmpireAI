@@ -1,6 +1,6 @@
 {
   "campaign": "V116_MASTER_WORK8",
-  "obligationId": "V116-O42-Q23-A01-20261111",
+  "obligationId": "V116-O42-Q23-A02-20261111",
   "standingOwnerDirective": "V116",
   "technicalExecutionOnly": true,
   "reservationUSD": "1.00",
@@ -13,8 +13,8 @@
   "eachFullCorpusTimeoutSeconds": 900,
   "artifactBytesMaximum": 10485760,
   "artifactRetentionDays": 7,
-  "expectedParentCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
-  "branch": "work8/v116-o42-q2-q3-20261111-a01",
+  "expectedParentCommit": "c808c0efa6369c1f4f78509ba1071f111b6426a6",
+  "branch": "work8/v116-o42-q2-q3-20261111-a02",
   "applicationCodeChanged": false,
   "onlyTestHarnessChanges": "Preserve actual temporary technical-policy path across two existing full-corpus harness environment resets; assertions unchanged.",
   "productionMutation": false,
@@ -22,5 +22,11 @@
   "pillow": "NOT_BORN",
   "Work9": "INACTIVE",
   "nativeOwnerAcceptance": false,
-  "wholeRowAcceptance": false
+  "wholeRowAcceptance": false,
+  "firstFailurePreserved": {
+    "runId": 42985052482,
+    "artifactId": 13839332137,
+    "sha256": "f214653943e1be4d1b516ca7f883c36b3eebebea6a9a67cd91233e050bf22115"
+  },
+  "onlyA02Correction": "Credential-free namespace-accessible exact staging and post-termination evidence recovery; source/controller/assertions unchanged fromA01."
 }

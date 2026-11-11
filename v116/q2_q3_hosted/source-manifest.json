@@ -1,11 +1,24 @@
 {
   "schema": "empireai-v116-q23-hosted-source-v1",
-  "parent": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "parent": "c808c0efa6369c1f4f78509ba1071f111b6426a6",
+  "changedPaths": [
+    ".github/workflows/work8-v116-o42-q2-q3.yml",
+    "empireai-web/vercel.json",
+    "v116/q2_q3_hosted/admit.py",
+    "v116/q2_q3_hosted/collect-stage.py",
+    "v116/q2_q3_hosted/launch-authority.json",
+    "v116/q2_q3_hosted/run-hosted.sh",
+    "v116/q2_q3_hosted/seal.py",
+    "v116/q2_q3_hosted/source-manifest.json",
+    "v116/q2_q3_hosted/stage-inputs.py",
+    "v116/q2_q3_hosted/terminate.sh",
+    "vercel.json"
+  ],
   "files": [
     {
       "path": ".github/workflows/work8-v116-o42-q2-q3.yml",
       "bytes": 4033,
-      "sha256": "c274f24b6981ffa7ee7517050bdd535768c6a853d325942b6ba7741f9da41024"
+      "sha256": "1d77131b4d20c5dfce73f3c65dabc9892d2818d2ebdc787150c1f2c7e75cd5b8"
     },
     {
       "path": ".node-version",
@@ -24,18 +37,23 @@
     },
     {
       "path": "empireai-web/vercel.json",
-      "bytes": 665,
-      "sha256": "69c495af3746d3c42b9fc6f62968697407bf457a78d77ac8443665abd212843f"
+      "bytes": 715,
+      "sha256": "cd81005c75ebad5e230c1b6ab05f357d2db8d670302718a29d72d479fbd485e4"
     },
     {
       "path": "v116/q2_q3_hosted/admit.py",
-      "bytes": 3973,
-      "sha256": "d5dc1d2454e230076b791095349b04c59ab504c6a2a8ffcc2deb1b4b3b647d8e"
+      "bytes": 4104,
+      "sha256": "adb7f2236474cf4282422438fa9d039bf9ca7ca4309d8703ffb0d9f6f2728ebe"
     },
     {
       "path": "v116/q2_q3_hosted/authority.json",
       "bytes": 3471,
       "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+    },
+    {
+      "path": "v116/q2_q3_hosted/collect-stage.py",
+      "bytes": 1434,
+      "sha256": "94ef0265d13a5c383342c4b7b7f0d3d265f7d628e40ed66ab0bb6a7050dae9a6"
     },
     {
       "path": "v116/q2_q3_hosted/deny-service-start",
@@ -64,8 +82,8 @@
     },
     {
       "path": "v116/q2_q3_hosted/launch-authority.json",
-      "bytes": 1092,
-      "sha256": "f6b48933f13ba66d86f103c4384c1d141beea466b2289c3edc2dbcd973f1eca4"
+      "bytes": 1429,
+      "sha256": "7ccb1599385ede9d509bd604af1d9f6869bc30fcf27b2fc6190eab808e2ceac7"
     },
     {
       "path": "v116/q2_q3_hosted/make-readable.py",
@@ -79,13 +97,13 @@
     },
     {
       "path": "v116/q2_q3_hosted/run-hosted.sh",
-      "bytes": 2782,
-      "sha256": "0fa9df4b0d52e1efadc0059e53ad80cd07b47379fe32db33dc174ec7d545d078"
+      "bytes": 3162,
+      "sha256": "e548b81e17a957966d17ac7a41827d92f4f5106cf1eb2bc5a6f7a1ac8586b6af"
     },
     {
       "path": "v116/q2_q3_hosted/seal.py",
-      "bytes": 1718,
-      "sha256": "ed2ee32f01129cc9d29a1842866a6ca5c7080c55301e53c6f70c2f8792b57472"
+      "bytes": 1894,
+      "sha256": "4d4ae95fe7dd3a99ad7af3e77e70aa3454ee7b27e9297eb66ed11e479d5a7e80"
     },
     {
       "path": "v116/q2_q3_hosted/selection.json",
@@ -93,14 +111,19 @@
       "sha256": "17c7dbaf9417fec804abecbf3d196ec1e1d78b26bd01aa6d14b2008055891242"
     },
     {
+      "path": "v116/q2_q3_hosted/stage-inputs.py",
+      "bytes": 3193,
+      "sha256": "bb4d1cac1fae5b0fc72faa3fde0ef25d394577ca0f0663b9c8c8f19d1fd80b65"
+    },
+    {
       "path": "v116/q2_q3_hosted/terminate.sh",
-      "bytes": 1717,
-      "sha256": "0537987391bf4b2f8d8d3bc5681fecec14c1dfa5df77a24bc3939232704af0eb"
+      "bytes": 2173,
+      "sha256": "6e5e1d801d5c8565f6ac61bb883b71f0b3337d89a170c9849f59310de776c293"
     },
     {
       "path": "vercel.json",
-      "bytes": 844,
-      "sha256": "5136d0024b7a1a04d6e0f356d5c87aedc993053540642b4ed1937f9b14e84047"
+      "bytes": 894,
+      "sha256": "74798c639eb4abcaf0bfe5d67910c049377df9e5c8722ac617c66caacc34cba0"
     }
   ]
 }

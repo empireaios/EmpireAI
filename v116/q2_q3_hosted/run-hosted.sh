@@ -24,6 +24,10 @@ done
 git -C "$GITHUB_WORKSPACE" diff --exit-code
 test -z "$(git -C "$GITHUB_WORKSPACE" status --porcelain --untracked-files=no)"
 test -z "$(git -C "$GITHUB_WORKSPACE" config --local --get-regexp '.*extraheader' || true)"
+origin=$(git -C "$GITHUB_WORKSPACE" config --local --get remote.origin.url)
+[[ "$origin" == 'https://github.com/empireaios/EmpireAI' || "$origin" == 'https://github.com/empireaios/EmpireAI.git' ]]
+stage="$(readlink -f /var/tmp)/v116-q2-q3-$GITHUB_RUN_ID"
+sudo python3 -B "$controller/stage-inputs.py" "$GITHUB_WORKSPACE" "$root/node" "$GITHUB_RUN_ID" "$out"
 host_net=$(readlink /proc/self/ns/net)
 printf '%s\n' "$host_net" > "$out/host-net-namespace.txt"
 status=0
@@ -37,8 +41,8 @@ for phase in capture reasoning-admission response-delivery; do
     --ro-bind /usr /usr --ro-bind /bin /bin --ro-bind /lib /lib \
     --ro-bind /lib64 /lib64 --dir /etc --ro-bind /etc/ld.so.cache /etc/ld.so.cache \
     --proc /proc --dev /dev --tmpfs /tmp \
-    --ro-bind "$GITHUB_WORKSPACE" /app --ro-bind "$controller" /control \
-    --ro-bind "$root/node" /node --bind "$out" /evidence --chdir /app \
+    --ro-bind "$stage/app" /app --ro-bind "$stage/app/v116/q2_q3_hosted" /control \
+    --ro-bind "$stage/node" /node --bind "$stage/evidence" /evidence --chdir /app \
     /usr/bin/python3 -B /control/hosted-loopback-controller.py "$phase" "$host_net" "$GITHUB_SHA" \
     > "$out/$phase-launch.log" 2>&1 &
   pid=$!
