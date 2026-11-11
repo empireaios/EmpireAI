@@ -272,7 +272,14 @@ test('concurrent runtime writers capture with actual pending missions then repla
   };
   await assert.rejects(restoreWork8RedisInspection({...restoreRequest,expectedTarget:{runId:targetRunId,db:0}},target),/TARGET_REDIS_CLOCK_BEFORE_CAPTURE/);
   assert.equal(await target.dbsize(),0,'backwards target clock must not partially restore any records');
-  (target as any).eval=async(...args:any[])=>{args[4]='0'.repeat(40);return (realEval as any)(...args);};
+  (target as any).eval=async(...args:any[])=>{
+   assert.equal(args[1],2,'identity fault must preserve the two-key Lua contract');
+   const capabilityExpiryIndex=2+args[1],targetRunIdIndex=capabilityExpiryIndex+1;
+   assert.equal(args[capabilityExpiryIndex],0,'loopback inspection must have no remote capability expiry');
+   assert.equal(args[targetRunIdIndex],targetRunId,'identity fault must target the actual observed Redis run ID');
+   args[targetRunIdIndex]='0'.repeat(40);
+   return (realEval as any)(...args);
+  };
   await assert.rejects(restoreWork8RedisInspection({...restoreRequest,expectedTarget:{runId:targetRunId,db:0}},target),/TARGET_REDIS_IDENTITY_CHANGED/);assert.equal(await target.dbsize(),0);
   (target as any).eval=async(...args:any[])=>{await target!.select(1);return (realEval as any)(...args);};
   const inspection=await restoreWork8RedisInspection({...restoreRequest,expectedTarget:{runId:targetRunId,db:0}},target);

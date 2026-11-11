@@ -2,8 +2,8 @@
 import hashlib,json,os,pathlib,subprocess
 control=pathlib.Path(__file__).resolve().parent
 root=control.parents[1]
-branch='work8/v116-o42-q2-q3-20261111-a02'
-parent='c808c0efa6369c1f4f78509ba1071f111b6426a6'
+branch='work8/v116-o42-q2-q3-20261111-a03'
+parent='afaa87dc0690a303b12686886fba169a5e7610db'
 assert os.environ['GITHUB_REPOSITORY']=='empireaios/EmpireAI'
 assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/'+branch
 assert os.environ['GITHUB_RUN_ATTEMPT']=='1'
@@ -12,15 +12,15 @@ head=git('rev-parse','HEAD');assert head==os.environ['GITHUB_SHA']
 assert git('rev-list','--parents','-n','1','HEAD').split()==[head,parent]
 assert git('status','--porcelain')==''
 authority=json.loads((control/'launch-authority.json').read_text())
-assert authority['obligationId']=='V116-O42-Q23-A02-20261111'
+assert authority['obligationId']=='V116-O42-Q23-A03-20261111'
 assert authority['reservationUSD']=='1.00' and authority['masterCeilingUSD']=='1000.00'
-assert authority['maximumAttempts']==1 and authority['jobTimeoutMinutes']==60
+assert authority['maximumAttempts']==1 and authority['jobTimeoutMinutes']==20
 assert authority['applicationCodeChanged'] is False and authority['productionMutation'] is False
 assert authority['financialAdmission']=='Root independently verifies the saved unique master-ledger reservation against this exact source before creating the trigger branch.'
 manifest=json.loads((control/'source-manifest.json').read_text())
 assert manifest['schema']=='empireai-v116-q23-hosted-source-v1'
 required={'.node-version','.github/workflows/work8-v116-o42-q2-q3.yml','vercel.json','empireai-web/vercel.json',
- 'backend/scripts/reasoning-admission-full-path.mjs','backend/scripts/response-delivery-full-path.mjs'}
+ 'backend/scripts/reasoning-admission-full-path.mjs','backend/scripts/response-delivery-full-path.mjs','backend/src/validation/tests/capture-shared-brain-redis.test.ts'}
 required.update('v116/q2_q3_hosted/'+name for name in ['admit.py','run-hosted.sh','terminate.sh','make-readable.py','stage-inputs.py','collect-stage.py','seal.py','retained_input.py','deny-service-start','launch-authority.json','authority.json','hosted-inputs.json','hosted-loopback-controller.py','hosted-policy-probe.mjs','harness-correction-manifest.json','selection.json'])
 assert {x['path'] for x in manifest['files']}==required and len(manifest['files'])==len(required)
 changed=manifest['changedPaths']
@@ -42,4 +42,4 @@ check=subprocess.run(['node','scripts/verify-product-path-ci.mjs'],cwd=root,env=
 assert len(check.stdout)<65536
 (out/'affected-source-contract.log').write_bytes(check.stdout)
 assert check.returncode==0
-(out/'source-admission.json').write_text(json.dumps({'sourceHead':head,'sourceTree':git('rev-parse','HEAD^{tree}'),'parent':parent,'changedPaths':changed,'sourceManifestSHA256':hashlib.sha256((control/'source-manifest.json').read_bytes()).hexdigest(),'filesVerified':len(required),'originalApplicationSource':'6c1e63ba20619ee480742fd87dc810ca93152e22','newApplicationChanges':False,'scope':'Two original failed capture leaves and full original1950/1381 corpora; no native-owner or whole-row acceptance','obligationId':authority['obligationId']},indent=2)+'\n')
+(out/'source-admission.json').write_text(json.dumps({'sourceHead':head,'sourceTree':git('rev-parse','HEAD^{tree}'),'parent':parent,'changedPaths':changed,'sourceManifestSHA256':hashlib.sha256((control/'source-manifest.json').read_bytes()).hexdigest(),'filesVerified':len(required),'originalApplicationSource':'6c1e63ba20619ee480742fd87dc810ca93152e22','newApplicationChanges':False,'scope':'Only remaining concurrent-writer Redis capture leaf; prior36local, firstcapture and full1950/1381 corpora preserved without repeat; no native-owner or whole-row acceptance','obligationId':authority['obligationId']},indent=2)+'\n')

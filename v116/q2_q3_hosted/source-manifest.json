@@ -1,24 +1,26 @@
 {
   "schema": "empireai-v116-q23-hosted-source-v1",
-  "parent": "c808c0efa6369c1f4f78509ba1071f111b6426a6",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-o42-q2-q3-20261111-a03",
   "changedPaths": [
     ".github/workflows/work8-v116-o42-q2-q3.yml",
+    "backend/src/validation/tests/capture-shared-brain-redis.test.ts",
     "empireai-web/vercel.json",
     "v116/q2_q3_hosted/admit.py",
-    "v116/q2_q3_hosted/collect-stage.py",
+    "v116/q2_q3_hosted/hosted-inputs.json",
+    "v116/q2_q3_hosted/hosted-loopback-controller.py",
     "v116/q2_q3_hosted/launch-authority.json",
     "v116/q2_q3_hosted/run-hosted.sh",
     "v116/q2_q3_hosted/seal.py",
+    "v116/q2_q3_hosted/selection.json",
     "v116/q2_q3_hosted/source-manifest.json",
-    "v116/q2_q3_hosted/stage-inputs.py",
-    "v116/q2_q3_hosted/terminate.sh",
     "vercel.json"
   ],
   "files": [
     {
       "path": ".github/workflows/work8-v116-o42-q2-q3.yml",
       "bytes": 4033,
-      "sha256": "1d77131b4d20c5dfce73f3c65dabc9892d2818d2ebdc787150c1f2c7e75cd5b8"
+      "sha256": "0ae968d3fb164b7140c5dc69b1781c624fb8d26d1a13d35653a9e3818a17c859"
     },
     {
       "path": ".node-version",
@@ -36,14 +38,19 @@
       "sha256": "55f41a9675f2165fed0bf089c3f08dbb187809bff51c8b9591dd0df407da06a2"
     },
     {
+      "path": "backend/src/validation/tests/capture-shared-brain-redis.test.ts",
+      "bytes": 46211,
+      "sha256": "6241417cefd0c75df9ad932f591da7e2f86a987b8c05b44e62de058bc9ee0b31"
+    },
+    {
       "path": "empireai-web/vercel.json",
-      "bytes": 715,
-      "sha256": "cd81005c75ebad5e230c1b6ab05f357d2db8d670302718a29d72d479fbd485e4"
+      "bytes": 765,
+      "sha256": "4cac9bcb007311b17ccd470dae48043617cbe4ac599850f87bf9d582e97f0aec"
     },
     {
       "path": "v116/q2_q3_hosted/admit.py",
-      "bytes": 4104,
-      "sha256": "adb7f2236474cf4282422438fa9d039bf9ca7ca4309d8703ffb0d9f6f2728ebe"
+      "bytes": 4231,
+      "sha256": "32fd9ee8580b1e1d538a74e0f063e47d086c2a62d283609bbf088751d50c7ea0"
     },
     {
       "path": "v116/q2_q3_hosted/authority.json",
@@ -67,13 +74,13 @@
     },
     {
       "path": "v116/q2_q3_hosted/hosted-inputs.json",
-      "bytes": 1625,
-      "sha256": "e69d528d284d6474b6c98b91f6cb84d750c0a3fa12ef840754e9ad6b02e37a89"
+      "bytes": 1675,
+      "sha256": "7cd73979e0d652927a5e95dbe402717a91d9c21cd1f0afacaa91162ea8764087"
     },
     {
       "path": "v116/q2_q3_hosted/hosted-loopback-controller.py",
-      "bytes": 12639,
-      "sha256": "6c1f9ee9505f00025a44e5977702f3e41e9a9b269ca7356c2e8c14e31570d4e5"
+      "bytes": 13283,
+      "sha256": "4fd6a5aaecc53d7fbdc479f9216f5c8e17f18cd5110116b2db6815f3c9963fab"
     },
     {
       "path": "v116/q2_q3_hosted/hosted-policy-probe.mjs",
@@ -82,8 +89,8 @@
     },
     {
       "path": "v116/q2_q3_hosted/launch-authority.json",
-      "bytes": 1429,
-      "sha256": "7ccb1599385ede9d509bd604af1d9f6869bc30fcf27b2fc6190eab808e2ceac7"
+      "bytes": 2075,
+      "sha256": "dad4b5a35def5180c5f5db6fffbd2cfb3e2bdd3299e604f49d25bba3f59f76b6"
     },
     {
       "path": "v116/q2_q3_hosted/make-readable.py",
@@ -97,18 +104,18 @@
     },
     {
       "path": "v116/q2_q3_hosted/run-hosted.sh",
-      "bytes": 3162,
-      "sha256": "e548b81e17a957966d17ac7a41827d92f4f5106cf1eb2bc5a6f7a1ac8586b6af"
+      "bytes": 3124,
+      "sha256": "69243cfacf7fe8f77721d89d108c0f88a4447c511749247d748e5a2194947a12"
     },
     {
       "path": "v116/q2_q3_hosted/seal.py",
-      "bytes": 1894,
-      "sha256": "4d4ae95fe7dd3a99ad7af3e77e70aa3454ee7b27e9297eb66ed11e479d5a7e80"
+      "bytes": 1852,
+      "sha256": "618db7137cfefac0ae238f9dabea731a46032d5c52e93c5b740c026f9174234a"
     },
     {
       "path": "v116/q2_q3_hosted/selection.json",
-      "bytes": 126331,
-      "sha256": "17c7dbaf9417fec804abecbf3d196ec1e1d78b26bd01aa6d14b2008055891242"
+      "bytes": 644,
+      "sha256": "87605595e75ebe10e63f2bd7e1cb99ee8756889e72b075d24c5fa5a2febdf8ff"
     },
     {
       "path": "v116/q2_q3_hosted/stage-inputs.py",
@@ -122,8 +129,9 @@
     },
     {
       "path": "vercel.json",
-      "bytes": 894,
-      "sha256": "74798c639eb4abcaf0bfe5d67910c049377df9e5c8722ac617c66caacc34cba0"
+      "bytes": 944,
+      "sha256": "d137657e424ddb515550e53b70b95cf9ed94c6003536aeb9189383a68c70e989"
     }
-  ]
+  ],
+  "wholeRowAcceptance": false
 }

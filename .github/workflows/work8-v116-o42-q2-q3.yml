@@ -1,21 +1,21 @@
-name: Work 8 V116 bounded remaining Q2 Q3
+name: Work 8 V116 sole remaining Redis capture predicate
 on:
   create:
 permissions:
   contents: read
   actions: read
 concurrency:
-  group: work8-v116-o42-q2-q3-20261111-a02
+  group: work8-v116-o42-q2-q3-20261111-a03
   cancel-in-progress: false
 jobs:
   remaining-original-predicates:
     if: >-
       github.repository == 'empireaios/EmpireAI' &&
       github.event.ref_type == 'branch' &&
-      github.event.ref == 'work8/v116-o42-q2-q3-20261111-a02' &&
+      github.event.ref == 'work8/v116-o42-q2-q3-20261111-a03' &&
       github.run_attempt == 1
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 20
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
@@ -62,14 +62,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 -B v116/q2_q3_hosted/retained_input.py
-      - name: Execute each remaining independent phase once with private loopback
+      - name: Execute only the remaining original Redis capture leaf
         id: examination
-        timeout-minutes: 39
+        timeout-minutes: 8
         run: >-
           env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
           -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
           -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
-          timeout --signal=TERM --kill-after=15s 2280s
+          timeout --signal=TERM --kill-after=15s 420s
           bash v116/q2_q3_hosted/run-hosted.sh
       - name: Verify scoped process and package-container termination
         if: ${{ always() && steps.checkout.outcome == 'success' }}

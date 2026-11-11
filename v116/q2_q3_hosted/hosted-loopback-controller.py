@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Three allowlisted technical phases inside a reviewed private bwrap namespace.
+"""One remaining original capture leaf inside a reviewed private bwrap namespace.
 Not a namespace creator: fails closed unless mount/network isolation is demonstrated.
 """
 import datetime,errno,hashlib,json,os,pathlib,re,selectors,signal,socket,subprocess,sys,tempfile,time
@@ -9,10 +9,10 @@ NODE=pathlib.Path('/node/bin/node');REDIS=pathlib.Path('/usr/bin/redis-server')
 AUTH_SHA='f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3'
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
 GUARD_SHA='ec0edaf624414ceb0a631f7fef967d93915d6e48aad466f2dea101416f6bcdf4'
-NAMES=['actual app recovery entrypoint composes inherited primary IPC, local fences and real Redis','concurrent runtime writers capture with actual pending missions then replay once while restored Redis stays fenced']
+NAMES=['concurrent runtime writers capture with actual pending missions then replay once while restored Redis stays fenced']
 assert len(sys.argv)==4,'phase host-net-namespace exact-source-head required'
 phase,host_net,expected_head=sys.argv[1:]
-assert phase in ['capture','reasoning-admission','response-delivery']
+assert phase=='capture'
 assert re.fullmatch(r'net:\[\d+\]',host_net) and re.fullmatch(r'[a-f0-9]{40}',expected_head)
 def sha(p):return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
 def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
@@ -104,7 +104,9 @@ try:
  control=json.loads((output/'policy-controls.log').read_text().strip());assert control['pass'] and len(control['checks'])==6
  receipt['policyControls']=control
  if phase=='capture':
-  pattern='|'.join('(?:'+re.escape(x)+')'for x in NAMES)
+  replay=output/'replay';replay.mkdir(mode=0o700)
+  env['WORK8_REPLAY_EVIDENCE_DIRECTORY']=str(replay)
+  pattern='^(?:'+'|'.join(re.escape(x)for x in NAMES)+')$'
   command=[str(NODE),'--import','tsx','--test','--test-concurrency=1','--test-reporter=tap','--test-name-pattern',pattern,'src/validation/tests/capture-shared-brain-redis.test.ts'];cwd=APP/'backend'
  else:
   command=[str(NODE),'--import','/app/backend/node_modules/tsx/dist/loader.mjs','/app/backend/scripts/'+phase+'-full-path.mjs',str(output/'corpus-result.json')];cwd=APP
@@ -117,7 +119,16 @@ try:
  receipt['stage']='adjudicate-exact-phase-result-counts-and-fences'
  if phase=='capture':
   content=(output/'execution.log').read_text();counts={k:int(v)for k,v in re.findall(r'^# (tests|pass|fail|cancelled|skipped|todo) (\d+)$',content,re.M)}
-  assert counts=={'tests':2,'pass':2,'fail':0,'cancelled':0,'skipped':0,'todo':0},counts
+  assert counts=={'tests':1,'pass':1,'fail':0,'cancelled':0,'skipped':0,'todo':0},counts
+  replay_names=['READONLY-REPLAY-RECEIPT.json','READONLY-REPLAY-ACTUAL-RECEIPTS.json','readonly-replay-execution.sqlite','integrated-brain.sqlite','integrated-native-domain.sqlite','readonly-replay-missions.sqlite']
+  assert sorted(p.name for p in replay.iterdir())==sorted(replay_names)
+  replay_files=[]
+  for name in replay_names:
+   p=replay/name;assert p.is_file()and not p.is_symlink()and p.stat().st_size<=2*1024*1024
+   replay_files.append({'path':name,'bytes':p.stat().st_size,'sha256':sha(p)})
+  assert sum(x['bytes']for x in replay_files)<=8*1024*1024
+  receipt['originalFixtureReplayEvidence']=replay_files
+  receipt['syntheticTechnicalReplayNotGenuineOwner']=True
   for name in NAMES:assert re.search(r'^ok \d+ - '+re.escape(name)+r'$',content,re.M),name
   receipt['TAPCounts']=counts;receipt['exactSelectedNames']=NAMES
  else:

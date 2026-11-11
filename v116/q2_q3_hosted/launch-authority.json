@@ -1,6 +1,6 @@
 {
   "campaign": "V116_MASTER_WORK8",
-  "obligationId": "V116-O42-Q23-A02-20261111",
+  "obligationId": "V116-O42-Q23-A03-20261111",
   "standingOwnerDirective": "V116",
   "technicalExecutionOnly": true,
   "reservationUSD": "1.00",
@@ -8,15 +8,14 @@
   "financialAdmission": "Root independently verifies the saved unique master-ledger reservation against this exact source before creating the trigger branch.",
   "reservationStateClaimedByThisFile": false,
   "maximumAttempts": 1,
-  "jobTimeoutMinutes": 60,
+  "jobTimeoutMinutes": 20,
   "captureTimeoutSeconds": 360,
-  "eachFullCorpusTimeoutSeconds": 900,
   "artifactBytesMaximum": 10485760,
   "artifactRetentionDays": 7,
-  "expectedParentCommit": "c808c0efa6369c1f4f78509ba1071f111b6426a6",
-  "branch": "work8/v116-o42-q2-q3-20261111-a02",
+  "expectedParentCommit": "afaa87dc0690a303b12686886fba169a5e7610db",
+  "branch": "work8/v116-o42-q2-q3-20261111-a03",
   "applicationCodeChanged": false,
-  "onlyTestHarnessChanges": "Preserve actual temporary technical-policy path across two existing full-corpus harness environment resets; assertions unchanged.",
+  "onlyTestHarnessChanges": "Correct original test fault injection to expected current Redis runId argument after exact layout checks; original identity rejection and zero writes retained; one remaining leaf only.",
   "productionMutation": false,
   "commerce": "LOCKED",
   "pillow": "NOT_BORN",
@@ -28,5 +27,18 @@
     "artifactId": 13839332137,
     "sha256": "f214653943e1be4d1b516ca7f883c36b3eebebea6a9a67cd91233e050bf22115"
   },
-  "onlyA02Correction": "Credential-free namespace-accessible exact staging and post-termination evidence recovery; source/controller/assertions unchanged fromA01."
+  "correctsTerminalExecution": {
+    "runId": 42989275107,
+    "jobId": 130417874503,
+    "sourceHead": "afaa87dc0690a303b12686886fba169a5e7610db",
+    "firstFailure": "Original test expected target Redis identity rejection but injected capabilityExpiry slot4 instead of current runId slot5",
+    "change": "Correct only fault-injection target after positive current argument-layout assertions; original rejection/empty-target assertions unchanged"
+  },
+  "preservePriorPassesWithoutRerun": [
+    "36local original failed leaves",
+    "first capture leaf",
+    "full1950reasoning corpus",
+    "full1381response corpus"
+  ],
+  "historicalA02Correction": "Credential-free namespace-accessible exact staging and post-termination evidence recovery; source/controller/assertions unchanged fromA01."
 }

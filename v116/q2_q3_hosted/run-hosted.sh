@@ -31,7 +31,7 @@ sudo python3 -B "$controller/stage-inputs.py" "$GITHUB_WORKSPACE" "$root/node" "
 host_net=$(readlink /proc/self/ns/net)
 printf '%s\n' "$host_net" > "$out/host-net-namespace.txt"
 status=0
-for phase in capture reasoning-admission response-delivery; do
+for phase in capture; do
   set +e
   # Source/dependencies and authority are read-only. This mounts no host home,
   # production paths, credentials, sockets, sysfs, network interface or device.
