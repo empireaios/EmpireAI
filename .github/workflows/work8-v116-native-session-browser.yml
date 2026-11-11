@@ -1,0 +1,92 @@
+name: Work 8 V116 native session history and browser refresh
+on:
+  create:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: work8-v116-native-session-browser-20261111-a01
+  cancel-in-progress: false
+jobs:
+  session-browser:
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v116-native-session-browser-20261111-a01' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      ACTIONS_STEP_DEBUG: 'false'
+      ACTIONS_RUNNER_DEBUG: 'false'
+    steps:
+      - name: Check out exact reviewed source
+        id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+      - name: Bind exact repository Node version
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        timeout-minutes: 2
+        with:
+          node-version-file: '.node-version'
+          check-latest: false
+      - name: Admit exact source and root recorded reservation
+        id: admission
+        timeout-minutes: 1
+        run: python3 -B v116/session_browser/admit.py
+      - name: Retrieve unchanged accepted backend and normal frontend
+        id: download
+        timeout-minutes: 6
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B v116/session_browser/retained_input.py
+      - name: Verify immutable browser, source packages and generated native fixture
+        id: prepare
+        timeout-minutes: 10
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          timeout --signal=TERM --kill-after=10s 560s
+          python3 -B v116/session_browser/host.py prepare
+      - name: Prove browser capability then actual native history and refresh
+        id: examination
+        timeout-minutes: 6
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          timeout --signal=TERM --kill-after=10s 320s
+          python3 -B v116/session_browser/host.py execute
+      - name: Terminate exact resources and preserve bounded private evidence
+        id: seal
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 2
+        run: python3 -B v116/session_browser/host.py seal
+      - name: Save exact seven-day examination evidence
+        if: ${{ always() && steps.seal.outcome == 'success' }}
+        timeout-minutes: 2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v116-native-session-browser-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v116-session-browser-${{ github.run_id }}/evidence/
+          retention-days: 7
+          compression-level: 6
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+      - name: Require exact native browser and custody outcomes
+        if: ${{ always() && steps.seal.outcome == 'success' }}
+        timeout-minutes: 1
+        run: python3 -B v116/session_browser/final-gate.py

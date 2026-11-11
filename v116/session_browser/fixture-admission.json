@@ -1,0 +1,19 @@
+{
+  "schema": "v116-generated-technical-native-fixture-admission-v1",
+  "state": "INDEPENDENTLY_REVIEWED_GENERATED_FIXTURE",
+  "encodedBundleFile": "epoch1-native-state.tar.gz.b64",
+  "encodedBundleBytes": 201101,
+  "encodedBundleSHA256": "606aff57eae5e8994dc4743e6a62dc0e07ddede18ea2b89075d88add71e926c3",
+  "bundleBytes": 150825,
+  "bundleSHA256": "d87b21df33a9a44ff21957c1963fdc73fce2198e04ff1ae1d7e04c1eef88bf80",
+  "exactFiles": 14,
+  "uncompressedFileBytes": 3911719,
+  "originalStateManifestSHA256": "f503d92f7a32561a2f2e2cb6c5a2aa0d9ac59e53d1a63561fae59804aa09e02f",
+  "privacyAssessmentSHA256": "0e1025107ab52232ba4c9a2925ca3699733a09e7a81246552ac709e9280b2d6e",
+  "privacyReviewSHA256": "d5cd06902fb3f7bad214b93c46fa076af1f1b3cc46f024d9b1664873ed91f1f5",
+  "classification": "GENERATED_ISOLATED_TECHNICAL_A07_STATE_NOT_GENUINE_OWNER_STATE",
+  "containsProductionOrOwnerData": false,
+  "plaintextCredentialsIncluded": false,
+  "newOwnerApprovalEvidence": false,
+  "independentPhysicalCustodyReviewSHA256": "7690fb94b05d6a1dc28958616a6534626eccd9dcac227f95df9f67b8c3598a1c"
+}
