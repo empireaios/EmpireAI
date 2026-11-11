@@ -1,0 +1,83 @@
+{
+  "schema": "empireai-v116-q4-redis-source-v1",
+  "parentCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-o42-q4-redis-20261111-a01",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-o42-q4-redis.yml",
+      "bytes": 3640,
+      "sha256": "de097a47f88bdcc8ab11553914c92d8c7466fb5b4156237a5ecea8371e881911"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 668,
+      "sha256": "1a1a2ef144e89e0917ecb222c3a8d1a441b561cac6040ae67c85af461c903ea7"
+    },
+    {
+      "path": "v116/q4_redis_hosted/admit.py",
+      "bytes": 3732,
+      "sha256": "261b1346143a99841dbd7ea7d9488834e49e2a56e1d9657825f04b11517994a3"
+    },
+    {
+      "path": "v116/q4_redis_hosted/application-inputs.json",
+      "bytes": 519,
+      "sha256": "1a4076ed7298767943aee7473c5eb324dd3e9ad9ab6a363721be69474d3161c1"
+    },
+    {
+      "path": "v116/q4_redis_hosted/collect-stdout.py",
+      "bytes": 2827,
+      "sha256": "e41fd76ce7c16498c5312201b242e989f99596d7213256e2b756898cd732139b"
+    },
+    {
+      "path": "v116/q4_redis_hosted/launch-authority.json",
+      "bytes": 1172,
+      "sha256": "d840e7304a0800047ff2b46887ca29459790028d2d626efe2fbd06d909a7da18"
+    },
+    {
+      "path": "v116/q4_redis_hosted/prepare.mjs",
+      "bytes": 4409,
+      "sha256": "782c2c01a09cfde66952b33d7d7af5a7e16013c52c6cbefad04be84fec246b07"
+    },
+    {
+      "path": "v116/q4_redis_hosted/retained_input.py",
+      "bytes": 3125,
+      "sha256": "dafb7ed6722c840ea160abc81b19fe4b32451482d0634ce7196750f32431a02f"
+    },
+    {
+      "path": "v116/q4_redis_hosted/run-redis-capability.sh",
+      "bytes": 3312,
+      "sha256": "7cf87bccaa6f25a9e44adf3bdabd92f37b9acb3c172989bda17e350171101c1e"
+    },
+    {
+      "path": "v116/q4_redis_hosted/seal.py",
+      "bytes": 1162,
+      "sha256": "280ec93afd4ac9efbaa2805937006e28c2b80a5936dc0c60677b45bbb933ee72"
+    },
+    {
+      "path": "v116/q4_redis_hosted/technical-authority.json",
+      "bytes": 3471,
+      "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+    },
+    {
+      "path": "v116/q4_redis_hosted/verify-container.py",
+      "bytes": 1705,
+      "sha256": "8e709d62557f1cef66b9f5e3cb61e0a9610a33635b4746685bde0e0c01d95575"
+    },
+    {
+      "path": "v116/q4_redis_hosted/verify-result.py",
+      "bytes": 1826,
+      "sha256": "7393d6e9e48cbc527199192165fc56f2d9d771c2657ed0171c47efddbb6fed4e"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 847,
+      "sha256": "3cfffa6e2fa948a775a42f5a91450a7e74a1be4cbd4daec18c6ba24f859fe1aa"
+    }
+  ]
+}

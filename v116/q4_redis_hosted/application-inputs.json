@@ -1,0 +1,16 @@
+{
+  "schema": "v116-q4-redis-original-inputs-v1",
+  "applicationCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "files": [
+    {
+      "path": "backend/src/runtime/work8-isolated-redis-capability.test.mjs",
+      "bytes": 4341,
+      "sha256": "32718255185e60be1825984eca5309cab395783fbe1d25988a4cb30570c0f902"
+    },
+    {
+      "path": "backend/src/runtime/work8-isolated-redis-capability.ts",
+      "bytes": 4166,
+      "sha256": "42f9101ca51e471aa0ee035c79856f980b08067b17a5e6abdc41c02d7f6831dd"
+    }
+  ]
+}
