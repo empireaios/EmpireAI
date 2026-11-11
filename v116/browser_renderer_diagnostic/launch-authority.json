@@ -1,0 +1,37 @@
+{
+  "schema": "v116-browser-renderer-diagnostic-launch-authority-v1",
+  "declarationState": "PROSPECTIVE_SOURCE_CONDITIONAL_ON_ACTUAL_ROOT_SAVED_RESERVATION",
+  "reservationId": "V116-BROWSER-RENDERER-DIAGNOSTIC-A01-20261111",
+  "maximumUSD": "1.00",
+  "maximumAttempts": 1,
+  "jobTimeoutMinutes": 20,
+  "masterLedgerReference": "libfile_4adcc8ecd97481918fb74dbfe651972e#V116-BROWSER-RENDERER-DIAGNOSTIC-A01-20261111",
+  "rootSavedReadbackRequiredBeforeBranchCreation": true,
+  "caseNames": [
+    "original96"
+  ],
+  "pidsLimit": 96,
+  "probeDeadlineSeconds": 35,
+  "hostCaseDeadlineSeconds": 45,
+  "memoryBytes": 2147483648,
+  "cpus": 2,
+  "artifactMaximumBytes": 8388608,
+  "retentionDays": 7,
+  "productionAccess": false,
+  "applicationExecution": false,
+  "authenticationExecution": false,
+  "ownerStateInput": false,
+  "wholeRowAcceptance": false,
+  "closedControlFiles": [
+    "admit.py",
+    "browser-renderer-probe.mjs",
+    "collect.py",
+    "final-gate.py",
+    "host.py",
+    "immutable-browser-binding.json",
+    "inputs.json",
+    "launch-authority.json",
+    "npm-stage.py",
+    "retained_input.py"
+  ]
+}

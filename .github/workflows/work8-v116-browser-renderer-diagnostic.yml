@@ -1,0 +1,92 @@
+name: Work 8 V116 bounded browser renderer diagnostic
+on:
+  create:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: work8-v116-browser-renderer-diagnostic-20261111-a01
+  cancel-in-progress: false
+jobs:
+  browser-renderer-diagnostic:
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v116-browser-renderer-diagnostic-20261111-a01' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      ACTIONS_STEP_DEBUG: 'false'
+      ACTIONS_RUNNER_DEBUG: 'false'
+    steps:
+      - name: Check out exact reviewed diagnostic source
+        id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        timeout-minutes: 1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+      - name: Preserve the original repository Node runtime contract
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        timeout-minutes: 1
+        with:
+          node-version-file: '.node-version'
+          check-latest: false
+      - name: Admit one exact browser-only diagnostic and saved root reservation
+        id: admission
+        timeout-minutes: 1
+        run: python3 -B v116/browser_renderer_diagnostic/admit.py
+      - name: Retrieve exact retained image for its Node binary only
+        id: download
+        timeout-minutes: 4
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B v116/browser_renderer_diagnostic/retained_input.py
+      - name: Prepare unchanged immutable browser and exact Node and driver
+        id: prepare
+        timeout-minutes: 8
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          timeout --signal=TERM --kill-after=10s 450s
+          python3 -B v116/browser_renderer_diagnostic/host.py prepare
+      - name: Capture one original96 browser-only diagnostic
+        id: examination
+        timeout-minutes: 2
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          timeout --signal=TERM --kill-after=10s 100s
+          python3 -B v116/browser_renderer_diagnostic/host.py execute
+      - name: Terminate exact resources and retain bounded diagnostic evidence
+        id: seal
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 1
+        run: python3 -B v116/browser_renderer_diagnostic/host.py seal
+      - name: Preserve seven-day renderer diagnostic evidence
+        if: ${{ always() && steps.seal.outcome == 'success' }}
+        timeout-minutes: 1
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v116-browser-renderer-diagnostic-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v116-browser-renderer-${{ github.run_id }}/evidence/
+          retention-days: 7
+          compression-level: 6
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+      - name: Require complete diagnostic custody without original acceptance claim
+        if: ${{ always() && steps.seal.outcome == 'success' }}
+        timeout-minutes: 1
+        run: python3 -B v116/browser_renderer_diagnostic/final-gate.py
