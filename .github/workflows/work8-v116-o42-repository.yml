@@ -1,0 +1,136 @@
+name: Work 8 V116 O42 repository contract
+
+on:
+  create:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: work8-v116-o42-repository-20261111-a01
+  cancel-in-progress: false
+
+jobs:
+  repository-contract:
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v116-o42-repository-20261111-a01' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out the exact reviewed source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+
+      - name: Use the original exact repository Node pin
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        timeout-minutes: 2
+        with:
+          node-version-file: '.node-version'
+          check-latest: false
+
+      - name: Examine the original repository contract once
+        id: examine
+        timeout-minutes: 4
+        env:
+          V116_OUTPUT: ${{ runner.temp }}/v116-o42-repository
+          V116_EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess, time
+          root = pathlib.Path.cwd()
+          output = pathlib.Path(os.environ['V116_OUTPUT'])
+          output.mkdir(mode=0o700, parents=True, exist_ok=False)
+          parent = '6c1e63ba20619ee480742fd87dc810ca93152e22'
+          workflow = '.github/workflows/work8-v116-o42-repository.yml'
+          def git(*args):
+              return subprocess.check_output(['git', *args], text=True).strip()
+          head = git('rev-parse', 'HEAD')
+          assert head == os.environ['V116_EXPECTED_HEAD']
+          assert git('rev-list', '--parents', '-n', '1', 'HEAD').split() == [head, parent]
+          changed_paths = [workflow, 'empireai-web/vercel.json', 'vercel.json']
+          assert git('diff', '--name-only', parent, head).splitlines() == changed_paths
+          for config_path in ['vercel.json', 'empireai-web/vercel.json']:
+              current = json.loads((root/config_path).read_text())
+              previous = json.loads(git('show', parent + ':' + config_path))
+              branch = 'work8/v116-o42-repository-20261111-a01'
+              assert branch not in previous['git']['deploymentEnabled']
+              assert current['git']['deploymentEnabled'].pop(branch) is False
+              assert current == previous
+          assert sorted(p.name for p in (root/'.github/workflows').iterdir()) == [pathlib.Path(workflow).name]
+          assert git('status', '--porcelain') == ''
+          node = subprocess.check_output(['which', 'node'], text=True).strip()
+          node_version = subprocess.check_output([node, '--version'], text=True).strip()
+          assert node_version == 'v22.23.2'
+          result = {
+              'schema': 'empireai-v116-o42-repository-examination-v1',
+              'sourceCommit': head, 'parent': parent,
+              'sourceTree': git('rev-parse', 'HEAD^{tree}'),
+              'changedPaths': changed_paths,
+              'applicationSourcesUnchanged': True,
+              'node': node_version,
+              'npmExecution': 'NONE; original config pins and drift tests only',
+              'wholeRowAccepted': False,
+              'productionMutation': False, 'commerceEffects': False,
+              'commands': [], 'status': 'FAIL'
+          }
+          commands = [
+              [node, 'scripts/verify-product-path-ci.mjs'],
+              [node, '--test', 'scripts/verify-build-runtime.test.mjs']
+          ]
+          clean_env = {'PATH': os.environ['PATH']}
+          for number, command in enumerate(commands):
+              started = time.monotonic()
+              log = output / ('command-' + str(number) + '.log')
+              with log.open('wb') as stream:
+                  try:
+                      process = subprocess.run(command, cwd=root, env=clean_env, stdout=stream, stderr=subprocess.STDOUT, timeout=90)
+                      code = process.returncode
+                  except subprocess.TimeoutExpired:
+                      code = 124
+              size = log.stat().st_size
+              if size > 524288:
+                  log.unlink()
+                  raise RuntimeError('Bounded diagnostic output exceeded')
+              result['commands'].append({
+                  'command': command, 'exitCode': code,
+                  'elapsedSeconds': round(time.monotonic()-started, 6),
+                  'log': log.name, 'bytes': size,
+                  'sha256': hashlib.sha256(log.read_bytes()).hexdigest()
+              })
+              if code != 0:
+                  break
+          result['sourceUnchangedAfterExamination'] = git('status', '--porcelain') == ''
+          result['status'] = 'PASS' if len(result['commands']) == 2 and all(x['exitCode'] == 0 for x in result['commands']) and result['sourceUnchangedAfterExamination'] else 'FAIL'
+          (output/'result.json').write_text(json.dumps(result, indent=2)+'\n')
+          payload_bytes = sum(p.stat().st_size for p in output.iterdir())
+          assert payload_bytes <= 1048576
+          print(json.dumps({'status': result['status'], 'head': head, 'payloadBytes': payload_bytes}))
+          if result['status'] != 'PASS':
+              raise SystemExit(1)
+          PY
+
+      - name: Preserve bounded exact-source result
+        if: ${{ always() && steps.examine.outcome != 'skipped' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        timeout-minutes: 1
+        with:
+          name: v116-o42-repository-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v116-o42-repository/
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
