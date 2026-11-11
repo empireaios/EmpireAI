@@ -1,0 +1,28 @@
+{
+  "schema": "V116_ISOLATED_SQL_COHORT_NATIVE_TRANSFORM_POLICY_V1",
+  "sourceRevision": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "scope": "Thirteen named native SQL stores in inactive isolated replicas derived from one verified actual native capture; current production and complete non-SQL operating topology are excluded.",
+  "unchangedDomains": ["assurance", "brain", "communications", "execution", "financialEvidence", "intelligence", "liveCostCentre", "missions", "pillowMemory", "pillowReasoning", "pillowRequests", "shadow"],
+  "commerce": {
+    "businessTables": ["commerce_runtime_receipts", "commerce_runtime_tasks", "work8_mission_preparations", "work8_sim_finance_admission", "work8_sim_finance_events", "work8_sim_finance_plans", "work8_simulation_enrollments", "work8_twin_admissions", "work8_twin_communications", "work8_twin_events", "work8_twin_media", "work8_twin_observations"],
+    "activeAuthorityTables": ["work8_preparation_authority", "work8_twin_authority"],
+    "authorityRule": "Target active authority tables must be empty. Original checked source authority histories remain only inert audit inside exact retained native checkpoints; any source active-table event must be present in the source checkpoint audit. No owner policy, credential or execution grant is restored.",
+    "recoveryMetadataTable": "work8_recovery_checkpoints",
+    "recoveryMetadataRule": "Target contains exactly the independently verified native source checkpoint prefix through its acknowledged head. This declared native metadata is not compared blindly with producer checkpoint metadata.",
+    "operatingTablesRetainedFromInitialCapture": ["work8_fulfilment_scan", "work8_sim_finance_cursor", "work8_twin_scheduler"],
+    "operatingStateRule": "Target preserves exact initial captured rows in these three operational tables. Current source rows are independently measured and disclosed; they do not grant target scheduling authority and are not silently excluded as business history."
+  },
+  "currentSourceRule": "Every epoch requires actual closed-source reads of all13 stores before and after observation, native source business tables equal the exact validated checkpoint head, unchanged source/config/capture identities, and explicit source volume identity.",
+  "acknowledgementRule": "Every target acknowledgement requires fresh actual reads of all13 stores, exact policy digest, matching source epoch and capture lineage, exact all noncommerce source rows/schema, exact native business checkpoint tables, zero active authority, retained native authority audit, exact applied recovery metadata and baseline operational rows. Missing/extra tables, dirty sidecars, foreign identities or unexpected differences fail closed.",
+  "nonSQLCoverage": {
+    "redis": "Historical captured payload only; current Redis replication is NOT_PROVEN",
+    "visualMemory": "Historical captured payload only; current native visual-state replication is NOT_PROVEN",
+    "sessionContinuity": "Historical captured payload only; current non-SQL session-state replication is NOT_PROVEN",
+    "authorityAndWatchdogControls": "Historical captured payload only; no live authority or current health inferred",
+    "configurationAndReleaseEvidence": "Exact source/config/policy hashes bound, not a live release or Work9 handoff acceptance"
+  },
+  "wholeRowAccepted": false,
+  "allDomainLiveEventStreaming": false,
+  "protectedOffHostVault": false,
+  "genuineOwnerAcceptance": false
+}

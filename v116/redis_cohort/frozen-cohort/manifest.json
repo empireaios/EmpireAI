@@ -1,0 +1,100 @@
+{
+  "schema": "V116_FROZEN_CURRENT_COHORT_INPUT_V1",
+  "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "captureDigest": "0285ce80393f82098a7d7cecc58620f069930961158c13c29b23129f34e4e4e7",
+  "classification": "FROZEN_CURRENT_ISOLATED_COHORT_EVIDENCE",
+  "roles": {
+    "sqlEpoch": "sql-epoch.json",
+    "sqlAck": "sql-ack.json",
+    "sqlOrigin": "sql-origin.json",
+    "sqlObservation": "sql-observation.json",
+    "transformPolicy": "sql-transform-policy.json",
+    "sqlResult": "sql-result.json",
+    "fileEnvelope": "file-envelope.json",
+    "fileAck": "file-ack.json",
+    "fileFinalObservation": "file-final-observation.json",
+    "actualResult": "actual-result.json",
+    "independentReviews": [
+      "sql-independent-review.json",
+      "file-independent-review.json",
+      "file-raw-review.json"
+    ],
+    "compositionContract": "composition-contract.json"
+  },
+  "files": [
+    {
+      "path": "actual-result.json",
+      "bytes": 2392,
+      "sha256": "5bc8a368d8892522091fb062d8c6d7233a041638ed38c93aa78ec850e7b4f377"
+    },
+    {
+      "path": "composition-contract.json",
+      "bytes": 3190,
+      "sha256": "8cc96284c62af48501c579c340f5b9ae5265343988faa5e06c1e3512fd940559"
+    },
+    {
+      "path": "file-ack.json",
+      "bytes": 86760,
+      "sha256": "b2a307474c379df71172e693a48e18ff89d198977af44800c5065d2328abe0b6"
+    },
+    {
+      "path": "file-envelope.json",
+      "bytes": 89799,
+      "sha256": "65e1a9d9e646a2c27e5ecbb5baa893d8e9fb1016e4e6c7100ae608d5c8c13d7d"
+    },
+    {
+      "path": "file-final-observation.json",
+      "bytes": 5529,
+      "sha256": "a6c3bca0ac026481907a61a68acfc91ca2fe8b41a10f5637873a49def3b1f9d2"
+    },
+    {
+      "path": "file-independent-review.json",
+      "bytes": 6130,
+      "sha256": "c38c8f765b9ba2b4e5d5c4810a3d04a0c554e767c886f5c94704e5d536434acf"
+    },
+    {
+      "path": "file-raw-review.json",
+      "bytes": 8404,
+      "sha256": "5479aca30f86d1ac9a7f5f7edf7f90d3fc6000a4576d11ab3b8f2868732a8023"
+    },
+    {
+      "path": "sql-ack.json",
+      "bytes": 56593,
+      "sha256": "cbc9bf6a370d7878481171967aef9a40c36cef4356bd898230801c48ddc98c08"
+    },
+    {
+      "path": "sql-epoch.json",
+      "bytes": 28217,
+      "sha256": "f689d6ceb9d3f50e2d42b2dfcfb55de3544f0e6598fae0bd42a53ce52a8336f3"
+    },
+    {
+      "path": "sql-independent-review.json",
+      "bytes": 5578,
+      "sha256": "7e051ed4d4aa2b539e9aedeba14a2abe1a19992e7688cc91dc696e45d9bba4ad"
+    },
+    {
+      "path": "sql-observation.json",
+      "bytes": 76686,
+      "sha256": "74a7773a40b55994e4e527d73244062267e48b126fc5aeb2c142cd4226d58cce"
+    },
+    {
+      "path": "sql-origin.json",
+      "bytes": 27702,
+      "sha256": "e8715cec51e57646095f5779b4c7a507918af385fadaf5db3892b278def94543"
+    },
+    {
+      "path": "sql-result.json",
+      "bytes": 2238,
+      "sha256": "69638ebe7661da873b7ab9c9de59a3ebe61cb44c5342a7bc6b04f5228bb28ecf"
+    },
+    {
+      "path": "sql-transform-policy.json",
+      "bytes": 3471,
+      "sha256": "48e472cc93b1106087dcdced097649ac8da9a5fce13daae9c94da5469d48dbf5"
+    }
+  ],
+  "rawSQLRowsPublished": false,
+  "rawHistoricalFileContentsPublished": false,
+  "sourceAndTargetObservationTimesRemainExplicit": true,
+  "wholeRowAccepted": false
+}

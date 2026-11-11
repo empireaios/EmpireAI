@@ -1,0 +1,117 @@
+{
+  "schema": "v116-independent-actual-sql-cohort-terminal-review-v1",
+  "reviewer": "/root/v116_independent_review",
+  "atUTC": "2026-11-11T11:45:38.490754+00:00",
+  "status": "PASS_SCOPED_CURRENT_MEASURED_13_SQL_COHORT",
+  "actualOperation": "One bounded isolated native examination: preserve exact A07 origin, replay its committed prefix, commit two additional native technical tasks, capture two measured closed13SQL epochs, materialize fresh native targets, bind ACKs, detect lag/drift and independently reload current heads.",
+  "actualExitCode": 0,
+  "elapsedSeconds": 6.537689,
+  "nativeCounts": {
+    "priorReceipts": 20,
+    "currentReceipts": 40,
+    "priorFinanceEvents": 4,
+    "currentFinanceEvents": 16,
+    "newTasks": 2
+  },
+  "origin": {
+    "captureDigest": "0285ce80393f82098a7d7cecc58620f069930961158c13c29b23129f34e4e4e7",
+    "nativeCheckpoint": "8594ce16f7352ff8170cc89d2dbe01876e5a5459b7d1acdf38a4582d25b1a03f",
+    "nextCheckpoint": "6e27380fa9344125298a02e28969460eef1a5386fcaf720ab61416ab81675180"
+  },
+  "independentChecks": {
+    "all158CurrentInputHashesEqualReviewedPins": true,
+    "all158BeforeAndAfterHashesPreserved": true,
+    "all39OriginalSidecarsRemainAbsent": true,
+    "all15ActualControlsPass": true,
+    "bothEpochRawDigestsAnd26SQLitePhysicalHashesRecomputed": true,
+    "bothACKDigestsAndExactEpochLineageRecomputed": true,
+    "threeStatusReceiptHashesAndChainRecomputed": true,
+    "actualSequenceLag0_1_0AndDeclaredThresholds": true,
+    "all13CurrentSourceAndTargetHeadsObserved": true,
+    "separateProcessDurableReadback": true,
+    "changedTaskProducesSpecificMeasuredDrift": true,
+    "peer76ImmutableSQLiteAndBusinessAuthorityReviewBound": true,
+    "technicalPolicyDeleted": true
+  },
+  "epochs": [
+    {
+      "digest": "04ebd96636ded0b8dc803226dc1ed479a1434c8c6545fd102d27d1c604c3ef3a",
+      "sequence": 1,
+      "capturedAt": 1794397027463,
+      "nativeSequence": 1,
+      "domains": 13
+    },
+    {
+      "digest": "f689d6ceb9d3f50e2d42b2dfcfb55de3544f0e6598fae0bd42a53ce52a8336f3",
+      "sequence": 2,
+      "capturedAt": 1794397030743,
+      "nativeSequence": 2,
+      "domains": 13
+    }
+  ],
+  "sourceAndTargetTransform": "Twelve noncommerce domain schemas/rows equal measured closed source. Commerce preserves exact native business prefix; source active authority is fully audited, target authority remains empty; native recovery metadata records exact prefix. Three operational tables deliberately retain original captured rows, and differences are disclosed.",
+  "originalPredicateDecisions": {
+    "A2-04": {
+      "status": "NOT_PROVEN_COMPLETE_BOUND_TOPOLOGY",
+      "acceptedScope": "Actual repeated coherent13SQL native checkpoint/materialization/replay/drift observations.",
+      "remainingEvidence": "Current integrated nonSQL topology, including Redis, visual/session/control/config/evidence state and original applicability, remains for the separately authorized continuation."
+    },
+    "A2-18": {
+      "status": "NOT_PROVEN_COMPLETE_BOUND_TOPOLOGY",
+      "acceptedScope": "Attributable actual13SQL sequence/cutoff lag, age thresholds, current head identifiers and drift, plus durable fresh-process readback.",
+      "remainingEvidence": "Integrated nonSQL current-head/lag/drift and complete original bound topology mapping."
+    }
+  },
+  "limitations": [
+    "Controlled generated native technical records; no claim of genuine owner decisions or current production data.",
+    "The12 noncommerce stores were measured/copied; no claim that their service activity ran.",
+    "No live operational streaming activation was required or performed.",
+    "Source and target operating authority/cursor state is deliberately transformed, not blanket full-state equality.",
+    "No Docker, actual Redis, distinct UID or protected off-host custody was established by this local examination.",
+    "No A5 lifecycle was rerun."
+  ],
+  "newCommitmentUSD": "0.00",
+  "wholeRowAccepted": false,
+  "work8TotalsUnchanged": {
+    "accepted": 49,
+    "outstanding": 15
+  },
+  "references": [
+    {
+      "path": "v116_work/replica_cohort/local-execution-1/output/result.json",
+      "sha256": "69638ebe7661da873b7ab9c9de59a3ebe61cb44c5342a7bc6b04f5228bb28ecf"
+    },
+    {
+      "path": "v116_work/replica_cohort/local-outer-receipt-1.json",
+      "sha256": "be6cfd7bf3ab06dc0ce0c8c11000113db4d614135ab9a61cace8e10bc9aff974"
+    },
+    {
+      "path": "v116_work/replica_cohort/pinned-local-inputs.json",
+      "sha256": "08895774685be13906d20b5d18a34c65176578b770636fb201b32b857a204924"
+    },
+    {
+      "path": "v116_work/replica_cohort/independent-local-release.json",
+      "sha256": "ed918950e6831ff352ef10b32e7a55e6ad5b01c66107d453c16362bf578ed8b0"
+    },
+    {
+      "path": "v116_work/replica_cohort/independent-native-semantics-review.json",
+      "sha256": "7f2358958c2da8af1adcdf397d5df5c441f376abba0dbcda88661525c41651ac"
+    },
+    {
+      "path": "v116_work/replica_cohort/independent-actual-sql-business-review.json",
+      "sha256": "6d0becc29c636edb383a67c084934ea844a39b35d2181809dbda11819e8a669e"
+    },
+    {
+      "path": "v116_work/replica_cohort/sql-cohort.mjs",
+      "sha256": "a446f9cdb072155779c466a58e1c0f60029bf0ead76095dfc5b7e3ff4d0cf4fd"
+    },
+    {
+      "path": "v116_work/replica_cohort/local-native-cohort.mjs",
+      "sha256": "db7c430d6fd124f63098027503e723cad56ac8293752b39bd731711413d7b8b7"
+    },
+    {
+      "path": "v116_work/replica_cohort/native-transform-policy.json",
+      "sha256": "48e472cc93b1106087dcdced097649ac8da9a5fce13daae9c94da5469d48dbf5"
+    }
+  ]
+}

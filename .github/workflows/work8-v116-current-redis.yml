@@ -1,0 +1,82 @@
+name: Work 8 V116 current isolated Redis inspection
+on:
+  create:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: work8-v116-current-redis-cohort-20261111-a01
+  cancel-in-progress: false
+jobs:
+  redis-cohort:
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v116-current-redis-cohort-20261111-a01' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      ACTIONS_STEP_DEBUG: 'false'
+      ACTIONS_RUNNER_DEBUG: 'false'
+    steps:
+      - name: Check out exact reviewed source
+        id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+      - name: Bind exact repository Node version
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        timeout-minutes: 2
+        with:
+          node-version-file: '.node-version'
+          check-latest: false
+      - name: Admit reviewed source and recorded reservation
+        id: admission
+        timeout-minutes: 1
+        run: python3 -B v116/redis_cohort/admit.py
+      - name: Retrieve exact immutable backend and accepted technical capture
+        id: inputs
+        timeout-minutes: 6
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B v116/redis_cohort/retained_input.py
+          python3 -B v116/redis_cohort/capture_input.py
+      - name: Inspect two fresh isolated Redis instances through unchanged native APIs
+        id: examination
+        timeout-minutes: 6
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          timeout --signal=TERM --kill-after=10s 300s
+          python3 -B v116/redis_cohort/run.py execute
+      - name: Independently terminate scoped resources and seal bounded evidence
+        id: seal
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 2
+        run: python3 -B v116/redis_cohort/run.py seal
+      - name: Save exact seven-day evidence
+        if: ${{ always() && steps.seal.outcome == 'success' }}
+        timeout-minutes: 2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v116-current-redis-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v116-redis-cohort-${{ github.run_id }}/evidence/
+          retention-days: 7
+          compression-level: 6
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false

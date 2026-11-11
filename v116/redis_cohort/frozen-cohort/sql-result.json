@@ -1,0 +1,52 @@
+{
+  "schema": "V116_ACTUAL_NATIVE_SQL_COHORT_EXAMINATION_V1",
+  "status": "PASS_SCOPED_NATIVE_SQL_COHORT_FOUNDATION",
+  "scope": "REPEATED_ISOLATED13SQL_NATIVE_TRANSFORMED_CHECKPOINT_COHORT_WITH_CURRENT_MEASURED_HEADS",
+  "allOperatingTopologyComplete": false,
+  "allDomainLiveEventStreaming": false,
+  "productionSource": false,
+  "actualDocker": false,
+  "actualRedis": false,
+  "actualCrossUID": false,
+  "protectedOffHostVault": false,
+  "genuineOwnerApproval": false,
+  "wholeRowAccepted": false,
+  "newCommitmentUSD": "0.00",
+  "checks": {
+    "privateNetworkPIDAndReadOnlyInputs": true,
+    "exactSameOriginA07All13Materialization": true,
+    "actualA07PrefixReplayedWithoutRegeneratingPriorEvents": true,
+    "actualNativeMaterializationReplayAndFresh13Heads": true,
+    "actualSourceAuthorityAuditAndColumnsExact": true,
+    "newSourceNativeEventsCommittedUnderOriginalGuards": true,
+    "actual13MeasuredLagAndNativeRematerialization": true,
+    "declaredAuthorityAuditRecoveryAndOperationalTransformsVisible": true,
+    "freshProcessActual13ReadbackAndDurableReceiptChain": true,
+    "populatedTargetNeverReplaced": true,
+    "changedNativeTaskPreventsFreshAcknowledgement": true,
+    "dirtySourceFamilyRefused": true,
+    "foreignPolicyAndVolumeRefused": true,
+    "missingDomainRefused": true,
+    "changedEpochBytesRefused": true
+  },
+  "captureDigest": "0285ce80393f82098a7d7cecc58620f069930961158c13c29b23129f34e4e4e7",
+  "sameOriginNativeCheckpoint": "8594ce16f7352ff8170cc89d2dbe01876e5a5459b7d1acdf38a4582d25b1a03f",
+  "newNativeCheckpoint": "6e27380fa9344125298a02e28969460eef1a5386fcaf720ab61416ab81675180",
+  "epochs": [
+    "04ebd96636ded0b8dc803226dc1ed479a1434c8c6545fd102d27d1c604c3ef3a",
+    "f689d6ceb9d3f50e2d42b2dfcfb55de3544f0e6598fae0bd42a53ce52a8336f3"
+  ],
+  "acknowledgements": [
+    "8012e08def872eb6cad1f888d28569fe92da6c6a8ae9fcf2d1ea79c794766e97",
+    "cbc9bf6a370d7878481171967aef9a40c36cef4356bd898230801c48ddc98c08"
+  ],
+  "reportHead": "04bb9a7dd98daa872a03bd5b82da9bf4a0986ce2cc9bdb5a70562b3e2197ff37",
+  "nativeCounts": {
+    "priorReceipts": 20,
+    "currentReceipts": 40,
+    "priorFinanceEvents": 4,
+    "currentFinanceEvents": 16,
+    "newTasks": 2
+  },
+  "technicalPolicyDeleted": true
+}

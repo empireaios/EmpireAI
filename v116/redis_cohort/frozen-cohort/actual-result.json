@@ -1,0 +1,68 @@
+{
+  "schema": "V116_NATIVE_CURRENT_SQL_FILE_ENVELOPE_EXAMINATION_V1",
+  "status": "PASS_SCOPED_CURRENT_NATIVE_SQL_FILE_ENVELOPE",
+  "scope": "ACTUAL_NATIVE_FILE_PROGRESS_WITH_CURRENT_FROZEN_SQL_HEAD_OBSERVATIONS",
+  "actualRedis": false,
+  "actualDocker": false,
+  "actualCrossUID": false,
+  "productionSource": false,
+  "genuineOwnerSession": false,
+  "genuineOwnerApproval": false,
+  "livePillow": false,
+  "protectedOffHostVault": false,
+  "wholeRowAccepted": false,
+  "newCommitmentUSD": "0.00",
+  "checks": {
+    "privateKernelIsolation": true,
+    "sameA07NativeMaterializationAndInertControls": true,
+    "actualCurrentInitialHeadsAndNativeTargetReadback": true,
+    "realUnpublishedSourceChangeFailsClosed": true,
+    "nativeVisualAndSessionEventsAdvanceActualHeadsWithoutSQLRerun": true,
+    "actualLagOneThenZeroAndAllDomainHeadsRetained": true,
+    "oldSQLCheckpointAgeAndUnknownRedisHealthRemainExplicit": true,
+    "freshNativeProcessDurableEnvelopeAndExactFiles": true,
+    "existingTargetRefused": true,
+    "foreignSnapshotRefusedBeforeMutation": true,
+    "actualChangedTargetAndFreshReloadRefused": true,
+    "unknownNativeSessionInventoryRefused": true,
+    "positiveSourceAndTargetPreservedAfterNegatives": true
+  },
+  "captureDigest": "0285ce80393f82098a7d7cecc58620f069930961158c13c29b23129f34e4e4e7",
+  "sourceSQLCohort": "f689d6ceb9d3f50e2d42b2dfcfb55de3544f0e6598fae0bd42a53ce52a8336f3",
+  "envelopes": [
+    "eafa79c456688230ed0033ea16a70f39552ae80ad064fd231801f904f662c657",
+    "0ff1275b0bba38263f43236f37c85e4b7a397b84c476fd4e4d856fc8df0b84a0"
+  ],
+  "acknowledgements": [
+    "6f624e736d75b0c7f567c343b01a0560096e2cfe8789cf854393b2f7ed0117a4",
+    "99f5d63feea0406cb63feb1a44ece8688cae839457be2b33b2def45d1de7c680"
+  ],
+  "currentFileDomains": [
+    "visual",
+    "session",
+    "executive",
+    "inert:assuranceWatchdog.json",
+    "inert:authority.json",
+    "inert:commerce.initialized",
+    "inert:controller-membership.json",
+    "inert:financialEvidence.initialized",
+    "inert:liveCostCentre.initialized",
+    "inert:requestOwners.json"
+  ],
+  "currentSQLDomains": [
+    "intelligence",
+    "pillowMemory",
+    "pillowRequests",
+    "pillowReasoning",
+    "communications",
+    "liveCostCentre",
+    "assurance",
+    "financialEvidence",
+    "commerce",
+    "brain",
+    "missions",
+    "execution",
+    "shadow"
+  ],
+  "completedSQLPrefixRerun": false
+}

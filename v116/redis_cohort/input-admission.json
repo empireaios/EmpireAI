@@ -1,0 +1,24 @@
+{
+  "schema": "v116-current-redis-input-admission-v1",
+  "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "captureDigest": "0285ce80393f82098a7d7cecc58620f069930961158c13c29b23129f34e4e4e7",
+  "captureArtifact": {
+    "id": 13850322384,
+    "runId": 43010870519,
+    "bytes": 319439,
+    "sha256": "036ef6cddf1cd9ef0921a91a9eb27b35865690d3a3cb4b20769b45144d2211ce"
+  },
+  "redisImage": {
+    "configID": "sha256:8f5c54441eb93183170be8c9fc2d8e8275171a6866ca1b4ae682a2ced6a98889",
+    "repoDigest": "redis@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952",
+    "preservedA07MetadataSHA256": "2a4e487a99ae779ddfbf8526693fb0fb585cbf5447338715522680c770f9bbc9"
+  },
+  "frozenCohort": {
+    "manifestSHA256": "0259bb825217cbb1ed5e150941478a9912ff6179a25f5f4f7cc38c37996b8ebb",
+    "projectionReviewSHA256": "c9cf9ab1f0614aeb9127a733e3e21ff0324dad4f85faf832c957622793075a81",
+    "files": 14,
+    "payloadBytes": 402689,
+    "classification": "FROZEN_CURRENT_ISOLATED_COHORT_EVIDENCE"
+  },
+  "scope": "Attributable13SQL/10file frozen measured metadata plus actual current Redis inspection heads, same A07 lineage; frozen observation times/old SQL cutoff explicit; no simultaneous production topology or whole-row claim."
+}

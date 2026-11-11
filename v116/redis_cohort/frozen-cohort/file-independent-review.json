@@ -1,0 +1,129 @@
+{
+  "schema": "V116_CURRENT_NATIVE_SQL_FILE_COHORT_INDEPENDENT_TERMINAL_ADJUDICATION_V1",
+  "atUTC": "2026-11-11T12:10:32.994056+00:00",
+  "decision": "PASS_SCOPED_CURRENT_NATIVE_SQL_FILE_ENVELOPE",
+  "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "captureDigest": "0285ce80393f82098a7d7cecc58620f069930961158c13c29b23129f34e4e4e7",
+  "sourceSQLCohort": "f689d6ceb9d3f50e2d42b2dfcfb55de3544f0e6598fae0bd42a53ce52a8336f3",
+  "resultSHA256": "5bc8a368d8892522091fb062d8c6d7233a041638ed38c93aa78ec850e7b4f377",
+  "actualExitCode": 0,
+  "observedOuterElapsedSeconds": 7.420441,
+  "controlsPassed": 13,
+  "inputPins": 8127,
+  "inputSidecarAbsenceChecks": 315,
+  "sourcePreserved": true,
+  "completedSQLPrefixRerun": false,
+  "independentEvidence": {
+    "envelopeDigests": [
+      "eafa79c456688230ed0033ea16a70f39552ae80ad064fd231801f904f662c657",
+      "0ff1275b0bba38263f43236f37c85e4b7a397b84c476fd4e4d856fc8df0b84a0"
+    ],
+    "acknowledgementDigests": [
+      "6f624e736d75b0c7f567c343b01a0560096e2cfe8789cf854393b2f7ed0117a4",
+      "99f5d63feea0406cb63feb1a44ece8688cae839457be2b33b2def45d1de7c680"
+    ],
+    "measuredSQLDomains": [
+      "intelligence",
+      "pillowMemory",
+      "pillowRequests",
+      "pillowReasoning",
+      "communications",
+      "liveCostCentre",
+      "assurance",
+      "financialEvidence",
+      "commerce",
+      "brain",
+      "missions",
+      "execution",
+      "shadow"
+    ],
+    "measuredFileDomains": [
+      "visual",
+      "session",
+      "executive",
+      "inert:assuranceWatchdog.json",
+      "inert:authority.json",
+      "inert:commerce.initialized",
+      "inert:controller-membership.json",
+      "inert:financialEvidence.initialized",
+      "inert:liveCostCentre.initialized",
+      "inert:requestOwners.json"
+    ],
+    "actualLagSequence": [
+      0,
+      1,
+      0
+    ],
+    "maxSequenceLag": 0,
+    "maximumObservationAgeMs": 60000,
+    "positivePhysicalFilesRead": 30,
+    "newNativeChanges": "One explicitly synthetic visual record/index addition and one native session snapshot, using unchanged actual native APIs.",
+    "currentCoherence": "Closed immutable thirteen-domain SQL source/target heads read before and after nested cooperating native visual/session/executive locks; exact runtime/configuration bytes before and after. Existing SQL checkpoint age remains separately visible.",
+    "durability": "Exclusive fsynced envelope and ACK records with exact ancestry; exact materialized target bytes/modes; actual fresh native process reopened saved snapshot and current target files without rematerialization.",
+    "negativeScope": "Unpublished source mutation, existing-target replacement, foreign snapshot before mutation, separate negative visual drift, fresh-process corrupt readback and unknown session inventory all refuse; final positive state unchanged."
+  },
+  "priorFirstFailuresPreserved": [
+    {
+      "attempt": 1,
+      "stage": "first envelope runtime input hash",
+      "cause": "Generic64MiB cap rejected exact124836408-byte Node; corrected only exact pinned Node streamed admission."
+    },
+    {
+      "attempt": 2,
+      "stage": "immutable completed SQL input mount, before Node",
+      "cause": "Attempt path substitution accidentally selected nonexistent SQL execution2; corrected fixed original execution1 locator and prior result hash before namespaces."
+    }
+  ],
+  "scopeLimitations": [
+    "No current Redis execution in this lane; final complete topology integration remains separate.",
+    "Historical authority/watchdog/membership bytes remain inert evidence and are not represented as active grants or current health.",
+    "No live Pillow, owner approval/session/product mapping, commerce activation, protected off-host custody, production data or whole-row acceptance.",
+    "Technical isolated current checkpoint/replication/readback foundation only; local user namespace and clean environment are not a cross-UID hosted claim."
+  ],
+  "independence": "Reviewer independently reviewed helper source and actual bytes; platform envelope/harness was also reviewed by owner agent. Owner actual file review is supplementary and explicitly discloses helper authorship. No native rerun by reviewers.",
+  "evidenceReferences": [
+    {
+      "path": "v116_work/replica_non_sql/independent-native-file-source-review.json",
+      "sha256": "b78d69d75c25e3f3484ce3c7222f8ce67b124913f357befc7ee134aeb17d3d7d"
+    },
+    {
+      "path": "v116_work/replica_non_sql/independent-envelope-native-semantics-review.json",
+      "sha256": "53368617571fc4f0983495166093cca8db52d571e612ef37108767d5d10582be"
+    },
+    {
+      "path": "v116_work/replica_non_sql/independent-local-release.json",
+      "sha256": "c0b0a63d73e95bec1c54919d8daa72b2f630f33d46bd0dfaeca83c85685cbd4f"
+    },
+    {
+      "path": "v116_work/replica_non_sql/independent-attempt2-correction-review.json",
+      "sha256": "6f394cfbaa67d0197ffecb475bc5af49db9282c42a4084d42d3d59ef5cc0e187"
+    },
+    {
+      "path": "v116_work/replica_non_sql/independent-attempt3-locator-review.json",
+      "sha256": "53814387e42024cbfdf0158ec367845b3c3bf9ac741597be7172bd96dd741e57"
+    },
+    {
+      "path": "v116_work/replica_non_sql/independent-actual-byte-review.json",
+      "sha256": "d0532879b3df8bb714df7e21c67e32f435f967c2fbbd0f2307d45fa023c28cce"
+    },
+    {
+      "path": "v116_work/replica_non_sql/independent-actual-file-review.json",
+      "sha256": "5479aca30f86d1ac9a7f5f7edf7f90d3fc6000a4576d11ab3b8f2868732a8023"
+    },
+    {
+      "path": "v116_work/replica_non_sql/local-outer-receipt-1.json",
+      "sha256": "5d342c103313c030be9a5ce361cb583cf2f1bd0205278be0ac45e7088ce5e31b"
+    },
+    {
+      "path": "v116_work/replica_non_sql/local-outer-receipt-2.json",
+      "sha256": "1c2c61321621e3d46f471b09588eb28d4e38e635e10e5987f57eddf35c5dcfb0"
+    },
+    {
+      "path": "v116_work/replica_non_sql/local-outer-receipt-3.json",
+      "sha256": "a3bdd411a9e3fe5cd22f9f3049168e1d1bc66c05a0362e1a67ddcc7fae265fe2"
+    }
+  ],
+  "newCommitmentUSD": "0.00",
+  "wholeRowAccepted": false,
+  "A2_04_A2_18FinalDecision": "PENDING_COMPLETE_BOUND_TOPOLOGY_INTEGRATION"
+}

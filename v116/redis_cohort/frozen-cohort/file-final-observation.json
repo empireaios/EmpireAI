@@ -1,0 +1,153 @@
+{
+  "schema": "V116_FROZEN_ACTUAL_FINAL_FILE_OBSERVATION_V1",
+  "sourceEnvelope": "0ff1275b0bba38263f43236f37c85e4b7a397b84c476fd4e4d856fc8df0b84a0",
+  "targetAck": "99f5d63feea0406cb63feb1a44ece8688cae839457be2b33b2def45d1de7c680",
+  "sourceSequence": 2,
+  "targetSequence": 2,
+  "sequenceLag": 0,
+  "sourceObservationAgeMs": 3549,
+  "maximumSequenceLag": 0,
+  "maximumObservationAgeMs": 60000,
+  "status": "CURRENT_SQL_AND_NATIVE_FILE_COHORT_MATCHES_DECLARED_TRANSFORM",
+  "driftedFileDomains": [],
+  "observedAt": 1794398799927,
+  "redisCurrentHead": "NOT_PROVEN",
+  "completeWholeOperatingTopology": false,
+  "globalHealth": "UNKNOWN",
+  "wholeRowAccepted": false,
+  "originalObservationSHA256": "eb5656321efbc0edebabf865de3d6cdfd5de998a6ac12e9d0a4d52509934d064",
+  "currentSourceFileReadback": {
+    "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+    "captureDigest": "0285ce80393f82098a7d7cecc58620f069930961158c13c29b23129f34e4e4e7",
+    "observedAt": 1794398799654,
+    "configurationSHA256": "3352c42559c9539e4322c45954150040620fae4c50204121a75c147b4a8f312b",
+    "originCapturedAt": "2026-11-11T11:19:53.919Z",
+    "heads": {
+      "visual": {
+        "sha256": "5ac5051d19287d3766b6a64b521d7dd1543283b0722087303b09d05518537253",
+        "fileCount": 2
+      },
+      "session": {
+        "sha256": "ab54e0c2683058bc92255b973af0e491c85958295f1b0f88020d9ea675b4a85e",
+        "fileCount": 1
+      },
+      "executive": {
+        "sha256": "6f9e4178f90998a27984134d162e425c78518ef96bd071ba82b4aec285492d37",
+        "fileCount": 1
+      },
+      "inert:assuranceWatchdog.json": {
+        "sha256": "43227906a3ab096412e26f6096b4d55f8092ff52aaedd4fd7deee421c974a61e",
+        "bytes": 57,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:authority.json": {
+        "sha256": "8727861ee0b65b92084f76543e3aaa33a87fc0a496623eaf4f73022586759c7e",
+        "bytes": 357,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:commerce.initialized": {
+        "sha256": "fb10295358d1d0db2598ba04daee68c4847ac49fda83acfabaa4d3ee526d6880",
+        "bytes": 39,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:controller-membership.json": {
+        "sha256": "93a4571014d9e393378540ad40d47be8156d31363cdc6924cb39265f66e7f7f2",
+        "bytes": 5386,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:financialEvidence.initialized": {
+        "sha256": "4e6daa1f09fa384fa33090c09ccfc5860e3c2003abf7b6ca9e92c4c70929cac4",
+        "bytes": 43,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:liveCostCentre.initialized": {
+        "sha256": "a14e03bc06536563122f77ebea132a88c62b95e8cf365858c09cab53af792a50",
+        "bytes": 43,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:requestOwners.json": {
+        "sha256": "bcdec7ef00c568c8eda15ff75583c3e86aa892b292bbb28ccd34d2fb4f16a135",
+        "bytes": 826,
+        "mode": 420,
+        "historicalNotActive": true
+      }
+    },
+    "bootAllowed": false,
+    "operationalRestoreAvailable": false,
+    "authorityImported": false,
+    "genuineOwnerSession": false,
+    "globalHealth": "UNKNOWN"
+  },
+  "currentTargetFileReadback": {
+    "observedAt": 1794398799655,
+    "configurationSHA256": "3352c42559c9539e4322c45954150040620fae4c50204121a75c147b4a8f312b",
+    "heads": {
+      "visual": {
+        "sha256": "5ac5051d19287d3766b6a64b521d7dd1543283b0722087303b09d05518537253",
+        "fileCount": 2
+      },
+      "session": {
+        "sha256": "ab54e0c2683058bc92255b973af0e491c85958295f1b0f88020d9ea675b4a85e",
+        "fileCount": 1
+      },
+      "executive": {
+        "sha256": "6f9e4178f90998a27984134d162e425c78518ef96bd071ba82b4aec285492d37",
+        "fileCount": 1
+      },
+      "inert:assuranceWatchdog.json": {
+        "sha256": "43227906a3ab096412e26f6096b4d55f8092ff52aaedd4fd7deee421c974a61e",
+        "bytes": 57,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:authority.json": {
+        "sha256": "8727861ee0b65b92084f76543e3aaa33a87fc0a496623eaf4f73022586759c7e",
+        "bytes": 357,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:commerce.initialized": {
+        "sha256": "fb10295358d1d0db2598ba04daee68c4847ac49fda83acfabaa4d3ee526d6880",
+        "bytes": 39,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:controller-membership.json": {
+        "sha256": "93a4571014d9e393378540ad40d47be8156d31363cdc6924cb39265f66e7f7f2",
+        "bytes": 5386,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:financialEvidence.initialized": {
+        "sha256": "4e6daa1f09fa384fa33090c09ccfc5860e3c2003abf7b6ca9e92c4c70929cac4",
+        "bytes": 43,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:liveCostCentre.initialized": {
+        "sha256": "a14e03bc06536563122f77ebea132a88c62b95e8cf365858c09cab53af792a50",
+        "bytes": 43,
+        "mode": 420,
+        "historicalNotActive": true
+      },
+      "inert:requestOwners.json": {
+        "sha256": "bcdec7ef00c568c8eda15ff75583c3e86aa892b292bbb28ccd34d2fb4f16a135",
+        "bytes": 826,
+        "mode": 420,
+        "historicalNotActive": true
+      }
+    },
+    "bootAllowed": false,
+    "operationalRestoreAvailable": false,
+    "authorityImported": false,
+    "genuineOwnerSession": false,
+    "globalHealth": "UNKNOWN"
+  },
+  "rawHistoricalContentsPublished": false
+}

@@ -1,0 +1,80 @@
+{
+  "schema": "V116_FROZEN_COHORT_COMPOSITION_CONTRACT_V1",
+  "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "captureDigest": "0285ce80393f82098a7d7cecc58620f069930961158c13c29b23129f34e4e4e7",
+  "sourceSQLCohort": "f689d6ceb9d3f50e2d42b2dfcfb55de3544f0e6598fae0bd42a53ce52a8336f3",
+  "sourceFileEnvelope": "0ff1275b0bba38263f43236f37c85e4b7a397b84c476fd4e4d856fc8df0b84a0",
+  "targetFileAck": "99f5d63feea0406cb63feb1a44ece8688cae839457be2b33b2def45d1de7c680",
+  "sqlDomains": [
+    "assurance",
+    "brain",
+    "commerce",
+    "communications",
+    "execution",
+    "financialEvidence",
+    "intelligence",
+    "liveCostCentre",
+    "missions",
+    "pillowMemory",
+    "pillowReasoning",
+    "pillowRequests",
+    "shadow"
+  ],
+  "fileDomains": [
+    "executive",
+    "inert:assuranceWatchdog.json",
+    "inert:authority.json",
+    "inert:commerce.initialized",
+    "inert:controller-membership.json",
+    "inert:financialEvidence.initialized",
+    "inert:liveCostCentre.initialized",
+    "inert:requestOwners.json",
+    "session",
+    "visual"
+  ],
+  "nativeBusinessTables": [
+    "commerce_runtime_receipts",
+    "commerce_runtime_tasks",
+    "work8_mission_preparations",
+    "work8_sim_finance_admission",
+    "work8_sim_finance_events",
+    "work8_sim_finance_plans",
+    "work8_simulation_enrollments",
+    "work8_twin_admissions",
+    "work8_twin_communications",
+    "work8_twin_events",
+    "work8_twin_media",
+    "work8_twin_observations"
+  ],
+  "activeAuthorityTables": [
+    "work8_preparation_authority",
+    "work8_twin_authority"
+  ],
+  "explicitOperationalBaselineTables": [
+    "work8_fulfilment_scan",
+    "work8_sim_finance_cursor",
+    "work8_twin_scheduler"
+  ],
+  "SQLTransform": "All12 noncommerce current logical/schema heads exact. Commerce12 native business table digests/counts exact; target active authority empty; exact checked recovery checkpoint prefix; operational3tables retained from actual original capture. Complete raw commerce hashes deliberately differ.",
+  "fileTransform": "Every file byte/mode and native persistence/operational flag exact; only documented sourceStoragePath/sourcePath/coordinationRoot relocate. Seven control objects remain inert historical bytes, no freshness/authority inferred.",
+  "observationProvenance": {
+    "SQLNativeProgressAt": 1794397030599,
+    "SQLCohortAt": 1794397030743,
+    "fileCohortAt": 1794398796378,
+    "finalCurrentSQLAt": 1794398799598,
+    "finalCurrentFileAt": 1794398799927
+  },
+  "classification": "FROZEN_CURRENT_ISOLATED_COHORT_EVIDENCE",
+  "consumerMustReport": {
+    "sqlAndFilesReobservedInRedisJob": false,
+    "redisWillBeFreshlyObservedSeparately": true,
+    "simultaneousWholeTopologyObservationClaim": false,
+    "liveProductionSource": false,
+    "bootAllowed": false,
+    "operationalRestoreAvailable": false,
+    "globalHealth": "UNKNOWN",
+    "wholeRowAccepted": false
+  },
+  "criterionBoundary": "Original A2-04/A2-18 adjudication requires complete named-domain mapping and an explicit temporal/coherence statement. These frozen proofs plus a later Redis inspection do not silently become a simultaneous production operation.",
+  "rawHistoricalContentsPublished": false
+}

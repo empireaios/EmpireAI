@@ -1,0 +1,149 @@
+{
+  "schema": "v116-current-redis-source-v1",
+  "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-current-redis-cohort-20261111-a01",
+  "attempt": "A01",
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-current-redis.yml",
+      "bytes": 2986,
+      "sha256": "43ffd7fb1f2be12734b600e41cd2466f6956b3bc680dc45be8bcfcd4a3f4d48d"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 676,
+      "sha256": "8849f19cef0d821d11b88febd64afec95c419bc6fb895b49e01bce95814d2c42"
+    },
+    {
+      "path": "v116/redis_cohort/admit.py",
+      "bytes": 3291,
+      "sha256": "316fa4b18247ac2399b16265b3588e7fbb9cdb142fb8754fe07837fdf587a140"
+    },
+    {
+      "path": "v116/redis_cohort/capture_input.py",
+      "bytes": 3318,
+      "sha256": "8bf245be78ca067ae10ebf4e7e8d1bdd915c82b10b4eeb059b158db3871449a5"
+    },
+    {
+      "path": "v116/redis_cohort/current-redis-cohort.mjs",
+      "bytes": 13925,
+      "sha256": "43e5b92bac91963164859d08021586bd02332018105e5fffda1a1b016f9cdc1d"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/actual-result.json",
+      "bytes": 2392,
+      "sha256": "5bc8a368d8892522091fb062d8c6d7233a041638ed38c93aa78ec850e7b4f377"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/composition-contract.json",
+      "bytes": 3190,
+      "sha256": "8cc96284c62af48501c579c340f5b9ae5265343988faa5e06c1e3512fd940559"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/file-ack.json",
+      "bytes": 86760,
+      "sha256": "b2a307474c379df71172e693a48e18ff89d198977af44800c5065d2328abe0b6"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/file-envelope.json",
+      "bytes": 89799,
+      "sha256": "65e1a9d9e646a2c27e5ecbb5baa893d8e9fb1016e4e6c7100ae608d5c8c13d7d"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/file-final-observation.json",
+      "bytes": 5529,
+      "sha256": "a6c3bca0ac026481907a61a68acfc91ca2fe8b41a10f5637873a49def3b1f9d2"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/file-independent-review.json",
+      "bytes": 6130,
+      "sha256": "c38c8f765b9ba2b4e5d5c4810a3d04a0c554e767c886f5c94704e5d536434acf"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/file-raw-review.json",
+      "bytes": 8404,
+      "sha256": "5479aca30f86d1ac9a7f5f7edf7f90d3fc6000a4576d11ab3b8f2868732a8023"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/manifest.json",
+      "bytes": 3236,
+      "sha256": "0259bb825217cbb1ed5e150941478a9912ff6179a25f5f4f7cc38c37996b8ebb"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/sql-ack.json",
+      "bytes": 56593,
+      "sha256": "cbc9bf6a370d7878481171967aef9a40c36cef4356bd898230801c48ddc98c08"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/sql-epoch.json",
+      "bytes": 28217,
+      "sha256": "f689d6ceb9d3f50e2d42b2dfcfb55de3544f0e6598fae0bd42a53ce52a8336f3"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/sql-independent-review.json",
+      "bytes": 5578,
+      "sha256": "7e051ed4d4aa2b539e9aedeba14a2abe1a19992e7688cc91dc696e45d9bba4ad"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/sql-observation.json",
+      "bytes": 76686,
+      "sha256": "74a7773a40b55994e4e527d73244062267e48b126fc5aeb2c142cd4226d58cce"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/sql-origin.json",
+      "bytes": 27702,
+      "sha256": "e8715cec51e57646095f5779b4c7a507918af385fadaf5db3892b278def94543"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/sql-result.json",
+      "bytes": 2238,
+      "sha256": "69638ebe7661da873b7ab9c9de59a3ebe61cb44c5342a7bc6b04f5228bb28ecf"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort/sql-transform-policy.json",
+      "bytes": 3471,
+      "sha256": "48e472cc93b1106087dcdced097649ac8da9a5fce13daae9c94da5469d48dbf5"
+    },
+    {
+      "path": "v116/redis_cohort/frozen-cohort-validation.mjs",
+      "bytes": 15216,
+      "sha256": "543872cc91c4a456eb835829301aa74fdbbfa1a3e191d2bdffda6ce77d615ac0"
+    },
+    {
+      "path": "v116/redis_cohort/input-admission.json",
+      "bytes": 1246,
+      "sha256": "70aeea90ba733837ae4109f3d6718a5792ab6c15ed29d148024c63d31333b1e5"
+    },
+    {
+      "path": "v116/redis_cohort/launch-authority.json",
+      "bytes": 1539,
+      "sha256": "922e9788b58a5469feb70650179314379cd7d578de1060e4acc008906123de84"
+    },
+    {
+      "path": "v116/redis_cohort/retained_input.py",
+      "bytes": 3132,
+      "sha256": "ae545d7fe96b560a4437a4540bcbdcd04254c833f89f0bd998aafe830e1c2817"
+    },
+    {
+      "path": "v116/redis_cohort/run.py",
+      "bytes": 12121,
+      "sha256": "4d1ca6d767991b49a8493d87a4bc487d0b6032afb2098f2950fe6e868b5f1223"
+    },
+    {
+      "path": "v116/redis_cohort/technical-authority.json",
+      "bytes": 3471,
+      "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 855,
+      "sha256": "ccbc9c5ab16313db8150b778fd9f3538cc85062efe9c77fdcdf50638f0db13b0"
+    }
+  ],
+  "scope": "Two fresh current isolated Redis replicas, immutable A07 lineage, unchanged native inspection APIs; no complete topology or whole-row acceptance."
+}
