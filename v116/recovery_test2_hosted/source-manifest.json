@@ -1,0 +1,109 @@
+{
+  "schema": "empireai-v116-test2-hosted-source-v1",
+  "parentCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-a2-test2-20261111-a01",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "imageConfigSHA256": "f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-a2-test2.yml",
+      "bytes": 3976,
+      "sha256": "83bdc5c41b04f69033900b529cb681a5e05be5578d92459d61b47ea2034f341e"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 664,
+      "sha256": "9cb3e676535701e23f209cd960c96d9e658d15ce2a2815e96b72c5c82ee7ebc0"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/admit.py",
+      "bytes": 4081,
+      "sha256": "61cbd16520a8a291e156c39d2e7ab93b8c7a21a47e1e8c9b2215cadd61dd7a53"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/conditional-execution-contract.json",
+      "bytes": 4777,
+      "sha256": "421c159f943ea1fcc7f0d330f0d3e45ff929b28cacd2ed3fb4ba375b08bbb0d2"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/frontend-controller.py",
+      "bytes": 8641,
+      "sha256": "d64df2a8e5fb9168d200b18357dea491b4bc75cb982da1e7bde81c37733f9057"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/frontend-pins.json",
+      "bytes": 1303,
+      "sha256": "5aaa31c5a520437ae0da682b14adb39c23e7555ed2cbf8939762c7107095abd6"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/launch-authority.json",
+      "bytes": 1721,
+      "sha256": "c78108cea8dddd6e0814c44676c871392a7eadbd80c8a2c67e172b65cb8282c1"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/retained_current_packages.py",
+      "bytes": 17270,
+      "sha256": "e45e24497297805ad086dfff2048d9e5dc24b2c8918b55195affad217b773024"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/retained_input.py",
+      "bytes": 3119,
+      "sha256": "181bf6a844f7230748855f335d9474ace48d591d2b34a3194af47e3a1d8b3bf5"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/run-test2.sh",
+      "bytes": 13353,
+      "sha256": "4b54a4dd6052add208105c7eb6a7f4d5d5242ec2d714dbf0cee5a3d967df5ad4"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/seal_evidence.py",
+      "bytes": 1306,
+      "sha256": "65758ef6a0e18440fdbc4dd1bb3db4d6a70244aa5618af5e4e5afb0b3b5c8825"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/supervise-test2.py",
+      "bytes": 4730,
+      "sha256": "00eb97f9f7f60c9a72e6321aee55b7f1a2d01d9f454aaa2242db0e3dd49dd633"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/technical-authority.json",
+      "bytes": 3471,
+      "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/verify-evidence-boundary.mjs",
+      "bytes": 5029,
+      "sha256": "920f011d7179195cfef72940af7a60cc6807fe52ffa5031b37fec87b20eba37e"
+    },
+    {
+      "path": "v116/test2/native-commerce-baseline.mjs",
+      "bytes": 2450,
+      "sha256": "7fd58d4a73074ec5c56472a37f7600054767dc242c1bd7511771f6557eaf1229"
+    },
+    {
+      "path": "v116/test2/v116-test2-business.mjs",
+      "bytes": 10714,
+      "sha256": "b9fa002d823443d2e7355f4d71fec1debf77625528c8e5501c91b0ee9b5abdb6"
+    },
+    {
+      "path": "v116/test2/v116-test2-coordinator.mjs",
+      "bytes": 19191,
+      "sha256": "dc13dbc6c0f651f44136f393e9195ccde0c6786617373f53c7f1e240c862aaa5"
+    },
+    {
+      "path": "v116/test2/v116-test2-domain-state.mjs",
+      "bytes": 17602,
+      "sha256": "fe5287f0174e58bbce1d5e57b6408f2d5f9a73f935c694bdf4492fba54464980"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 843,
+      "sha256": "c25ad279cac19fde8f133fe4bb503f62405c8b936375d53eeb89b7aa71563d34"
+    }
+  ]
+}
