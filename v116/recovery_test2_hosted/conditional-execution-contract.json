@@ -1,0 +1,71 @@
+{
+  "schema": "v116-test2-a02-corrected-evidence-execution-contract-v1",
+  "atUTC": "2026-11-11T09:56:22.858556+00:00",
+  "obligationId": "V116-A2-TEST2-A02-20261111",
+  "prospectiveMaximumUSD": "2.00",
+  "reservationStateClaimedByThisFile": false,
+  "financialAdmission": "Root saved cumulative ledger and exact published source/tree release before one create-event execution. No fixed ledger ordinal.",
+  "technicalPrerequisite": "Retained accepted V112 seven-role native foundation and exact source/package identity. Test2 itself must pass unchanged fresh-store admission, full native readiness, exact seven-role census and actual unchanged 5000ms scheduler commitment before any selection switch. No dependency on Test1 recovery enrollment or restore success; no inference from a failed Test1.",
+  "branchProposed": "work8/v116-a2-test2-20261111-a02",
+  "sourceParent": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "packageArtifact": 13340201255,
+  "durableOriginalPackageLibrary": "libfile_efd36c78d8408191bfafd079acb37dd6",
+  "packageZipSHA256": "39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755",
+  "backendImage": "sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
+  "retainedFrontendPinsFile": "frontend-pins.json",
+  "runtimeTopology": "Exact accepted backend7roles + private Redis journal. Exact nativebackend container also private anchor for readonly frontend containers. No production volume/network/credential mounts.",
+  "coordinatorEntry": "/app/scripts/work8/v116-test2-coordinator.mjs",
+  "readOnlyOverlayMap": {
+    "v116-test2-coordinator.mjs": "/app/scripts/work8/v116-test2-coordinator.mjs",
+    "v116-test2-business.mjs": "/app/scripts/work8/v116-test2-business.mjs",
+    "technical-authority.json": "/technical-authority.json",
+    "v116-test2-domain-state.mjs": "/app/scripts/work8/hh4-domain-state.mjs",
+    "native-commerce-baseline.mjs": "/app/scripts/work8/native-commerce-baseline.mjs",
+    "native-evidence-handoff.mjs": "/app/scripts/work8/native-evidence-handoff.mjs"
+  },
+  "hostController": [
+    "python3",
+    "frontend-controller.py",
+    "<exclusive-root>",
+    "<exact-backend-container-name>",
+    "<unique-resource-label>"
+  ],
+  "requiredNetworkAlias": "native-backend",
+  "requiredActualNamespaceCheck": "Host frontend-controller compares frontend /proc/self/ns/net with anchor and binds Docker container name or exact inspected id; outer verifies backend alias and soleinternalnetwork beforestart.",
+  "protocol": "Fresh exclusive host-owned evidence. Coordinator emits backend-ready/prepare-requested/upgrade-requested; host emits normal-ready/prepared-running/upgrade-ready; all exactsource/scopebound. Neverreuse markers.",
+  "permissions": "Reuse independently proven A03 evidence boundary/control; public actualimage0444/evidenceroot0711; preserve privatefile0600/nesteddir0700. Keep unchanged full native permission preflight.",
+  "bounds": {
+    "nativeOriginalGrantAndSequenceMs": 180000,
+    "hostFrontendMainSeconds": 400,
+    "hostCleanupCommandsSecondsEach": 10,
+    "outerContainerAndHostSupervisorSeconds": 450,
+    "hostedJobMaximumMinutes": 20,
+    "perFrontendMemoryBytes": 1073741824,
+    "perFrontendCPUs": 1,
+    "perFrontendPids": 128,
+    "perFrontendDockerLog": "json-file max-size1m max-file2"
+  },
+  "launchAndTermination": "Start backend container and frontend-controller concurrently; wait for both genuine exits/receipts. Outertrap must independently forciblyremove exactbackend,Redis,normal,prepared,selected andnetwork on anyexit; no process can persistafterjob.",
+  "acceptance": "Require native v116-test2-result PASS_AWAITING_INDEPENDENT_A2_21_REVIEW and host test2-frontend-controller PASS_PREPARATION_AND_SINGLE_SELECTION_SWITCH; source/package hashes, fullbyte artifact readback and independent originalpredicate adjudication. No whole-row automatic promotion.",
+  "providerExecutionByThisAgent": false,
+  "sourcePublicationByThisAgent": false,
+  "wholeRowAccepted": false,
+  "baselineInitialization": "Test2-specific strict two native bootstrap rows/all business+authority empty; no pre-start recovery enrollment or replay semantics required. Preserves actual native metadata and source schema in initializer inventory.",
+  "revision": 3,
+  "priorContractSHA256": "421c159f943ea1fcc7f0d330f0d3e45ff929b28cacd2ed3fb4ba375b08bbb0d2",
+  "dependencyCorrection": "A04 fresh-store failure is caused solely by pre-launch recovery enrollment absent from Test2. Test2 coordinator prepare\u2192grant\u2192launch leaves all canonical directories empty; dedicated initializer preserves exact two native bootstrap rows without requiring enrollment.",
+  "independentDependencyReview": {
+    "path": "v116_work/test2_independent_dependency_review.json",
+    "sha256": "0d2d776bc26464bc02692ecc78af6853b15edcf4c2060637c4e166235bf89888"
+  },
+  "evidenceCorrection": "Exactly three declared nonsecret native receipts are validated and made0644 without byte changes; host waits for an atomic complete marker and verifies native result hash/length. Uploader private files, policy files and unrelated evidence are untouched. Bounded outer collector/diagnostic retention also required.",
+  "priorActualFailure": {
+    "run": 42997253059,
+    "job": 130444313858,
+    "nativeExitCode": 1,
+    "nativeFirstFailure": "UNKNOWN_NO_ARTIFACT_SURVIVED",
+    "demonstratedEvidenceFailure": "host sealer EACCES on root-owned0600 test2-native-startup.json",
+    "actualArtifacts": [],
+    "noClaimEvidenceCorrectionFixesUnknownBusinessCause": true
+  }
+}

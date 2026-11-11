@@ -1,0 +1,119 @@
+{
+  "schema": "empireai-v116-test2-hosted-source-v1",
+  "parentCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-a2-test2-20261111-a02",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "imageConfigSHA256": "f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-a2-test2.yml",
+      "bytes": 4360,
+      "sha256": "a582431f9bf914c6a8e4b2e65ff7624cf2159f33b48fb1eee27816099cb18c74"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 664,
+      "sha256": "2f5f4c98d2bf006c2573818c1860b4e5b0bb9ed18baaca340d0e8f831534c655"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/admit.py",
+      "bytes": 4171,
+      "sha256": "3b5a47c74578f87cae12b96521ee65bfa8df50ae3ccf262197e96876a216df34"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/conditional-execution-contract.json",
+      "bytes": 5545,
+      "sha256": "f137c8849f728fc44279624f678a4aa0c15fa4286b2d9f9d1d8e97de814e54db"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/evidence-custody.py",
+      "bytes": 8215,
+      "sha256": "882c7e8c66d3d955c75ff3555dcd0ad02e7ae19eafbe9d2614c93724738eef3c"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/frontend-controller.py",
+      "bytes": 9187,
+      "sha256": "e521eaa6769e675709b762130588ffe3df9942ad94d4ff7fcc7fb0269ca30351"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/frontend-pins.json",
+      "bytes": 1303,
+      "sha256": "5aaa31c5a520437ae0da682b14adb39c23e7555ed2cbf8939762c7107095abd6"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/launch-authority.json",
+      "bytes": 2344,
+      "sha256": "8ef8c9159ae4d241d0d97e7fc5bfa178aa9a12ea4b8845faab2de21007c1f0a8"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/retained_current_packages.py",
+      "bytes": 17270,
+      "sha256": "e45e24497297805ad086dfff2048d9e5dc24b2c8918b55195affad217b773024"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/retained_input.py",
+      "bytes": 3119,
+      "sha256": "181bf6a844f7230748855f335d9474ace48d591d2b34a3194af47e3a1d8b3bf5"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/run-test2.sh",
+      "bytes": 14247,
+      "sha256": "e7104decc537104c714c81d351723122447fe85b053ae38e720178d36aa29004"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/seal_evidence.py",
+      "bytes": 1510,
+      "sha256": "6e2b41556bbaa33e348c15ac5c9d888ddce7c970c118adfc095e52c3b9b86ee1"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/supervise-test2.py",
+      "bytes": 4730,
+      "sha256": "00eb97f9f7f60c9a72e6321aee55b7f1a2d01d9f454aaa2242db0e3dd49dd633"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/technical-authority.json",
+      "bytes": 3471,
+      "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+    },
+    {
+      "path": "v116/recovery_test2_hosted/verify-evidence-boundary.mjs",
+      "bytes": 8192,
+      "sha256": "78aae57c325e31665af3c3ab07f98d701b86f0a1573d0d3b2ee731a3bf26d678"
+    },
+    {
+      "path": "v116/test2/native-commerce-baseline.mjs",
+      "bytes": 2450,
+      "sha256": "7fd58d4a73074ec5c56472a37f7600054767dc242c1bd7511771f6557eaf1229"
+    },
+    {
+      "path": "v116/test2/native-evidence-handoff.mjs",
+      "bytes": 3771,
+      "sha256": "4b30d57abd83d33f0da9ba25d9bff6bfe92ae8eb78af20eea75cf13d5b8e5ec7"
+    },
+    {
+      "path": "v116/test2/v116-test2-business.mjs",
+      "bytes": 10714,
+      "sha256": "b9fa002d823443d2e7355f4d71fec1debf77625528c8e5501c91b0ee9b5abdb6"
+    },
+    {
+      "path": "v116/test2/v116-test2-coordinator.mjs",
+      "bytes": 19566,
+      "sha256": "3df96091325d619b9469518aad0c0e1b8370cd813925927591733d89b6ac98cf"
+    },
+    {
+      "path": "v116/test2/v116-test2-domain-state.mjs",
+      "bytes": 17602,
+      "sha256": "fe5287f0174e58bbce1d5e57b6408f2d5f9a73f935c694bdf4492fba54464980"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 843,
+      "sha256": "0e765de865f2d35109a3e000b36ce970bab767e16dabced23fbb963bc3e6a131"
+    }
+  ]
+}
