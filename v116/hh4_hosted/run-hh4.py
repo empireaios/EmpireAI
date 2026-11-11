@@ -2,6 +2,7 @@
 """One original HH4 producer, then two original read-only inspection consumers."""
 import datetime,hashlib,json,os,pathlib,re,selectors,signal,subprocess,sys,time
 from process_boundary import ProcessBoundary
+from source_binding import verify_git,verify_image
 SOURCE='6c1e63ba20619ee480742fd87dc810ca93152e22'
 IMAGE='sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0'
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
@@ -24,7 +25,7 @@ def main():
  evidence=root/'evidence';evidence.mkdir(exist_ok=True);assert sha(node)==NODE_SHA
  env={'PATH':str(control)+':/usr/bin:/bin','LANG':'C.UTF-8','TZ':'UTC','V116_HH4_RUN_ID':run,'V116_HH4_ROOT':str(root),'V116_HH4_CONTROL':str(control)}
  original=json.loads(regular(control/'original-inputs.json'))
- for name,digest in original['applicationSHA256'].items():assert sha(repo/name)==digest,name
+ verify_git(repo,control);verify_image(root,control)
  for name,digest in original['controlSHA256'].items():assert sha(control/name)==digest,name
  assert sha(control/'technical-authority.json')=='f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3'
  assert subprocess.check_output([str(node),'--version'],env=env,text=True,timeout=5).strip()=='v22.23.2'
@@ -95,7 +96,7 @@ def main():
    assert graphResult['mode']=='graph'and graphResult['originalSessionAuthenticated']and graphResult['missionAndFinancialHistoryPreserved']and graphResult['queueAdmissionRemainsFenced']
    assert graphResult['authorityImported']is False and graphResult['sourceManifestBootAllowed']is False and graphResult['externalEffects']==0 and graphResult['paidInference']==0
   summary['scopes']={'twoOriginalInspectionConsumersPassed':consumersPassed,'defaultGraphExaminationCompleted':graphCompleted,'defaultGraphStatus':graphResult.get('status','NOT_PRODUCED'),'graphMutationIndependentAdjudicationRequired':bool(graphResult.get('targetTableChanges')),'indexOrPendingModesExecuted':False}
-  for name,d in original['applicationSHA256'].items():assert sha(repo/name)==d,name
+  verify_git(repo,control);verify_image(root,control)
   for name,d in original['controlSHA256'].items():assert sha(control/name)==d,name
   assert consumersPassed and graphCompleted,'ONE_OR_MORE_ORIGINAL_SCOPES_FAILED'
   summary.update(status='PASS_ORIGINAL_HH4_AND_DEFAULT_GRAPH_EXECUTION_PENDING_INDEPENDENT_ADJUDICATION',digest=digest,originalApplicationChanged=False,rawCanonicalRecordsPublished=False)

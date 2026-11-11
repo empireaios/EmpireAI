@@ -10,6 +10,9 @@ for item in index['payloads']:
 def read(relative):return json.loads((out/relative).read_text())
 def original(relative):
  x=read(relative);assert x['schema']=='v116-hh4-private-source-derived-receipt-v1'and x['originalRelativePath']==relative;return x['evidence']
+imageProof=read('outer/evidence/image-original-inputs.json');assert imageProof['status']=='PASS_ALL_ORIGINAL_INPUTS_FROM_NEVER_STARTED_EXACT_IMAGE'and imageProof['containerNeverStarted']is True and imageProof['imageId']=='sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0'
+assert imageProof['sourceBindingSHA256']==hashlib.sha256((control/'source-binding.json').read_bytes()).hexdigest()
+assert len(imageProof['files'])==35 and {x['path']:x['sha256']for x in imageProof['files']}==json.loads((control/'original-inputs.json').read_text())['applicationSHA256']
 inner=read('INDEX.json');assert inner['collectionStatus']=='PASS_BOUNDED_COLLECTION'and not any(x['status']=='REFUSED'for x in inner['observations'])
 outer=read('outer/collection.json');assert not any(x['status']=='REFUSED'for x in outer['observations'])
 summary=original('evidence/hh4-execution-summary.json');assert summary['status']=='PASS_ORIGINAL_HH4_AND_DEFAULT_GRAPH_EXECUTION_PENDING_INDEPENDENT_ADJUDICATION'

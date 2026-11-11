@@ -11,6 +11,7 @@ test "$(owned_docker image inspect --format '{{.Id}}' "$image")" = "$image"
 owned_docker create --name "$name" --label "empireai.v116.hh4.package=$GITHUB_RUN_ID" --entrypoint /bin/true "$image" > "$root/evidence/package-container.txt"
 mkdir -p "$root/node/bin" "$root/docker-home" "$root/transport"
 chmod 700 "$root/docker-home" "$root/transport"
+python3 -B v116/hh4_hosted/image-inputs.py "$root" "$name" "$GITHUB_RUN_ID"
 owned_docker cp "$name:/usr/local/bin/node" "$root/node/bin/node"
 owned_docker container rm "$name" >/dev/null
 test "$(sha256sum "$root/node/bin/node" | cut -d' ' -f1)" = '3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'

@@ -1,41 +1,28 @@
 {
   "schema": "empireai-v116-hh4-hosted-source-v1",
   "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
-  "branch": "work8/v116-o42-q5-hh4-20261111-a01",
+  "branch": "work8/v116-o42-q5-hh4-20261111-a02",
   "changedPaths": [
     ".github/workflows/work8-v116-hh4.yml",
     "empireai-web/vercel.json",
     "v116/hh4_hosted/admit.py",
-    "v116/hh4_hosted/cleanup-package.py",
-    "v116/hh4_hosted/collect.py",
-    "v116/hh4_hosted/dependencies/fetch-and-stage.py",
-    "v116/hh4_hosted/dependencies/pinned-dependencies.json",
-    "v116/hh4_hosted/docker",
     "v116/hh4_hosted/final.py",
-    "v116/hh4_hosted/hh4-assurance-host.mjs",
-    "v116/hh4_hosted/hh4-assurance-prerequisite.mjs",
-    "v116/hh4_hosted/hh4-assurance-source-inputs.json",
-    "v116/hh4_hosted/hh4-consumer-source-inputs.json",
-    "v116/hh4_hosted/hh4-held-capture-controller.mjs",
-    "v116/hh4_hosted/hh4-original-consumers.mjs",
-    "v116/hh4_hosted/hh4-outer-cohort.mjs",
+    "v116/hh4_hosted/image-inputs.py",
     "v116/hh4_hosted/launch-authority.json",
     "v116/hh4_hosted/original-inputs.json",
     "v116/hh4_hosted/prepare.sh",
-    "v116/hh4_hosted/process_boundary.py",
-    "v116/hh4_hosted/retained_input.py",
     "v116/hh4_hosted/run-hh4.py",
     "v116/hh4_hosted/seal.py",
+    "v116/hh4_hosted/source-binding.json",
     "v116/hh4_hosted/source-manifest.json",
-    "v116/hh4_hosted/technical-authority.json",
-    "v116/hh4_hosted/terminate.py",
+    "v116/hh4_hosted/source_binding.py",
     "vercel.json"
   ],
   "files": [
     {
       "path": ".github/workflows/work8-v116-hh4.yml",
       "bytes": 4414,
-      "sha256": "dde2b474fd320bd5f8f9d326925b1d9c274f3eef369c5bfab319a6d8b8cd7c45",
+      "sha256": "11299e839d75db9454a02c71ad97f873b5015089b5dc9e36c029a746a4a61521",
       "gitMode": "100644"
     },
     {
@@ -46,14 +33,14 @@
     },
     {
       "path": "empireai-web/vercel.json",
-      "bytes": 666,
-      "sha256": "f0a42246ce4b36e03cc102286a5bc980c120a47aab0d3d60f7914ba3b6745eb9",
+      "bytes": 717,
+      "sha256": "e12f7d5141313abd3839e81998960a21a14909235a77a6d9d2894f2f6ba6f478",
       "gitMode": "100644"
     },
     {
       "path": "v116/hh4_hosted/admit.py",
-      "bytes": 4378,
-      "sha256": "76c40ba3a579c7ba669add944582c661b8e1ab1d960bd717bc2be61493b17f20",
+      "bytes": 4531,
+      "sha256": "00cf72e2a52bfe6e5aa23bfeef8b2805a520c74f261cba0d35ae284cfc7c9a4c",
       "gitMode": "100644"
     },
     {
@@ -88,8 +75,8 @@
     },
     {
       "path": "v116/hh4_hosted/final.py",
-      "bytes": 5174,
-      "sha256": "fd55995fca2725f3d310ae80f9199fa415fec2174668cc570450440606e91fac",
+      "bytes": 5755,
+      "sha256": "b69a4cfa38cc315c74aca6e8b7265ff3bd4acd58cd105091ce2c56ebf6883a6b",
       "gitMode": "100644"
     },
     {
@@ -135,21 +122,27 @@
       "gitMode": "100644"
     },
     {
+      "path": "v116/hh4_hosted/image-inputs.py",
+      "bytes": 2209,
+      "sha256": "b7c6e379e4f33ad72430c0d20e9939c68a27707528d66f8705451537d116b045",
+      "gitMode": "100644"
+    },
+    {
       "path": "v116/hh4_hosted/launch-authority.json",
       "bytes": 2809,
-      "sha256": "5bca40fd8d874e624df16a3bf93db14e3d46a36288e95c7dca6746a92714db3d",
+      "sha256": "171265310a69c2cedf5c2a540e2f5b70d82ef0cc6c30bcf64418d6efb08700d1",
       "gitMode": "100644"
     },
     {
       "path": "v116/hh4_hosted/original-inputs.json",
       "bytes": 5592,
-      "sha256": "1b8f8f5f123300ee320b606f5458f0cc755adb7194f9c6b80605816dfc0ed500",
+      "sha256": "0afdb5be42744386ef4130bae95606f7b57cf5da6615099cbda342e219b418eb",
       "gitMode": "100644"
     },
     {
       "path": "v116/hh4_hosted/prepare.sh",
-      "bytes": 1094,
-      "sha256": "293ff0cfce5afe0f229c1babf02f8610b64263c264be9f0a742d17daa4ceb5ab",
+      "bytes": 1170,
+      "sha256": "4ba9f85abbff31e2b35f693e0bc5c48f3c6650f46581e2ed18cd3a5820f693b7",
       "gitMode": "100644"
     },
     {
@@ -166,14 +159,26 @@
     },
     {
       "path": "v116/hh4_hosted/run-hh4.py",
-      "bytes": 10848,
-      "sha256": "28f9f70e07330b2cfbca5bf0e30f52e11a3a17f6daab79f34fc049c35978b31d",
+      "bytes": 10829,
+      "sha256": "9f7df24c3dda94c1bf76c3e50556b88b6a11fb45eec741cb0e2569148fd2b1ec",
       "gitMode": "100644"
     },
     {
       "path": "v116/hh4_hosted/seal.py",
-      "bytes": 3360,
-      "sha256": "2a6a1af2b7446ecad682d7a5c3d5a19f16d57d15654e543c04f9472574dc9a3c",
+      "bytes": 3398,
+      "sha256": "cfa624f860052657ac253dd3a9ea8624466a5aabccbb97263ea679882c38435c",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/hh4_hosted/source-binding.json",
+      "bytes": 4561,
+      "sha256": "190ece91ebed52937817d5f157ea591a4e66b2ce2c58c57611d6c0ccf30aa1ca",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/hh4_hosted/source_binding.py",
+      "bytes": 2598,
+      "sha256": "cc0df9b0c2d2daaee99f6f9e80650ccc8b784136edc17d471e04f8bf8b2760b0",
       "gitMode": "100644"
     },
     {
@@ -190,8 +195,8 @@
     },
     {
       "path": "vercel.json",
-      "bytes": 845,
-      "sha256": "5eeec8c1c4852d567fa1cfff87d8e5bc9abb8f320660792128df433b4320e934",
+      "bytes": 896,
+      "sha256": "26eb219739c662cfdbd6a89066d65a471b47708bff4699ffcc72ceb8d0e96d62",
       "gitMode": "100644"
     }
   ],
