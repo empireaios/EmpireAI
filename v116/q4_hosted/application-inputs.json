@@ -1,0 +1,49 @@
+{
+  "schema": "empireai-v116-current-q4-immutable-inputs-v1",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "imageConfigSHA256": "f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
+  "files": [
+    {
+      "path": "deployment/runtime-membership-controller.hosted.test.cjs",
+      "bytes": 11684,
+      "sha256": "bc16de886279d4730294d2cbbad40b045190d7896df2ae968ecb06d527960769"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "bytes": 20923,
+      "sha256": "59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b"
+    },
+    {
+      "path": "deployment/runtime-membership-bootstrap.mjs",
+      "bytes": 3973,
+      "sha256": "84bd06b3cd85727cf8f48ee2668065361349323e5285429f63b90978b7856ea5"
+    },
+    {
+      "path": "deployment/runtime-generation.cjs",
+      "bytes": 11435,
+      "sha256": "2103a04ed2342c803de9127e1a109e7b6f92543c9bfa59dea1eb866d406f926d"
+    },
+    {
+      "path": "deployment/runtime-revision.cjs",
+      "bytes": 592,
+      "sha256": "631c36a3760e2a3db8cbb414b9070911a1fa8acfa4c3cf6acb96b7fea4d85cd8"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-writer.mjs",
+      "bytes": 1871,
+      "sha256": "f28f272613576647bcd9f7bf1f6be88574385b3220d2724d643f03a400b4ce88"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-redis.cjs",
+      "bytes": 1432,
+      "sha256": "1ba5ddd94fd64c8adf673e4f08af6b1de8e3ad9a8841984c45e15d6bdf2ec3f4"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-runner.cjs",
+      "bytes": 583,
+      "sha256": "c9895772f773d472f0195acdb62aa613871978b9fe8c341cc570562a384c99c8"
+    }
+  ],
+  "originalTestUnchanged": true,
+  "acceptedHistoricalUNotInvalidated": true
+}
