@@ -1,0 +1,67 @@
+#!/usr/bin/python3
+"""Forward only the frozen F27/F29 controller's real Docker operations.
+
+No Docker responses are simulated. Bounded log rotation and an attribution label
+are added to new isolated containers; original fault/assertion logic is unchanged.
+"""
+import hashlib,json,os,pathlib,re,subprocess,sys,time
+REAL='/usr/bin/docker';args=sys.argv[1:]
+phase=os.environ['V116_Q5_PHASE'];assert phase in ['f27','f29']
+pid=os.environ['V116_Q5_CONTROLLER_PID'];assert pid.isdigit()
+source=os.environ['V116_Q5_APPLICATION'];evidence=pathlib.Path(os.environ['V116_Q5_PHASE_EVIDENCE']).resolve(strict=True)
+control=pathlib.Path(os.environ['V116_Q5_CONTROL_EVIDENCE']).resolve(strict=True)
+image='sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0'
+names=['work8-f27-'+pid]if phase=='f27'else['work8-f29-'+pid+'-'+x for x in ['both-observers-killed','launcher-and-guard-killed']]
+assert args and args[0]in ['run','inspect','exec','top','kill','logs','rm']
+def value(flag):
+ assert args.count(flag)==1,flag
+ return args[args.index(flag)+1]
+if args[0]=='run':
+ name=value('--name');assert name in names
+ assert value('--network')=='none'and value('--cap-drop')=='ALL'and value('--security-opt')=='no-new-privileges'
+ assert value('--pids-limit')=='512'and value('--memory')=='3g'and value('--cpus')=='2'
+ assert value('--user')==str(os.getuid())+':'+str(os.getgid())
+ assert value('--entrypoint')=='node'and args.count(image)==1
+ assert not any(x in args for x in ['--privileged','--cap-add','--device','--pid','--ipc','--uts','--restart','--volumes-from','--mount'])
+ mounts=[args[i+1]for i,x in enumerate(args)if x=='-v']
+ expected=[str(evidence if phase=='f27'else evidence/name.split('work8-f29-'+pid+'-',1)[1])+':/evidence']
+ if phase=='f29':expected.extend([source+'/scripts/work8/f29-contained-runtime.cjs:/exam.cjs:ro',source+'/scripts/work8/f29-financial-proof.cjs:/financial-proof.cjs:ro'])
+ assert mounts==expected,(mounts,expected)
+ dockerFlags=args[:args.index(image)]
+ environment=[dockerFlags[i+1]for i,x in enumerate(dockerFlags)if x=='-e']
+ assert environment==(['WORK8_F27_OUTER=NETWORK_NONE_ISOLATED','WORK8_KERNEL_EGRESS=DENIED','RAILWAY_GIT_COMMIT_SHA=6c1e63ba20619ee480742fd87dc810ca93152e22']if phase=='f27'else['WORK8_F29_EXAM=NETWORK_NONE_ISOLATED'])
+ prefix=['run','-d','--name',name,'--user',str(os.getuid())+':'+str(os.getgid()),'--network','none','--cap-drop','ALL','--security-opt','no-new-privileges','--pids-limit','512','--memory','3g','--cpus','2']
+ for mount in expected:prefix+=['-v',mount]
+ for item in environment:prefix+=['-e',item]
+ prefix+=['--entrypoint','node',image]
+ assert args[:len(prefix)]==prefix,'UNREVIEWED_RUN_OPTION_OR_ORDER'
+ if phase=='f27':
+  assert len(args)==len(prefix)+2 and args[-2]=='-e'
+  manifest=json.loads((pathlib.Path(__file__).resolve().parent/'application-inputs.json').read_text())
+  assert hashlib.sha256(args[-1].encode()).hexdigest()==manifest['f27StartupCodeSHA256'],'UNREVIEWED_F27_STARTUP_CODE'
+ else:assert args[len(prefix):]==['/exam.cjs']
+ assert not any(x.startswith('--log-')for x in args)
+ at=args.index(image);args[at:at]=['--log-driver','json-file','--log-opt','max-size=256k','--log-opt','max-file=2','--label','empireai.v116.q5='+os.environ['V116_Q5_RUN_ID']]
+else:
+ shape=False
+ for name in names:
+  shape|=args==['inspect',name]or args==['inspect','--format','{{.State.Running}}',name]
+  shape|=len(args)==5 and args[:4]==['exec',name,'node','-e']
+  shape|=args==['top',name,'-eo','pid,ppid,pgid,args']
+  shape|=args in [['kill',name],['kill','--signal','KILL',name],['logs',name],['rm','-f',name]]
+ assert shape,'UNREVIEWED_OR_FOREIGN_DOCKER_ARGUMENTS'
+ if args[0]=='rm':
+  for name in names:
+   if name not in args:continue
+   actual=subprocess.run([REAL,'inspect',name],stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=15)
+   if actual.returncode==0:
+    assert len(actual.stdout)<=1048576
+    item=json.loads(actual.stdout)[0];assert item['Image']==image and item['Config']['Labels'].get('empireai.v116.q5')==os.environ['V116_Q5_RUN_ID']
+    (control/(name+'-pre-removal-inspect.json')).write_bytes(actual.stdout)
+journal=control/'docker-transport.jsonl'
+row=json.dumps({'atMs':int(time.time()*1000),'phase':phase,'command':args[0],'controllerPid':int(pid),'argumentSHA256':hashlib.sha256(json.dumps(args).encode()).hexdigest(),'realExecutable':REAL})+'\n'
+assert not journal.exists()or journal.stat().st_size+len(row.encode())<=4194304
+fd=os.open(journal,os.O_WRONLY|os.O_CREAT|os.O_APPEND,0o600)
+try:os.write(fd,row.encode())
+finally:os.close(fd)
+os.execve(REAL,[REAL]+args,{'PATH':'/usr/bin:/bin','LANG':'C.UTF-8','HOME':os.environ['HOME']})

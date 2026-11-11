@@ -1,0 +1,23 @@
+{
+  "schema": "v116-q5-outer-original-inputs-v1",
+  "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "image": "sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
+  "files": {
+    "scripts/work8/f27-outer-controller.cjs": "ca6004849b54be462eefd55a40f7c1f0cbc0b43a9c0efa4994e327edb7220ee3",
+    "scripts/work8/f27-external-oracle.cjs": "2aafe22a8b12a7127e4876be27ead3377bbfa7367a43d56cd014776b848d81fe",
+    "scripts/work8/f27-change-boundary.cjs": "8c8572447f2714b8952c2c6e8af0e3e2a8fa35a1ef96636f80ff222517414468",
+    "scripts/work8/f29-outer-controller.cjs": "469f5b400eceb1bf7c58eb0541d666d91a036682ee2ea87a3bec319d77865a14",
+    "scripts/work8/f29-contained-runtime.cjs": "c829686a358447f7a3441a55c954be6a0d89de0f0342b9daba2aafbd7d895960",
+    "scripts/work8/f29-financial-proof.cjs": "64581fdbb632cf796821bd246eb765d3e6d744a548c294f2f011ccb410a0eb91",
+    "backend/src/validation/tests/work8-joined-assurance.test.ts": "b434c8598ee5c3da2e590f41b49340e033d8fe22bcd5bdf240fc785df68f7f67",
+    "deployment/locked-supervision.cjs": "1fc0959d5b654aa91c0ab58a860dc59a498ffbbb3934eb469bc2e1687d919b84",
+    "deployment/assurance-supervisor.cjs": "e49baca21653562b3c00532907762027a4782473c14ba12b0d4fca9719daec21",
+    "deployment/observer-capture.cjs": "c9513c42c917b774b605a7d2e5cd454d01d7cc88dcd7508bf341cfed8272bc1b",
+    "deployment/assurance-discrepancy-readback.cjs": "06458c2b2eecfda41708729c0d7ba4f19dc37c913a0c71e3f4e9d15049a3139f",
+    "deployment/launcher-loss-guard.cjs": "784553efa00db2bfbc09938dce88f3ea59e93b845df8bb4936f3c36fd04b982c",
+    "deployment/canary-launcher.cjs": "de8156904799d26f7dc8f78eee0019bb4703724ec25945c19e05184e2ac15a4d",
+    "deployment/runtime-revision.cjs": "631c36a3760e2a3db8cbb414b9070911a1fa8acfa4c3cf6acb96b7fea4d85cd8"
+  },
+  "fullApplicationBinding": "True Git6c checkout + exact backend OCI archiveb99d11... imagef28556... runtime marker6c; no compile/rebuild or app edit.",
+  "f27StartupCodeSHA256": "cdbb3e842ec171c9141f71dc8da443a20b376ebd9b23577b4f5b68051d54be97"
+}

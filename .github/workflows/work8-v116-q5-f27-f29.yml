@@ -1,0 +1,113 @@
+name: Work 8 V116 original F27 F29 scopes
+on:
+  create:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: work8-v116-q5-f27-f29-20261111-a01
+  cancel-in-progress: false
+jobs:
+  original-external-controller-scopes:
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v116-o42-q5-f27-f29-20261111-a01' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out the exact reviewed wrapper
+        id: wrapper
+        timeout-minutes: 2
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+      - name: Establish the original repository Node pin
+        timeout-minutes: 2
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: '.node-version'
+          check-latest: false
+      - name: Admit the exact reviewed source and bounded authority
+        id: admission
+        timeout-minutes: 1
+        run: python3 -B v116/q5_hosted/admit.py
+      - name: Check out the genuine unchanged application commit
+        id: application
+        timeout-minutes: 3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 6c1e63ba20619ee480742fd87dc810ca93152e22
+          path: application
+          fetch-depth: 1
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+      - name: Retrieve the exact retained immutable backend package
+        id: download
+        timeout-minutes: 7
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B v116/q5_hosted/retained_input.py
+      - name: Prepare the unchanged image and exact Node binary without startup
+        id: prepare
+        timeout-minutes: 3
+        run: bash v116/q5_hosted/prepare.sh
+      - name: Execute the two independent original scopes once
+        id: examination
+        timeout-minutes: 39
+        run: |
+          set -euo pipefail
+          env -i PATH=/usr/bin:/bin LANG=C.UTF-8 TZ=UTC \
+            /usr/bin/timeout --signal=TERM --kill-after=15s 2250s \
+            /usr/bin/python3 -B "$GITHUB_WORKSPACE/v116/q5_hosted/run-controllers.py" \
+            "$GITHUB_WORKSPACE/application" "$RUNNER_TEMP/v116-q5-$GITHUB_RUN_ID/node/bin/node" \
+            "$RUNNER_TEMP/v116-q5-$GITHUB_RUN_ID" "$GITHUB_RUN_ID"
+      - name: Independently stop only this run's recorded controllers and containers
+        id: termination
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 2
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/v116-q5-$GITHUB_RUN_ID"
+          env -i PATH=/usr/bin:/bin LANG=C.UTF-8 TZ=UTC \
+            /usr/bin/python3 -B "$GITHUB_WORKSPACE/v116/q5_hosted/terminate.py" "$root" "$GITHUB_RUN_ID"
+      - name: Remove only the never-started current-run package container
+        id: package_cleanup
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 1
+        run: >-
+          env -i PATH=/usr/bin:/bin LANG=C.UTF-8 TZ=UTC
+          /usr/bin/python3 -B "$GITHUB_WORKSPACE/v116/q5_hosted/cleanup-package.py"
+          "$RUNNER_TEMP/v116-q5-$GITHUB_RUN_ID" "$GITHUB_RUN_ID"
+      - name: Preserve mandatory receipts and bounded original diagnostics
+        id: collection
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 2
+        run: python3 -B v116/q5_hosted/collect.py "$RUNNER_TEMP/v116-q5-$GITHUB_RUN_ID"
+      - name: Save one bounded seven-day evidence artifact
+        id: upload
+        if: ${{ always() && steps.collection.outcome == 'success' }}
+        timeout-minutes: 3
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v116-q5-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v116-q5-${{ github.run_id }}/evidence/
+          retention-days: 7
+          compression-level: 6
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+      - name: Adjudicate both original scopes after evidence preservation
+        if: ${{ always() && steps.upload.outcome == 'success' }}
+        timeout-minutes: 1
+        run: python3 -B v116/q5_hosted/final.py "$RUNNER_TEMP/v116-q5-$GITHUB_RUN_ID" "$GITHUB_RUN_ID"

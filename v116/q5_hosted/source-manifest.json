@@ -1,0 +1,136 @@
+{
+  "schema": "empireai-v116-q5-hosted-source-v1",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-o42-q5-f27-f29-20261111-a01",
+  "changedPaths": [
+    ".github/workflows/work8-v116-q5-f27-f29.yml",
+    "empireai-web/vercel.json",
+    "v116/q5_hosted/admit.py",
+    "v116/q5_hosted/application-inputs.json",
+    "v116/q5_hosted/cleanup-package.py",
+    "v116/q5_hosted/collect.py",
+    "v116/q5_hosted/controller-entry.py",
+    "v116/q5_hosted/docker",
+    "v116/q5_hosted/final.py",
+    "v116/q5_hosted/launch-authority.json",
+    "v116/q5_hosted/prepare.sh",
+    "v116/q5_hosted/process_boundary.py",
+    "v116/q5_hosted/retained_input.py",
+    "v116/q5_hosted/run-controllers.py",
+    "v116/q5_hosted/source-manifest.json",
+    "v116/q5_hosted/technical-authority.json",
+    "v116/q5_hosted/terminate.py",
+    "vercel.json"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-q5-f27-f29.yml",
+      "bytes": 4654,
+      "sha256": "b16832c0915393d56c60af111422c5ba09a09bc08822fb6b542c0a73c0cafa71",
+      "gitMode": "100644"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a",
+      "gitMode": "100644"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 670,
+      "sha256": "5a54df74bccb0354f539e9006185dbd71f0223d3bba0c8661958b7610894ced5",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/admit.py",
+      "bytes": 4003,
+      "sha256": "f1c64670b29a1e9da4e896864c3895c208a95985fbb666125fb07f94a55d187b",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/application-inputs.json",
+      "bytes": 2045,
+      "sha256": "48d84028ef932d9012554ed8e0960c4b68294fdee4c3d702a40e51b5504ecd46",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/cleanup-package.py",
+      "bytes": 1033,
+      "sha256": "3c1bdc9e8b7b927b410681812fab381dbbc033ea26d1c21ea129aaf5f3748bdc",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/collect.py",
+      "bytes": 3638,
+      "sha256": "526d38582c6caabf82c8ee34488b3e0448389deccc8665fcbb5713cefe65efed",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/controller-entry.py",
+      "bytes": 517,
+      "sha256": "93e6528fc66e0244f012dcaa85c7069bf403e45d43dc25a072a7f2381f878b39",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/docker",
+      "bytes": 4657,
+      "sha256": "13c515c8d9007565cf10ec510dc09e5b9251119cffe046b4d9d293b6997095b5",
+      "gitMode": "100755"
+    },
+    {
+      "path": "v116/q5_hosted/final.py",
+      "bytes": 2888,
+      "sha256": "e8db90fda683a76de0c993c24f6923e2df16a50a293fec46d627fd290e2c0776",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/launch-authority.json",
+      "bytes": 1218,
+      "sha256": "7a36084c4e7140873cfdbaf794970d469dd2a4f6dac403f3ff422b5e3bbe098b",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/prepare.sh",
+      "bytes": 1527,
+      "sha256": "b6f03d273b6dfd024f8c790ad23307bd1b5c135343ba59b8c0287f9e78f16b8e",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/process_boundary.py",
+      "bytes": 1097,
+      "sha256": "d230385afca630a0eab2925c416cd98f524647922561d67d9beed49e32d814db",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/retained_input.py",
+      "bytes": 3113,
+      "sha256": "78f7e3b37f58320f88ddea0eae1e07577fcab911b9f98b96bdcb0b653b03dec2",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/run-controllers.py",
+      "bytes": 8577,
+      "sha256": "318f0278d8b19d43cf4c8980a70c4ae5fbdf31dac9c6a4e10c563ad2a5aafa45",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/technical-authority.json",
+      "bytes": 3471,
+      "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/q5_hosted/terminate.py",
+      "bytes": 3295,
+      "sha256": "56dd645ad9c639f9608481f623883d9cdef6f28e0d3ee1f0c426f1c084f035a8",
+      "gitMode": "100644"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 849,
+      "sha256": "2fbfe65ca21d05733b3763a25cf3135f024fba56f9d458dae835518c07ab2e29",
+      "gitMode": "100644"
+    }
+  ],
+  "wholeQ5Accepted": false
+}

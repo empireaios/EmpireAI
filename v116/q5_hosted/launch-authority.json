@@ -1,0 +1,31 @@
+{
+  "schema": "v116-q5-original-outer-technical-authority-v1",
+  "obligationId": "V116-O42-Q5-F27-F29-A01-20261111",
+  "prospectiveMaximumUSD": "1.00",
+  "masterCeilingUSD": "1000.00",
+  "reservationStateClaimedByThisFile": false,
+  "maximumAttempts": 1,
+  "jobTimeoutMinutes": 60,
+  "scope": [
+    "originalF27externalcompoundfault",
+    "originalF29bothobserverloss",
+    "originalF29launcherandguardloss"
+  ],
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "applicationCodeChanged": false,
+  "originalControllerAssertionsChanged": false,
+  "originalModuleTestsAlreadyPassedNotSelected": true,
+  "F27MaximumSeconds": 330,
+  "F29MaximumSeconds": 1830,
+  "artifactMaximumBytes": 20971520,
+  "artifactRetentionDays": 7,
+  "DockerLogBytesPerContainerMaximum": 524288,
+  "sourceBranch": "work8/v116-o42-q5-f27-f29-20261111-a01",
+  "financialAdmission": "Root independently verifies saved unique cumulative master-ledger reservation and exact reviewed source tree before creating trigger branch. No ledger ordinal/hash preclaimed.",
+  "productionMutation": false,
+  "Pillow": "NOT_BORN",
+  "Commerce": "LOCKED",
+  "Work9": "INACTIVE",
+  "A5": "CLOSED_ACCEPTED_NO_RERUN",
+  "wholeQ5Accepted": false
+}
