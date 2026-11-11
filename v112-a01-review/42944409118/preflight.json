@@ -1,0 +1,31 @@
+{
+  "actualInitializedBrainPreflightAccepted": true,
+  "applicationAcceptance": false,
+  "artifactId": 13821748975,
+  "artifactSHA256": "a2d317d7e930a98894a73cdc205c21424dda8fb7386ff0472107fad5c2983e01",
+  "bindings": {
+    "artifactIndexSHA256": "daf9d84d7ba2d8524bdd3e2a60fa2ba39fb272555e887284704d4e30556219ab",
+    "controllerManifestSHA256": "af90ad04cb4c41e1c53bd1dffaf23f23cc0330fa75a3ff9882b2b53edcfb9371",
+    "driverManifestSHA256": "49d50e3d985e0a544780422f8ad56c9a10311d835bbea667f8c384ccf9d9e480",
+    "launchContractSHA256": "be0327ea12a99821ddf085c6fc8cf67e7e5cc0cdd3802b7748552cee6b7730f7",
+    "nativeQualificationSHA256": "a7ac0e094b3d1a2448a89b9fddff672c947c472e6c6a714719edab952277fd3a",
+    "packageManifestSHA256": "ec74f2565b34867d6164382a666f429ad998fec2bb57a98e540d19e1b9665fa4",
+    "retainedEvidenceSHA256": "7f2f6ffd62d89547855e32977326fa2833fc169383ccfb8d3e555012a034d9a0",
+    "runContractSHA256": "80ea1905c39eb35b4b030c033083b93ebd9a9fd5c281eeffb8d55db1388aba31",
+    "runnerIdentitySHA256": "963d44ed1b4ce2676bb21b478471c965a1ab56e9f5ed7bcea85a5bb5371fe1f6",
+    "runnerResultSHA256": "d87bc6a578019eb25e40927540052bf81ef530e78bac956bea65a6c39b273878",
+    "runtimeImageProvenanceSHA256": "7942596220d03f85b92757edebd9d18ba7279c1332809b1fb08aa622d32a100d",
+    "sourceIdentitiesSHA256": "82bcab0db564f5209856ad3d70d452e3798fa07327cc7f3e0f6f52a37fff0296"
+  },
+  "decision": "PASS",
+  "independentlyDownloadedAndHashed": true,
+  "rawPrivateDataIncluded": false,
+  "repository": "empireaios/EmpireAI",
+  "reviewedAtUTC": "2026-11-11T02:17:52.562936+00:00",
+  "reviewerRole": "independent-external-reviewer",
+  "runAttempt": 1,
+  "runId": "42944409118",
+  "schema": "work8-v65-independent-ack-v1",
+  "stage": "preflight",
+  "workflowCommit": "21718cff22509e8c8a421772ea0e456c49a74dc3"
+}
