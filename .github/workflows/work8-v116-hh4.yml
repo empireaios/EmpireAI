@@ -12,7 +12,7 @@ jobs:
     if: >-
       github.repository == 'empireaios/EmpireAI' &&
       github.event.ref_type == 'branch' &&
-      github.event.ref == 'work8/v116-o42-q5-hh4-20261111-a03' &&
+      github.event.ref == 'work8/v116-o42-q5-hh4-20261111-a04' &&
       github.run_attempt == 1
     runs-on: ubuntu-24.04
     timeout-minutes: 25

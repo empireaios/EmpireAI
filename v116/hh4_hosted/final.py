@@ -43,7 +43,7 @@ for role,memory,pids,cpus in [('abi',134217728,32,1000000000),('producer',322122
  assert h['Memory']==memory and h['MemorySwap']==memory and h['PidsLimit']==pids and h['NanoCpus']==cpus and h['RestartPolicy']['Name']=='no'and 'no-new-privileges'in h['SecurityOpt']
  assert h['LogConfig']=={'Type':'json-file','Config':{'max-size':'256k','max-file':'2'}}
 producerMounts=read('outer/evidence/producer-termination-inspect.json')['Mounts']
-for source,destination in [(out.parent/'technical-policy.json','/control/technical-policy.json'),(control/'technical-authority.json','/control/technical-authority.json'),(control/'hh4-technical-policy.mjs','/control/hh4-technical-policy.mjs'),(control/'hh4-generated-worker.mjs','/app/scripts/work8/hh4-generated-worker.mjs')]:
+for source,destination in [(control/'hh4-redis-endpoint.mjs','/control/hh4-redis-endpoint.mjs'),(out.parent/'technical-policy.json','/control/technical-policy.json'),(control/'technical-authority.json','/control/technical-authority.json'),(control/'hh4-technical-policy.mjs','/control/hh4-technical-policy.mjs'),(control/'hh4-generated-worker.mjs','/app/scripts/work8/hh4-generated-worker.mjs')]:
  matches=[x for x in producerMounts if x['Destination']==destination];assert len(matches)==1 and matches[0]['Type']=='bind'and matches[0]['Source']==str(source)and matches[0]['RW']is False
 assert workerPolicy['guardSHA256']=='c5ac9d04eebae1bfe5c85e608fe625677fc3d11310e7b56a2f588eaf69c884ca'
 assert read('outer/evidence/package-termination.json')['packageContainerRemoved']is True

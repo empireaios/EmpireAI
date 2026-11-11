@@ -2,7 +2,7 @@
   "schema": "v116-hh4-original-conditional-technical-scope-v1",
   "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
   "requirement": "O42 original finite Q5 conditional HH4 producer/domain rehydration/inspection restoration and original default application-graph scope",
-  "obligationId": "V116-O42-Q5-HH4-A03-20261111",
+  "obligationId": "V116-O42-Q5-HH4-A04-20261111",
   "prospectiveBoundUSD": "1.00",
   "reservationStateClaimedByThisFile": false,
   "externalFinancialReleaseGate": "Root must independently save unique ledger reservation and exact final reviewed Git tree before any dispatch. No assumed future ledger ordinal/hash.",

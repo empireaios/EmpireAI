@@ -31,7 +31,7 @@ if a[0]=='create':
  expected=['create','--name',name,'--label','work8.hh4='+name,'--user',uid,'--network','none','--cap-drop','ALL','--security-opt','no-new-privileges','--read-only','--tmpfs','/tmp:rw,nosuid,nodev,size=1073741824,mode=1777','--pids-limit','512','--memory','3g','--cpus','2','--restart','no','--mount',mount(mounted,'/evidence',False),'-e','NODE_ENV=test','-e','EMPIRE_ENGINEERING_TEST_MODE=true','-e','HH4_SOURCE='+SOURCE,'-e','RAILWAY_GIT_COMMIT_SHA='+SOURCE,'-e','WORK8_KERNEL_EGRESS=DENIED','--entrypoint','node',IMAGE,'scripts/work8/hh4-generated-primary.mjs']
  assert a==expected,'UNREVIEWED_PRODUCER_CREATE'
  extra=dependency_mounts()
- for n in ['hh4-assurance-prerequisite.mjs','hh4-assurance-source-inputs.json']:
+ for n in ['hh4-assurance-prerequisite.mjs','hh4-assurance-source-inputs.json','hh4-redis-endpoint.mjs']:
   regular(control/n);extra+=['--mount',mount(control/n,'/control/'+n)]
  validate_fixture_policy(root,control,run)
  for n in ['hh4-technical-policy.mjs','technical-authority.json']:

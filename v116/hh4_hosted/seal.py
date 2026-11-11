@@ -30,7 +30,7 @@ for p in sorted(out.rglob('*')):
  if stat.S_ISDIR(s.st_mode):continue
  assert s.st_nlink==1 and s.st_size<=1048576;size+=s.st_size;assert size<=10223616
  files.append({'path':str(p.relative_to(out)),'bytes':s.st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
-receipt={'schema':'v116-hh4-final-bounded-evidence-index-v1','runId':run,'attempt':os.environ['GITHUB_RUN_ATTEMPT'],'sourceHead':os.environ['GITHUB_SHA'],'payloads':files,'payloadBytes':size,'maximumBytesIncludingIndex':10485760,'originalScopesAwaitIndependentReview':True,'wholeQ5Accepted':False,'wholeO42Accepted':False,'rawPrivateArchivePublished':False,'productionMutation':False,'obligationId':'V116-O42-Q5-HH4-A03-20261111','actualProviderCharges':'UNCONFIRMED'}
+receipt={'schema':'v116-hh4-final-bounded-evidence-index-v1','runId':run,'attempt':os.environ['GITHUB_RUN_ATTEMPT'],'sourceHead':os.environ['GITHUB_SHA'],'payloads':files,'payloadBytes':size,'maximumBytesIncludingIndex':10485760,'originalScopesAwaitIndependentReview':True,'wholeQ5Accepted':False,'wholeO42Accepted':False,'rawPrivateArchivePublished':False,'productionMutation':False,'obligationId':'V116-O42-Q5-HH4-A04-20261111','actualProviderCharges':'UNCONFIRMED'}
 b=(json.dumps(receipt,indent=2)+'\n').encode();assert len(b)<=262144 and size+len(b)<=10485760
 with(out/'EVIDENCE_INDEX.json').open('xb')as f:f.write(b)
 print(json.dumps({'status':'EVIDENCE_SEALED_NOT_ACCEPTANCE','payloads':len(files),'bytesIncludingIndex':size+len(b)}))

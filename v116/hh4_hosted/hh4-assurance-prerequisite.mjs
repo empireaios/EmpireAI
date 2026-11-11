@@ -36,18 +36,13 @@ try{
  const parent=fs.statSync(path.dirname(root));assert.equal(parent.uid,process.getuid());assert.equal(parent.mode&0o777,0o700);
  assert(Number.isSafeInteger(ready.workerPid)&&ready.workerPid>1);const worker=identity(ready.workerPid);assert.equal(worker.startTicks,ready.workerStartTicks);assert(!['Z','X'].includes(worker.state));
  const argv=fs.readFileSync(`/proc/${worker.pid}/cmdline`,'utf8').split('\0').filter(Boolean);assert.equal(argv.length,2);assert.equal(argv[1],'/app/scripts/work8/hh4-generated-worker.mjs');
- // Linux /proc/worker/environ describes exec-time state, not later JS
- // process.env mutations. Select only the authenticated worker's actual Redis
- // child, whose initial environment inherited the original configured endpoint.
- const childPids=fs.readFileSync(`/proc/${worker.pid}/task/${worker.pid}/children`,'utf8').trim().split(/\s+/).filter(Boolean).map(Number);
- const redisChildren=childPids.filter(pid=>{try{return path.basename(fs.readlinkSync(`/proc/${pid}/exe`))==='redis-server';}catch{return false;}});
- assert.equal(redisChildren.length,1);const redisProcess=identity(redisChildren[0]);assert.equal(redisProcess.parentPid,worker.pid);assert(!['Z','X'].includes(redisProcess.state));
- assert.equal(hash(fs.readFileSync(`/proc/${redisProcess.pid}/exe`)),inputs.redisServerSHA256);
- const environment=fs.readFileSync(`/proc/${redisProcess.pid}/environ`);assert(environment.length<=65536);
- const selected=environment.toString().split('\0').filter(x=>x.startsWith('REDIS_URL='));assert.equal(selected.length,1);
- const redis=selected[0].slice('REDIS_URL='.length);assert.match(redis,/^redis:\/\/127\.0\.0\.1:[0-9]{4,5}$/);
- const port=Number(new URL(redis).port);assert(port>1024&&port<65536);
- result.fixture={root,worker,redisProcess,readySHA256:hash(fs.readFileSync('/evidence/hh4-worker-ready.json')),redisLoopbackPort:port};
+ // Endpoint strings in process argv/environ are not stable identity evidence.
+ // Preserve the real worker/direct-child/source guards, then bind the actual
+ // kernel-owned loopback listener to native Redis PID/run/directory readback.
+ const endpointModule='/control/hh4-redis-endpoint.mjs';assert.equal(hash(fs.readFileSync(endpointModule)),inputs.redisEndpointModuleSHA256);
+ const {discoverNativeRedisEndpoint}=await import(endpointModule);
+ const {redis,redisProcess,port,evidence:endpointEvidence}=await discoverNativeRedisEndpoint({worker,root,redisServerSHA256:inputs.redisServerSHA256});
+ result.fixture={root,worker,redisProcess,readySHA256:hash(fs.readFileSync('/evidence/hh4-worker-ready.json')),redisLoopbackPort:port,endpointEvidence};
  stage='start-real-native-observers-and-await-real-progress';
  const {superviseAssurance}=require('/app/deployment/assurance-supervisor.cjs');
  stop=superviseAssurance({cwd:'/app',env:{PATH:'/usr/local/bin:/usr/bin:/bin',RAILWAY_VOLUME_MOUNT_PATH:root,RAILWAY_GIT_COMMIT_SHA:source,REDIS_URL:redis,ASSURANCE_RUNTIME_ORIGIN:'https://isolated.example.invalid'},spawnImpl:(command,args,options)=>{

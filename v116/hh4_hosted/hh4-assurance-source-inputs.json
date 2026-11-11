@@ -13,7 +13,10 @@
     "backend/src/assurance/safe-live-probe.mjs": "50ec44e313d942b37259273ec0339620dbeeb8bbf6bc8a1882b1c026d0be9599",
     "backend/src/assurance/safe-discrepancy-probe.mjs": "6fcead1d4f98579c0227a67dae53670a158cc7e42478f1cb507fee6f178801c7"
   },
-  "privateNativeWorkerEnvironRead": "Select only already source/PID/starttick-bound generated worker actual Redis child (parentPID and exact executable hash). Read only REDIS_URL from that child initial environment; never log entire environment,fixturecredential/session values. Parent JS-mutated environment is not assumed visible in /proc.",
+  "privateNativeWorkerEnvironRead": "Initial Redis process environment is read only for a bounded REDIS_URL occurrence count used to diagnose the historical failure. No environment value selects or authorises an endpoint; no environment/credential/session values are logged.",
   "actualOwnerRecords": false,
-  "redisServerSHA256": "c2f35b59cb22f17cdfdef50b18a6b273a0044c4c981eb210ef57ffcac44c2610"
+  "redisServerSHA256": "c2f35b59cb22f17cdfdef50b18a6b273a0044c4c981eb210ef57ffcac44c2610",
+  "redisEndpointModuleSHA256": "fdca1a44e136f9b12100f1ec6206e19ef7ab89c2bc9e9ca9a057ed3c623f4690",
+  "redisEndpointAuthority": "Current authenticated generated worker PID/startTicks/bootID \u2192 exactly one direct child with pinned Redis executable bytes/hash \u2192 unique child-owned kernel socket inode LISTEN on127.0.0.1 highport \u2192 readonly native PING/INFO process_id/run_id/tcp_port and CONFIG GET dir equal generated root/redis. Current process identities revalidated after readback.",
+  "directChildDiscovery": "Bounded private-PID /proc numeric census, actual stat parentPID equals authenticated generated worker, exact PID/startTicks/bootID revalidated; no dependency on optional task/children interface."
 }
