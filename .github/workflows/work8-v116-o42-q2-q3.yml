@@ -5,14 +5,14 @@ permissions:
   contents: read
   actions: read
 concurrency:
-  group: work8-v116-o42-q2-q3-20261111-a03
+  group: work8-v116-o42-q2-q3-20261111-a04
   cancel-in-progress: false
 jobs:
   remaining-original-predicates:
     if: >-
       github.repository == 'empireaios/EmpireAI' &&
       github.event.ref_type == 'branch' &&
-      github.event.ref == 'work8/v116-o42-q2-q3-20261111-a03' &&
+      github.event.ref == 'work8/v116-o42-q2-q3-20261111-a04' &&
       github.run_attempt == 1
     runs-on: ubuntu-24.04
     timeout-minutes: 20

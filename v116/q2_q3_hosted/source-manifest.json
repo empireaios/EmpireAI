@@ -1,26 +1,24 @@
 {
   "schema": "empireai-v116-q23-hosted-source-v1",
   "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
-  "branch": "work8/v116-o42-q2-q3-20261111-a03",
+  "branch": "work8/v116-o42-q2-q3-20261111-a04",
   "changedPaths": [
     ".github/workflows/work8-v116-o42-q2-q3.yml",
-    "backend/src/validation/tests/capture-shared-brain-redis.test.ts",
     "empireai-web/vercel.json",
     "v116/q2_q3_hosted/admit.py",
-    "v116/q2_q3_hosted/hosted-inputs.json",
+    "v116/q2_q3_hosted/collect-stage.py",
     "v116/q2_q3_hosted/hosted-loopback-controller.py",
     "v116/q2_q3_hosted/launch-authority.json",
-    "v116/q2_q3_hosted/run-hosted.sh",
     "v116/q2_q3_hosted/seal.py",
-    "v116/q2_q3_hosted/selection.json",
     "v116/q2_q3_hosted/source-manifest.json",
+    "v116/q2_q3_hosted/terminate.sh",
     "vercel.json"
   ],
   "files": [
     {
       "path": ".github/workflows/work8-v116-o42-q2-q3.yml",
       "bytes": 4033,
-      "sha256": "0ae968d3fb164b7140c5dc69b1781c624fb8d26d1a13d35653a9e3818a17c859"
+      "sha256": "1ca4f3925d5a2965e530964ca8bff5397a52993ef4ac025777f8a9d2c98c2dd8"
     },
     {
       "path": ".node-version",
@@ -44,13 +42,13 @@
     },
     {
       "path": "empireai-web/vercel.json",
-      "bytes": 765,
-      "sha256": "4cac9bcb007311b17ccd470dae48043617cbe4ac599850f87bf9d582e97f0aec"
+      "bytes": 815,
+      "sha256": "ff994d49e219474a03d71bee440883208f2a0a92ad972b163ae7113039894168"
     },
     {
       "path": "v116/q2_q3_hosted/admit.py",
       "bytes": 4231,
-      "sha256": "32fd9ee8580b1e1d538a74e0f063e47d086c2a62d283609bbf088751d50c7ea0"
+      "sha256": "03ffeb1719acb83cc9c97cc12b7c0833f4ef83e096d13894806558e3c9b206ad"
     },
     {
       "path": "v116/q2_q3_hosted/authority.json",
@@ -59,8 +57,8 @@
     },
     {
       "path": "v116/q2_q3_hosted/collect-stage.py",
-      "bytes": 1434,
-      "sha256": "94ef0265d13a5c383342c4b7b7f0d3d265f7d628e40ed66ab0bb6a7050dae9a6"
+      "bytes": 3726,
+      "sha256": "180b3c651b6dd43ed20e0f60f6bad4a63e82fe527ea27bde743ffcaf27cdc651"
     },
     {
       "path": "v116/q2_q3_hosted/deny-service-start",
@@ -79,8 +77,8 @@
     },
     {
       "path": "v116/q2_q3_hosted/hosted-loopback-controller.py",
-      "bytes": 13283,
-      "sha256": "4fd6a5aaecc53d7fbdc479f9216f5c8e17f18cd5110116b2db6815f3c9963fab"
+      "bytes": 12503,
+      "sha256": "748125d9a887468bb185811b4304ad1bc06f64aaf69bf45ecb1f320dff57d79e"
     },
     {
       "path": "v116/q2_q3_hosted/hosted-policy-probe.mjs",
@@ -89,8 +87,8 @@
     },
     {
       "path": "v116/q2_q3_hosted/launch-authority.json",
-      "bytes": 2075,
-      "sha256": "dad4b5a35def5180c5f5db6fffbd2cfb3e2bdd3299e604f49d25bba3f59f76b6"
+      "bytes": 2139,
+      "sha256": "523022ae2e24fff4d79c9fd7e3c6c19f96cd01057f79cc184e00003eb558940f"
     },
     {
       "path": "v116/q2_q3_hosted/make-readable.py",
@@ -109,8 +107,8 @@
     },
     {
       "path": "v116/q2_q3_hosted/seal.py",
-      "bytes": 1852,
-      "sha256": "618db7137cfefac0ae238f9dabea731a46032d5c52e93c5b740c026f9174234a"
+      "bytes": 1917,
+      "sha256": "f4ee07120fccd32bf31bb5b6777f55d4990488775e0cde58c6f12ecafaea93be"
     },
     {
       "path": "v116/q2_q3_hosted/selection.json",
@@ -124,13 +122,13 @@
     },
     {
       "path": "v116/q2_q3_hosted/terminate.sh",
-      "bytes": 2173,
-      "sha256": "6e5e1d801d5c8565f6ac61bb883b71f0b3337d89a170c9849f59310de776c293"
+      "bytes": 2014,
+      "sha256": "e540b9ae17d8af29668b94518fbd96757ce035069438b7aa5c0c1617be657527"
     },
     {
       "path": "vercel.json",
-      "bytes": 944,
-      "sha256": "d137657e424ddb515550e53b70b95cf9ed94c6003536aeb9189383a68c70e989"
+      "bytes": 994,
+      "sha256": "900ad53bf25b1aa436539048c99b5d024b8c927187bca3479c8e8be651277046"
     }
   ],
   "wholeRowAcceptance": false

@@ -34,9 +34,6 @@ receipt={'runId':os.environ['GITHUB_RUN_ID'],'remainingScopedNamespaceLaunchers'
 assert not scoped
 PY
 if sudo test -d "$stage"; then
-  if sudo test -d "$stage/evidence"; then
-    sudo python3 -B "$GITHUB_WORKSPACE/v116/q2_q3_hosted/make-readable.py" "$stage" "$GITHUB_RUN_ID" "$(id -u)"
-  fi
   sudo python3 -B "$GITHUB_WORKSPACE/v116/q2_q3_hosted/collect-stage.py" "$GITHUB_RUN_ID" "$root/evidence"
 fi
 # The namespace runs as root; its 0700 phase directories must be made readable

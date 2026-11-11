@@ -2,8 +2,8 @@
 import hashlib,json,os,pathlib,subprocess
 control=pathlib.Path(__file__).resolve().parent
 root=control.parents[1]
-branch='work8/v116-o42-q2-q3-20261111-a03'
-parent='afaa87dc0690a303b12686886fba169a5e7610db'
+branch='work8/v116-o42-q2-q3-20261111-a04'
+parent='d95d010f3d112a8b2bed320112ee713fdd7387ad'
 assert os.environ['GITHUB_REPOSITORY']=='empireaios/EmpireAI'
 assert os.environ['GITHUB_EVENT_NAME']=='create' and os.environ['GITHUB_REF']=='refs/heads/'+branch
 assert os.environ['GITHUB_RUN_ATTEMPT']=='1'
@@ -12,7 +12,7 @@ head=git('rev-parse','HEAD');assert head==os.environ['GITHUB_SHA']
 assert git('rev-list','--parents','-n','1','HEAD').split()==[head,parent]
 assert git('status','--porcelain')==''
 authority=json.loads((control/'launch-authority.json').read_text())
-assert authority['obligationId']=='V116-O42-Q23-A03-20261111'
+assert authority['obligationId']=='V116-O42-Q23-A04-20261111'
 assert authority['reservationUSD']=='1.00' and authority['masterCeilingUSD']=='1000.00'
 assert authority['maximumAttempts']==1 and authority['jobTimeoutMinutes']==20
 assert authority['applicationCodeChanged'] is False and authority['productionMutation'] is False

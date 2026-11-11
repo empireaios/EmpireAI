@@ -104,8 +104,6 @@ try:
  control=json.loads((output/'policy-controls.log').read_text().strip());assert control['pass'] and len(control['checks'])==6
  receipt['policyControls']=control
  if phase=='capture':
-  replay=output/'replay';replay.mkdir(mode=0o700)
-  env['WORK8_REPLAY_EVIDENCE_DIRECTORY']=str(replay)
   pattern='^(?:'+'|'.join(re.escape(x)for x in NAMES)+')$'
   command=[str(NODE),'--import','tsx','--test','--test-concurrency=1','--test-reporter=tap','--test-name-pattern',pattern,'src/validation/tests/capture-shared-brain-redis.test.ts'];cwd=APP/'backend'
  else:
@@ -120,15 +118,6 @@ try:
  if phase=='capture':
   content=(output/'execution.log').read_text();counts={k:int(v)for k,v in re.findall(r'^# (tests|pass|fail|cancelled|skipped|todo) (\d+)$',content,re.M)}
   assert counts=={'tests':1,'pass':1,'fail':0,'cancelled':0,'skipped':0,'todo':0},counts
-  replay_names=['READONLY-REPLAY-RECEIPT.json','READONLY-REPLAY-ACTUAL-RECEIPTS.json','readonly-replay-execution.sqlite','integrated-brain.sqlite','integrated-native-domain.sqlite','readonly-replay-missions.sqlite']
-  assert sorted(p.name for p in replay.iterdir())==sorted(replay_names)
-  replay_files=[]
-  for name in replay_names:
-   p=replay/name;assert p.is_file()and not p.is_symlink()and p.stat().st_size<=2*1024*1024
-   replay_files.append({'path':name,'bytes':p.stat().st_size,'sha256':sha(p)})
-  assert sum(x['bytes']for x in replay_files)<=8*1024*1024
-  receipt['originalFixtureReplayEvidence']=replay_files
-  receipt['syntheticTechnicalReplayNotGenuineOwner']=True
   for name in NAMES:assert re.search(r'^ok \d+ - '+re.escape(name)+r'$',content,re.M),name
   receipt['TAPCounts']=counts;receipt['exactSelectedNames']=NAMES
  else:
