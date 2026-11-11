@@ -2,7 +2,7 @@
   "schema": "v116-hh4-original-conditional-technical-scope-v1",
   "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
   "requirement": "O42 original finite Q5 conditional HH4 producer/domain rehydration/inspection restoration and original default application-graph scope",
-  "obligationId": "V116-O42-Q5-HH4-A02-20261111",
+  "obligationId": "V116-O42-Q5-HH4-A03-20261111",
   "prospectiveBoundUSD": "1.00",
   "reservationStateClaimedByThisFile": false,
   "externalFinancialReleaseGate": "Root must independently save unique ledger reservation and exact final reviewed Git tree before any dispatch. No assumed future ledger ordinal/hash.",
@@ -26,7 +26,8 @@
     "Host process identities and all recorded UUID producer/ABI/reader containers terminated and independently verified absent, including failure/interruption.",
     "Bounded output capture and collection preserve first failure and mandatory scopes before optional diagnostics; raw session/SQLite capture private.",
     "Single justified execution after checking equivalent run absent; new attempt requires actual failure/correction review.",
-    "Default graph-only consumer uses same private verified held copy, fresh isolated generated target, unchanged original authentication/session TTL/queue/mission/finance/journal guards; target-table deltas require independent adjudication, never automatic allowlisting."
+    "Default graph-only consumer uses same private verified held copy, fresh isolated generated target, unchanged original authentication/session TTL/queue/mission/finance/journal guards; target-table deltas require independent adjudication, never automatic allowlisting.",
+    "Explicit V116 technical policy only for the protocol-admitted generated fixture worker; 300 second maximum lifetime, mode0400 and exact read-only authority/helper/one fixture overlay mounts; original compiled owner-write guard unchanged. Policy removed only after actual current-run containers and host sessions are absent."
   ],
   "operatingLocks": {
     "A5": "CLOSED_ACCEPTED_NO_RERUN",

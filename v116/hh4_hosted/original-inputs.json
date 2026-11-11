@@ -46,11 +46,22 @@
     "hh4-assurance-source-inputs.json": "d84baa273eae1de44f63f6e24de6fc3bdff6e2b55e3ca8e98b1e58a63f901507",
     "hh4-original-consumers.mjs": "e1b50eedd2115f73b5ec1a750d2930e106e2f323dc157b23936f960c381deb05",
     "hh4-consumer-source-inputs.json": "d8dba481308458e3bfa50200c346e89906676c9ac2d86278de6cea5d53a0a66b",
-    "run-hh4.py": "9f7df24c3dda94c1bf76c3e50556b88b6a11fb45eec741cb0e2569148fd2b1ec",
-    "collect.py": "19ede2d850b91bd15e4745a5ead7e97ab34098aa2fdc463ad85279b837334df8",
-    "process_boundary.py": "d230385afca630a0eab2925c416cd98f524647922561d67d9beed49e32d814db"
+    "run-hh4.py": "834f6fa9e3504770fe4a2d78a3e4935b6a5d33357ac2b138721b0be5b5cdbc73",
+    "collect.py": "00457e93d2c79cb3809123bd227c1490cbe32f7b13507cf1f0196cae64e8e5c1",
+    "process_boundary.py": "d230385afca630a0eab2925c416cd98f524647922561d67d9beed49e32d814db",
+    "fixture_policy.py": "1c89ab6a5076a342f4eaff1d8bbb0c52bb8a7b5c8d23e94e3525261720d6a1c2",
+    "hh4-generated-worker.mjs": "1235c81937bca9b74e2bd3e53bf1c1976ff28d341426a79527900f1a82b245e7",
+    "hh4-technical-policy.mjs": "2b2cc33507c34a5c8a5677d55b61117b655929a1c7cb586e4de14686205c2510"
   },
   "originalAssertionsChanged": false,
-  "fixtureCorrectionScope": "Only real observer prerequisite before unchanged capture request; exact original assertion suffix retained.",
-  "rawDataScope": "Labelled synthetic CI records only; no real owner data; raw session and archive data private to job."
+  "fixtureCorrectionScope": "Existing real observer prerequisite before unchanged capture request, plus one helper call after genuine generated-worker IPC admission and before native index import. The helper binds finite V116 generated-fixture technical policy; original compiled guard, original startup protocol, original capture/hold/containment assertions and downstream inspection/graph functions remain unchanged.",
+  "rawDataScope": "Labelled synthetic CI records only; no real owner data; raw session and archive data private to job.",
+  "generatedWorkerFixtureOverlay": {
+    "originalPath": "scripts/work8/hh4-generated-worker.mjs",
+    "originalSHA256": "008db25d3e9605c8795aab7122cf51ff18a183d0db53eaadda6129cfb18d201d",
+    "controlPath": "hh4-generated-worker.mjs",
+    "overlaySHA256": "1235c81937bca9b74e2bd3e53bf1c1976ff28d341426a79527900f1a82b245e7",
+    "applicationGuardChanged": false,
+    "genuineOwnerApproval": false
+  }
 }

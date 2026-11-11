@@ -3,6 +3,7 @@
 import datetime,hashlib,json,os,pathlib,re,selectors,signal,subprocess,sys,time
 from process_boundary import ProcessBoundary
 from source_binding import verify_git,verify_image
+from fixture_policy import create as create_fixture_policy
 SOURCE='6c1e63ba20619ee480742fd87dc810ca93152e22'
 IMAGE='sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0'
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
@@ -29,7 +30,7 @@ def main():
  for name,digest in original['controlSHA256'].items():assert sha(control/name)==digest,name
  assert sha(control/'technical-authority.json')=='f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3'
  assert subprocess.check_output([str(node),'--version'],env=env,text=True,timeout=5).strip()=='v22.23.2'
- boundary=ProcessBoundary();boundary.install();summary={'schema':'v116-original-hh4-bounded-execution-v1','source':SOURCE,'image':IMAGE,'startedUTC':stamp(),'status':'FAIL_CLOSED','stages':[],'productionAccess':False,'genuineOwnerEvidence':False,'wholeQ5Accepted':False}
+ boundary=ProcessBoundary();boundary.install();summary={'schema':'v116-original-hh4-bounded-execution-v1','source':SOURCE,'image':IMAGE,'startedUTC':stamp(),'status':'FAIL_CLOSED','stages':[],'productionAccess':False,'genuineOwnerEvidence':False,'generatedWorkerFixtureOverlay':True,'technicalPolicyScope':'admitted generated HH4 fixture only','wholeQ5Accepted':False}
  def execute(phase,argv,maximum):
   boundary.check();receipt={'phase':phase,'argv':argv,'maximumSeconds':maximum,'startedUTC':stamp(),'status':'FAIL_CLOSED'};proc=None;selector=None
   try:
@@ -72,6 +73,7 @@ def main():
   text=regular(evidence/'redis-preflight-console.log').decode();assert re.search(r'Redis server v=7\.0\.15\b',text)and'error while loading'not in text
   write(evidence/'redis-mounted-preflight.json',{'status':'PASS_EXACT_IMAGE_DEFAULT_LOADER','image':IMAGE,'source':SOURCE,'redisVersion':'7.0.15','outputSHA256':sha(evidence/'redis-preflight-console.log'),'dependencyManifestSHA256':sha(control/'dependencies/pinned-dependencies.json'),'applicationStarted':False})
   stage='original-held-capture-producer';producer=root/'producer-raw';producer.mkdir(mode=0o700)
+  create_fixture_policy(root,control,run)
   assert execute('producer',[str(node),str(control/'hh4-held-capture-controller.mjs'),IMAGE,SOURCE,str(producer)],260)
   result=json.loads(regular(producer/'held-capture-result.json'));assert result['status']=='PASS_HELD_CAPTURE_AND_CONTAINMENT_ONLY'and result['source']==SOURCE and result['contained']
   mounted=producer/'container-evidence';held=json.loads(regular(mounted/'hh4-held.json'));digest=held['digest'];assert re.fullmatch('[a-f0-9]{64}',digest)

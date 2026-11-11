@@ -44,7 +44,7 @@ def main():
  # First preserve the mandatory execution and three original scope decisions.
  files=[('evidence/hh4-execution-summary.json',True),('producer-raw/held-capture-result.json',True),('consumer-raw/consumer-summary.json',True),('consumer-raw/domain-rehydration-result.json',True),('consumer-raw/inspection-restoration-result.json',True),('graph-raw/application-graph-result.json',True)]
  files += [('evidence/'+phase+'-'+kind+'.json',True)for phase in ['redis-preflight','producer','consumers','application-graph']for kind in ['launch','execution']]
- files += [('evidence/redis-mounted-preflight.json',True),('producer-raw/container-evidence/hh4-assurance-prerequisite.json',True),('producer-raw/container-evidence/hh4-held.json',True),('producer-raw/container-evidence/hh4-worker-ready.json',True)]
+ files += [('evidence/redis-mounted-preflight.json',True),('producer-raw/container-evidence/hh4-technical-policy-admission.json',True),('producer-raw/container-evidence/hh4-assurance-prerequisite.json',True),('producer-raw/container-evidence/hh4-held.json',True),('producer-raw/container-evidence/hh4-worker-ready.json',True)]
  files += [('producer-raw/'+name,False)for name in ['held-capture-external-verification.json','cohort-containment.json','cohort-started.json','container-created.json','container-inspect.json','cohort-containment-failure-1.json','cohort-containment-failure-2.json']]
  for relative,mandatory in files:
   try:

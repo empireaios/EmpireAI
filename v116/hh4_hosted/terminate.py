@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Stop only exact recorded HH4 host sessions and current-run containers."""
 import hashlib,json,os,pathlib,re,signal,subprocess,sys,time
+from fixture_policy import remove_after_termination
 root=pathlib.Path(sys.argv[1]).resolve(strict=True);run=sys.argv[2];assert run.isdigit()and root.name=='v116-hh4-'+run
 control=pathlib.Path(__file__).resolve().parent;repo=control.parent.parent;evidence=root/'evidence';evidence.mkdir(exist_ok=True)
 image='sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0';boot=pathlib.Path('/proc/sys/kernel/random/boot_id').read_text().strip();hosts=[];absent=[];removed=[]
@@ -56,4 +57,7 @@ for role in ['abi','producer','reader','graph']:
   subprocess.run(['/usr/bin/docker','rm','--force',name],env=env,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,timeout=15,check=True);removed.append(name)
  check=subprocess.run(['/usr/bin/docker','container','ls','-aq','--filter','name=^/'+name+'$'],env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=10,check=True);assert check.stdout.strip()==b'';absent.append(name)
 check=subprocess.run(['/usr/bin/docker','container','ls','-aq','--filter','label=empireai.v116.hh4='+run],env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=10,check=True);assert check.stdout.strip()==b''
-(evidence/'independent-termination.json').write_text(json.dumps({'runId':run,'hostControllers':hosts,'removed':removed,'verifiedAbsent':absent,'currentRunLabelAbsent':True,'productionAccess':False},indent=2)+'\n')
+termination={'runId':run,'hostControllers':hosts,'removed':removed,'verifiedAbsent':absent,'currentRunLabelAbsent':True,'productionAccess':False}
+(evidence/'independent-termination.json').write_text(json.dumps(termination,indent=2)+'\n')
+policy=remove_after_termination(root,control,run,termination)
+(evidence/'fixture-policy-termination.json').write_text(json.dumps(policy,indent=2)+'\n')

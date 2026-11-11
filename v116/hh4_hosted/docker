@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Forward only exact reviewed HH4 lifecycle commands; never simulate responses."""
 import hashlib,json,os,pathlib,re,subprocess,sys,time
+from fixture_policy import validate as validate_fixture_policy
 REAL='/usr/bin/docker';SOURCE='6c1e63ba20619ee480742fd87dc810ca93152e22';IMAGE='sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0'
 a=sys.argv[1:];run=os.environ['V116_HH4_RUN_ID'];assert run.isdigit()
 root=pathlib.Path(os.environ['V116_HH4_ROOT']);control=pathlib.Path(os.environ['V116_HH4_CONTROL'])
@@ -32,6 +33,11 @@ if a[0]=='create':
  extra=dependency_mounts()
  for n in ['hh4-assurance-prerequisite.mjs','hh4-assurance-source-inputs.json']:
   regular(control/n);extra+=['--mount',mount(control/n,'/control/'+n)]
+ validate_fixture_policy(root,control,run)
+ for n in ['hh4-technical-policy.mjs','technical-authority.json']:
+  regular(control/n);extra+=['--mount',mount(control/n,'/control/'+n)]
+ regular(control/'hh4-generated-worker.mjs');extra+=['--mount',mount(control/'hh4-generated-worker.mjs','/app/scripts/work8/hh4-generated-worker.mjs')]
+ extra+=['--mount',mount(root/'technical-policy.json','/control/technical-policy.json')]
  extra+=['--label',label,'--memory-swap','3g'];role='producer'
 elif a[0]=='run':
  assert len(a)>3 and a[1]=='--name';name=a[2]
