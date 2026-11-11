@@ -1,0 +1,90 @@
+name: Work 8 V116 current seven-role graph containment
+on:
+  create:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: work8-v116-o42-q5-graph-20261111-a01
+  cancel-in-progress: false
+jobs:
+  current-graph-containment:
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v116-o42-q5-graph-20261111-a01' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      ACTIONS_STEP_DEBUG: 'false'
+      ACTIONS_RUNNER_DEBUG: 'false'
+    steps:
+      - name: Check out the exact reviewed launch source
+        id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+      - name: Establish the original repository Node pin
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        timeout-minutes: 2
+        with:
+          node-version-file: '.node-version'
+          check-latest: false
+      - name: Verify exact source and bounded technical authority
+        id: admission
+        timeout-minutes: 1
+        run: python3 -B v116/q5_graph/admit.py
+      - name: Retrieve the exact retained immutable backend package
+        id: download
+        timeout-minutes: 7
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B v116/q5_graph/retained_input.py
+      - name: Execute the original primary-death semantics with current seven-role fixture
+        id: examination
+        timeout-minutes: 9
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          timeout --signal=TERM --kill-after=15s 480s
+          bash v116/q5_graph/run-graph.sh
+      - name: Confirm scoped termination on every outcome
+        if: ${{ always() && steps.checkout.outcome == 'success' }}
+        timeout-minutes: 1
+        run: |
+          set -euo pipefail
+          name="work8-v116-q5-graph-$GITHUB_RUN_ID"
+          docker container rm --force "$name-exam" "$name-redis" >/dev/null 2>&1 || true
+          docker network rm "$name-net" >/dev/null 2>&1 || true
+          [[ -z "$(docker ps -aq --filter "name=^/$name-(exam|redis)$")" ]]
+          [[ -z "$(docker network ls -q --filter "name=^$name-net$")" ]]
+          python3 -B -c 'import json,os,pathlib; p=pathlib.Path(os.environ["RUNNER_TEMP"])/("v116-q5-graph-"+os.environ["GITHUB_RUN_ID"])/"evidence"; p.mkdir(parents=True,exist_ok=True); (p/"provider-termination.json").write_text(json.dumps({"runId":os.environ["GITHUB_RUN_ID"],"scopedContainersAbsent":True,"scopedNetworkAbsent":True,"runnerJobTimeoutMinutes":20,"productionMutation":False})+"\n")'
+      - name: Seal bounded original examination evidence
+        id: seal
+        if: ${{ always() && steps.checkout.outcome == 'success' }}
+        timeout-minutes: 1
+        run: python3 -B v116/q5_graph/seal.py
+      - name: Save one seven-day artifact
+        if: ${{ always() && steps.seal.outcome == 'success' }}
+        timeout-minutes: 2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v116-q5-graph-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v116-q5-graph-${{ github.run_id }}/evidence/
+          retention-days: 7
+          compression-level: 6
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false

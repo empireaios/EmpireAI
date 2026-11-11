@@ -1,0 +1,93 @@
+{
+  "schema": "empireai-v116-q5-graph-source-v1",
+  "parentCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-o42-q5-graph-20261111-a01",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-o42-q5-graph.yml",
+      "bytes": 3795,
+      "sha256": "07dc14205b35173129e96cc4261558c321061fc61691c1003b7510e7b8780d12"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 668,
+      "sha256": "c0307a4e53f30888e864cbadbf9a30ff06a02045d1c4b8cb9096b8a51ad4ddf9"
+    },
+    {
+      "path": "v116/q5_graph/admit.py",
+      "bytes": 3766,
+      "sha256": "f7e1f5dd75011a301b35eec1565be68dd022f7c463689ef18d5359a185fff15a"
+    },
+    {
+      "path": "v116/q5_graph/application-inputs.json",
+      "bytes": 19101,
+      "sha256": "c3c9999af9f7baf0550130d90b14abc6b45ec66f97069908f9e7b94b5db7c216"
+    },
+    {
+      "path": "v116/q5_graph/launch-authority.json",
+      "bytes": 1251,
+      "sha256": "d1ff824c27a4321977e85f9624f9cdd3e2b2b72dff59c0f5b9d2df9cd1733934"
+    },
+    {
+      "path": "v116/q5_graph/prepare.mjs",
+      "bytes": 3945,
+      "sha256": "a05621bd54b32452db2aec4b5c0edcf37b323bd5a1ff1ed1d49e78a816a5e1e9"
+    },
+    {
+      "path": "v116/q5_graph/retained_input.py",
+      "bytes": 3125,
+      "sha256": "c309eaeb1f36aabcbb00eac845cbed403f06246a2c48e420869840e54db50a7a"
+    },
+    {
+      "path": "v116/q5_graph/run-graph.sh",
+      "bytes": 5495,
+      "sha256": "c423401b787389a7e45056901449d4b8e3b74bcb30dd51ff2e58f971f92957f5"
+    },
+    {
+      "path": "v116/q5_graph/runtime-graph-application.cjs",
+      "bytes": 3001,
+      "sha256": "32a7ffa0c37f5b40948dea034c0ba2e56a7e7424d825be7b24449a6426323805"
+    },
+    {
+      "path": "v116/q5_graph/runtime-graph-lock-stores.cjs",
+      "bytes": 2429,
+      "sha256": "64333992689f7f72b00c4349b8c2e5a9ed469772fe4896aa7622067aeaea9f4e"
+    },
+    {
+      "path": "v116/q5_graph/runtime-writer-graph.hosted.test.cjs",
+      "bytes": 10825,
+      "sha256": "23e9b3105af8e00fc310a8aafcb5df71ad8c86e26a8805a1a7e5b4a65c120009"
+    },
+    {
+      "path": "v116/q5_graph/seal.py",
+      "bytes": 1162,
+      "sha256": "180bcd7525461ae0e82a52bb10e4c40b180393604161ec075a2dcc085ff6a85c"
+    },
+    {
+      "path": "v116/q5_graph/technical-authority.json",
+      "bytes": 3471,
+      "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+    },
+    {
+      "path": "v116/q5_graph/verify-container.py",
+      "bytes": 2180,
+      "sha256": "d14a0ac0c90a0f64a5aa379bb4b305aa0493aa284e2777b36961e8f6b30452d3"
+    },
+    {
+      "path": "v116/q5_graph/verify-result.py",
+      "bytes": 2279,
+      "sha256": "d593c2bbb14cbf4f3d93eb53271a128b8fe5d658fc1c7ecb25c24a20fbb27631"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 847,
+      "sha256": "10943a297bc85cf9ea1f68166aaa79a9a2e0c335e646f176b41743ba133504c9"
+    }
+  ]
+}

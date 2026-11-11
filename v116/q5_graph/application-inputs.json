@@ -1,0 +1,545 @@
+{
+  "schema": "v116-q5-graph-exact-inputs-v1",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "originalFiles": [
+    {
+      "path": "deployment/MANAGED_DEPLOYMENT.md",
+      "bytes": 6607,
+      "sha256": "fc2fb114b60e4497e939d9c8d912dde64e75687b3d2ddaf2b63895c9b01421aa"
+    },
+    {
+      "path": "deployment/README.md",
+      "bytes": 3460,
+      "sha256": "fa90f31b5d9854a25bcab6bd0a5e88a09b609de3632fbaa791721e0c1c8ab234"
+    },
+    {
+      "path": "deployment/assurance-discrepancy-readback.cjs",
+      "bytes": 6992,
+      "sha256": "06458c2b2eecfda41708729c0d7ba4f19dc37c913a0c71e3f4e9d15049a3139f"
+    },
+    {
+      "path": "deployment/assurance-discrepancy-readback.test.mjs",
+      "bytes": 13025,
+      "sha256": "c28340d9eee5850285e4f529ef4457d827dc119259034a436834c1f92e608be6"
+    },
+    {
+      "path": "deployment/assurance-inspector-entrypoint.test.mjs",
+      "bytes": 3202,
+      "sha256": "7ee793dd4f57070c18cbf48f2030d099514a0e55116c6964f6318896e1bbc9a5"
+    },
+    {
+      "path": "deployment/assurance-supervisor.cjs",
+      "bytes": 6466,
+      "sha256": "e49baca21653562b3c00532907762027a4782473c14ba12b0d4fca9719daec21"
+    },
+    {
+      "path": "deployment/build-owner-evidence.mjs",
+      "bytes": 6146,
+      "sha256": "c9c5cb059607824cdd38d0a5d9a62a02c0ac6084da93e3f9e29f8d99945d5be3"
+    },
+    {
+      "path": "deployment/build-runtime.md",
+      "bytes": 3517,
+      "sha256": "ad0a6bcfba2160bff1c1ad0f3b77fe037b67d0b210abd446f176237098ce6c4b"
+    },
+    {
+      "path": "deployment/canary-launcher.cjs",
+      "bytes": 12013,
+      "sha256": "de8156904799d26f7dc8f78eee0019bb4703724ec25945c19e05184e2ac15a4d"
+    },
+    {
+      "path": "deployment/canary-launcher.test.cjs",
+      "bytes": 15752,
+      "sha256": "2ed2e1b1d6effd61b462b5f90d361fafbdc3a6c12ba0ce38ef087f1ccca611f3"
+    },
+    {
+      "path": "deployment/canary-runtime-probe.cjs",
+      "bytes": 37190,
+      "sha256": "33106e5862d8807892f26977d04f11b7dde2bc08a2d1118be15618871f92aae0"
+    },
+    {
+      "path": "deployment/canary-runtime-probe.test.cjs",
+      "bytes": 14519,
+      "sha256": "f8c482af2061b527058713172ba46a91e029fcac2cda3f970a8d1871d3e7b604"
+    },
+    {
+      "path": "deployment/cj-eligibility-screen.mjs",
+      "bytes": 786,
+      "sha256": "0a9312e12bc699c328beed5332397832ec2b89404fac834c24a25b96f4e9657f"
+    },
+    {
+      "path": "deployment/cj-screening-rejections.json",
+      "bytes": 1218,
+      "sha256": "e8a47a433adebe942bb625526894eda641173981553cfc40090bef457271039c"
+    },
+    {
+      "path": "deployment/cj-stock-discovery.mjs",
+      "bytes": 6285,
+      "sha256": "532d388cc79c3016bd14248963430abb237d6570a8f1af2c7bec3947db975a54"
+    },
+    {
+      "path": "deployment/cj-stock-discovery.test.mjs",
+      "bytes": 4156,
+      "sha256": "0126a833fcf371d13585181d46724008bdfce3742bfe8b17e23e5214a3c86c97"
+    },
+    {
+      "path": "deployment/cj-supplier-readback.mjs",
+      "bytes": 8176,
+      "sha256": "395c55315eb9532cfd3a24ef52778516522cc1405689c05afce7a1f4597ed65a"
+    },
+    {
+      "path": "deployment/cj-supplier-readback.test.mjs",
+      "bytes": 4780,
+      "sha256": "94ea5ffb5f1780bc2941e4594f85d3cfe3f1404928d792478b4b49eff03cf8cc"
+    },
+    {
+      "path": "deployment/containment-audit.cjs",
+      "bytes": 861,
+      "sha256": "4027371df1a04821040a4f6da73f548801dfef68663229b4f8649a8d43a8160b"
+    },
+    {
+      "path": "deployment/docker/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "deployment/fixtures/observer-capture-child.mjs",
+      "bytes": 1453,
+      "sha256": "bc1da7fbb1a9f23551868237bb84585973e145f801b020769bbd9c058066789d"
+    },
+    {
+      "path": "deployment/fixtures/runtime-graph-application.cjs",
+      "bytes": 2471,
+      "sha256": "f17f43abfcc32a0f22cd1ba52bceaf2e9edabf6df15eb7eca42a5efbfd901fc2"
+    },
+    {
+      "path": "deployment/fixtures/runtime-graph-redis.cjs",
+      "bytes": 2462,
+      "sha256": "2bfc676aaba2dbff8ac077d3036d9e871c77e7660e4db1887a5dfd2126762ebd"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-redis.cjs",
+      "bytes": 1432,
+      "sha256": "1ba5ddd94fd64c8adf673e4f08af6b1de8e3ad9a8841984c45e15d6bdf2ec3f4"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-runner.cjs",
+      "bytes": 583,
+      "sha256": "c9895772f773d472f0195acdb62aa613871978b9fe8c341cc570562a384c99c8"
+    },
+    {
+      "path": "deployment/fixtures/runtime-membership-writer.mjs",
+      "bytes": 1871,
+      "sha256": "f28f272613576647bcd9f7bf1f6be88574385b3220d2724d643f03a400b4ce88"
+    },
+    {
+      "path": "deployment/fixtures/runtime-writer-isolation-probe.c",
+      "bytes": 2196,
+      "sha256": "d8aec455b2f250b810635bdd9109094c8ff1b12ca30f6672694c13d0c9af5285"
+    },
+    {
+      "path": "deployment/infrastructure/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "deployment/kubernetes/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "deployment/launcher-loss-guard.cjs",
+      "bytes": 4685,
+      "sha256": "784553efa00db2bfbc09938dce88f3ea59e93b845df8bb4936f3c36fd04b982c"
+    },
+    {
+      "path": "deployment/launcher-loss-guard.test.cjs",
+      "bytes": 3536,
+      "sha256": "2638941b68a4b5cc4ae4d15733f6e29453b3bb66c7c5f15baac918fc7eb851b2"
+    },
+    {
+      "path": "deployment/legacy-checkpoint-capture.cjs",
+      "bytes": 7389,
+      "sha256": "bac60434618836b292edff31a16e92de8113584aa9dc864edcdcaeb6f64262b6"
+    },
+    {
+      "path": "deployment/legacy-checkpoint-capture.md",
+      "bytes": 4495,
+      "sha256": "93d013495d073e20d85b31e3bfdc1dafb4cd966f4223f3eb069bed8658d32d53"
+    },
+    {
+      "path": "deployment/legacy-checkpoint-capture.test.cjs",
+      "bytes": 6713,
+      "sha256": "90e966326ba76495da1177bcc52da485f471bfc75539d83701c8015ec184a0c9"
+    },
+    {
+      "path": "deployment/legacy-critical-save-proof.mjs",
+      "bytes": 7764,
+      "sha256": "43db89759bbe4ed436b05942a6aec45a9c4a1acf69d96ba5be766516f3af820d"
+    },
+    {
+      "path": "deployment/legacy-shadow-state-capture.cjs",
+      "bytes": 9573,
+      "sha256": "8bc187acf6e35a9d5459ae55e0d924550ebe85dbb4e18d842e5239b1ead497a6"
+    },
+    {
+      "path": "deployment/legacy-shadow-state-capture.md",
+      "bytes": 2590,
+      "sha256": "24defbc93c11917e986135ff31a2b18c85e7bcbefeb8c2c0adf2927b16709222"
+    },
+    {
+      "path": "deployment/legacy-shadow-state-capture.test.cjs",
+      "bytes": 6910,
+      "sha256": "6ba3fbc71f24c9ab98b355f0f439ab786af317ef85d88cd52d08a86bde96ebb7"
+    },
+    {
+      "path": "deployment/locked-observer-shutdown.test.cjs",
+      "bytes": 2577,
+      "sha256": "bbb9852eadcfb34f0b4a1df30cbdc03f005c8cbce11018fbd3bf5ec7a418cff9"
+    },
+    {
+      "path": "deployment/locked-runtime.cjs",
+      "bytes": 8752,
+      "sha256": "e0a2067c02ac66f1aafda7c1ce845dc1c5f8052bd2be1ca035c450237c022bd2"
+    },
+    {
+      "path": "deployment/locked-runtime.test.cjs",
+      "bytes": 9672,
+      "sha256": "7cd0c18eefe597f6e2e3442db9cd68aca469a95d1911f0029949ccf09953b0f6"
+    },
+    {
+      "path": "deployment/locked-state-bundle.cjs",
+      "bytes": 4934,
+      "sha256": "29c3662730d1732e63272fd7323a776d70d1225e3601fe984ee62e2d5ec428b1"
+    },
+    {
+      "path": "deployment/locked-supervision.cjs",
+      "bytes": 2873,
+      "sha256": "1fc0959d5b654aa91c0ab58a860dc59a498ffbbb3934eb469bc2e1687d919b84"
+    },
+    {
+      "path": "deployment/locked-supervision.test.cjs",
+      "bytes": 7105,
+      "sha256": "7d78a78a1526ec165597a84a928b71e08ed1ba102d1f9f19234073209ab2efd9"
+    },
+    {
+      "path": "deployment/native/runtime-writer-isolation.c",
+      "bytes": 3452,
+      "sha256": "2f17b9f9e6202ae78ea98ce2575f49b8d65d56c183c9460af98409c9254d541c"
+    },
+    {
+      "path": "deployment/o33-path-contract.cjs",
+      "bytes": 1638,
+      "sha256": "e1ebf1cc8c2c109f4759c8dacab8dd796fbd45ce4b60f8c347c89a3e169b9a8a"
+    },
+    {
+      "path": "deployment/observer-capture.cjs",
+      "bytes": 2460,
+      "sha256": "c9513c42c917b774b605a7d2e5cd454d01d7cc88dcd7508bf341cfed8272bc1b"
+    },
+    {
+      "path": "deployment/observer-capture.test.cjs",
+      "bytes": 9614,
+      "sha256": "fb6638dddb56762487b19ff0afc2e57226e0a8a41465f10d848d2a3884fa281d"
+    },
+    {
+      "path": "deployment/offline-state-bundle.cjs",
+      "bytes": 23196,
+      "sha256": "210ffd4cd44ce8e60b557947b094d27504dbfd97e5bb17676f324abdb42ee1c8"
+    },
+    {
+      "path": "deployment/offline-state-bundle.md",
+      "bytes": 6160,
+      "sha256": "476cc2655f24ee8910a5d6326061d29385b17294e9f923630c4d4b69f65f618c"
+    },
+    {
+      "path": "deployment/precutover-closure.cjs",
+      "bytes": 15240,
+      "sha256": "a6fc2f7674f96fe11216d65538bb4e736f739e67fbc9f57b600d1d92cb5ee280"
+    },
+    {
+      "path": "deployment/process-state.test-support.cjs",
+      "bytes": 1476,
+      "sha256": "84cc399ca2c2ad06e6af4d29c860ba414e8d2283a848165c56531b7b56770147"
+    },
+    {
+      "path": "deployment/provider-readback.mjs",
+      "bytes": 11041,
+      "sha256": "c8f1841e18e7d9b8485eca2b19907d0c9f23a91f82bd35dfb9c18bb359c8e47d"
+    },
+    {
+      "path": "deployment/provider-readback.test.mjs",
+      "bytes": 7634,
+      "sha256": "348aaae58305580b91c5d679ed94611fb5a7d2b9120facdf25987461f4190c43"
+    },
+    {
+      "path": "deployment/railway-canary.md",
+      "bytes": 11843,
+      "sha256": "9df45abf645f3a951077da9f37cbaeade96ec5b5d0a7e85a34e67decbf6c3e67"
+    },
+    {
+      "path": "deployment/railway-production.env.template",
+      "bytes": 1941,
+      "sha256": "e7915a52dbc19f32624a701ebc1da6043831d8a7dedd163c1c10bc211c658f12"
+    },
+    {
+      "path": "deployment/railway.canary.toml",
+      "bytes": 814,
+      "sha256": "336ded0f1882af7aab7517208f2f511e0161ca9cc1deaafd2e6c1ed840ec36ca"
+    },
+    {
+      "path": "deployment/railway.locked.toml",
+      "bytes": 922,
+      "sha256": "4b8b9530cf081f7a487af46c61e560783ef23fbd8b0dd128ee56710f6dab17c8"
+    },
+    {
+      "path": "deployment/railway.md",
+      "bytes": 9438,
+      "sha256": "27dcd7cb66054c16c31357a024695eabcbe6682dab7239e144987fa00d29144e"
+    },
+    {
+      "path": "deployment/railway.redis-canary.toml",
+      "bytes": 287,
+      "sha256": "c88107fbbccd28137d15427c148c3bf38de05b3a7219840932169555fa86d4be"
+    },
+    {
+      "path": "deployment/redis-canary-image.test.cjs",
+      "bytes": 9254,
+      "sha256": "6c7f95998b0660b9d87a0970ae9dca4a94f36d7be1b5080192fbed2c6fc5d365"
+    },
+    {
+      "path": "deployment/redis-canary-launcher.cjs",
+      "bytes": 7840,
+      "sha256": "8799b7976b862155052b031e758021cc691d578315f61f1a820da6b04e9cb034"
+    },
+    {
+      "path": "deployment/redis-canary-launcher.test.cjs",
+      "bytes": 8977,
+      "sha256": "4ae806194a023c90f2e058b89640e118c29829df33fb13d83fab42a45e49f4aa"
+    },
+    {
+      "path": "deployment/redis-canary.Dockerfile",
+      "bytes": 769,
+      "sha256": "24f44bf9c787fc9307592ec712b09623b59afd1f34197cecb0fc3d6f475d4e29"
+    },
+    {
+      "path": "deployment/redis-canary.md",
+      "bytes": 5372,
+      "sha256": "83deacc08d40f6da2439a32bc0c3bb8edd71a6bd25c7a4a4ab7f8222c89aa9ae"
+    },
+    {
+      "path": "deployment/rehearse-cutover-recovery.cjs",
+      "bytes": 4219,
+      "sha256": "fb8558c2cc519a9f4d253c6d8443978575b44deb9fb918c265abca9535f68623"
+    },
+    {
+      "path": "deployment/runtime-brain-broker.cjs",
+      "bytes": 2759,
+      "sha256": "c2806cf03db26f15016b75f7d66961b057e67c4ecd89787d0abf1f8b41814ba9"
+    },
+    {
+      "path": "deployment/runtime-brain-broker.test.cjs",
+      "bytes": 3007,
+      "sha256": "d6fc08b8d9130aff04f79b1283f21e63c04541bcefc289070af503a5cc613018"
+    },
+    {
+      "path": "deployment/runtime-capture-lock-holder.mjs",
+      "bytes": 2748,
+      "sha256": "c0f5af031bb2286e26284ab170267e45e838588d5774ffcb2e282c62f53406c9"
+    },
+    {
+      "path": "deployment/runtime-generation-preload.cjs",
+      "bytes": 977,
+      "sha256": "fb53e646826318418bed2126aa738513fe436b051ae9c1b741ba5357611b31da"
+    },
+    {
+      "path": "deployment/runtime-generation.cjs",
+      "bytes": 11435,
+      "sha256": "2103a04ed2342c803de9127e1a109e7b6f92543c9bfa59dea1eb866d406f926d"
+    },
+    {
+      "path": "deployment/runtime-generation.test.cjs",
+      "bytes": 11597,
+      "sha256": "24a118e76085cde8d93717cfcaba1c57f9aaee205e145245546d7bcc14e84be4"
+    },
+    {
+      "path": "deployment/runtime-graph-redis.test.cjs",
+      "bytes": 2230,
+      "sha256": "7e6445688605bbc6da119dc3e3a5523d84340dfe113a799bc34ba3aab52c5c8d"
+    },
+    {
+      "path": "deployment/runtime-isolated-application.cjs",
+      "bytes": 7972,
+      "sha256": "bf734308d1f3732cd4bf1b0c7484fab1338b4a7ec9490eaf1aa005a1c16b0cb3"
+    },
+    {
+      "path": "deployment/runtime-isolated-application.test.cjs",
+      "bytes": 2972,
+      "sha256": "d818e840fb86dacd1de22bb6e51f3c63f05f98badc0a43e618c9ebe7dfc5219b"
+    },
+    {
+      "path": "deployment/runtime-membership-bootstrap.mjs",
+      "bytes": 3973,
+      "sha256": "84bd06b3cd85727cf8f48ee2668065361349323e5285429f63b90978b7856ea5"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.cjs",
+      "bytes": 20923,
+      "sha256": "59e7ea679ad41cd8663d80c1e98364242fcec00c98744e77f682814a8d124f1b"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.hosted.test.cjs",
+      "bytes": 11684,
+      "sha256": "bc16de886279d4730294d2cbbad40b045190d7896df2ae968ecb06d527960769"
+    },
+    {
+      "path": "deployment/runtime-membership-controller.test.cjs",
+      "bytes": 2612,
+      "sha256": "c409aa2a3070bcb88c046c3a554fab059040ff6b24295f853f84378db44e2fab"
+    },
+    {
+      "path": "deployment/runtime-membership-receipt.cjs",
+      "bytes": 2306,
+      "sha256": "b96f6887589dbedd02ba27a472dcb8a7c71b5b2d166caa9a76bc6e81cb2a98be"
+    },
+    {
+      "path": "deployment/runtime-membership-receipt.test.cjs",
+      "bytes": 1810,
+      "sha256": "2a7376e1aa750152878f7657eb1ca4de4edd36b8723563133853677b4aead0d7"
+    },
+    {
+      "path": "deployment/runtime-native-lock-broker.cjs",
+      "bytes": 3913,
+      "sha256": "65386face6f2890d31c7bf385583380162596ac5ae8f9e7acd472d7751abeb9c"
+    },
+    {
+      "path": "deployment/runtime-native-lock-client.cjs",
+      "bytes": 1307,
+      "sha256": "e72f184dd6141fb65cc9a4506d5edc548e8a67d8ac843ffcf0d2a206e0bfad95"
+    },
+    {
+      "path": "deployment/runtime-operator-audit.cjs",
+      "bytes": 2388,
+      "sha256": "73e6fc4c3d95f15a1ff6b0032d79ac23b58d2cf97ded69fb942e07477cece647"
+    },
+    {
+      "path": "deployment/runtime-revision.cjs",
+      "bytes": 592,
+      "sha256": "631c36a3760e2a3db8cbb414b9070911a1fa8acfa4c3cf6acb96b7fea4d85cd8"
+    },
+    {
+      "path": "deployment/runtime-revision.test.cjs",
+      "bytes": 1220,
+      "sha256": "47fcb248ec8362166d3d313760f125ff74e490be44d86381ec2dec2506ffb26a"
+    },
+    {
+      "path": "deployment/runtime-startup-readback.mjs",
+      "bytes": 515,
+      "sha256": "406e3baae84bd28cd2975afcc0db862a1438c0aecde89c4eb3cc8a140bb510fc"
+    },
+    {
+      "path": "deployment/runtime-writer-controller.cjs",
+      "bytes": 11646,
+      "sha256": "20df8940deaa92b760fa80576130bcedc8cdc75e96df4593dab33d0c16ee8777"
+    },
+    {
+      "path": "deployment/runtime-writer-graph.hosted.test.cjs",
+      "bytes": 9430,
+      "sha256": "1dc78b24bab5a0902425c4f8bfdd2e1f34ae63a98c8cd29818739ed3b41ed74a"
+    },
+    {
+      "path": "deployment/runtime-writer-isolation.cjs",
+      "bytes": 3270,
+      "sha256": "dff08c2dd38678875da9c53322a591f147a66c1afeb4a002c85a526662d6a2d2"
+    },
+    {
+      "path": "deployment/runtime-writer-isolation.test.cjs",
+      "bytes": 3523,
+      "sha256": "4a440353b341211f42ce35a6e759e7de81c11b7efc1a42e8d945c2ff4e2f79c9"
+    },
+    {
+      "path": "deployment/supabase.md",
+      "bytes": 3766,
+      "sha256": "7e6734410eaf53b49dcb73fdbc542b03c3cf9c663720ac5a38dca0d8147c6054"
+    },
+    {
+      "path": "deployment/upstash.md",
+      "bytes": 2647,
+      "sha256": "fa7f2144c176a7af030623f5c6114fb556aa56a5eadb9f173af7f0fa8d0de008"
+    },
+    {
+      "path": "deployment/vercel-cockpit.env.template",
+      "bytes": 359,
+      "sha256": "ee290d5883849aaf687f54e12262236e5aa349ca95c149f0808d290f3225f35f"
+    },
+    {
+      "path": "deployment/vercel.md",
+      "bytes": 3091,
+      "sha256": "6e2d3a095beae6aa8cd56a5a17de8f7a9e684f58c3228297244e719d4a92c909"
+    },
+    {
+      "path": "deployment/verify-recovered-commissioning.py",
+      "bytes": 1982,
+      "sha256": "19def954251a0f92a80a966aaf3c6a184b0a4b954110544fa8866464119b09e3"
+    },
+    {
+      "path": "deployment/work8-cold-state-materialization.cjs",
+      "bytes": 7876,
+      "sha256": "611f7df5e185d8052359223725796730c6e6baaeb741bb06e26e935069884358"
+    },
+    {
+      "path": "deployment/work8-lifecycle-markers.cjs",
+      "bytes": 1880,
+      "sha256": "6af81d6a24972aa0b4aef4797ead55de5961de2e37f578c4733b2461fcb6c7f0"
+    },
+    {
+      "path": "deployment/work8-recovery-set.cjs",
+      "bytes": 21814,
+      "sha256": "553063b96e479e1f4393bf336d64139babf768e6a07054077534eb10019f9e1a"
+    },
+    {
+      "path": "deployment/work8-runtime-inspection-layout.cjs",
+      "bytes": 4518,
+      "sha256": "5989ed8395b1ec4b63a2f92c258789bde0dca7acb1c02bba7a08b626a691b0db"
+    },
+    {
+      "path": "deployment/work8-session-continuity-recovery.cjs",
+      "bytes": 3965,
+      "sha256": "7f550713d3af4b48065ecf3f31e72cd3a9735ddcfe082e11b370058a7efed3c1"
+    },
+    {
+      "path": "deployment/work8-system-vault.cjs",
+      "bytes": 6180,
+      "sha256": "1c988462ef1eee677f28b585c4cd9659202156f4b03820c4abb9b4f3c92c1a5a"
+    },
+    {
+      "path": "backend/src/runtime/native-store-capture-lock.cjs",
+      "bytes": 4841,
+      "sha256": "26c7a0535c443a836282a7cf0d6a6aa7b25b4008a5d6cbbb7385730ff8899f3b"
+    }
+  ],
+  "fixtureOnlyOverlays": [
+    {
+      "controlName": "runtime-writer-graph.hosted.test.cjs",
+      "target": "deployment/runtime-writer-graph.hosted.test.cjs",
+      "bytes": 10825,
+      "sha256": "23e9b3105af8e00fc310a8aafcb5df71ad8c86e26a8805a1a7e5b4a65c120009"
+    },
+    {
+      "controlName": "runtime-graph-application.cjs",
+      "target": "deployment/fixtures/runtime-graph-application.cjs",
+      "bytes": 3001,
+      "sha256": "32a7ffa0c37f5b40948dea034c0ba2e56a7e7424d825be7b24449a6426323805"
+    },
+    {
+      "controlName": "runtime-graph-lock-stores.cjs",
+      "target": "deployment/fixtures/runtime-graph-lock-stores.cjs",
+      "bytes": 2429,
+      "sha256": "64333992689f7f72b00c4349b8c2e5a9ed469772fe4896aa7622067aeaea9f4e"
+    }
+  ],
+  "nativeArtifactSHA256": "5048f19ec38c708dd1b139f7a3f60cb8eb5e9146cd4fdb6e978caffbcac87a1b",
+  "originalSemanticContract": "Preserve original5roles and8fault/probe assertions; add2mandatory current lock-holder roles and real existingnative lock protocol/stores; execute only missing primary-death scenario.",
+  "nativeApplicationStarted": false,
+  "canonicalOwnerEvidence": false
+}
