@@ -1,0 +1,77 @@
+{
+  "schema": "v116-browser-renderer-diagnostic-source-v1",
+  "parentCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-browser-renderer-diagnostic-20261111-a02",
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-browser-renderer-diagnostic.yml",
+      "bytes": 3743,
+      "sha256": "b72c39c5673a533ec5777adc7152242aa321b3045f8eedeedbec4e74e6df05df"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 683,
+      "sha256": "4498df6eb50cadb8ed55d076c2b8cfec4229fd262e4fb128962d092e2cc9eb49"
+    },
+    {
+      "path": "v116/browser_renderer_diagnostic/admit.py",
+      "bytes": 3544,
+      "sha256": "22d6988d014363d8d42f35113cec347f4b2f51d6d5bc15a794fd5d2f2556be8f"
+    },
+    {
+      "path": "v116/browser_renderer_diagnostic/browser-renderer-probe.mjs",
+      "bytes": 10694,
+      "sha256": "fa824a41d6cd0c5d144bad8bc6b191d32b5bb79e0c882180901e83f4815ca95b"
+    },
+    {
+      "path": "v116/browser_renderer_diagnostic/collect.py",
+      "bytes": 4915,
+      "sha256": "3db5e56ff71718a78fed0191a6542086a9564743a2b092c3e0307cdb4e648543"
+    },
+    {
+      "path": "v116/browser_renderer_diagnostic/final-gate.py",
+      "bytes": 7099,
+      "sha256": "ac2d68480a624107df01501c197539a21072ffa19115b5b7a6edd81fc56651cb"
+    },
+    {
+      "path": "v116/browser_renderer_diagnostic/host.py",
+      "bytes": 13793,
+      "sha256": "2df1952d291748000f30ccbadc7d1057b28a7c930e5c0fff772d90534c292d3e"
+    },
+    {
+      "path": "v116/browser_renderer_diagnostic/immutable-browser-binding.json",
+      "bytes": 3989,
+      "sha256": "bb9fb9c6a62ccf77f4401acf87bf64262b99ca210ee093e41bbe3a7f731621d4"
+    },
+    {
+      "path": "v116/browser_renderer_diagnostic/inputs.json",
+      "bytes": 1719,
+      "sha256": "ed2aee9b3489af8ed55154f1dce281f7a7f6ef5f07e19e8a3e02dbacf8b9d427"
+    },
+    {
+      "path": "v116/browser_renderer_diagnostic/launch-authority.json",
+      "bytes": 1119,
+      "sha256": "348be0c00dfc0acd2208fd885d2f654700157ec805059069bb9156877dc77212"
+    },
+    {
+      "path": "v116/browser_renderer_diagnostic/npm-stage.py",
+      "bytes": 9333,
+      "sha256": "74c38e4724e7bd12ed1036f0f5a054caa7ac8ce0f5cb4487357c758138565271"
+    },
+    {
+      "path": "v116/browser_renderer_diagnostic/retained_input.py",
+      "bytes": 3151,
+      "sha256": "015b038f18cfbafa5c87e7f7224fbe1db1ccccb378597824c6199c68a6ee89b3"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 862,
+      "sha256": "de6e07b0b43167611b98dfe6da1800c130991069b0f6efd78ca2fbfc004cc55d"
+    }
+  ]
+}
