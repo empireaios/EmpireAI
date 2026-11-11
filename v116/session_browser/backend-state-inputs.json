@@ -1,0 +1,80 @@
+{
+  "schema": "v116-session-browser-native-state-inputs-v1",
+  "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "captureDigest": "0285ce80393f82098a7d7cecc58620f069930961158c13c29b23129f34e4e4e7",
+  "checkpointDigest": "8594ce16f7352ff8170cc89d2dbe01876e5a5459b7d1acdf38a4582d25b1a03f",
+  "classification": "ISOLATED_TECHNICAL_A07_DERIVED_STATE_NOT_GENUINE_OWNER",
+  "sourceDirectory": "/workspace/scratch/407ee96f3cfb/v116_work/replica_cohort/local-execution-1/output/target-epoch1",
+  "files": [
+    {
+      "path": "commerce/runtime.sqlite",
+      "bytes": 1015808,
+      "sha256": "1ed324a038dee022de149b421cba864c37ef3d52d6677f7e0de55487550d44f1"
+    },
+    {
+      "path": "commerce/runtime.sqlite.initialized",
+      "bytes": 39,
+      "sha256": "fb10295358d1d0db2598ba04daee68c4847ac49fda83acfabaa4d3ee526d6880"
+    },
+    {
+      "path": "commissioning/assurance.sqlite",
+      "bytes": 106496,
+      "sha256": "6ead8c36236c440d2931e5c15cb06be21fcdcf0ac462be2dbfa5aae572f75972"
+    },
+    {
+      "path": "commissioning/communications.sqlite",
+      "bytes": 61440,
+      "sha256": "f81ca57ba69037504388b766b4c3c313232252b0834faf71ab613268f57f4b7e"
+    },
+    {
+      "path": "commissioning/empireai-brain.db",
+      "bytes": 2502656,
+      "sha256": "eb90e247466d0d74bb377d4b27e6e732e2df967f67c1d79c34ec516978605990"
+    },
+    {
+      "path": "commissioning/empireai-brain.db.mission-execution.sqlite",
+      "bytes": 20480,
+      "sha256": "fed35392bbdf55f8be3574707b5eaa85c4f08e341b7dd9ea2de8f817390c89ba"
+    },
+    {
+      "path": "commissioning/empireai-brain.db.missions.sqlite",
+      "bytes": 16384,
+      "sha256": "62544e20ad72f50f5238f4bb2435dfb71d308c2ec3f427e10e791dfb26377e3e"
+    },
+    {
+      "path": "commissioning/empireai-brain.db.shadow/shadow-ceo.db",
+      "bytes": 20480,
+      "sha256": "f085574e0316a51a2c9594ec734df01685ca403cc6b78427a7e8ff32d7504303"
+    },
+    {
+      "path": "commissioning/intelligence.sqlite",
+      "bytes": 45056,
+      "sha256": "cc1dfb6d7b30c0661a1fe43f321ec942dd5644e7c04b7805111d7f1ede753aca"
+    },
+    {
+      "path": "commissioning/openai-october-2026.sqlite",
+      "bytes": 12288,
+      "sha256": "22d124c2a56ff9b2d3a9ab5a4ce4e6664708cb44e9e9cf6ecc578c492febf20d"
+    },
+    {
+      "path": "commissioning/pillow-institutional.sqlite",
+      "bytes": 45056,
+      "sha256": "e4884f0b3b56e15aaf210d640f1500d257c257e884700c774bdf86dda33930be"
+    },
+    {
+      "path": "commissioning/pillow-reasoning.sqlite",
+      "bytes": 36864,
+      "sha256": "363655543466653a4de5990609389924b5468ed81870125ad64cd2ee26d79fed"
+    },
+    {
+      "path": "commissioning/pillow-request-receipts.sqlite",
+      "bytes": 16384,
+      "sha256": "1cdfa92797566fdc338417f4be9f53e11246ab9f5d10f1fd8eccd85e1fb0b450"
+    },
+    {
+      "path": "finance/evidence.sqlite",
+      "bytes": 12288,
+      "sha256": "c34dfde2f9f58b9cf6990a515abcee2604266ab82ccc4cfa96b88f880d08c733"
+    }
+  ]
+}
