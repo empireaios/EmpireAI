@@ -1,0 +1,91 @@
+{
+  "schema": "v116-a05-declared-recovery-objectives-v1",
+  "declaredAtUTC": "2026-11-11T09:41:51.897349+00:00",
+  "declarationState": "A05_SUCCESSOR_PREDECLARED_SAME_OBJECTIVES_PENDING_INDEPENDENT_ADMISSION",
+  "authoritySHA256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3",
+  "originalPredicateReferences": [
+    "A2-10 Recovery-point objectives",
+    "A2-11 Recovery-time objectives",
+    "O39-07 No loss, duplication or financial divergence"
+  ],
+  "inputSHA256": {
+    "runtime-writer-controller.cjs": "37c64693591b96e828d598a0b3923042056930dbed4f6e59da66937398da6f5c",
+    "runtime-startup-readback.mjs": "b6dd126a0508fa44444513ed5b0cb47c085f7937b2d9468c8587061621725f63",
+    "v116-isolated-enrollment.cjs": "c6c770aff3a0f325846c211a277811eb42aaed8eae1520a45ffe7cdc216376b9",
+    "v116-enrollment-entry.mjs": "26747457e01036e1f9b3779c7fe2e4bf311f05e3f891c35f5f9aba11e1d670ea",
+    "v116-test1-coordinator.mjs": "af1752121c53391a53df5d4c1eddaad9cf234afa75138885b06dbe6c82b3a846",
+    "v116-test1-business.mjs": "2835520919fb48cb9204bdee27142e9395b263abbbd5dee5a2254c2b374fc491",
+    "v116-hh4-domain-state.mjs": "008df220b3388297eb714d5e9351d834630bb38b613e6c87deedfc8e6764d0ec",
+    "native-commerce-baseline.mjs": "7fd58d4a73074ec5c56472a37f7600054767dc242c1bd7511771f6557eaf1229",
+    "canonical-business-records.mjs": "fdf51e1cdc77984ac3bb0ce3f695da887cba55df2781b4bd2baf273aa1fe6c79"
+  },
+  "RPO": {
+    "threshold": 0,
+    "unit": "acknowledged committed native simulated business receipts and committed simulated finance events in this exact isolated sequence",
+    "cutoff": "Final drained source checkpoint after actual native owner-route admission and unchanged scheduler completion, pause and revoke. Durable checkpoint digest and original event IDs/order/currencies/amounts identify cutoff, not wall-clock timestamps alone.",
+    "verification": "All20nativebusinessreceipts and >=4committedfinanceevents in exact captured checkpoint equal restored native projection and repeated-read/restart projection; second identical replay is ALREADY_APPLIED with unchanged target rows. Count/digest equality includes actual original content.",
+    "limitation": "No zero production loss claim and no claim that post-capture events in every other system domain are continuously replicated."
+  },
+  "RTO": {
+    "thresholdMs": 180000,
+    "start": "Immediately before prepare(target) and materializeRuntimeInspection from complete sealed13-store capture, exactly controller restoreDeadline=Date.now()+180000.",
+    "completion": "After fresh target preparation,13database/control/Redis restoration, native business replay, target seven-role startup/readiness, actual captured-session readback and once-only pending completion, then one controlled restart and1100ms no-replay observation with final writer drain.",
+    "verification": "Existing unchanged controller requires every target/restart step to use one shared restoreDeadline and final Date.now()<restoreDeadline. A PASS proves an upper bound below180000ms; no exact elapsed duration is claimed without additional original timestamp evidence.",
+    "excluded": "Source startup/capture and provider object upload/download are outside this declared RTO; protected off-host restoration and production service recovery are unproved."
+  },
+  "scope": "Scenario-specific foundation examination only. Does not alone satisfy complete A2-10/A2-11, protected vault, whole-system continuous replication or any whole requirement.",
+  "executionAdmission": "Same original RPO0 and shared180s restoration/replay/restart/drain bound. Native application and recovery API bytes unchanged; explicit test-only controller/startup capability overlays separately source-bound. Root exact source review, publication and external saved financial release required before A05.",
+  "costChangeUSD": "0.00",
+  "wholeRowAccepted": false,
+  "priorDeclarationSHA256": "7b10f46fbb3cb2b390b633125afef35eebd7ca7f5d2dcdd30bdd005109ba015f",
+  "sourceBaselineCondition": "Fresh isolated commerce is enrolled by unchanged native initializeTwinRecoveryTarget while every table is empty, inside explicit admitted startup capability after original source freshness/Redis/reservation and before primary/Assurance writers. Subsequent actual native bootstrap rows plus marker/schema remain exact through full capture/restore. No arbitrary existing business baseline.",
+  "atUTC": "2026-11-11T09:41:51.897349+00:00",
+  "sourceOverlayInputs": [
+    {
+      "path": "v116_work/test1_a05/runtime-writer-controller.cjs",
+      "sha256": "37c64693591b96e828d598a0b3923042056930dbed4f6e59da66937398da6f5c",
+      "bytes": 12360
+    },
+    {
+      "path": "v116_work/test1_a05/runtime-startup-readback.mjs",
+      "sha256": "b6dd126a0508fa44444513ed5b0cb47c085f7937b2d9468c8587061621725f63",
+      "bytes": 696
+    },
+    {
+      "path": "v116_work/test1_a05/v116-isolated-enrollment.cjs",
+      "sha256": "c6c770aff3a0f325846c211a277811eb42aaed8eae1520a45ffe7cdc216376b9",
+      "bytes": 2821
+    },
+    {
+      "path": "v116_work/test1_a05/v116-enrollment-entry.mjs",
+      "sha256": "26747457e01036e1f9b3779c7fe2e4bf311f05e3f891c35f5f9aba11e1d670ea",
+      "bytes": 4480
+    },
+    {
+      "path": "v116_work/test1_a05/v116-test1-coordinator.mjs",
+      "sha256": "af1752121c53391a53df5d4c1eddaad9cf234afa75138885b06dbe6c82b3a846",
+      "bytes": 33153
+    },
+    {
+      "path": "v116_work/test1_a05/v116-test1-business.mjs",
+      "sha256": "2835520919fb48cb9204bdee27142e9395b263abbbd5dee5a2254c2b374fc491",
+      "bytes": 14649
+    },
+    {
+      "path": "v116_work/test1_a05/v116-hh4-domain-state.mjs",
+      "sha256": "008df220b3388297eb714d5e9351d834630bb38b613e6c87deedfc8e6764d0ec",
+      "bytes": 17520
+    },
+    {
+      "path": "v116_work/test1_a05/native-commerce-baseline.mjs",
+      "sha256": "7fd58d4a73074ec5c56472a37f7600054767dc242c1bd7511771f6557eaf1229",
+      "bytes": 2450
+    },
+    {
+      "path": "v116_work/test1_a05/canonical-business-records.mjs",
+      "sha256": "fdf51e1cdc77984ac3bb0ce3f695da887cba55df2781b4bd2baf273aa1fe6c79",
+      "bytes": 2800
+    }
+  ],
+  "enrollmentPrecondition": "Explicit isolated-source startup capability only after original loadGrant freshness, actual Redis identity and durable grant reservation. Original startup inference readback first; native membership UID65534/source/generation/entry hash and additional named enrollment scope; native empty-only API, closed stores before primary/Assurance. No production path or arbitrary populated baseline."
+}

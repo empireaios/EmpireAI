@@ -1,0 +1,102 @@
+name: Work 8 V116 bounded native Test1
+on:
+  create:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: work8-v116-o39-test1-20261111-a05
+  cancel-in-progress: false
+jobs:
+  test1:
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v116-o39-test1-20261111-a05' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      ACTIONS_STEP_DEBUG: 'false'
+      ACTIONS_RUNNER_DEBUG: 'false'
+    steps:
+      - name: Check out exact reviewed launch commit
+        id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+      - name: Establish exact repository Node pin
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        timeout-minutes: 2
+        with:
+          node-version-file: '.node-version'
+          check-latest: false
+      - name: Admit exact source and recorded technical reservation
+        id: admission
+        timeout-minutes: 1
+        run: python3 -B v116/recovery_hosted/admit.py
+      - name: Retrieve one exact retained immutable backend package
+        id: download
+        timeout-minutes: 7
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B v116/recovery_hosted/retained_input.py
+      - name: Execute one bounded isolated seven-role Test1
+        id: examination
+        timeout-minutes: 16
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          timeout --signal=TERM --kill-after=15s 900s
+          bash v116/recovery_hosted/run-test1.sh
+      - name: Terminate every scoped container and network on all outcomes
+        if: ${{ always() && steps.checkout.outcome == 'success' }}
+        timeout-minutes: 1
+        run: |
+          set -euo pipefail
+          name="work8-v116-test1-$GITHUB_RUN_ID"
+          docker container rm --force "$name-exam" "$name-redis" "$name-target-redis" >/dev/null 2>&1 || true
+          docker network rm "$name-net" >/dev/null 2>&1 || true
+          remaining=$(docker ps -aq --filter "name=^/$name-(exam|redis|target-redis)$")
+          [[ -z "$remaining" ]]
+          [[ -z "$(docker network ls -q --filter "name=^$name-net$")" ]]
+          out="$RUNNER_TEMP/v116-test1-$GITHUB_RUN_ID/evidence"
+          mkdir -p "$out"
+          python3 -c 'import json,os,pathlib; p=pathlib.Path(os.environ["RUNNER_TEMP"])/("v116-test1-"+os.environ["GITHUB_RUN_ID"])/"evidence"; (p/"provider-termination.json").write_text(json.dumps({"runId":os.environ["GITHUB_RUN_ID"],"scopedContainersAbsent":True,"scopedNetworkAbsent":True,"runnerJobTimeoutMinutes":30,"productionMutation":False})+"\n")'
+      - name: Preserve bounded first failure and hand evidence to uploader
+        id: custody
+        if: ${{ always() && steps.checkout.outcome == 'success' }}
+        timeout-minutes: 2
+        run: >-
+          sudo python3 -B v116/recovery_hosted/evidence-custody.py
+          "$RUNNER_TEMP/v116-test1-$GITHUB_RUN_ID" "$GITHUB_RUN_ID" test1
+          "$(id -u)" "$(id -g)"
+      - name: Seal exact bounded evidence once
+        id: seal
+        if: ${{ always() && steps.checkout.outcome == 'success' }}
+        timeout-minutes: 1
+        run: python3 -B v116/recovery_hosted/seal_evidence.py
+      - name: Save one seven-day evidence artifact
+        id: artifact
+        if: ${{ always() && steps.seal.outcome == 'success' }}
+        timeout-minutes: 3
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v116-test1-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v116-test1-${{ github.run_id }}/evidence/
+          retention-days: 7
+          compression-level: 6
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
