@@ -1,0 +1,35 @@
+{
+  "schema": "v116-o30-real-native-timing-inputs-v1",
+  "sourceCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "nodeSHA256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
+  "appSHA256": {
+    "backend/src/assurance/permanent-worker.mjs": "ca774d237f7d37d8ae88deea98e5e5286107fc6e452f4b5f61046829fb805e86",
+    "backend/src/assurance/permanent-inspector.mjs": "70f6cb3563331baca9343967366bde38ed0f0b42852cc63ef483cbfae06e90fc",
+    "backend/src/assurance/safe-live-probe.mjs": "50ec44e313d942b37259273ec0339620dbeeb8bbf6bc8a1882b1c026d0be9599",
+    "backend/src/assurance/safe-discrepancy-probe.mjs": "6fcead1d4f98579c0227a67dae53670a158cc7e42478f1cb507fee6f178801c7",
+    "backend/src/assurance/live-sources.mjs": "60f0ec940135fb3322823c163f8011cea71d1a2c20c047dbf34045f9d955e65f",
+    "deployment/assurance-supervisor.cjs": "e49baca21653562b3c00532907762027a4782473c14ba12b0d4fca9719daec21",
+    "deployment/observer-capture.cjs": "c9513c42c917b774b605a7d2e5cd454d01d7cc88dcd7508bf341cfed8272bc1b",
+    "deployment/assurance-discrepancy-readback.cjs": "06458c2b2eecfda41708729c0d7ba4f19dc37c913a0c71e3f4e9d15049a3139f"
+  },
+  "controlSHA256": {
+    "o30/controller.mjs": "d9d930c9b943a666a58506caf9260229ff9b1285fafe85ed987c8b3887ca09aa",
+    "o30/operating-controls.json": "68f29ba76920a897d658e0c50c375bed50e551cb56940c9d1e614bbe42fc26f0",
+    "o30/recovery.mjs": "0b5baa874fb1608665a034285c05caa028b0ca3e9ae1dd05406980751258b69b",
+    "o30/runtime-policy.mjs": "4952743add36c0110a1252d13bbf46ddee10cdaf6405aac62b0de4e216e1f979",
+    "o30/store.mjs": "7b081bd0d575929159fd41bf948741e7d7d9f82bffe5552182e5e971ba240a9e",
+    "o30/vendor/assurance-discrepancy-readback.cjs": "06458c2b2eecfda41708729c0d7ba4f19dc37c913a0c71e3f4e9d15049a3139f",
+    "o30/vendor/assurance-supervisor.cjs": "e49baca21653562b3c00532907762027a4782473c14ba12b0d4fca9719daec21",
+    "o30/vendor/observer-capture.cjs": "c9513c42c917b774b605a7d2e5cd454d01d7cc88dcd7508bf341cfed8272bc1b"
+  },
+  "nativeTimersMs": {
+    "worker": 600000,
+    "inspector": 90000
+  },
+  "approvedDetectionBoundsMs": {
+    "worker": 660000,
+    "inspector": 120000,
+    "processExit": 30000
+  },
+  "approvedTimingSHA256": "cd8e9bf490b83ec6d2eb8876ca36e60bd8be3291de54607e76d3a88edfc72e3e"
+}

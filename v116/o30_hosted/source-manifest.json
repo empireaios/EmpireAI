@@ -1,0 +1,178 @@
+{
+  "schema": "empireai-v116-o30-hosted-source-v1",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-o30-native-timers-20261111-a01",
+  "changedPaths": [
+    ".github/workflows/work8-v116-o30-native-timers.yml",
+    "empireai-web/vercel.json",
+    "v116/o30_hosted/admit.py",
+    "v116/o30_hosted/collect-stage.py",
+    "v116/o30_hosted/control/isolated-entry.py",
+    "v116/o30_hosted/control/launch-authority.json",
+    "v116/o30_hosted/control/native-timing-probe.mjs",
+    "v116/o30_hosted/control/o30/controller.mjs",
+    "v116/o30_hosted/control/o30/operating-controls.json",
+    "v116/o30_hosted/control/o30/recovery.mjs",
+    "v116/o30_hosted/control/o30/runtime-policy.mjs",
+    "v116/o30_hosted/control/o30/store.mjs",
+    "v116/o30_hosted/control/o30/vendor/assurance-discrepancy-readback.cjs",
+    "v116/o30_hosted/control/o30/vendor/assurance-supervisor.cjs",
+    "v116/o30_hosted/control/o30/vendor/observer-capture.cjs",
+    "v116/o30_hosted/control/operation-inputs.json",
+    "v116/o30_hosted/control/source-inputs.json",
+    "v116/o30_hosted/control/technical-authority.json",
+    "v116/o30_hosted/deny-service-start",
+    "v116/o30_hosted/host-entry.py",
+    "v116/o30_hosted/make-readable.py",
+    "v116/o30_hosted/retained_input.py",
+    "v116/o30_hosted/run-hosted.sh",
+    "v116/o30_hosted/seal.py",
+    "v116/o30_hosted/source-manifest.json",
+    "v116/o30_hosted/stage-inputs.py",
+    "v116/o30_hosted/terminate.sh",
+    "vercel.json"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-o30-native-timers.yml",
+      "bytes": 4065,
+      "sha256": "fb1c151c90ea46502038acc89ae230f83843ee73782ec4063debcc6b126984ad"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 673,
+      "sha256": "2d6a9149f0afcaada640144c36daa4e3dd569b8020e3bd6d79ce3a2e054c4002"
+    },
+    {
+      "path": "v116/o30_hosted/admit.py",
+      "bytes": 4121,
+      "sha256": "181090ef3a31aaf373b9d62380e832e70540193c8edd235bdadfb3283bbed416"
+    },
+    {
+      "path": "v116/o30_hosted/collect-stage.py",
+      "bytes": 1432,
+      "sha256": "e5c387e1334a7c3807ef911f7862e6303eef66de80c7f653a91ce5f5dbb012b6"
+    },
+    {
+      "path": "v116/o30_hosted/control/isolated-entry.py",
+      "bytes": 9111,
+      "sha256": "f87a1f39c84c0c3dfba1f23812d091b5d3db822ab2f8844e09d8571ab3285cc2"
+    },
+    {
+      "path": "v116/o30_hosted/control/launch-authority.json",
+      "bytes": 1489,
+      "sha256": "85ff7ed9ff986244a041f67f5efc0add378023c1d739c14572c012451b571b7f"
+    },
+    {
+      "path": "v116/o30_hosted/control/native-timing-probe.mjs",
+      "bytes": 15664,
+      "sha256": "b1c64e1ac76fc47d96f86bb6e8f55de448f89e854b29410cf6a1fbac7cd4bef1"
+    },
+    {
+      "path": "v116/o30_hosted/control/o30/controller.mjs",
+      "bytes": 11049,
+      "sha256": "d9d930c9b943a666a58506caf9260229ff9b1285fafe85ed987c8b3887ca09aa"
+    },
+    {
+      "path": "v116/o30_hosted/control/o30/operating-controls.json",
+      "bytes": 2835,
+      "sha256": "68f29ba76920a897d658e0c50c375bed50e551cb56940c9d1e614bbe42fc26f0"
+    },
+    {
+      "path": "v116/o30_hosted/control/o30/recovery.mjs",
+      "bytes": 3814,
+      "sha256": "0b5baa874fb1608665a034285c05caa028b0ca3e9ae1dd05406980751258b69b"
+    },
+    {
+      "path": "v116/o30_hosted/control/o30/runtime-policy.mjs",
+      "bytes": 1835,
+      "sha256": "4952743add36c0110a1252d13bbf46ddee10cdaf6405aac62b0de4e216e1f979"
+    },
+    {
+      "path": "v116/o30_hosted/control/o30/store.mjs",
+      "bytes": 4356,
+      "sha256": "7b081bd0d575929159fd41bf948741e7d7d9f82bffe5552182e5e971ba240a9e"
+    },
+    {
+      "path": "v116/o30_hosted/control/o30/vendor/assurance-discrepancy-readback.cjs",
+      "bytes": 6992,
+      "sha256": "06458c2b2eecfda41708729c0d7ba4f19dc37c913a0c71e3f4e9d15049a3139f"
+    },
+    {
+      "path": "v116/o30_hosted/control/o30/vendor/assurance-supervisor.cjs",
+      "bytes": 6466,
+      "sha256": "e49baca21653562b3c00532907762027a4782473c14ba12b0d4fca9719daec21"
+    },
+    {
+      "path": "v116/o30_hosted/control/o30/vendor/observer-capture.cjs",
+      "bytes": 2460,
+      "sha256": "c9513c42c917b774b605a7d2e5cd454d01d7cc88dcd7508bf341cfed8272bc1b"
+    },
+    {
+      "path": "v116/o30_hosted/control/operation-inputs.json",
+      "bytes": 1474,
+      "sha256": "778800c9da9f22708397eaba6614c909cbf0ee21f48df56e3a6be304907cd2f1"
+    },
+    {
+      "path": "v116/o30_hosted/control/source-inputs.json",
+      "bytes": 2272,
+      "sha256": "ab4b50891e9387dcb2e5f1fc446161ab8bcf4e21bde74c99e6b3b3e423d219a9"
+    },
+    {
+      "path": "v116/o30_hosted/control/technical-authority.json",
+      "bytes": 3471,
+      "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+    },
+    {
+      "path": "v116/o30_hosted/deny-service-start",
+      "bytes": 97,
+      "sha256": "5713c8e330e4486202da616e3828a215169b311b6964b4647fb3100d121dbc35"
+    },
+    {
+      "path": "v116/o30_hosted/host-entry.py",
+      "bytes": 3522,
+      "sha256": "65bd632de5cad4241614ba928f7c8185be39325039a7c6efe219e663a84b1f3e"
+    },
+    {
+      "path": "v116/o30_hosted/make-readable.py",
+      "bytes": 1779,
+      "sha256": "c14ee7a70106c84e737a69536954694831b6d57fd0a0ba1ece45cc18bcf5361f"
+    },
+    {
+      "path": "v116/o30_hosted/retained_input.py",
+      "bytes": 3115,
+      "sha256": "9289f77ce689bd80df18c022ff5fe68e2ffe3e765384a6544f0595244588e0bf"
+    },
+    {
+      "path": "v116/o30_hosted/run-hosted.sh",
+      "bytes": 1878,
+      "sha256": "cc1b33b6fb4453c5430e209d473540d5fdc052092cdd5dac3237f3fd8b77e695"
+    },
+    {
+      "path": "v116/o30_hosted/seal.py",
+      "bytes": 1785,
+      "sha256": "0ff50729e93670eac063c46f0906f049489eeb0971c32885d15fa6a71e156d92"
+    },
+    {
+      "path": "v116/o30_hosted/stage-inputs.py",
+      "bytes": 3534,
+      "sha256": "dc76fae76daaecd69df51a30d05c82abc9892fe2f05c76aa77021c02d362567f"
+    },
+    {
+      "path": "v116/o30_hosted/terminate.sh",
+      "bytes": 2096,
+      "sha256": "d74089bdd239ce2c368b48057afe70e08cd4036cc1a46248393d3ff484ab0584"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 852,
+      "sha256": "d06382a95c45e5cb7bf1001a63addc726b5e7f76638f008265f830aa1a236e92"
+    }
+  ],
+  "wholeRowAcceptance": false
+}

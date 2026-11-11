@@ -1,0 +1,94 @@
+name: Work 8 V116 bounded native Assurance timers
+on:
+  create:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: work8-v116-o30-native-timers-20261111-a01
+  cancel-in-progress: false
+jobs:
+  original-native-timer-predicates:
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v116-o30-native-timers-20261111-a01' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out the exact reviewed examination source
+        id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+      - name: Establish the original repository Node pin
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        timeout-minutes: 2
+        with:
+          node-version-file: '.node-version'
+          check-latest: false
+      - name: Verify the exact source and technical execution boundary
+        id: admission
+        timeout-minutes: 1
+        run: python3 -B v116/o30_hosted/admit.py
+      - name: Prepare the original exact Redis dependency without service startup
+        id: dependencies
+        timeout-minutes: 4
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/v116-o30-$GITHUB_RUN_ID/evidence"
+          sudo install -m 755 v116/o30_hosted/deny-service-start /usr/sbin/policy-rc.d
+          sudo apt-get update -qq
+          apt-cache policy redis-server redis-tools > "$out/redis-package-policy.txt"
+          sudo env DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
+            redis-server=5:7.0.15-1ubuntu0.24.04.5 redis-tools=5:7.0.15-1ubuntu0.24.04.5 bubblewrap
+          test "$(dpkg-query -W -f='${Version}' redis-server)" = '5:7.0.15-1ubuntu0.24.04.5'
+          test "$(dpkg-query -W -f='${Version}' redis-tools)" = '5:7.0.15-1ubuntu0.24.04.5'
+          /usr/bin/redis-server --version > "$out/redis-version.txt"
+          sha256sum "$(readlink -f /usr/bin/redis-server)" /usr/bin/bwrap > "$out/tool-binary-sha256.txt"
+          if pgrep -x redis-server >/dev/null; then exit 1; fi
+      - name: Retrieve the one exact retained backend package
+        id: download
+        timeout-minutes: 7
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B v116/o30_hosted/retained_input.py
+      - name: Execute actual native timers with private loopback and kernel resource caps
+        id: examination
+        timeout-minutes: 16
+        run: >-
+          env -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN
+          -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY
+          -u DOCKER_CERT_PATH -u DOCKER_API_VERSION
+          timeout --signal=TERM --kill-after=15s 930s
+          bash v116/o30_hosted/run-hosted.sh
+      - name: Verify exact service cgroup namespace and package-container termination
+        if: ${{ always() && steps.checkout.outcome == 'success' }}
+        timeout-minutes: 1
+        run: bash v116/o30_hosted/terminate.sh
+      - name: Seal the bounded result without accepting a whole row
+        id: seal
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 1
+        run: python3 -B v116/o30_hosted/seal.py
+      - name: Save the one seven-day evidence artifact
+        if: ${{ always() && steps.seal.outcome == 'success' }}
+        timeout-minutes: 3
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v116-o30-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v116-o30-${{ github.run_id }}/evidence/
+          retention-days: 7
+          compression-level: 6
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false

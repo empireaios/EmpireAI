@@ -1,0 +1,60 @@
+{
+  "status": "REFUSE_OPERATION",
+  "timingContractApproved": true,
+  "costCeilingUSD": 10,
+  "ceilingStatus": "OWNER_APPROVED_PLANNING_RISK_ALLOWANCE_NOT_VERIFIED_SPENDING_CAP",
+  "maxDurationMs": 1500000,
+  "resourceProposal": {
+    "memoryGB": 0.5,
+    "vCPUs": 0.25,
+    "replicas": 1,
+    "restartPolicyType": "NEVER",
+    "serviceEgressGB": 0.001,
+    "evidenceBytes": 1048576,
+    "retentionDays": 7
+  },
+  "estimateUSD": {
+    "compute25Minutes": 0.00578704,
+    "serviceEgress1MB": 5e-05,
+    "threeEmailsWithinVerifiedAllowance": 0,
+    "knownUsageSubtotal": 0.03583704,
+    "buildSubscriptionTaxAndControlPlane": null,
+    "total": null,
+    "storageTwoRoundedGBMonths": 0.03
+  },
+  "proofs": {
+    "hostedAtomicCreate": false,
+    "credentialReferencesResolvedWithoutDisclosure": false,
+    "independentReadback": false,
+    "ownerAcknowledgementIssuerBound": false,
+    "resendWebhookSecurelyBound": false,
+    "trustedClockOffsetBound": false,
+    "platformResourceCapsApplied": false,
+    "independentTerminationTested": false,
+    "retentionTerminationEnforced": false,
+    "allChargesIncluded": false
+  },
+  "operatingDecision": "NO_GO: never treat unit-price estimate or self-declared approval cost as an enforceable cap. Deployment must stay refused until every proof is attributable and independently reviewed.",
+  "termination": "No new sends after fixed approval expiry; no retry on restart; external platform stop and retained-data billing termination remain unbound. Do not use shared workspace hard limit or delete evidence as an unapproved workaround.",
+  "storageEstimateBasis": "Seven days beginning at the current30Octoberplanningdate cross the verifiedNov5billing boundary; conservatively allowtwo roundedGB-months. Recheck actualstart/billingperiod beforeexecution; continuedretention is still billable and totalchargesremainunverified.",
+  "timingContractHash": "cd8e9bf490b83ec6d2eb8876ca36e60bd8be3291de54607e76d3a88edfc72e3e",
+  "timingApprovalScope": "Timing only; no operating authority. Existing REFUSE_OPERATION status and every missing proof remain unchanged.",
+  "platformLimitFinding": {
+    "source": "evidence/account-financial-readback.json",
+    "minimumHardLimitUSD": 10,
+    "scope": "shared workspace compute usage",
+    "currentUsageUSD": 7.59,
+    "hypotheticalTenDollarAggregateHeadroomUSD": 2.41,
+    "configuredComputeCapVerified": false,
+    "supportsRingfencedO30TenDollarAllChargeCap": false,
+    "retainedBucketChargesStopAtHardLimit": false,
+    "action": "NO_CHANGE; refuse operation pending verified all-charge and termination plan"
+  },
+  "budgetAuthority": {
+    "planningRiskAllowanceUSD": 10,
+    "planningApproved": true,
+    "spendingAuthorised": false,
+    "source": "O30 FINANCIAL CONTROL CORRECTION & HOSTED READINESS",
+    "plan": "financial-risk-plan.json"
+  }
+}

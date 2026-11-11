@@ -1,0 +1,22 @@
+{
+  "schema": "v116-o30-native-operation-inputs-v1",
+  "controlSHA256": {
+    "isolated-entry.py": "f87a1f39c84c0c3dfba1f23812d091b5d3db822ab2f8844e09d8571ab3285cc2",
+    "launch-authority.json": "85ff7ed9ff986244a041f67f5efc0add378023c1d739c14572c012451b571b7f",
+    "native-timing-probe.mjs": "b1c64e1ac76fc47d96f86bb6e8f55de448f89e854b29410cf6a1fbac7cd4bef1",
+    "o30/controller.mjs": "d9d930c9b943a666a58506caf9260229ff9b1285fafe85ed987c8b3887ca09aa",
+    "o30/operating-controls.json": "68f29ba76920a897d658e0c50c375bed50e551cb56940c9d1e614bbe42fc26f0",
+    "o30/recovery.mjs": "0b5baa874fb1608665a034285c05caa028b0ca3e9ae1dd05406980751258b69b",
+    "o30/runtime-policy.mjs": "4952743add36c0110a1252d13bbf46ddee10cdaf6405aac62b0de4e216e1f979",
+    "o30/store.mjs": "7b081bd0d575929159fd41bf948741e7d7d9f82bffe5552182e5e971ba240a9e",
+    "o30/vendor/assurance-discrepancy-readback.cjs": "06458c2b2eecfda41708729c0d7ba4f19dc37c913a0c71e3f4e9d15049a3139f",
+    "o30/vendor/assurance-supervisor.cjs": "e49baca21653562b3c00532907762027a4782473c14ba12b0d4fca9719daec21",
+    "o30/vendor/observer-capture.cjs": "c9513c42c917b774b605a7d2e5cd454d01d7cc88dcd7508bf341cfed8272bc1b",
+    "source-inputs.json": "ab4b50891e9387dcb2e5f1fc446161ab8bcf4e21bde74c99e6b3b3e423d219a9",
+    "technical-authority.json": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+  },
+  "fullCampaign": false,
+  "messages": false,
+  "genuineOwner": false,
+  "sourceChanged": false
+}
