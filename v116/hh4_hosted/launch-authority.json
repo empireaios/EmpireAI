@@ -1,0 +1,40 @@
+{
+  "schema": "v116-hh4-original-conditional-technical-scope-v1",
+  "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "requirement": "O42 original finite Q5 conditional HH4 producer/domain rehydration/inspection restoration and original default application-graph scope",
+  "obligationId": "V116-O42-Q5-HH4-A01-20261111",
+  "prospectiveBoundUSD": "1.00",
+  "reservationStateClaimedByThisFile": false,
+  "externalFinancialReleaseGate": "Root must independently save unique ledger reservation and exact final reviewed Git tree before any dispatch. No assumed future ledger ordinal/hash.",
+  "technicalAuthoritySHA256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3",
+  "providerJobMaximumMinutes": 25,
+  "executionProcessSeconds": {
+    "redisDefaultLoaderOnly": 30,
+    "originalProducer": 260,
+    "twoOriginalConsumers": 300,
+    "totalWrapperMaximum": 860,
+    "originalDefaultApplicationGraph": 240
+  },
+  "records": "Explicit original labelled synthetic technical CI fixture; never genuine owner/product/media approval evidence.",
+  "originalAssertions": "Original requestedAt/capture/5000ms hold/containment suffix unchanged; original two consumer functions unchanged.",
+  "mandatoryOuterGates": [
+    "Exact original immutable image source/tree and exact Node binary verified before control import.",
+    "Independently reviewed exact Docker transport permits only current-run ownership and complete fixed argv shapes.",
+    "Six reviewed Debian dependency mounts readonly; exact default-loader redis-server --version passes before any application start.",
+    "No provider credentials or production volume; original generated empty test root only.",
+    "Producer real observer prerequisite before original capture request, both actual child progress and terminated observers, no healthy state fabrication.",
+    "Host process identities and all recorded UUID producer/ABI/reader containers terminated and independently verified absent, including failure/interruption.",
+    "Bounded output capture and collection preserve first failure and mandatory scopes before optional diagnostics; raw session/SQLite capture private.",
+    "Single justified execution after checking equivalent run absent; new attempt requires actual failure/correction review.",
+    "Default graph-only consumer uses same private verified held copy, fresh isolated generated target, unchanged original authentication/session TTL/queue/mission/finance/journal guards; target-table deltas require independent adjudication, never automatic allowlisting."
+  ],
+  "operatingLocks": {
+    "A5": "CLOSED_ACCEPTED_NO_RERUN",
+    "Pillow": "NOT_BORN",
+    "Commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "ProductionRailway": "UNTOUCHED",
+    "PR113": "DRAFT_UNMERGED"
+  },
+  "wholeRowAcceptanceClaim": false
+}

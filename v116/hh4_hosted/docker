@@ -1,0 +1,74 @@
+#!/usr/bin/python3
+"""Forward only exact reviewed HH4 lifecycle commands; never simulate responses."""
+import hashlib,json,os,pathlib,re,subprocess,sys,time
+REAL='/usr/bin/docker';SOURCE='6c1e63ba20619ee480742fd87dc810ca93152e22';IMAGE='sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0'
+a=sys.argv[1:];run=os.environ['V116_HH4_RUN_ID'];assert run.isdigit()
+root=pathlib.Path(os.environ['V116_HH4_ROOT']);control=pathlib.Path(os.environ['V116_HH4_CONTROL'])
+assert root.is_absolute()and root.resolve(strict=True)==root and root.name=='v116-hh4-'+run
+assert control.resolve(strict=True)==pathlib.Path(__file__).resolve().parent
+transport=root/'transport';assert transport.is_dir()and not transport.is_symlink()
+label='empireai.v116.hh4='+run;uid=str(os.getuid())+':'+str(os.getgid())
+def regular(p,size=1048576):
+ st=p.lstat();assert p.is_file()and not p.is_symlink()and st.st_nlink==1 and st.st_size<=size;return p.read_bytes()
+def save(p,value):
+ with p.open('x')as f:json.dump(value,f);f.write('\n');f.flush();os.fsync(f.fileno())
+def mount(src,dst,ro=True):return 'type=bind,src='+str(src)+',dst='+dst+(',readonly'if ro else'')
+def dependency_mounts():
+ manifest=json.loads(regular(control/'dependencies/pinned-dependencies.json'));assert hashlib.sha256((control/'dependencies/pinned-dependencies.json').read_bytes()).hexdigest()=='4718286af9c9a747f98da2197305271433a2a57505b9939f7bc34b64ce6bb87b'
+ receipt=json.loads(regular(root/'dependency-mounts/dependency-staging-receipt.json'));assert receipt['manifestSHA256']=='4718286af9c9a747f98da2197305271433a2a57505b9939f7bc34b64ce6bb87b'
+ assert len(manifest['mounts'])==len(receipt['mounts'])==6;result=[]
+ for item in manifest['mounts']:
+  p=root/'dependency-mounts/mounts'/item['name'];data=regular(p,9000000);assert len(data)==item['bytes']and hashlib.sha256(data).hexdigest()==item['sha256']
+  match=[x for x in receipt['mounts']if x['name']==item['name']];assert len(match)==1 and match[0]['source']==str(p)
+  result+=['--mount',mount(p,item['target'])]
+ return result
+assert a and a[0]in['create','run','start','inspect','kill','logs','exec']
+role=None;name=None;extra=[]
+if a[0]=='create':
+ assert len(a)>3 and a[1]=='--name';name=a[2];assert re.fullmatch('work8-hh4-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}',name)
+ mounted=root/'producer-raw/container-evidence';assert mounted.is_dir()and mounted.resolve(strict=True)==mounted
+ expected=['create','--name',name,'--label','work8.hh4='+name,'--user',uid,'--network','none','--cap-drop','ALL','--security-opt','no-new-privileges','--read-only','--tmpfs','/tmp:rw,nosuid,nodev,size=1073741824,mode=1777','--pids-limit','512','--memory','3g','--cpus','2','--restart','no','--mount',mount(mounted,'/evidence',False),'-e','NODE_ENV=test','-e','EMPIRE_ENGINEERING_TEST_MODE=true','-e','HH4_SOURCE='+SOURCE,'-e','RAILWAY_GIT_COMMIT_SHA='+SOURCE,'-e','WORK8_KERNEL_EGRESS=DENIED','--entrypoint','node',IMAGE,'scripts/work8/hh4-generated-primary.mjs']
+ assert a==expected,'UNREVIEWED_PRODUCER_CREATE'
+ extra=dependency_mounts()
+ for n in ['hh4-assurance-prerequisite.mjs','hh4-assurance-source-inputs.json']:
+  regular(control/n);extra+=['--mount',mount(control/n,'/control/'+n)]
+ extra+=['--label',label,'--memory-swap','3g'];role='producer'
+elif a[0]=='run':
+ assert len(a)>3 and a[1]=='--name';name=a[2]
+ if name=='work8-hh4-abi-'+run:
+  expected=['run','--name',name,'--label',label,'--network','none','--cap-drop','ALL','--security-opt','no-new-privileges','--read-only','--pids-limit','32','--memory','128m','--memory-swap','128m','--cpus','1','--restart','no','--entrypoint','/usr/bin/redis-server',IMAGE,'--version']
+  assert a==expected,'UNREVIEWED_ABI_RUN';extra=dependency_mounts();role='abi'
+ elif name=='work8-hh4-reader-'+run:
+  mounted=root/'producer-raw/container-evidence';producer=root/'producer-raw';consumer=root/'consumer-raw'
+  held=json.loads(regular(mounted/'hh4-held.json'));digest=held['digest'];assert re.fullmatch('[a-f0-9]{64}',digest)
+  expected=['run','--name',name,'--label',label,'--user',uid,'--network','none','--cap-drop','ALL','--security-opt','no-new-privileges','--read-only','--tmpfs','/tmp:rw,nosuid,nodev,size=1073741824,mode=1777','--pids-limit','128','--memory','3g','--memory-swap','3g','--cpus','2','--restart','no']
+  mounts=[(mounted/'held-capture','/capture',True),(mounted/'hh4-worker-ready.json','/input/hh4-worker-ready.json',True),(mounted/'hh4-held.json','/input/hh4-held.json',True),(producer/'held-capture-result.json','/input/held-capture-result.json',True),(consumer,'/result',False),(control/'hh4-original-consumers.mjs','/control/hh4-original-consumers.mjs',True),(control/'hh4-consumer-source-inputs.json','/control/hh4-consumer-source-inputs.json',True)]
+  for src,dst,ro in mounts:
+   assert src.resolve(strict=True)==src and(src.is_dir()or src.is_file())and not src.is_symlink();expected+=['--mount',mount(src,dst,ro)]
+  expected+=['--entrypoint','node',IMAGE,'/control/hh4-original-consumers.mjs',SOURCE,digest]
+  assert a==expected,'UNREVIEWED_READER_RUN';role='reader'
+ else:
+  assert name=='work8-hh4-graph-'+run;producer=root/'producer-raw';mounted=producer/'container-evidence';graph=root/'graph-raw'
+  expected=['run','--name',name,'--label',label,'--user',uid,'--network','none','--cap-drop','ALL','--security-opt','no-new-privileges','--read-only','--tmpfs','/tmp:rw,nosuid,nodev,size=1073741824,mode=1777','--pids-limit','256','--memory','3g','--memory-swap','3g','--cpus','2','--restart','no']
+  for src,dst,ro in [(producer,'/evidence',True),(mounted/'held-capture','/capture',True),(graph,'/results',False)]:
+   assert src.resolve(strict=True)==src and src.is_dir()and not src.is_symlink();expected+=['--mount',mount(src,dst,ro)]
+  expected+=['-e','NODE_ENV=test','-e','EMPIRE_ENGINEERING_TEST_MODE=true','-e','WORK8_KERNEL_EGRESS=DENIED','--entrypoint','node',IMAGE,'scripts/work8/application-graph-restoration.mjs',SOURCE,'graph']
+  assert a==expected,'UNREVIEWED_GRAPH_RUN';extra=dependency_mounts();role='graph'
+ assert a.count(IMAGE)==1
+if role:
+ assert not any(x.startswith('--log-')for x in a)
+ save(transport/(role+'-creation.json'),{'runId':run,'role':role,'name':name,'image':IMAGE,'originalArgumentSHA256':hashlib.sha256(json.dumps(a).encode()).hexdigest()})
+ at=a.index(IMAGE);a[at:at]=extra+['--log-driver','json-file','--log-opt','max-size=256k','--log-opt','max-file=2']
+else:
+ claim=json.loads(regular(transport/'producer-creation.json'));name=claim['name'];assert claim['runId']==run and claim['image']==IMAGE
+ shape=(len(a)==2 and a[0]in['start','inspect','logs'])or(len(a)==4 and a[:2]==['kill','--signal']and a[2]in['SIGUSR2','KILL'])or(len(a)==5 and a[:1]==['exec']and a[2:]==['node','/control/hh4-assurance-prerequisite.mjs',SOURCE])
+ assert shape,'UNREVIEWED_LIFECYCLE_ARGUMENTS';target=a[1]if a[0]!='kill'else a[3]
+ assert target==name or re.fullmatch('[a-f0-9]{64}',target)
+ p=subprocess.run([REAL,'inspect',name],env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8','HOME':str(root/'docker-home')},stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=5)
+ assert p.returncode==0 and len(p.stdout)<=1048576;item=json.loads(p.stdout)[0]
+ assert item['Name']=='/'+name and item['Image']==IMAGE and item['Config']['Labels'].get('empireai.v116.hh4')==run and item['Config']['Labels'].get('work8.hh4')==name
+ assert target in[name,item['Id']]
+row=json.dumps({'atMs':int(time.time()*1000),'command':a[0],'role':role or'producer-lifecycle','name':name,'runId':run,'argumentSHA256':hashlib.sha256(json.dumps(a).encode()).hexdigest(),'realExecutable':REAL})+'\n'
+journal=transport/'docker-transport.jsonl';assert not journal.exists()or journal.stat().st_size+len(row.encode())<=1048576
+with journal.open('a')as f:f.write(row);f.flush();os.fsync(f.fileno())
+os.execve(REAL,[REAL]+a,{'PATH':'/usr/bin:/bin','LANG':'C.UTF-8','HOME':str(root/'docker-home')})

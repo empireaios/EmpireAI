@@ -1,0 +1,17 @@
+{
+  "schema": "v116-hh4-original-consumer-inputs-v1",
+  "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "appSHA256": {
+    "scripts/work8/hh4-domain-rehydration.mjs": "e408cfe8eee389611944a88f5f294eee125a22bef6a0572e943bf9d79f229199",
+    "scripts/work8/hh4-inspection-restoration.mjs": "ea9716dcb0be547e606efa98d924e139e65e5935699528cbff648fda2d1a2137",
+    "deployment/work8-recovery-set.cjs": "553063b96e479e1f4393bf336d64139babf768e6a07054077534eb10019f9e1a",
+    "deployment/work8-system-vault.cjs": "1c988462ef1eee677f28b585c4cd9659202156f4b03820c4abb9b4f3c92c1a5a",
+    "deployment/runtime-revision.cjs": "631c36a3760e2a3db8cbb414b9070911a1fa8acfa4c3cf6acb96b7fea4d85cd8",
+    "backend/dist/intelligence/store.js": "bb52002d4e0818ee705ea2e3654070c921e4192fb0e6648fb079a7b3fdc2caf0",
+    "backend/dist/orchestration/pillow-host/reasoning-state.js": "9ed1e37b9ef55d948fa147674e8d7e083f0e51405d8605a89e918b49e7369394",
+    "backend/dist/finance/financial-centre.js": "094c333414b8bde22954c312c73caa9a3011b158f5b2416c674cf6100b35af4a",
+    "backend/dist/runtime/commerce-runtime/governed/store.js": "d52a02075c7ec274558aebaa2e8d6a3bb6bdc520e2ea9ea4b9a359071775045d"
+  },
+  "originalConsumerAssertionsChanged": false,
+  "genuineOwnerRecordsUsed": false
+}

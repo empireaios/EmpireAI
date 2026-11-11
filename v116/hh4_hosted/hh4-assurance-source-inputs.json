@@ -1,0 +1,19 @@
+{
+  "schema": "v116-hh4-native-observer-prerequisite-inputs-v1",
+  "sourceCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "appSHA256": {
+    "deployment/assurance-supervisor.cjs": "e49baca21653562b3c00532907762027a4782473c14ba12b0d4fca9719daec21",
+    "deployment/observer-capture.cjs": "c9513c42c917b774b605a7d2e5cd454d01d7cc88dcd7508bf341cfed8272bc1b",
+    "deployment/assurance-discrepancy-readback.cjs": "06458c2b2eecfda41708729c0d7ba4f19dc37c913a0c71e3f4e9d15049a3139f",
+    "backend/src/assurance/permanent-worker.mjs": "ca774d237f7d37d8ae88deea98e5e5286107fc6e452f4b5f61046829fb805e86",
+    "backend/src/assurance/permanent-inspector.mjs": "70f6cb3563331baca9343967366bde38ed0f0b42852cc63ef483cbfae06e90fc",
+    "backend/src/assurance/independent-assurance.mjs": "0ad30a3bb583b53b141be4bb64c12b51e8434cf47fb3d6fa0737eb6b41a2c9fe",
+    "backend/src/assurance/inspector-cycle.mjs": "272150524aea43215497f7148f0b56c34ea212e55961ac1176fc60e831210c13",
+    "backend/src/assurance/schema-readiness.mjs": "a915328741fc25092fe30be8de52869cb08e2e2cd1fee5d4a401189580365f80",
+    "backend/src/assurance/safe-live-probe.mjs": "50ec44e313d942b37259273ec0339620dbeeb8bbf6bc8a1882b1c026d0be9599",
+    "backend/src/assurance/safe-discrepancy-probe.mjs": "6fcead1d4f98579c0227a67dae53670a158cc7e42478f1cb507fee6f178801c7"
+  },
+  "privateNativeWorkerEnvironRead": "Select only already source/PID/starttick-bound generated worker actual Redis child (parentPID and exact executable hash). Read only REDIS_URL from that child initial environment; never log entire environment,fixturecredential/session values. Parent JS-mutated environment is not assumed visible in /proc.",
+  "actualOwnerRecords": false,
+  "redisServerSHA256": "c2f35b59cb22f17cdfdef50b18a6b273a0044c4c981eb210ef57ffcac44c2610"
+}

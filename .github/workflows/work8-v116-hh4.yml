@@ -1,0 +1,101 @@
+name: Work 8 V116 original HH4 held capture and inspection
+on:
+  create:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: work8-v116-q5-hh4-20261111-a01
+  cancel-in-progress: false
+jobs:
+  original-hh4-bounded-scopes:
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v116-o42-q5-hh4-20261111-a01' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out the exact reviewed wrapper and unchanged application source
+        id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+      - name: Establish the original repository Node pin
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        timeout-minutes: 2
+        with:
+          node-version-file: '.node-version'
+          check-latest: false
+      - name: Admit the exact reviewed source and conditional technical scope
+        id: admission
+        timeout-minutes: 1
+        run: python3 -B v116/hh4_hosted/admit.py
+      - name: Retrieve the exact immutable backend package
+        id: download
+        timeout-minutes: 7
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B v116/hh4_hosted/retained_input.py
+      - name: Load the exact image and extract Node without application startup
+        timeout-minutes: 2
+        run: bash v116/hh4_hosted/prepare.sh
+      - name: Stage only the six pinned Debian dependency files without installation
+        timeout-minutes: 4
+        run: >-
+          env -i PATH=/usr/bin:/bin LANG=C.UTF-8 PYTHONDONTWRITEBYTECODE=1
+          python3 -B v116/hh4_hosted/dependencies/fetch-and-stage.py
+          "$RUNNER_TEMP/v116-hh4-$GITHUB_RUN_ID/dependency-mounts"
+      - name: Execute original held capture and read-only inspection once
+        timeout-minutes: 15
+        run: >-
+          env -i PATH=/usr/bin:/bin LANG=C.UTF-8 TZ=UTC PYTHONDONTWRITEBYTECODE=1
+          timeout --signal=TERM --kill-after=15s 860s
+          python3 -B v116/hh4_hosted/run-hh4.py
+          "$RUNNER_TEMP/v116-hh4-$GITHUB_RUN_ID/node/bin/node"
+          "$RUNNER_TEMP/v116-hh4-$GITHUB_RUN_ID" "$GITHUB_RUN_ID"
+      - name: Independently terminate recorded host sessions and exact current-run containers
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 2
+        run: python3 -B v116/hh4_hosted/terminate.py "$RUNNER_TEMP/v116-hh4-$GITHUB_RUN_ID" "$GITHUB_RUN_ID"
+      - name: Remove only the never-started package container
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 1
+        run: python3 -B v116/hh4_hosted/cleanup-package.py "$RUNNER_TEMP/v116-hh4-$GITHUB_RUN_ID" "$GITHUB_RUN_ID"
+      - name: Preserve bounded sanitized original receipts before final adjudication
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 2
+        run: >-
+          python3 -B v116/hh4_hosted/collect.py
+          "$RUNNER_TEMP/v116-hh4-$GITHUB_RUN_ID"
+          "$RUNNER_TEMP/v116-hh4-$GITHUB_RUN_ID/public-evidence"
+      - name: Seal exact outer custody and bounded public evidence
+        id: seal
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 1
+        run: python3 -B v116/hh4_hosted/seal.py
+      - name: Preserve one ten-MiB seven-day artifact
+        if: ${{ always() && steps.seal.outcome == 'success' }}
+        timeout-minutes: 3
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v116-hh4-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v116-hh4-${{ github.run_id }}/public-evidence/
+          retention-days: 7
+          compression-level: 6
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+      - name: Require original scopes and actual containment after artifact preservation
+        if: ${{ always() && steps.admission.outcome == 'success' }}
+        timeout-minutes: 1
+        run: python3 -B v116/hh4_hosted/final.py
