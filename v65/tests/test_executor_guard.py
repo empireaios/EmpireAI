@@ -38,7 +38,8 @@ def fixture():
  return q,e,p
 
 def authority_fixture():
- a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':18.79,'priorA5HoldsUSD':8.84,'availableBeforeReservationUSD':1.16,'ownerDecisionRecorded':True,'ownerApprovalReceiptSHA256':H,'approvalScope':'one-native-a5-08-09-attempt','maximumAttempts':1,'reservationCommitted':True,'reservationUSD':1.16,'maximumProspectiveUSD':1.16,'reservationId':g.NATIVE_RESERVATION_ID,'reservationReceiptSHA256':H,'currentOverallHoldsUSD':19.95,'currentA5HoldsUSD':10.00,'remainingUnreservedUSD':0.00}
+ a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':19.95,'priorA5HoldsUSD':10.00,'availableBeforeReservationUSD':0.00,'priorA5AuthorityCeilingUSD':10.00,'ownerDecisionRecorded':True,'ownerApprovalReceiptSHA256':H,'approvalScope':'one-native-a5-08-09-attempt','maximumAttempts':1,'reservationCommitted':True,'reservationUSD':20,'maximumProspectiveUSD':20,'reservationId':g.NATIVE_RESERVATION_ID,'reservationReceiptSHA256':H,
+    'masterAuthorityId':g.MASTER_AUTHORITY_ID,'masterAuthoritySHA256':g.MASTER_AUTHORITY_SHA256,'campaignId':g.MASTER_CAMPAIGN_ID,'attemptId':g.NATIVE_RESERVATION_ID,'masterLedgerRecordReference':{'ledgerId':g.MASTER_LEDGER_ID,'libraryFileId':g.MASTER_LEDGER_LIBRARY_ID,'version':1,'sha256':H,'eventId':g.NATIVE_RESERVATION_ID,'eventSHA256':H},'financialExposureBoundVerified':True,'financialReviewSHA256':g.FINANCIAL_REVIEW_SHA256,'accountBillingContextVerified':False,'paidRunnerAuthorized':False,'masterCeilingCents':100000,'cumulativeBeforeCents':0,'cumulativeAfterCents':2000,'remainingBeforeCents':100000,'remainingAfterCents':98000}
  a['independentAckAuthority']={'maximumOwnerEndorsements':2,'issueNumber':113,'stages':['packages-and-executor','preflight'],'scope':'safe-artifact-acknowledgment-only','otherMessagesAuthorized':False}
  a.update({k:False for k in ('renewed','productionOperations','protectedDataTransfer','commerceActivation','subscriptions','automaticRecreate','automaticRerun')})
  return a
@@ -75,11 +76,11 @@ class AuthorityAndSourceControls(unittest.TestCase):
   a=authority_fixture();a['reservationCommitted']=False
   with self.assertRaisesRegex(g.Refusal,'CURRENT_COMMITTED_RESERVATION_REQUIRED'):g.validate_authority(a)
  def test_exposure_exceeds_specific_decision(self):
-  a=authority_fixture();a['maximumProspectiveUSD']=0.128
-  with self.assertRaisesRegex(g.Refusal,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED'):g.validate_authority(a)
+  a=authority_fixture();a['maximumProspectiveUSD']=20.001
+  with self.assertRaisesRegex(g.Refusal,'FINITE_CURRENT_EXPOSURE_REQUIRED'):g.validate_authority(a)
  def test_reservation_exceeds_specific_decision(self):
-  a=authority_fixture();a['reservationUSD']=1.01
-  with self.assertRaisesRegex(g.Refusal,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED'):g.validate_authority(a)
+  a=authority_fixture();a['reservationUSD']=20.01
+  with self.assertRaisesRegex(g.Refusal,'FINITE_CURRENT_EXPOSURE_REQUIRED'):g.validate_authority(a)
  def test_reused_authority(self):
   a=authority_fixture();a['renewed']=True
   with self.assertRaisesRegex(g.Refusal,'ORIGINAL_OPERATING_LOCKS_REQUIRED'):g.validate_authority(a)
@@ -207,7 +208,7 @@ class AdmissionControls(unittest.TestCase):
  def test_consumed_v70_approval_refused(self):
   with self.assertRaisesRegex(g.Refusal,'CURRENT_OWNER_AUTHORITY_REQUIRED'):g.validate_authority({'ownerDirective':'EMPIREAI_V70_A5_EXECUTION_APPROVAL'})
  def test_candidate_unapproved_plan_refused(self):
-  a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':18.79,'priorA5HoldsUSD':8.84,'availableBeforeReservationUSD':1.16,'ownerDecisionRecorded':False}
+  a={'ownerDirective':g.OWNER_DIRECTIVE,'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorOverallHoldsUSD':19.95,'priorA5HoldsUSD':10.00,'availableBeforeReservationUSD':0.00,'priorA5AuthorityCeilingUSD':10.00,'ownerDecisionRecorded':False}
   with self.assertRaisesRegex(g.Refusal,'SEPARATE_EXPLICIT_OWNER_DECISION_REQUIRED'):g.validate_authority(a)
 
 if __name__=='__main__':unittest.main(verbosity=2)

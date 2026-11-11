@@ -1,0 +1,108 @@
+{
+  "schema": "work8-v111-independent-diagnostic-security-subset-review-v1",
+  "reviewer": "/root/security_review",
+  "status": "PASS",
+  "reviewedAtUTC": "2026-11-10T16:21:07.728966+00:00",
+  "sourceSHA256": {
+    "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs": "1de7ee6b69ff618e78788a0a082d328373ed889617d22c385c4d33dc03aa41c9",
+    "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py": "7dd40087885a95f1f0a60db24ec290c8e7bbb341ee73fd8d33ce95120968576a",
+    "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic-codes.json": "9d10121880732edef086db7655a7ff105d81a1c021e13bd89b4b41f009b65128",
+    "v65/foundation/controller/scripts/work8/native-transition/assurance-records.mjs": "d61cea941d23e33a7561774f75f2466ac980ceb000990e51904eb472459fe990",
+    "v65/foundation/controller/scripts/work8/native-transition/whole-app-readback.mjs": "d3fd4c07f6311c46bf6862a83a311dcd2c1a4fcec0cddc4294edc29653fd9773",
+    "v65/adapter/final_evidence.py": "a6835eda3e0a1ea216e5ffb04d3582dc97502bf579a8199c943d5696fe8a9926",
+    "v65/tests/test_assurance_records.mjs": "8c3c32609483208ee078803574b86a39e04ed9c744a1b810e5ef049fa79174b7",
+    "v65/tests/test_assurance_diagnostic_return.py": "dafb7a2e48d83e3d6a529f729b94caa366def5bd8536740528cdcfaba31b4eeb"
+  },
+  "scope": {
+    "historicalEvidenceChanged": false,
+    "hostedQualificationRepeated": false,
+    "frontendDiagnosticsRepeated": false,
+    "nativeExecution": false,
+    "currentNativeAcceptance": false,
+    "executionAuthority": false
+  },
+  "openFindings": [],
+  "findings": [
+    "Existing incident counters must be nonnegative safe integers excluding negative zero and remain strictly equal to baseline; validation precedes same-body early return. This preserves valid history without authorizing recovery.",
+    "New incidents still require valid numeric zero. Changed or reset counters, new or changed recovery/authority rows, identity deletion/mutation, and event history changes remain refused.",
+    "RECOVERY_ADMITTED and RECOVERY_RESULT full-row hash multisets must remain equal; original event multiset inclusion remains separately required. This covers post-action counter resets and reconciliation results without new count increments.",
+    "Both incident and event diagnostics use closed schemas, compatible classifications, bounded counts/hashes and no raw rows/identifiers/exception operands.",
+    "First causal assertion survives JS emission, JS/Python sanitizers, parser/save and indexed exporter; malformed context does not replace it. Both context kinds bind to source receipt index, run/stage identity, exact checker and helper via controller manifest.",
+    "No safety authority, authentication, PAUSE/REVOKE, generation exclusion, writer drain, production permission or application package is changed by the eight-file diagnostic subset.",
+    "Initial self-validation is scoped to phase normal only. Later phase checkCp calls compare against saved original baseline, preserving true prior/observed operands if the current counter is malformed. Security predicates remain in the common checkCp path before same-body return."
+  ],
+  "independentTests": {
+    "counterCases": 820,
+    "eventCases": 10,
+    "incidentCodecCases": 348,
+    "eventCodecCases": 175,
+    "diagnosticUnitTests": 23,
+    "successorGateUnitTests": 15,
+    "failures": 0,
+    "syntheticOnly": true
+  },
+  "independentArchives": [
+    {
+      "scenario": "counter_change",
+      "path": "v111/security/counter_change-independent-current-export.tar.gz",
+      "sha256": "5f080ca53fbfe22f185a70e09bf7e30f0d9dccfd707ce61e779473ad48fcd248",
+      "bytes": 3853,
+      "indexedPayloadCount": 8,
+      "status": "PASS",
+      "fixtureOnly": true
+    },
+    {
+      "scenario": "activity_admitted",
+      "path": "v111/security/activity_admitted-independent-current-export.tar.gz",
+      "sha256": "e772f5f0ddfb9d4ae0d32e6a10d1bd76e32995a4378d86c2fd322a67bfcde259",
+      "bytes": 3620,
+      "indexedPayloadCount": 8,
+      "status": "PASS",
+      "fixtureOnly": true
+    },
+    {
+      "scenario": "activity_result",
+      "path": "v111/security/activity_result-independent-current-export.tar.gz",
+      "sha256": "d80b6ea45fa760542d2825a15852a3c5d39db11ceffa6011bee1f779b13d43ea",
+      "bytes": 3621,
+      "indexedPayloadCount": 8,
+      "status": "PASS",
+      "fixtureOnly": true
+    },
+    {
+      "scenario": "success",
+      "path": "v111/security/success-independent-current-export.tar.gz",
+      "sha256": "be4f5f70d1e00ced46a80b0d6e910465e6763c199d849ce2dd90fd3d1f8e6351",
+      "bytes": 208809,
+      "indexedPayloadCount": 141,
+      "status": "PASS",
+      "fixtureOnly": true
+    }
+  ],
+  "reviewedSuccessorGate": {
+    "path": "acceptance/retained_evidence.py",
+    "sha256": "9732925082250e2edd4d42a0e85ff787701b596e2c7c8ad6052d15303fe8977a",
+    "status": "PASS_PENDING_REAL_REVIEW_PIN_INSTALLATION",
+    "properties": [
+      "exact three historical operand replacements only",
+      "all five prepared controller sources must match reviewed repo",
+      "all eight current sources pinned",
+      "historical V94/V96/V98 digests immutable",
+      "mixed historical downgrade and unlisted mutation refused",
+      "missing independent review or open findings refused",
+      "no current execution/native acceptance derived from local successor"
+    ]
+  },
+  "limitations": [
+    "V109 missing operand remains unknown; local history-preservation correction does not prove its runtime cause.",
+    "Synthetic local tests/archives do not establish A5-08/A5-09 acceptance.",
+    "This record grants no publication, native examination, spending, reserve or ACK authority. Full route/financial/final-source review is separate."
+  ],
+  "postReviewWiringCorrection": {
+    "status": "REVIEWED_PASS",
+    "change": "normal-only initial counter self-validation",
+    "checkerSHA256": "d3fd4c07f6311c46bf6862a83a311dcd2c1a4fcec0cddc4294edc29653fd9773",
+    "currentSourceActualCheckerThroughArchiveVerified": true,
+    "independentArchiveProbeSHA256": "58ea0b95eba0f8adf6f17f03c78a09a2d5a5bc425ffb239204959b4bfdcf2f5d"
+  }
+}

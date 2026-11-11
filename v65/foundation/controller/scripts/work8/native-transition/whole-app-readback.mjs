@@ -1,3 +1,4 @@
+import {cpRecord,checkCp,checkNewCp,recoveryActivity,checkRecoveryActivity} from './assurance-records.mjs';
 import {captureAssuranceArtifacts,compareAssuranceArtifacts} from './assurance-artifact-inventory.mjs';
 import {emitNativeFailure} from './native-diagnostic.mjs';
 import {writeControlPrivate} from './private-exchanges.mjs';
@@ -16,6 +17,7 @@ const require=createRequire(import.meta.url),contract=require('/app/deployment/o
 const phase=process.argv[2];assert.ok(['normal','recovery','returned','replayed','final'].includes(phase));
 const root='/data/work8-exam/native-transition/volume';
 const sha=x=>createHash('sha256').update(x).digest('hex');
+const checkerSha256=sha(fs.readFileSync(new URL(import.meta.url)));
 const json=x=>JSON.stringify(x,(_,v)=>typeof v==='bigint'?String(v):v);
 const requiredDomains=['runtime','workers','scheduler','pillow-omissions','marketplace-orders','supplier-fulfilment-tracking','listing-drift','money-transactions','refunds-reimbursements','provider-accounting','evidence-freshness','authority-spending','persistence-backups-recovery'];
 const validTime=n=>Number.isSafeInteger(n)&&n>=0;
@@ -34,6 +36,7 @@ function dbSnapshot(file,domain){
   for(const {name,sql} of names){const rows=db.prepare('SELECT * FROM '+q(name)+' LIMIT 50001').all();assert.ok(rows.length<=50000);const hashes=rows.map(r=>sha(json(r))).sort();tables[name]={schemaSha256:sha(sql||''),count:rows.length,hashes,logicalSha256:sha(json(hashes))};if(name==='sqlite_sequence')tables[name].sequences=Object.fromEntries(rows.map(r=>[r.name,Number(r.seq)]));
    if(domain==='brain'&&name==='audit_logs')brainAuditRows=rows;
    if(domain==='assurance'&&name==='assurance_cycles')tables[name].mutableRows=Object.fromEntries(rows.map(r=>[sha(String(r.id)),{identitySha256:sha(json([r.id,r.scheduled_at,r.started_at])),scheduledAt:r.scheduled_at,startedAt:r.started_at,completedAt:r.completed_at,receiptSha256:r.receipt===null?null:sha(r.receipt),validCompletion:r.receipt===null?false:validCycle(r)}]));
+   if(domain==='assurance'&&name==='cp_events')tables[name].recoveryActivity=recoveryActivity(rows);
    if(domain==='assurance'&&name==='cp_records')tables[name].mutableRows=Object.fromEntries(rows.map(r=>[sha(json([r.workspace,r.kind,r.id])),cpRecord(r)]));
    if(domain==='commerce'&&name==='work8_fulfilment_scan')tables[name].mutableRows=Object.fromEntries(rows.map(r=>[sha(r.workspace),JSON.parse(r.record)]));
    if(domain==='assurance'&&name==='assurance_findings')tables[name].mutableRows=Object.fromEntries(rows.map(r=>[sha(String(r.id)),{identitySha256:sha(json([r.id,r.source,r.severity,r.first_at])),firstAt:r.first_at,lastAt:r.last_at,status:r.status,resolvedAt:r.resolved_at,detailSha256:sha(r.detail)}]));}
@@ -41,21 +44,6 @@ function dbSnapshot(file,domain){
  }finally{db.close();}
 }
 function validCycle(row){try{const r=JSON.parse(row.receipt),checks=Object.values(r.checks||{});return validTime(row.started_at)&&validTime(row.scheduled_at)&&validTime(row.completed_at)&&row.completed_at>=row.started_at&&row.started_at>=row.scheduled_at&&r.schema==='independent-assurance-cycle-v1'&&json(Object.keys(r.checks).sort())===json([...requiredDomains].sort())&&checks.length===13&&r.coverage.required===13&&checks.every(c=>['PASS','FAIL','NOT_CHECKED','STALE','SOURCE_UNAVAILABLE'].includes(c.status))&&r.coverage.passed===checks.filter(c=>c.status==='PASS').length&&r.healthy===(r.coverage.passed===13)&&r.liveProof===false&&r.commerceWrites===0&&r.inferenceCalls===0;}catch{return false;}}
-function cpRecord(row){
- const body=JSON.parse(row.body),copy=structuredClone(body),base={kind:row.kind,bodySha256:sha(row.body)};
- if(row.kind==='heartbeat'){delete copy.at;return {...base,identitySha256:sha(json(copy)),at:body.at};}
- if(row.kind==='probe'){for(const key of ['status','summary','evidence','observedAt','sourceObservedAt','scopeContext'])delete copy[key];return {...base,identitySha256:sha(json(copy)),at:body.observedAt,status:body.status};}
- if(row.kind==='incident'){for(const key of ['lastAt','recurrence','status','limitation'])delete copy[key];return {...base,identitySha256:sha(json(copy)),at:body.lastAt,firstAt:body.firstAt,recurrence:body.recurrence,status:body.status,attempts:body.attempts,limitation:body.limitation??null};}
- return base;
-}
-function checkCp(prior,current){
- assert.ok(current,'CONTROL_PLANE_RECORD_DELETED');assert.equal(current.kind,prior.kind);
- if(prior.bodySha256===current.bodySha256)return;
- assert.ok(['heartbeat','probe','incident'].includes(prior.kind),'CONTROL_PLANE_AUTHORITY_OR_HISTORY_CHANGED');
- assert.equal(current.identitySha256,prior.identitySha256,'CONTROL_PLANE_IDENTITY_CHANGED');assert.ok(validTime(current.at)&&current.at>=prior.at,'CONTROL_PLANE_TIME_REGRESSED');
- if(prior.kind==='probe')assert.ok(['HEALTHY','DEGRADED','FAILED','NOT_APPLICABLE','EXTERNALLY_BLOCKED','UNAVAILABLE','STALE','NOT_CHECKED','UNVERIFIED','BLOCKED','NOT_INSTALLED'].includes(current.status));
- if(prior.kind==='incident'){assert.ok(current.recurrence>=prior.recurrence&&Number.isSafeInteger(current.recurrence));assert.equal(current.attempts,0,'NEW_RECOVERY_ATTEMPT');assert.ok(['DETECTED','UNRESOLVED'].includes(prior.status)&&['DETECTED','UNRESOLVED'].includes(current.status),'UNEXAMINED_INCIDENT_LIFECYCLE');if(prior.status==='UNRESOLVED')assert.equal(current.status,'UNRESOLVED');assert.ok(current.limitation===null||current.limitation==='No permitted recovery runbook');}
-}
 function fileSnapshot(file){if(!fs.existsSync(file))return {present:false};const s=fs.lstatSync(file);assert.ok(s.isFile()&&!s.isSymbolicLink()&&s.nlink===1&&s.size<=1048576);assert.equal(fs.realpathSync(file),file,'DECLARED_CONTROL_CANONICAL_PATH_REQUIRED');return {present:true,bytes:s.size,sha256:sha(fs.readFileSync(file))};}
 function nativeSnapshot(dir){if(!fs.existsSync(dir))return {present:false};const rootStat=fs.lstatSync(dir);assert.ok(rootStat.isDirectory()&&!rootStat.isSymbolicLink(),'NATIVE_ROOT_DIRECTORY_REQUIRED');assert.equal(fs.realpathSync(dir),dir,'NATIVE_ROOT_CANONICAL_PATH_REQUIRED');const files={};function walk(p){for(const name of fs.readdirSync(p).sort()){const file=path.join(p,name),s=fs.lstatSync(file);assert.ok(!s.isSymbolicLink());if(s.isDirectory())walk(file);else{assert.ok(s.isFile()&&s.nlink===1&&s.size<=1048576);files[path.relative(dir,file)]={bytes:s.size,sha256:sha(fs.readFileSync(file))};}}}walk(dir);return {present:true,files};}
 function assertSubset(before,after){const counts=new Map();for(const h of after)counts.set(h,(counts.get(h)||0)+1);for(const h of before){assert.ok(counts.get(h)>0,'ORIGINAL_LOGICAL_ROW_NOT_PRESERVED');counts.set(h,counts.get(h)-1);}}
@@ -63,6 +51,7 @@ try{
  receipt.brainAuditProjectionSources=verifyAuditProjectionSources('/app');
  assert.equal(Object.keys(contract.SQL).length,13);
  for(const [id,relative] of Object.entries(contract.SQL))state.stores[id]=dbSnapshot(path.join(root,relative),id);
+ if(phase==='normal')for(const [key,record] of Object.entries(state.stores.assurance?.tables?.cp_records?.mutableRows??{}))checkCp(record,record,{incidentKeySha256:key,readbackPhase:phase,checkerSha256});
  state.storeApplicability=verifyStoreApplicability({stores:state.stores,declaredPaths:contract.SQL,stage:process.argv[3]});
  receipt.storeApplicability=state.storeApplicability;
  const liveBaseline=JSON.parse(fs.readFileSync('/control/live-brain-baseline.json','utf8'));
@@ -83,7 +72,7 @@ try{
  receipt.fullSchemas=state.fullSchemas;
  state.assuranceArtifacts=captureAssuranceArtifacts(root);
  receipt.assuranceArtifacts={source:state.assuranceArtifacts.source,pairCount:Object.keys(state.assuranceArtifacts.artifacts).length,logicalSha256:sha(json(state.assuranceArtifacts)),rawRowsRetained:false};
- receipt.stores=Object.fromEntries(Object.entries(state.stores).map(([id,s])=>[id,{...s,tables:s.tables&&Object.fromEntries(Object.entries(s.tables).map(([name,{hashes,mutableRows,...t}])=>[name,t]))}]));
+ receipt.stores=Object.fromEntries(Object.entries(state.stores).map(([id,s])=>[id,{...s,tables:s.tables&&Object.fromEntries(Object.entries(s.tables).map(([name,{hashes,mutableRows,recoveryActivity,...t}])=>[name,t]))}]));
  receipt.controls=state.controls;receipt.native=Object.fromEntries(Object.entries(state.native).map(([id,s])=>[id,{present:s.present,fileCount:Object.keys(s.files||{}).length,logicalSha256:sha(json(s.files||{}))}]));
  receipt.generationSha256=sha(json(state.generation));
  const auditBaseline=phase==='normal'?state:JSON.parse(fs.readFileSync('/control/whole-app-baseline.json','utf8'));
@@ -112,8 +101,10 @@ try{
     const next=after.tables[name];assert.equal(next.schemaSha256,table.schemaSha256,'DECLARED_TABLE_SCHEMA_CHANGED');
     if(id==='assurance'){
      if(name==='cp_records'){
-      for(const [key,prior] of Object.entries(table.mutableRows))checkCp(prior,next.mutableRows[key]);
-      for(const [key,current] of Object.entries(next.mutableRows))if(!table.mutableRows[key]){assert.ok(['heartbeat','probe','incident'].includes(current.kind),'NEW_CONTROL_PLANE_AUTHORITY');assert.ok(validTime(current.at));if(current.kind==='incident'){assert.equal(current.attempts,0);assert.ok(['DETECTED','UNRESOLVED'].includes(current.status));assert.ok(validTime(current.firstAt)&&current.firstAt<=current.at);assert.ok(Number.isSafeInteger(current.recurrence)&&current.recurrence>=1);assert.ok(current.limitation===null||current.limitation==='No permitted recovery runbook');}}
+      for(const [key,prior] of Object.entries(table.mutableRows))checkCp(prior,next.mutableRows[key],{incidentKeySha256:key,readbackPhase:phase,checkerSha256});
+      for(const [key,current] of Object.entries(next.mutableRows))if(!table.mutableRows[key])checkNewCp(current,{incidentKeySha256:key,readbackPhase:phase,checkerSha256});
+     }else if(name==='cp_events'){
+      assertSubset(table.hashes,next.hashes);checkRecoveryActivity(table.recoveryActivity,next.recoveryActivity,{readbackPhase:phase,checkerSha256});
      }else if(name==='sqlite_sequence'){
       for(const [k,v] of Object.entries(table.sequences||{})){if(k==='cp_events')assert.ok(next.sequences[k]>=v);else assert.equal(next.sequences[k],v);}
       assert.ok(Object.keys(next.sequences).every(k=>k==='cp_events'||k in table.sequences));

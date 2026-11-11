@@ -2,20 +2,20 @@
   "schema": "work8-v99-external-release-v1",
   "status": "NONOPERATIVE_TEMPLATE_NO_OWNER_DECISION_OR_RESERVATION",
   "repository": "empireaios/EmpireAI",
-  "launchBranch": "work8/v108-a5-20261110",
-  "workflowPath": ".github/workflows/work8-v108-a5.yml",
+  "launchBranch": "work8/v112-a5-20261111-a01",
+  "workflowPath": ".github/workflows/work8-v112-a5.yml",
   "maximumAttempts": 0,
   "source": {
     "tree": null,
-    "parent": "6aacc930f2b70380adc15d67708d75364cf08753",
+    "parent": "ea4d0b57909e1c41249b9605e322da3a4d5b518c",
     "manifestSHA256": null,
     "workflowSHA256": null
   },
   "launchPlan": null,
   "ownerApprovalReceipt": {
-    "schema": "work8-v108-owner-approval-v1",
+    "schema": "work8-v112-attempt-approval-v1",
     "ownerDecisionRecorded": false,
-    "directive": "EMPIREAI_V108_SEPARATE_NATIVE_EXECUTION_APPROVAL",
+    "directive": "EMPIREAI_V112_MASTER_CONTINUOUS_EXECUTION_AUTHORITY",
     "scope": "none-native-preparation-only",
     "maximumAttempts": 0,
     "maximumJobSeconds": 0,
@@ -30,22 +30,41 @@
       "stages": [],
       "scope": "none",
       "otherMessagesAuthorized": false
-    }
+    },
+    "masterAuthorityId": "GRAND-KING-V112-MASTER-20261111",
+    "masterAuthoritySHA256": "2e54ce38da8c021b0211351bd9524f3dc2ab99cc48466dc10a0465748a58fc66",
+    "campaignId": "V112-A5-CLOSURE-20261111",
+    "attemptId": "V112-A5-A01-20261111",
+    "masterCeilingCents": 100000,
+    "masterLedgerRecordReference": null,
+    "financialExposureBoundVerified": false,
+    "financialReviewSHA256": "99b3ae5f31e7bb8a1052f151219dde3a77122e4bd2c3ef65ffca1d1fba5e2398",
+    "accountBillingContextVerified": false,
+    "paidRunnerAuthorized": false
   },
   "reservationReceipt": {
-    "schema": "work8-v108-reservation-v1",
+    "schema": "work8-v112-reservation-v1",
     "recordType": "ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE",
     "status": "NOT_CREATED",
     "reservationId": null,
     "ownerApprovalSHA256": null,
     "approvedSource": null,
     "before": {
-      "aggregateHoldsUSD": "18.79",
-      "A5HoldsUSD": "8.84",
-      "unreservedA5AuthorityUSD": "1.16"
+      "masterCeilingCents": 100000,
+      "settledChargeCents": 0,
+      "remainingReservedExposureCents": 0,
+      "consumedExposureCents": 0,
+      "remainingAuthorityCents": 100000,
+      "priorAggregateHoldsUSD": "19.95",
+      "priorA5HoldsUSD": "10.00"
     },
     "after": null,
-    "reservationUSD": "0.00"
+    "reservationUSD": "0.00",
+    "masterAuthoritySHA256": "2e54ce38da8c021b0211351bd9524f3dc2ab99cc48466dc10a0465748a58fc66",
+    "campaignId": "V112-A5-CLOSURE-20261111",
+    "attemptId": "V112-A5-A01-20261111",
+    "masterLedgerRecordReference": null,
+    "financialReviewSHA256": "99b3ae5f31e7bb8a1052f151219dde3a77122e4bd2c3ef65ffca1d1fba5e2398"
   },
   "ownerApprovalSHA256": null,
   "reservationReceiptSHA256": null

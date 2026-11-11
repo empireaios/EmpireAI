@@ -17,7 +17,8 @@ class RetainedEvidenceControls(unittest.TestCase):
         cls.source = Path(__file__).resolve().parent.parent
         cls.temp = tempfile.TemporaryDirectory()
         cls.repo = Path(cls.temp.name) / 'source'
-        for name in ('acceptance', 'v65/foundation/controller', 'v65/foundation/runtime', 'frontend_startup'):
+        for name in ('acceptance', 'v65/foundation/controller', 'v65/foundation/runtime',
+                     'v65/adapter', 'v65/tests', 'frontend_startup'):
             shutil.copytree(cls.source / name, cls.repo / name, ignore=shutil.ignore_patterns('__pycache__'))
         cls.records = {name: evidence.json_bytes((cls.repo / 'acceptance' / name).read_bytes())
                        for name in evidence.EVIDENCE_SHA if name.endswith('.json')}

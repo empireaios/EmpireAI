@@ -39,6 +39,25 @@ EVIDENCE_SHA = {
     'retained-v98/package-identities.json': PACKAGES_SHA,
     'retained-v98/provider-readback.json': 'b3a3b362a2530e6bdacdcc840ff94b41a22c3d6dd319a400e2f1352593b8e611',
 }
+# These new receipts attest only the reviewed diagnostic successor. The V94,
+# V96 and V98 evidence and source identities above remain immutable.
+# Final receipt pins are installed only after independent local review.
+V111_EVIDENCE_SHA = {
+    'retained-v111/diagnostic-successor.json': '70e25ead8cc45733fd96397b859432d9b8cb629bd4739182ad11df3d5efc22e5',
+    'retained-v111/independent-review.json': '07c4e2f950b9e5f995a91d0744805debeffbeeca1f9473e1b8be087be00031e0',
+    'retained-v111/focused-validation.json': '0902d375a16b28da2835087520c9e2c691091a1afca5b894137b5366fd4f804d',
+    'retained-v111/source-review.json': 'e7f5ca7cfb8098fdebfaaa57cad63065592b6c8a1f2195ab3ffe6936280a4617',
+    'retained-v111/security-review.json': '66bc4bbf25ae9d9fb58933546dda486cb047b16d5601db2425dd6d4b1f9ccc02',
+    'retained-v111/v110-focused-validation.json': '3e39a53b0fb9987306e01b1588611bda483a183fa4ae30e7cdcd913ea41350a1',
+    'retained-v111/v110-independent-reviews.json': '39222044ee532180f6e254f6bb60625408ca7031b8de0b144fdbe2b6a4d86aef',
+}
+V111_REPLACEMENTS = frozenset(('native-diagnostic.mjs', 'native_diagnostics.py', 'native-diagnostic-codes.json'))
+V111_SOURCE_PATHS = frozenset(str(CONTROLLER / name) for name in (
+    'native-diagnostic.mjs', 'native_diagnostics.py', 'native-diagnostic-codes.json', 'assurance-records.mjs', 'whole-app-readback.mjs')) | frozenset((
+    'v65/adapter/final_evidence.py', 'v65/tests/test_assurance_records.mjs',
+    'v65/tests/test_assurance_diagnostic_return.py'))
+V111_CONTROLLER_FILES = frozenset(PurePosixPath(name).name for name in V111_SOURCE_PATHS
+                                 if name.startswith(str(CONTROLLER) + '/'))
 
 
 def require(ok, code):
@@ -223,8 +242,66 @@ def validate_native_payloads(payloads, provider, review, packages):
             'V98_INDEPENDENT_CLEANUP')
 
 
+def verify_v111_diagnostic_successor(repo, controller, historical):
+    """Admit one exact reviewed successor, without extending historical proof."""
+    require(all(isinstance(value, str) and len(value) == 64 and
+                all(c in '0123456789abcdef' for c in value)
+                for value in V111_EVIDENCE_SHA.values()), 'V111_DIAGNOSTIC_REVIEW_REQUIRED')
+    raw = {name: regular_bytes(repo / 'acceptance' / name) for name in V111_EVIDENCE_SHA}
+    require(all(digest(raw[name]) == expected for name, expected in V111_EVIDENCE_SHA.items()),
+            'V111_DIAGNOSTIC_RECEIPT_CHANGED')
+    docs = {name: json_bytes(data) for name, data in raw.items()}
+    successor = docs['retained-v111/diagnostic-successor.json']
+    review = docs['retained-v111/independent-review.json']
+    validation = docs['retained-v111/focused-validation.json']
+    require(successor.get('schema') == 'work8-v111-diagnostic-successor-v1' and
+            successor.get('status') == 'LOCAL_DIAGNOSTIC_SUCCESSOR' and
+            successor.get('replaces') == sorted(V111_REPLACEMENTS) and
+            successor.get('historicalOperandSHA256') == {name: historical['files'][name] for name in sorted(V111_REPLACEMENTS)} and
+            successor.get('historicalEvidenceSHA256') == EVIDENCE_SHA and
+            successor.get('v110EvidenceSHA256') == {name: V111_EVIDENCE_SHA[name] for name in V111_EVIDENCE_SHA if '/v110-' in name},
+            'V111_DIAGNOSTIC_SUCCESSOR_BINDING')
+    scope = {'historicalEvidenceChanged': False, 'hostedQualificationRepeated': False,
+             'frontendDiagnosticsRepeated': False, 'nativeExecution': False,
+             'currentNativeAcceptance': False, 'executionAuthority': False}
+    require(successor.get('scope') == scope and review.get('scope') == scope and validation.get('scope') == scope,
+            'V111_DIAGNOSTIC_SCOPE_INFLATION')
+    sources = successor.get('sourceSHA256', {})
+    require(isinstance(sources, dict) and set(sources) == V111_SOURCE_PATHS and
+            all(digest(regular_bytes(repo / name)) == expected for name, expected in sources.items()),
+            'V111_DIAGNOSTIC_SOURCE_CHANGED')
+    require(all(digest(regular_bytes(controller / name)) == sources[str(CONTROLLER / name)]
+                for name in V111_CONTROLLER_FILES), 'V111_PREPARED_DIAGNOSTIC_SOURCE_CHANGED')
+    require(review.get('schema') == 'work8-v111-independent-diagnostic-review-v1' and
+            review.get('status') == 'PASS' and review.get('reviewType') == 'INDEPENDENT_LOCAL_SOURCE_AND_SECURITY' and
+            review.get('successorSHA256') == V111_EVIDENCE_SHA['retained-v111/diagnostic-successor.json'] and
+            review.get('validationSHA256') == V111_EVIDENCE_SHA['retained-v111/focused-validation.json'] and
+            review.get('sourceSHA256') == sources and review.get('openFindings') == [],
+            'V111_INDEPENDENT_DIAGNOSTIC_REVIEW_REQUIRED')
+    review_evidence = {role: V111_EVIDENCE_SHA['retained-v111/'+role+'-review.json'] for role in ('source', 'security')}
+    require(review.get('reviewEvidenceSHA256') == review_evidence and all(
+            docs['retained-v111/'+role+'-review.json'].get('status') == 'PASS' and
+            docs['retained-v111/'+role+'-review.json'].get('sourceSHA256') == sources and
+            docs['retained-v111/'+role+'-review.json'].get('openFindings') == []
+            for role in ('source', 'security')), 'V111_REVIEW_EVIDENCE_BINDING')
+    require(validation.get('schema') == 'work8-v111-local-diagnostic-validation-v1' and
+            validation.get('status') == 'PASS' and validation.get('sourceSHA256') == sources and
+            type(validation.get('testsPassed')) is int and validation['testsPassed'] > 0 and
+            validation.get('testsFailed') == 0 and type(validation.get('testsFailed')) is int and
+            validation.get('actualCheckerThroughArchive') is True and
+            validation.get('independentArchiveIntegrity') is True,
+            'V111_LOCAL_DIAGNOSTIC_VALIDATION_REQUIRED')
+    return {'scope': 'EXACT_LOCAL_DIAGNOSTIC_SUCCESSOR_NOT_NATIVE_ACCEPTANCE',
+            'sourceSHA256': sources, 'receiptSHA256': dict(V111_EVIDENCE_SHA),
+            'historicalEvidenceChanged': False, 'currentExecutionAuthority': False,
+            'currentNativeLifecycleAccepted': False}
+
+
 def verify_diagnostic_operands(repo, controller, records):
-    """Keep V94 operands immutable, with explicitly reviewed V96 replacements."""
+    """Keep V94/V96 immutable; require separate proof for changed diagnostics."""
+    if controller.resolve() != (repo / CONTROLLER).resolve():
+        require(all(regular_bytes(controller / name) == regular_bytes(repo / CONTROLLER / name)
+                    for name in V111_CONTROLLER_FILES), 'V111_PREPARED_DIAGNOSTIC_SOURCE_CHANGED')
     historical = records['retained-v94/diagnostic-operands.json']
     successor = records['retained-v96/diagnostic-test-summary.json']
     review = records['retained-v96/independent-review.json']
@@ -233,9 +310,16 @@ def verify_diagnostic_operands(repo, controller, records):
             and successor['actualDockerExecuted'] is False and successor['actualApplicationStartupProven'] is False
             and review['testSummary'] == successor and not review['unresolvedDiagnosticFindings'],
             'V96_DIAGNOSTIC_SUCCESSOR_SCOPE')
+    changed = []
     for name, old_hash in historical['files'].items():
         expected = successor['sourceSHA256'][str(CONTROLLER / name)] if name == 'command_diagnostics.py' else old_hash
-        require(digest(regular_bytes(controller / name)) == expected, 'RETAINED_DIAGNOSTIC_OPERAND_CHANGED')
+        if digest(regular_bytes(controller / name)) != expected:
+            require(name in V111_REPLACEMENTS, 'RETAINED_DIAGNOSTIC_OPERAND_CHANGED')
+            changed.append(name)
+    local_successor = None
+    if changed:
+        require(set(changed) == V111_REPLACEMENTS, 'V111_MIXED_DIAGNOSTIC_SUCCESSOR')
+        local_successor = verify_v111_diagnostic_successor(repo, controller, historical)
     for name in ('docker_diagnostics.py', 'test_docker_diagnostics.py'):
         require(digest(regular_bytes(controller / name)) == successor['sourceSHA256'][str(CONTROLLER / name)],
                 'V96_DIAGNOSTIC_OPERAND_CHANGED')
@@ -250,6 +334,7 @@ def verify_diagnostic_operands(repo, controller, records):
                  if x.startswith('function retainFirst(')]
     require(len(functions) == 1 and digest(functions[0].encode()) == historical['coordinatorRetainFirstSHA256'],
             'RETAINED_FIRST_CAUSE_FUNCTION_CHANGED')
+    return local_successor
 
 
 def package_operand_ast(text):
@@ -283,7 +368,7 @@ def verify_retained_evidence(repo=None, controller=None):
         raw[name] = regular_bytes(repo / 'acceptance' / name)
         require(digest(raw[name]) == expected, 'RETAINED_EVIDENCE_DIGEST_MISMATCH')
     records = {n: json_bytes(d) for n, d in raw.items() if n.endswith('.json')}
-    verify_diagnostic_operands(repo, controller, records)
+    local_successor = verify_diagnostic_operands(repo, controller, records)
     require(digest(regular_bytes(source_controller / 'current_packages.py')) == CURRENT_PACKAGES_SHA
             and digest(regular_bytes(repo / 'frontend_startup/runner.py')) == RUNNER_SHA,
             'V98_SHARED_STARTUP_SOURCE_CHANGED')
@@ -340,6 +425,7 @@ def verify_retained_evidence(repo=None, controller=None):
             'reviewSHA256': EVIDENCE_SHA['retained-v96/independent-review.json'],
             'testSummarySHA256': EVIDENCE_SHA['retained-v96/diagnostic-test-summary.json'],
             'originalV94ReceiptChanged': False},
+        'currentDiagnosticSuccessor': local_successor,
         'frontendStartup': {
             'runId': 42539444860, 'jobId': 128910880107, 'artifactId': 13640304481,
             'artifactSHA256': V98_ZIP, 'innerArchiveSHA256': V98_TAR, 'indexedPayloadsVerified': 28,

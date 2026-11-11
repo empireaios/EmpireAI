@@ -1,0 +1,367 @@
+{
+  "applicationAcceptance": false,
+  "nativeFaultFixed": false,
+  "originalSecurityReviewSHA256": "104e6f638981fb34cddf86603e7af48f2c0aa73c108b9041727215e0eeda63b0",
+  "originalSourceReviewSHA256": "3bad0849c5137c3b77f51aae4060e0cc6216bc7ac7bf6a9b26a1532d222d27b3",
+  "schema": "empireai-v110-independent-reviews-v1",
+  "security": {
+    "applicationAcceptance": false,
+    "evidence": [
+      {
+        "bytes": 3789,
+        "path": "v110/security/security_checks.py",
+        "sha256": "805ae7d664d9c0d37e867d9808b59c7b85b95c46b23400afde8d1076c5cfd251"
+      },
+      {
+        "bytes": 743,
+        "path": "v110/security/security_checks.json",
+        "sha256": "a73ce076656bf9de6171dd0ab3a9b742454ccaef9745dc12ea444c627ab01b94"
+      },
+      {
+        "bytes": 4455,
+        "path": "v110/security/independent_archive_probe.py",
+        "sha256": "89b44706f8eb7577d50cf276f350267cb30c7954dbf1bdc2782a3b23d027ffe1"
+      },
+      {
+        "bytes": 2780,
+        "path": "v110/security/independent_archive_probe.json",
+        "sha256": "8a6a358b6175cea90bcba0fa515f6be651ef749a651fb2e44ae7ad15b8d41472"
+      },
+      {
+        "bytes": 3798,
+        "path": "v110/security/independent-failure-export.tar.gz",
+        "sha256": "b422bdc045a3c9430839efcb460b50751bce2e316bdcdc9272f7b2d6e0a99df6"
+      },
+      {
+        "bytes": 3951,
+        "path": "v110/security/final_scope_integrity.py",
+        "sha256": "2c357d29cca31b4186bdf1fe92267d37a3c567f0df10ef375e00ef894a7f7ea6"
+      },
+      {
+        "bytes": 3524,
+        "path": "v110/security/final_scope_integrity.json",
+        "sha256": "61927c3e9b90296f87339aa1f7032b6be99cb576929f09073ca80f60dc729c32"
+      },
+      {
+        "bytes": 2799,
+        "path": "v110/security/independent_diagnostic_tests.log",
+        "sha256": "11e285e22b6f662ae8d9b087a493d464d1b6e36a655f438e4d6eeac5d6fcd838"
+      }
+    ],
+    "findings": [
+      {
+        "finding": "Strict numeric-zero checks remain unchanged for changed existing and new incidents. Existing identity, record preservation, lifecycle and monotonic-time predicates remain in effect. No acceptance bypass introduced.",
+        "id": "S01",
+        "status": "PASS"
+      },
+      {
+        "finding": "Raw incident bodies, raw incident identifier, arbitrary exception actual/expected, extra properties and arbitrary strings are excluded. Optional context contains only fixed schema literals, validated enum classifications, booleans/null and64-character hex hashes.",
+        "id": "S02",
+        "status": "PASS"
+      },
+      {
+        "finding": "Both JavaScript and Python sanitizers enforce expected NUMBER/NUMERIC_ZERO and compatible observed type/class pairs. Invalid context becomes fixed UNAVAILABLE_OR_INVALID metadata without replacing the outer first assertion.",
+        "id": "S03",
+        "status": "PASS"
+      },
+      {
+        "finding": "Missing current-record digest context is permitted only for CONTROL_PLANE_RECORD_DELETED with observed MISSING. Negative zero and out-of-safe-range classifications are explicit; helper stack frames remain observable.",
+        "id": "S04",
+        "status": "PASS"
+      },
+      {
+        "finding": "Exporter joins source receipt to stage index, stage to run-contract/session, and checker/helper bytes to the controller manifest and its run-contract digest. Binding failures are explicitly marked and never grant application acceptance.",
+        "id": "S05",
+        "status": "PASS"
+      },
+      {
+        "finding": "Existing first-failure immutable save, bounded stream parser, fixed vocabulary, artifact path/member checks and archive bounds remain active. Added context is1784bytes in the independent representative diagnostic, below16384-byte stream limit.",
+        "id": "S06",
+        "status": "PASS"
+      },
+      {
+        "finding": "The frozen diff has exactly10 files: diagnostic implementation, focused tests, and required source/controller/runner digest bindings. Workflow, execution-authority, financial reservation, application-package and production configuration files are unchanged.",
+        "id": "S07",
+        "status": "PASS"
+      }
+    ],
+    "independentValidation": {
+      "actualCheckerThroughFailureArchive": true,
+      "allPassed": true,
+      "archiveAndManifestChecks": [
+        {
+          "check": "controller complete manifest bytes/hashes/modes",
+          "entries": 111,
+          "sha256": "63206e3464762e525f40b9a18feb9f6da57cd5fae20797e81cfc0db5600ffbdb",
+          "status": "PASS"
+        },
+        {
+          "check": "source complete manifest bytes/hashes/modes",
+          "entries": 219,
+          "sha256": "411844b4f11a34bf88f14b06935787a35dd217c53b139b5cce81e7128ba523f2",
+          "status": "PASS"
+        },
+        {
+          "check": "runner pins exact final controller manifest",
+          "status": "PASS"
+        },
+        {
+          "check": "exact10 file scope; no workflow/authority/package mutation",
+          "status": "PASS"
+        },
+        {
+          "archives": [
+            {
+              "bytes": 3787,
+              "fixtureOnly": true,
+              "independentlyVerified": true,
+              "indexedPayloads": 8,
+              "path": "v110/diagnostic_artifacts/failure-evidence-export.tar.gz",
+              "sha256": "d62dd3545ed5fc16804770554339dba6922c4dceb814b45ace400591860f45fa"
+            },
+            {
+              "bytes": 208809,
+              "fixtureOnly": true,
+              "independentlyVerified": true,
+              "indexedPayloads": 141,
+              "path": "v110/diagnostic_artifacts/success-evidence-export.tar.gz",
+              "sha256": "be4f5f70d1e00ced46a80b0d6e910465e6763c199d849ce2dd90fd3d1f8e6351"
+            }
+          ],
+          "check": "independent success/failure archive member and outer integrity",
+          "status": "PASS"
+        }
+      ],
+      "focusedDiagnosticFailures": 0,
+      "focusedDiagnosticTests": 15,
+      "independentFailureArchivePayloads": 8,
+      "malformedAndExtraFieldCases": 348,
+      "semanticRejectionCases": 83
+    },
+    "limitations": [
+      "V109 actual rejected attempts operand and underlying native cause remain unrecovered. No value is inferred from the hashes, label, or local synthetic probes.",
+      "A legitimate locally simulated historical count of1 reproduces the label with unchanged identity, but does not prove this was V109's operand or authorize a checker relaxation.",
+      "Successful transport fixtures and local security checks do not prove initialized-Brain13-domain preservation or the full protected NORMAL\u2192RECOVERY\u2192NORMAL_RETURN lifecycle. A5-08 and A5-09 remain NOT PROVEN.",
+      "This review approves no GitHub publication, authenticated endorsement, reservation, hosted attempt, or production operation."
+    ],
+    "nativeExecutionAuthorized": false,
+    "operations": {
+      "externalMutations": 0,
+      "localSyntheticProbesOnly": true,
+      "nativeApplicationExecutions": 0,
+      "networkCalls": 0,
+      "newReservations": 0,
+      "sourceEditsByReviewer": 0
+    },
+    "published": false,
+    "resolvedReviewObservations": [
+      "Enforced numeric-zero expectation and semantically compatible type/class pairs.",
+      "Retained explicitly classified missing current record for deletion, negative zero, and unsafe positive integer range.",
+      "Bound newly extracted helper source and preserved its diagnostic source frames."
+    ],
+    "reviewedAtUTC": "2026-11-10T16:08:50.887745+00:00",
+    "reviewedFiles": [
+      {
+        "bytes": 48364,
+        "path": "acceptance/source-manifest.json",
+        "sha256": "411844b4f11a34bf88f14b06935787a35dd217c53b139b5cce81e7128ba523f2"
+      },
+      {
+        "bytes": 78638,
+        "path": "v65/adapter/final_evidence.py",
+        "sha256": "ac6df74799628c7bc074ecaf2c900273746d18283153e38634d6286ba013089f"
+      },
+      {
+        "bytes": 77361,
+        "path": "v65/adapter/runner.py",
+        "sha256": "3bc619d63a73b5e13c25b6e8d6a4264a532d028f626c98fb476c0e6bccdf03b0"
+      },
+      {
+        "bytes": 4941,
+        "path": "v65/foundation/controller/scripts/work8/native-transition/assurance-records.mjs",
+        "sha256": "df5245dc889dd66c34563e51d5d391124012a036ca3bc4805887328f77d64746"
+      },
+      {
+        "bytes": 14045,
+        "path": "v65/foundation/controller/scripts/work8/native-transition/controller-manifest.json",
+        "sha256": "63206e3464762e525f40b9a18feb9f6da57cd5fae20797e81cfc0db5600ffbdb"
+      },
+      {
+        "bytes": 8984,
+        "path": "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs",
+        "sha256": "9eea6de7942e41514480b0d0ae5deb3335b668fd72d868211a66535e1988dd65"
+      },
+      {
+        "bytes": 10365,
+        "path": "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py",
+        "sha256": "aadbacae25c2abcf7403689d02489aa6db42fa572e35dcffe5238ba088aa331e"
+      },
+      {
+        "bytes": 17935,
+        "path": "v65/foundation/controller/scripts/work8/native-transition/whole-app-readback.mjs",
+        "sha256": "6d568d6b5b19b95cf7a1b1c94988757896d440eb25a9c317d3f597c25308fee7"
+      },
+      {
+        "bytes": 16255,
+        "path": "v65/tests/test_assurance_diagnostic_return.py",
+        "sha256": "be6fe23c9c7e3fa8d0e987dcde07cafbf3b5a8a35225ddeaa74ce49f8afde129"
+      },
+      {
+        "bytes": 5030,
+        "path": "v65/tests/test_assurance_records.mjs",
+        "sha256": "e2bc9f7b1825918b40248fe08cd7279d3ecf1e603699cd476884e439ed9439a0"
+      }
+    ],
+    "reviewer": "independent security_review agent",
+    "schema": "empireai-v110-independent-security-review-v1",
+    "source": {
+      "commit": "e8d525fe21244ac26823b8c1fa09add3ed24c393",
+      "parent": "ea4d0b57909e1c41249b9605e322da3a4d5b518c",
+      "tree": "6b407ac10573ad808a3a84ebf4ec9734fac5f9b8"
+    },
+    "verdict": "PASS_LOCAL_DIAGNOSTIC_CORRECTION_ONLY"
+  },
+  "source": {
+    "applicationAcceptance": false,
+    "baseCommit": "ea4d0b57909e1c41249b9605e322da3a4d5b518c",
+    "baseTree": "b11cffb6b5802af688855ebf7f45c98ab7371d09",
+    "findings": [
+      {
+        "classification": "PROVEN",
+        "finding": "Exact backend source initializes attempts as numeric zero and increments it at recovery admission. No representation mismatch or producer defect is established.",
+        "locations": [
+          92,
+          148
+        ],
+        "source": "backend-source/backend/src/assurance/control-plane.mjs"
+      },
+      {
+        "classification": "PROVEN",
+        "finding": "V109 checker compares current attempts with strict numeric zero only after unchanged identity check. Its identity includes attempts; unchanged historical positive counters can reproduce the error on later diagnostic changes.",
+        "locations": [
+          48,
+          56,
+          57
+        ],
+        "source": "contract-source/whole-app-readback.mjs"
+      },
+      {
+        "classification": "PROVEN",
+        "finding": "V110 preserves original pass/fail acceptance predicates including strict numeric zero, identity preservation, incident lifecycle constraints, time monotonicity and prohibition on new control-plane authority. The new-record strict zero failure receives a specific safe name."
+      },
+      {
+        "classification": "PROVEN",
+        "finding": "V110 fixes omitted diagnostic context: hashed incident key, safe expected/prior/observed classes, prior/current body and identity digests, readback phase, and source-bound checker identity traverse closed JS/Python sanitizers and bounded failure export. Raw incident/operand data is not exported."
+      },
+      {
+        "classification": "PROVEN",
+        "finding": "Final export binds indexed receipt bytes, run contract, stage start and actual controller manifest entries for both checker and imported helper. A failed binding is recorded as mismatch/unavailable, preserving the primary cause."
+      },
+      {
+        "classification": "SOURCE-SUPPORTED HYPOTHESIS",
+        "finding": "A valid historical nonzero count followed by recurrence-only mutation could explain V109. Local reproduction establishes possibility, not historical fact."
+      },
+      {
+        "classification": "NOT RECOVERABLE",
+        "finding": "The actual V109 rejected attempts value/type and original causal event were not retained. This correction does not prove the native fault fixed."
+      }
+    ],
+    "independentValidation": {
+      "assuranceRecordTests": 10,
+      "assuranceRecordTestsResult": "PASS",
+      "originalFunctionSourceSHA256": "0356a6607abf514aeb747b0efd1b78e0ef1c54f1188fd7ffe4f95ddb97e34ebf",
+      "outcomeParity": "PASS",
+      "outcomeParityCases": 82,
+      "parityReceiptSHA256": "d3a731bbe824bd556a4ba61d9170568bf608913262136b99c6dbf7313dfa6491",
+      "recordTestsTranscriptSHA256": "efb8a620bf9be44b619e31d18831e799e090734fafab773171613b30eaa3eb97"
+    },
+    "invariantRelaxed": false,
+    "limitations": [
+      "All local fixtures are explicitly synthetic; they do not recover V109 operands.",
+      "Unchanged incident rows retain the pre-existing bypass; baseline malformed or historical attempts are not newly accepted or newly rejected.",
+      "Source review grants no publication, ACK, native dispatch or spending authority.",
+      "A5-08 and A5-09 remain NOT PROVEN."
+    ],
+    "manifestChecks": [
+      {
+        "errors": [],
+        "path": "v65/foundation/controller/scripts/work8/native-transition/controller-manifest.json",
+        "payloadsVerified": 111,
+        "sha256": "63206e3464762e525f40b9a18feb9f6da57cd5fae20797e81cfc0db5600ffbdb"
+      },
+      {
+        "errors": [],
+        "path": "acceptance/source-manifest.json",
+        "payloadsVerified": 219,
+        "sha256": "411844b4f11a34bf88f14b06935787a35dd217c53b139b5cce81e7128ba523f2"
+      }
+    ],
+    "nativeFaultFixed": false,
+    "newHostedExecution": false,
+    "originalA5RequirementsReplaced": false,
+    "producerModified": false,
+    "resolvedReviewFindings": [
+      "Preserve helper source frames in both diagnostic sanitizers.",
+      "Bind imported helper bytes through actual controller manifest.",
+      "Distinguish negative zero and unsafe positive integer classifications.",
+      "Pin expected numeric zero and reject impossible type/class pairings."
+    ],
+    "reviewedFiles": [
+      {
+        "bytes": 48364,
+        "path": "acceptance/source-manifest.json",
+        "sha256": "411844b4f11a34bf88f14b06935787a35dd217c53b139b5cce81e7128ba523f2"
+      },
+      {
+        "bytes": 78638,
+        "path": "v65/adapter/final_evidence.py",
+        "sha256": "ac6df74799628c7bc074ecaf2c900273746d18283153e38634d6286ba013089f"
+      },
+      {
+        "bytes": 77361,
+        "path": "v65/adapter/runner.py",
+        "sha256": "3bc619d63a73b5e13c25b6e8d6a4264a532d028f626c98fb476c0e6bccdf03b0"
+      },
+      {
+        "bytes": 4941,
+        "path": "v65/foundation/controller/scripts/work8/native-transition/assurance-records.mjs",
+        "sha256": "df5245dc889dd66c34563e51d5d391124012a036ca3bc4805887328f77d64746"
+      },
+      {
+        "bytes": 14045,
+        "path": "v65/foundation/controller/scripts/work8/native-transition/controller-manifest.json",
+        "sha256": "63206e3464762e525f40b9a18feb9f6da57cd5fae20797e81cfc0db5600ffbdb"
+      },
+      {
+        "bytes": 8984,
+        "path": "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs",
+        "sha256": "9eea6de7942e41514480b0d0ae5deb3335b668fd72d868211a66535e1988dd65"
+      },
+      {
+        "bytes": 10365,
+        "path": "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py",
+        "sha256": "aadbacae25c2abcf7403689d02489aa6db42fa572e35dcffe5238ba088aa331e"
+      },
+      {
+        "bytes": 17935,
+        "path": "v65/foundation/controller/scripts/work8/native-transition/whole-app-readback.mjs",
+        "sha256": "6d568d6b5b19b95cf7a1b1c94988757896d440eb25a9c317d3f597c25308fee7"
+      },
+      {
+        "bytes": 16255,
+        "path": "v65/tests/test_assurance_diagnostic_return.py",
+        "sha256": "be6fe23c9c7e3fa8d0e987dcde07cafbf3b5a8a35225ddeaa74ce49f8afde129"
+      },
+      {
+        "bytes": 5030,
+        "path": "v65/tests/test_assurance_records.mjs",
+        "sha256": "e2bc9f7b1825918b40248fe08cd7279d3ecf1e603699cd476884e439ed9439a0"
+      }
+    ],
+    "reviewer": "independent source_review agent",
+    "schema": "work8-v110-independent-source-review-v1",
+    "scope": "Local source review, independent outcome-parity tests, direct source contract inspection and manifest-integrity verification. No native execution or application acceptance.",
+    "verdict": "PASS_DIAGNOSTIC_CORRECTION_ONLY"
+  },
+  "status": "PASS_DIAGNOSTIC_ONLY"
+}

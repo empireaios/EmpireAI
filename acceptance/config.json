@@ -4,11 +4,11 @@
   "localOwnerDecisionRecorded": false,
   "localReservationCommitted": false,
   "requiresExternalRelease": true,
-  "launchBranch": "work8/v108-a5-20261110",
-  "reviewBranch": "work8/v108-review-20261110",
-  "workflowPath": ".github/workflows/work8-v108-a5.yml",
-  "externalReleasePath": "acceptance/v108-release.json",
-  "requiredParent": "6aacc930f2b70380adc15d67708d75364cf08753",
+  "launchBranch": "work8/v112-a5-20261111-a01",
+  "reviewBranch": "work8/v112-review-20261111-a01",
+  "workflowPath": ".github/workflows/work8-v112-a5.yml",
+  "externalReleasePath": "acceptance/v112-a01-release.json",
+  "requiredParent": "ea4d0b57909e1c41249b9605e322da3a4d5b518c",
   "maximumAttempts": 1,
   "maximumJobSeconds": 18000,
   "artifactRetentionDays": 7,
@@ -39,9 +39,13 @@
     "originalVolumeAlteration": false,
     "commerceActivation": false
   },
-  "maximumAdditionalExposureUSD": "1.16",
-  "maximumReservationUSD": "1.16",
+  "maximumAdditionalExposureUSD": "20.00",
+  "maximumReservationUSD": "20.00",
   "frontendStartupDiagnosticMayRepeat": false,
   "approvalReady": false,
-  "ownerApprovalRequested": false
+  "ownerApprovalRequested": false,
+  "masterAuthoritySHA256": "2e54ce38da8c021b0211351bd9524f3dc2ab99cc48466dc10a0465748a58fc66",
+  "campaignId": "V112-A5-CLOSURE-20261111",
+  "attemptId": "V112-A5-A01-20261111",
+  "financialReviewSHA256": "99b3ae5f31e7bb8a1052f151219dde3a77122e4bd2c3ef65ffca1d1fba5e2398"
 }

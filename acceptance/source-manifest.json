@@ -16,6 +16,18 @@
       "sha256": "48e331540431b1ed315fd1c93ed71024a7b92bfef4526fbd9a4fdbdc5d7511c9"
     },
     {
+      "bytes": 9645,
+      "mode": "100644",
+      "path": ".github/workflows/work8-v111-a5.yml",
+      "sha256": "6aed7dabcc5bbb0d15a7d98f3c57aaaf91fe1ae39f1e6e3318782b44b30ae3ae"
+    },
+    {
+      "bytes": 9737,
+      "mode": "100644",
+      "path": ".github/workflows/work8-v112-a5.yml",
+      "sha256": "e9c49cd4d271eacfdadd4ec626c3b714dcb3890357b8a6c081efd6d57be313ad"
+    },
+    {
       "bytes": 259,
       "mode": "100644",
       "path": ".github/workflows/work8-v65-a5.yml",
@@ -58,10 +70,10 @@
       "sha256": "0da55e90ae7526f1961cd3c0c2c38935242122c3de261b2c611836f6911c3c0c"
     },
     {
-      "bytes": 10763,
+      "bytes": 4992,
       "mode": "100644",
       "path": "acceptance/README.md",
-      "sha256": "7e4a76785cac1e3654e8e9b6bd7b61fc96a1df6fbc5f3d0dd10fa2f1ce81e92f"
+      "sha256": "bc3e0e747490a80240b247b1857a38480e1a82b3752c12c446751b4a69547852"
     },
     {
       "bytes": 1287,
@@ -70,28 +82,88 @@
       "sha256": "549cdbabcef76aafe5a6df40e05f0dbc99a748d54215156e44d3eaf85f903215"
     },
     {
-      "bytes": 1737,
+      "bytes": 2024,
       "mode": "100644",
       "path": "acceptance/config.json",
-      "sha256": "06b7b0021b63e224c4de0a0dbe3d83949a31d62d17b88ad8acf10c66fa21b2bc"
+      "sha256": "0d835dcce8c1e5f6bf346a897c696c71d793cc44aa6b1a3881cfc1aaea628daf"
     },
     {
-      "bytes": 1578,
+      "bytes": 2603,
       "mode": "100644",
       "path": "acceptance/external-release.template.json",
-      "sha256": "cb66bfdc88e933df568a49582b319e6765176bb19237f15cd6c09d7c6f2620c6"
+      "sha256": "5af8c64568b551c48c5ebf6a15d47bf27d1ddd55327a27742ffb05ae0ff3ad40"
     },
     {
-      "bytes": 32916,
+      "bytes": 34748,
       "mode": "100644",
       "path": "acceptance/native_acceptance.py",
-      "sha256": "f94bab1a0eaaf6b3ae3e4f235a7b1415342f98f64a6048d8ed8ef2e4c31649e1"
+      "sha256": "68f0342245da1a19f40b0fa24e5e82a0bca9d46223e6ffc87fa44b3683f37526"
     },
     {
       "bytes": 6118,
       "mode": "100644",
       "path": "acceptance/retained-qualification/v94-checkpoint-receipt.json",
       "sha256": "4f1e6ca26e600add12b89f4d8d2a246d0cfe946dbd9bb0ea02fd788933f19f62"
+    },
+    {
+      "bytes": 4041,
+      "mode": "100644",
+      "path": "acceptance/retained-v111/diagnostic-successor.json",
+      "sha256": "70e25ead8cc45733fd96397b859432d9b8cb629bd4739182ad11df3d5efc22e5"
+    },
+    {
+      "bytes": 2645,
+      "mode": "100644",
+      "path": "acceptance/retained-v111/focused-validation.json",
+      "sha256": "0902d375a16b28da2835087520c9e2c691091a1afca5b894137b5366fd4f804d"
+    },
+    {
+      "bytes": 47274,
+      "mode": "100644",
+      "path": "acceptance/retained-v111/historical-native-diagnostic-codes.json.txt",
+      "sha256": "72a8237ac096f0bad3c00862534fd123b375c1026fa33979a2aedfb925a36601"
+    },
+    {
+      "bytes": 5811,
+      "mode": "100644",
+      "path": "acceptance/retained-v111/historical-native-diagnostic.mjs.txt",
+      "sha256": "c8185dac3a4458e338911606bdd11ffa23e0c07d5e3e4705e3703fde1ee35a9f"
+    },
+    {
+      "bytes": 7173,
+      "mode": "100644",
+      "path": "acceptance/retained-v111/historical-native_diagnostics.py.txt",
+      "sha256": "f37238eab6025e226508ae08321a22d2fed328b3d5cfe097f4c975c1e0c7de59"
+    },
+    {
+      "bytes": 2183,
+      "mode": "100644",
+      "path": "acceptance/retained-v111/independent-review.json",
+      "sha256": "07c4e2f950b9e5f995a91d0744805debeffbeeca1f9473e1b8be087be00031e0"
+    },
+    {
+      "bytes": 6161,
+      "mode": "100644",
+      "path": "acceptance/retained-v111/security-review.json",
+      "sha256": "66bc4bbf25ae9d9fb58933546dda486cb047b16d5601db2425dd6d4b1f9ccc02"
+    },
+    {
+      "bytes": 6544,
+      "mode": "100644",
+      "path": "acceptance/retained-v111/source-review.json",
+      "sha256": "e7f5ca7cfb8098fdebfaaa57cad63065592b6c8a1f2195ab3ffe6936280a4617"
+    },
+    {
+      "bytes": 18028,
+      "mode": "100644",
+      "path": "acceptance/retained-v111/v110-focused-validation.json",
+      "sha256": "3e39a53b0fb9987306e01b1588611bda483a183fa4ae30e7cdcd913ea41350a1"
+    },
+    {
+      "bytes": 16760,
+      "mode": "100644",
+      "path": "acceptance/retained-v111/v110-independent-reviews.json",
+      "sha256": "39222044ee532180f6e254f6bb60625408ca7031b8de0b144fdbe2b6a4d86aef"
     },
     {
       "bytes": 16807,
@@ -172,10 +244,16 @@
       "sha256": "b913a8ca681481d8cbabffc8633ac004aa7a2eae81cf98e52aefbc96c5f3ac4c"
     },
     {
-      "bytes": 23346,
+      "bytes": 29979,
       "mode": "100644",
       "path": "acceptance/retained_evidence.py",
-      "sha256": "4f3e5bc37252b2046e54d22d642c14767d885b2a005881a11cb97a559832e88c"
+      "sha256": "a2128e402dbc17cf0abc0ba8d53f59a6b51147f6cea5f5ed12b8c43de5247953"
+    },
+    {
+      "bytes": 10351,
+      "mode": "100644",
+      "path": "acceptance/test_diagnostic_successor.py",
+      "sha256": "2e252020cb503cb827d18d240c5893da5e5678e4b7a65bd4122d782c8084bc2a"
     },
     {
       "bytes": 6529,
@@ -184,22 +262,22 @@
       "sha256": "320ff7520d7c2bc4d1431e9124bf10b7743e4f4d8b4e2f87315d44517fbb2d6b"
     },
     {
-      "bytes": 18263,
+      "bytes": 19348,
       "mode": "100644",
       "path": "acceptance/test_orchestration.py",
-      "sha256": "03d0ef145463fbef39e6694b2bfdbf47daf0cd57dc2bb808b5460ff0f7400de9"
+      "sha256": "50df87e59de34356073835a340b530e8522041cd7f1e348d498ae605bec5269b"
     },
     {
-      "bytes": 10972,
+      "bytes": 11021,
       "mode": "100644",
       "path": "acceptance/test_retained_evidence.py",
-      "sha256": "7e92ac86a454da6de72d15c8d3e7e7e45751f217a4837e3c74465d79fe24499c"
+      "sha256": "6d5641603e5607f7430b364be7be6bd3b3fe849fb14b35daefc266724183420a"
     },
     {
-      "bytes": 8070,
+      "bytes": 8062,
       "mode": "100644",
       "path": "acceptance/tests/test_financial_limits.py",
-      "sha256": "7d02e7f549641db507369bc6291b54f4421700131d1a742288dc46e20b67dcf8"
+      "sha256": "3ca682205211f16e929c5e385c5a97c5f78428fbc50fa6253ae078765195bd81"
     },
     {
       "bytes": 7653,
@@ -208,10 +286,16 @@
       "sha256": "1453015aa9c25e26f3fd33c24753323c40b3ecfbcc12ad3e92cd88a8d79a3bb3"
     },
     {
-      "bytes": 12280,
+      "bytes": 6801,
+      "mode": "100644",
+      "path": "acceptance/tests/test_v111_bindings.py",
+      "sha256": "b66f2e2f2584de9cb9b78e211178f197124caf40d7816f7595fdf51814647515"
+    },
+    {
+      "bytes": 12296,
       "mode": "100644",
       "path": "acceptance/tests/test_v99_admission.py",
-      "sha256": "432832de81ca501515e964d916c457f71d156e63b2ea4de3b070c265a86380fa"
+      "sha256": "90d626ab5b13154626b355893f3957d00ba45c118a901fa48095cca3c7e82e0a"
     },
     {
       "bytes": 32681,
@@ -382,22 +466,22 @@
       "sha256": "e65ff89db25d08f87acb16e49a299f6c0fcadcad30b97e0e37b6737f9308c33d"
     },
     {
-      "bytes": 75060,
+      "bytes": 78997,
       "mode": "100644",
       "path": "v65/adapter/final_evidence.py",
-      "sha256": "d6a45c87cd9a38f04208a1513d953da639a34167639705c14188a811718fb07c"
+      "sha256": "a6835eda3e0a1ea216e5ffb04d3582dc97502bf579a8199c943d5696fe8a9926"
     },
     {
-      "bytes": 40712,
+      "bytes": 42712,
       "mode": "100644",
       "path": "v65/adapter/github_contract.py",
-      "sha256": "441aa09aebcc992b9b841f919778584c836fecd0e5d541146a1fa262d7ce45da"
+      "sha256": "ba650c59e0fa77cc89ca7bc4726c7dede2e29ac098d4a5a78b9acf6a76689bdb"
     },
     {
-      "bytes": 77361,
+      "bytes": 77373,
       "mode": "100644",
       "path": "v65/adapter/runner.py",
-      "sha256": "30a805a9f1f582f5879b3a1170b127246e651238a30443f26ebced485c2ed65d"
+      "sha256": "4951354d3c30176847ac3497ae54dc69d97d37df00111af88a23acd49477a33e"
     },
     {
       "bytes": 4373,
@@ -514,6 +598,12 @@
       "sha256": "3860b62f654bdfef386fd64de44f4497c15122fc3ec11640ae87b10096c416bc"
     },
     {
+      "bytes": 6391,
+      "mode": "100644",
+      "path": "v65/foundation/controller/scripts/work8/native-transition/assurance-records.mjs",
+      "sha256": "d61cea941d23e33a7561774f75f2466ac980ceb000990e51904eb472459fe990"
+    },
+    {
       "bytes": 5773,
       "mode": "100644",
       "path": "v65/foundation/controller/scripts/work8/native-transition/audit-lifecycle-projection.mjs",
@@ -598,10 +688,10 @@
       "sha256": "96aaeac9a669501130c2c9900de3c16565dbef0409b87217cbe7472389280f59"
     },
     {
-      "bytes": 13922,
+      "bytes": 14046,
       "mode": "100644",
       "path": "v65/foundation/controller/scripts/work8/native-transition/controller-manifest.json",
-      "sha256": "8bc32cd2ce51831a5dcc3e08e9ae401f8935372556d935cea6e7fb38f0db8875"
+      "sha256": "3079ac3bd30909910d07817fb2d757c10aa038d7b6450ee0d3f9adacb9e1bd90"
     },
     {
       "bytes": 3571,
@@ -718,16 +808,16 @@
       "sha256": "8626383b9fa8b2fcb45ed815c796469e751500ccdcea85d5b180f635c8a61329"
     },
     {
-      "bytes": 47274,
+      "bytes": 47387,
       "mode": "100644",
       "path": "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic-codes.json",
-      "sha256": "72a8237ac096f0bad3c00862534fd123b375c1026fa33979a2aedfb925a36601"
+      "sha256": "9d10121880732edef086db7655a7ff105d81a1c021e13bd89b4b41f009b65128"
     },
     {
-      "bytes": 5811,
+      "bytes": 11037,
       "mode": "100644",
       "path": "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs",
-      "sha256": "c8185dac3a4458e338911606bdd11ffa23e0c07d5e3e4705e3703fde1ee35a9f"
+      "sha256": "1de7ee6b69ff618e78788a0a082d328373ed889617d22c385c4d33dc03aa41c9"
     },
     {
       "bytes": 1335,
@@ -736,10 +826,10 @@
       "sha256": "d6a987fe6d2312052e91bde280f6a4a757ca9be034d9836300108136a2e4627d"
     },
     {
-      "bytes": 7173,
+      "bytes": 12369,
       "mode": "100644",
       "path": "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py",
-      "sha256": "f37238eab6025e226508ae08321a22d2fed328b3d5cfe097f4c975c1e0c7de59"
+      "sha256": "7dd40087885a95f1f0a60db24ec290c8e7bbb341ee73fd8d33ce95120968576a"
     },
     {
       "bytes": 9874,
@@ -1162,10 +1252,10 @@
       "sha256": "7c51a4deee33cc504ece2dac8082f8685b4bcddbbbf1212c0c45b5f568d1c8e3"
     },
     {
-      "bytes": 20082,
+      "bytes": 18482,
       "mode": "100644",
       "path": "v65/foundation/controller/scripts/work8/native-transition/whole-app-readback.mjs",
-      "sha256": "0356a6607abf514aeb747b0efd1b78e0ef1c54f1188fd7ffe4f95ddb97e34ebf"
+      "sha256": "d3fd4c07f6311c46bf6862a83a311dcd2c1a4fcec0cddc4294edc29653fd9773"
     },
     {
       "bytes": 33724,
@@ -1234,16 +1324,28 @@
       "sha256": "f01107a42ea45df7959d9157d4c4a1f0fc67ce6dd8f6be6b8876171937fad036"
     },
     {
-      "bytes": 26476,
+      "bytes": 20340,
       "mode": "100644",
       "path": "v65/launch-plan.json",
-      "sha256": "c6d068ea69dec1978591e3f31e315e382155075cb2ef6a68429af8ccb81a59d6"
+      "sha256": "6ac0d5b2b16580ae724e3b1e661ee6fcb63f85967e4631105712e1a33b1381e6"
     },
     {
       "bytes": 2297,
       "mode": "100644",
       "path": "v65/tests/run_guard_controls.py",
       "sha256": "6b37a2ee7d3b978ffcb6e71d273c172e3a0a408b914c205e4706bd791b2990a7"
+    },
+    {
+      "bytes": 25481,
+      "mode": "100644",
+      "path": "v65/tests/test_assurance_diagnostic_return.py",
+      "sha256": "dafb7a2e48d83e3d6a529f729b94caa366def5bd8536740528cdcfaba31b4eeb"
+    },
+    {
+      "bytes": 8144,
+      "mode": "100644",
+      "path": "v65/tests/test_assurance_records.mjs",
+      "sha256": "8c3c32609483208ee078803574b86a39e04ed9c744a1b810e5ef049fa79174b7"
     },
     {
       "bytes": 13460,
@@ -1258,10 +1360,10 @@
       "sha256": "047c117739afa789a5fb74100e2d0df3698834ce88f9da0d076937e650c32ed0"
     },
     {
-      "bytes": 27494,
+      "bytes": 28089,
       "mode": "100644",
       "path": "v65/tests/test_executor_guard.py",
-      "sha256": "d2c30f343cf7d7c29d803962132ce29dcaa44946e9b37feedd2d48d08bcf6ba6"
+      "sha256": "11bc53404a6dd6baacda33781f8b9f6da6f12da4ed4e1f5c4d73ff300c77117b"
     },
     {
       "bytes": 13726,

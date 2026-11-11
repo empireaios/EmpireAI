@@ -1,0 +1,56 @@
+{
+  "historicalEvidenceSHA256": {
+    "retained-qualification/v94-checkpoint-receipt.json": "4f1e6ca26e600add12b89f4d8d2a246d0cfe946dbd9bb0ea02fd788933f19f62",
+    "retained-v94/diagnostic-controls.json": "2aeaecbf74d66b1368a9b55a2e01500dbdc54bd2d8e54bd98b882e95cc8e5dbf",
+    "retained-v94/diagnostic-operands.json": "07676aff5206fef606997656428a05c6b8659f98b3aa98886d974f23691c8ed4",
+    "retained-v95/actual-runtime-ready.json": "e7fba331ee2a0e6f61c9063cfb5db59a88e6d055b9e43ab7c296b6fa069dd5a6",
+    "retained-v95/artifact-index.json": "187e41e4db84034f246ecee53bc4def939abcc671e0cc661fa2ec47a5d14e17d",
+    "retained-v95/live-brain-ready.json": "6a4c8e293064b40a8a6e117acedff75922efff0776365402fc4915f78eec4e28",
+    "retained-v95/provider-readback.json": "d393250b29ed97f5cdc0c8646979dff4a974968495628d435b5f222441aab993",
+    "retained-v96/diagnostic-test-summary.json": "bee14b281c21466172fdd185fc340e3c76641f1c842fe189d4356a3b555c52aa",
+    "retained-v96/independent-review.json": "b8d7db387c3f848ff0302119c8798ad3c775eedcce64f9e4bc92ff8f1c6ff815",
+    "retained-v98/independent-review.json": "8395ff5bc36caccfa8b665f1361bc9c7b782a0462b2996dc12a4d7a515cdc511",
+    "retained-v98/native-startup.zip": "22e9f1b1bd9ba1de469c4249b9fb933a91872b3530db78293f7648345e044238",
+    "retained-v98/package-identities.json": "ec74f2565b34867d6164382a666f429ad998fec2bb57a98e540d19e1b9665fa4",
+    "retained-v98/provider-readback.json": "b3a3b362a2530e6bdacdcc840ff94b41a22c3d6dd319a400e2f1352593b8e611"
+  },
+  "historicalOperandSHA256": {
+    "native-diagnostic-codes.json": "72a8237ac096f0bad3c00862534fd123b375c1026fa33979a2aedfb925a36601",
+    "native-diagnostic.mjs": "c8185dac3a4458e338911606bdd11ffa23e0c07d5e3e4705e3703fde1ee35a9f",
+    "native_diagnostics.py": "f37238eab6025e226508ae08321a22d2fed328b3d5cfe097f4c975c1e0c7de59"
+  },
+  "meaning": "Exact local successor for inherited diagnostic operands only. V94, V96 and V98 receipts retain their historical scopes. Current native lifecycle, host and A5 acceptance remain unproven.",
+  "replaces": [
+    "native-diagnostic-codes.json",
+    "native-diagnostic.mjs",
+    "native_diagnostics.py"
+  ],
+  "schema": "work8-v111-diagnostic-successor-v1",
+  "scope": {
+    "currentNativeAcceptance": false,
+    "executionAuthority": false,
+    "frontendDiagnosticsRepeated": false,
+    "historicalEvidenceChanged": false,
+    "hostedQualificationRepeated": false,
+    "nativeExecution": false
+  },
+  "sourceSHA256": {
+    "v65/adapter/final_evidence.py": "a6835eda3e0a1ea216e5ffb04d3582dc97502bf579a8199c943d5696fe8a9926",
+    "v65/foundation/controller/scripts/work8/native-transition/assurance-records.mjs": "d61cea941d23e33a7561774f75f2466ac980ceb000990e51904eb472459fe990",
+    "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic-codes.json": "9d10121880732edef086db7655a7ff105d81a1c021e13bd89b4b41f009b65128",
+    "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs": "1de7ee6b69ff618e78788a0a082d328373ed889617d22c385c4d33dc03aa41c9",
+    "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py": "7dd40087885a95f1f0a60db24ec290c8e7bbb341ee73fd8d33ce95120968576a",
+    "v65/foundation/controller/scripts/work8/native-transition/whole-app-readback.mjs": "d3fd4c07f6311c46bf6862a83a311dcd2c1a4fcec0cddc4294edc29653fd9773",
+    "v65/tests/test_assurance_diagnostic_return.py": "dafb7a2e48d83e3d6a529f729b94caa366def5bd8536740528cdcfaba31b4eeb",
+    "v65/tests/test_assurance_records.mjs": "8c3c32609483208ee078803574b86a39e04ed9c744a1b810e5ef049fa79174b7"
+  },
+  "status": "LOCAL_DIAGNOSTIC_SUCCESSOR",
+  "v110EvidenceSHA256": {
+    "retained-v111/v110-focused-validation.json": "3e39a53b0fb9987306e01b1588611bda483a183fa4ae30e7cdcd913ea41350a1",
+    "retained-v111/v110-independent-reviews.json": "39222044ee532180f6e254f6bb60625408ca7031b8de0b144fdbe2b6a4d86aef"
+  },
+  "v110Predecessor": {
+    "commit": "e8d525fe21244ac26823b8c1fa09add3ed24c393",
+    "tree": "6b407ac10573ad808a3a84ebf4ec9734fac5f9b8"
+  }
+}

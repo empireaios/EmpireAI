@@ -622,6 +622,52 @@ def diagnostic_bindings(root, phase):
     return result
 
 
+def assurance_failure_binding(root, phase, source_path, raw, diagnostic, context_key='assuranceContext'):
+    """Join optional bounded operands to actual indexed source and run bytes.
+
+    A failed join is diagnostic metadata, never a replacement first cause or
+    application acceptance. Do not trust a caller-provided digest by itself.
+    """
+    context = diagnostic.get(context_key)
+    if not isinstance(context, dict):
+        return None
+    result = {'schema': 'work8-v110-assurance-source-binding-v1',
+              'contextKind': 'RECOVERY_ACTIVITY' if context_key == 'assuranceActivityContext' else 'INCIDENT',
+              'status': 'UNAVAILABLE_OR_INVALID', 'applicationAcceptance': False}
+    try:
+        contract_raw = regular_bytes(root/'run-contract.json', MAX_FILE)
+        contract = parse(contract_raw)
+        start = parse(regular_bytes(root/('evidence/'+phase+'/stage-start.json'), MAX_FILE))
+        index = parse(regular_bytes(root/('evidence/'+phase+'/artifact-index.json'), MAX_FILE))
+        rows = [row for row in index['files'] if row.get('path') == Path(source_path).name]
+        result['stageIndexIdentity'] = 'MATCH' if len(rows) == 1 and rows[0].get('sha256') == sha(raw) and rows[0].get('bytes') == len(raw) else 'MISMATCH'
+        result['runSourceIdentity'] = 'MATCH' if (start.get('stage') == phase and
+            start.get('runContractSHA256') == sha(contract_raw) and
+            start.get('sessionId') == contract.get('executor', {}).get('sessionId') and
+            start.get('controllerManifestSHA256') == contract.get('controllerManifestSHA256')) else 'MISMATCH'
+        actual_checker = sha(regular_bytes(DIAGNOSTIC_ROOT/'whole-app-readback.mjs', MAX_FILE))
+        result['checkerSourceIdentity'] = 'MATCH' if context.get('checkerSha256') == actual_checker else 'MISMATCH'
+        result['checkerSHA256'] = actual_checker
+        manifest_raw = regular_bytes(root/'controller/scripts/work8/native-transition/controller-manifest.json', MAX_FILE)
+        manifest = parse(manifest_raw)
+        source_entries = {name: [row for row in manifest['files'] if row.get('path') == name]
+                          for name in ('whole-app-readback.mjs', 'assurance-records.mjs')}
+        result['controllerManifestIdentity'] = 'MATCH' if (sha(manifest_raw) == contract.get('controllerManifestSHA256') and
+            all(len(rows) == 1 and rows[0].get('sha256') == sha(regular_bytes(DIAGNOSTIC_ROOT/name, MAX_FILE)) and
+                rows[0].get('bytes') == len(regular_bytes(DIAGNOSTIC_ROOT/name, MAX_FILE))
+                for name, rows in source_entries.items())) else 'MISMATCH'
+        result['controllerManifestSHA256'] = sha(manifest_raw)
+        result['sourceRevisions'] = {role: {k: hex_digest(contract.get('sources', {}).get(role, {}).get(k), 40)
+            for k in ('commit', 'tree')} for role in ('backend', 'normal', 'recovery')}
+        result['workflowCommit'] = hex_digest(contract.get('executor', {}).get('workflowCommit'), 40)
+        result['status'] = 'MATCH' if (context.get('invariant') == diagnostic.get('assertion') and
+            context.get('status') != 'UNAVAILABLE_OR_INVALID' and
+            all(result[k] == 'MATCH' for k in ('stageIndexIdentity', 'runSourceIdentity', 'checkerSourceIdentity', 'controllerManifestIdentity'))) else 'MISMATCH'
+    except Exception:
+        pass
+    return result
+
+
 def native_failure_projections(root, exporter):
     """Retain independent producers without promoting an earlier observation
     (including a successful preflight drain diagnostic) into the fatal cause.
@@ -717,6 +763,13 @@ def native_failure_projections(root, exporter):
                     projection[key] = native.integer(value.get(key))
                 if isinstance(value.get('firstNativeFailure'), dict):
                     projection['nativeDiagnostic'] = native.sanitize(value['firstNativeFailure'])
+            diagnostic = projection.get('nativeDiagnostic', projection.get('controllerException'))
+            if isinstance(diagnostic, dict):
+                for context_key, binding_key in (('assuranceContext', 'assuranceSourceBinding'),
+                                                 ('assuranceActivityContext', 'assuranceActivitySourceBinding')):
+                    binding = assurance_failure_binding(root, phase, name, raw, diagnostic, context_key)
+                    if binding is not None:
+                        projection[binding_key] = binding
             projection['status'] = 'BOUNDED_CAUSAL_METADATA_ONLY'
             data = encoded(projection)
             need(len(data) <= MAX_FAILURE and not any(pattern.search(data) for pattern in exporter.PATTERNS),

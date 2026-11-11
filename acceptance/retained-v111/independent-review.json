@@ -1,0 +1,35 @@
+{
+  "composition": "This binds the actual separately produced source and security subset reviews; it is not a new independent review or an execution approval.",
+  "openFindings": [],
+  "reviewEvidenceSHA256": {
+    "security": "66bc4bbf25ae9d9fb58933546dda486cb047b16d5601db2425dd6d4b1f9ccc02",
+    "source": "e7f5ca7cfb8098fdebfaaa57cad63065592b6c8a1f2195ab3ffe6936280a4617"
+  },
+  "reviewType": "INDEPENDENT_LOCAL_SOURCE_AND_SECURITY",
+  "reviewers": {
+    "security": "/root/security_review",
+    "source": "/root/source_review"
+  },
+  "schema": "work8-v111-independent-diagnostic-review-v1",
+  "scope": {
+    "currentNativeAcceptance": false,
+    "executionAuthority": false,
+    "frontendDiagnosticsRepeated": false,
+    "historicalEvidenceChanged": false,
+    "hostedQualificationRepeated": false,
+    "nativeExecution": false
+  },
+  "sourceSHA256": {
+    "v65/adapter/final_evidence.py": "a6835eda3e0a1ea216e5ffb04d3582dc97502bf579a8199c943d5696fe8a9926",
+    "v65/foundation/controller/scripts/work8/native-transition/assurance-records.mjs": "d61cea941d23e33a7561774f75f2466ac980ceb000990e51904eb472459fe990",
+    "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic-codes.json": "9d10121880732edef086db7655a7ff105d81a1c021e13bd89b4b41f009b65128",
+    "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs": "1de7ee6b69ff618e78788a0a082d328373ed889617d22c385c4d33dc03aa41c9",
+    "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py": "7dd40087885a95f1f0a60db24ec290c8e7bbb341ee73fd8d33ce95120968576a",
+    "v65/foundation/controller/scripts/work8/native-transition/whole-app-readback.mjs": "d3fd4c07f6311c46bf6862a83a311dcd2c1a4fcec0cddc4294edc29653fd9773",
+    "v65/tests/test_assurance_diagnostic_return.py": "dafb7a2e48d83e3d6a529f729b94caa366def5bd8536740528cdcfaba31b4eeb",
+    "v65/tests/test_assurance_records.mjs": "8c3c32609483208ee078803574b86a39e04ed9c744a1b810e5ef049fa79174b7"
+  },
+  "status": "PASS",
+  "successorSHA256": "70e25ead8cc45733fd96397b859432d9b8cb629bd4739182ad11df3d5efc22e5",
+  "validationSHA256": "0902d375a16b28da2835087520c9e2c691091a1afca5b894137b5366fd4f804d"
+}

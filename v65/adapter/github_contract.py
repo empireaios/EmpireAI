@@ -17,8 +17,16 @@ import subprocess
 import time
 
 SCHEMA='work8-v65-github-execution-contract-v1'
-OWNER_DIRECTIVE='EMPIREAI_V108_SEPARATE_NATIVE_EXECUTION_APPROVAL'
-NATIVE_RESERVATION_ID='V108-A5-NATIVE-ONCE-20261110'
+OWNER_DIRECTIVE='EMPIREAI_V112_MASTER_CONTINUOUS_EXECUTION_AUTHORITY'
+NATIVE_RESERVATION_ID='V112-A5-A01-20261111'
+MASTER_AUTHORITY_ID='GRAND-KING-V112-MASTER-20261111'
+MASTER_AUTHORITY_SHA256='2e54ce38da8c021b0211351bd9524f3dc2ab99cc48466dc10a0465748a58fc66'
+MASTER_LEDGER_ID='EMPIREAI-V112-ADDITIONAL-1000USD-20261111'
+MASTER_LEDGER_LIBRARY_ID='libfile_4adcc8ecd97481918fb74dbfe651972e'
+MASTER_CAMPAIGN_ID='V112-A5-CLOSURE-20261111'
+FINANCIAL_REVIEW_SHA256='99b3ae5f31e7bb8a1052f151219dde3a77122e4bd2c3ef65ffca1d1fba5e2398'
+MASTER_CEILING_CENTS=100000
+ATTEMPT_RESERVATION_CENTS=2000
 ARTIFACT_LIMITS={'maximumObjects':3,'maximumCumulativeServiceZipBytes':128*1024**2,'retentionDays':7,'maximumObservedRetentionSeconds':169*3600,'maximumUploadPayloadBytes':64*1024**2,'zipEnvelopeReserveBytes':16*1024**2}
 V94_DIAGNOSTIC_EVIDENCE={'runId':42478186509,'jobId':128724128654,'artifactId':13616930561,'artifactSHA256':'6450dca99a0e50c04ce41d874eabd9adc4ca0fdc337f8bbe9c82b0d2c69d2915','workflowCommit':'f5b1ab0da64f38f1a0503f5eb7ebf516bfd77ba8','diagnosticControlsSHA256':'2aeaecbf74d66b1368a9b55a2e01500dbdc54bd2d8e54bd98b882e95cc8e5dbf'}
 FRESH_ADMISSION_MODE='V99_FRESH_EXECUTOR_ADMISSION_REUSING_V94_V98_EVIDENCE'
@@ -63,18 +71,30 @@ def verify_manifest(directory,path,digest,max_files=20000):
  require({str(p.relative_to(directory)) for p in paths if p.is_file() and p!=pathlib.Path(path)}==seen,'UNINDEXED_OR_MISSING_FILE')
  return manifest
 
+def valid_master_ledger_reference(value):
+ return (isinstance(value,dict) and set(value)=={'ledgerId','libraryFileId','version','sha256','eventId','eventSHA256'} and
+         value.get('ledgerId')==MASTER_LEDGER_ID and value.get('libraryFileId')==MASTER_LEDGER_LIBRARY_ID and
+         type(value.get('version')) is int and value['version']==1 and
+         value.get('eventId')==NATIVE_RESERVATION_ID and digest_string(value.get('eventSHA256')) and
+         digest_string(value.get('sha256')))
+
 def validate_authority(a):
  require(a['ownerDirective']==OWNER_DIRECTIVE,'CURRENT_OWNER_AUTHORITY_REQUIRED')
- require(a['work8CeilingUSD']==100 and a['existingAdditionalA5USD']==10 and a['priorOverallHoldsUSD']==18.79 and a['priorA5HoldsUSD']==8.84 and a['availableBeforeReservationUSD']==1.16,'CURRENT_FINANCIAL_AUTHORITY_REQUIRED')
+ baseline={'work8CeilingUSD':100,'existingAdditionalA5USD':10,'priorA5AuthorityCeilingUSD':10,'priorOverallHoldsUSD':19.95,'priorA5HoldsUSD':10,'availableBeforeReservationUSD':0}
+ require(all(type(a.get(k)) in (int,float) and math.isfinite(a[k]) and a[k]==v for k,v in baseline.items()),'CURRENT_FINANCIAL_AUTHORITY_REQUIRED')
  require(a.get('ownerDecisionRecorded') is True and digest_string(a.get('ownerApprovalReceiptSHA256')) and a.get('approvalScope')=='one-native-a5-08-09-attempt' and type(a.get('maximumAttempts')) is int and a['maximumAttempts']==1,'SEPARATE_EXPLICIT_OWNER_DECISION_REQUIRED')
+ require(a.get('masterAuthorityId')==MASTER_AUTHORITY_ID and a.get('masterAuthoritySHA256')==MASTER_AUTHORITY_SHA256 and a.get('campaignId')==MASTER_CAMPAIGN_ID and a.get('attemptId')==NATIVE_RESERVATION_ID and valid_master_ledger_reference(a.get('masterLedgerRecordReference')),'EXACT_MASTER_CAMPAIGN_AUTHORITY_REQUIRED')
+ require(a.get('financialExposureBoundVerified') is True and a.get('financialReviewSHA256')==FINANCIAL_REVIEW_SHA256 and a.get('accountBillingContextVerified') is False and a.get('paidRunnerAuthorized') is False,'INDEPENDENT_CONSERVATIVE_EXPOSURE_REVIEW_REQUIRED')
  require(a.get('independentAckAuthority')=={'maximumOwnerEndorsements':2,'issueNumber':113,'stages':['packages-and-executor','preflight'],'scope':'safe-artifact-acknowledgment-only','otherMessagesAuthorized':False},'EXPLICIT_TWO_SAFE_ACK_ENDORSEMENTS_REQUIRED')
  require(a.get('reservationCommitted') is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')
  require(a.get('reservationId')==NATIVE_RESERVATION_ID and digest_string(a.get('reservationReceiptSHA256')),'DISTINCT_FULL_NATIVE_RESERVATION_REQUIRED')
  for key in ('reservationUSD','maximumProspectiveUSD'):
-  require(type(a[key]) in (int,float) and math.isfinite(a[key]) and 0<=a[key]<=1.16,'FINITE_CURRENT_EXPOSURE_REQUIRED')
- require(a['maximumProspectiveUSD']==1.16 and a['reservationUSD']==1.16,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED')
+  require(type(a[key]) in (int,float) and math.isfinite(a[key]) and 0<=a[key]<=ATTEMPT_RESERVATION_CENTS/100,'FINITE_CURRENT_EXPOSURE_REQUIRED')
+ require(a['maximumProspectiveUSD']==ATTEMPT_RESERVATION_CENTS/100 and a['reservationUSD']==ATTEMPT_RESERVATION_CENTS/100,'REVIEWED_SINGLE_ATTEMPT_FINANCIAL_CAP_REQUIRED')
  require(a['maximumProspectiveUSD']<=a['reservationUSD'],'EXPOSURE_EXCEEDS_RESERVATION')
- require(round(a['priorOverallHoldsUSD']+a['reservationUSD'],2)==a['currentOverallHoldsUSD'] and round(a['priorA5HoldsUSD']+a['reservationUSD'],2)==a['currentA5HoldsUSD'] and round(a['availableBeforeReservationUSD']-a['reservationUSD'],2)==a['remainingUnreservedUSD'] and a['reservationCommitted'] is True,'CURRENT_COMMITTED_RESERVATION_REQUIRED')
+ # A01 is pinned to the first commitment in one cumulative pool; later attempts need a new reviewed binding.
+ ledger={'masterCeilingCents':MASTER_CEILING_CENTS,'cumulativeBeforeCents':0,'cumulativeAfterCents':ATTEMPT_RESERVATION_CENTS,'remainingBeforeCents':MASTER_CEILING_CENTS,'remainingAfterCents':MASTER_CEILING_CENTS-ATTEMPT_RESERVATION_CENTS}
+ require(all(type(a.get(k)) is int and a[k]==v for k,v in ledger.items()) and a['cumulativeBeforeCents']+ATTEMPT_RESERVATION_CENTS==a['cumulativeAfterCents'] and a['cumulativeAfterCents']+a['remainingAfterCents']==a['masterCeilingCents'],'CUMULATIVE_MASTER_LEDGER_REQUIRED')
  require(all(a[k] is False for k in ('renewed','productionOperations','protectedDataTransfer','commerceActivation','subscriptions','automaticRecreate','automaticRerun')),'ORIGINAL_OPERATING_LOCKS_REQUIRED')
  return a
 

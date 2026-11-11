@@ -32,13 +32,13 @@ from runtime_common import atomic
 from retained_evidence import verify_retained_evidence
 
 REPOSITORY = 'empireaios/EmpireAI'
-LAUNCH_BRANCH = 'work8/v108-a5-20261110'
-REVIEW_BRANCH = 'work8/v108-review-20261110'
-WORKFLOW = '.github/workflows/work8-v108-a5.yml'
-RELEASE_PATH = 'acceptance/v108-release.json'
-PARENT = '6aacc930f2b70380adc15d67708d75364cf08753'
-JOB_NAME = 'A5 V108 coherent native acceptance'
-RESERVATION = 'V108-A5-NATIVE-ONCE-20261110'
+LAUNCH_BRANCH = 'work8/v112-a5-20261111-a01'
+REVIEW_BRANCH = 'work8/v112-review-20261111-a01'
+WORKFLOW = '.github/workflows/work8-v112-a5.yml'
+RELEASE_PATH = 'acceptance/v112-a01-release.json'
+PARENT = 'ea4d0b57909e1c41249b9605e322da3a4d5b518c'
+JOB_NAME = 'A5 V112 A01 coherent native acceptance'
+RESERVATION = 'V112-A5-A01-20261111'
 COMMANDS = ('identity', 'download', 'prepare', 'admission', 'review-export',
             'await-review', 'native', 'native-export', 'cleanup',
             'final-export', 'artifact-check')
@@ -52,11 +52,13 @@ ACK_AUTHORITY = {'maximumOwnerEndorsements': 2, 'issueNumber': 113,
                  'scope': 'safe-artifact-acknowledgment-only',
                  'otherMessagesAuthorized': False}
 OWNER_ID = 295548100
-MAX_EXPOSURE_USD = '1.16'
-LEDGER_BEFORE = {'aggregateHoldsUSD': '18.79', 'A5HoldsUSD': '8.84',
-                 'unreservedA5AuthorityUSD': '1.16'}
-LEDGER_AFTER = {'aggregateHoldsUSD': '19.95', 'A5HoldsUSD': '10.00',
-                'unreservedA5AuthorityUSD': '0.00'}
+MAX_EXPOSURE_USD = '20.00'
+LEDGER_BEFORE = {'masterCeilingCents': 100000, 'settledChargeCents': 0,
+                 'remainingReservedExposureCents': 0, 'consumedExposureCents': 0,
+                 'remainingAuthorityCents': 100000,
+                 'priorAggregateHoldsUSD': '19.95', 'priorA5HoldsUSD': '10.00'}
+LEDGER_AFTER = {**LEDGER_BEFORE, 'remainingReservedExposureCents': 2000,
+                'consumedExposureCents': 2000, 'remainingAuthorityCents': 98000}
 CREDENTIAL_ENV = ('GH_TOKEN', 'GITHUB_TOKEN', 'ACTIONS_RUNTIME_TOKEN')
 DOCKER_OVERRIDE_ENV = ('DOCKER_HOST', 'DOCKER_CONTEXT', 'DOCKER_CONFIG',
                        'DOCKER_TLS_VERIFY', 'DOCKER_CERT_PATH', 'DOCKER_API_VERSION')
@@ -136,6 +138,9 @@ def validate_source(root=SOURCE):
         'maximumAttempts': 1, 'maximumJobSeconds': 18000,
         'maximumAdditionalExposureUSD': MAX_EXPOSURE_USD,
         'maximumReservationUSD': MAX_EXPOSURE_USD,
+        'masterAuthoritySHA256': guard.MASTER_AUTHORITY_SHA256,
+        'campaignId': guard.MASTER_CAMPAIGN_ID, 'attemptId': RESERVATION,
+        'financialReviewSHA256': guard.FINANCIAL_REVIEW_SHA256,
         'artifactRetentionDays': ARTIFACT_RETENTION_DAYS,
         'maximumObservedArtifactRetentionSeconds': 169*3600,
         'maximumBillableArtifactHoursIncludingRounding': 170,
@@ -188,28 +193,44 @@ def validate_release(record, source, remote_commit, launch_template):
     need(record.get('ownerApprovalSHA256') == owner_sha and
          record.get('reservationReceiptSHA256') == reservation_sha,
          'EXTERNAL_RECEIPT_CANONICAL_HASH_REQUIRED')
-    need(owner.get('schema') == 'work8-v108-owner-approval-v1' and
+    need(owner.get('schema') == 'work8-v112-attempt-approval-v1' and
          owner.get('ownerDecisionRecorded') is True and
-         owner.get('directive') == 'EMPIREAI_V108_SEPARATE_NATIVE_EXECUTION_APPROVAL' and
+         owner.get('directive') == guard.OWNER_DIRECTIVE and
          owner.get('scope') == 'one-native-a5-08-09-attempt' and
          type(owner.get('maximumAttempts')) is int and owner.get('maximumAttempts') == 1 and
          owner.get('maximumJobSeconds') == 18000 and
          owner.get('maximumAdditionalExposureUSD') == MAX_EXPOSURE_USD and
          owner.get('maximumReservationUSD') == MAX_EXPOSURE_USD and
+         owner.get('masterAuthorityId') == guard.MASTER_AUTHORITY_ID and
+         owner.get('masterAuthoritySHA256') == guard.MASTER_AUTHORITY_SHA256 and
+         owner.get('campaignId') == guard.MASTER_CAMPAIGN_ID and
+         owner.get('attemptId') == RESERVATION and
+         guard.valid_master_ledger_reference(owner.get('masterLedgerRecordReference')) and
+         type(owner.get('masterCeilingCents')) is int and
+         owner.get('masterCeilingCents') == guard.MASTER_CEILING_CENTS and
+         owner.get('financialExposureBoundVerified') is True and
+         owner.get('financialReviewSHA256') == guard.FINANCIAL_REVIEW_SHA256 and
+         owner.get('accountBillingContextVerified') is False and
+         owner.get('paidRunnerAuthorized') is False and
          owner.get('noAutomaticRetry') is True and
          owner.get('approvedSource') == binding and
          owner.get('reservationId') == RESERVATION and
          owner.get('independentAckAuthority') == ACK_AUTHORITY,
          'SEPARATE_FULL_NATIVE_OWNER_APPROVAL_REQUIRED')
-    need(reservation.get('schema') == 'work8-v108-reservation-v1' and
+    need(reservation.get('schema') == 'work8-v112-reservation-v1' and
          reservation.get('recordType') == 'ACCOUNTING_HOLD_NOT_PROVIDER_CHARGE' and
          reservation.get('status') == 'COMMITTED' and
          reservation.get('reservationId') == RESERVATION and
          reservation.get('ownerApprovalSHA256') == owner_sha and
          reservation.get('approvedSource') == binding and
-         reservation.get('before') == LEDGER_BEFORE and
-         reservation.get('after') == LEDGER_AFTER and
-         reservation.get('reservationUSD') == MAX_EXPOSURE_USD,
+         canonical(reservation.get('before')) == canonical(LEDGER_BEFORE) and
+         canonical(reservation.get('after')) == canonical(LEDGER_AFTER) and
+         reservation.get('reservationUSD') == MAX_EXPOSURE_USD and
+         reservation.get('masterAuthoritySHA256') == guard.MASTER_AUTHORITY_SHA256 and
+         reservation.get('campaignId') == guard.MASTER_CAMPAIGN_ID and
+         reservation.get('attemptId') == RESERVATION and
+         reservation.get('financialReviewSHA256') == guard.FINANCIAL_REVIEW_SHA256 and
+         canonical(reservation.get('masterLedgerRecordReference')) == canonical(owner.get('masterLedgerRecordReference')),
          'EXACT_UNIQUE_NATIVE_RESERVATION_REQUIRED')
     plan = record.get('launchPlan', {})
     fixed = lambda item: {k: v for k, v in item.items() if k not in ('authority', 'status')}
@@ -218,7 +239,9 @@ def validate_release(record, source, remote_commit, launch_template):
          'REVIEWED_PLAN_BOUNDS_UNCHANGED_REQUIRED')
     authority = plan['authority']
     need(authority.get('ownerApprovalReceiptSHA256') == owner_sha and
-         authority.get('reservationReceiptSHA256') == reservation_sha,
+         authority.get('reservationReceiptSHA256') == reservation_sha and
+         authority.get('financialReviewSHA256') == owner.get('financialReviewSHA256') and
+         canonical(authority.get('masterLedgerRecordReference')) == canonical(owner.get('masterLedgerRecordReference')),
          'OPERATIVE_AUTHORITY_RECEIPTS_REQUIRED')
     guard.validate_authority(authority)
     return plan
@@ -319,7 +342,7 @@ def validate_root(root):
     run_id = os.environ.get('GITHUB_RUN_ID', '')
     temp = Path(os.environ.get('RUNNER_TEMP', '/invalid'))
     need(re.fullmatch('[1-9][0-9]*', run_id) and temp.is_absolute() and
-         root == temp / ('v108-a5-'+run_id), 'EXACT_CURRENT_RUN_ROOT_REQUIRED')
+         root == temp / ('v112-a01-a5-'+run_id), 'EXACT_CURRENT_RUN_ROOT_REQUIRED')
     need(os.getuid() == os.geteuid() == os.getgid() == os.getegid() == 1001,
          'ORIGINAL_HOST_PRINCIPAL_REQUIRED')
     need(os.environ.get('GITHUB_ACTIONS') == 'true' and

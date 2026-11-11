@@ -1,0 +1,205 @@
+name: Work 8 V111 one native A5 examination
+
+on:
+  create:
+
+permissions:
+  contents: read
+  actions: read
+  issues: read
+
+concurrency:
+  group: work8-v111-a5-20261111
+  cancel-in-progress: false
+
+jobs:
+  a5:
+    name: A5 V111 coherent native acceptance
+    # Creating this exact fresh branch is the launch event. Publication and
+    # launch require the separately approved source-bound external release.
+    # A missing release fails closed before package download or native work.
+    # Never delete/move/recreate this branch; never rerun this job.
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v111-a5-20261111' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      ACTIONS_STEP_DEBUG: 'false'
+      ACTIONS_RUNNER_DEBUG: 'false'
+
+    # Sum of all step timeout maxima: 210 minutes. The 300-minute job ceiling
+    # includes independent ACK waits, native supervision, cleanup and return.
+    steps:
+      - name: Check out the exact reviewed launch commit
+        id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        timeout-minutes: 5
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+
+      - name: Admit exact source and external owner reservation before work
+        id: identity
+        timeout-minutes: 6
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION python3 -B acceptance/native_acceptance.py identity
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+
+      - name: Download the exact retained three-package artifact once
+        id: retained_input
+        timeout-minutes: 12
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION python3 -B acceptance/native_acceptance.py download
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+
+      - name: Import immutable packages and prepare the reviewed controller once
+        id: prepare
+        timeout-minutes: 10
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN python3 -B acceptance/native_acceptance.py prepare
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+
+      - name: Admit actual fresh host boundaries and preserve V94 qualification
+        id: admission
+        timeout-minutes: 20
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN python3 -B acceptance/native_acceptance.py admission
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+
+      - name: Export bounded package and fresh executor metadata
+        id: review_export
+        timeout-minutes: 2
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN python3 -B acceptance/native_acceptance.py review-export
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+
+      - name: Upload the first current evidence object for independent review
+        id: executor_artifact
+        timeout-minutes: 5
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v111-a5-executor-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v111-a5-${{ github.run_id }}/review-exports/packages-and-executor/
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+
+      - name: Require independent current package and executor acknowledgment
+        id: package_review
+        timeout-minutes: 26
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION python3 -B acceptance/native_acceptance.py await-review
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+          --stage packages-and-executor
+          --artifact-id '${{ steps.executor_artifact.outputs.artifact-id }}'
+          --artifact-digest '${{ steps.executor_artifact.outputs.artifact-digest }}'
+
+      - name: Initialize the actual Brain for native preflight once
+        id: preflight
+        timeout-minutes: 26
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN python3 -B acceptance/native_acceptance.py native
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+          --stage preflight
+
+      - name: Export bounded sanitized initialized Brain preflight evidence
+        id: preflight_export
+        timeout-minutes: 2
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN python3 -B acceptance/native_acceptance.py native-export
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+          --label preflight
+
+      - name: Upload the second current evidence object for independent review
+        id: preflight_artifact
+        timeout-minutes: 5
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v111-a5-preflight-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v111-a5-${{ github.run_id }}/evidence-exports/preflight/
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+
+      - name: Require independent acknowledgment of the actual Brain preflight
+        id: preflight_review
+        timeout-minutes: 26
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION python3 -B acceptance/native_acceptance.py await-review
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+          --stage preflight
+          --artifact-id '${{ steps.preflight_artifact.outputs.artifact-id }}'
+          --artifact-digest '${{ steps.preflight_artifact.outputs.artifact-digest }}'
+
+      - name: Execute the single coherent native A5 lifecycle and persistence examination
+        id: native
+        timeout-minutes: 36
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN python3 -B acceptance/native_acceptance.py native
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+          --stage full
+
+      - name: Drain and remove only current identity-bound campaign resources
+        id: cleanup
+        if: ${{ always() && steps.checkout.outcome == 'success' }}
+        timeout-minutes: 11
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN python3 -B acceptance/native_acceptance.py cleanup
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+
+      - name: Preserve bounded sanitized final or first failure evidence
+        id: final_export
+        if: ${{ always() && steps.checkout.outcome == 'success' }}
+        timeout-minutes: 3
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION -u GH_TOKEN -u GITHUB_TOKEN -u ACTIONS_RUNTIME_TOKEN python3 -B acceptance/native_acceptance.py final-export
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+
+      - name: Upload the third bounded final or failure evidence object
+        id: final_artifact
+        if: ${{ always() && steps.final_export.outputs.export_ready == 'true' }}
+        timeout-minutes: 10
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v111-a5-final-or-failure-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v111-a5-${{ github.run_id }}/final-export/
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+          overwrite: false
+          include-hidden-files: false
+
+      - name: Read back final object identity and cumulative service exposure
+        if: ${{ always() && steps.final_artifact.outcome == 'success' }}
+        timeout-minutes: 5
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          env -u DOCKER_HOST -u DOCKER_CONTEXT -u DOCKER_CONFIG -u DOCKER_TLS_VERIFY -u DOCKER_CERT_PATH -u DOCKER_API_VERSION python3 -B acceptance/native_acceptance.py artifact-check
+          --root "$RUNNER_TEMP/v111-a5-$GITHUB_RUN_ID"
+          --label final
+          --artifact-id '${{ steps.final_artifact.outputs.artifact-id }}'
+          --artifact-digest '${{ steps.final_artifact.outputs.artifact-digest }}'

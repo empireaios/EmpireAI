@@ -1,42 +1,80 @@
-# V108 exact-source native examination preparation
+# V112 first A5 closure attempt
 
-This source prepares fresh routing and conditional financial authority for one future original A5-08/A5-09 examination. It grants **zero execution attempts, zero new reservation and zero ACK endorsements**. V106 is terminal failure at `NORMAL_REPLAY_CANONICAL_COMPARISON_FAILED`; its precise comparison reason remains unrecoverable. The reviewed V107 bounded comparison export and earlier-readback failure precedence corrections are preserved without weakening the comparator. They do not establish repair of the unknown native fault. No owner execution decision is recorded by this source template; `approvalReady` and `ownerApprovalRequested` remain false. Work 8 remains 48 accepted / 16 outstanding, IN_PROGRESS / NO_GO.
+This source template describes one isolated A5 attempt under the standing V112
+master authority. It creates no reservation, approval receipt, endorsement or
+execution. A5-08 and A5-09 remain NOT PROVEN; Work 8 remains 48 accepted /
+16 outstanding until the original requirements are independently accepted.
 
-The candidate has sole Git parent `6aacc930f2b70380adc15d67708d75364cf08753`, the independently verified published V106 source. Unpublished V107 `fcd082fee99d903ba735cda1d97743f13dea047f` / tree `770a10406bb3362767bdf6d6d57e78f64155be7b` remains the unchanged reviewed local predecessor; its correction bytes are ported intact. Both V107-to-candidate and published-parent-to-candidate diffs must be verified. This avoids requiring an unavailable exact unpublished Git parent through a metadata-generating publisher. Any metadata-only publication exception requires fresh explicit owner approval; prior V106 authority is consumed. `source-manifest.json` binds every candidate file except itself, including the complete controller, historical evidence, workflow and tests. Admission verifies current checkout commit/tree against the provider commit, a distinct external release and exact manifest/workflow hashes. Root Git metadata alone is excluded; nested Git metadata, bytecode caches, links, special files and set-ID files are refused.
+The successor preserves the reviewed V111 Assurance semantics and diagnostic
+bytes, controller manifest, accepted application packages and historical evidence.
+Its sole published Git parent must be V109 commit
+`ea4d0b57909e1c41249b9605e322da3a4d5b518c`. The original V109 rejected
+attempts operand remains unavailable; local correction and validation do not
+establish native acceptance.
 
-## Historical evidence and current observations
+`source-manifest.json` binds every candidate file except itself, including the
+controller manifest, retained evidence, workflow and tests. Admission binds the
+actual provider/local commit and tree to the exact external release, sole parent,
+source manifest and workflow digests. Nested Git metadata, bytecode caches,
+symlinks, special files, hard links and set-ID files remain refused.
 
-`retained_evidence.py` verifies the pinned V94 Q01–Q05, scoped V95 initialized Brain, V96 first-error diagnostics and V98 actual frontend startup/security evidence. Its deterministic proof is recorded before package download and reverified before later admitted operations. Historical evidence does not authorize a new job or attest a new host or application instance. The exact retained input artifact is 13340201255 (338251567 bytes; SHA-256 `39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755`). The three application archives and their manifest are reused unchanged. Neither Q01–Q05 nor the separate V98 frontend startup diagnostic is repeated.
+The first route is `work8/v112-a5-20261111-a01`, with read-only workflow
+`.github/workflows/work8-v112-a5.yml`. The external release is
+`acceptance/v112-a01-release.json` on `work8/v112-review-20261111-a01`;
+ACK files are `v112-a01-review/<runId>/<stage>.json`. The unique reservation
+and attempt identity is `V112-A5-A01-20261111`. Receipt schemas are
+`work8-v112-attempt-approval-v1` and `work8-v112-reservation-v1`.
+Historical authorities, ACKs and routes cannot be reused.
 
-The sequential contract is:
+The source guard pins the frozen master authority and independent financial
+review SHA-256 digests. The exact source-bound external release must reference
+master authority `GRAND-KING-V112-MASTER-20261111`, campaign
+`V112-A5-CLOSURE-20261111`, and the single cumulative ledger
+`EMPIREAI-V112-ADDITIONAL-1000USD-20261111`. It also binds the persistent
+ledger file identity, first committed version, unique A01 event and both ledger
+and event digests. Independent release review must retrieve the saved ledger and
+verify these references against the actual source-bound commitment.
 
-1. Exact source, authenticated provider launch actor and triggering actor, one current workflow run/attempt/job, public repository, current runner identity, fresh external V108 authority and retained evidence admission.
-2. Download/import the exact existing packages, assemble the reviewed controller, and observe the new runner's principal, daemon, process, mount and security boundaries.
-3. Export bounded package/executor metadata. Require independent artifact readback and the first authenticated owner ACK endorsement before native application initialization.
-4. Initialize one scoped Brain **preflight** instance and exercise the source-required current-instance live capture, fencing, fault/reentry, 13-store applicability and private-channel negative controls. Drain and clean this instance; export its sanitized evidence; require the second independent ACK.
-5. Initialize the **full lifecycle instance** and establish its own real initialized Brain baseline. Capture actual committed operational, financial and business state across the original 13 stores. Use this same instance, generation and protected owner session for NORMAL → distinct RECOVERY → NORMAL_RETURN, write restrictions, replay/idempotency, authority continuity, writer drain and final independent whole-application readback. Preflight state and unrelated historical instances cannot supply this baseline.
-6. Perform identity-scoped cleanup, bounded final or first-failure export, and independent provider terminal/artifact/resource readback. Only original A5 assertion adjudication may close A5; a source test or provider success is insufficient.
+The new US$1,000 authority is cumulative across sessions, agents and attempts.
+The first reservation is US$20: consumed exposure moves from 0 to 2,000 cents,
+and available authority from 100,000 to 98,000 cents. Old aggregate holds
+US$19.95 and A5 holds US$10.00 stay separate and unreleased. A settled charge
+replaces its linked reservation exposure; it must not be counted a second time.
+Actual provider invoices and account-specific tax/payment context remain
+unconfirmed. The conservative financial review estimates a stress envelope of
+US$12.51 within the US$20 reserve; this is neither an invoice prediction nor
+permission to use a paid runner. The source requires public-repository standard
+`ubuntu-24.04` execution and rejects assertions that account billing has been
+verified. Known exposure beyond the reserve requires a revised review and
+commitment before execution.
 
-## Future separate owner release
+The external template has zero authorised attempts, reservations and endorsements.
+A valid operative release permits one job at run attempt 1 with a 300-minute
+maximum. Fresh source/runner/package admission requires an independent
+package/executor ACK, then actual initialized-Brain preflight and a separate
+independent preflight ACK. Each endorsement is authenticated through GitHub's
+commenter identity and bound to the exact current run, stage, artifact and
+review commit. The workflow cannot endorse itself. No automatic retry is
+permitted; any justified successor needs a separately reviewed source, fresh
+route and unique commitment under the same cumulative master ledger.
 
-Only a future explicit owner approval can authorize publication of the reviewed exact tree, creation of the fresh launch branch `work8/v108-a5-20261110` once, one job/attempt, and one distinct US$1.16 accounting hold. Review records live on the nonlaunching `work8/v108-review-20261110` branch, at `acceptance/v108-release.json`; the source template is deliberately nonoperative. The release binds the reviewed tree, exact sole parent, source-manifest and workflow SHA-256, `EMPIREAI_V108_SEPARATE_NATIVE_EXECUTION_APPROVAL`, reservation `V108-A5-NATIVE-ONCE-20261110`, and the unchanged reviewed launch plan. Owner and reservation receipt schemas are `work8-v108-owner-approval-v1` and `work8-v108-reservation-v1`; unchanged evidence format schemas do not carry execution authority. Never recreate, move or delete the launch branch after launch; never rerun a failed job or stage.
+The exact retained application package input is artifact 13340201255 from run
+41860150363: 338251567 bytes, SHA-256
+`39f904154764d2e70413045c7ebefbd4c04f38d0e09360ea19b2834fcc3ef755`.
+Reverify availability, identity and sufficient transfer time before launch.
+Download once; this route does not rebuild or reupload application packages.
+Historical V94/V95/V96 receipts and complete V98 evidence remain embedded and
+independently checked without repeating those examinations.
 
-Future approval also explicitly covers exactly **two safe independent ACK endorsements on PR #113**, one for package/executor evidence and one for preflight evidence, plus their source-bound ACK files. The provider must authenticate each comment's owner account, current job time, run/attempt, exact stage, artifact ID/digest, canonical ACK digest and review commit. Git commit author attribution alone is insufficient. The job has `contents: read`, `actions: read` and `issues: read`; it cannot publish comments or release records. No such messages are authorized or sent now. Other messages, production changes and commerce actions remain unauthorized.
+Preserve at most three new artifacts, cumulative service ZIP bytes at most
+128 MiB, requested retention seven days, observed retention at most 169 hours,
+and existing upload and per-file bounds. No sensitive incident contents enter
+public artifacts. First failure remains causal, stops later native phases and
+triggers bounded campaign-only cleanup and failure evidence return. Acceptance
+requires all original A5 assertions, same-instance state lineage, protected
+NORMAL → RECOVERY → NORMAL_RETURN, replay safety, writer drain and independent
+final whole-application readback.
 
-The current accounting snapshot is aggregate holds US$18.79 / A5 holds US$8.84 / unreserved A5 authority US$1.16. A proposed fresh US$1.16 accounting hold and maximum additional exposure fit the existing A5 planning ceiling of US$10.00. Only a separate exact-source owner approval and distinct committed hold would produce US$19.95 / US$10.00 / US$0.00. Checked-in owner and reservation templates remain false/zero/null. No authority increase, release or duplicate reservation is authorized. Historical holds including V106 remain recorded. Provider timing reports zero billed Ubuntu milliseconds, while storage, tax and final invoices remain unconfirmed. Holds are not provider charges.
-
-V100 run42551676707/job128948427157 and both authenticated ACKs are preserved. Its native lifecycle and cleanup commands succeeded, then final export failed. V101–V102 exporter corrections are preserved. V103 run42568506952/job129000231287 failed first in native step14 with `NATIVE_CONTROLLER_FIRST_FAILURE`, exit23; scoped cleanup succeeded; subsequent export failed for missing `evidence/full/browser-lifecycle.json`. The returned failure artifact13653010306 has SHA-256 `90e4b8691abeeb025db1dee8bc3b3245cbdf827f9f996a8e879dd585e7cd5c90`. The missing browser receipt is downstream, not a recovered root cause. V103's one-shot attempt and both ACK authorities are consumed.
-
-## Bounds and failure handling
-
-The workflow has one standard `ubuntu-24.04` job with a 300-minute hard timeout; step maxima total 210 minutes. The retained phase plan totals 220 minutes, including two 1500-second ACK waits, a 900-second native preflight, a 1500-second full lifecycle and 600-second scoped cleanup. Current-lifetime gates preserve cleanup/export time. Each phase can execute once only. Every refusal stops subsequent native stages and preserves the first failure immutably; cleanup and sanitized failure export remain available even if source admission never completed.
-
-At most three new artifacts may be uploaded: executor payload at most64MiB, preflight at most1MiB and final-or-failure at most8MiB. Reserving16MiB for each service ZIP envelope yields121MiB, below the unchanged cumulative128MiB service cap. The proposed final export permits at most8MiB logical evidence, a7MiB compressed archive and2MiB per original file. The preflight keeps its2MiB logical/512KiB compressed contract. Requested retention remains seven days; provider readback allows at most169 observed hours and the financial estimate budgets170 hours including rounding. The final success or failure payload occupies the same third artifact slot; it does not authorize a fourth upload. No application archives, protected state or cache are uploaded. Detailed records remain bounded and allowlisted; successful entrypoint console output remains at most2048 bytes. Checkout progress and runner/step debug are disabled; `RUNNER_DEBUG=1` refuses admission. Provider credentials and remote Docker overrides are removed before native subprocess work.
-
-The prospective US$1.16 maximum exposure requires the independently reviewed current billing assumptions and public standard-runner restriction to remain true. The full300-minute examination and cancellation/rounding tails retain free public standard compute. Conservative artifact/log storage, tax and rounding model US$0.1044754464 rounds upward to US$0.11; the US$1.16 hold retains additional contingency within existing authority. Historical US$2.11 included optional paid-compute contingency, which is not technically required and does not authorize a paid/private/larger runner. This planning ceiling is not a provider-enforced spending cap. Before publication or dispatch, reverify visibility/pricing, retained input availability, cancellation provisions, exact source, absence of matching launches and the current ledger. Any invalid assumption stops execution; no altered source, extended deadlines, paid fallback or retry is authorized.
-
-Actual Docker/OCI behavior, new-host isolation, Brain capture, all original A5 transitions/readbacks, cleanup and provider charges remain hosted-only observations. Offline controls establish deterministic admission and sequence compatibility only.
-
-V106 run42635916047/job129223903271/attempt1 and both ACKs remain consumed. Failure artifact13683643040 has SHA-256 `b581a4d15c80e45d41cddf12fd9eb21b9e177dee4de8d587eb162090ed182729`. V107 preserved the actual first assertion, implemented bounded comparator/readback projections and corrected demonstrated local error precedence. Local controls do not establish the original native comparator predicate or A5 acceptance. V108 does not repeat those tests or change those protected bytes.
-
-PR #113 remains DRAFT / UNMERGED; Pillow NOT_BORN; Commerce LOCKED; Work 9 INACTIVE. All 64 original requirements, 48 accepted histories and eight satisfied A5 groups are preserved. Production Railway mutation, original-volume alteration, protected-data transfer and commerce activation remain prohibited.
+PR #113 stays draft/unmerged; Pillow NOT_BORN; commerce LOCKED; Work 9 INACTIVE;
+production Railway untouched. Local tests and source preparation do not establish
+native or application acceptance.

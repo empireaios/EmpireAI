@@ -1,0 +1,69 @@
+{
+  "schema": "work8-v111-independent-diagnostic-source-subset-review-v1",
+  "reviewer": "/root/source_review",
+  "status": "PASS",
+  "openFindings": [],
+  "sourceSHA256": {
+    "v65/adapter/final_evidence.py": "a6835eda3e0a1ea216e5ffb04d3582dc97502bf579a8199c943d5696fe8a9926",
+    "v65/foundation/controller/scripts/work8/native-transition/assurance-records.mjs": "d61cea941d23e33a7561774f75f2466ac980ceb000990e51904eb472459fe990",
+    "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic-codes.json": "9d10121880732edef086db7655a7ff105d81a1c021e13bd89b4b41f009b65128",
+    "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs": "1de7ee6b69ff618e78788a0a082d328373ed889617d22c385c4d33dc03aa41c9",
+    "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py": "7dd40087885a95f1f0a60db24ec290c8e7bbb341ee73fd8d33ce95120968576a",
+    "v65/foundation/controller/scripts/work8/native-transition/whole-app-readback.mjs": "d3fd4c07f6311c46bf6862a83a311dcd2c1a4fcec0cddc4294edc29653fd9773",
+    "v65/tests/test_assurance_diagnostic_return.py": "dafb7a2e48d83e3d6a529f729b94caa366def5bd8536740528cdcfaba31b4eeb",
+    "v65/tests/test_assurance_records.mjs": "8c3c32609483208ee078803574b86a39e04ed9c744a1b810e5ef049fa79174b7"
+  },
+  "scope": {
+    "historicalEvidenceChanged": false,
+    "hostedQualificationRepeated": false,
+    "frontendDiagnosticsRepeated": false,
+    "nativeExecution": false,
+    "currentNativeAcceptance": false,
+    "executionAuthority": false
+  },
+  "contractDecision": {
+    "status": "PROVEN_SOURCE_CONTRACT_CORRECTION",
+    "originalContractReviewSHA256": "d970c23dd231cc8b99679e4904087b7f284b02fd8bd5353480da3486f82f824a",
+    "predicate": "Existing incident attempts must be valid nonnegative safe numeric integers, excluding negative zero, and strictly equal to the original baseline; new incidents require valid numeric zero. Neither observation nor lifecycle readback may start recovery.",
+    "primaryEvidence": "Original owner directive preserves completed autonomous Assurance recovery and three verified recoveries, canonical history and whole-system rollback state. V49 A5-08/A5-09 require preservation and independent whole-application return readback. Exact producer creates numeric zero, increments genuine admitted attempts, and can preserve historical positive counts through observations."
+  },
+  "findings": [
+    "cpRecord retains attempts inside the incident identity hash. Existing and current counters are validated before same-body early return. Identity, workspace-key, lifecycle, recurrence, time, limitation, recovery-record and authority-record restrictions remain.",
+    "Full-row hash multisets for both RECOVERY_ADMITTED and RECOVERY_RESULT are equal to baseline. Existing cp_events full-row inclusion remains. RESULT detects reconciliation that executes without a new admission or count increase.",
+    "Initial self-validation runs only in normal phase. Later phases compare against real saved baseline, preserving original and rejected operand digests/types. No malformed unchanged counter bypass remains.",
+    "Diagnostic schemas retain closed type/class pairs, hashed identifiers, bounded counts, no raw incident/event contents, first causal failure precedence and source/index/run bindings for both incident and event contexts.",
+    "Only three new diagnostic codes were added; old code and frame allowlists were retained. Exporter adds optional source-bound context without changing native success or application acceptance predicates.",
+    "No application producer/package, identity or authentication mechanism, PAUSE/REVOKE, drain, generation exclusion, production target or financial authority is changed by this eight-file subset.",
+    "The former absolute-zero test on changed existing incidents is replaced only where the original preservation contract positively supports historical counts. It does not permit a new recovery attempt or suppress a changed count."
+  ],
+  "resolvedReviewFinding": {
+    "finding": "Unconditional current/current self-validation could label a malformed returned operand as its own baseline and claim identity equality.",
+    "correction": "Scope self-validation to normal; compare all later phases against saved original baseline.",
+    "verification": "Executed complete unchanged checker module with synthetic filesystem/SQLite dependencies: valid historical normal baseline PASS, malformed returned operand retained true prior POSITIVE_INTEGER and observed NULL with distinct hashes and identityEqual false, malformed initial normal rejected."
+  },
+  "independentTests": {
+    "actualPinnedProducerScenarios": 7,
+    "completeCheckerOrchestrationScenarios": 3,
+    "assuranceRecordTests": 16,
+    "diagnosticPipelineTests": 23,
+    "retainedGateTests": 15,
+    "implementationTestFailures": 0,
+    "syntheticOnly": true,
+    "notes": "VM orchestration uses actual complete checker source and actual helper, with synthetic external dependencies and prototype-insensitive assertion adapter for cross-realm object equality. Initial harness setup mismatches were corrected; no implementation bypass was added."
+  },
+  "evidenceSHA256": {
+    "v111/independent_contract_review.json": "d970c23dd231cc8b99679e4904087b7f284b02fd8bd5353480da3486f82f824a",
+    "v111/reviews/independent_producer_scenarios.mjs": "e28f3bc5090d6334c1c3010457e18d184e842f76f4ea75cffad6bb73557fface",
+    "v111/reviews/independent_producer_scenarios.json": "f8d5f3deb48d4f4af5cc2b921d789eefd5940e118c6325fb3efde6566e26ebd6",
+    "v111/reviews/independent_orchestration_review.mjs": "c7d9a79eeb0bcc1b8e519d46c3ce8b0613d7cf58e9a29799221b5a0eed9a463a",
+    "v111/reviews/independent_orchestration_review.json": "e7113788abe13f3affeba1e1f1dc35e668e55b0b8eb5091e95244661168bda17",
+    "v111/reviews/independent_diagnostic_pipeline_tests.log": "efcb597965721761c21408e0a2058f95c69cfbbae803f681bf2631647afe3814",
+    "v111/reviews/independent_diagnostic_gate_tests.log": "863185c8a53e9e592e2923fd949de3a2efb57d64054b9e4f3895246f205e8d7a"
+  },
+  "limitations": [
+    "Actual V109 attempts value/type remains unrecovered; this does not prove that the demonstrated contract mismatch caused that run.",
+    "No native application or hosted examination was executed; A5-08/A5-09 remain NOT PROVEN.",
+    "This attests only independent source review; security review is a separate genuine receipt.",
+    "Full source/manifests and routing/financial binding review is separate from this diagnostic subset."
+  ]
+}

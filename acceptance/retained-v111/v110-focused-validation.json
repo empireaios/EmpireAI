@@ -1,0 +1,631 @@
+{
+  "components": {
+    "actualProducerOriginalCheckerProbe": 4,
+    "assuranceRecordTests": 10,
+    "diagnosticPipelineTests": 15,
+    "retainedComparisonRegressionTests": 13
+  },
+  "coverage": {
+    "completeBoundedFailureExport": "PASS",
+    "existingIncidentPreservation": "PASS",
+    "firstErrorPrecedence": "PASS",
+    "independentArchiveIntegrity": "PASS",
+    "missingNullWrongTypeRejection": "PASS_WHERE_ORIGINAL_PREDICATE_APPLIES",
+    "newRecoveryAttemptDetection": "PASS_IDENTITY_CHANGE_REJECTED",
+    "normalRecoveryNormalReturn": "PASS_LOCAL_RECORD_SEQUENCE_ONLY",
+    "originalValidNumericZero": "PASS",
+    "strictZeroAndNonzeroRejection": "PASS",
+    "successfulAndControlledFailureReadback": "PASS_LOCAL_CHECKER_AND_TRANSPORT_FIXTURES"
+  },
+  "diagnosticValidation": {
+    "artifacts": [
+      {
+        "archiveLabel": "failure",
+        "archiveSHA256": "d62dd3545ed5fc16804770554339dba6922c4dceb814b45ace400591860f45fa",
+        "fixture": "failure",
+        "independentlyVerified": true,
+        "nativeApplicationExecuted": false,
+        "payloadCount": 8
+      },
+      {
+        "archiveLabel": "final",
+        "archiveSHA256": "be4f5f70d1e00ced46a80b0d6e910465e6763c199d849ce2dd90fd3d1f8e6351",
+        "fixture": "success",
+        "independentlyVerified": true,
+        "nativeApplicationExecuted": false,
+        "payloadCount": 141
+      }
+    ],
+    "controlledFixtureFix": "Initial composed test compared full Node assertion message to its one-line code; test corrected to compare the first line, matching production code extraction. No application correction inferred.",
+    "correction": "Closed optional incident context survives the exact checker -> JS diagnostic -> Python sanitizer -> source/index-bound final failure archive path. Original checker acceptance predicates remain unchanged by these files.",
+    "functionalSourceStable": true,
+    "limits": [
+      "Actual rejected V109 attempts value is not recoverable from these tests.",
+      "Synthetic archive success does not establish A5-08/A5-09 acceptance.",
+      "Controller and source manifests must be refreshed by root after all source changes finalize."
+    ],
+    "localOnly": true,
+    "logs": [
+      {
+        "path": "v110/assurance_diagnostic_tests.log",
+        "sha256": "59fe9a0c5e6dfa7c29b3cab50ea08fb3c6d68d15b39347129e9f81d640444844"
+      },
+      {
+        "path": "v110/comparison_regression_tests.log",
+        "sha256": "358d8ecc993f33a7729d4e07ab7643321b9ceb971b70e899bfbcc814ab469ce1"
+      }
+    ],
+    "nativeExecution": false,
+    "provenDefect": "V109 generic first-failure diagnostic excluded assertion operands and incident context at emission and in both sanitizers.",
+    "schema": "empireai-v110-assurance-diagnostic-validation-v1",
+    "sourceFiles": [
+      {
+        "path": "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs",
+        "sha256": "9eea6de7942e41514480b0d0ae5deb3335b668fd72d868211a66535e1988dd65"
+      },
+      {
+        "path": "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py",
+        "sha256": "aadbacae25c2abcf7403689d02489aa6db42fa572e35dcffe5238ba088aa331e"
+      },
+      {
+        "path": "v65/adapter/final_evidence.py",
+        "sha256": "ac6df74799628c7bc074ecaf2c900273746d18283153e38634d6286ba013089f"
+      },
+      {
+        "path": "v65/tests/test_assurance_diagnostic_return.py",
+        "sha256": "be6fe23c9c7e3fa8d0e987dcde07cafbf3b5a8a35225ddeaa74ce49f8afde129"
+      }
+    ],
+    "status": "PASS",
+    "tests": {
+      "comparisonRegression": 13,
+      "failed": 0,
+      "newFocused": 15
+    }
+  },
+  "failed": 0,
+  "focusedAndRegressionChecks": 42,
+  "independentActualCheckerArchiveProbe": {
+    "allPassed": true,
+    "applicationAcceptance": false,
+    "archiveBytes": 3798,
+    "archiveSHA256": "b422bdc045a3c9430839efcb460b50751bce2e316bdcdc9272f7b2d6e0a99df6",
+    "checks": [
+      "actual checker raises unchanged historical attempts failure",
+      "safeNativeFailure JS to JS sanitizer to Python projection context survives",
+      "exact checker/helper and run/stage/index source binding MATCH",
+      "failure export source receipt indexed",
+      "independent tar member path/link/duplicate inspection",
+      "independent every-member bytes/SHA256 index equality",
+      "outer archive receipt SHA256 equality",
+      "raw body and raw incident identifier absent",
+      "first assertion unchanged"
+    ],
+    "context": {
+      "applicationAcceptance": false,
+      "changeAttribution": "EXISTING_INCIDENT_DIAGNOSTIC_FIELDS_ONLY",
+      "checkerSha256": "6d568d6b5b19b95cf7a1b1c94988757896d440eb25a9c317d3f597c25308fee7",
+      "domain": "assurance",
+      "expectedClass": "NUMERIC_ZERO",
+      "expectedType": "NUMBER",
+      "identityEqual": true,
+      "incidentKeySha256": "3ea26028182cc694cdf5ae81e1031c08cc7e607c699f98ea7f654545af200a5e",
+      "invariant": "NEW_RECOVERY_ATTEMPT",
+      "observedBodySha256": "81fad7fd0570c0decf3f81f5bf4acb416f2f2635ba904b144464354828d56fdd",
+      "observedClass": "POSITIVE_INTEGER",
+      "observedIdentitySha256": "96d796efaeaa83de9d31ae04b300f7b7981d629153a24ff66b5fda4ee16f52c4",
+      "observedType": "NUMBER",
+      "priorBodySha256": "26853613d57d32c86fd6457fd4e9a1e6de443d7ceac5981d98f2203e49645bd2",
+      "priorClass": "POSITIVE_INTEGER",
+      "priorIdentitySha256": "96d796efaeaa83de9d31ae04b300f7b7981d629153a24ff66b5fda4ee16f52c4",
+      "priorType": "NUMBER",
+      "rawIncidentRetained": false,
+      "readbackPhase": "returned",
+      "schema": "work8-v110-assurance-invariant-context-v1",
+      "store": "cp_records"
+    },
+    "fixtureOnly": true,
+    "indexedPayloadCount": 8,
+    "producer": "actual cpRecord/checkCp with synthetic historical attempts1",
+    "reviewedSources": {
+      "v65/adapter/final_evidence.py": "ac6df74799628c7bc074ecaf2c900273746d18283153e38634d6286ba013089f",
+      "v65/foundation/controller/scripts/work8/native-transition/assurance-records.mjs": "df5245dc889dd66c34563e51d5d391124012a036ca3bc4805887328f77d64746",
+      "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs": "9eea6de7942e41514480b0d0ae5deb3335b668fd72d868211a66535e1988dd65",
+      "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py": "aadbacae25c2abcf7403689d02489aa6db42fa572e35dcffe5238ba088aa331e",
+      "v65/foundation/controller/scripts/work8/native-transition/whole-app-readback.mjs": "6d568d6b5b19b95cf7a1b1c94988757896d440eb25a9c317d3f597c25308fee7"
+    },
+    "schema": "v110-independent-actual-checker-archive-probe-v1"
+  },
+  "independentParity": {
+    "allPassed": true,
+    "applicationAcceptance": false,
+    "cases": 82,
+    "currentHelperSHA256": "df5245dc889dd66c34563e51d5d391124012a036ca3bc4805887328f77d64746",
+    "originalCheckerSHA256": "0356a6607abf514aeb747b0efd1b78e0ef1c54f1188fd7ffe4f95ddb97e34ebf",
+    "results": [
+      {
+        "case": 0,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 0,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 0,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 0,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 0,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 1,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 1,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 1,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 1,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 1,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 2,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 2,
+        "change": "recurrence",
+        "outcome": "PASS"
+      },
+      {
+        "case": 2,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 2,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 2,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 3,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 3,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 3,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 3,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 3,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 4,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 4,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 4,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 4,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 4,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 5,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 5,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 5,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 5,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 5,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 6,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 6,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 6,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 6,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 6,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 7,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 7,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 7,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 7,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 7,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 8,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 8,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 8,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 8,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 8,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 9,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 9,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 9,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 9,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 9,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 10,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 10,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 10,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 10,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 10,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 11,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 11,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 11,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 11,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 11,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 12,
+        "change": "unchanged",
+        "outcome": "PASS"
+      },
+      {
+        "case": 12,
+        "change": "recurrence",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 12,
+        "change": "changed-attempts",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 12,
+        "change": "time-regression",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 12,
+        "change": "status-change",
+        "outcome": "FAIL"
+      },
+      {
+        "change": "deletion",
+        "kind": "heartbeat",
+        "outcome": "FAIL"
+      },
+      {
+        "change": "deletion",
+        "kind": "probe",
+        "outcome": "FAIL"
+      },
+      {
+        "change": "deletion",
+        "kind": "command",
+        "outcome": "FAIL"
+      },
+      {
+        "change": "deletion",
+        "kind": "incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 0,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 1,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 2,
+        "change": "new-incident",
+        "outcome": "PASS"
+      },
+      {
+        "case": 3,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 4,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 5,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 6,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 7,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 8,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 9,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 10,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 11,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      },
+      {
+        "case": 12,
+        "change": "new-incident",
+        "outcome": "FAIL"
+      }
+    ],
+    "schema": "v110-independent-source-parity-v1"
+  },
+  "independentParityCases": 82,
+  "independentSecurityCases": 348,
+  "limits": [
+    "Actual V109 rejected value/type not recovered.",
+    "Native application root cause not proved fixed.",
+    "Component/local tests do not accept A5-08 or A5-09."
+  ],
+  "nativeAcceptance": false,
+  "producerProbe": {
+    "actualV109OperandRecovered": false,
+    "allPassed": true,
+    "applicationAcceptance": false,
+    "checkCount": 4,
+    "checkerSourceSHA256": "0356a6607abf514aeb747b0efd1b78e0ef1c54f1188fd7ffe4f95ddb97e34ebf",
+    "checks": [
+      {
+        "name": "actual-producer-numeric-zero",
+        "pass": true
+      },
+      {
+        "name": "zero-attempt-diagnostic-recurrence-permitted",
+        "pass": true
+      },
+      {
+        "name": "actual-producer-historical-nonzero-unresolved-state",
+        "pass": true
+      },
+      {
+        "fixtureOnly": true,
+        "identityEqual": true,
+        "name": "unchanged-historical-count-triggers-absolute-zero-assertion",
+        "observedCount": 1,
+        "observedType": "number",
+        "originalCheckerAssertion": "NEW_RECOVERY_ATTEMPT",
+        "pass": true,
+        "priorCount": 1,
+        "priorType": "number"
+      }
+    ],
+    "extractedCheckerFunctionsSHA256": "705b76a2dc8bad3617fb2eafc61b0aeeca9e41b86091d6de8685faa92b6dd971",
+    "producerSourceSHA256": "ce7d4e862a3b3f28cb485fe9dbd4b2cba1d572eda46d611048f783828229d107",
+    "schema": "v110-actual-producer-original-checker-local-probe-v1"
+  },
+  "schema": "empireai-v110-local-validation-v1",
+  "scope": "Local Node 24.22.1/Python execution; no native examination, package build, V94 qualification or V98 diagnostic repeated.",
+  "source": {
+    "authorityCreated": false,
+    "changedPaths": [
+      "acceptance/source-manifest.json",
+      "v65/adapter/final_evidence.py",
+      "v65/adapter/runner.py",
+      "v65/foundation/controller/scripts/work8/native-transition/assurance-records.mjs",
+      "v65/foundation/controller/scripts/work8/native-transition/controller-manifest.json",
+      "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs",
+      "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py",
+      "v65/foundation/controller/scripts/work8/native-transition/whole-app-readback.mjs",
+      "v65/tests/test_assurance_diagnostic_return.py",
+      "v65/tests/test_assurance_records.mjs"
+    ],
+    "commit": "e8d525fe21244ac26823b8c1fa09add3ed24c393",
+    "controllerManifestSHA256": "63206e3464762e525f40b9a18feb9f6da57cd5fae20797e81cfc0db5600ffbdb",
+    "nativeFaultFixed": false,
+    "patchSHA256": "949cd0e1e625e2ea6b7fe641279c56ac7946f78a8e7491e6c716f4aaa88a1a1a",
+    "predicateChanged": false,
+    "published": false,
+    "schema": "empireai-v110-frozen-local-source-v1",
+    "soleParent": "ea4d0b57909e1c41249b9605e322da3a4d5b518c",
+    "sourceManifestSHA256": "411844b4f11a34bf88f14b06935787a35dd217c53b139b5cce81e7128ba523f2",
+    "status": "LOCAL_DIAGNOSTIC_CORRECTION_ONLY_NOT_EXECUTION_READY",
+    "tree": "6b407ac10573ad808a3a84ebf4ec9734fac5f9b8"
+  },
+  "status": "PASS_LOCAL_SCOPE_ONLY"
+}

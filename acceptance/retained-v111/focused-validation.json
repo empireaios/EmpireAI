@@ -1,0 +1,52 @@
+{
+  "actualCheckerThroughArchive": true,
+  "components": [
+    {
+      "path": "reviews/final_successor_record_tests.log",
+      "sha256": "f5d1b766ee218f5edb26e5c126d481ad05bf68ea9e0101c4b9a971ea4b0b8233",
+      "testMethods": 16
+    },
+    {
+      "path": "reviews/final_successor_diagnostic_tests.log",
+      "sha256": "a9fe73cb91104a1833832bdb1b5ab4b03033ea08ea305cb20017de865ed796e2",
+      "testMethods": 23
+    },
+    {
+      "path": "reviews/final_successor_gate_tests.log",
+      "sha256": "704490dfa8283ec55b624792d838396989b5079a19ccd15f7d1573f8ef76ec52",
+      "testMethods": 16
+    }
+  ],
+  "independentArchiveEvidence": {
+    "path": "security/current_archive_probe.json",
+    "sha256": "58ea0b95eba0f8adf6f17f03c78a09a2d5a5bc425ffb239204959b4bfdcf2f5d"
+  },
+  "independentArchiveIntegrity": true,
+  "localFixtureQualification": "Synthetic local state and archived prior preflight structures; no new hosted/native application execution and no A5 acceptance claim.",
+  "pipelineEvidence": {
+    "path": "diagnostic_pipeline_readback.json",
+    "sha256": "f24ad87d0a33f82691835ab477a24b5843ca8a2248859d467d7c3612a75accd8"
+  },
+  "schema": "work8-v111-local-diagnostic-validation-v1",
+  "scope": {
+    "currentNativeAcceptance": false,
+    "executionAuthority": false,
+    "frontendDiagnosticsRepeated": false,
+    "historicalEvidenceChanged": false,
+    "hostedQualificationRepeated": false,
+    "nativeExecution": false
+  },
+  "sourceSHA256": {
+    "v65/adapter/final_evidence.py": "a6835eda3e0a1ea216e5ffb04d3582dc97502bf579a8199c943d5696fe8a9926",
+    "v65/foundation/controller/scripts/work8/native-transition/assurance-records.mjs": "d61cea941d23e33a7561774f75f2466ac980ceb000990e51904eb472459fe990",
+    "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic-codes.json": "9d10121880732edef086db7655a7ff105d81a1c021e13bd89b4b41f009b65128",
+    "v65/foundation/controller/scripts/work8/native-transition/native-diagnostic.mjs": "1de7ee6b69ff618e78788a0a082d328373ed889617d22c385c4d33dc03aa41c9",
+    "v65/foundation/controller/scripts/work8/native-transition/native_diagnostics.py": "7dd40087885a95f1f0a60db24ec290c8e7bbb341ee73fd8d33ce95120968576a",
+    "v65/foundation/controller/scripts/work8/native-transition/whole-app-readback.mjs": "d3fd4c07f6311c46bf6862a83a311dcd2c1a4fcec0cddc4294edc29653fd9773",
+    "v65/tests/test_assurance_diagnostic_return.py": "dafb7a2e48d83e3d6a529f729b94caa366def5bd8536740528cdcfaba31b4eeb",
+    "v65/tests/test_assurance_records.mjs": "8c3c32609483208ee078803574b86a39e04ed9c744a1b810e5ef049fa79174b7"
+  },
+  "status": "PASS",
+  "testsFailed": 0,
+  "testsPassed": 55
+}
