@@ -1,0 +1,93 @@
+{
+  "schema": "empireai-v116-q5-graph-clean-source-v1",
+  "parentCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-o42-q5-graph-clean-20261111-a01",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-o42-q5-graph-clean.yml",
+      "bytes": 3873,
+      "sha256": "0506f038d3a0374726679dadbe703017c1ba5dc75ffed20345ebcf2a50a8aa6c"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 674,
+      "sha256": "1a72c4acbcd35a4caa064fd221f3a53a46128a02a8b91fd68f2a1c007345432d"
+    },
+    {
+      "path": "v116/q5_graph_clean/admit.py",
+      "bytes": 3820,
+      "sha256": "afeabd1c0c701d9ca12625a356837bea7ee5af07dc8499696048d15e243f17cf"
+    },
+    {
+      "path": "v116/q5_graph_clean/application-inputs.json",
+      "bytes": 19107,
+      "sha256": "dcdd7ced4680ad458f2c3a9eab8987c467de3a6f8e603822201c2a3cf224a74d"
+    },
+    {
+      "path": "v116/q5_graph_clean/launch-authority.json",
+      "bytes": 1383,
+      "sha256": "6494733f087771f28b8ad24a053990320c09c011c907a864f4928407e6fac2c6"
+    },
+    {
+      "path": "v116/q5_graph_clean/prepare.mjs",
+      "bytes": 3945,
+      "sha256": "a05621bd54b32452db2aec4b5c0edcf37b323bd5a1ff1ed1d49e78a816a5e1e9"
+    },
+    {
+      "path": "v116/q5_graph_clean/retained_input.py",
+      "bytes": 3131,
+      "sha256": "e86038c6ee1443a27c32e806b1cf6ae2fd74b8fb156d5469ce40b77707d124f2"
+    },
+    {
+      "path": "v116/q5_graph_clean/run-graph.sh",
+      "bytes": 5555,
+      "sha256": "7e991ac91a27488d4ba19d3ecd542a256366f289b738181dc044fb1237bc7757"
+    },
+    {
+      "path": "v116/q5_graph_clean/runtime-graph-application.cjs",
+      "bytes": 3001,
+      "sha256": "32a7ffa0c37f5b40948dea034c0ba2e56a7e7424d825be7b24449a6426323805"
+    },
+    {
+      "path": "v116/q5_graph_clean/runtime-graph-lock-stores.cjs",
+      "bytes": 2429,
+      "sha256": "64333992689f7f72b00c4349b8c2e5a9ed469772fe4896aa7622067aeaea9f4e"
+    },
+    {
+      "path": "v116/q5_graph_clean/runtime-writer-graph.hosted.test.cjs",
+      "bytes": 11755,
+      "sha256": "23d91476c83715a3b0cedfc8dfb7bafb1161fff05875ba96b5bad5b9701a518c"
+    },
+    {
+      "path": "v116/q5_graph_clean/seal.py",
+      "bytes": 1174,
+      "sha256": "adeb39b65872a8c0ca34ecad717d16c7fcd9856ce8d8f366aa8501993f1e8233"
+    },
+    {
+      "path": "v116/q5_graph_clean/technical-authority.json",
+      "bytes": 3471,
+      "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+    },
+    {
+      "path": "v116/q5_graph_clean/verify-container.py",
+      "bytes": 2180,
+      "sha256": "d14a0ac0c90a0f64a5aa379bb4b305aa0493aa284e2777b36961e8f6b30452d3"
+    },
+    {
+      "path": "v116/q5_graph_clean/verify-result.py",
+      "bytes": 3443,
+      "sha256": "83e5e765b4218356dbe2996cac377dbd318f780b61e4dc953e9c97c5389435f6"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 853,
+      "sha256": "924a4caf455319ee927064bc84de83d7b038f5a8d36f251f17f7e8e42cd82f6c"
+    }
+  ]
+}
