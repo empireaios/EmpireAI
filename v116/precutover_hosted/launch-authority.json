@@ -1,0 +1,24 @@
+{
+  "schema": "v116-original-precutover-conditional-authority-v1",
+  "obligationId": "V116-O42-Q5-PRECUTOVER-A01-20261111",
+  "prospectiveBoundUSD": "1.00",
+  "reservationStateClaimed": false,
+  "jobMaximumMinutes": 30,
+  "nativeMaximumSeconds": 840,
+  "containerMaximumSeconds": 900,
+  "outerDeadlineSeconds": 940,
+  "retentionDays": 7,
+  "artifactBytes": 10485760,
+  "scope": "Original finite Q5 precutover fixture-only composition;49 original assertions unchanged; no A5 rerun/genuine owner/production/commerce acceptance",
+  "originalApplicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "financialAdmission": "Separate root actual saved unique cumulative-ledger reservation required before one exact source publication/trigger",
+  "locks": {
+    "A5": "CLOSED_ACCEPTED",
+    "PR113": "DRAFT_UNMERGED",
+    "Pillow": "NOT_BORN",
+    "Commerce": "LOCKED",
+    "Work9": "INACTIVE",
+    "ProductionRailway": "UNTOUCHED"
+  },
+  "wholeRowAccepted": false
+}

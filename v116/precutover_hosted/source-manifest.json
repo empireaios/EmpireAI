@@ -1,0 +1,157 @@
+{
+  "schema": "empireai-v116-precutover-hosted-source-v1",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-o42-q5-precutover-20261111-a01",
+  "changedPaths": [
+    ".github/workflows/work8-v116-precutover.yml",
+    "empireai-web/vercel.json",
+    "v116/precutover_hosted/admit.py",
+    "v116/precutover_hosted/cleanup-package.py",
+    "v116/precutover_hosted/collect.py",
+    "v116/precutover_hosted/dependencies/fetch-and-stage.py",
+    "v116/precutover_hosted/dependencies/pinned-dependencies.json",
+    "v116/precutover_hosted/entry.cjs",
+    "v116/precutover_hosted/final.py",
+    "v116/precutover_hosted/launch-authority.json",
+    "v116/precutover_hosted/normalize.py",
+    "v116/precutover_hosted/precutover-closure.cjs",
+    "v116/precutover_hosted/precutover-fixture-composition.cjs",
+    "v116/precutover_hosted/prepare.sh",
+    "v116/precutover_hosted/retained_input.py",
+    "v116/precutover_hosted/run.py",
+    "v116/precutover_hosted/source-composition-map.json",
+    "v116/precutover_hosted/source-manifest.json",
+    "v116/precutover_hosted/technical-authority.json",
+    "v116/precutover_hosted/terminate.py",
+    "vercel.json"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-precutover.yml",
+      "bytes": 4200,
+      "sha256": "782151353364ff5b114889055ec3ba50ffa5d0de12dea60b37896f44411d87d6",
+      "gitMode": "100644"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a",
+      "gitMode": "100644"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 673,
+      "sha256": "bbff7667dfe3533a2a7c6dd3cbcf7ac8cf561aa9c5341d73fb8006e3415d507c",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/admit.py",
+      "bytes": 4238,
+      "sha256": "11ef840fcf77bd48b29866ba0446f201f98ee2bc2c23a0ba1271aa7071f03659",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/cleanup-package.py",
+      "bytes": 1049,
+      "sha256": "2372abe702482dff4512b2648bbfa7957e3621e0e0e7d41d392b09b010e33d31",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/collect.py",
+      "bytes": 5744,
+      "sha256": "322dc533bb2b538edffa1b904ca82029536f48af298bf90d58e35df8e4df1d0d",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/dependencies/fetch-and-stage.py",
+      "bytes": 4695,
+      "sha256": "e221d57f11ef1c6d905729ee01ca0907ddbced50611957d126186a2acc868e71",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/dependencies/pinned-dependencies.json",
+      "bytes": 8494,
+      "sha256": "4718286af9c9a747f98da2197305271433a2a57505b9939f7bc34b64ce6bb87b",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/entry.cjs",
+      "bytes": 5609,
+      "sha256": "8ded95415e0b2b83add3cda330f204a36cccac00e55513c2b3abf087ede124e7",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/final.py",
+      "bytes": 9041,
+      "sha256": "6785c1827a57a20f125d31cd0bf274378db78ebafe425091e71dc40c33b4beb8",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/launch-authority.json",
+      "bytes": 968,
+      "sha256": "cd248875c5526bd1653b13fa6055163721adf18dea89cf6f0bc3c098617211d1",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/normalize.py",
+      "bytes": 1291,
+      "sha256": "beab6322c1e5c6276f3e57a09fb93d4d8bf66ba43edb698cf0c00b516ef47cbb",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/precutover-closure.cjs",
+      "bytes": 15550,
+      "sha256": "6c4dbd5d93d6377e73ed1293dbbc5601e025bb2fe463c8eaaa7dfd7f358dceef",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/precutover-fixture-composition.cjs",
+      "bytes": 11059,
+      "sha256": "1758852914823e3ce079985f90c03c7885381d5ad540dff1dc1cc82420a424c7",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/prepare.sh",
+      "bytes": 1115,
+      "sha256": "edcfb8fdb03de5a1335d2c3d7f40f82ade4de28b2a30f351205d1723f54c7d97",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/retained_input.py",
+      "bytes": 3121,
+      "sha256": "0986cf2d51798b98414c5d34ded212a4c01dad66909459a01eefe70e11577a52",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/run.py",
+      "bytes": 8290,
+      "sha256": "b06b5f8345dc56e775e49d5ce2ed39c213b65c0502535bdc5cc65f79d8a8d32d",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/source-composition-map.json",
+      "bytes": 7002,
+      "sha256": "0de14f360766dfcd2489d4ce3879b4082d34e9be352727fa21a998d79605af94",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/technical-authority.json",
+      "bytes": 3471,
+      "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3",
+      "gitMode": "100644"
+    },
+    {
+      "path": "v116/precutover_hosted/terminate.py",
+      "bytes": 2156,
+      "sha256": "997b5e98240a11603f9dbe93d8002846df61ef482fc0cccb6752afcf0602a862",
+      "gitMode": "100644"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 852,
+      "sha256": "0c9d8f14905189dfd0ef937922b6d4d85ad6a4013f862f901c80def7e67d9f28",
+      "gitMode": "100644"
+    }
+  ],
+  "wholeQ5Accepted": false
+}
