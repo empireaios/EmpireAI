@@ -1,0 +1,30 @@
+{
+  "schema": "v116-test2-retained-exact-frontend-pins-v1",
+  "backend": {
+    "commit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+    "image": "sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0"
+  },
+  "frontends": {
+    "normal": {
+      "commit": "750483b3152f2c9c65a65b6381c8c94f081b9eb1",
+      "tree": "f589a8f0f94fbcdf113f162abac11d03c19acc25",
+      "file": "EmpireAI_V65_NORMAL_750483b3152f_node22_linux_x64.tar.gz",
+      "bytes": 65297561,
+      "sha256": "391b15ded61649159291a4cad6f8071ce1fdf05f2e0f3732d3b1cf695a43e1d9",
+      "membersSHA256": "686fd4fa4032118ca9cca16bef116341a95368414f3fa5e0a1f51666caa5103b",
+      "members": 4983,
+      "buildId": "Cq7Wv1X6rmUNESPzKC5mp"
+    },
+    "recovery": {
+      "commit": "94d34cab7b0739849839ea3c66e50c8fdd3a2b27",
+      "tree": "5da61811a035b9504d74f699df8b164cc7f9f0ac",
+      "file": "EmpireAI_V65_RECOVERY_94d34cab7b07_node22_linux_x64.tar.gz",
+      "bytes": 65312661,
+      "sha256": "2c9a14895e7888ef5f29964a894b9ab99c4affb6ed038f83e5039c2ddf781167",
+      "membersSHA256": "afce65ec36bd0fab30d5cef0f9d9d9c199167b0b426e32a220e62ccce733a9da",
+      "members": 4991,
+      "buildId": "dvWEdLN24MUT_Wr7AJAJ4"
+    }
+  },
+  "reusedVerifierSHA256": "e45e24497297805ad086dfff2048d9e5dc24b2c8918b55195affad217b773024"
+}

@@ -1,0 +1,156 @@
+{
+  "schema": "v116-session-redis-original-abi-inputs-v1",
+  "originalABIProofSHA256": "544a0e5ae39fa4f3e2b2931483d4670a02520a7ee01f2bc0e41a1704d700fcc7",
+  "files": [
+    {
+      "destination": "lib/libatomic.so.1",
+      "sourceKind": "SIGNED_DEBIAN_PACKAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libatomic.so.1.2.0",
+      "packageFile": "libatomic.so.1",
+      "sha256": "107ab9f7661a1c47cddfb5cd1def99ec537a50a9a537fbe38cdde1b34b8ba280",
+      "bytes": 30776
+    },
+    {
+      "destination": "lib/liblzf.so.1",
+      "sourceKind": "SIGNED_DEBIAN_PACKAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/liblzf.so.1.5",
+      "packageFile": "liblzf.so.1",
+      "sha256": "4c834dd7a7b7ccdbf216e33d38a3508fe72f0e8fb3b0a7477ebe5ee77587aeda",
+      "bytes": 18272
+    },
+    {
+      "destination": "lib/libjemalloc.so.2",
+      "sourceKind": "SIGNED_DEBIAN_PACKAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libjemalloc.so.2",
+      "packageFile": "libjemalloc.so.2",
+      "sha256": "9a2fa29d3386480f7eabdfd39e97dc5e5eeaf923cb82f7e268a3adf738ae08c6",
+      "bytes": 839320
+    },
+    {
+      "destination": "lib/libm.so.6",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libm.so.6",
+      "packageFile": "libm.so.6",
+      "sha256": "7f2ca87f652f56b094462474b076749e90e689d0ecb9cb63c7679820b271b4e7",
+      "bytes": 911904
+    },
+    {
+      "destination": "lib/libsystemd.so.0",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libsystemd.so.0.35.0",
+      "packageFile": "libsystemd.so.0",
+      "sha256": "3880319ae776b622ad3c89201984065905d10271f78ef3a4db2ee0604a61256b",
+      "bytes": 844736
+    },
+    {
+      "destination": "lib/libssl.so.3",
+      "sourceKind": "SIGNED_DEBIAN_PACKAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libssl.so.3",
+      "packageFile": "libssl.so.3",
+      "sha256": "cab3f5b0a1febd4a80db5319f3bca4a9378c797dc6e5dc8bce36a575eaa77e78",
+      "bytes": 688160
+    },
+    {
+      "destination": "lib/libcrypto.so.3",
+      "sourceKind": "SIGNED_DEBIAN_PACKAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libcrypto.so.3",
+      "packageFile": "libcrypto.so.3",
+      "sha256": "aa01e614af634bc7c8b678c9250b5c4f613c61989bacf0a5d6aed6570e7dcabd",
+      "bytes": 4742424
+    },
+    {
+      "destination": "lib/libc.so.6",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libc.so.6",
+      "packageFile": "libc.so.6",
+      "sha256": "6b4a45352fd0c540a9c7c718f35ce8c8e46a4e482f9d3885a910c32d1a0e1421",
+      "bytes": 1926232
+    },
+    {
+      "destination": "lib/libstdc++.so.6",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30",
+      "packageFile": "libstdc++.so.6",
+      "sha256": "e7848e32af4932840ba775169041759a2a8dd5a008af360e5c55bce506eebcf4",
+      "bytes": 2190440
+    },
+    {
+      "destination": "lib/libgcc_s.so.1",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libgcc_s.so.1",
+      "packageFile": "libgcc_s.so.1",
+      "sha256": "2bd1552c47799ef67e701e81d4383061fd76059868e446e63560f0dd0d5ec14e",
+      "bytes": 125312
+    },
+    {
+      "destination": "lib/ld-linux-x86-64.so.2",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "packageFile": "ld-linux-x86-64.so.2",
+      "sha256": "02bcda52c1a5dfc236f94d9e5255b4a0e26347d8a372a5223b650e31f291ce3c",
+      "bytes": 215000
+    },
+    {
+      "destination": "lib/libcap.so.2",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libcap.so.2.66",
+      "packageFile": "libcap.so.2",
+      "sha256": "206b61879ef80e797677e3b4c21f7b76ef9e963c4c4fd4e1311eb44fdde13165",
+      "bytes": 47128
+    },
+    {
+      "destination": "lib/libgcrypt.so.20",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libgcrypt.so.20.4.1",
+      "packageFile": "libgcrypt.so.20",
+      "sha256": "14d0ad938ee07d31ad774567059ac3bb1139e692c6ad21a1450785e880eeb1e8",
+      "bytes": 1332480
+    },
+    {
+      "destination": "lib/liblzma.so.5",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/liblzma.so.5.4.1",
+      "packageFile": "liblzma.so.5",
+      "sha256": "5de60ec1bf90cd3d699188eb9ebb333c22b531394e0b030b55048edbd729ed17",
+      "bytes": 190456
+    },
+    {
+      "destination": "lib/libzstd.so.1",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libzstd.so.1.5.4",
+      "packageFile": "libzstd.so.1",
+      "sha256": "37412b7ac11063c25a375bdff6f4fdb340362f926cd9c3a55962e8a9c9bc702e",
+      "bytes": 763816
+    },
+    {
+      "destination": "lib/liblz4.so.1",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/liblz4.so.1.9.4",
+      "packageFile": "liblz4.so.1",
+      "sha256": "0f0ce52208a22570370eb2e96d250b3c088cb024f15cb7c48565e749eeab7cd5",
+      "bytes": 149952
+    },
+    {
+      "destination": "lib/libgpg-error.so.0",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/libgpg-error.so.0.33.1",
+      "packageFile": "libgpg-error.so.0",
+      "sha256": "f93b4f9a2d482d553f743d1fe6ac6b219f88f20d59b528d46a61610c5d0ac10e",
+      "bytes": 157768
+    },
+    {
+      "destination": "ld-linux-x86-64.so.2",
+      "sourceKind": "EXACT_RETAINED_IMAGE",
+      "imagePath": "usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "sha256": "02bcda52c1a5dfc236f94d9e5255b4a0e26347d8a372a5223b650e31f291ce3c",
+      "bytes": 215000
+    },
+    {
+      "destination": "redis-server",
+      "sourceKind": "SIGNED_DEBIAN_PACKAGE",
+      "packageFile": "redis-server",
+      "sha256": "c2f35b59cb22f17cdfdef50b18a6b273a0044c4c981eb210ef57ffcac44c2610",
+      "bytes": 2387088
+    }
+  ]
+}
