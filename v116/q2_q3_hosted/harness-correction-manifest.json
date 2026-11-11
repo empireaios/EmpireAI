@@ -1,0 +1,36 @@
+{
+  "schema": "v116-test-harness-policy-context-correction-v1",
+  "status": "PREPARED_NOT_APPLIED",
+  "applicationGuardChanged": false,
+  "productionMutation": false,
+  "files": [
+    {
+      "path": "backend/scripts/reasoning-admission-full-path.mjs",
+      "oldSHA256": "93b22fa41c97b657c30396865f863a907f009396baafb3d3e062787c2ebcff43",
+      "newSHA256": "a8176ad374c4f8863f15f4caaa75d499de564102804fb41f5eac5a9002ed2809"
+    },
+    {
+      "path": "backend/scripts/response-delivery-full-path.mjs",
+      "oldSHA256": "9d3b8643b67b1342bff6da98531c10bac4122ce03bb8e99c9b4869547385f843",
+      "newSHA256": "55f41a9675f2165fed0bf089c3f08dbb187809bff51c8b9591dd0df407da06a2"
+    },
+    {
+      "path": "backend/src/validation/tests/work8-media-listing-binding.test.ts",
+      "oldSHA256": "06fdd040fc0910b3e74a2105dc5dae115e989065d5d66ad9d48a36fa5d3648e7",
+      "newSHA256": "f7f65577509a55452bc6ccbf182eb175859fce37a9cdc7142e31326a31ac79d1"
+    },
+    {
+      "path": "empireai-web/e2e/work8-media-listing-http.mts",
+      "oldSHA256": "da708b037f8f708c4d6d37d785952acd3af3bf9c8b5e7299a84236d8b4cc90b5",
+      "newSHA256": "c7f1aed20bbe19ef0292cc920c0f46f4f6a0a3b34755f6b332574ce9e8e560ee"
+    }
+  ],
+  "purpose": "Retain only the actual authorized temporary technical-policy path across legacy test harness environment clearing; leave policy file validation, app owner/commerce guards and test assertions unchanged.",
+  "executionPrerequisites": [
+    "Independent source/security review",
+    "Bounded private network namespace or original seccomp denial",
+    "Exact temporary policy authority binding",
+    "Verified Redis binary for corpora",
+    "No native owner acceptance claim"
+  ]
+}

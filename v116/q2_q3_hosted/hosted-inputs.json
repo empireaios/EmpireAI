@@ -1,0 +1,23 @@
+{
+  "schema": "v116-hosted-q2-q3-inputs-v1",
+  "authoritySHA256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3",
+  "sourceApplicationCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "sourceSHA256": {
+    "backend/src/runtime/owner-write-restriction.ts": "ec0edaf624414ceb0a631f7fef967d93915d6e48aad466f2dea101416f6bcdf4",
+    "backend/src/validation/tests/capture-shared-brain-redis.test.ts": "0223e992936fc97ba6a1602d63e1a9e1eb59c6a17405a5d8728f1d01f3cc0d96",
+    "backend/src/validation/tests/fixtures/work8-app-recovery-child.ts": "10e16477fee2116d44ab67f30bf921c26271dbfa4fe0128024e576eef5f4d42f",
+    "backend/src/validation/tests/fixtures/work8-replay-capture-child.ts": "1911bdc440a06a5636ce90dd5130a6de55ff1d01eadaf1b7e9cac7be0fdd30bc",
+    "backend/scripts/reasoning-admission-corpus.mjs": "d7a3df5c9da4fecd761a15ea862780356d33da692b7a29fd0de4e5a4aa3402d9",
+    "backend/scripts/response-delivery-corpus.mjs": "0968c40f56b7f2d4b6a0f35db11420a1729aa1fd872bdcfd4b58e52498cdb5bb",
+    "backend/scripts/reasoning-admission-full-path.mjs": "a8176ad374c4f8863f15f4caaa75d499de564102804fb41f5eac5a9002ed2809",
+    "backend/scripts/response-delivery-full-path.mjs": "55f41a9675f2165fed0bf089c3f08dbb187809bff51c8b9591dd0df407da06a2"
+  },
+  "policyProbeSHA256": "e540383f59c5baa04674e08c591e5efa0d84646c596332e3961a38312018b7a4",
+  "sourceEdits": "Only two reviewed full-path test harness policy-path preservation overlays; no application guard modifications.",
+  "executionGroups": [
+    "capture",
+    "reasoning-admission",
+    "response-delivery"
+  ],
+  "priorLocal36LeavesNotSelected": true
+}

@@ -12,12 +12,14 @@ import {generatedAdmissionCorpus} from './reasoning-admission-corpus.mjs';
 const repo=fileURLToPath(new URL('../../',import.meta.url));
 const redisBinary=process.env.PILLOW_TEST_REDIS_SERVER ?? 'redis-server';
 const executablePath=process.env.PATH;
+// Operator-mounted temporary technical policy; application guard still validates it.
+const technicalOwnerPolicy=process.env.EMPIRE_OWNER_WRITE_POLICY;
 const outputPath=process.argv[2];
 const limit=process.argv[3] ? Number(process.argv[3]) : undefined;
 const root=fs.mkdtempSync(path.join(os.tmpdir(),'admission-full-path-'));
 fs.mkdirSync(root+'/commissioning');
 for(const key of Object.keys(process.env))delete process.env[key];
-Object.assign(process.env,{PATH:executablePath,NODE_ENV:'test',LOG_LEVEL:'fatal',
+Object.assign(process.env,{PATH:executablePath,...(technicalOwnerPolicy ? {EMPIRE_OWNER_WRITE_POLICY:technicalOwnerPolicy} : {}),NODE_ENV:'test',LOG_LEVEL:'fatal',
   DATABASE_PATH:root+'/commissioning/empireai-brain.db',RAILWAY_VOLUME_MOUNT_PATH:root,
   EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',EMPIRE_ENGINEERING_TEST_MODE:'true',
   OPENAI_API_KEY:'synthetic-no-network-key',REDIS_OPTIONAL:'true'});
