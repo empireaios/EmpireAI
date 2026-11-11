@@ -1,0 +1,198 @@
+{
+  "schema": "v116-native-session-browser-source-v1",
+  "parentCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-native-session-browser-20261111-a04",
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-native-session-browser.yml",
+      "bytes": 3602,
+      "sha256": "c9c6081b01683e28311a51f23cd7c2534bd147164b5a1481c6e83d2dff29660e"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 678,
+      "sha256": "6dc4601e3fe0986905654534ebc3701396f68bae2c76dc95ac4684bf93fa1b2d"
+    },
+    {
+      "path": "v116/session_browser/FIXTURE_SCOPE.md",
+      "bytes": 969,
+      "sha256": "17c4007463161851db442ee35419d498bda8125acc449aa5d3d2067858a55035"
+    },
+    {
+      "path": "v116/session_browser/admit.py",
+      "bytes": 3036,
+      "sha256": "f6174181238192930d7335bc45781ded0db86e302a56cc3f06502d0004d46345"
+    },
+    {
+      "path": "v116/session_browser/backend-state-inputs.json",
+      "bytes": 2943,
+      "sha256": "f503d92f7a32561a2f2e2cb6c5a2aa0d9ac59e53d1a63561fae59804aa09e02f"
+    },
+    {
+      "path": "v116/session_browser/browser-exam.mjs",
+      "bytes": 17181,
+      "sha256": "563dfa53a6a4b890ec05b34faf0bf2a54d3677a956c1f558e525bcaeea8c3937"
+    },
+    {
+      "path": "v116/session_browser/browser-preflight-telemetry.mjs",
+      "bytes": 4598,
+      "sha256": "94a7e3f71b3fc93f0f3073124be81245b9086884479953a33765ecde014aa9ce"
+    },
+    {
+      "path": "v116/session_browser/browser-runtime-probe.mjs",
+      "bytes": 3701,
+      "sha256": "f57aceea5e94210756e3e0449a45afe067fd991ad630c8a7801779a313d3d37e"
+    },
+    {
+      "path": "v116/session_browser/canonical-business-records.mjs",
+      "bytes": 3346,
+      "sha256": "eeb74e9bc1201f3340afb98f9bc85c491beaf61c4ec364ed9287e9205c00a090"
+    },
+    {
+      "path": "v116/session_browser/collect.py",
+      "bytes": 5317,
+      "sha256": "a4fbe8d90168c34d2c1ac737dbebd7e251f846a9e67b9db3d78d07a0fa6baa3b"
+    },
+    {
+      "path": "v116/session_browser/epoch1-native-state.tar.gz.b64",
+      "bytes": 201101,
+      "sha256": "606aff57eae5e8994dc4743e6a62dc0e07ddede18ea2b89075d88add71e926c3"
+    },
+    {
+      "path": "v116/session_browser/fetch-redis-dependencies.py",
+      "bytes": 4695,
+      "sha256": "e221d57f11ef1c6d905729ee01ca0907ddbced50611957d126186a2acc868e71"
+    },
+    {
+      "path": "v116/session_browser/final-gate.py",
+      "bytes": 4707,
+      "sha256": "75ec3a9a760230f619e0c7d45aa8c56f167902de210c01d990529469d1a4c7ea"
+    },
+    {
+      "path": "v116/session_browser/fixture-admission.json",
+      "bytes": 1084,
+      "sha256": "fcb7febdbbf24028c12b31a92ef965457af72612fefe0c4d0470bfbe5549df03"
+    },
+    {
+      "path": "v116/session_browser/frontend-pins.json",
+      "bytes": 1303,
+      "sha256": "5aaa31c5a520437ae0da682b14adb39c23e7555ed2cbf8939762c7107095abd6"
+    },
+    {
+      "path": "v116/session_browser/git_blob_transport.py",
+      "bytes": 7095,
+      "sha256": "dcb37cdf36c33460821e7faec808a1b46fbf3ff89ae0eeb0b81edd1b27e78b0f"
+    },
+    {
+      "path": "v116/session_browser/host.py",
+      "bytes": 16607,
+      "sha256": "9c8ae99dcd5a60bd84b49d2636520c6a3875dbff6740b42e08a88f7a9fcd8dc7"
+    },
+    {
+      "path": "v116/session_browser/hosted-supervisor.mjs",
+      "bytes": 10530,
+      "sha256": "2ecffa78f90e84b5e20d1767f2655d0a7adcc5398b8dbf0f99fa341177b67a55"
+    },
+    {
+      "path": "v116/session_browser/hosts",
+      "bytes": 20,
+      "sha256": "081ef9d5367595d16e30b4b4549d9f43537320508b4ce0788963e10e4f808857"
+    },
+    {
+      "path": "v116/session_browser/immutable-browser-binding.json",
+      "bytes": 3989,
+      "sha256": "bb9fb9c6a62ccf77f4401acf87bf64262b99ca210ee093e41bbe3a7f731621d4"
+    },
+    {
+      "path": "v116/session_browser/inputs.json",
+      "bytes": 1719,
+      "sha256": "ed2aee9b3489af8ed55154f1dce281f7a7f6ef5f07e19e8a3e02dbacf8b9d427"
+    },
+    {
+      "path": "v116/session_browser/launch-authority.json",
+      "bytes": 1634,
+      "sha256": "c92b6993695c2eff65a46ab7d58aee1fe141157226f2c3952f3b0de644fce803"
+    },
+    {
+      "path": "v116/session_browser/native-auth-handler-provenance.json",
+      "bytes": 1084,
+      "sha256": "b942dc785ff9175c30856f64db3b511a4ce897a92ff6d0eb86dd87f7f26d02f3"
+    },
+    {
+      "path": "v116/session_browser/native-backend-plan.json",
+      "bytes": 13681,
+      "sha256": "880ef7e8612e7a26d7261ee79fde826a97805258714e79089d528af77d3297fb"
+    },
+    {
+      "path": "v116/session_browser/native-backend.mjs",
+      "bytes": 16193,
+      "sha256": "9aa28fd1ec1d42329ff99524b7c253bc812362245e17d0b734f52944fe68a906"
+    },
+    {
+      "path": "v116/session_browser/native-tier0-session-routes.mjs",
+      "bytes": 3069,
+      "sha256": "8e34791ae199c49e517d0fd903d999c5d519db7ce65a2ffcea6fd952e9af4a7d"
+    },
+    {
+      "path": "v116/session_browser/npm-stage.py",
+      "bytes": 9333,
+      "sha256": "74c38e4724e7bd12ed1036f0f5a054caa7ac8ce0f5cb4487357c758138565271"
+    },
+    {
+      "path": "v116/session_browser/pinned-dependencies.json",
+      "bytes": 8494,
+      "sha256": "4718286af9c9a747f98da2197305271433a2a57505b9939f7bc34b64ce6bb87b"
+    },
+    {
+      "path": "v116/session_browser/redis-abi-inputs.json",
+      "bytes": 5911,
+      "sha256": "2ab224fc27d46c81612b9c8a3dcb593eb4bc0901cec6e25d5893a5d03620544d"
+    },
+    {
+      "path": "v116/session_browser/retained-blob-manifest.json",
+      "bytes": 8708,
+      "sha256": "7b8d9cfbef07c72fe97257acc5d5245459d670f77a57aaa1e39c47bacc64e658"
+    },
+    {
+      "path": "v116/session_browser/retained_current_packages.py",
+      "bytes": 17270,
+      "sha256": "e45e24497297805ad086dfff2048d9e5dc24b2c8918b55195affad217b773024"
+    },
+    {
+      "path": "v116/session_browser/retained_input.py",
+      "bytes": 2783,
+      "sha256": "bfbe7256718cf9d77914d879cd8eb19653e6d857ab688f739997de65150c5211"
+    },
+    {
+      "path": "v116/session_browser/safe-failure.mjs",
+      "bytes": 2200,
+      "sha256": "28cfaaf9cd6a5df61fcfdc3d52c36a3ba76715a62b02f1d7d95be8e75fdbb25e"
+    },
+    {
+      "path": "v116/session_browser/technical-authority.json",
+      "bytes": 3471,
+      "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+    },
+    {
+      "path": "v116/session_browser/test1-committed-business-checkpoint.json",
+      "bytes": 429586,
+      "sha256": "948c6bc077ca4a788b50fa4f33381b89ba8254cfd7a05781b77bc31bfca703d2"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 857,
+      "sha256": "f45467a05ff683b83b598046b5e9e148632538e39659982eb864e98f94f1524d"
+    }
+  ],
+  "scope": [
+    "A1-19",
+    "A1-20"
+  ],
+  "appSourceModified": false,
+  "fixturePrivacyReviewSHA256": "d5cd06902fb3f7bad214b93c46fa076af1f1b3cc46f024d9b1664873ed91f1f5"
+}
