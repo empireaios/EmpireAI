@@ -1,0 +1,129 @@
+{
+  "schema": "empireai-v116-test1-hosted-source-v1",
+  "parentCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "branch": "work8/v116-o39-test1-20261111-a06",
+  "applicationSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "imageConfigSHA256": "f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
+  "files": [
+    {
+      "path": ".github/workflows/work8-v116-o39-test1.yml",
+      "bytes": 4269,
+      "sha256": "baf07cfd82508a64ffe69c8327fc0404f782c6e8e7fdb8c6e346d3515b51734d"
+    },
+    {
+      "path": ".node-version",
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 665,
+      "sha256": "fdedfdcce9a0509b9bf4b9427f48b056027d37608bdfe563ed11d5c900218108"
+    },
+    {
+      "path": "v116/recovery_hosted/admit.py",
+      "bytes": 4151,
+      "sha256": "83488217c565c1570bab1d334e8ccbe8eb4c3d6a3251a049f9d1860353dffdcf"
+    },
+    {
+      "path": "v116/recovery_hosted/declared-recovery-objectives.json",
+      "bytes": 7085,
+      "sha256": "88b7274b57e538c96327758111901ef241b8493f7508c210af8dfce80c1df3a8"
+    },
+    {
+      "path": "v116/recovery_hosted/evidence-custody.py",
+      "bytes": 8215,
+      "sha256": "882c7e8c66d3d955c75ff3555dcd0ad02e7ae19eafbe9d2614c93724738eef3c"
+    },
+    {
+      "path": "v116/recovery_hosted/launch-authority.json",
+      "bytes": 2510,
+      "sha256": "e82e8d1b31dcca1f66ddd5b5374a4a7c855fb62d9d7c9077b6ee0607e1489703"
+    },
+    {
+      "path": "v116/recovery_hosted/retained_input.py",
+      "bytes": 3119,
+      "sha256": "5e3b81b3a62982848c84e9b7ade081f6eb220e7a447c4666fac63945681fa99c"
+    },
+    {
+      "path": "v116/recovery_hosted/run-test1.sh",
+      "bytes": 14322,
+      "sha256": "f6c472b108664bd8a5c303569eee55f229478bc80432bbf7c877117a818df584"
+    },
+    {
+      "path": "v116/recovery_hosted/seal_evidence.py",
+      "bytes": 1510,
+      "sha256": "31fb3b19e13f39a1a65028ff613e2473d755ecdae62899db2cd7652e12266b3c"
+    },
+    {
+      "path": "v116/recovery_hosted/stage-deployment.py",
+      "bytes": 2777,
+      "sha256": "87d8a310dd3f192e652184a6ca1bb6816f722c7da44a7f1bea21d094691a0fa1"
+    },
+    {
+      "path": "v116/recovery_hosted/technical-authority.json",
+      "bytes": 3471,
+      "sha256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+    },
+    {
+      "path": "v116/recovery_hosted/verify-evidence-boundary.mjs",
+      "bytes": 9289,
+      "sha256": "f873052b00e47738bfcadcd1c19f19c9872af1a37d8e41be5f802893089e35cd"
+    },
+    {
+      "path": "v116/test1/canonical-business-records.mjs",
+      "bytes": 2800,
+      "sha256": "fdf51e1cdc77984ac3bb0ce3f695da887cba55df2781b4bd2baf273aa1fe6c79"
+    },
+    {
+      "path": "v116/test1/drained-commerce-copy.mjs",
+      "bytes": 6024,
+      "sha256": "b36543868715165cf96c41f9143aecade9d6e9b4fbcfe4296a23a1a6d41bbc52"
+    },
+    {
+      "path": "v116/test1/native-commerce-baseline.mjs",
+      "bytes": 2450,
+      "sha256": "7fd58d4a73074ec5c56472a37f7600054767dc242c1bd7511771f6557eaf1229"
+    },
+    {
+      "path": "v116/test1/runtime-startup-readback.mjs",
+      "bytes": 696,
+      "sha256": "b6dd126a0508fa44444513ed5b0cb47c085f7937b2d9468c8587061621725f63"
+    },
+    {
+      "path": "v116/test1/runtime-writer-controller.cjs",
+      "bytes": 12360,
+      "sha256": "37c64693591b96e828d598a0b3923042056930dbed4f6e59da66937398da6f5c"
+    },
+    {
+      "path": "v116/test1/v116-enrollment-entry.mjs",
+      "bytes": 4480,
+      "sha256": "26747457e01036e1f9b3779c7fe2e4bf311f05e3f891c35f5f9aba11e1d670ea"
+    },
+    {
+      "path": "v116/test1/v116-hh4-domain-state.mjs",
+      "bytes": 17520,
+      "sha256": "008df220b3388297eb714d5e9351d834630bb38b613e6c87deedfc8e6764d0ec"
+    },
+    {
+      "path": "v116/test1/v116-isolated-enrollment.cjs",
+      "bytes": 2821,
+      "sha256": "c6c770aff3a0f325846c211a277811eb42aaed8eae1520a45ffe7cdc216376b9"
+    },
+    {
+      "path": "v116/test1/v116-test1-business.mjs",
+      "bytes": 15622,
+      "sha256": "ddbec2a5286c0f2f38c367cd2a48da6e0a0912160095d3dad1eef2b299194a0f"
+    },
+    {
+      "path": "v116/test1/v116-test1-coordinator.mjs",
+      "bytes": 34201,
+      "sha256": "20321bd40cc47f92ba365d18a02a96a725da0ad68b41dd776bac169fb3209243"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 844,
+      "sha256": "68493216ffe230922a31305966aeb9938030087c5a7d75876e14b091ea75c91a"
+    }
+  ]
+}
