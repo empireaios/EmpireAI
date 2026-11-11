@@ -1,0 +1,24 @@
+{
+  "schema": "v116-exact-native-tier0-handler-extraction-v1",
+  "source": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "compiledSourcePath": "backend/dist/runtime/tier0-isolated-primary.js",
+  "compiledSourceSHA256": "d27f10f3bd0a9deab9d20591b723883e9e6947361e1fbe8af46b8934cd17bbcc",
+  "startByte": 27625,
+  "endByteExclusive": 30267,
+  "firstLine": 566,
+  "lastLine": 623,
+  "fragmentBytes": 2642,
+  "fragmentSHA256": "2010ea63860916cab8f9837ea0d812396385c97293d5f43601156379262d6524",
+  "outputSHA256": "8e34791ae199c49e517d0fd903d999c5d519db7ce65a2ffcea6fd952e9af4a7d",
+  "exactVerbatimHandlerFragment": true,
+  "handlerLogicChanged": false,
+  "authenticationMock": false,
+  "nativeImports": [
+    "config/env.js",
+    "runtime/tier0-control-plane.js",
+    "auth/platform-identity.js"
+  ],
+  "scope": "Original private Tier0 logout/me/refresh handlers extracted solely for exact minimal native route composition; exported original login and original shared Redis/auth middleware remain direct imports.",
+  "startCharacterOffset": 27623,
+  "endCharacterOffsetExclusive": 30265
+}
