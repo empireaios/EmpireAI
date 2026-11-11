@@ -1,0 +1,27 @@
+{
+  "schema": "v116-hh3-original-source-inputs-v1",
+  "sourceCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "nodeSHA256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
+  "appSHA256": {
+    "scripts/work8/hh3-compiled-coordinator.mjs": "d9c907b54fc047b70758aba7f7d9d6904621f67fc2106f3735ae9480d9e5c384",
+    "scripts/work8/hh3-compiled-child.mjs": "1293c97642ae772c5de2c47bd8552cc8b2db107bf15089f99e184e39a1dd5606",
+    "scripts/work8/hh3-owned-process-group.mjs": "9eac4569c8fa50487bff3d30dbbbfbfe2bfbfadb976ab10fbb9cc7a30dc3148c",
+    "backend/dist/runtime/work8-generated-capture-hold.js": "d4dc8aae293e57e54b632358191daad7314f282d06fec1428b09dd2674414f61",
+    "backend/dist/runtime/work8-primary-capture.js": "93b19c31cf84fe73e9edd425106d86595edddeacc0409eef4cdbedf0bf3299cf",
+    "backend/dist/runtime/work8-recovery-capture.js": "5b68a1f22bc1b7c3e00a76d7768aeae2aaa26248a8d0febbab7dba9600f7ae3e",
+    "backend/dist/app.js": "3e0982e5dd74353e1ca12848244d44a8253b7b1eb95f7f33f13017180f2203d0",
+    "backend/dist/brain/database.js": "9c6c9362e83f1ee6119d29855918d441e7016ae447a0e40664594bd54a2e4311",
+    "backend/dist/orchestration/shadow-ceo/repository.js": "abe7b3bf6c6d575f8c7be57b392a4355feb1c2b8db5c110d7744e6ebe26074ba",
+    "deployment/work8-system-vault.cjs": "1c988462ef1eee677f28b585c4cd9659202156f4b03820c4abb9b4f3c92c1a5a",
+    "deployment/observer-capture.cjs": "c9513c42c917b774b605a7d2e5cd454d01d7cc88dcd7508bf341cfed8272bc1b"
+  },
+  "controlSHA256": {},
+  "completeAppIdentity": "Whole retained OCI app is copied with complete content/mode/link inventory comparison and bound read-only; these are additional immediate original-source assertions, not a substitute for full package identity.",
+  "originalModes": [
+    "timeout",
+    "observer-error",
+    "invalidate-error"
+  ],
+  "originalHoldMilliseconds": 5000,
+  "nativeOwnerAcceptance": false
+}

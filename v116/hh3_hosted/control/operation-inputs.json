@@ -1,0 +1,14 @@
+{
+  "schema": "v116-hh3-original-operation-inputs-v1",
+  "controlSHA256": {
+    "bounded_execution.py": "058b4c1f42efcdaf86063380cf87acb28b949808a98adab4a9758a13c3917041",
+    "collect.py": "564f480b35354ef5e25d9a2f786523cfac9b845d11185c1ec3972cef1266c798",
+    "isolated-entry.py": "ba5989981f557711114d9b282e9d5f25da4f2ff253bac1bdc5cac2da7d254a42",
+    "launch-authority.json": "f0320cdfea5a58c0558ae9fd96961275047b6f4b2ea71a6bf2a905c5877fc74c",
+    "source-inputs.json": "3c21b1c098a7b04f0757e94ca5268215e120ff26b8e97e8f9e30aff248d0b4e5",
+    "technical-authority.json": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3"
+  },
+  "originalControllerChanged": false,
+  "productionVolumeUsed": false,
+  "nativeOwnerEvidence": false
+}

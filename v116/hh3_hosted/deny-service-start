@@ -1,0 +1,3 @@
+#!/bin/sh
+# Ephemeral examination runner: package installation must not start a daemon.
+exit 101

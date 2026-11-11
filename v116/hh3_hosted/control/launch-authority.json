@@ -1,0 +1,27 @@
+{
+  "schema": "v116-hh3-technical-launch-scope-v1",
+  "obligationId": "V116-O42-Q5-HH3-A01-20261111",
+  "prospectiveMaximumUSD": "1.00",
+  "reservationStateClaimedByThisFile": false,
+  "rootSavedLedgerAndExactTreeReleaseRequired": true,
+  "maximumJobMinutes": 25,
+  "maximumServiceSeconds": 600,
+  "maximumEntrySeconds": 540,
+  "kernelLimits": {
+    "memoryBytes": 3221225472,
+    "swapBytes": 0,
+    "pids": 256,
+    "cpuQuotaPercent": 200,
+    "tmpfsBytes": 536870912
+  },
+  "originalSource": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "retainedImage": "sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
+  "technicalAuthoritySHA256": "f1170d9351861402fac03c99b9eb829c1d05941546c085bfcae4790b8a26add3",
+  "scope": "Three original compiled coordinator failure cases on new empty generated roots; no production/native owner/genuine finance state.",
+  "originalAssertionsOrHoldChanged": false,
+  "repeatAcceptedTests": false,
+  "providerCalls": false,
+  "commerce": false,
+  "messages": false,
+  "wholeQ5Accepted": false
+}
