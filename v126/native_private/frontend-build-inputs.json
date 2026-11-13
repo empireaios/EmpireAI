@@ -1,0 +1,97 @@
+{
+  "schema": "v128-complete-frontend-source-build-inputs-v1",
+  "applicationCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "frontendBaseCommit": "750483b3152f2c9c65a65b6381c8c94f081b9eb1",
+  "image": "sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
+  "baseFileCount": 957,
+  "baseTreeSHA256": "9d23fc8ba6e39bfaf5532b41d755d6826014c24ab22bdaec8afc639593f92974",
+  "changedSourceFileCount": 958,
+  "changedSourceTreeSHA256": "015945246ccda936cd1e64bfa1c65ab668fd3ac2faeb19303928d0aea3ac2826",
+  "nodeSHA256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
+  "npmVersion": "10.9.8",
+  "npmFileCount": 1964,
+  "npmTreeSHA256": "110887ac66cc3a577fdaef8fa3cbf3a22ce6f198a7a9d9db323caaf7fe253080",
+  "packageLockSHA256": "84f99595b7564d9196b0eeb25c054b290801bfe2e3a148f61ab2c9c2871d37b4",
+  "packageLockEntryCount": 468,
+  "overlays": [
+    {
+      "repositoryPath": "empireai-web/components/owner/work7/ConnectorSourceCandidates.tsx",
+      "frontendPath": "components/owner/work7/ConnectorSourceCandidates.tsx",
+      "bytes": 5392,
+      "sha256": "d2b6144f8fc5eacf9da9218b2a2b592b27b66e6efa4b3b9c4fd60e7a44cf9b29",
+      "scope": "REVIEWED_NEW_SOURCE_DISPLAY"
+    },
+    {
+      "repositoryPath": "empireai-web/components/owner/work7/OwnerJourneys.tsx",
+      "frontendPath": "components/owner/work7/OwnerJourneys.tsx",
+      "bytes": 51431,
+      "sha256": "6174f87adff04b6651e3a7d580fa9c4ce44c7ffb44eb31f10a4cdfb217be6c26",
+      "scope": "REVIEWED_NEW_SOURCE_DISPLAY"
+    },
+    {
+      "repositoryPath": "empireai-web/lib/owner/runtime-identity.mjs",
+      "frontendPath": "lib/owner/runtime-identity.mjs",
+      "bytes": 601,
+      "sha256": "b9cdb78d52c9ed7d9a00a30bc9bb8fdd87d3d0ee0732d148b4ebe2e19e7c8fe6",
+      "scope": "EXACT_ALREADY_QUALIFIED_750_SOURCE_RESTORATION"
+    },
+    {
+      "repositoryPath": "empireai-web/lib/owner/runtime-release-identity.test.ts",
+      "frontendPath": "lib/owner/runtime-release-identity.test.ts",
+      "bytes": 1562,
+      "sha256": "bd8727b0f6d650739d847cb8fe6c3ea3ea8231bf70b39afe931669f4dfeb9c60",
+      "scope": "EXACT_ALREADY_QUALIFIED_750_SOURCE_RESTORATION"
+    },
+    {
+      "repositoryPath": "empireai-web/vercel.json",
+      "frontendPath": "vercel.json",
+      "bytes": 851,
+      "sha256": "40576544d9a3442eeffeb3abb4fa97cd5b54755c64d32662a1c4acb4d0dffc73",
+      "scope": "PRESERVE_HISTORICAL_AND_NEW_BRANCH_DEPLOYMENT_SUPPRESSION"
+    }
+  ],
+  "requiredPackageVersions": {
+    "next": "16.2.9",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "typescript": "5.9.3",
+    "playwright": "1.62.1",
+    "playwright-core": "1.62.1",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "@next/swc-linux-x64-gnu": "16.2.9"
+  },
+  "budgets": {
+    "dependencyInstallMaximumSeconds": 360,
+    "networkDisabledNextBuildMaximumSeconds": 420,
+    "outerHostedStepMaximumSeconds": 900,
+    "buildMemoryBytes": 4294967296,
+    "buildCPUCount": 2,
+    "buildPidsLimit": 256,
+    "maximumEachLogBytes": 4194304
+  },
+  "noNativeAcceptanceClaimed": true,
+  "retainedFrontendSourceCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "retainedFrontendGitTree": "2b3e370898ddb170516ffa4c953064e23e8527c9",
+  "qualifiedReferenceFrontendGitTree": "7f103c54281e57a41104d21de5e83056c1de8f12",
+  "qualifiedReferenceReconciliation": {
+    "exactRetainedSourceGitBlobMatches": 957,
+    "referenceCommit": "750483b3152f2c9c65a65b6381c8c94f081b9eb1",
+    "initialDifferencesFromReference": [
+      "lib/owner/runtime-identity.mjs",
+      "lib/owner/runtime-release-identity.test.ts",
+      "vercel.json"
+    ],
+    "restoredExactlyFromReference": [
+      "lib/owner/runtime-identity.mjs",
+      "lib/owner/runtime-release-identity.test.ts"
+    ],
+    "deploymentConfiguration": "Current reviewed parent configuration plus exact new launch branch suppression; historical suppressions retained",
+    "newUiSourceFiles": [
+      "components/owner/work7/ConnectorSourceCandidates.tsx",
+      "components/owner/work7/OwnerJourneys.tsx"
+    ],
+    "unavailableReadinessRemainsUnknown": true,
+    "positiveHealthFacadeAdded": false
+  }
+}

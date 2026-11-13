@@ -1,0 +1,93 @@
+{
+  "schema": "v128-source-bound-connector-native-composition-v1",
+  "applicationCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "frontendBaseCommit": "750483b3152f2c9c65a65b6381c8c94f081b9eb1",
+  "backendImage": "sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
+  "backendOverlays": [
+    {
+      "sourceFile": "connector-runtime.js",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/runtime.js",
+      "bytes": 30918,
+      "sha256": "ff64387fa0ffd4394d8beedfc5eae665e3b4abbb03c6fe3f6925522b93ecc692"
+    },
+    {
+      "sourceFile": "connector-runtime.js.map",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/runtime.js.map",
+      "bytes": 31356,
+      "sha256": "fd0e532106f08c20eec0c85420a292da8e1a1ddab21fa1bff6ea55b29e992dc3"
+    },
+    {
+      "sourceFile": "connector-source.js",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js",
+      "bytes": 14220,
+      "sha256": "b3e76dbcddc684885eb3e1f21e83a70fdf5cec56671116459acebec5ddfbb5e4"
+    },
+    {
+      "sourceFile": "connector-source.js.map",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map",
+      "bytes": 13481,
+      "sha256": "08aac0e557ba3a9ed409e0a08df55a1116d48e04af194e280b8a310233119917"
+    }
+  ],
+  "repositorySourceFiles": [
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "bytes": 27378,
+      "sha256": "887bca9d19396ce704e5730d0948296b5b1c36b84d46bdd4457a3acf80ece64e"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-source.ts",
+      "bytes": 13079,
+      "sha256": "1d29e9d0e018769a6783e2cbe1b798fc95add71a8edbc2664f3ad45f8b5dd6ea"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/ConnectorSourceCandidates.tsx",
+      "bytes": 5392,
+      "sha256": "d2b6144f8fc5eacf9da9218b2a2b592b27b66e6efa4b3b9c4fd60e7a44cf9b29"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/OwnerJourneys.tsx",
+      "bytes": 51431,
+      "sha256": "6174f87adff04b6651e3a7d580fa9c4ce44c7ffb44eb31f10a4cdfb217be6c26"
+    },
+    {
+      "path": "empireai-web/lib/owner/runtime-identity.mjs",
+      "bytes": 601,
+      "sha256": "b9cdb78d52c9ed7d9a00a30bc9bb8fdd87d3d0ee0732d148b4ebe2e19e7c8fe6"
+    },
+    {
+      "path": "empireai-web/lib/owner/runtime-release-identity.test.ts",
+      "bytes": 1562,
+      "sha256": "bd8727b0f6d650739d847cb8fe6c3ea3ea8231bf70b39afe931669f4dfeb9c60"
+    }
+  ],
+  "backendBuildReceiptSHA256": "b35aba5c7b5d0dc9930c1e4aaaae3646366969ab8b6521387e945efc5672ae82",
+  "frontendBuild": "REQUIRES_ACTUAL_FULL_SOURCE_HOSTED_BUILD",
+  "browserImageDigest": "mcr.microsoft.com/playwright@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
+  "browserImageId": "sha256:fee853fafa59550d162cef52bca02d907694b44ebf6ef9fb075bcc0c65d8dedb",
+  "wholeRowAccepted": false,
+  "frontendBuildInputsSHA256": "5262000d7ee3381f71a1b9606e1f2f36af19852edbed0e7af772e72b752ca025",
+  "retainedFrontendSourceCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "retainedFrontendGitTree": "2b3e370898ddb170516ffa4c953064e23e8527c9",
+  "qualifiedReferenceReconciliation": {
+    "exactRetainedSourceGitBlobMatches": 957,
+    "referenceCommit": "750483b3152f2c9c65a65b6381c8c94f081b9eb1",
+    "initialDifferencesFromReference": [
+      "lib/owner/runtime-identity.mjs",
+      "lib/owner/runtime-release-identity.test.ts",
+      "vercel.json"
+    ],
+    "restoredExactlyFromReference": [
+      "lib/owner/runtime-identity.mjs",
+      "lib/owner/runtime-release-identity.test.ts"
+    ],
+    "deploymentConfiguration": "Current reviewed parent configuration plus exact new launch branch suppression; historical suppressions retained",
+    "newUiSourceFiles": [
+      "components/owner/work7/ConnectorSourceCandidates.tsx",
+      "components/owner/work7/OwnerJourneys.tsx"
+    ],
+    "unavailableReadinessRemainsUnknown": true,
+    "positiveHealthFacadeAdded": false
+  },
+  "expectedChangedFrontendSourceTreeSHA256": "015945246ccda936cd1e64bfa1c65ab668fd3ac2faeb19303928d0aea3ac2826"
+}

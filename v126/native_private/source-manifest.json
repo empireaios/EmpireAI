@@ -3,18 +3,68 @@
   "files": [
     {
       "path": "admit_github.py",
-      "bytes": 3200,
-      "sha256": "bc6e8cbc9bc62e44ec6e6448553e2ccbb5815921060a13a2d28b7161f4dffce2"
+      "bytes": 3853,
+      "sha256": "566e78d6b0c6dccc1f15d6eca01a1c1ef55a0e83f3371e4457679ea18e0375ed"
     },
     {
       "path": "authority.json",
-      "bytes": 618,
-      "sha256": "2defb2bffe3e948aff81e6e822a775d00d3d2c9c81008b972d1198113d5070e9"
+      "bytes": 748,
+      "sha256": "0f5b21a28f3da5c6bea1d12cec4474606a9c92e2b2e5151c916cef39d4c78e68"
+    },
+    {
+      "path": "build_connector_frontend.py",
+      "bytes": 14616,
+      "sha256": "8cb9c176553abf2ab5a9484c8747bcdcf34dc8fedc6c8f613aadad8d5c78a4f3"
     },
     {
       "path": "configure_private.py",
-      "bytes": 2170,
-      "sha256": "5618bfa7f5fdd7a5b32f03a474a216e508dd64e63b10f4af0146e51550ac7c73"
+      "bytes": 3296,
+      "sha256": "f64e9e0901d7cf77be9ed3b5e7dafb871499f88613842c9ff95cfc340b07bbd1"
+    },
+    {
+      "path": "connector-backend-build.json",
+      "bytes": 18965,
+      "sha256": "b35aba5c7b5d0dc9930c1e4aaaae3646366969ab8b6521387e945efc5672ae82"
+    },
+    {
+      "path": "connector-browser.mjs",
+      "bytes": 19890,
+      "sha256": "af52338f475a10bfab381541863c8ffd9c3a1173a65327adcbdce47f35413cad"
+    },
+    {
+      "path": "connector-build-manifest.json",
+      "bytes": 4140,
+      "sha256": "806ba054d6ed83721038805a3e3e3186ca067cd8ccdcfcf0f15edc14685a8e6e"
+    },
+    {
+      "path": "connector-cj-readback.json",
+      "bytes": 13988,
+      "sha256": "49a84a8c0d78aa4fefe5fad51f28d80d2e51c9f86e74c6ec1fe37f632e69be78"
+    },
+    {
+      "path": "connector-cj-review.json",
+      "bytes": 9052,
+      "sha256": "7b88b56f5eb8d2e2edb32220614271abb9bd95bb228e41dac1b02f541c84fe63"
+    },
+    {
+      "path": "connector-runtime.js",
+      "bytes": 30918,
+      "sha256": "ff64387fa0ffd4394d8beedfc5eae665e3b4abbb03c6fe3f6925522b93ecc692"
+    },
+    {
+      "path": "connector-runtime.js.map",
+      "bytes": 31356,
+      "sha256": "fd0e532106f08c20eec0c85420a292da8e1a1ddab21fa1bff6ea55b29e992dc3"
+    },
+    {
+      "path": "connector-source.js",
+      "bytes": 14220,
+      "sha256": "b3e76dbcddc684885eb3e1f21e83a70fdf5cec56671116459acebec5ddfbb5e4"
+    },
+    {
+      "path": "connector-source.js.map",
+      "bytes": 13481,
+      "sha256": "08aac0e557ba3a9ed409e0a08df55a1116d48e04af194e280b8a310233119917"
     },
     {
       "path": "delegated-session.mjs",
@@ -23,8 +73,8 @@
     },
     {
       "path": "execute_github.py",
-      "bytes": 2196,
-      "sha256": "fbd878c9e8cdf7e8216444b00b139f11b25ba10386a2c9c51df4c2e1f9baf24f"
+      "bytes": 2194,
+      "sha256": "3e5840dd2596960aeea5ca342cedb9b2be3f561543ff4cc0349d1d09be1c83a2"
     },
     {
       "path": "fetch-redis-dependencies.py",
@@ -38,13 +88,13 @@
     },
     {
       "path": "fresh-backend.mjs",
-      "bytes": 5651,
-      "sha256": "d5e7660761f535cba2b5310ccd911f22a96cad5c47266b05af0e00c6f4513da6"
+      "bytes": 9168,
+      "sha256": "43626aac22d84db6a01cdcb12d7ae9c6337e01c6b4eca22a2a31b308ad56c8b9"
     },
     {
       "path": "fresh-scope.mjs",
-      "bytes": 1007,
-      "sha256": "73be88630b3105e88c3e22a090cbe01b1a53a827307b4971010bb05a0bc9e87e"
+      "bytes": 421,
+      "sha256": "7a0066e575275d458780d92415d0872166fe6196ff34b59e0463b52845ce0dd2"
     },
     {
       "path": "fresh-supervisor.mjs",
@@ -52,14 +102,24 @@
       "sha256": "b29a042b642f41384cf708e45b7b663b21282f1614b4226e248dce8e2db347c6"
     },
     {
+      "path": "frontend-build-inputs.json",
+      "bytes": 4141,
+      "sha256": "5262000d7ee3381f71a1b9606e1f2f36af19852edbed0e7af772e72b752ca025"
+    },
+    {
       "path": "frontend-pins.json",
       "bytes": 1303,
       "sha256": "5aaa31c5a520437ae0da682b14adb39c23e7555ed2cbf8939762c7107095abd6"
     },
     {
+      "path": "launch_browser.py",
+      "bytes": 6700,
+      "sha256": "ba7755343ada4bd70768d3ea23a7808c320ed42f450c9694d7597893bbeaaf61"
+    },
+    {
       "path": "launch_private.py",
-      "bytes": 5714,
-      "sha256": "a42e9c85f4d0308022f7e13b7c674280c1fc31cd09519dc6c0223dc1a5715418"
+      "bytes": 6588,
+      "sha256": "cf0790398afa5e0ab5586c3f1e57a1d2f9dbf67adc34ae63f21692d9aefeab94"
     },
     {
       "path": "native-auth-handler-provenance.json",
@@ -82,6 +142,11 @@
       "sha256": "4718286af9c9a747f98da2197305271433a2a57505b9939f7bc34b64ce6bb87b"
     },
     {
+      "path": "prepare_connector_runtime.py",
+      "bytes": 6332,
+      "sha256": "5e0d64e16d664b095cfefd7489cdf7efadc9e3d6d54fb9afc3c95f392c0062ad"
+    },
+    {
       "path": "prepare_runtime.py",
       "bytes": 7008,
       "sha256": "22aae136059bfe8fa415d498acf6a0a4407739e194c109c27e70e86f22fd63b9"
@@ -98,8 +163,8 @@
     },
     {
       "path": "reservation.json",
-      "bytes": 561,
-      "sha256": "ed42cbd923301f30dd81a23ba6983dfb4c6708ae165ea91ea2bbb50922b7be0b"
+      "bytes": 570,
+      "sha256": "cd6f29da45ce2c0fb51b5e285933f090133e73ea01051b9a2b6b0ef7f2f769cd"
     },
     {
       "path": "retained-blob-manifest.json",
@@ -113,36 +178,68 @@
     },
     {
       "path": "seal_github.py",
-      "bytes": 7534,
-      "sha256": "1504918d19e1fa2734432f623531ee51e2f201ea68b37ab55ded47a16595ce4b"
+      "bytes": 12218,
+      "sha256": "0650629d865391c0dfd61d3e42ec1d5828082b620a85f57354173fc755ef3968"
     },
     {
       "path": "test-fresh-scope.mjs",
-      "bytes": 1671,
-      "sha256": "e0b35373913f67484b6687c8e70cdf534ccf45f3c7800c45c58b64f3ac7f1a30"
+      "bytes": 740,
+      "sha256": "3403fab2c7a0fa195fa1c0a27891735e89f5cabeebc9032c79c882ac9b9afd21"
     },
     {
       "path": "verify_final.py",
-      "bytes": 1123,
-      "sha256": "486818ab5c3481ba9d620d2becabede4993d131b781bfdc4792f2d783a983c49"
+      "bytes": 1726,
+      "sha256": "c25549fd9e2b99ab45c100e516694bd307e3713bd2e5e04273967b3c7ae44abe"
     }
   ],
   "workflow": {
     "path": ".github/workflows/work8-v126-native-private.yml",
-    "bytes": 2895,
-    "sha256": "004af3e9bb59dbc08bb5c7561943828e1dedd66a6271f92f5107ca5c7175b8b6"
+    "bytes": 3515,
+    "sha256": "bfaf63d80cd7ffed00086e1f30fdbd736206080fe8925c50fd51be2ed9920acc"
   },
   "noNativeAcceptanceClaimed": true,
   "repositoryFiles": [
     {
       "path": "vercel.json",
-      "bytes": 967,
-      "sha256": "c07d36d22903ff30284456d7ead72aabbabea2debcc9d383648a06f39133494d"
+      "bytes": 1030,
+      "sha256": "a0082c9d53bfddb65511c593a7be46cbfce72292184d5e97eb509525ae84eb1f"
     },
     {
       "path": "empireai-web/vercel.json",
-      "bytes": 788,
-      "sha256": "b7b41612f06085dda9f158e78b71428fc059051fa3864bc42038a558133736d6"
+      "bytes": 851,
+      "sha256": "40576544d9a3442eeffeb3abb4fa97cd5b54755c64d32662a1c4acb4d0dffc73"
+    }
+  ],
+  "applicationFiles": [
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "bytes": 27378,
+      "sha256": "887bca9d19396ce704e5730d0948296b5b1c36b84d46bdd4457a3acf80ece64e"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-source.ts",
+      "bytes": 13079,
+      "sha256": "1d29e9d0e018769a6783e2cbe1b798fc95add71a8edbc2664f3ad45f8b5dd6ea"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/ConnectorSourceCandidates.tsx",
+      "bytes": 5392,
+      "sha256": "d2b6144f8fc5eacf9da9218b2a2b592b27b66e6efa4b3b9c4fd60e7a44cf9b29"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/OwnerJourneys.tsx",
+      "bytes": 51431,
+      "sha256": "6174f87adff04b6651e3a7d580fa9c4ce44c7ffb44eb31f10a4cdfb217be6c26"
+    },
+    {
+      "path": "empireai-web/lib/owner/runtime-identity.mjs",
+      "bytes": 601,
+      "sha256": "b9cdb78d52c9ed7d9a00a30bc9bb8fdd87d3d0ee0732d148b4ebe2e19e7c8fe6"
+    },
+    {
+      "path": "empireai-web/lib/owner/runtime-release-identity.test.ts",
+      "bytes": 1562,
+      "sha256": "bd8727b0f6d650739d847cb8fe6c3ea3ea8231bf70b39afe931669f4dfeb9c60"
     }
   ]
 }

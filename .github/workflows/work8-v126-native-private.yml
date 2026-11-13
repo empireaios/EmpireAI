@@ -1,20 +1,20 @@
-name: Work 8 V126 private native owner-bound runtime
+name: Work 8 V128 private connector owner source walkthrough
 on:
   create:
 permissions:
   contents: read
 concurrency:
-  group: work8-v126-native-private-20261113-a02
+  group: work8-v128-connector-owner-native-20261113-a01
   cancel-in-progress: false
 jobs:
   native-private:
     if: >-
       github.repository == 'empireaios/EmpireAI' &&
       github.event.ref_type == 'branch' &&
-      github.event.ref == 'work8/v126-native-private-20261113-a02' &&
+      github.event.ref == 'work8/v128-connector-owner-native-20261113-a01' &&
       github.run_attempt == 1
     runs-on: ubuntu-24.04
-    timeout-minutes: 22
+    timeout-minutes: 35
     env:
       PYTHONDONTWRITEBYTECODE: '1'
       ACTIONS_STEP_DEBUG: 'false'
@@ -40,22 +40,28 @@ jobs:
       - name: Verify retained image, Node, native source, frontend and private Redis
         timeout-minutes: 9
         run: sudo python3 -B v126/native_private/prepare_runtime.py "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/retained-input.zip" "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/runtime"
-      - name: Provision private native credentials and execute finite technical session
+      - name: Build exact complete changed frontend with locked dependencies and no credentials
+        timeout-minutes: 15
+        run: sudo --preserve-env=GITHUB_SHA python3 -B v126/native_private/build_connector_frontend.py "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/runtime" "$GITHUB_WORKSPACE" "$GITHUB_RUN_ID"
+      - name: Admit all built bytes, readonly source receipts and exact retained browser
+        timeout-minutes: 6
+        run: sudo --preserve-env=GITHUB_SHA python3 -B v126/native_private/prepare_connector_runtime.py "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/runtime"
+      - name: Admit genuine source and examine authenticated desktop and mobile owner views
         id: native
-        timeout-minutes: 3
+        timeout-minutes: 5
         env:
           EMPIREAI_WORK8_NATIVE_OWNER_EMAIL: ${{ secrets.EMPIREAI_WORK8_NATIVE_OWNER_EMAIL }}
         run: sudo --preserve-env=EMPIREAI_WORK8_NATIVE_OWNER_EMAIL,RUNNER_TEMP,GITHUB_RUN_ID,GITHUB_SHA python3 -B v126/native_private/execute_github.py
       - name: Terminate exact resources, remove credentials and verify final custody
         id: seal
         if: ${{ always() && steps.admit.outcome == 'success' }}
-        timeout-minutes: 2
+        timeout-minutes: 3
         run: sudo --preserve-env=RUNNER_TEMP,GITHUB_RUN_ID,GITHUB_SHA,GITHUB_OUTPUT python3 -B v126/native_private/seal_github.py
       - name: Retain bounded private-source-safe execution evidence
         if: ${{ always() && steps.seal.outputs.custody_ready == 'true' }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: v126-private-native-${{ github.run_id }}-1
+          name: v128-connector-owner-native-${{ github.run_id }}-1
           path: ${{ runner.temp }}/v126-native-${{ github.run_id }}/publish/
           retention-days: 7
           compression-level: 6

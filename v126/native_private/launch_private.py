@@ -32,13 +32,26 @@ def main():
  prepared_bytes=(root/'evidence/prepared-runtime.json').read_bytes();assert hashlib.sha256(prepared_bytes).hexdigest()==prepared_sha
  prepared=json.loads(prepared_bytes)
  assert prepared['image']==IMAGE and prepared['applicationStarted']is False and prepared['historyImported']is False
- for n in ['native-bootstrap.json','owner-policy.json']:
+ for n in ['native-bootstrap.json','owner-policy.json','connector-policy.json']:
   p=private/n;s=p.lstat();assert p.is_file()and not p.is_symlink()and s.st_nlink==1 and s.st_size<4096 and s.st_uid==0 and s.st_mode&0o777==0o400
  assert subprocess.run(['docker','inspect',name],capture_output=True,timeout=10).returncode!=0
  for n in ['state','private-output','runtime-output']:
   p=root/n;assert not p.exists();p.mkdir(mode=0o700)
  label='empireai.v126.native='+name
- binds={root/'frontend':'/frontend',root/'redis':'/redis',CONTROL:'/control',private:'/private'}
+ build=json.loads((CONTROL/'connector-build-manifest.json').read_text())
+ assert {p['destination']for p in build['backendOverlays']}=={
+  'backend/dist/runtime/commerce-runtime/governed/runtime.js',
+  'backend/dist/runtime/commerce-runtime/governed/runtime.js.map',
+  'backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js',
+  'backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map'}
+ assert (root/'evidence/connector-runtime-prepared.json').is_file()
+ binds={root/'connector-frontend':'/frontend',root/'redis':'/redis',CONTROL:'/control',private:'/private',
+  root/'app':'/retained-app',root/'connector-inputs':'/connector-inputs'}
+ for pin in build['backendOverlays']:
+  assert pathlib.Path(pin['sourceFile']).name==pin['sourceFile']
+  src=CONTROL/pin['sourceFile'];b=src.read_bytes()
+  assert len(b)==pin['bytes']and hashlib.sha256(b).hexdigest()==pin['sha256']
+  binds[src]='/app/'+pin['destination']
  argv=['create','--name',name,'--label',label,'--pull','never','--network','none','--user','0:0',
   '--cap-drop','ALL','--security-opt','no-new-privileges','--read-only','--memory','2147483648',
   '--memory-swap','2147483648','--cpus','2','--pids-limit','128','--ipc','private',
