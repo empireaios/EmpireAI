@@ -1,2 +1,0 @@
-cgroup2 ro,nosuid,nodev,noexec,relatime,nsdelegate
-0::/

@@ -1,7 +1,0 @@
-{
-  "url": "https://developers.cjdropshipping.com/api2.0/v1/product/stock/getInventoryByPid?pid=2609291119211612600",
-  "method": "GET",
-  "body": null,
-  "pointsReserved": 10,
-  "attempt": 2
-}

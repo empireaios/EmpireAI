@@ -1,27 +1,7 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
   "git": {
     "deploymentEnabled": {
-      "fix/pillow-integrated-closure-20260920": false,
-      "ci/provider-readback-amazon-v1": false,
-      "ci/provider-readback-cj-v1": false,
-      "work8/closure-20261031-native-backend": false,
-      "work8/closure-20261031-native-normal": false,
-      "work8/closure-20261031-native-recovery": false,
-      "work8/closure-20261031-native-transition": false,
-      "work8/v21-20261031-storage-backend": false,
-      "work8/v116-native-session-browser-20261111-a05": false,
-      "work8/v126-native-private-20261113-a01": false,
-      "work8/v126-native-private-20261113-a02": false,
-      "work8/v128-connector-owner-native-20261113-a01": false,
-      "work8/v128-connector-owner-native-20261113-a02": false,
-      "work8/v128-connector-owner-native-20261113-a03": false,
-      "work8/v128-connector-owner-native-20261113-a04": false,
-      "work8/v128-connector-owner-native-20261113-a05": false,
-      "work8/v128-connector-media-native-20261113-a06": false
+      "work8/v128-a10-handoff-43427135331-1": false
     }
   }
 }
