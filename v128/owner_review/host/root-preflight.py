@@ -58,6 +58,33 @@ def validate_admission(authority, reservation, operation):
             and reservation.get('actualChargesStatus') == 'UNCONFIRMED', 'EXPOSURE_RECONCILIATION_STATUS')
 
 
+def write_host_bootstrap(raw):
+    """Create the one immutable root-owned bootstrap readable by review GID1001."""
+    require(type(raw) is bytes and 0 < len(raw) <= 4 * 1024 * 1024, 'HOST_BOOTSTRAP_BOUND')
+    PRIVATE.mkdir(mode=0o750, exist_ok=True)
+    info = PRIVATE.lstat()
+    require(stat.S_ISDIR(info.st_mode) and info.st_uid == 0 and not info.st_mode & 0o022
+            and PRIVATE.resolve() == PRIVATE, 'ROOT_PRIVATE_DIRECTORY_REQUIRED')
+    os.chown(PRIVATE, 0, 1001)
+    os.chmod(PRIVATE, 0o750)
+    fd = os.open(PRIVATE / 'host-bootstrap.json', os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o440)
+    try:
+        os.fchown(fd, 0, 1001)
+        # The root watchdog deliberately inherits umask 077. Restore the exact
+        # reviewed group-read mode after creation so UID/GID1001 can read it.
+        os.fchmod(fd, 0o440)
+        require(os.write(fd, raw) == len(raw), 'HOST_BOOTSTRAP_COMPLETE_WRITE')
+        os.fsync(fd)
+        created = os.fstat(fd)
+        require(stat.S_ISREG(created.st_mode) and created.st_nlink == 1
+                and created.st_uid == 0 and created.st_gid == 1001
+                and stat.S_IMODE(created.st_mode) == 0o440
+                and created.st_size == len(raw),
+                'HOST_BOOTSTRAP_EXACT_READ_PERMISSIONS')
+    finally:
+        os.close(fd)
+
+
 def main():
     require(os.geteuid() == 0, 'ROOT_PREFLIGHT_REQUIRED')
     origin = os.environ.get('A09_REVIEW_ORIGIN', '')
@@ -177,19 +204,7 @@ def main():
               'authoritySHA256': authority_sha, 'financialReservationSHA256': finance_sha}
     raw = json.dumps(config, separators=(',', ':')).encode() + b'\n'
     require(len(raw) <= 4 * 1024 * 1024, 'HOST_BOOTSTRAP_BOUND')
-    PRIVATE.mkdir(mode=0o750, exist_ok=True)
-    info = PRIVATE.lstat()
-    require(stat.S_ISDIR(info.st_mode) and info.st_uid == 0 and not info.st_mode & 0o022
-            and PRIVATE.resolve() == PRIVATE, 'ROOT_PRIVATE_DIRECTORY_REQUIRED')
-    os.chown(PRIVATE, 0, 1001)
-    os.chmod(PRIVATE, 0o750)
-    fd = os.open(PRIVATE / 'host-bootstrap.json', os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o440)
-    try:
-        os.fchown(fd, 0, 1001)
-        os.write(fd, raw)
-        os.fsync(fd)
-    finally:
-        os.close(fd)
+    write_host_bootstrap(raw)
     os.execv('/usr/bin/python3', ['/usr/bin/python3', '-I', '-B', str(CONTROL / 'host/root-supervisor.py')])
 
 

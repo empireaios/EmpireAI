@@ -44,8 +44,8 @@ def verify_source_manifest():
     expected = {
         'operationIdentity': 'V128-CONNECTOR-MEDIA-OWNER-REVIEW-A09-20261113',
         'branch': 'work8/v128-media-owner-review-20261113-a09',
-        'parentCommit': '690f66acf64d9d40a8e39a87b5a24d31982f9cad',
-        'parentTree': '6d00c07c09205d6a5f7cc77e929a3b26fa39110e',
+        'parentCommit': 'ac95e4df9f1ffc342990c4153833a2a35951ee92',
+        'parentTree': '06549e6161661c73d0cdeee4b199de12730368f7',
         'retainedApplicationCommit': '6c1e63ba20619ee480742fd87dc810ca93152e22',
         'retainedA08RunId': '43434940694',
         'completeFrontendSourceSHA256': '12fc6f3a250693e6d9eef0ab597cbda477aa9e86a31cadaea1e3fc797e401209',
@@ -180,10 +180,17 @@ def main():
         '--publication-commit', publication], 120))
     assert (OUTPUT / 'control/owner_review/runtime-manifest.json').is_file()
     assert (OUTPUT / 'control/owner_review/build-provenance.json').is_file()
+    # Before an image can become runnable, exercise the actual root-to-UID1001
+    # graph with the complete freshly built static inventory and no private data.
+    receipts.append(run('credentialless-host-graph-smoke', [sys.executable, '-B',
+        str(D / 'host_image_smoke.py'), '--runtime-root', str(OUTPUT),
+        '--receipt', str(D / 'host-image-smoke-receipt.json')], 30))
     print(json.dumps({'schema': 'A09_PUBLIC_IMAGE_BUILD_COMPLETE_V1', 'status': 'PASS',
                       'sourcePublicationCommit': publication,
                       'runtimeManifestSHA256': sha(OUTPUT / 'control/owner_review/runtime-manifest.json'),
                       'buildProvenanceSHA256': sha(OUTPUT / 'control/owner_review/build-provenance.json'),
+                      'hostGraphSmoke': json.loads((D / 'host-image-smoke-receipt.json').read_bytes()),
+                      'hostGraphSmokeReceiptSHA256': sha(D / 'host-image-smoke-receipt.json'),
                       'elapsedSeconds': round(time.monotonic() - started, 3),
                       'nativeApplicationStarted': False, 'ownerActionObserved': False}), flush=True)
 

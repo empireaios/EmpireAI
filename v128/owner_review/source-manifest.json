@@ -2,8 +2,8 @@
   "schema": "A09_REVIEW_SOURCE_MANIFEST_V1",
   "operationIdentity": "V128-CONNECTOR-MEDIA-OWNER-REVIEW-A09-20261113",
   "branch": "work8/v128-media-owner-review-20261113-a09",
-  "parentCommit": "690f66acf64d9d40a8e39a87b5a24d31982f9cad",
-  "parentTree": "6d00c07c09205d6a5f7cc77e929a3b26fa39110e",
+  "parentCommit": "ac95e4df9f1ffc342990c4153833a2a35951ee92",
+  "parentTree": "06549e6161661c73d0cdeee4b199de12730368f7",
   "files": [
     {
       "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
@@ -222,8 +222,8 @@
     },
     {
       "path": "v128/owner_review/host/bounded-ingress.mjs",
-      "bytes": 12785,
-      "sha256": "bcca6eafdbf2c6279206132b36eb165d2a6523fe42cb311bac0aef4033d47b69"
+      "bytes": 12840,
+      "sha256": "826f1dfb3a4af33e02077021be2aaa006e4fd95606b2b0157947bcae1b0274ab"
     },
     {
       "path": "v128/owner_review/host/host-controls.test.mjs",
@@ -242,8 +242,8 @@
     },
     {
       "path": "v128/owner_review/host/root-preflight.py",
-      "bytes": 11676,
-      "sha256": "07d7dda3f4023919cf902c051d807fa0b63331418bd3b1f23bcddd3bdaaa898d"
+      "bytes": 12490,
+      "sha256": "18088cba511251eb9153ea38f96077002a5e9d0ca954b5592c4be7079090ff86"
     },
     {
       "path": "v128/owner_review/host/root-supervisor.py",
@@ -297,8 +297,8 @@
     },
     {
       "path": "v128/owner_review/portable/build_image.py",
-      "bytes": 10449,
-      "sha256": "052f7a409a793f01f55e35727a8643fab7affb86c7a2061c544b11cf8ba321ab"
+      "bytes": 11031,
+      "sha256": "e7488aac73bf20a850d2f392df28ed513b6caa081a9511bb5e99f72360a90796"
     },
     {
       "path": "v128/owner_review/portable/deny_build_network.py",
@@ -312,8 +312,13 @@
     },
     {
       "path": "v128/owner_review/portable/generate_runtime_manifest.py",
-      "bytes": 8311,
-      "sha256": "811ed2433fe3e0c43c7a577b5a65174b88765a6b894932675476697e89d54ff0"
+      "bytes": 8648,
+      "sha256": "81d2a054c56b9860c9bd235fb272e35636b8c29423ba1ba09adca0779f64c8e5"
+    },
+    {
+      "path": "v128/owner_review/portable/host_image_smoke.py",
+      "bytes": 7503,
+      "sha256": "e050cfe6c74ecd010d5ffdd91f8652609880633730877a8cb52c02f62ddda7a1"
     },
     {
       "path": "v128/owner_review/portable/prepare_frontend_source.py",
@@ -337,8 +342,8 @@
     },
     {
       "path": "v128/owner_review/reservation.json",
-      "bytes": 831,
-      "sha256": "404321ab8c17533b911708956dfb2d5ee41eaebb3de7ec8e9d19dceaab83eb48"
+      "bytes": 1026,
+      "sha256": "354dea0b0c9c75395b93117ee9cd8431084c271ac723b0a93ae24c9bcca4c6bf"
     },
     {
       "path": "v128/owner_review/restore_review.py",

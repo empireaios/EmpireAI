@@ -56,7 +56,8 @@ export function validateConfig(config) {
     'BUILD_MANIFEST_STATIC_PATHS_REQUIRED');
   for (const path of config.staticAssetPaths) {
     invariant(typeof path === 'string' && path.length <= 512
-      && path.startsWith('/_next/static/') && !path.includes('..')
+      && path.startsWith('/_next/static/')
+      && !path.split('/').some(segment => segment === '.' || segment === '..')
       && !/[?#\\\s]/.test(path) && new URL(path, config.origin).pathname === path,
       'INVALID_STATIC_BUILD_PATH');
   }

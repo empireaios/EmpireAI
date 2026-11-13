@@ -2,12 +2,12 @@
   "schema": "A09_FINANCIAL_LAUNCH_RESERVATION_REFERENCE_V1",
   "operationIdentity": "V128-CONNECTOR-MEDIA-OWNER-REVIEW-A09-20261113",
   "status": "RESERVED_IN_CANONICAL_LEDGER",
-  "expectedCountedExposureUSD": 83,
+  "expectedCountedExposureUSD": 88,
   "cumulativeCeilingUSD": 1000,
   "maximumNewExposureUSD": 5,
-  "savedLedgerVersion": 76,
-  "savedLedgerSHA256": "bb2d6d53a9457a686a0435d095ad5775232566d3f6560986ff1625fbb9cff610",
-  "independentReadbackSHA256": "bb2d6d53a9457a686a0435d095ad5775232566d3f6560986ff1625fbb9cff610",
+  "savedLedgerVersion": 78,
+  "savedLedgerSHA256": "f5f3e612c4e21f1f497d4c076e896459429acbe19d52343399575630db584a96",
+  "independentReadbackSHA256": "f5f3e612c4e21f1f497d4c076e896459429acbe19d52343399575630db584a96",
   "gitPublicationIdentity": "work8/v128-media-owner-review-20261113-a09",
   "provider": "RAILWAY",
   "maximumRuntimeSeconds": 1200,
@@ -17,5 +17,8 @@
   "memoryGB": 2,
   "restartPolicyType": "NEVER",
   "maximumCredibleExposureIsNotProviderDollarCap": true,
-  "actualChargesStatus": "UNCONFIRMED"
+  "actualChargesStatus": "UNCONFIRMED",
+  "financialReservationId": "V128-CONNECTOR-MEDIA-OWNER-REVIEW-A09-20261113.attempt2",
+  "executionAttempt": 2,
+  "priorFinancialReservationId": "V128-CONNECTOR-MEDIA-OWNER-REVIEW-A09-20261113"
 }
