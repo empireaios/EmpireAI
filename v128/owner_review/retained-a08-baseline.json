@@ -1,0 +1,271 @@
+{
+  "schema": "A09_RETAINED_A08_OWNER_REVIEW_BASELINE_V1",
+  "sourceRun": "43434940694",
+  "sourceCommit": "690f66acf64d9d40a8e39a87b5a24d31982f9cad",
+  "sourceTree": "6d00c07c09205d6a5f7cc77e929a3b26fa39110e",
+  "snapshot": {
+    "bytes": 425984,
+    "sha256": "8097305c3253118be8bf41564184b9b6db78447894dc0b8a7a35b5a2b8510675"
+  },
+  "workspace": "ws_empire_1",
+  "owner": "usr_a437be3d7f2e7927",
+  "candidateId": "connector-cj:ee31fef40e923053a7900a6221e240f1416bac5b",
+  "candidateDigest": "cb110f69f51d17cf027499bd15f82b8d9d083b4f25513dc1ef41c1bc938a6cea",
+  "batchDigest": "48239ef45925dbae284d0ea865fb57e245f1376bfb58e88f05f20a72225d922e",
+  "bindingDigest": "4b1e9b01ceca91d14188a4096f1cf531b12b8c2256f7105fa408823fdfa134e6",
+  "proposalEventDigest": "75987c24e58ec6254abf597f40d85c9ddea4ff88b697c69e3c53ee198121fdf8",
+  "proposalVersion": 2,
+  "originalAssetSHA256": "4fe19c2fbe0907474d053181a5568489d842421e0dbd2b627e487cca61511048",
+  "revisedAssetSHA256": "69f1f95ab622041332d5e5e1ee43a59a2c34bd017151a6bb45e260f69e035788",
+  "revisedAssetId": "retained-revised-69f1f95ab6220413",
+  "storeInventory": {
+    "schemaSHA256": "e848dac4758791737f4acc9c14aa898eb1170eaa916d754a66d480e5ddfb431f",
+    "tables": [
+      {
+        "name": "commerce_runtime_receipts",
+        "columns": [
+          "workspace",
+          "mission",
+          "version",
+          "id",
+          "record"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "commerce_runtime_tasks",
+        "columns": [
+          "workspace",
+          "id",
+          "mission",
+          "record",
+          "version"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_connector_media",
+        "columns": [
+          "workspace",
+          "candidate",
+          "version",
+          "id",
+          "record"
+        ],
+        "rows": 2,
+        "rowsSHA256": "78fe20e433b9d0fdd4c0b485ea1f828625fe866045c91e872dcaf0f4eea1654e"
+      },
+      {
+        "name": "work8_connector_source_candidates",
+        "columns": [
+          "workspace",
+          "id",
+          "source_sha",
+          "operation",
+          "record"
+        ],
+        "rows": 1,
+        "rowsSHA256": "72b378fc0df28390c3fa06eccb2a5c0f93d183bb4341a607574b1d514798dbfd"
+      },
+      {
+        "name": "work8_connector_walkthrough",
+        "columns": [
+          "workspace",
+          "candidate",
+          "operation",
+          "record"
+        ],
+        "rows": 1,
+        "rowsSHA256": "fac1595675e6b42d6f4d0f909a7d1cfc9827e2855a48bc3c7c1ba9642380e979"
+      },
+      {
+        "name": "work8_mission_preparations",
+        "columns": [
+          "workspace",
+          "mission",
+          "record"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_preparation_authority",
+        "columns": [
+          "workspace",
+          "session",
+          "scope",
+          "version",
+          "id",
+          "record"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_sim_finance_admission",
+        "columns": [
+          "workspace",
+          "mission",
+          "taskId",
+          "reason",
+          "taskDigest",
+          "observedAt"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_sim_finance_cursor",
+        "columns": [
+          "workspace",
+          "mission"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_sim_finance_events",
+        "columns": [
+          "workspace",
+          "mission",
+          "sequence",
+          "record",
+          "digest"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_sim_finance_plans",
+        "columns": [
+          "workspace",
+          "mission",
+          "record",
+          "digest"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_simulation_enrollments",
+        "columns": [
+          "workspace",
+          "id",
+          "mission",
+          "record"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_twin_admissions",
+        "columns": [
+          "workspace",
+          "id",
+          "session",
+          "record"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_twin_authority",
+        "columns": [
+          "workspace",
+          "session",
+          "version",
+          "request",
+          "record"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_twin_communications",
+        "columns": [
+          "workspace",
+          "session",
+          "thread",
+          "version",
+          "id",
+          "record"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_twin_events",
+        "columns": [
+          "workspace",
+          "session",
+          "version",
+          "request",
+          "record"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_twin_media",
+        "columns": [
+          "workspace",
+          "session",
+          "mission",
+          "version",
+          "id",
+          "record"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_twin_observations",
+        "columns": [
+          "workspace",
+          "session",
+          "id",
+          "record"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "name": "work8_twin_scheduler",
+        "columns": [
+          "id",
+          "cursor"
+        ],
+        "rows": 0,
+        "rowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    ],
+    "mediaEvents": [
+      {
+        "version": 1,
+        "action": "REQUEST_EDIT",
+        "recordBytes": 1640,
+        "recordSHA256": "9baadf5d84a2b1dde0b59a348c5c9f01cd56bff678323ca1a4fbfce11821287d",
+        "digest": "b4ea5d3b0830ef90897e3f4e49d1b1dd155d7d504ff49d2f05b16fedcbb41a56",
+        "previous": "",
+        "batchDigest": "315b93022ced08bbc97e92313bedf8697200d3aed98d75fca7a4084b3f016810",
+        "ownerApproval": false
+      },
+      {
+        "version": 2,
+        "action": "PROPOSE_RETAINED",
+        "recordBytes": 2143,
+        "recordSHA256": "3fa7d3fe82de08c5abfce978534908595cf2892580a18154517bd9cd1bb1b8cd",
+        "digest": "75987c24e58ec6254abf597f40d85c9ddea4ff88b697c69e3c53ee198121fdf8",
+        "previous": "b4ea5d3b0830ef90897e3f4e49d1b1dd155d7d504ff49d2f05b16fedcbb41a56",
+        "batchDigest": "48239ef45925dbae284d0ea865fb57e245f1376bfb58e88f05f20a72225d922e",
+        "ownerApproval": false
+      }
+    ]
+  },
+  "nativeAuthIncluded": false,
+  "ownerReviewObserved": false,
+  "ownerApproval": false,
+  "wholeRowAccepted": false
+}

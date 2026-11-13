@@ -1,0 +1,399 @@
+{
+  "schema": "A09_REVIEW_SOURCE_MANIFEST_V1",
+  "operationIdentity": "V128-CONNECTOR-MEDIA-OWNER-REVIEW-A09-20261113",
+  "branch": "work8/v128-media-owner-review-20261113-a09",
+  "parentCommit": "690f66acf64d9d40a8e39a87b5a24d31982f9cad",
+  "parentTree": "6d00c07c09205d6a5f7cc77e929a3b26fa39110e",
+  "files": [
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "bytes": 29640,
+      "sha256": "16ec0242c39dede4c741d99fa7c9988ca79841d738ec4ef86d68dcbe99b3b3a8"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-media.ts",
+      "bytes": 16530,
+      "sha256": "6096f2df658aee6a04ee74722da2a9d4657cf25528f530584219ab7c4f5cb1c4"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-source.ts",
+      "bytes": 13079,
+      "sha256": "1d29e9d0e018769a6783e2cbe1b798fc95add71a8edbc2664f3ad45f8b5dd6ea"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-walkthrough.ts",
+      "bytes": 14178,
+      "sha256": "8f0269228a3d7667942981c79c61f43f0d541cdfeeeefb48ba33d67526e7b4cb"
+    },
+    {
+      "path": "empireai-web/app/api/owner/commerce/review-session/route.ts",
+      "bytes": 212,
+      "sha256": "b50fadd6e8bd2521a72413672dece81cc7fed9e8996cf8d0dfc6b6984115ea5d"
+    },
+    {
+      "path": "empireai-web/app/api/owner/commerce/review/route.ts",
+      "bytes": 212,
+      "sha256": "f0e2e15d09320e18ac4b53157c9dc9e17c05eb4a4b17d2ea01588dc6fa615a4f"
+    },
+    {
+      "path": "empireai-web/components/cockpit/shell/CockpitShell.tsx",
+      "bytes": 1920,
+      "sha256": "b754b97a0c01f1af9506dd073be05bec134cc70973f6b67d56cf9f742bd66411"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/ConnectorSourceCandidates.tsx",
+      "bytes": 10894,
+      "sha256": "be0708decbcfe5a256e54a293d34dab43b401773703e408c341fb8f4b1c9125e"
+    },
+    {
+      "path": "empireai-web/components/owner/work7/OwnerJourneys.tsx",
+      "bytes": 51508,
+      "sha256": "a29da7b26b735c38805b5b0a1a1783c1202e7d29bb728690bc5ca7f78f96813a"
+    },
+    {
+      "path": "empireai-web/components/owner/work8/ConnectorMedia.tsx",
+      "bytes": 18709,
+      "sha256": "ee10ea475046d67b8ebd64f161a4c7d69afeeadb072d79231840cd6ae428c519"
+    },
+    {
+      "path": "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+      "bytes": 32814,
+      "sha256": "86b5945cc8bd1b3a3fcc756fb1c6c43fee4a33fa92421f5c98628682baaabdc1"
+    },
+    {
+      "path": "empireai-web/lib/cockpit/interaction/CockpitInteractionProvider.tsx",
+      "bytes": 4813,
+      "sha256": "b087923684816d26094f5ccdeddf73aa72e38a9a1cfbaf4a4979510b5d2c5945"
+    },
+    {
+      "path": "empireai-web/lib/owner/finance-control.ts",
+      "bytes": 1915,
+      "sha256": "d7ad0887e054fee571cff07f3c0b148ae90d46735e807ab1c3ebd07cf569b22e"
+    },
+    {
+      "path": "empireai-web/lib/owner/review-proxy.ts",
+      "bytes": 3115,
+      "sha256": "2162a6b936f87f3c38aa49266f2a3872613298ec9604166b766c8b737db92e05"
+    },
+    {
+      "path": "empireai-web/lib/owner/runtime-identity.mjs",
+      "bytes": 601,
+      "sha256": "b9cdb78d52c9ed7d9a00a30bc9bb8fdd87d3d0ee0732d148b4ebe2e19e7c8fe6"
+    },
+    {
+      "path": "empireai-web/lib/owner/runtime-release-identity.test.ts",
+      "bytes": 1562,
+      "sha256": "bd8727b0f6d650739d847cb8fe6c3ea3ea8231bf70b39afe931669f4dfeb9c60"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 1351,
+      "sha256": "d671a45a313aa826563c147af7ed391410e2d346ded99ca9127669e6e2fd5c43"
+    },
+    {
+      "path": "v126/native_private/evidence-envelope-runtime-pin.json",
+      "bytes": 164,
+      "sha256": "30f778cb671f2d0b01a05462cdfdd9f57580938dc67db4418ba0351f209635de"
+    },
+    {
+      "path": "v126/native_private/fetch-redis-dependencies.py",
+      "bytes": 4695,
+      "sha256": "e221d57f11ef1c6d905729ee01ca0907ddbced50611957d126186a2acc868e71"
+    },
+    {
+      "path": "v126/native_private/fetch_retained_raw.py",
+      "bytes": 1037,
+      "sha256": "1382e073a56f0868db87249d9ce073d652f211bf552b9f7e0d04462f50ca9e62"
+    },
+    {
+      "path": "v126/native_private/frontend-build-inputs.json",
+      "bytes": 6271,
+      "sha256": "0ae284fca8b31d8c502c4e7151e2e98da4a7c3a2637e6ec21ba0de6879f55a6e"
+    },
+    {
+      "path": "v126/native_private/native-source-pins.json",
+      "bytes": 7854,
+      "sha256": "95072a228b5a154fce8b25317deffa2c4095deb551fec982b97d93004db37675"
+    },
+    {
+      "path": "v126/native_private/native-tier0-session-routes.mjs",
+      "bytes": 3069,
+      "sha256": "8e34791ae199c49e517d0fd903d999c5d519db7ce65a2ffcea6fd952e9af4a7d"
+    },
+    {
+      "path": "v126/native_private/pinned-dependencies.json",
+      "bytes": 8494,
+      "sha256": "4718286af9c9a747f98da2197305271433a2a57505b9939f7bc34b64ce6bb87b"
+    },
+    {
+      "path": "v126/native_private/raw_blob_transport.py",
+      "bytes": 9623,
+      "sha256": "6da01bee3710ea9fc3e66fadcbcdb15e6d69e4ed3bf9f1d978f1b5956ca6d844"
+    },
+    {
+      "path": "v126/native_private/recipient-public-key.pem",
+      "bytes": 800,
+      "sha256": "f54723612078a39ce1cad72b0da0408f9461242533b49f2261ec9539e10e7107"
+    },
+    {
+      "path": "v126/native_private/redis-abi-inputs.json",
+      "bytes": 5911,
+      "sha256": "2ab224fc27d46c81612b9c8a3dcb593eb4bc0901cec6e25d5893a5d03620544d"
+    },
+    {
+      "path": "v126/native_private/retained-blob-manifest.json",
+      "bytes": 8708,
+      "sha256": "7b8d9cfbef07c72fe97257acc5d5245459d670f77a57aaa1e39c47bacc64e658"
+    },
+    {
+      "path": "v128/owner_review/README.md",
+      "bytes": 6703,
+      "sha256": "2a2c31fbb1821bdad611d9c1fad3eff3e60566639fd73d0d3e48ede35ffdacd6"
+    },
+    {
+      "path": "v128/owner_review/authority.json",
+      "bytes": 1915,
+      "sha256": "c7f85bf5bfff2301b2713376e2f24b106d48faf227d1be6ad8f8f2fd6d2b4454"
+    },
+    {
+      "path": "v128/owner_review/backend-build-receipt.json",
+      "bytes": 16300,
+      "sha256": "27f95c7a4c48afa3cec82b2beec0e4494da554ca491a014c97b326ee0c7ce4ef"
+    },
+    {
+      "path": "v128/owner_review/backend-overlays.json",
+      "bytes": 3298,
+      "sha256": "22fa9095469ef8bc11e3ce3def65e806c08076ee021d90b5a620af7747f266e0"
+    },
+    {
+      "path": "v128/owner_review/backend/connector-media.js",
+      "bytes": 17457,
+      "sha256": "ce612808ff824ab84a5f1b3dd499b6f23adb1e210b767f5227b205c754778a41"
+    },
+    {
+      "path": "v128/owner_review/backend/connector-media.js.map",
+      "bytes": 18797,
+      "sha256": "82e7d010fab75ea4dcdd72055be7c174ab57e87d4f05dacfff9e7a824ab17c9a"
+    },
+    {
+      "path": "v128/owner_review/backend/connector-runtime.js",
+      "bytes": 33359,
+      "sha256": "1eca1cb2faf615efd58f1587d56e77a18965fc940d859482340f87be617b488f"
+    },
+    {
+      "path": "v128/owner_review/backend/connector-runtime.js.map",
+      "bytes": 33215,
+      "sha256": "e334b354196ed8e3b492b0d2f16c6093578e34ff79059881c8e7f52f79541e05"
+    },
+    {
+      "path": "v128/owner_review/backend/connector-source.js",
+      "bytes": 14220,
+      "sha256": "b3e76dbcddc684885eb3e1f21e83a70fdf5cec56671116459acebec5ddfbb5e4"
+    },
+    {
+      "path": "v128/owner_review/backend/connector-source.js.map",
+      "bytes": 13481,
+      "sha256": "08aac0e557ba3a9ed409e0a08df55a1116d48e04af194e280b8a310233119917"
+    },
+    {
+      "path": "v128/owner_review/backend/connector-walkthrough.js",
+      "bytes": 15539,
+      "sha256": "57acd39761038fbb34d4f3359bdd336fddba3a0f6140d9bc2d07ecf46a7aee11"
+    },
+    {
+      "path": "v128/owner_review/backend/connector-walkthrough.js.map",
+      "bytes": 15841,
+      "sha256": "201cec87a508151813c50523b27500fea5ced85de63437fb8cb3219895bdce9c"
+    },
+    {
+      "path": "v128/owner_review/controller-transport-public-key.pem",
+      "bytes": 113,
+      "sha256": "a1a1a3fcfdb4b91b7b8e12c2e440c9840dd132699fe4f1059b4e71348af68a83"
+    },
+    {
+      "path": "v128/owner_review/controller_encrypt_review.mjs",
+      "bytes": 5847,
+      "sha256": "6b03e6a382be4bcb30b5c34bd0ecea342b0575aba753094abd0d6be598ff5729"
+    },
+    {
+      "path": "v128/owner_review/evidence-envelope-runtime-pin.json",
+      "bytes": 164,
+      "sha256": "30f778cb671f2d0b01a05462cdfdd9f57580938dc67db4418ba0351f209635de"
+    },
+    {
+      "path": "v128/owner_review/host/bounded-ingress.mjs",
+      "bytes": 12785,
+      "sha256": "bcca6eafdbf2c6279206132b36eb165d2a6523fe42cb311bac0aef4033d47b69"
+    },
+    {
+      "path": "v128/owner_review/host/host-controls.test.mjs",
+      "bytes": 7312,
+      "sha256": "7dd378704703bf14f70dde9c0b64249cd11f40028cfc907ad77a63aa1670218d"
+    },
+    {
+      "path": "v128/owner_review/host/portfolio-query.mjs",
+      "bytes": 1501,
+      "sha256": "84fc8d5b7ab096776a8faaa345ca50a6347c62d33dabd50aabe26aaa3fd27536"
+    },
+    {
+      "path": "v128/owner_review/host/root-entry.py",
+      "bytes": 309,
+      "sha256": "bed97535f519b34f0c35061b0fd8783fa13047c36cbef37a62c446444a3e60f7"
+    },
+    {
+      "path": "v128/owner_review/host/root-preflight.py",
+      "bytes": 11676,
+      "sha256": "07d7dda3f4023919cf902c051d807fa0b63331418bd3b1f23bcddd3bdaaa898d"
+    },
+    {
+      "path": "v128/owner_review/host/root-supervisor.py",
+      "bytes": 8939,
+      "sha256": "aac59fc83ac8f27109179fc2cfb8c5c8a982c5ea4bc286ec51ffe00662338ba5"
+    },
+    {
+      "path": "v128/owner_review/host/root-watchdog.py",
+      "bytes": 2919,
+      "sha256": "e1cc3aab14edf5bdef51c2b84f05ef635fe998d10942b63e461aaea0c3212116"
+    },
+    {
+      "path": "v128/owner_review/host/test_admission.py",
+      "bytes": 2512,
+      "sha256": "046142d48cd2354d6e67899ea7746e35a06bd4332f5639aaed760386bde0be32"
+    },
+    {
+      "path": "v128/owner_review/host/test_log_relay.py",
+      "bytes": 2296,
+      "sha256": "de0a3bedef18de844866247831dea99b14aee2cff3425abf73b17d7bc5153cfc"
+    },
+    {
+      "path": "v128/owner_review/host/test_watchdog.py",
+      "bytes": 1199,
+      "sha256": "e3bfca415a82a99f472ba9b1f1933fdf370d90c1d356fe1a19c036cdd51ed956"
+    },
+    {
+      "path": "v128/owner_review/native-tier0-session-routes.mjs",
+      "bytes": 3069,
+      "sha256": "8e34791ae199c49e517d0fd903d999c5d519db7ce65a2ffcea6fd952e9af4a7d"
+    },
+    {
+      "path": "v128/owner_review/portable/Dockerfile",
+      "bytes": 678,
+      "sha256": "b58595050de8a7b8701d2e1415b1edf8bfde86077ca49355bfe86f632bb1de73"
+    },
+    {
+      "path": "v128/owner_review/portable/Dockerfile.dockerignore",
+      "bytes": 251,
+      "sha256": "cf723a922c5fa0256dbc6230832a9d8cb4a22db4a78d25189025b8a12f66eee5"
+    },
+    {
+      "path": "v128/owner_review/portable/assemble_portable_runtime.py",
+      "bytes": 7071,
+      "sha256": "98669b3923505ac3832c845db4e4cd469a7e7dc521dc66207eb897c6ca2cb9e5"
+    },
+    {
+      "path": "v128/owner_review/portable/build_frontend_portable.py",
+      "bytes": 5622,
+      "sha256": "e52fba8749fcb4d255490f87543e35fce9b6088d3b724b4f09d6b8fe7e30e3cf"
+    },
+    {
+      "path": "v128/owner_review/portable/build_image.py",
+      "bytes": 10449,
+      "sha256": "052f7a409a793f01f55e35727a8643fab7affb86c7a2061c544b11cf8ba321ab"
+    },
+    {
+      "path": "v128/owner_review/portable/deny_build_network.py",
+      "bytes": 1400,
+      "sha256": "12d334eb4bee99bf03ca9e0a655585edff9600eb077815293ab1fc3cf92d29ee"
+    },
+    {
+      "path": "v128/owner_review/portable/extract_portable_runtime.py",
+      "bytes": 7642,
+      "sha256": "e014846557e6ebfcfec817afe5e38111a857e395bd2a5a032e595cd3b8bd3ea1"
+    },
+    {
+      "path": "v128/owner_review/portable/generate_runtime_manifest.py",
+      "bytes": 8311,
+      "sha256": "811ed2433fe3e0c43c7a577b5a65174b88765a6b894932675476697e89d54ff0"
+    },
+    {
+      "path": "v128/owner_review/portable/prepare_frontend_source.py",
+      "bytes": 3080,
+      "sha256": "612517b430a06c3ce2bd0dbb3b16b75afb568b8fcff4a1c3e5e7f02735bbbb79"
+    },
+    {
+      "path": "v128/owner_review/portable/railway.json",
+      "bytes": 445,
+      "sha256": "e431622b29cfc2fd4b345944bca17802d65165a98eb68c51b444891baa5adb70"
+    },
+    {
+      "path": "v128/owner_review/private-evidence-envelope.mjs",
+      "bytes": 17456,
+      "sha256": "ed6a35ffdb5944f8702c63f1b9951966517f574038490d77fd1ed35ae725f72b"
+    },
+    {
+      "path": "v128/owner_review/recipient-public-key.pem",
+      "bytes": 800,
+      "sha256": "f54723612078a39ce1cad72b0da0408f9461242533b49f2261ec9539e10e7107"
+    },
+    {
+      "path": "v128/owner_review/reservation.json",
+      "bytes": 831,
+      "sha256": "404321ab8c17533b911708956dfb2d5ee41eaebb3de7ec8e9d19dceaab83eb48"
+    },
+    {
+      "path": "v128/owner_review/restore_review.py",
+      "bytes": 7104,
+      "sha256": "32273b6dc601eca982906dcb8d17fb641a40246cceeb6068de198922f6888d57"
+    },
+    {
+      "path": "v128/owner_review/retained-a08-baseline.json",
+      "bytes": 7869,
+      "sha256": "90a84ca98be89e8861a1c9eda801921fcfe6aff68449168824b663836dcbc650"
+    },
+    {
+      "path": "v128/owner_review/review-admission.mjs",
+      "bytes": 5369,
+      "sha256": "92edb16368a5221f127da65fff53a156168abbe9711d70e81afd9fe4ed857805"
+    },
+    {
+      "path": "v128/owner_review/review-backend.mjs",
+      "bytes": 13753,
+      "sha256": "8bdd9b1f4773b57f0b6463cbad443fc89b394eaeea71cb63b6b5386ef1932cb4"
+    },
+    {
+      "path": "v128/owner_review/review-export.mjs",
+      "bytes": 6164,
+      "sha256": "3bf1c3807aea8ebcd379dbca9f3ad0524d559a43d3bfb5bae8e2a63721baa9ea"
+    },
+    {
+      "path": "v128/owner_review/review-finalization.mjs",
+      "bytes": 1118,
+      "sha256": "b5a6a1a11856833c97dc54a5584ae1b389230f48512c5d2e25c2f94ef57bc0e5"
+    },
+    {
+      "path": "v128/owner_review/review-supervisor.mjs",
+      "bytes": 6799,
+      "sha256": "7575ffc0ce4790d24458d421681bd3c2f3e2ceee62b69a155e94589272a05a19"
+    },
+    {
+      "path": "v128/owner_review/review-transport.mjs",
+      "bytes": 23092,
+      "sha256": "f0257461bc05d430431280f820de5736daa66b88f83dfece835eb2727a27c1ba"
+    },
+    {
+      "path": "v128/owner_review/seal_review.py",
+      "bytes": 10321,
+      "sha256": "ca696c4baec20324455a06b34023e87b55d527924b2d58d7f1f562345619f267"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 1530,
+      "sha256": "215136c2e9cd148fadc276adb726390584216dd5292e81fbb7772ee710f29a60"
+    }
+  ],
+  "selfExcluded": true,
+  "retainedApplicationCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "retainedA08RunId": "43434940694",
+  "completeFrontendSourceSHA256": "12fc6f3a250693e6d9eef0ab597cbda477aa9e86a31cadaea1e3fc797e401209",
+  "completeFrontendFileCount": 962
+}

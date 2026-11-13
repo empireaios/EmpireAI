@@ -1,0 +1,17 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "v128/owner_review/portable/Dockerfile"
+  },
+  "deploy": {
+    "restartPolicyType": "NEVER",
+    "restartPolicyMaxRetries": 0,
+    "multiRegionConfig": {"us-west2": {"numReplicas": 1}},
+    "startCommand": null,
+    "healthcheckPath": null,
+    "cronSchedule": null,
+    "overlapSeconds": 0,
+    "drainingSeconds": 5
+  }
+}

@@ -41,6 +41,7 @@ import {validateSavedResearch} from './evidence-bridge.js';
 import {validateCommerceClosure} from './closure.js';
 import fs from 'node:fs';
 import path from 'node:path';
+import {createHash} from 'node:crypto';
 import {z} from 'zod';
 import type {FastifyInstance,FastifyRequest,FastifyReply} from 'fastify';
 import type {createAuthMiddleware} from '../../../auth/middleware.js';
@@ -54,6 +55,19 @@ import {GovernedCommerceEngine,type CommerceState} from './engine.js';
 import {CommerceWorker,preparationBatchSchema} from './worker.js';
 import {envelopeSchema,id,type Actor} from './contracts.js';
 let instance:{store:GovernedCommerceStore;engine:GovernedCommerceEngine;worker:CommerceWorker;simulatedFinance:DurableSimulatedFinance;twin:Work8TwinSessions;twinRuntime:Work8TwinRuntime}|null=null;
+/** Verify the unchanged historical A08 record with its unchanged original reader.
+ * This call is strictly synchronous; the current A09 binding is restored before
+ * any other projection, media operation, timer or request can run. */
+export function readConnectorWalkthroughForPortfolio(...args:Parameters<typeof readConnectorWalkthrough>){
+ if(process.env.EMPIRE_CONNECTOR_OWNER_REVIEW_MODE!=='RESTORED_A08_V2')return readConnectorWalkthrough(...args);
+ const current=process.env.EMPIRE_CONNECTOR_ADAPTER_COMMIT,expected=process.env.EMPIRE_OWNER_REVIEW_PUBLICATION_COMMIT;
+ const historical='690f66acf64d9d40a8e39a87b5a24d31982f9cad',moduleSHA256='57acd39761038fbb34d4f3359bdd336fddba3a0f6140d9bc2d07ecf46a7aee11';
+ if(!current||!(/^[a-f0-9]{40}$/).test(current)||current!==expected||current===historical)throw Error('RESTORED_WALKTHROUGH_CURRENT_BINDING');
+ if(createHash('sha256').update(fs.readFileSync(new URL('./work8-connector-walkthrough.js',import.meta.url))).digest('hex')!==moduleSHA256)throw Error('RESTORED_WALKTHROUGH_MODULE_PIN');
+ process.env.EMPIRE_CONNECTOR_ADAPTER_COMMIT=historical;
+ try{return {...readConnectorWalkthrough(...args),restoredHistoricalRead:{publicationCommit:historical,moduleSHA256,scope:'READ_EXISTING_RECORD_ONLY',recordRewritten:false}};}
+ finally{process.env.EMPIRE_CONNECTOR_ADAPTER_COMMIT=current;}
+}
 export function productionCommerce(){const root=process.env.RAILWAY_VOLUME_MOUNT_PATH;if(!root||!path.isAbsolute(root)||fs.realpathSync(root)!==root)throw Error('COMMERCE_VOLUME_UNAVAILABLE');if(!instance){const store=new GovernedCommerceStore(path.join(root,'commerce','runtime.sqlite')),twin=new Work8TwinSessions(store),engine=new GovernedCommerceEngine(store,Date.now,(actor,command,state)=>enforceOwnerSafety(productionMemory(),store,actor,command,state,Date.now(),twin.safetyWorkspace(actor.workspace)));const worker=new CommerceWorker(engine);const simulatedFinance=new DurableSimulatedFinance(store,worker);instance={store,engine,worker,twin,simulatedFinance,twinRuntime:new Work8TwinRuntime(twin,worker,simulatedFinance)};}return instance;}
 export function resolveWork8ProductContext(p:{workspace:string;owner:string},raw:unknown,allowUnpinnedRead=false):unknown {
  const one=(reference:unknown)=>{if(reference&&typeof reference==='object'&&!Array.isArray(reference)&&(reference as {kind?:unknown}).kind==='SOURCE_DOSSIER'){const store=productionIntelligence();if(!store)throw Error('INTELLIGENCE_UNAVAILABLE');return sourceProductContext(store,p,reference,allowUnpinnedRead);}return productionCommerce().twinRuntime.context(p,reference);};
@@ -119,7 +133,7 @@ export function registerGovernedCommerce(app:FastifyInstance,authenticate:Return
    try{const intelligence=productionIntelligence();if(intelligence){const ids=intelligence.recent(workspace,'evidence',100).filter(e=>e.provider==='Amazon').map(e=>e.id);marketContext={...projectWork8MarketContext((ws,sourceId)=>intelligence.get(ws,'evidence',sourceId) as Evidence|null,workspace,ids,Date.now()),availability:'RETAINED_SOURCE_READ',coverage:'LATEST_100_EVIDENCE_RECORDS_ONLY'};}}catch{marketContext={...projectWork8MarketContext(()=>null,workspace,[],Date.now()),availability:'SOURCE_READ_UNAVAILABLE',coverage:'LATEST_100_EVIDENCE_RECORDS_ONLY'};}
    let dossierFinance:ReturnType<ReturnType<typeof productionFinance>['snapshot']>|null=null;try{dossierFinance=productionFinance().snapshot(workspace);}catch{/* Explicit missing financial inputs preserve source visibility. */}
    const enrichmentStore=productionIntelligence();let enrichment:unknown={availability:'UNAVAILABLE'};try{if(enrichmentStore)enrichment=await readWork8EnrichmentOwner(enrichmentStore,workspace,async requestId=>{const read=await readPillow(process.env.RAILWAY_VOLUME_MOUNT_PATH!,workspace,requestId) as any;const request=read.data?.requests?.find((r:any)=>r.requestId===requestId);return request?{...request,workspaceId:workspace}:null;},dossierFinance);}catch{enrichment={availability:'FAILED_CLOSED',reason:'ENRICHMENT_EVIDENCE_UNAVAILABLE'};}
-   return {...portfolio,enrichment,observedCandidates,retainedDiscovery:readRetainedDiscovery(workspace),freshAcquisition:readFreshAcquisition(workspace),marketContext,connectorSourceCandidates:readConnectorSourceCandidates(productionCommerce().store.db,workspace),connectorWalkthrough:readConnectorWalkthrough(productionCommerce().store.db,workspace),connectorMedia:readConnectorMedia(productionCommerce().store.db,{workspace,owner:req.user!.id})};
+   return {...portfolio,enrichment,observedCandidates,retainedDiscovery:readRetainedDiscovery(workspace),freshAcquisition:readFreshAcquisition(workspace),marketContext,connectorSourceCandidates:readConnectorSourceCandidates(productionCommerce().store.db,workspace),connectorWalkthrough:readConnectorWalkthroughForPortfolio(productionCommerce().store.db,workspace),connectorMedia:readConnectorMedia(productionCommerce().store.db,{workspace,owner:req.user!.id})};
   }catch(e){return reply.code(e instanceof z.ZodError?400:503).send({error:e instanceof z.ZodError?'INVALID_PORTFOLIO_QUERY':'COMMERCE_EVIDENCE_UNAVAILABLE'});}
  });
  app.get('/api/owner/commerce',{preHandler:[authenticate,owner]},async(req,reply)=>{try{const query=missionPageQuery.parse(req.query);return readGovernedCommerce(req.user!.workspaceId,undefined,query);}catch(e){const invalid=e instanceof z.ZodError||(e instanceof Error&&e.message==='INVALID_MISSION_CURSOR');return reply.code(invalid?400:503).send({error:invalid?'INVALID_MISSION_PAGE_QUERY':'COMMERCE_EVIDENCE_UNAVAILABLE'});}});
@@ -189,6 +203,12 @@ export function registerGovernedCommerce(app:FastifyInstance,authenticate:Return
  // No effect adapter is installed on this route, even outside the locked profile.
  app.post('/api/owner/commerce/execute',{preHandler:[authenticate,owner]},async(_req,reply)=>reply.code(423).send({error:'COMMERCE_LOCKED',birth:'NOT_BORN',commerce:'LOCKED'}));
  app.addHook('onReady',async()=>{if(process.env.RAILWAY_VOLUME_MOUNT_PATH)productionCommerce();});
+ // An isolated restored owner review serves existing state and one version-bound
+ // media choice. It must not run unrelated workers, discovery or twin timers.
+ if(process.env.EMPIRE_CONNECTOR_OWNER_REVIEW_MODE==='RESTORED_A08_V2'){
+  app.addHook('onClose',async()=>{instance?.store.close();instance=null;});
+  return;
+ }
  const stopTwinScheduler=startTwinScheduler(()=>instance?.twinRuntime??null);
  let busy=false;const timer=setInterval(()=>{void runCaptureAwareBackground(()=>{if(busy||!instance)return;busy=true;try{const task=instance.worker.nextReady('ws_empire_1');if(task)instance.worker.runBounded('ws_empire_1',task.id);instance.simulatedFinance.tick('ws_empire_1');}catch{/* Fails closed; current task and receipts remain available for operator review. */}finally{try{const intelligence=productionIntelligence();if(intelligence){const discovery=new RetainedDiscoveryWorker(intelligence);const checkpoint=discovery.start('ws_empire_1');if(checkpoint.status!=='TARGET_REACHED')discovery.tick('ws_empire_1',checkpoint.day,checkpoint.fence);}}catch{/* Corrupt or unavailable retained-source state stays unadvanced and visible on owner readback. */}finally{busy=false;}}});},5000);timer.unref();
  app.addHook('onClose',async()=>{clearInterval(timer);stopTwinScheduler();instance?.store.close();instance=null;});

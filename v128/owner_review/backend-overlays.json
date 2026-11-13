@@ -1,0 +1,78 @@
+{
+  "schema": "A09_SOURCE_BOUND_BACKEND_OVERLAYS_V1",
+  "retainedApplicationCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
+  "actualPublishedA08Commit": "690f66acf64d9d40a8e39a87b5a24d31982f9cad",
+  "files": [
+    {
+      "sourceFile": "backend/connector-runtime.js",
+      "destination": "/app/backend/dist/runtime/commerce-runtime/governed/runtime.js",
+      "bytes": 33359,
+      "sha256": "1eca1cb2faf615efd58f1587d56e77a18965fc940d859482340f87be617b488f"
+    },
+    {
+      "sourceFile": "backend/connector-runtime.js.map",
+      "destination": "/app/backend/dist/runtime/commerce-runtime/governed/runtime.js.map",
+      "bytes": 33215,
+      "sha256": "e334b354196ed8e3b492b0d2f16c6093578e34ff79059881c8e7f52f79541e05"
+    },
+    {
+      "sourceFile": "backend/connector-source.js",
+      "destination": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js",
+      "bytes": 14220,
+      "sha256": "b3e76dbcddc684885eb3e1f21e83a70fdf5cec56671116459acebec5ddfbb5e4"
+    },
+    {
+      "sourceFile": "backend/connector-source.js.map",
+      "destination": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map",
+      "bytes": 13481,
+      "sha256": "08aac0e557ba3a9ed409e0a08df55a1116d48e04af194e280b8a310233119917"
+    },
+    {
+      "sourceFile": "backend/connector-walkthrough.js",
+      "destination": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js",
+      "bytes": 15539,
+      "sha256": "57acd39761038fbb34d4f3359bdd336fddba3a0f6140d9bc2d07ecf46a7aee11"
+    },
+    {
+      "sourceFile": "backend/connector-walkthrough.js.map",
+      "destination": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js.map",
+      "bytes": 15841,
+      "sha256": "201cec87a508151813c50523b27500fea5ced85de63437fb8cb3219895bdce9c"
+    },
+    {
+      "sourceFile": "backend/connector-media.js",
+      "destination": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-media.js",
+      "bytes": 17457,
+      "sha256": "ce612808ff824ab84a5f1b3dd499b6f23adb1e210b767f5227b205c754778a41"
+    },
+    {
+      "sourceFile": "backend/connector-media.js.map",
+      "destination": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-media.js.map",
+      "bytes": 18797,
+      "sha256": "82e7d010fab75ea4dcdd72055be7c174ab57e87d4f05dacfff9e7a824ab17c9a"
+    }
+  ],
+  "repositorySourceFiles": [
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
+      "bytes": 29640,
+      "sha256": "16ec0242c39dede4c741d99fa7c9988ca79841d738ec4ef86d68dcbe99b3b3a8"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-source.ts",
+      "bytes": 13079,
+      "sha256": "1d29e9d0e018769a6783e2cbe1b798fc95add71a8edbc2664f3ad45f8b5dd6ea"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-walkthrough.ts",
+      "bytes": 14178,
+      "sha256": "8f0269228a3d7667942981c79c61f43f0d541cdfeeeefb48ba33d67526e7b4cb"
+    },
+    {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-media.ts",
+      "bytes": 16530,
+      "sha256": "6096f2df658aee6a04ee74722da2a9d4657cf25528f530584219ab7c4f5cb1c4"
+    }
+  ],
+  "allOtherNativePinsUnchanged": true
+}

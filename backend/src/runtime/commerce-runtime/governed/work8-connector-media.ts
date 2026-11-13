@@ -14,7 +14,7 @@ type Principal={workspace:string;owner:string};
 type Reference={candidateId:string;candidateDigest:string};
 type Asset={id:string;kind:'IMAGE';mime:string;bytes:number;sha256:string;sourceIdentity:string;rights:'PRIVATE_FACTUAL_PREPARATION_ONLY';provenance:string};
 type Event={schema:string;id:string;workspace:string;owner:string;candidateId:string;candidateDigest:string;version:number;previous:string;digest:string;requestDigest:string;atUTC:string;action:string;assetIds:string[];assets:Asset[];batchDigest:string|null;instructions:string|null;editingReceipt:string|null;editRequestDigest:string|null;status:string;bindingDigest:string;ownerApproval:boolean;externalEffects:0;paidInference:0};
-type Request={id:string;reference:Reference;expectedVersion:number;action:'REQUEST_EDIT'|'PROPOSE_RETAINED'|'APPROVE_INTERNAL'|'REJECT';instructions?:string;assetIds?:string[];batchDigest?:string};
+type Request={id:string;reference:Reference;expectedVersion:number;action:'REQUEST_EDIT'|'PROPOSE_RETAINED'|'ACKNOWLEDGE_REVIEW'|'APPROVE_INTERNAL'|'REJECT';instructions?:string;assetIds?:string[];batchDigest?:string};
 const TABLE='work8_connector_media',RIGHTS='PRIVATE_FACTUAL_PREPARATION_ONLY' as const;
 const MAX_EVENTS=128,MAX_RESPONSE_BYTES=3*1024*1024;
 const PID='2610240019051639200',VID='2610240019061630200',SKU='CJYD335906902BY';
@@ -31,9 +31,10 @@ const hash=(v:unknown)=>typeof v==='string'&&/^[a-f0-9]{64}$/.test(v)?v:fail('HA
 function principal(p:Principal){if(p.workspace!=='ws_empire_1')fail('WORKSPACE');key(p.owner);return p;}
 function request(raw:unknown):Request{
  const r=row(raw),reference=row(r.reference);exact(reference,['candidateId','candidateDigest']);
- const action=r.action;if(!['REQUEST_EDIT','PROPOSE_RETAINED','APPROVE_INTERNAL','REJECT'].includes(String(action)))fail('ACTION');
+ const action=r.action;if(!['REQUEST_EDIT','PROPOSE_RETAINED','ACKNOWLEDGE_REVIEW','APPROVE_INTERNAL','REJECT'].includes(String(action)))fail('ACTION');
  const keys=['id','reference','expectedVersion','action'];
  if(action==='REQUEST_EDIT')keys.push('instructions','assetIds');
+ if(action==='ACKNOWLEDGE_REVIEW'){keys.push('batchDigest');hash(r.batchDigest);}
  if(action==='APPROVE_INTERNAL'||action==='REJECT'){keys.push('batchDigest');if('assetIds'in r)keys.push('assetIds');hash(r.batchDigest);}
  exact(r,keys);key(r.id);key(reference.candidateId);hash(reference.candidateDigest);
  if(!Number.isSafeInteger(r.expectedVersion)||Number(r.expectedVersion)<0)fail('VERSION');
@@ -98,16 +99,17 @@ export function readConnectorMedia(db:DatabaseSync,p:Principal){
  const checked=(a:Asset)=>{const bytes=b.bytes.get(a.sha256);if(!bytes||a.bytes!==bytes.length||a.rights!==RIGHTS||digest(a)!==digest(a.sha256===ORIGINAL?b.originalAsset:b.revisedAsset))fail('HISTORY_ASSET');return a;};
  const visible=(a:Asset)=>({...checked(a),base64:b.bytes.get(a.sha256)!.toString('base64')});
  const event=(e:Event)=>({...e,assets:e.assets.map(visible)});
- const response={availability:'VERIFIED_SOURCE_BOUND_PRIVATE_MEDIA',...c,...view,original:[visible(b.originalAsset)],proposal:view.proposal?event(view.proposal):null,current:{...view.current,assets:view.current.assets.map(checked)},history:events.map(e=>({...e,assets:e.assets.map(checked)})),rights:RIGHTS,ownerApproval:view.current.assets.length>0,publicPublicationAllowed:false,externalEffects:0,paidInference:0};
+ const response={availability:'VERIFIED_SOURCE_BOUND_PRIVATE_MEDIA',...c,...view,original:[visible(b.originalAsset)],proposal:view.proposal?event(view.proposal):null,current:{...view.current,assets:view.current.assets.map(checked)},history:events.map(e=>({...e,assets:e.assets.map(checked)})),rights:RIGHTS,ownerApproval:view.current.assets.length>0,publicPublicationAllowed:false,externalEffects:0,paidInference:0,...(process.env.EMPIRE_CONNECTOR_OWNER_REVIEW_MODE==='RESTORED_A08_V2'?{ownerReviewMode:'RESTORED_A08_V2'}:{})};
  if(Buffer.byteLength(JSON.stringify(response))>MAX_RESPONSE_BYTES)fail('RESPONSE_BOUND');return response;
 }
-/** Bounded source-bound commands. A real approval is recorded only for an explicit
- * authenticated APPROVE_INTERNAL command; preparing/importing never implies review. */
+/** Bounded source-bound commands. Review acknowledgement records no approval or
+ * selection. Only an explicit authenticated APPROVE_INTERNAL grants internal approval;
+ * preparing, importing and reading never imply review. */
 export function commandConnectorMedia(db:DatabaseSync,p:Principal,raw:unknown){
  principal(p);const r=request(raw),c=candidate(db,p);if(c.candidateId!==r.reference.candidateId||c.candidateDigest!==r.reference.candidateDigest)fail('STALE_SOURCE');
  const b=bundle(p,c,true);db.exec('BEGIN IMMEDIATE');try{
   const events=history(db,p,c,b.bindingDigest),view=project(events),requestDigest=digest({principal:p,request:r,bindingDigest:b.bindingDigest});
-  const prior=events.find(e=>e.id===r.id);if(prior){if(prior.requestDigest!==requestDigest)fail('IDEMPOTENCY_CONFLICT');if(r.action==='APPROVE_INTERNAL'||r.action==='REJECT')fail('DECISION_REPLAY');db.exec('COMMIT');return prior;}
+  const prior=events.find(e=>e.id===r.id);if(prior){if(prior.requestDigest!==requestDigest)fail('IDEMPOTENCY_CONFLICT');if(r.action==='ACKNOWLEDGE_REVIEW')fail('REVIEW_REPLAY');if(r.action==='APPROVE_INTERNAL'||r.action==='REJECT')fail('DECISION_REPLAY');db.exec('COMMIT');return prior;}
   if(view.version!==r.expectedVersion||events.length>=MAX_EVENTS)fail('VERSION_CONFLICT');
   let assets:Asset[]=[],assetIds:string[]=[],batchDigest:string|null=null,instructions:string|null=null,editingReceipt:string|null=null,editRequestDigest:string|null=null,status='';
   if(r.action==='REQUEST_EDIT'){
@@ -120,9 +122,16 @@ export function commandConnectorMedia(db:DatabaseSync,p:Principal,raw:unknown){
    batchDigest=digest({reference:c,editRequestDigest,assets,instructions,editingReceipt,bindingDigest:b.bindingDigest});status='PROPOSED_RETAINED_ASSET_AWAITING_OWNER_REVIEW';
   }else{
    const proposal=view.proposal;if(!proposal||proposal.batchDigest!==r.batchDigest||events.some(e=>e.version>proposal.version&&(e.action==='REQUEST_EDIT'||e.action==='REJECT')))fail('PROPOSAL_STALE');
-   assets=proposal.assets;assetIds=r.assetIds??assets.map(a=>a.id);if(assetIds.some(id=>!assets.some(a=>a.id===id)))fail('ASSET_SELECTION');
-   if(r.action==='APPROVE_INTERNAL'&&events.some(e=>e.version>proposal.version&&e.action==='APPROVE_INTERNAL'))fail('DECISION_REPLAY');
-   batchDigest=proposal.batchDigest;editRequestDigest=proposal.editRequestDigest;status=r.action==='APPROVE_INTERNAL'?'APPROVED_INTERNALLY_PRIVATE_ONLY':'REJECTED';
+   assets=proposal.assets;batchDigest=proposal.batchDigest;editRequestDigest=proposal.editRequestDigest;
+   if(r.action==='ACKNOWLEDGE_REVIEW'){
+    if(events.some(e=>e.version>proposal.version&&(e.action==='ACKNOWLEDGE_REVIEW'||e.action==='APPROVE_INTERNAL')))fail('REVIEW_REPLAY');
+    // The full batch identifies what was reviewed; empty assetIds select nothing.
+    status='REVIEW_ACKNOWLEDGED_WITHOUT_APPROVAL';
+   }else{
+    assetIds=r.assetIds??assets.map(a=>a.id);if(assetIds.some(id=>!assets.some(a=>a.id===id)))fail('ASSET_SELECTION');
+    if(r.action==='APPROVE_INTERNAL'&&events.some(e=>e.version>proposal.version&&e.action==='APPROVE_INTERNAL'))fail('DECISION_REPLAY');
+    status=r.action==='APPROVE_INTERNAL'?'APPROVED_INTERNALLY_PRIVATE_ONLY':'REJECTED';
+   }
   }
   const body={schema:'WORK8_CONNECTOR_MEDIA_EVENT_V1',id:r.id,workspace:p.workspace,owner:p.owner,...c,version:view.version+1,previous:events.at(-1)?.digest??'',requestDigest,atUTC:new Date().toISOString(),action:r.action,assetIds,assets,batchDigest,instructions,editingReceipt,editRequestDigest,status,bindingDigest:b.bindingDigest,ownerApproval:r.action==='APPROVE_INTERNAL',externalEffects:0 as const,paidInference:0 as const};
   const e={...body,digest:digest(body)};
