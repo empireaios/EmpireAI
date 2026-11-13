@@ -52,15 +52,35 @@ def main():
             p=CONTROL/pin['sourceFile'];assert p.is_file()and not p.is_symlink()
             assert p.stat().st_size==pin['bytes']and sha(p)==pin['sha256']
         assert sha(CONTROL/'connector-backend-build.json')==build['backendBuildReceiptSHA256']
+        # Host-owned marker is outside every child/runtime mount and is never removed
+        # during this operation. Any later failure requires recipient-only custody.
+        phase='begin-private-evidence-phase'
+        marker=root.parent/'private-phase-started.json'
+        fd=os.open(marker,os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o400)
+        with os.fdopen(fd,'w')as f:
+            json.dump({'schema':'v128-private-phase-started-v1','sourceCommit':os.environ['GITHUB_SHA'],
+              'operationIdentity':json.loads((CONTROL/'authority.json').read_text())['operationIdentity'],
+              'phase':'BEFORE_MEDIA_OR_NATIVE_CONFIGURATION'},f);f.write('\n');f.flush();os.fsync(f.fileno())
         phase='stage-authenticated-source-receipts-read-only'
         inputs=root/'connector-inputs';assert not inputs.exists();inputs.mkdir(mode=0o700)
         pins=[('connector-cj-readback.json','cj-full-product-detail-readback.json','49a84a8c0d78aa4fefe5fad51f28d80d2e51c9f86e74c6ec1fe37f632e69be78'),
-          ('connector-cj-review.json','independent-cj-source-review.json','7b88b56f5eb8d2e2edb32220614271abb9bd95bb228e41dac1b02f541c84fe63')]
+          ('connector-cj-review.json','independent-cj-source-review.json','7b88b56f5eb8d2e2edb32220614271abb9bd95bb228e41dac1b02f541c84fe63'),
+          ('connector-inventory.json','inventory.json','58edc9d3628ec353661cbf3f080037e78bd4aaff3d4def18ee79b0ce9bb2fd15'),
+          ('connector-inventory-review.json','inventory-review.json','1a68312ffc73e6fff3067651ad8dccde76c7872db638bdb2d236ad384d3a1958'),
+          ('connector-currency.json','currency.json','c8ea5c46b108ab2b30f88ae13cea5230db2027750e86d3393fc3a3f10768ada4'),
+          ('connector-media-custody.json','media-custody.json','0f3a51064967c38691de338feaad6e9fea512e01fa5f2ccb81db9c706df7a9cd'),
+          ('connector-media-review.json','media-review.json','8e12d1b6a850b9f934081cc81c8f303f450a03cf131ae272c71c4316591b92c6'),
+          ('connector-media-binding.json','media-binding.json','6a7279e7f169615646e3d1f7e5824f4d67d852fe355ac45e42aaf54199a23286')]
         for source,target,digest in pins:
             assert sha(CONTROL/source)==digest
             out=inputs/target
             with out.open('xb')as f:f.write((CONTROL/source).read_bytes())
             out.chmod(0o444);assert sha(out)==digest and out.stat().st_nlink==1
+        phase='recover-verified-original-photo-privately'
+        p=subprocess.run([sys.executable,'-B',str(CONTROL/'fetch_connector_media.py'),str(root)],
+          stdin=subprocess.DEVNULL,capture_output=True,timeout=75,env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'})
+        assert len(p.stdout)+len(p.stderr)<=1048576,'MEDIA_TRANSPORT_OUTPUT_BOUND'
+        assert p.returncode==0,'PRIVATE_MEDIA_TRANSPORT_FAILED_'+hashlib.sha256(p.stderr).hexdigest()
         inputs.chmod(0o555)
         phase='recover-exact-retained-browser-image'
         p=subprocess.run(['docker','pull',BROWSER_DIGEST],stdin=subprocess.DEVNULL,capture_output=True,timeout=300)

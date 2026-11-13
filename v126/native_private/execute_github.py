@@ -21,6 +21,8 @@ try:
  while not(runtime/'runtime-output/runtime-ready.json').exists():
   assert time.monotonic()<until,'NATIVE_RUNTIME_READY_DEADLINE'
   x=json.loads(call(['docker','inspect',name]))[0];assert x['State']['Running'],'NATIVE_CONTAINER_EARLY_EXIT';time.sleep(.2)
+  if(runtime/'runtime-output/connector-source-admission.json').exists()and not(private/'connector-walkthrough-policy.json').exists():
+   call([str(runtime/'node'),str(CONTROL/'configure_walkthrough.mjs'),str(runtime),str(private)])
  call(['python3','-B',str(CONTROL/'launch_browser.py'),str(runtime),str(private),name],240)
  with(root/'technical-client-result.json').open('x')as f:json.dump({'status':'PASS_PRIVATE_NATIVE_CONNECTOR_BROWSER_RETURNED_ZERO','inputActor':'DELEGATED_TECHNICAL_OPERATOR','ownerActionObserved':False,'ownerDecisionGranted':False,'wholeRowAccepted':False},f)
 except BaseException as e:

@@ -6,7 +6,7 @@
   "baseFileCount": 957,
   "baseTreeSHA256": "9d23fc8ba6e39bfaf5532b41d755d6826014c24ab22bdaec8afc639593f92974",
   "changedSourceFileCount": 958,
-  "changedSourceTreeSHA256": "e1d2a30dfedc95bd3a3bfebfff6d80d49aad069978cc06e4264b3eddf42e434e",
+  "changedSourceTreeSHA256": "2dcef8293c38af3e97d4c1be6a14b3c23dc9b91c9d4aeda560356c2bcf0581f6",
   "nodeSHA256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
   "npmVersion": "10.9.8",
   "npmFileCount": 1964,
@@ -17,15 +17,15 @@
     {
       "repositoryPath": "empireai-web/components/owner/work7/ConnectorSourceCandidates.tsx",
       "frontendPath": "components/owner/work7/ConnectorSourceCandidates.tsx",
-      "bytes": 5392,
-      "sha256": "d2b6144f8fc5eacf9da9218b2a2b592b27b66e6efa4b3b9c4fd60e7a44cf9b29",
+      "bytes": 10583,
+      "sha256": "a0c013e1a19dc9cb30292ac24016d5bead99fe3657646aa9582ab5751b12ef26",
       "scope": "REVIEWED_NEW_SOURCE_DISPLAY"
     },
     {
       "repositoryPath": "empireai-web/components/owner/work7/OwnerJourneys.tsx",
       "frontendPath": "components/owner/work7/OwnerJourneys.tsx",
-      "bytes": 51431,
-      "sha256": "6174f87adff04b6651e3a7d580fa9c4ce44c7ffb44eb31f10a4cdfb217be6c26",
+      "bytes": 51471,
+      "sha256": "12e4770a4859ef78b242b98a832ba7e9fac3f588e6820ae794d0117ced61e8ad",
       "scope": "REVIEWED_NEW_SOURCE_DISPLAY"
     },
     {
@@ -45,8 +45,8 @@
     {
       "repositoryPath": "empireai-web/vercel.json",
       "frontendPath": "vercel.json",
-      "bytes": 914,
-      "sha256": "3872f2151a76294032921937b70411ccd8c9b25b2c9c53bbbff5356f98a4b72f",
+      "bytes": 977,
+      "sha256": "7c7f95a8fdbdc915851276cc021359481887c82f4c62a8046d5f2dcb58f326bf",
       "scope": "PRESERVE_HISTORICAL_AND_NEW_BRANCH_DEPLOYMENT_SUPPRESSION"
     }
   ],

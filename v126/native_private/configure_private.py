@@ -12,13 +12,16 @@ assert root.is_absolute()and root.parent.resolve(strict=True)==root.parent and n
 assert re.fullmatch('[a-f0-9]{64}',authority)and now<expiry<=now+1200000
 root.mkdir(mode=0o700)
 control=pathlib.Path(__file__).resolve().parent
+marker=root.parent/'private-phase-started.json';ms=marker.lstat()
+assert marker.is_file()and not marker.is_symlink()and ms.st_uid==0 and ms.st_mode&0o777==0o400
+assert json.loads(marker.read_text())['sourceCommit']==os.environ['GITHUB_SHA']
 build=json.loads((control/'connector-build-manifest.json').read_text())
 assert build['applicationCommit']=='6c1e63ba20619ee480742fd87dc810ca93152e22'
 adapter=next(p for p in build['backendOverlays']if p['destination']=='backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js')
 assert re.fullmatch('[a-f0-9]{64}',adapter['sha256'])
 publication=os.environ['GITHUB_SHA'];assert re.fullmatch('[a-f0-9]{40}',publication)
 operation=json.loads((control/'authority.json').read_text())['operationIdentity']
-assert operation=='V128-CONNECTOR-OWNER-NATIVE-A02-20261113'
+assert operation=='V128-CONNECTOR-OWNER-NATIVE-A03-20261113'
 owner=os.environ.get('EMPIREAI_WORK8_NATIVE_OWNER_EMAIL','').strip().lower()
 assert hashlib.sha256(owner.encode()).hexdigest()=='a437be3d7f2e7927959c2be2040016464de75d69529d9abd197e47a8caa21267','PRIVATE_OWNER_BINDING_REQUIRED'
 config={'mode':'PRIVATE_LOOPBACK','origin':'http://127.0.0.1:43117','founderEmail':owner,

@@ -35,7 +35,9 @@ assert.deepEqual(build.backendOverlays.map(p=>p.destination).sort(),[
  'backend/dist/runtime/commerce-runtime/governed/runtime.js',
  'backend/dist/runtime/commerce-runtime/governed/runtime.js.map',
  'backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js',
- 'backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map']);
+ 'backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map',
+ 'backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js',
+ 'backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js.map']);
 const overlayPaths=new Set(build.backendOverlays.map(p=>p.destination));
 for(const pin of JSON.parse(fs.readFileSync('/control/native-source-pins.json')).nativeSourcePins){
  const original=fs.readFileSync('/retained-app/'+pin.path);assert.equal(original.length,pin.bytes);assert.equal(sha(original),pin.sha256);
@@ -60,12 +62,14 @@ const load=p=>import('/app/backend/dist/'+p);
 const [{createTier0RedisClient,waitForRuntimeRedisReady},{SessionStore},{createAuthMiddleware},
  {registerTier0LoginRoute,createSharedSessionStoreGuard,registerTier0DurabilityErrorHandler},
  {probeRedisSessionStore},{installLockedCommissioning},{installCaptureHttpAdmission},{registerGovernedCommerce,productionCommerce},
- {registerExactNativeTier0SessionRoutes},{admitPinnedConnectorSource,readConnectorSourceCandidates}]=await Promise.all([
+ {registerExactNativeTier0SessionRoutes},{admitPinnedConnectorSource,readConnectorSourceCandidates},
+ {admitPinnedConnectorWalkthrough,readConnectorWalkthrough}]=await Promise.all([
  load('runtime/tier0-redis.js'),load('auth/session-store.js'),load('auth/middleware.js'),
  load('runtime/tier0-isolated-primary.js'),load('runtime/application-readiness.js'),
  load('runtime/locked-commissioning.js'),load('runtime/capture-http-admission.js'),
  load('runtime/commerce-runtime/governed/runtime.js'),import('/control/native-tier0-session-routes.mjs'),
- load('runtime/commerce-runtime/governed/work8-connector-source.js')]);
+ load('runtime/commerce-runtime/governed/work8-connector-source.js'),
+ load('runtime/commerce-runtime/governed/work8-connector-walkthrough.js')]);
 const redis=createTier0RedisClient(process.env.REDIS_URL);await waitForRuntimeRedisReady(redis,2000);
 assert.equal(await redis.dbsize(),0,'FRESH_PRIVATE_REDIS_REQUIRED');
 const sessionStore=new SessionStore(redis),authenticate=createAuthMiddleware(sessionStore);
@@ -92,11 +96,39 @@ const replay=admitPinnedConnectorSource(productionCommerce().store.db,files);
 assert.equal(replay.status,'ALREADY_ADMITTED');assert.deepEqual(replay.record,admitted.record);
 const canonical=readConnectorSourceCandidates(productionCommerce().store.db,'ws_empire_1');
 assert.equal(canonical.candidates.length,1);assert.equal(canonical.candidates[0].digest,admitted.record.digest);
-fs.writeFileSync('/evidence/connector-source-admission.json',JSON.stringify({schema:'v128-native-connector-source-admission-v1',
+const baseAdmissionBytes=Buffer.from(JSON.stringify({schema:'v128-native-connector-source-admission-v1',
  status:admitted.status,record:admitted.record,replayStatus:replay.status,canonical,
  buildManifestSHA256:sha(fs.readFileSync('/control/connector-build-manifest.json')),
  inputActor:'DELEGATED_TECHNICAL_OPERATOR',ownerActionObserved:false,ownerDecisionGranted:false,
- qualifiedDossierAdmitted:false,historyImported:false,productionAccess:false,wholeRowAccepted:false})+'\n',{flag:'wx',mode:0o600});
+ qualifiedDossierAdmitted:false,historyImported:false,productionAccess:false,wholeRowAccepted:false})+'\n');
+const baseTemporary='/evidence/connector-source-admission.json.tmp',baseFinal='/evidence/connector-source-admission.json';
+assert(!fs.existsSync(baseFinal),'BASE_ADMISSION_ALREADY_PRESENT');
+const baseFD=fs.openSync(baseTemporary,'wx',0o600);
+try{fs.writeFileSync(baseFD,baseAdmissionBytes);fs.fsyncSync(baseFD);}finally{fs.closeSync(baseFD);}
+assert(!fs.existsSync(baseFinal),'BASE_ADMISSION_ALREADY_PRESENT');fs.renameSync(baseTemporary,baseFinal);
+// The host independently binds the actual admitted record, then publishes a
+// read-only technical policy into the existing read-only private mount.
+const walkthroughPolicy='/private/connector-walkthrough-policy.json';
+const policyDeadline=Math.min(CONFIG.expiresAtMs,Date.now()+30000);
+while(!fs.existsSync(walkthroughPolicy)){
+ assert(Date.now()<policyDeadline,'ACTUAL_CANDIDATE_POLICY_DEADLINE');
+ await new Promise(resolve=>setTimeout(resolve,50));
+}
+const supplementFiles={policy:walkthroughPolicy,inventory:'/connector-inputs/inventory.json',
+ inventoryReview:'/connector-inputs/inventory-review.json',currency:'/connector-inputs/currency.json',
+ media:'/connector-inputs/retained-original.jpg',mediaCustody:'/connector-inputs/media-custody.json',
+ mediaReview:'/connector-inputs/media-review.json',mediaBinding:'/connector-inputs/media-binding.json'};
+const supplement=admitPinnedConnectorWalkthrough(productionCommerce().store.db,supplementFiles);
+assert.equal(supplement.status,'ADMITTED_RETAINED_FACTS_AND_EXECUTED_DEFER');
+const supplementReplay=admitPinnedConnectorWalkthrough(productionCommerce().store.db,supplementFiles);
+assert.equal(supplementReplay.status,'ALREADY_ADMITTED');assert.deepEqual(supplementReplay.record,supplement.record);
+const supplementReadback=readConnectorWalkthrough(productionCommerce().store.db,'ws_empire_1');
+assert.deepEqual(supplementReadback.record,supplement.record);
+fs.writeFileSync('/evidence/connector-walkthrough-admission.json',JSON.stringify({schema:'v128-native-walkthrough-admission-v1',
+ status:supplement.status,record:supplement.record,replayStatus:supplementReplay.status,canonical:supplementReadback,
+ buildManifestSHA256:sha(fs.readFileSync('/control/connector-build-manifest.json')),
+ policySHA256:sha(fs.readFileSync(walkthroughPolicy)),inputActor:'DELEGATED_TECHNICAL_OPERATOR',
+ ownerActionObserved:false,ownerDecisionGranted:false,productionAccess:false,wholeRowAccepted:false})+'\n',{flag:'wx',mode:0o600});
 await app.listen({host:'127.0.0.1',port:4000});
 fs.writeFileSync('/evidence/backend-ready.json',JSON.stringify({schema:'v126-fresh-native-ready-v1',
  source:'6c1e63ba20619ee480742fd87dc810ca93152e22',ownerEmailSHA256:sha(CONFIG.founderEmail),

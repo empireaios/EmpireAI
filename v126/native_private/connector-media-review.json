@@ -1,0 +1,18 @@
+{
+  "schema": "V128_MINIMIZED_RETAINED_ORIGINAL_MEDIA_REVIEW_V1",
+  "derivation": "Relevant original-photo result from retained independent byte review; not a new test",
+  "sourceReviewSHA256": "12e98d7252630b0076c2e44e41da8d596d38905af2dec7125cf94930ae044714",
+  "decision": "PRESERVED_ORIGINAL_IMAGE_BYTE_CUSTODY",
+  "originalDecision": "PASS_EXACT_ORIGINAL_AND_EDITED_IMAGE_BYTE_CUSTODY",
+  "sourceContainerSHA256": "c03031aa15374d7c1e0d772081cda2a8445293dcd5d17342271256a5016db2c2",
+  "originalAsset": {
+    "bytes": 149719,
+    "sha256": "4fe19c2fbe0907474d053181a5568489d842421e0dbd2b627e487cca61511048",
+    "sourceMIME": "image/jpeg",
+    "exactEmbeddedBytesEqual": true,
+    "originalQueueDigestEqual": true
+  },
+  "rights": "Private factual preparation only; no expanded publication rights",
+  "newOwnerApproval": false,
+  "newAcceptance": false
+}

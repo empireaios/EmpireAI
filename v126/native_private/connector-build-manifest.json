@@ -7,14 +7,14 @@
     {
       "sourceFile": "connector-runtime.js",
       "destination": "backend/dist/runtime/commerce-runtime/governed/runtime.js",
-      "bytes": 30918,
-      "sha256": "ff64387fa0ffd4394d8beedfc5eae665e3b4abbb03c6fe3f6925522b93ecc692"
+      "bytes": 31085,
+      "sha256": "d329d5188ea142e159c7316323c27db9dfcfe60042af4c1ecc8af881fce129d4"
     },
     {
       "sourceFile": "connector-runtime.js.map",
       "destination": "backend/dist/runtime/commerce-runtime/governed/runtime.js.map",
-      "bytes": 31356,
-      "sha256": "fd0e532106f08c20eec0c85420a292da8e1a1ddab21fa1bff6ea55b29e992dc3"
+      "bytes": 31477,
+      "sha256": "791f026d5c94a51ab819aa8f081bf10a5a384a92ec33b0510c596961aee88fe4"
     },
     {
       "sourceFile": "connector-source.js",
@@ -27,13 +27,25 @@
       "destination": "backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map",
       "bytes": 13481,
       "sha256": "08aac0e557ba3a9ed409e0a08df55a1116d48e04af194e280b8a310233119917"
+    },
+    {
+      "sourceFile": "connector-walkthrough.js",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js",
+      "bytes": 15539,
+      "sha256": "57acd39761038fbb34d4f3359bdd336fddba3a0f6140d9bc2d07ecf46a7aee11"
+    },
+    {
+      "sourceFile": "connector-walkthrough.js.map",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js.map",
+      "bytes": 15841,
+      "sha256": "201cec87a508151813c50523b27500fea5ced85de63437fb8cb3219895bdce9c"
     }
   ],
   "repositorySourceFiles": [
     {
       "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
-      "bytes": 27378,
-      "sha256": "887bca9d19396ce704e5730d0948296b5b1c36b84d46bdd4457a3acf80ece64e"
+      "bytes": 27540,
+      "sha256": "248afb1e15c0f73ce03932075d2a52f05124db2dc706b0754cdff84b46f89be0"
     },
     {
       "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-source.ts",
@@ -41,14 +53,19 @@
       "sha256": "1d29e9d0e018769a6783e2cbe1b798fc95add71a8edbc2664f3ad45f8b5dd6ea"
     },
     {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-walkthrough.ts",
+      "bytes": 14178,
+      "sha256": "8f0269228a3d7667942981c79c61f43f0d541cdfeeeefb48ba33d67526e7b4cb"
+    },
+    {
       "path": "empireai-web/components/owner/work7/ConnectorSourceCandidates.tsx",
-      "bytes": 5392,
-      "sha256": "d2b6144f8fc5eacf9da9218b2a2b592b27b66e6efa4b3b9c4fd60e7a44cf9b29"
+      "bytes": 10583,
+      "sha256": "a0c013e1a19dc9cb30292ac24016d5bead99fe3657646aa9582ab5751b12ef26"
     },
     {
       "path": "empireai-web/components/owner/work7/OwnerJourneys.tsx",
-      "bytes": 51431,
-      "sha256": "6174f87adff04b6651e3a7d580fa9c4ce44c7ffb44eb31f10a4cdfb217be6c26"
+      "bytes": 51471,
+      "sha256": "12e4770a4859ef78b242b98a832ba7e9fac3f588e6820ae794d0117ced61e8ad"
     },
     {
       "path": "empireai-web/lib/owner/runtime-identity.mjs",
@@ -61,12 +78,12 @@
       "sha256": "bd8727b0f6d650739d847cb8fe6c3ea3ea8231bf70b39afe931669f4dfeb9c60"
     }
   ],
-  "backendBuildReceiptSHA256": "b35aba5c7b5d0dc9930c1e4aaaae3646366969ab8b6521387e945efc5672ae82",
+  "backendBuildReceiptSHA256": "9fd4a64322394549f6e2d350bc96477c47d704b2241fead1076dc0669aff416b",
   "frontendBuild": "REQUIRES_ACTUAL_FULL_SOURCE_HOSTED_BUILD",
   "browserImageDigest": "mcr.microsoft.com/playwright@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
   "browserImageId": "sha256:fee853fafa59550d162cef52bca02d907694b44ebf6ef9fb075bcc0c65d8dedb",
   "wholeRowAccepted": false,
-  "frontendBuildInputsSHA256": "8c7b49a353241bb6caf9444ecccb50fb0cd5f44f2456a097e42c97036b8d26dd",
+  "frontendBuildInputsSHA256": "3fce40bfc31e79f8347d65e6e385dc0a7e4c1b44a323da076345c4d6d83a18f4",
   "retainedFrontendSourceCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
   "retainedFrontendGitTree": "2b3e370898ddb170516ffa4c953064e23e8527c9",
   "qualifiedReferenceReconciliation": {
@@ -89,5 +106,12 @@
     "unavailableReadinessRemainsUnknown": true,
     "positiveHealthFacadeAdded": false
   },
-  "expectedChangedFrontendSourceTreeSHA256": "e1d2a30dfedc95bd3a3bfebfff6d80d49aad069978cc06e4264b3eddf42e434e"
+  "expectedChangedFrontendSourceTreeSHA256": "2dcef8293c38af3e97d4c1be6a14b3c23dc9b91c9d4aeda560356c2bcf0581f6",
+  "privateEvidenceCustody": {
+    "wholeBundleEncrypted": true,
+    "maximumPlaintextArchiveBytes": 262144000,
+    "publicRecipientSPKISHA256": "f9a3caad605563c58bb85ebb33a52a82f8eb1ede75ea44e7452aaa5c60dd28a0",
+    "envelopeSourceSHA256": "ef6e3e773730dbbb72eeec308e54e9016b6274165ac35d3da1c0871656e8afef",
+    "privateKeyOnRunner": false
+  }
 }

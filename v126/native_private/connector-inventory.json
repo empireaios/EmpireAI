@@ -1,0 +1,14 @@
+{
+  "name": "current-inventory",
+  "atUTC": "2026-11-13T03:47:12.903Z",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[\n  {\n    \"vid\": \"2610240019061630200\",\n    \"areaId\": \"1\",\n    \"areaEn\": \"China Warehouse\",\n    \"countryCode\": \"CN\",\n    \"storageNum\": 9427,\n    \"totalInventoryNum\": 9427,\n    \"cjInventoryNum\": 0,\n    \"factoryInventoryNum\": 9427,\n    \"stock\": [\n      {\n        \"stockId\": \"{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}\",\n        \"inventory\": 0,\n        \"factoryInventory\": 9427\n      }\n    ]\n  }\n]"
+      }
+    ],
+    "structuredContent": null,
+    "isError": false
+  }
+}

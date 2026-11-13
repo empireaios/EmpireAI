@@ -1,4 +1,5 @@
 import { readConnectorSourceCandidates } from './work8-connector-source.js';
+import { readConnectorWalkthrough } from './work8-connector-walkthrough.js';
 import { registerRecoveryCommerce } from './recovery-projection.js';
 import { sourceProductContext } from '../../../intelligence/work8-product-context.js';
 import { portfolioBriefSchema, portfolioConsumeSchema, portfolioBrief, consumePortfolioReview } from './work8-portfolio-model.js';
@@ -168,7 +169,7 @@ export function registerGovernedCommerce(app, authenticate) {
             catch {
                 enrichment = { availability: 'FAILED_CLOSED', reason: 'ENRICHMENT_EVIDENCE_UNAVAILABLE' };
             }
-            return { ...portfolio, enrichment, observedCandidates, retainedDiscovery: readRetainedDiscovery(workspace), freshAcquisition: readFreshAcquisition(workspace), marketContext, connectorSourceCandidates: readConnectorSourceCandidates(productionCommerce().store.db, workspace) };
+            return { ...portfolio, enrichment, observedCandidates, retainedDiscovery: readRetainedDiscovery(workspace), freshAcquisition: readFreshAcquisition(workspace), marketContext, connectorSourceCandidates: readConnectorSourceCandidates(productionCommerce().store.db, workspace), connectorWalkthrough: readConnectorWalkthrough(productionCommerce().store.db, workspace) };
         }
         catch (e) {
             return reply.code(e instanceof z.ZodError ? 400 : 503).send({ error: e instanceof z.ZodError ? 'INVALID_PORTFOLIO_QUERY' : 'COMMERCE_EVIDENCE_UNAVAILABLE' });

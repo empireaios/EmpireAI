@@ -4,14 +4,14 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: work8-v128-connector-owner-native-20261113-a02
+  group: work8-v128-connector-owner-native-20261113-a03
   cancel-in-progress: false
 jobs:
   native-private:
     if: >-
       github.repository == 'empireaios/EmpireAI' &&
       github.event.ref_type == 'branch' &&
-      github.event.ref == 'work8/v128-connector-owner-native-20261113-a02' &&
+      github.event.ref == 'work8/v128-connector-owner-native-20261113-a03' &&
       github.run_attempt == 1
     runs-on: ubuntu-24.04
     timeout-minutes: 35
@@ -35,6 +35,7 @@ jobs:
           EMPIREAI_WORK8_NATIVE_OWNER_EMAIL: ${{ secrets.EMPIREAI_WORK8_NATIVE_OWNER_EMAIL }}
         run: python3 -B v126/native_private/admit_github.py
       - name: Retrieve unchanged retained application bytes
+        id: retained
         timeout-minutes: 6
         run: python3 -B v126/native_private/fetch_retained_raw.py "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/retained-input.zip"
       - name: Verify retained image, Node, native source, frontend and private Redis
@@ -56,7 +57,9 @@ jobs:
         id: seal
         if: ${{ always() && steps.admit.outcome == 'success' }}
         timeout-minutes: 3
-        run: sudo --preserve-env=RUNNER_TEMP,GITHUB_RUN_ID,GITHUB_SHA,GITHUB_OUTPUT python3 -B v126/native_private/seal_github.py
+        env:
+          EMPIREAI_RETAINED_STEP_OUTCOME: ${{ steps.retained.outcome }}
+        run: sudo --preserve-env=RUNNER_TEMP,GITHUB_RUN_ID,GITHUB_SHA,GITHUB_OUTPUT,EMPIREAI_RETAINED_STEP_OUTCOME python3 -B v126/native_private/seal_github.py
       - name: Retain bounded private-source-safe execution evidence
         if: ${{ always() && steps.seal.outputs.custody_ready == 'true' }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

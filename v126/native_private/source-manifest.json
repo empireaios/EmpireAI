@@ -3,13 +3,13 @@
   "files": [
     {
       "path": "admit_github.py",
-      "bytes": 3853,
-      "sha256": "bee85be2319fe5d84f0daa0df94aa51bfeb77cb7d81e22bce5aa8aca0cedc61b"
+      "bytes": 3934,
+      "sha256": "05b2a502c0aeaf956bb879874ee603b276350ee255cbee09cca6a922a98c31df"
     },
     {
       "path": "authority.json",
-      "bytes": 748,
-      "sha256": "a9196b01d67e631f3080244b488d172cf991b0399aedc831cced675a400d115d"
+      "bytes": 996,
+      "sha256": "a56d6a974f02f0e556edb3396e90c66a0295987cd8209f952d6b712e4f097549"
     },
     {
       "path": "build_connector_frontend.py",
@@ -18,23 +18,28 @@
     },
     {
       "path": "configure_private.py",
-      "bytes": 3296,
-      "sha256": "a50c6980e1a13a020c11e2ac3127bf6ac2e0cabd20ddb67b9032d8eba6f01e8e"
+      "bytes": 3537,
+      "sha256": "8ecef3b09e9c76512e709aebc92643152819fa6c94aefdce64e2cbe20b03fec1"
+    },
+    {
+      "path": "configure_walkthrough.mjs",
+      "bytes": 4457,
+      "sha256": "c17e49a1b83f2055eee9216c71062940d84a0ba3f5c9c2a186febcb6ecdc5a5d"
     },
     {
       "path": "connector-backend-build.json",
-      "bytes": 18965,
-      "sha256": "b35aba5c7b5d0dc9930c1e4aaaae3646366969ab8b6521387e945efc5672ae82"
+      "bytes": 16194,
+      "sha256": "9fd4a64322394549f6e2d350bc96477c47d704b2241fead1076dc0669aff416b"
     },
     {
       "path": "connector-browser.mjs",
-      "bytes": 19890,
-      "sha256": "af52338f475a10bfab381541863c8ffd9c3a1173a65327adcbdce47f35413cad"
+      "bytes": 31617,
+      "sha256": "e6eacac350fd15f18d8faf161d3edc922033238680b329cb00a78b02bc3cb45c"
     },
     {
       "path": "connector-build-manifest.json",
-      "bytes": 4140,
-      "sha256": "056e14d6ea6e82a469e51efa1ef462332ba8dfe56461b0c11593dc12313b7af8"
+      "bytes": 5242,
+      "sha256": "17d0594e120d3eaa6e37804b0f3ebf4f7f110b66ce513defac127e9825c38459"
     },
     {
       "path": "connector-cj-readback.json",
@@ -47,14 +52,44 @@
       "sha256": "7b88b56f5eb8d2e2edb32220614271abb9bd95bb228e41dac1b02f541c84fe63"
     },
     {
+      "path": "connector-currency.json",
+      "bytes": 2085,
+      "sha256": "c8ea5c46b108ab2b30f88ae13cea5230db2027750e86d3393fc3a3f10768ada4"
+    },
+    {
+      "path": "connector-inventory-review.json",
+      "bytes": 1193,
+      "sha256": "1a68312ffc73e6fff3067651ad8dccde76c7872db638bdb2d236ad384d3a1958"
+    },
+    {
+      "path": "connector-inventory.json",
+      "bytes": 669,
+      "sha256": "58edc9d3628ec353661cbf3f080037e78bd4aaff3d4def18ee79b0ce9bb2fd15"
+    },
+    {
+      "path": "connector-media-binding.json",
+      "bytes": 1156,
+      "sha256": "6a7279e7f169615646e3d1f7e5824f4d67d852fe355ac45e42aaf54199a23286"
+    },
+    {
+      "path": "connector-media-custody.json",
+      "bytes": 762,
+      "sha256": "0f3a51064967c38691de338feaad6e9fea512e01fa5f2ccb81db9c706df7a9cd"
+    },
+    {
+      "path": "connector-media-review.json",
+      "bytes": 858,
+      "sha256": "8e12d1b6a850b9f934081cc81c8f303f450a03cf131ae272c71c4316591b92c6"
+    },
+    {
       "path": "connector-runtime.js",
-      "bytes": 30918,
-      "sha256": "ff64387fa0ffd4394d8beedfc5eae665e3b4abbb03c6fe3f6925522b93ecc692"
+      "bytes": 31085,
+      "sha256": "d329d5188ea142e159c7316323c27db9dfcfe60042af4c1ecc8af881fce129d4"
     },
     {
       "path": "connector-runtime.js.map",
-      "bytes": 31356,
-      "sha256": "fd0e532106f08c20eec0c85420a292da8e1a1ddab21fa1bff6ea55b29e992dc3"
+      "bytes": 31477,
+      "sha256": "791f026d5c94a51ab819aa8f081bf10a5a384a92ec33b0510c596961aee88fe4"
     },
     {
       "path": "connector-source.js",
@@ -67,14 +102,29 @@
       "sha256": "08aac0e557ba3a9ed409e0a08df55a1116d48e04af194e280b8a310233119917"
     },
     {
+      "path": "connector-walkthrough.js",
+      "bytes": 15539,
+      "sha256": "57acd39761038fbb34d4f3359bdd336fddba3a0f6140d9bc2d07ecf46a7aee11"
+    },
+    {
+      "path": "connector-walkthrough.js.map",
+      "bytes": 15841,
+      "sha256": "201cec87a508151813c50523b27500fea5ced85de63437fb8cb3219895bdce9c"
+    },
+    {
       "path": "delegated-session.mjs",
       "bytes": 4872,
       "sha256": "7ac4106d6073da43ef3df92d714d44a025e9f19c01778c378faa17201deb8192"
     },
     {
+      "path": "evidence-envelope-runtime-pin.json",
+      "bytes": 164,
+      "sha256": "30f778cb671f2d0b01a05462cdfdd9f57580938dc67db4418ba0351f209635de"
+    },
+    {
       "path": "execute_github.py",
-      "bytes": 2194,
-      "sha256": "3e5840dd2596960aeea5ca342cedb9b2be3f561543ff4cc0349d1d09be1c83a2"
+      "bytes": 2426,
+      "sha256": "5c3b5b95fbbd39e4d80f423c508e0daebc13da4a4f0501c128d6c3306c39ba8c"
     },
     {
       "path": "fetch-redis-dependencies.py",
@@ -82,14 +132,19 @@
       "sha256": "e221d57f11ef1c6d905729ee01ca0907ddbced50611957d126186a2acc868e71"
     },
     {
+      "path": "fetch_connector_media.py",
+      "bytes": 4528,
+      "sha256": "3e86c09da63879e40fbf7ba2938654858018c425878284c965f4e3f64218a876"
+    },
+    {
       "path": "fetch_retained_raw.py",
-      "bytes": 460,
-      "sha256": "71504df377eff815054ce0e204b64497946c0cb00eab2ac6703dad748134400c"
+      "bytes": 1037,
+      "sha256": "1382e073a56f0868db87249d9ce073d652f211bf552b9f7e0d04462f50ca9e62"
     },
     {
       "path": "fresh-backend.mjs",
-      "bytes": 9168,
-      "sha256": "43626aac22d84db6a01cdcb12d7ae9c6337e01c6b4eca22a2a31b308ad56c8b9"
+      "bytes": 11852,
+      "sha256": "8338256c105966c6fb40468a4a9d944a30581e24a295367b5d13851bf6e7c02a"
     },
     {
       "path": "fresh-scope.mjs",
@@ -103,8 +158,8 @@
     },
     {
       "path": "frontend-build-inputs.json",
-      "bytes": 4141,
-      "sha256": "8c7b49a353241bb6caf9444ecccb50fb0cd5f44f2456a097e42c97036b8d26dd"
+      "bytes": 4142,
+      "sha256": "3fce40bfc31e79f8347d65e6e385dc0a7e4c1b44a323da076345c4d6d83a18f4"
     },
     {
       "path": "frontend-pins.json",
@@ -118,8 +173,8 @@
     },
     {
       "path": "launch_private.py",
-      "bytes": 6588,
-      "sha256": "cf0790398afa5e0ab5586c3f1e57a1d2f9dbf67adc34ae63f21692d9aefeab94"
+      "bytes": 6758,
+      "sha256": "9f5684b01fb09d085f6b22a15640125e2e0b7ab795eb1ac1550bf11506d82b2f"
     },
     {
       "path": "native-auth-handler-provenance.json",
@@ -143,8 +198,8 @@
     },
     {
       "path": "prepare_connector_runtime.py",
-      "bytes": 6332,
-      "sha256": "5e0d64e16d664b095cfefd7489cdf7efadc9e3d6d54fb9afc3c95f392c0062ad"
+      "bytes": 8273,
+      "sha256": "307b4769f66d8c205e4421fd891abe4018c915fc643cff328a929183f2a3e3ff"
     },
     {
       "path": "prepare_runtime.py",
@@ -152,9 +207,24 @@
       "sha256": "22aae136059bfe8fa415d498acf6a0a4407739e194c109c27e70e86f22fd63b9"
     },
     {
+      "path": "private-evidence-envelope.mjs",
+      "bytes": 16976,
+      "sha256": "ef6e3e773730dbbb72eeec308e54e9016b6274165ac35d3da1c0871656e8afef"
+    },
+    {
+      "path": "protect_final_evidence.py",
+      "bytes": 6656,
+      "sha256": "8ec51eec7424157b94d19d4ed2ae02d51aa7dc3596e62a0b54395d741bb3fa62"
+    },
+    {
       "path": "raw_blob_transport.py",
-      "bytes": 7441,
-      "sha256": "bb69dd7497ce847b7704dd79d6322e9538a2ee8b02c1182f4a0c0d64e1e4a048"
+      "bytes": 9623,
+      "sha256": "6da01bee3710ea9fc3e66fadcbcdb15e6d69e4ed3bf9f1d978f1b5956ca6d844"
+    },
+    {
+      "path": "recipient-public-key.pem",
+      "bytes": 800,
+      "sha256": "f54723612078a39ce1cad72b0da0408f9461242533b49f2261ec9539e10e7107"
     },
     {
       "path": "redis-abi-inputs.json",
@@ -164,7 +234,7 @@
     {
       "path": "reservation.json",
       "bytes": 570,
-      "sha256": "3f8c18abd1a08f7d30909687bd448e5b1447e0d99bd2dcf07e95391c3e4da0ee"
+      "sha256": "3397b11bc7723e46df70c51fcf7b471ad5c40363aaebce3b4b046945acd82cbe"
     },
     {
       "path": "retained-blob-manifest.json",
@@ -178,8 +248,8 @@
     },
     {
       "path": "seal_github.py",
-      "bytes": 12218,
-      "sha256": "df6d9b99fb20f29ee9b6cdd142b369234cfb0b938e66a961ebf069b7e27e6467"
+      "bytes": 15396,
+      "sha256": "8362d77356e070060997db77c5edc5eb7b08eb7eed127705e763f1ab261f3b58"
     },
     {
       "path": "test-fresh-scope.mjs",
@@ -194,27 +264,27 @@
   ],
   "workflow": {
     "path": ".github/workflows/work8-v126-native-private.yml",
-    "bytes": 3515,
-    "sha256": "c953bb3a01818eb0294f521b3ec6af7a890a511280bfd4b2dde76f8001c7e9d7"
+    "bytes": 3652,
+    "sha256": "a9fcc4238cf16f98f4b7ca92aca7efdd29ca61a761a19726bc9f136f79b34679"
   },
   "noNativeAcceptanceClaimed": true,
   "repositoryFiles": [
     {
       "path": "vercel.json",
-      "bytes": 1093,
-      "sha256": "af842a11c0b0054c8c691fc5e948190748ccfa2600a9f3eaafe669345c86c469"
+      "bytes": 1156,
+      "sha256": "8659cf70278f74d9694302c23efe8d3857c96f2502fe57be3821ffc59195e416"
     },
     {
       "path": "empireai-web/vercel.json",
-      "bytes": 914,
-      "sha256": "3872f2151a76294032921937b70411ccd8c9b25b2c9c53bbbff5356f98a4b72f"
+      "bytes": 977,
+      "sha256": "7c7f95a8fdbdc915851276cc021359481887c82f4c62a8046d5f2dcb58f326bf"
     }
   ],
   "applicationFiles": [
     {
       "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
-      "bytes": 27378,
-      "sha256": "887bca9d19396ce704e5730d0948296b5b1c36b84d46bdd4457a3acf80ece64e"
+      "bytes": 27540,
+      "sha256": "248afb1e15c0f73ce03932075d2a52f05124db2dc706b0754cdff84b46f89be0"
     },
     {
       "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-source.ts",
@@ -222,14 +292,19 @@
       "sha256": "1d29e9d0e018769a6783e2cbe1b798fc95add71a8edbc2664f3ad45f8b5dd6ea"
     },
     {
+      "path": "backend/src/runtime/commerce-runtime/governed/work8-connector-walkthrough.ts",
+      "bytes": 14178,
+      "sha256": "8f0269228a3d7667942981c79c61f43f0d541cdfeeeefb48ba33d67526e7b4cb"
+    },
+    {
       "path": "empireai-web/components/owner/work7/ConnectorSourceCandidates.tsx",
-      "bytes": 5392,
-      "sha256": "d2b6144f8fc5eacf9da9218b2a2b592b27b66e6efa4b3b9c4fd60e7a44cf9b29"
+      "bytes": 10583,
+      "sha256": "a0c013e1a19dc9cb30292ac24016d5bead99fe3657646aa9582ab5751b12ef26"
     },
     {
       "path": "empireai-web/components/owner/work7/OwnerJourneys.tsx",
-      "bytes": 51431,
-      "sha256": "6174f87adff04b6651e3a7d580fa9c4ce44c7ffb44eb31f10a4cdfb217be6c26"
+      "bytes": 51471,
+      "sha256": "12e4770a4859ef78b242b98a832ba7e9fac3f588e6820ae794d0117ced61e8ad"
     },
     {
       "path": "empireai-web/lib/owner/runtime-identity.mjs",

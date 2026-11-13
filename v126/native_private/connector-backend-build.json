@@ -1,12 +1,17 @@
 {
-  "schema": "V128_CONNECTOR_BACKEND_PINNED_BUILD_RECEIPT_V1",
-  "atUTC": "2026-11-13T09:42:04.545946+00:00",
-  "status": "PASS_FULL_ORIGINAL_TSCONFIG_BUILD",
-  "sourceBaseCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
-  "sourceOverlayReview": "v128_owner/connector-ui-review-manifest.json",
-  "buildWorkingDirectory": "/workspace/scratch/2f7af7c322ae/v128_owner/backend-build",
+  "schema": "V128_NEXT_WALKTHROUGH_FINAL_PRIVACY_CORRECTED_BACKEND_BUILD_V1",
+  "atUTC": "2026-11-13T10:45:38.523875+00:00",
+  "status": "PASS",
+  "nodeVersion": "v22.23.2",
+  "nodePath": "v128_frontend/build-inputs/usr/local/bin/node",
+  "nodeSHA256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
+  "typescriptVersion": "5.9.3",
+  "compilerSHA256": "e8f349eabd48486bdb2bf9dc1a00c89d58297270c54b745838879e2859194419",
+  "packageSHA256": "8a501520e561cc7ae1e0a295f121b38a7ab499a43521bc26ef75f77dd9671c0b",
+  "tsconfigSHA256": "85836155905deadf6a3ea89cdd59467ad3f93e576047fde6b9384631228a9b2b",
+  "compilerOptionsUnchanged": true,
   "command": [
-    "../../v128_frontend/build-inputs/usr/local/bin/node",
+    "node",
     "--max-old-space-size=4096",
     "node_modules/typescript/bin/tsc",
     "-p",
@@ -16,408 +21,315 @@
     "--noEmitOnError"
   ],
   "exitCode": 0,
-  "nodeVersion": "v22.23.2",
-  "typescriptVersion": "5.9.3",
-  "compilerOptionsUnchanged": true,
-  "allOriginalIncludeRootsCompiled": true,
-  "sourcesModifiedOnly": [
-    "src/runtime/commerce-runtime/governed/runtime.ts",
-    "src/runtime/commerce-runtime/governed/work8-connector-source.ts"
-  ],
-  "externalNetworkOperations": 0,
-  "inputs": [
+  "compilerLog": {
+    "path": "v128_owner/next_walkthrough/backend-compiler-final.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "sourceReviewManifest": {
+    "path": "v128_owner/next_walkthrough/review-manifest.json",
+    "sha256": "037c063c777929645b562bebf294003dd35b9780920b699bdf4a46180f8bdb5f"
+  },
+  "compiledFiles": [
     {
-      "path": "v128_frontend/build-inputs/usr/local/bin/node",
-      "bytes": 124836408,
-      "sha256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327"
+      "path": "v128_owner/next_walkthrough/compiled-overlay-final/runtime.js",
+      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/runtime.js",
+      "bytes": 31085,
+      "sha256": "d329d5188ea142e159c7316323c27db9dfcfe60042af4c1ecc8af881fce129d4"
     },
     {
-      "path": "v128_frontend/build-inputs/app/backend/node_modules/typescript/lib/_tsc.js",
-      "bytes": 6213092,
-      "sha256": "e8f349eabd48486bdb2bf9dc1a00c89d58297270c54b745838879e2859194419"
+      "path": "v128_owner/next_walkthrough/compiled-overlay-final/runtime.js.map",
+      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/runtime.js.map",
+      "bytes": 31477,
+      "sha256": "791f026d5c94a51ab819aa8f081bf10a5a384a92ec33b0510c596961aee88fe4"
     },
     {
-      "path": "v128_frontend/build-inputs/app/backend/tsconfig.json",
-      "bytes": 491,
-      "sha256": "85836155905deadf6a3ea89cdd59467ad3f93e576047fde6b9384631228a9b2b"
-    },
-    {
-      "path": "v128_frontend/build-inputs/app/backend/package.json",
-      "bytes": 12487,
-      "sha256": "8a501520e561cc7ae1e0a295f121b38a7ab499a43521bc26ef75f77dd9671c0b"
-    },
-    {
-      "path": "v128_frontend/retained-backend-build-inputs-custody.json",
-      "bytes": 11571434,
-      "sha256": "63d4514a7775f73da8f175ad4d08bbb2e163cdda1b38b7d644a8535b9c0d1e61"
-    },
-    {
-      "path": "v128_frontend/retained-pillow-build-inputs-custody.json",
-      "bytes": 8908214,
-      "sha256": "94d1c2921321cb66a56a632a1ba50070ff122ba12e9931f32a044021b870ff42"
-    },
-    {
-      "path": "v128_owner/connector-ui-review-manifest.json",
-      "bytes": 15506,
-      "sha256": "f7dcbb92216d49d46b2a8ceb6076f7c8044d536e78ee677fe6cd5a3ce335bf33"
-    },
-    {
-      "path": "v128_reviews/connector-ui-source-review-addendum.json",
-      "bytes": 5138,
-      "sha256": "d42a57c6e766191457bfa96875cece864cbbc5589efb05191d57c4194d16d74d"
-    },
-    {
-      "path": "v128_owner/pinned-node22-controls-result.json",
-      "bytes": 1170,
-      "sha256": "38e69fa7c292a51db8283de499feda265d348b05d30fe3af012870b0eec84f09"
-    },
-    {
-      "path": "v128_owner/pinned-node22-ui-controls-result.json",
-      "bytes": 855,
-      "sha256": "7223c96a4e840bec69ae0daf9ceb29a5e34c1d6d9016a6b78f7c8bb4811b915b"
-    },
-    {
-      "path": "v128_owner/backend-build-compiler.log",
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    }
-  ],
-  "compiledOverlayFiles": [
-    {
-      "path": "v128_owner/compiled-overlay/runtime.js",
-      "containerPath": "/app/backend/dist/runtime/commerce-runtime/governed/runtime.js",
-      "bytes": 30918,
-      "sha256": "ff64387fa0ffd4394d8beedfc5eae665e3b4abbb03c6fe3f6925522b93ecc692"
-    },
-    {
-      "path": "v128_owner/compiled-overlay/runtime.js.map",
-      "containerPath": "/app/backend/dist/runtime/commerce-runtime/governed/runtime.js.map",
-      "bytes": 31356,
-      "sha256": "fd0e532106f08c20eec0c85420a292da8e1a1ddab21fa1bff6ea55b29e992dc3"
-    },
-    {
-      "path": "v128_owner/compiled-overlay/work8-connector-source.js",
-      "containerPath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js",
+      "path": "v128_owner/next_walkthrough/compiled-overlay-final/work8-connector-source.js",
+      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js",
       "bytes": 14220,
       "sha256": "b3e76dbcddc684885eb3e1f21e83a70fdf5cec56671116459acebec5ddfbb5e4"
     },
     {
-      "path": "v128_owner/compiled-overlay/work8-connector-source.js.map",
-      "containerPath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map",
+      "path": "v128_owner/next_walkthrough/compiled-overlay-final/work8-connector-source.js.map",
+      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map",
       "bytes": 13481,
       "sha256": "08aac0e557ba3a9ed409e0a08df55a1116d48e04af194e280b8a310233119917"
+    },
+    {
+      "path": "v128_owner/next_walkthrough/compiled-overlay-final/work8-connector-walkthrough.js",
+      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js",
+      "bytes": 15539,
+      "sha256": "57acd39761038fbb34d4f3359bdd336fddba3a0f6140d9bc2d07ecf46a7aee11"
+    },
+    {
+      "path": "v128_owner/next_walkthrough/compiled-overlay-final/work8-connector-walkthrough.js.map",
+      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js.map",
+      "bytes": 15841,
+      "sha256": "201cec87a508151813c50523b27500fea5ced85de63437fb8cb3219895bdce9c"
     }
   ],
-  "compiledRuntimeOnlyDelta": [
-    "one new import",
-    "one additive read-only connectorSourceCandidates response field"
-  ],
-  "compiledDeltaPath": "v128_owner/compiled-runtime-delta.patch",
-  "compiledDeltaSHA256": "326290285ee8b17be77af1a4fd3c09515983d0a7fa0066b04f5e66211bff24c3",
-  "retainedSourcePinComparisons": [
+  "originalNativeSourcePinComparisons": [
     {
       "path": "backend/src/runtime/tier0-isolated-primary.ts",
-      "expectedSHA256": "f0716e7ec858122713f5864342ab8782d8181ced729438e48524a55c0157efe5",
-      "compiledTreeSHA256": "f0716e7ec858122713f5864342ab8782d8181ced729438e48524a55c0157efe5",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "f0716e7ec858122713f5864342ab8782d8181ced729438e48524a55c0157efe5",
+      "builtSHA256": "f0716e7ec858122713f5864342ab8782d8181ced729438e48524a55c0157efe5",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/tier0-isolated-primary.js",
-      "expectedSHA256": "d27f10f3bd0a9deab9d20591b723883e9e6947361e1fbe8af46b8934cd17bbcc",
-      "compiledTreeSHA256": "d27f10f3bd0a9deab9d20591b723883e9e6947361e1fbe8af46b8934cd17bbcc",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "d27f10f3bd0a9deab9d20591b723883e9e6947361e1fbe8af46b8934cd17bbcc",
+      "builtSHA256": "d27f10f3bd0a9deab9d20591b723883e9e6947361e1fbe8af46b8934cd17bbcc",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/tier0-redis.ts",
-      "expectedSHA256": "c0fa7b7148e87f465f3c56328177d2520ed9b0d0f884528a935443f9e2cc1833",
-      "compiledTreeSHA256": "c0fa7b7148e87f465f3c56328177d2520ed9b0d0f884528a935443f9e2cc1833",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "c0fa7b7148e87f465f3c56328177d2520ed9b0d0f884528a935443f9e2cc1833",
+      "builtSHA256": "c0fa7b7148e87f465f3c56328177d2520ed9b0d0f884528a935443f9e2cc1833",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/tier0-redis.js",
-      "expectedSHA256": "ca3d73a5cedf19f5fed6a7399e296a611a5ca22944234a6a105c7db6ecec4918",
-      "compiledTreeSHA256": "ca3d73a5cedf19f5fed6a7399e296a611a5ca22944234a6a105c7db6ecec4918",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "ca3d73a5cedf19f5fed6a7399e296a611a5ca22944234a6a105c7db6ecec4918",
+      "builtSHA256": "ca3d73a5cedf19f5fed6a7399e296a611a5ca22944234a6a105c7db6ecec4918",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/application-readiness.ts",
-      "expectedSHA256": "ea792ea6edcb650457a7d44dce1b65f375365d614dfb499ad94ad505f8e6f3f2",
-      "compiledTreeSHA256": "ea792ea6edcb650457a7d44dce1b65f375365d614dfb499ad94ad505f8e6f3f2",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "ea792ea6edcb650457a7d44dce1b65f375365d614dfb499ad94ad505f8e6f3f2",
+      "builtSHA256": "ea792ea6edcb650457a7d44dce1b65f375365d614dfb499ad94ad505f8e6f3f2",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/application-readiness.js",
-      "expectedSHA256": "cc6fab0e3112d4441114c928e4e56543cf3923a7e0fb9cb8cef600a7b47189d5",
-      "compiledTreeSHA256": "cc6fab0e3112d4441114c928e4e56543cf3923a7e0fb9cb8cef600a7b47189d5",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "cc6fab0e3112d4441114c928e4e56543cf3923a7e0fb9cb8cef600a7b47189d5",
+      "builtSHA256": "cc6fab0e3112d4441114c928e4e56543cf3923a7e0fb9cb8cef600a7b47189d5",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/tier0-control-plane.ts",
-      "expectedSHA256": "4ba5230a7eae0a554daf5899773f12dca11e016a45cffe68360da09e3dd1d381",
-      "compiledTreeSHA256": "4ba5230a7eae0a554daf5899773f12dca11e016a45cffe68360da09e3dd1d381",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "4ba5230a7eae0a554daf5899773f12dca11e016a45cffe68360da09e3dd1d381",
+      "builtSHA256": "4ba5230a7eae0a554daf5899773f12dca11e016a45cffe68360da09e3dd1d381",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/tier0-control-plane.js",
-      "expectedSHA256": "6ac134c7fc56e4a29bbd84f53b0f1a4d7e488cc6c394da72e09e530f4a472902",
-      "compiledTreeSHA256": "6ac134c7fc56e4a29bbd84f53b0f1a4d7e488cc6c394da72e09e530f4a472902",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "6ac134c7fc56e4a29bbd84f53b0f1a4d7e488cc6c394da72e09e530f4a472902",
+      "builtSHA256": "6ac134c7fc56e4a29bbd84f53b0f1a4d7e488cc6c394da72e09e530f4a472902",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/locked-commissioning.ts",
-      "expectedSHA256": "43c873a29d841389e4f3ec0d71a39cd69dbe4e62ff30ea63fa25eb544b9f242f",
-      "compiledTreeSHA256": "43c873a29d841389e4f3ec0d71a39cd69dbe4e62ff30ea63fa25eb544b9f242f",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "43c873a29d841389e4f3ec0d71a39cd69dbe4e62ff30ea63fa25eb544b9f242f",
+      "builtSHA256": "43c873a29d841389e4f3ec0d71a39cd69dbe4e62ff30ea63fa25eb544b9f242f",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/locked-commissioning.js",
-      "expectedSHA256": "d769a15633fe516e6e9d08a77b80abdf89ff66e9c7ddf49c4f666708f45fcdbb",
-      "compiledTreeSHA256": "d769a15633fe516e6e9d08a77b80abdf89ff66e9c7ddf49c4f666708f45fcdbb",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "d769a15633fe516e6e9d08a77b80abdf89ff66e9c7ddf49c4f666708f45fcdbb",
+      "builtSHA256": "d769a15633fe516e6e9d08a77b80abdf89ff66e9c7ddf49c4f666708f45fcdbb",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/owner-write-restriction.ts",
-      "expectedSHA256": "ec0edaf624414ceb0a631f7fef967d93915d6e48aad466f2dea101416f6bcdf4",
-      "compiledTreeSHA256": "ec0edaf624414ceb0a631f7fef967d93915d6e48aad466f2dea101416f6bcdf4",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "ec0edaf624414ceb0a631f7fef967d93915d6e48aad466f2dea101416f6bcdf4",
+      "builtSHA256": "ec0edaf624414ceb0a631f7fef967d93915d6e48aad466f2dea101416f6bcdf4",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/owner-write-restriction.js",
-      "expectedSHA256": "c5ac9d04eebae1bfe5c85e608fe625677fc3d11310e7b56a2f588eaf69c884ca",
-      "compiledTreeSHA256": "c5ac9d04eebae1bfe5c85e608fe625677fc3d11310e7b56a2f588eaf69c884ca",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "c5ac9d04eebae1bfe5c85e608fe625677fc3d11310e7b56a2f588eaf69c884ca",
+      "builtSHA256": "c5ac9d04eebae1bfe5c85e608fe625677fc3d11310e7b56a2f588eaf69c884ca",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/capture-http-admission.ts",
-      "expectedSHA256": "39612000c22e6ca02dfa24d4997d746262177972da1adcc7b21acf6aecce5076",
-      "compiledTreeSHA256": "39612000c22e6ca02dfa24d4997d746262177972da1adcc7b21acf6aecce5076",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "39612000c22e6ca02dfa24d4997d746262177972da1adcc7b21acf6aecce5076",
+      "builtSHA256": "39612000c22e6ca02dfa24d4997d746262177972da1adcc7b21acf6aecce5076",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/capture-http-admission.js",
-      "expectedSHA256": "b524c9c8fd43e9069a2c689ebb5a7376071103e4722ae3669279b442eb639c39",
-      "compiledTreeSHA256": "b524c9c8fd43e9069a2c689ebb5a7376071103e4722ae3669279b442eb639c39",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "b524c9c8fd43e9069a2c689ebb5a7376071103e4722ae3669279b442eb639c39",
+      "builtSHA256": "b524c9c8fd43e9069a2c689ebb5a7376071103e4722ae3669279b442eb639c39",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/work8-background-capture.ts",
-      "expectedSHA256": "e1a32b935f7146107948c4a9d9cc482830a5b1c74c80584350f1f1260a20fe00",
-      "compiledTreeSHA256": "e1a32b935f7146107948c4a9d9cc482830a5b1c74c80584350f1f1260a20fe00",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "e1a32b935f7146107948c4a9d9cc482830a5b1c74c80584350f1f1260a20fe00",
+      "builtSHA256": "e1a32b935f7146107948c4a9d9cc482830a5b1c74c80584350f1f1260a20fe00",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/work8-background-capture.js",
-      "expectedSHA256": "2a87cdd79fda2c24306a403b1cd9b1ee65b45d1b9336bd243dcfec3d2cede2b1",
-      "compiledTreeSHA256": "2a87cdd79fda2c24306a403b1cd9b1ee65b45d1b9336bd243dcfec3d2cede2b1",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "2a87cdd79fda2c24306a403b1cd9b1ee65b45d1b9336bd243dcfec3d2cede2b1",
+      "builtSHA256": "2a87cdd79fda2c24306a403b1cd9b1ee65b45d1b9336bd243dcfec3d2cede2b1",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/auth/middleware.ts",
-      "expectedSHA256": "749b1f05b3bc8fbc7ce444351519342d283f499c0a2745d0af596689832af3de",
-      "compiledTreeSHA256": "749b1f05b3bc8fbc7ce444351519342d283f499c0a2745d0af596689832af3de",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "749b1f05b3bc8fbc7ce444351519342d283f499c0a2745d0af596689832af3de",
+      "builtSHA256": "749b1f05b3bc8fbc7ce444351519342d283f499c0a2745d0af596689832af3de",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/auth/middleware.js",
-      "expectedSHA256": "2887b541c5b013f06ccb26ebe6282124453fa7fff7ae910533a5c35a5b41f2b7",
-      "compiledTreeSHA256": "2887b541c5b013f06ccb26ebe6282124453fa7fff7ae910533a5c35a5b41f2b7",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "2887b541c5b013f06ccb26ebe6282124453fa7fff7ae910533a5c35a5b41f2b7",
+      "builtSHA256": "2887b541c5b013f06ccb26ebe6282124453fa7fff7ae910533a5c35a5b41f2b7",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/auth/session-store.ts",
-      "expectedSHA256": "06da0b26becee33412c68986e995384db61b45848218385fb5522df8b8333fef",
-      "compiledTreeSHA256": "06da0b26becee33412c68986e995384db61b45848218385fb5522df8b8333fef",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "06da0b26becee33412c68986e995384db61b45848218385fb5522df8b8333fef",
+      "builtSHA256": "06da0b26becee33412c68986e995384db61b45848218385fb5522df8b8333fef",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/auth/session-store.js",
-      "expectedSHA256": "4b057b0d972ca2868c20f8f8c911841f4c9ec20b0175320a7440419be29bd51c",
-      "compiledTreeSHA256": "4b057b0d972ca2868c20f8f8c911841f4c9ec20b0175320a7440419be29bd51c",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "4b057b0d972ca2868c20f8f8c911841f4c9ec20b0175320a7440419be29bd51c",
+      "builtSHA256": "4b057b0d972ca2868c20f8f8c911841f4c9ec20b0175320a7440419be29bd51c",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/auth/platform-identity.ts",
-      "expectedSHA256": "4436ef5aebe0d08c943e5d9fd172a95fa4b0f09ae6c34163de71922690c8f0d7",
-      "compiledTreeSHA256": "4436ef5aebe0d08c943e5d9fd172a95fa4b0f09ae6c34163de71922690c8f0d7",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "4436ef5aebe0d08c943e5d9fd172a95fa4b0f09ae6c34163de71922690c8f0d7",
+      "builtSHA256": "4436ef5aebe0d08c943e5d9fd172a95fa4b0f09ae6c34163de71922690c8f0d7",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/auth/platform-identity.js",
-      "expectedSHA256": "e86abf825b3e5f94f7f8c16c74ae837948550ac22fddbd31c6cf763b79797251",
-      "compiledTreeSHA256": "e86abf825b3e5f94f7f8c16c74ae837948550ac22fddbd31c6cf763b79797251",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "e86abf825b3e5f94f7f8c16c74ae837948550ac22fddbd31c6cf763b79797251",
+      "builtSHA256": "e86abf825b3e5f94f7f8c16c74ae837948550ac22fddbd31c6cf763b79797251",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/auth/bootstrap-credential-policy.ts",
-      "expectedSHA256": "e22872eea95edb28873d536ab9238c31c6f7c40d4d03d0d4752bd0a1b960e778",
-      "compiledTreeSHA256": "e22872eea95edb28873d536ab9238c31c6f7c40d4d03d0d4752bd0a1b960e778",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "e22872eea95edb28873d536ab9238c31c6f7c40d4d03d0d4752bd0a1b960e778",
+      "builtSHA256": "e22872eea95edb28873d536ab9238c31c6f7c40d4d03d0d4752bd0a1b960e778",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/auth/bootstrap-credential-policy.js",
-      "expectedSHA256": "70700a9bb27d45ed60c8778907538fdc5f79a9792542b13d17a570e5b2559f67",
-      "compiledTreeSHA256": "70700a9bb27d45ed60c8778907538fdc5f79a9792542b13d17a570e5b2559f67",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "70700a9bb27d45ed60c8778907538fdc5f79a9792542b13d17a570e5b2559f67",
+      "builtSHA256": "70700a9bb27d45ed60c8778907538fdc5f79a9792542b13d17a570e5b2559f67",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/config/env.ts",
-      "expectedSHA256": "eca97eb81a02c5fa8c6c87f64d39839d2ad490de624e9e163293b249522ccc8a",
-      "compiledTreeSHA256": "eca97eb81a02c5fa8c6c87f64d39839d2ad490de624e9e163293b249522ccc8a",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "eca97eb81a02c5fa8c6c87f64d39839d2ad490de624e9e163293b249522ccc8a",
+      "builtSHA256": "eca97eb81a02c5fa8c6c87f64d39839d2ad490de624e9e163293b249522ccc8a",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/config/env.js",
-      "expectedSHA256": "d5a098297ffb8be6573f6f7ade4fbe569e4f2cc87523374d3c22c4b7325ec95d",
-      "compiledTreeSHA256": "d5a098297ffb8be6573f6f7ade4fbe569e4f2cc87523374d3c22c4b7325ec95d",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "d5a098297ffb8be6573f6f7ade4fbe569e4f2cc87523374d3c22c4b7325ec95d",
+      "builtSHA256": "d5a098297ffb8be6573f6f7ade4fbe569e4f2cc87523374d3c22c4b7325ec95d",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/config/redis-client.ts",
-      "expectedSHA256": "04635975dbf3641812884921dfcca89f43f38d3c3a11fb03bc4a15ad8bca5fed",
-      "compiledTreeSHA256": "04635975dbf3641812884921dfcca89f43f38d3c3a11fb03bc4a15ad8bca5fed",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "04635975dbf3641812884921dfcca89f43f38d3c3a11fb03bc4a15ad8bca5fed",
+      "builtSHA256": "04635975dbf3641812884921dfcca89f43f38d3c3a11fb03bc4a15ad8bca5fed",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/config/redis-client.js",
-      "expectedSHA256": "20d751ba21e582efe2f211578a1b7d6bb56eb05b18ecf7819cac061a9b4a5508",
-      "compiledTreeSHA256": "20d751ba21e582efe2f211578a1b7d6bb56eb05b18ecf7819cac061a9b4a5508",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "20d751ba21e582efe2f211578a1b7d6bb56eb05b18ecf7819cac061a9b4a5508",
+      "builtSHA256": "20d751ba21e582efe2f211578a1b7d6bb56eb05b18ecf7819cac061a9b4a5508",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
-      "expectedSHA256": "3a186bfb12e34a9d0bfb1501adaa416b9c1221a56f0906ccda9ad37c9fcf3293",
-      "compiledTreeSHA256": "887bca9d19396ce704e5730d0948296b5b1c36b84d46bdd4457a3acf80ece64e",
-      "sameAsRetained": false,
-      "expectedChangedOverlay": true
+      "retainedSHA256": "3a186bfb12e34a9d0bfb1501adaa416b9c1221a56f0906ccda9ad37c9fcf3293",
+      "builtSHA256": "248afb1e15c0f73ce03932075d2a52f05124db2dc706b0754cdff84b46f89be0",
+      "intentionalOverlay": true
     },
     {
       "path": "backend/dist/runtime/commerce-runtime/governed/runtime.js",
-      "expectedSHA256": "8194998296fa6cea3a716fd5f07215b90248925d1d979570972e1d66ac28c603",
-      "compiledTreeSHA256": "ff64387fa0ffd4394d8beedfc5eae665e3b4abbb03c6fe3f6925522b93ecc692",
-      "sameAsRetained": false,
-      "expectedChangedOverlay": true
+      "retainedSHA256": "8194998296fa6cea3a716fd5f07215b90248925d1d979570972e1d66ac28c603",
+      "builtSHA256": "d329d5188ea142e159c7316323c27db9dfcfe60042af4c1ecc8af881fce129d4",
+      "intentionalOverlay": true
     },
     {
       "path": "backend/src/runtime/commerce-runtime/governed/work8-twin.ts",
-      "expectedSHA256": "b36f52963495e1fe017fd636fde8e3acf9a81cbe8452d63ebfacf510a83ef555",
-      "compiledTreeSHA256": "b36f52963495e1fe017fd636fde8e3acf9a81cbe8452d63ebfacf510a83ef555",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "b36f52963495e1fe017fd636fde8e3acf9a81cbe8452d63ebfacf510a83ef555",
+      "builtSHA256": "b36f52963495e1fe017fd636fde8e3acf9a81cbe8452d63ebfacf510a83ef555",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/commerce-runtime/governed/work8-twin.js",
-      "expectedSHA256": "13f8cf4cf1ce04911c5bc39c1b4349331f5c2c0aefc1f497d2a179a80d892137",
-      "compiledTreeSHA256": "13f8cf4cf1ce04911c5bc39c1b4349331f5c2c0aefc1f497d2a179a80d892137",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "13f8cf4cf1ce04911c5bc39c1b4349331f5c2c0aefc1f497d2a179a80d892137",
+      "builtSHA256": "13f8cf4cf1ce04911c5bc39c1b4349331f5c2c0aefc1f497d2a179a80d892137",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/commerce-runtime/governed/work8-twin-runtime.ts",
-      "expectedSHA256": "88d94563c0879fa5ac94dac7491e373fdc58b38830abba8e2d72a35d318a7c2b",
-      "compiledTreeSHA256": "88d94563c0879fa5ac94dac7491e373fdc58b38830abba8e2d72a35d318a7c2b",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "88d94563c0879fa5ac94dac7491e373fdc58b38830abba8e2d72a35d318a7c2b",
+      "builtSHA256": "88d94563c0879fa5ac94dac7491e373fdc58b38830abba8e2d72a35d318a7c2b",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/commerce-runtime/governed/work8-twin-runtime.js",
-      "expectedSHA256": "1cc30f3c15d33840a2501089b04e04e60d625ec046b20619230d559144af7e16",
-      "compiledTreeSHA256": "1cc30f3c15d33840a2501089b04e04e60d625ec046b20619230d559144af7e16",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "1cc30f3c15d33840a2501089b04e04e60d625ec046b20619230d559144af7e16",
+      "builtSHA256": "1cc30f3c15d33840a2501089b04e04e60d625ec046b20619230d559144af7e16",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/commerce-runtime/governed/work8-twin-routes.ts",
-      "expectedSHA256": "85423c722d0070fa23c146512ab5c5c255fa4bd5ce3b9bc2750f349ecdb5b6d4",
-      "compiledTreeSHA256": "85423c722d0070fa23c146512ab5c5c255fa4bd5ce3b9bc2750f349ecdb5b6d4",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "85423c722d0070fa23c146512ab5c5c255fa4bd5ce3b9bc2750f349ecdb5b6d4",
+      "builtSHA256": "85423c722d0070fa23c146512ab5c5c255fa4bd5ce3b9bc2750f349ecdb5b6d4",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/commerce-runtime/governed/work8-twin-routes.js",
-      "expectedSHA256": "6f9f741970ee209646ddb27c9390514ebb21ab3295f5c78cc33368073ca683ca",
-      "compiledTreeSHA256": "6f9f741970ee209646ddb27c9390514ebb21ab3295f5c78cc33368073ca683ca",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "6f9f741970ee209646ddb27c9390514ebb21ab3295f5c78cc33368073ca683ca",
+      "builtSHA256": "6f9f741970ee209646ddb27c9390514ebb21ab3295f5c78cc33368073ca683ca",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/commerce-runtime/governed/recovery-projection.ts",
-      "expectedSHA256": "0a8eff6cb0eb1d853a8cc721c55b10bfa595253d3839849e9bbb5c2dc86a4c1d",
-      "compiledTreeSHA256": "0a8eff6cb0eb1d853a8cc721c55b10bfa595253d3839849e9bbb5c2dc86a4c1d",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "0a8eff6cb0eb1d853a8cc721c55b10bfa595253d3839849e9bbb5c2dc86a4c1d",
+      "builtSHA256": "0a8eff6cb0eb1d853a8cc721c55b10bfa595253d3839849e9bbb5c2dc86a4c1d",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/commerce-runtime/governed/recovery-projection.js",
-      "expectedSHA256": "8b3fba5d935bbb75c66b0877ef1017d28de40928c7561ab4d13ce0d534840caa",
-      "compiledTreeSHA256": "8b3fba5d935bbb75c66b0877ef1017d28de40928c7561ab4d13ce0d534840caa",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "8b3fba5d935bbb75c66b0877ef1017d28de40928c7561ab4d13ce0d534840caa",
+      "builtSHA256": "8b3fba5d935bbb75c66b0877ef1017d28de40928c7561ab4d13ce0d534840caa",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/commerce-runtime/governed/store.ts",
-      "expectedSHA256": "ce470a09512cbc13c61f6b330a39449ac28ffa7083661eaee0f5f9364b6f49d0",
-      "compiledTreeSHA256": "ce470a09512cbc13c61f6b330a39449ac28ffa7083661eaee0f5f9364b6f49d0",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "ce470a09512cbc13c61f6b330a39449ac28ffa7083661eaee0f5f9364b6f49d0",
+      "builtSHA256": "ce470a09512cbc13c61f6b330a39449ac28ffa7083661eaee0f5f9364b6f49d0",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/commerce-runtime/governed/store.js",
-      "expectedSHA256": "d52a02075c7ec274558aebaa2e8d6a3bb6bdc520e2ea9ea4b9a359071775045d",
-      "compiledTreeSHA256": "d52a02075c7ec274558aebaa2e8d6a3bb6bdc520e2ea9ea4b9a359071775045d",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "d52a02075c7ec274558aebaa2e8d6a3bb6bdc520e2ea9ea4b9a359071775045d",
+      "builtSHA256": "d52a02075c7ec274558aebaa2e8d6a3bb6bdc520e2ea9ea4b9a359071775045d",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/src/runtime/commerce-runtime/governed/work8-durable-finance.ts",
-      "expectedSHA256": "5cf21e7af098b834a67975c72a5bc7936c35fc0a8ff3503e7f7aa27d415987e3",
-      "compiledTreeSHA256": "5cf21e7af098b834a67975c72a5bc7936c35fc0a8ff3503e7f7aa27d415987e3",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "5cf21e7af098b834a67975c72a5bc7936c35fc0a8ff3503e7f7aa27d415987e3",
+      "builtSHA256": "5cf21e7af098b834a67975c72a5bc7936c35fc0a8ff3503e7f7aa27d415987e3",
+      "intentionalOverlay": false
     },
     {
       "path": "backend/dist/runtime/commerce-runtime/governed/work8-durable-finance.js",
-      "expectedSHA256": "94d68db05fbef63ebe4431540cdf3f76237efd988de8a5cb81d9239745dce432",
-      "compiledTreeSHA256": "94d68db05fbef63ebe4431540cdf3f76237efd988de8a5cb81d9239745dce432",
-      "sameAsRetained": true,
-      "expectedChangedOverlay": false
+      "retainedSHA256": "94d68db05fbef63ebe4431540cdf3f76237efd988de8a5cb81d9239745dce432",
+      "builtSHA256": "94d68db05fbef63ebe4431540cdf3f76237efd988de8a5cb81d9239745dce432",
+      "intentionalOverlay": false
     }
   ],
-  "sourceGuardAndOtherOriginalNativeBindingsUnchanged": true,
-  "frontendBuild": "Pending independent hosted exact-lock builder",
+  "unchangedPins": 40,
+  "intentionalRuntimePins": 2,
+  "acceptedBaseAdapterCompiledUnchanged": true,
   "nativeAcceptance": false,
-  "nativeRecordsCreated": false,
-  "wholeRowsAccepted": [],
-  "earliestFailures": [
-    "v128_owner/backend-build-first-failure.json",
-    "v128_owner/backend-build-resource-failure.json"
-  ],
-  "published": false
+  "privateMediaEmbeddedInSource": false,
+  "publicationOrLaunchApprovedByThisReceipt": false,
+  "supersedesBuildReceiptSHA256": "f4e8cf26a8fdc1d1e4f15f36ae171c030963b52bb260de25dbaa676ab64cfd24",
+  "sourcePrivacyCorrection": "Public review inputs contain only exact relevant source facts and original review hashes; mailbox/Library/absolute-path fields excluded",
+  "sourceModuleSHA256": "8f0269228a3d7667942981c79c61f43f0d541cdfeeeefb48ba33d67526e7b4cb",
+  "expectedEvidenceProjectionSHA256": "c6a044514dc00c8f7c81839db325195c7e3d7702e13ca0303c9d2b4d55de53e0"
 }

@@ -1,0 +1,37 @@
+{
+  "schema": "V128_MINIMIZED_RETAINED_INVENTORY_CUSTODY_V1",
+  "derivation": "Exact relevant subset of retained independent review; no new provider request or native acceptance",
+  "sourceReviewSHA256": "1ff26948e5c812bd0dec8ca2d9ceeb1e3bcbc11d992ab798fd935933403f9711",
+  "receipts": {
+    "inventoryRead": {
+      "path": "v122_recovery/current-inventory.json",
+      "bytes": 669,
+      "sha256": "58edc9d3628ec353661cbf3f080037e78bd4aaff3d4def18ee79b0ce9bb2fd15"
+    }
+  },
+  "exactSelectedIdentity": {
+    "pid": "2610240019051639200",
+    "vid": "2610240019061630200",
+    "sku": "CJYD335906902BY"
+  },
+  "currentInventoryObservation": {
+    "receiptRef": "inventoryRead",
+    "toolResultIsError": false,
+    "receiptAtUTC": "2026-11-13T03:47:12.903Z",
+    "selectedVID": "2610240019061630200",
+    "totalInventoryNum": 9427,
+    "cjInventoryNum": 0,
+    "factoryInventoryNum": 9427,
+    "countryCode": "CN",
+    "areaEn": "China Warehouse",
+    "stock": [
+      {
+        "stockId": "{6709CCD7-0DC7-43B1-B310-17AB499E9B0A}",
+        "inventory": 0,
+        "factoryInventory": 9427
+      }
+    ],
+    "dispatchCommitmentOrOwnedInventoryInferred": false
+  },
+  "newAcceptance": false
+}

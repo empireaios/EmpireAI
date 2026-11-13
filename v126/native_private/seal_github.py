@@ -2,6 +2,7 @@
 """Drain the exact new scope and read back every safe final byte before upload."""
 import hashlib,json,os,pathlib,re,stat,subprocess
 from verify_final import verify_final
+from protect_final_evidence import protect_bundle
 assert os.getuid()==0
 CONTROL=pathlib.Path(__file__).resolve().parent;run=os.environ['GITHUB_RUN_ID'];assert run.isdigit()
 root=pathlib.Path(os.environ['RUNNER_TEMP'])/('v126-native-'+run);runtime=root/'runtime'
@@ -39,7 +40,7 @@ if private.exists():
  if p.exists():
   require(p.is_file()and not p.is_symlink(),'PRIVATE_CONFIG_TYPE');cfg=json.loads(p.read_text())
   forbidden=[cfg[k].encode()for k in ['founderEmail','founderPassword','adminPassword']]
- for name in ['native-bootstrap.json','owner-policy.json','connector-policy.json']:
+ for name in ['native-bootstrap.json','owner-policy.json','connector-policy.json','connector-walkthrough-policy.json','connector-walkthrough-policy.json.tmp']:
   p=private/name
   if p.exists():require(p.is_file()and not p.is_symlink(),'PRIVATE_FILE_TYPE');p.unlink()
  require(not any(private.iterdir()),'UNEXPECTED_PRIVATE_FILE');private.rmdir()
@@ -55,10 +56,10 @@ verify_pin(CONTROL.parents[1],manifest['workflow'])
 require({p['path']for p in manifest['repositoryFiles']}=={'vercel.json','empireai-web/vercel.json'},'REPOSITORY_GUARD_SET')
 for pin in manifest['repositoryFiles']:
  verify_pin(CONTROL.parents[1],pin)
- require(json.loads((CONTROL.parents[1]/pin['path']).read_bytes())['git']['deploymentEnabled']['work8/v128-connector-owner-native-20261113-a02']is False,'DEPLOYMENT_NOT_DISABLED')
+ require(json.loads((CONTROL.parents[1]/pin['path']).read_bytes())['git']['deploymentEnabled']['work8/v128-connector-owner-native-20261113-a03']is False,'DEPLOYMENT_NOT_DISABLED')
 for pin in manifest['applicationFiles']:verify_pin(CONTROL.parents[1],pin)
 for pin in manifest['files']:verify_pin(CONTROL,pin)
-publish=root/'publish';require(not publish.exists(),'PUBLISH_DESTINATION_NOT_FRESH');publish.mkdir(mode=0o755)
+publish=root/'private-final-evidence';require(not publish.exists(),'PRIVATE_BUNDLE_DESTINATION_NOT_FRESH');publish.mkdir(mode=0o700)
 rows=[];total=0
 def append(name,b,limit=4194304):
  global total
@@ -71,7 +72,7 @@ def public_json(path):
  s=path.lstat();require(stat.S_ISREG(s.st_mode)and s.st_nlink==1 and s.st_size<=4194304,'RECEIPT_TYPE_OR_SIZE')
  b=path.read_bytes();value=json.loads(b)
  require(not any(secret in b for secret in forbidden),'PRIVATE_VALUE_IN_PUBLIC_RECEIPT')
- require(re.search(rb'[A-Za-z0-9.!#$%&\x27*+/=?^_`{|}~-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}',b)is None,'PRIVATE_EMAIL_IN_PUBLIC_RECEIPT')
+ require(b'@'not in b or re.search(rb'[A-Za-z0-9.!#$%&\x27*+/=?^_`{|}~-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}',b)is None,'PRIVATE_EMAIL_IN_PUBLIC_RECEIPT')
  def check(v):
   if isinstance(v,dict):
    for k,w in v.items():
@@ -80,15 +81,17 @@ def public_json(path):
    for w in v:check(w)
  check(value);return b,value
 paths={'admission.json':root/'admission.json','technical-client-result.json':root/'technical-client-result.json',
+ 'retained-transport.json':root/'retained-transport.json','retained-transport-first-failure.json':root/'retained-transport-first-failure.json',
  'execution-first-failure.json':root/'execution-first-failure.json','connector-build-manifest.json':CONTROL/'connector-build-manifest.json',
  'connector-backend-build.json':CONTROL/'connector-backend-build.json','authority.json':CONTROL/'authority.json'}
 for name in ['prepared-runtime.json','exact-frontend.json','carrier-termination.json','preparation-first-failure.json','private-container-admission.json',
  'private-launch-first-failure.json','connector-frontend-build.json','connector-frontend-build-first-failure.json',
  'connector-frontend-build-termination.json','connector-frontend-build-cleanup-failure.json',
  'connector-runtime-prepared.json','connector-runtime-preparation-first-failure.json',
+ 'connector-media-transport.json','connector-media-first-failure.json','connector-walkthrough-policy-binding.json',
  'connector-browser-containment.json','connector-browser-termination.json','connector-browser-first-failure.json','connector-browser-cleanup-failure.json']:
  paths[name]=runtime/'evidence'/name
-for name in ['backend-ready.json','runtime-ready.json','runtime-termination.json','connector-source-admission.json','connector-backend-first-failure.json']:
+for name in ['backend-ready.json','runtime-ready.json','runtime-termination.json','connector-source-admission.json','connector-walkthrough-admission.json','connector-backend-first-failure.json']:
  paths[name]=runtime/'runtime-output'/name
 for name in ['connector-browser-result.json','connector-portfolio-desktop.json','connector-portfolio-mobile.json']:
  paths[name]=runtime/'browser-output'/name
@@ -98,14 +101,20 @@ for name,path in paths.items():
 browser_result=values.get('connector-browser-result.json',{})
 if browser_result.get('status')=='PASS_AUTHENTICATED_DESKTOP_MOBILE_CONNECTOR_SOURCE_RENDERING':
  admission=values['connector-source-admission.json'];record=admission['record']
+ walkthrough=values['connector-walkthrough-admission.json'];supplement=walkthrough['record']
+ require(walkthrough['status']=='ADMITTED_RETAINED_FACTS_AND_EXECUTED_DEFER'and walkthrough['replayStatus']=='ALREADY_ADMITTED','NATIVE_WALKTHROUGH_ADMISSION_INCOMPLETE')
+ require(walkthrough['canonical']['record']==supplement and supplement['candidateDigest']==record['digest'],'WALKTHROUGH_NATIVE_CANONICAL_MISMATCH')
+ policy_binding=values['connector-walkthrough-policy-binding.json']
+ require(policy_binding['policySHA256']==walkthrough['policySHA256']and policy_binding['candidateDigest']==record['digest'],'ACTUAL_CANDIDATE_POLICY_BINDING_MISMATCH')
  require(admission['status']=='ADMITTED_SOURCE_OBSERVATION_ONLY'and admission['replayStatus']=='ALREADY_ADMITTED','NATIVE_SOURCE_ADMISSION_NOT_COMPLETE')
- require(browser_result['sameCanonicalRecordAcrossViews']is True and browser_result['browserClosed']is True,'BROWSER_RESULT_INCOMPLETE')
+ require(browser_result['sameCanonicalRecordAcrossViews']is True and browser_result['sameWalkthroughRecordAcrossViews']is True and browser_result['browserClosed']is True,'BROWSER_RESULT_INCOMPLETE')
  require({v['name']for v in browser_result['views']}=={'desktop','mobile'},'VIEW_SET_INCOMPLETE')
  for view in browser_result['views']:
   require(view['canonicalCandidate']==record and view['contextClosed']is True,'NATIVE_BROWSER_CANONICAL_MISMATCH')
   response=view['portfolioResponse'];require(response['path']=='connector-portfolio-'+view['name']+'.json','PORTFOLIO_RECEIPT_NAME')
   original=(runtime/'browser-output'/response['path']).read_bytes()
   require(len(original)==response['bytes']and sha(original)==response['sha256'],'PORTFOLIO_RECEIPT_BYTES')
+  require(json.loads(original)['connectorWalkthrough']['record']==supplement and view['walkthroughRecordDigest']==supplement['digest'],'AUTHENTICATED_WALKTHROUGH_READBACK_MISMATCH')
   screenshot=view['screenshot'];require(screenshot['path']=='connector-source-'+view['name']+'.png','SCREENSHOT_NAME')
   require(screenshot['scope']=='VERIFIED_CANDIDATE_ARTICLE_ONLY'and screenshot['privateIdentityMaskApplied']is True,'SCREENSHOT_PRIVACY_SCOPE')
   p=runtime/'browser-output'/screenshot['path'];s=p.lstat()
@@ -145,6 +154,8 @@ final={'schema':'v128-connector-owner-native-final-v1','runId':run,'attempt':1,'
  'sourceManifestSHA256':sha((CONTROL/'source-manifest.json').read_bytes()),'currentSourceVerified':True,'checkoutClean':True,
  'containerAbsent':True,'browserContainerAbsent':True,'buildContainersAbsent':True,'removedContainers':removed,
  'privateCredentialsAndPolicyRemoved':True,'status':browser_result['status']if success else'FAIL_NATIVE_CONNECTOR_EXAMINATION_CONJUNCTION',
+ 'privatePhaseStarted':(root/'private-phase-started.json').exists(),
+ 'evidenceClassification':'ENCRYPTED_PRIVATE_BUNDLE_REQUIRED'if(root/'private-phase-started.json').exists()else'PRE_PRIVATE_EXECUTION',
  'successConjunction':success_checks,
  'inputActor':'DELEGATED_TECHNICAL_OPERATOR','ownerActionObserved':False,'ownerDecisionGranted':False,'wholeRowAccepted':False,
  'publicPortsCreated':False,'productionMutation':False,'frontendArchiveRetained':archive_index is not None,
@@ -153,6 +164,24 @@ b=(json.dumps(final,indent=2)+'\n').encode();append('final-result.json',b)
 index={'schema':'v128-final-evidence-index-v1','maximumBytes':CAP,'payloads':rows}
 (publish/'evidence-index.json').write_text(json.dumps(index,indent=2)+'\n');(publish/'evidence-index.json').chmod(0o644)
 verified=verify_final(publish)
+public=root/'publish'
+early_transport_failure=(os.environ.get('EMPIREAI_RETAINED_STEP_OUTCOME')=='failure'
+ and 'retained-transport-first-failure.json'in values and not runtime.exists()and not private.exists()and removed==[]
+ and not os.path.lexists(root/'private-phase-started.json'))
+if early_transport_failure:
+ require(not success,'EARLY_FAILURE_CANNOT_PASS')
+ require(set(p.name for p in publish.iterdir())=={'admission.json','retained-transport-first-failure.json',
+  'connector-build-manifest.json','connector-backend-build.json','authority.json','final-result.json','evidence-index.json'},'EARLY_DIAGNOSTIC_EXACT_ALLOWLIST')
+ failure=values['retained-transport-first-failure.json']
+ require(failure['schema']=='v128-retained-transport-first-failure-v1'and failure['status']=='FAILED','EARLY_TRANSPORT_RECEIPT_SCHEMA')
+ require(failure['partialDownloadAbsent']is True and failure['destinationAbsent']is True,'EARLY_TRANSPORT_FILES_REMAIN')
+ require(not public.exists()and not public.is_symlink(),'PUBLIC_DESTINATION_NOT_FRESH')
+ publish.rename(public);public.chmod(0o755)
+ custody={'status':'PRE_PRIVATE_TRANSPORT_FAILURE_DIAGNOSTICS_ONLY','retainedStepOutcome':'failure',
+  'nativeRuntimeDirectoryAbsent':True,'privateConfigurationAbsent':True,'privatePayloadsIncluded':False,'exactAllowlistVerified':True}
+else:
+ custody=protect_bundle(publish,public,CONTROL,runtime,{'operationIdentity':json.loads((CONTROL/'authority.json').read_text())['operationIdentity'],
+  'runId':run,'attempt':1,'publicationCommit':os.environ['GITHUB_SHA'],'sourceManifestSHA256':sha((CONTROL/'source-manifest.json').read_bytes())})
 with open(os.environ['GITHUB_OUTPUT'],'a')as out:out.write('custody_ready=true\n')
-print(json.dumps({'status':final['status'],'finalResultSHA256':sha(b),'custodyReady':True,'assembledByteReadback':verified,'wholeRowAccepted':False}))
+print(json.dumps({'status':final['status'],'finalResultSHA256':sha(b),'custodyReady':True,'privateEvidenceCustody':custody,'wholeRowAccepted':False}))
 if not success:raise SystemExit(1)
