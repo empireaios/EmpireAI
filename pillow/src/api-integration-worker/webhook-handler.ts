@@ -1,1 +1,0 @@
-import { IntegrationRuntime } from "./integration-runtime.js"; export class WebhookHandler {constructor(private readonly runtime:IntegrationRuntime){}process(integrationId:string,eventType:string,payload:unknown,signature?:string){return this.runtime.processWebhook(integrationId,eventType,payload,signature);}}

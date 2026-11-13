@@ -1,1 +1,0 @@
-import type { DeploymentWorkerEngine } from "./engine.js"; export class DeploymentRuntime { constructor(private readonly engine:DeploymentWorkerEngine){} deploy(input:{packageId:string;environment:"development"|"staging"|"production"}){return this.engine.deploy(input)} }

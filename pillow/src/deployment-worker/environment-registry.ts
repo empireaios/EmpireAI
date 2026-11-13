@@ -1,1 +1,0 @@
-import type { EnvironmentConfig } from "./types.js"; export class EnvironmentRegistry { private records=new Map<string,EnvironmentConfig>(); register(value:EnvironmentConfig){this.records.set(value.environment,value);return value} list(){return [...this.records.values()]} }

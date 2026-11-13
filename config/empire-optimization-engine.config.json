@@ -1,9 +1,0 @@
-{
-  "enabled": true,
-  "validationRulesEnabled": true,
-  "healthMonitoringRulesEnabled": true,
-  "recommendationThreshold": 55,
-  "neverExecuteUnapprovedOptimizationActionsAutomatically": true,
-  "structuralSignalsOnly": true,
-  "neverLogSensitiveEnterpriseInformation": true
-}
