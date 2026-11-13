@@ -1,9 +1,8 @@
 {
-  "schema": "V128_NEXT_WALKTHROUGH_FINAL_PRIVACY_CORRECTED_BACKEND_BUILD_V1",
-  "atUTC": "2026-11-13T10:45:38.523875+00:00",
+  "schema": "V128_A06_COMPLETE_RETAINED_BACKEND_BUILD_V1",
+  "atUTC": "2026-11-13T11:59:45.687529+00:00",
   "status": "PASS",
   "nodeVersion": "v22.23.2",
-  "nodePath": "v128_frontend/build-inputs/usr/local/bin/node",
   "nodeSHA256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
   "typescriptVersion": "5.9.3",
   "compilerSHA256": "e8f349eabd48486bdb2bf9dc1a00c89d58297270c54b745838879e2859194419",
@@ -22,50 +21,57 @@
   ],
   "exitCode": 0,
   "compilerLog": {
-    "path": "v128_owner/next_walkthrough/backend-compiler-final.log",
     "bytes": 0,
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
-  "sourceReviewManifest": {
-    "path": "v128_owner/next_walkthrough/review-manifest.json",
-    "sha256": "037c063c777929645b562bebf294003dd35b9780920b699bdf4a46180f8bdb5f"
-  },
   "compiledFiles": [
     {
-      "path": "v128_owner/next_walkthrough/compiled-overlay-final/runtime.js",
-      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/runtime.js",
-      "bytes": 31085,
-      "sha256": "d329d5188ea142e159c7316323c27db9dfcfe60042af4c1ecc8af881fce129d4"
+      "sourceFile": "connector-runtime.js",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/runtime.js",
+      "bytes": 31518,
+      "sha256": "1d7187f554648248af27fabb26e3f80fcbdd32ff0d46c28a2cf6cec970c78943"
     },
     {
-      "path": "v128_owner/next_walkthrough/compiled-overlay-final/runtime.js.map",
-      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/runtime.js.map",
-      "bytes": 31477,
-      "sha256": "791f026d5c94a51ab819aa8f081bf10a5a384a92ec33b0510c596961aee88fe4"
+      "sourceFile": "connector-runtime.js.map",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/runtime.js.map",
+      "bytes": 31977,
+      "sha256": "cae5231bf1f70a96808fe0c80827ca46feb44055a5797fe7385d83f6326e67d8"
     },
     {
-      "path": "v128_owner/next_walkthrough/compiled-overlay-final/work8-connector-source.js",
-      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js",
+      "sourceFile": "connector-source.js",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js",
       "bytes": 14220,
       "sha256": "b3e76dbcddc684885eb3e1f21e83a70fdf5cec56671116459acebec5ddfbb5e4"
     },
     {
-      "path": "v128_owner/next_walkthrough/compiled-overlay-final/work8-connector-source.js.map",
-      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map",
+      "sourceFile": "connector-source.js.map",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map",
       "bytes": 13481,
       "sha256": "08aac0e557ba3a9ed409e0a08df55a1116d48e04af194e280b8a310233119917"
     },
     {
-      "path": "v128_owner/next_walkthrough/compiled-overlay-final/work8-connector-walkthrough.js",
-      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js",
+      "sourceFile": "connector-walkthrough.js",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js",
       "bytes": 15539,
       "sha256": "57acd39761038fbb34d4f3359bdd336fddba3a0f6140d9bc2d07ecf46a7aee11"
     },
     {
-      "path": "v128_owner/next_walkthrough/compiled-overlay-final/work8-connector-walkthrough.js.map",
-      "runtimePath": "/app/backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js.map",
+      "sourceFile": "connector-walkthrough.js.map",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js.map",
       "bytes": 15841,
       "sha256": "201cec87a508151813c50523b27500fea5ced85de63437fb8cb3219895bdce9c"
+    },
+    {
+      "sourceFile": "connector-media.js",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/work8-connector-media.js",
+      "bytes": 16587,
+      "sha256": "3c83f64bd83f1f28d3601ced89672d7f76d33e47b180cd7aa3ba6c875e56331c"
+    },
+    {
+      "sourceFile": "connector-media.js.map",
+      "destination": "backend/dist/runtime/commerce-runtime/governed/work8-connector-media.js.map",
+      "bytes": 18142,
+      "sha256": "9b6c08769db9f99a6c4b5b21e540a2c03b6e16a02f42cb86c3b58fe54268e83b"
     }
   ],
   "originalNativeSourcePinComparisons": [
@@ -240,13 +246,13 @@
     {
       "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
       "retainedSHA256": "3a186bfb12e34a9d0bfb1501adaa416b9c1221a56f0906ccda9ad37c9fcf3293",
-      "builtSHA256": "248afb1e15c0f73ce03932075d2a52f05124db2dc706b0754cdff84b46f89be0",
+      "builtSHA256": "18b89113676a16bd8bc76858d74f39c30cf442d17f6e36857e053bd1ad50895d",
       "intentionalOverlay": true
     },
     {
       "path": "backend/dist/runtime/commerce-runtime/governed/runtime.js",
       "retainedSHA256": "8194998296fa6cea3a716fd5f07215b90248925d1d979570972e1d66ac28c603",
-      "builtSHA256": "d329d5188ea142e159c7316323c27db9dfcfe60042af4c1ecc8af881fce129d4",
+      "builtSHA256": "1d7187f554648248af27fabb26e3f80fcbdd32ff0d46c28a2cf6cec970c78943",
       "intentionalOverlay": true
     },
     {
@@ -323,13 +329,8 @@
     }
   ],
   "unchangedPins": 40,
-  "intentionalRuntimePins": 2,
-  "acceptedBaseAdapterCompiledUnchanged": true,
   "nativeAcceptance": false,
   "privateMediaEmbeddedInSource": false,
   "publicationOrLaunchApprovedByThisReceipt": false,
-  "supersedesBuildReceiptSHA256": "f4e8cf26a8fdc1d1e4f15f36ae171c030963b52bb260de25dbaa676ab64cfd24",
-  "sourcePrivacyCorrection": "Public review inputs contain only exact relevant source facts and original review hashes; mailbox/Library/absolute-path fields excluded",
-  "sourceModuleSHA256": "8f0269228a3d7667942981c79c61f43f0d541cdfeeeefb48ba33d67526e7b4cb",
-  "expectedEvidenceProjectionSHA256": "c6a044514dc00c8f7c81839db325195c7e3d7702e13ca0303c9d2b4d55de53e0"
+  "scope": "Full retained backend source/type graph compiled with exact unchanged configuration; runtime plus new private source-bound media overlay; accepted connector source/walkthrough emit unchanged."
 }

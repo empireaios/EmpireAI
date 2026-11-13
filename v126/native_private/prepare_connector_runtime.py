@@ -40,6 +40,9 @@ def verify_and_freeze(folder,rows):
     folder.chmod(0o555)
     return len(expected)
 def main():
+    # This read-only Actions token is scoped solely to the exact repository courier.
+    # Remove it before any original-media fetch, Docker command or other child.
+    courier_token=os.environ.pop('EMPIREAI_COURIER_GITHUB_TOKEN','')
     assert os.getuid()==0 and len(sys.argv)==2
     root=pathlib.Path(sys.argv[1]);assert root.is_absolute()and root.resolve(strict=True)==root
     assert not(root.parent/'private').exists(),'NO_OWNER_CREDENTIALS_DURING_PREPARATION'
@@ -97,6 +100,20 @@ def main():
           stdin=subprocess.DEVNULL,capture_output=True,timeout=75,env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'})
         assert len(p.stdout)+len(p.stderr)<=1048576,'MEDIA_TRANSPORT_OUTPUT_BOUND'
         assert p.returncode==0,'PRIVATE_MEDIA_TRANSPORT_FAILED_'+hashlib.sha256(p.stderr).hexdigest()
+        phase='receive-exact-private-retained-revision'
+        courier_env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8',**{name:os.environ[name]for name in ['RUNNER_TEMP','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_REPOSITORY','GITHUB_SHA']}}
+        assert courier_token,'COURIER_READ_TOKEN_REQUIRED'
+        courier_env['EMPIREAI_COURIER_GITHUB_TOKEN']=courier_token
+        try:
+            p=subprocess.run([sys.executable,'-B',str(CONTROL/'media_courier.py'),'receive',str(root)],
+              stdin=subprocess.DEVNULL,capture_output=True,timeout=510,env=courier_env)
+        finally:
+            courier_env.pop('EMPIREAI_COURIER_GITHUB_TOKEN',None);courier_token=''
+        assert len(p.stdout)+len(p.stderr)<=1048576,'MEDIA_COURIER_OUTPUT_BOUND'
+        assert p.returncode==0,'PRIVATE_REVISED_COURIER_FAILED_'+hashlib.sha256(p.stderr).hexdigest()
+        revised=inputs/'retained-revised.png';rs=revised.lstat()
+        assert stat.S_ISREG(rs.st_mode)and not revised.is_symlink()and rs.st_nlink==1 and rs.st_size==599818 and rs.st_mode&0o777==0o444
+        assert sha(revised)=='69f1f95ab622041332d5e5e1ee43a59a2c34bd017151a6bb45e260f69e035788'
         inputs.chmod(0o555)
         phase='recover-exact-retained-browser-image'
         p=subprocess.run(['docker','pull',BROWSER_DIGEST],stdin=subprocess.DEVNULL,capture_output=True,timeout=300)

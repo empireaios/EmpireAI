@@ -5,8 +5,8 @@
   "image": "sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0",
   "baseFileCount": 957,
   "baseTreeSHA256": "9d23fc8ba6e39bfaf5532b41d755d6826014c24ab22bdaec8afc639593f92974",
-  "changedSourceFileCount": 958,
-  "changedSourceTreeSHA256": "712a6fcbbeef8516279d415c03d49ff85f56487bafdc533d0781203db6dee397",
+  "changedSourceFileCount": 959,
+  "changedSourceTreeSHA256": "4747415129279e6684eb29295eee3e5ce810634e82413a2c04f577c495b863d1",
   "nodeSHA256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
   "npmVersion": "10.9.8",
   "npmFileCount": 1964,
@@ -17,15 +17,15 @@
     {
       "repositoryPath": "empireai-web/components/owner/work7/ConnectorSourceCandidates.tsx",
       "frontendPath": "components/owner/work7/ConnectorSourceCandidates.tsx",
-      "bytes": 10583,
-      "sha256": "a0c013e1a19dc9cb30292ac24016d5bead99fe3657646aa9582ab5751b12ef26",
+      "bytes": 10894,
+      "sha256": "be0708decbcfe5a256e54a293d34dab43b401773703e408c341fb8f4b1c9125e",
       "scope": "REVIEWED_NEW_SOURCE_DISPLAY"
     },
     {
       "repositoryPath": "empireai-web/components/owner/work7/OwnerJourneys.tsx",
       "frontendPath": "components/owner/work7/OwnerJourneys.tsx",
-      "bytes": 51471,
-      "sha256": "12e4770a4859ef78b242b98a832ba7e9fac3f588e6820ae794d0117ced61e8ad",
+      "bytes": 51508,
+      "sha256": "a29da7b26b735c38805b5b0a1a1783c1202e7d29bb728690bc5ca7f78f96813a",
       "scope": "REVIEWED_NEW_SOURCE_DISPLAY"
     },
     {
@@ -45,9 +45,16 @@
     {
       "repositoryPath": "empireai-web/vercel.json",
       "frontendPath": "vercel.json",
-      "bytes": 1103,
-      "sha256": "58641ffcac40de63640d5739b26fc772f861f01781893ba59ee39b17ffcebccf",
+      "bytes": 1166,
+      "sha256": "8b1f1190eb75a26f03f072de1dacdd6cecd8088f77f4c7b954bdd9444a95fe13",
       "scope": "PRESERVE_HISTORICAL_AND_NEW_BRANCH_DEPLOYMENT_SUPPRESSION"
+    },
+    {
+      "repositoryPath": "empireai-web/components/owner/work8/ConnectorMedia.tsx",
+      "frontendPath": "components/owner/work8/ConnectorMedia.tsx",
+      "scope": "SOURCE_BOUND_PRIVATE_MEDIA_REQUEST_GALLERY_ARCHIVE",
+      "bytes": 15407,
+      "sha256": "f072980367508c97e8f5188499b27bc7bbbae30b937ce76b645efc790755f852"
     }
   ],
   "requiredPackageVersions": {
@@ -89,7 +96,8 @@
     "deploymentConfiguration": "Current reviewed parent configuration plus exact new launch branch suppression; historical suppressions retained",
     "newUiSourceFiles": [
       "components/owner/work7/ConnectorSourceCandidates.tsx",
-      "components/owner/work7/OwnerJourneys.tsx"
+      "components/owner/work7/OwnerJourneys.tsx",
+      "components/owner/work8/ConnectorMedia.tsx"
     ],
     "unavailableReadinessRemainsUnknown": true,
     "positiveHealthFacadeAdded": false

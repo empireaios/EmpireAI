@@ -4,7 +4,7 @@ CONTROL=pathlib.Path(__file__).resolve().parent
 assert os.environ['GITHUB_REPOSITORY']=='empireaios/EmpireAI'
 assert os.environ['GITHUB_EVENT_NAME']=='create'and os.environ['GITHUB_RUN_ATTEMPT']=='1'
 event=json.loads(pathlib.Path(os.environ['GITHUB_EVENT_PATH']).read_text())
-assert event['ref_type']=='branch'and event['ref']=='work8/v128-connector-owner-native-20261113-a05'
+assert event['ref_type']=='branch'and event['ref']=='work8/v128-connector-media-native-20261113-a06'
 run=os.environ['GITHUB_RUN_ID'];assert run.isdigit()
 head=os.environ['GITHUB_SHA'];assert re.fullmatch('[a-f0-9]{40}',head)
 assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==head
@@ -22,8 +22,10 @@ assert {p['path']for p in manifest['applicationFiles']}=={
  'backend/src/runtime/commerce-runtime/governed/runtime.ts',
  'backend/src/runtime/commerce-runtime/governed/work8-connector-source.ts',
  'backend/src/runtime/commerce-runtime/governed/work8-connector-walkthrough.ts',
+ 'backend/src/runtime/commerce-runtime/governed/work8-connector-media.ts',
  'empireai-web/components/owner/work7/ConnectorSourceCandidates.tsx',
  'empireai-web/components/owner/work7/OwnerJourneys.tsx',
+ 'empireai-web/components/owner/work8/ConnectorMedia.tsx',
  'empireai-web/lib/owner/runtime-identity.mjs','empireai-web/lib/owner/runtime-release-identity.test.ts'}
 for p in manifest['applicationFiles']:
  file=CONTROL.parents[1]/p['path'];assert file.is_file()and not file.is_symlink()
@@ -32,7 +34,7 @@ for p in manifest['files']:
  file=CONTROL/p['path'];assert file.is_file()and not file.is_symlink()
  b=file.read_bytes();assert len(b)==p['bytes']and hashlib.sha256(b).hexdigest()==p['sha256']
 r=json.loads((CONTROL/'reservation.json').read_text())
-assert r['operationIdentity']=='V128-CONNECTOR-OWNER-NATIVE-A05-20261113'and r['status']=='RESERVED_IN_CANONICAL_LEDGER'
+assert r['operationIdentity']=='V128-CONNECTOR-MEDIA-NATIVE-A06-20261113'and r['status']=='RESERVED_IN_CANONICAL_LEDGER'
 assert r['cumulativeCeilingUSD']==1000 and r['maximumNewExposureUSD']==1
 assert type(r['expectedCountedExposureUSD'])in (int,float)and 0<r['expectedCountedExposureUSD']<=1000
 for key in ['savedLedgerSHA256','independentReadbackSHA256']:assert re.fullmatch('[a-f0-9]{64}',r[key]or'')

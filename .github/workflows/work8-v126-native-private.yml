@@ -1,17 +1,17 @@
-name: Work 8 V128 private connector owner source walkthrough
+name: Work 8 V128 source-bound private media preparation
 on:
   create:
 permissions:
   contents: read
 concurrency:
-  group: work8-v128-connector-owner-native-20261113-a05
+  group: work8-v128-connector-media-native-20261113-a06
   cancel-in-progress: false
 jobs:
   native-private:
     if: >-
       github.repository == 'empireaios/EmpireAI' &&
       github.event.ref_type == 'branch' &&
-      github.event.ref == 'work8/v128-connector-owner-native-20261113-a05' &&
+      github.event.ref == 'work8/v128-connector-media-native-20261113-a06' &&
       github.run_attempt == 1
     runs-on: ubuntu-24.04
     timeout-minutes: 35
@@ -41,13 +41,28 @@ jobs:
       - name: Verify retained image, Node, native source, frontend and private Redis
         timeout-minutes: 9
         run: sudo python3 -B v126/native_private/prepare_runtime.py "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/retained-input.zip" "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/runtime"
+      - name: Prepare fresh isolated retained-media courier public key
+        timeout-minutes: 2
+        run: sudo --preserve-env=RUNNER_TEMP,GITHUB_RUN_ID,GITHUB_RUN_ATTEMPT,GITHUB_REPOSITORY,GITHUB_SHA python3 -B v126/native_private/media_courier.py keygen "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/runtime"
+      - name: Publish only per-run courier public key
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v128-a10-courier-key-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/v126-native-${{ github.run_id }}/courier-public/key-ready.json
+          retention-days: 1
+          compression-level: 0
+          overwrite: false
+          if-no-files-found: error
+          include-hidden-files: false
       - name: Build exact complete changed frontend with locked dependencies and no credentials
         timeout-minutes: 15
         run: sudo --preserve-env=GITHUB_SHA python3 -B v126/native_private/build_connector_frontend.py "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/runtime" "$GITHUB_WORKSPACE" "$GITHUB_RUN_ID"
-      - name: Admit all built bytes, readonly source receipts and exact retained browser
-        timeout-minutes: 6
-        run: sudo --preserve-env=GITHUB_SHA python3 -B v126/native_private/prepare_connector_runtime.py "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/runtime"
-      - name: Admit genuine source and examine authenticated desktop and mobile owner views
+      - name: Admit all built bytes, protected revised media and exact retained browser
+        timeout-minutes: 15
+        env:
+          EMPIREAI_COURIER_GITHUB_TOKEN: ${{ github.token }}
+        run: sudo --preserve-env=GITHUB_SHA,RUNNER_TEMP,GITHUB_RUN_ID,GITHUB_RUN_ATTEMPT,GITHUB_REPOSITORY,EMPIREAI_COURIER_GITHUB_TOKEN python3 -B v126/native_private/prepare_connector_runtime.py "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/runtime"
+      - name: Bind actual native principal and prepare exact private media on desktop and mobile
         id: native
         timeout-minutes: 5
         env:
@@ -59,12 +74,12 @@ jobs:
         timeout-minutes: 3
         env:
           EMPIREAI_RETAINED_STEP_OUTCOME: ${{ steps.retained.outcome }}
-        run: sudo --preserve-env=RUNNER_TEMP,GITHUB_RUN_ID,GITHUB_SHA,GITHUB_OUTPUT,EMPIREAI_RETAINED_STEP_OUTCOME python3 -B v126/native_private/seal_github.py
+        run: sudo --preserve-env=RUNNER_TEMP,GITHUB_RUN_ID,GITHUB_RUN_ATTEMPT,GITHUB_REPOSITORY,GITHUB_SHA,GITHUB_OUTPUT,EMPIREAI_RETAINED_STEP_OUTCOME python3 -B v126/native_private/seal_github.py
       - name: Retain bounded private-source-safe execution evidence
         if: ${{ always() && steps.seal.outputs.custody_ready == 'true' }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: v128-connector-owner-native-${{ github.run_id }}-1
+          name: v128-connector-media-native-${{ github.run_id }}-1
           path: ${{ runner.temp }}/v126-native-${{ github.run_id }}/publish/
           retention-days: 7
           compression-level: 6

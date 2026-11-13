@@ -1,5 +1,6 @@
 import { readConnectorSourceCandidates } from './work8-connector-source.js';
 import { readConnectorWalkthrough } from './work8-connector-walkthrough.js';
+import { readConnectorMedia, commandConnectorMedia } from './work8-connector-media.js';
 import { registerRecoveryCommerce } from './recovery-projection.js';
 import { sourceProductContext } from '../../../intelligence/work8-product-context.js';
 import { portfolioBriefSchema, portfolioConsumeSchema, portfolioBrief, consumePortfolioReview } from './work8-portfolio-model.js';
@@ -86,6 +87,7 @@ catch {
     return { status: 'COMMERCE_EVIDENCE_UNAVAILABLE', grantsAuthority: false };
 } }
 const actions = z.discriminatedUnion('action', [
+    z.object({ action: z.literal('connector_media'), media: z.unknown() }).strict(),
     z.object({ action: z.literal('twin_canva_export_proposal'), proposal: canvaMediaExportRequest }).strict(),
     z.object({ action: z.literal('twin_portfolio_brief'), proposal: portfolioBriefSchema }).strict(),
     z.object({ action: z.literal('twin_portfolio_consume'), proposal: portfolioConsumeSchema }).strict(),
@@ -169,7 +171,7 @@ export function registerGovernedCommerce(app, authenticate) {
             catch {
                 enrichment = { availability: 'FAILED_CLOSED', reason: 'ENRICHMENT_EVIDENCE_UNAVAILABLE' };
             }
-            return { ...portfolio, enrichment, observedCandidates, retainedDiscovery: readRetainedDiscovery(workspace), freshAcquisition: readFreshAcquisition(workspace), marketContext, connectorSourceCandidates: readConnectorSourceCandidates(productionCommerce().store.db, workspace), connectorWalkthrough: readConnectorWalkthrough(productionCommerce().store.db, workspace) };
+            return { ...portfolio, enrichment, observedCandidates, retainedDiscovery: readRetainedDiscovery(workspace), freshAcquisition: readFreshAcquisition(workspace), marketContext, connectorSourceCandidates: readConnectorSourceCandidates(productionCommerce().store.db, workspace), connectorWalkthrough: readConnectorWalkthrough(productionCommerce().store.db, workspace), connectorMedia: readConnectorMedia(productionCommerce().store.db, { workspace, owner: req.user.id }) };
         }
         catch (e) {
             return reply.code(e instanceof z.ZodError ? 400 : 503).send({ error: e instanceof z.ZodError ? 'INVALID_PORTFOLIO_QUERY' : 'COMMERCE_EVIDENCE_UNAVAILABLE' });
@@ -202,6 +204,8 @@ export function registerGovernedCommerce(app, authenticate) {
                 return { receipt: await recordWork6Outcome(u.id, closure), externalEffects: 0 };
             }
             const a = actions.parse(req.body);
+            if (a.action === 'connector_media')
+                return commandConnectorMedia(c.store.db, { workspace: u.workspaceId, owner: u.id }, a.media);
             if (a.action === 'twin_canva_export_proposal')
                 return new Work8CanvaMedia(c.twinRuntime.media).prepare({ workspace: u.workspaceId, owner: u.id }, a.proposal);
             if (a.action === 'twin_portfolio_brief')

@@ -41,7 +41,7 @@ def main():
     for source,dest in binds.items():argv+=['--mount','type=bind,src='+str(source)+',dst='+dest+',readonly']
     argv+=['--mount','type=bind,src='+str(output)+',dst=/evidence',
       '--tmpfs','/tmp:rw,noexec,nosuid,nodev,size=268435456,mode=1777',BROWSER_IMAGE,
-      '--max-old-space-size=256','/control/connector-browser.mjs']
+      '--max-old-space-size=256','/control/connector-media-browser.mjs']
     created=False;started=False;first=None
     try:
         docker(argv);created=True;x=inspect(name);h=x['HostConfig']
@@ -60,10 +60,19 @@ def main():
           'memoryBytes':2147483648,'nanoCPUs':2000000000,'pidsLimit':256,'shmBytes':268435456,
           'privateInputsReadOnly':True,'nativeCanonicalEvidenceNotMounted':True,'nodeSHA256':NODE_SHA})
         docker(['start',name]);started=True
+        # The reviewed browser writes only sanitized actual login/source readback.
+        # Bind its exact principal and candidate before allowing any media command.
+        until=time.monotonic()+60
+        request=output/'connector-media-binding-request.json'
+        while not request.exists():
+            assert time.monotonic()<until,'MEDIA_ACTUAL_PRINCIPAL_READ_DEADLINE'
+            assert inspect(name)['State']['Running'],'MEDIA_BROWSER_EARLY_EXIT'
+            time.sleep(.2)
+        command([str(root/'node'),str(CONTROL/'configure_media.mjs'),str(root),str(private)],15)
         exitcode=int(docker(['wait',name],180).strip());x=inspect(name)
         assert not x['State']['Running']and x['Image']==BROWSER_IMAGE
         if exitcode:raise RuntimeError('CONNECTOR_BROWSER_EXIT_'+str(exitcode))
-        assert (output/'connector-browser-result.json').is_file(),'BROWSER_FINAL_RESULT_MISSING'
+        assert (output/'connector-media-browser-result.json').is_file(),'BROWSER_FINAL_RESULT_MISSING'
     except BaseException as error:
         first=error
         save(root,'connector-browser-first-failure.json',{'schema':'v128-connector-browser-first-failure-v1',

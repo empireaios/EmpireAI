@@ -8,7 +8,7 @@ def verify_final(directory):
  total=0
  for name in set(expected)|{'evidence-index.json'}:
   assert pathlib.Path(name).name==name and name not in ['.','..']
-  p=root/name;s=p.lstat();limit=8388608 if name in ['connector-source-desktop.png','connector-source-mobile.png']else 4194304
+  p=root/name;s=p.lstat();limit=8388608 if name in ['connector-source-desktop.png','connector-source-mobile.png','connector-media-request-desktop.png','connector-media-desktop.png','connector-media-mobile.png']else 4194304
   assert stat.S_ISREG(s.st_mode)and s.st_nlink==1 and s.st_size<=limit
   b=p.read_bytes();total+=len(b)
   if name in expected:assert len(b)==expected[name]['bytes']and hashlib.sha256(b).hexdigest()==expected[name]['sha256']

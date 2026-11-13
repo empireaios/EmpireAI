@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash,randomBytes} from 'node:crypto';
 import {createRequire} from 'node:module';
-import {allowedFreshRequest} from './fresh-scope.mjs';
+import {allowedMediaPreparationRequest as allowedFreshRequest} from './media-scope.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 function preserveFirstFailure(error){
  const message=String(error?.message??error);const sourceLocations=String(error?.stack??'').match(/\/(?:app|control)\/[A-Za-z0-9_./-]+:\d+:\d+/g)?.slice(0,4)??[];
@@ -34,6 +34,8 @@ assert.equal(build.applicationCommit,'6c1e63ba20619ee480742fd87dc810ca93152e22')
 assert.deepEqual(build.backendOverlays.map(p=>p.destination).sort(),[
  'backend/dist/runtime/commerce-runtime/governed/runtime.js',
  'backend/dist/runtime/commerce-runtime/governed/runtime.js.map',
+ 'backend/dist/runtime/commerce-runtime/governed/work8-connector-media.js',
+ 'backend/dist/runtime/commerce-runtime/governed/work8-connector-media.js.map',
  'backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js',
  'backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map',
  'backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js',
@@ -55,7 +57,8 @@ Object.assign(process.env,{NODE_ENV:'production',LOG_LEVEL:'error',HOST:'127.0.0
  // Same email deliberately makes the second bootstrap entry unreachable: no invented admin identity.
  ADMIN_EMAIL:CONFIG.founderEmail,ADMIN_PASSWORD:CONFIG.adminPassword,
  SESSION_SECRET:randomBytes(32).toString('hex'),SESSION_TTL_SECONDS:'600',CORS_ORIGIN:CONFIG.origin,
- INTELLIGENCE_ENABLED:'false',INTELLIGENCE_DISABLED:'true',EMPIRE_CONNECTOR_ADAPTER_COMMIT:CONFIG.adapterPublicationCommit});
+ INTELLIGENCE_ENABLED:'false',INTELLIGENCE_DISABLED:'true',EMPIRE_CONNECTOR_ADAPTER_COMMIT:CONFIG.adapterPublicationCommit,
+ EMPIRE_CONNECTOR_MEDIA_ROOT:'/private/media'});
 const require=createRequire('/app/backend/package.json');
 const Fastify=require('fastify'),cookie=require('@fastify/cookie'),cors=require('@fastify/cors');
 const load=p=>import('/app/backend/dist/'+p);

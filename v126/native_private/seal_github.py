@@ -3,6 +3,8 @@
 import hashlib,json,os,pathlib,re,stat,subprocess
 from verify_final import verify_final
 from protect_final_evidence import protect_bundle
+from seal_media_results import verify_media_results,STATUS as MEDIA_STATUS
+from seal_media_custody import preserve_after_drain,append_preserved_store
 assert os.getuid()==0
 CONTROL=pathlib.Path(__file__).resolve().parent;run=os.environ['GITHUB_RUN_ID'];assert run.isdigit()
 root=pathlib.Path(os.environ['RUNNER_TEMP'])/('v126-native-'+run);runtime=root/'runtime'
@@ -34,12 +36,31 @@ final_inventory=inventory()
 for name,image,label,value in scopes:
  require(not any(x['Names']==name for x in final_inventory),'SCOPED_CONTAINER_REMAINS')
  require(command(['docker','ps','-aq','--filter','label='+label+'='+value]).strip()==b'','SCOPED_LABEL_REMAINS')
-private=root/'private';forbidden=[]
+private=root/'private'
+# Preserve the exact committed state, including WAL-only rows, before deleting any input.
+# A custody failure returns a sanitized record and cannot bypass mandatory cleanup.
+media_custody_failure=preserve_after_drain(CONTROL,runtime,private,run,os.environ['GITHUB_SHA'],[scope[0]for scope in scopes])
+# The transport private key never enters a container; remove any remaining key,
+# ciphertext staging and revised plaintext only after all consumers are stopped.
+courier_seen=any(p.exists()for p in [root/'courier-private',root/'courier-public',runtime/'evidence/media-courier-key-ready.json',runtime/'connector-inputs/retained-revised.png'])
+if courier_seen:command(['python3','-B',str(CONTROL/'media_courier.py'),'cleanup',str(runtime)])
+original_input=runtime/'connector-inputs/retained-original.jpg'
+if original_input.exists():
+ s=original_input.lstat();require(stat.S_ISREG(s.st_mode)and s.st_nlink==1 and s.st_uid==0,'PRIVATE_ORIGINAL_INPUT_TYPE');original_input.unlink()
+forbidden=[]
 if private.exists():
  p=private/'native-bootstrap.json'
  if p.exists():
   require(p.is_file()and not p.is_symlink(),'PRIVATE_CONFIG_TYPE');cfg=json.loads(p.read_text())
   forbidden=[cfg[k].encode()for k in ['founderEmail','founderPassword','adminPassword']]
+ media=private/'media'
+ if media.exists():
+  require(media.is_dir()and not media.is_symlink(),'PRIVATE_MEDIA_DIRECTORY_TYPE')
+  allowed={'retained-original.jpg','retained-revised.png','private-media-binding.json','private-media-binding.json.tmp'}
+  require({p.name for p in media.iterdir()}<=allowed,'UNEXPECTED_PRIVATE_MEDIA_FILE')
+  for p in media.iterdir():
+   s=p.lstat();require(stat.S_ISREG(s.st_mode)and s.st_nlink==1 and s.st_uid==0,'PRIVATE_MEDIA_FILE_TYPE');p.unlink()
+  media.rmdir()
  for name in ['native-bootstrap.json','owner-policy.json','connector-policy.json','connector-walkthrough-policy.json','connector-walkthrough-policy.json.tmp']:
   p=private/name
   if p.exists():require(p.is_file()and not p.is_symlink(),'PRIVATE_FILE_TYPE');p.unlink()
@@ -56,7 +77,7 @@ verify_pin(CONTROL.parents[1],manifest['workflow'])
 require({p['path']for p in manifest['repositoryFiles']}=={'vercel.json','empireai-web/vercel.json'},'REPOSITORY_GUARD_SET')
 for pin in manifest['repositoryFiles']:
  verify_pin(CONTROL.parents[1],pin)
- require(json.loads((CONTROL.parents[1]/pin['path']).read_bytes())['git']['deploymentEnabled']['work8/v128-connector-owner-native-20261113-a05']is False,'DEPLOYMENT_NOT_DISABLED')
+ require(json.loads((CONTROL.parents[1]/pin['path']).read_bytes())['git']['deploymentEnabled']['work8/v128-connector-media-native-20261113-a06']is False,'DEPLOYMENT_NOT_DISABLED')
 for pin in manifest['applicationFiles']:verify_pin(CONTROL.parents[1],pin)
 for pin in manifest['files']:verify_pin(CONTROL,pin)
 publish=root/'private-final-evidence';require(not publish.exists(),'PRIVATE_BUNDLE_DESTINATION_NOT_FRESH');publish.mkdir(mode=0o700)
@@ -89,16 +110,24 @@ for name in ['prepared-runtime.json','exact-frontend.json','carrier-termination.
  'connector-frontend-build-termination.json','connector-frontend-build-cleanup-failure.json',
  'connector-runtime-prepared.json','connector-runtime-preparation-first-failure.json',
  'connector-media-transport.json','connector-media-first-failure.json','connector-walkthrough-policy-binding.json',
+ 'connector-media-policy-binding.json','connector-media-container-drain.json','connector-media-store-custody.json',
+ 'media-courier-key-ready.json','media-courier-received.json','media-courier-first-failure.json','media-courier-cleanup.json',
  'connector-browser-containment.json','connector-browser-termination.json','connector-browser-first-failure.json','connector-browser-cleanup-failure.json']:
  paths[name]=runtime/'evidence'/name
 for name in ['backend-ready.json','runtime-ready.json','runtime-termination.json','connector-source-admission.json','connector-walkthrough-admission.json','connector-backend-first-failure.json']:
  paths[name]=runtime/'runtime-output'/name
-for name in ['connector-browser-result.json','connector-portfolio-desktop.json','connector-portfolio-mobile.json']:
+for name in ['connector-browser-result.json','connector-portfolio-desktop.json','connector-portfolio-mobile.json',
+ 'connector-media-browser-result.json','connector-media-binding-request.json','connector-media-portfolio-before.json',
+ 'connector-media-portfolio-request.json','connector-media-portfolio-desktop.json','connector-media-portfolio-mobile.json']:
  paths[name]=runtime/'browser-output'/name
 values={}
 for name,path in paths.items():
  if path.exists():b,value=public_json(path);append(name,b);values[name]=value
-browser_result=values.get('connector-browser-result.json',{})
+if media_custody_failure is not None:
+ name='connector-media-store-custody-first-failure.json';append(name,(json.dumps(media_custody_failure,indent=2)+'\n').encode());values[name]=media_custody_failure
+media_store_preserved=append_preserved_store(runtime,values,append,require,sha)
+browser_result=values.get('connector-media-browser-result.json',values.get('connector-browser-result.json',{}))
+media_passed=verify_media_results(runtime,values,append,require,sha)
 if browser_result.get('status')=='PASS_AUTHENTICATED_DESKTOP_MOBILE_CONNECTOR_SOURCE_RENDERING':
  admission=values['connector-source-admission.json'];record=admission['record']
  walkthrough=values['connector-walkthrough-admission.json'];supplement=walkthrough['record']
@@ -140,7 +169,7 @@ if 'connector-frontend-build.json'in values:
 runtime_end=values.get('runtime-termination.json',{});browser_end=values.get('connector-browser-termination.json',{})
 build_end=values.get('connector-frontend-build-termination.json',{})
 success_checks={
- 'browserViewsPassed':browser_result.get('status')=='PASS_AUTHENTICATED_DESKTOP_MOBILE_CONNECTOR_SOURCE_RENDERING',
+ 'browserViewsPassed':media_passed and browser_result.get('status')==MEDIA_STATUS,
  'nativeRuntimeTerminated':runtime_end.get('status')=='TERMINATED_AFTER_NATIVE_RUNTIME_READY',
  'nativeChildrenDrained':bool(runtime_end.get('children'))and all(c.get('drain')=='CHILD_CLOSED'for c in runtime_end.get('children',[])),
  'browserTerminated':browser_end.get('containerAbsent')is True and browser_end.get('exitCode')==0,
@@ -149,6 +178,9 @@ success_checks={
  'technicalClientReturnedZero':values.get('technical-client-result.json',{}).get('status')=='PASS_PRIVATE_NATIVE_CONNECTOR_BROWSER_RETURNED_ZERO',
  'noRecordedFailure':not any(name.endswith('-failure.json')for name in values),
  'newFrontendBytesRetained':archive_index is not None}
+success_checks['actualNativeMediaStoreDurablyRetained']=media_store_preserved and media_custody_failure is None
+success_checks['privateCourierReceived']=values.get('media-courier-received.json',{}).get('status')=='EXACT_PRIVATE_REVISED_ASSET_RECEIVED'
+success_checks['privateCourierKeyAndPlaintextRemoved']=values.get('media-courier-cleanup.json',{}).get('status')=='PASS'and not(runtime/'connector-inputs/retained-revised.png').exists()and not original_input.exists()and not(private/'media').exists()
 success=all(success_checks.values())
 final={'schema':'v128-connector-owner-native-final-v1','runId':run,'attempt':1,'sourceCommit':os.environ['GITHUB_SHA'],
  'sourceManifestSHA256':sha((CONTROL/'source-manifest.json').read_bytes()),'currentSourceVerified':True,'checkoutClean':True,

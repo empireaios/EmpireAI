@@ -49,6 +49,8 @@ def main():
   'backend/dist/runtime/commerce-runtime/governed/runtime.js.map',
   'backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js',
   'backend/dist/runtime/commerce-runtime/governed/work8-connector-source.js.map',
+  'backend/dist/runtime/commerce-runtime/governed/work8-connector-media.js',
+  'backend/dist/runtime/commerce-runtime/governed/work8-connector-media.js.map',
   'backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js',
   'backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js.map'}
  assert (root/'evidence/connector-runtime-prepared.json').is_file()

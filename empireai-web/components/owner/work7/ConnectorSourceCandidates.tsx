@@ -1,5 +1,8 @@
 'use client';
 
+import {ConnectorMedia} from '../work8/ConnectorMedia';
+import {Fragment} from 'react';
+
 // Read-only presentation of separately admitted connector observations.
 // This does not turn observations into a qualified dossier or a business decision.
 type Row = Record<string, unknown>;
@@ -13,7 +16,7 @@ const age = (value: unknown): string => typeof value === 'number' && Number.isSa
   ? `${Math.floor(value / 3600000)} hours since connector read` : 'Age unavailable';
 const factStyle = {display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem'};
 
-export function ConnectorSourceCandidates({value,walkthrough}: {value: unknown;walkthrough?:unknown}) {
+export function ConnectorSourceCandidates({value,walkthrough,connectorMedia}: {value: unknown;walkthrough?:unknown;connectorMedia?:unknown}) {
   const result = row(value);
   if (result.availability === 'NOT_ADMITTED') return null;
   if (result.availability !== 'RETAINED_AUTHENTICATED_CONNECTOR_SOURCE' || !Array.isArray(result.candidates) || result.candidates.length > 1 || result.grantsAuthority !== false) {
@@ -34,7 +37,7 @@ export function ConnectorSourceCandidates({value,walkthrough}: {value: unknown;w
       const screened=screen.schema==='SOURCE_COMPLETENESS_SCREENING_V1'&&screen.status==='DEFER'&&screen.candidateDigest===candidate.digest&&screen.pillowExecution===false&&screen.ownerDecision===false;
       const photo=bound&&media.sha256==='4fe19c2fbe0907474d053181a5568489d842421e0dbd2b627e487cca61511048'&&media.mime==='image/jpeg'&&media.sourceProductId===source.supplierProductId&&media.sourceVariantId===source.supplierVariantId&&media.rights==='PRIVATE_FACTUAL_PREPARATION_ONLY'&&typeof media.base64==='string'&&media.base64.length<220000;
       const reasons:Record<string,string>={RESPONSIBLE_SUPPLIER_IDENTITY:'Responsible supplier identity is unverified.',FULFILMENT_RESPONSIBILITY_AND_PROCESSING:'Fulfilment responsibility and payment-to-carrier processing are unverified.',VERIFIED_DELIVERY_TERMS:'No verified delivery promise is supplied; historical freight estimates are not a dispatch or arrival commitment.',VERIFIED_RETURNS_TERMS:'Applicable returns terms are unverified.',MATCHED_MARKETPLACE_ELIGIBILITY:'Product/account marketplace eligibility is unverified.',MATCHED_COMPETITION:'No matched competitor evidence is supplied.',COMPLETE_ECONOMICS:'Complete costs, fees, returns and selling economics are unavailable.',ASSESSMENT_TIME_FRESHNESS:'An assessment-time freshness review has not been completed.'};
-      return <article key={text(candidate.id)} data-testid="connector-source-candidate" data-candidate-id={text(candidate.id)} data-record-digest={text(candidate.digest)} style={{border: '1px solid currentColor', borderRadius: '0.5rem', padding: '1rem'}}>
+      return <Fragment key={text(candidate.id)}><article data-testid="connector-source-candidate" data-candidate-id={text(candidate.id)} data-record-digest={text(candidate.digest)} style={{border: '1px solid currentColor', borderRadius: '0.5rem', padding: '1rem'}}>
         <h3>{text(source.title)}</h3>
         <p>{text(source.variantTitle)} · {text(source.variantKey)}</p>
         {photo?<figure><img data-testid="retained-original-photo" data-media-sha256={text(media.sha256)} src={'data:image/jpeg;base64,'+media.base64} width={800} height={800} alt="Retained supplier photograph: black one-layer rotating bathroom storage rack" style={{width:'100%',maxWidth:480,height:'auto'}}/><figcaption>Retained original supplier photograph · source observed {text(media.sourceObservedAtUTC)}. Exact original bytes; private factual preparation only. No public listing permission or revised-media approval is granted.</figcaption></figure>:null}
@@ -59,7 +62,7 @@ export function ConnectorSourceCandidates({value,walkthrough}: {value: unknown;w
         <section aria-label="Linked outcomes"><h4>Linked outcomes</h4><p>Listing, order, finance and Assurance outcomes are unavailable for this source observation. Historical operational records are not queried by this isolated view; no zero balance, completed settlement or healthy Assurance state is inferred.</p><p>This is a genuine retained supplier observation. No simulated sale, order, revenue or profit is represented by this card. No owner approval is required or solicited for this read-only deferred walkthrough.</p></section>
         <details><summary>Saved source and record evidence</summary><pre style={{whiteSpace: 'pre-wrap', overflowWrap: 'anywhere'}}>{JSON.stringify(candidate, null, 2)}</pre></details>
         {bound?<details><summary>Recorded screening and retained evidence</summary><pre style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere'}}>{JSON.stringify({...supplement,evidence:{...extra,originalMedia:{...media,base64:'[exact authenticated original JPEG shown above]'}}},null,2)}</pre></details>:null}
-      </article>;
+      </article><ConnectorMedia key={text(candidate.id)+text(candidate.digest)} value={connectorMedia} candidateId={text(candidate.id)} candidateDigest={text(candidate.digest)}/></Fragment>;
     })}
   </section>;
 }
