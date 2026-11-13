@@ -111,6 +111,7 @@ def main():
   docker(['cp',names[0]+':/usr/local/lib/node_modules/npm',str(work/'npm')],60)
   npm_rows=tree(work/'npm');assert canonical_hash(npm_rows)==pins['npmTreeSHA256']and len(npm_rows)==pins['npmFileCount']
   docker(['rm',names[0]]);created.remove(names[0])
+  phase='verify-complete-overlaid-source'
   src=work/'source';shutil.copytree(source,src,symlinks=True)
   for p in src.rglob('*'):
    if p.is_file()and not p.is_symlink():p.chmod(0o644)
@@ -119,7 +120,8 @@ def main():
   for pin in pins['overlays']:
    p=repo/pin['repositoryPath'];assert p.is_file()and not p.is_symlink();b=p.read_bytes();assert len(b)==pin['bytes']and digest(b)==pin['sha256']
    target=src/pin['frontendPath'];assert target.parent.resolve(strict=True).is_relative_to(src);target.write_bytes(b)
-  merged=tree(src);assert canonical_hash(merged)==pins['changedSourceTreeSHA256']
+  merged=tree(src);actual_merged_sha=canonical_hash(merged)
+  assert actual_merged_sha==pins['changedSourceTreeSHA256'],f"MERGED_SOURCE_HASH_MISMATCH actual={actual_merged_sha} expected={pins['changedSourceTreeSHA256']} entries={len(merged)}"
   lock_raw=(src/'package-lock.json').read_bytes();assert digest(lock_raw)==pins['packageLockSHA256'];lock=json.loads(lock_raw)
   assert not(src/'.npmrc').exists()
   for name,p in lock['packages'].items():
