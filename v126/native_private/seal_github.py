@@ -56,7 +56,7 @@ verify_pin(CONTROL.parents[1],manifest['workflow'])
 require({p['path']for p in manifest['repositoryFiles']}=={'vercel.json','empireai-web/vercel.json'},'REPOSITORY_GUARD_SET')
 for pin in manifest['repositoryFiles']:
  verify_pin(CONTROL.parents[1],pin)
- require(json.loads((CONTROL.parents[1]/pin['path']).read_bytes())['git']['deploymentEnabled']['work8/v128-connector-owner-native-20261113-a03']is False,'DEPLOYMENT_NOT_DISABLED')
+ require(json.loads((CONTROL.parents[1]/pin['path']).read_bytes())['git']['deploymentEnabled']['work8/v128-connector-owner-native-20261113-a04']is False,'DEPLOYMENT_NOT_DISABLED')
 for pin in manifest['applicationFiles']:verify_pin(CONTROL.parents[1],pin)
 for pin in manifest['files']:verify_pin(CONTROL,pin)
 publish=root/'private-final-evidence';require(not publish.exists(),'PRIVATE_BUNDLE_DESTINATION_NOT_FRESH');publish.mkdir(mode=0o700)
@@ -84,8 +84,8 @@ paths={'admission.json':root/'admission.json','technical-client-result.json':roo
  'retained-transport.json':root/'retained-transport.json','retained-transport-first-failure.json':root/'retained-transport-first-failure.json',
  'execution-first-failure.json':root/'execution-first-failure.json','connector-build-manifest.json':CONTROL/'connector-build-manifest.json',
  'connector-backend-build.json':CONTROL/'connector-backend-build.json','authority.json':CONTROL/'authority.json'}
-for name in ['prepared-runtime.json','exact-frontend.json','carrier-termination.json','preparation-first-failure.json','private-container-admission.json',
- 'private-launch-first-failure.json','connector-frontend-build.json','connector-frontend-build-first-failure.json',
+for name in ['prepared-runtime.json','exact-frontend.json','carrier-termination.json','carrier-termination-failure.json','preparation-first-failure.json','private-container-admission.json',
+ 'private-launch-first-failure.json','private-launch-cleanup-failure.json','connector-frontend-build.json','connector-frontend-build-first-failure.json',
  'connector-frontend-build-termination.json','connector-frontend-build-cleanup-failure.json',
  'connector-runtime-prepared.json','connector-runtime-preparation-first-failure.json',
  'connector-media-transport.json','connector-media-first-failure.json','connector-walkthrough-policy-binding.json',
@@ -147,7 +147,7 @@ success_checks={
  'buildContainersTerminated':build_end.get('allAbsent')is True,
  'exactPreparedComposition':values.get('connector-runtime-prepared.json',{}).get('status')=='PASS_EXACT_NEW_BUILD_AND_RETAINED_SOURCE_PREPARATION',
  'technicalClientReturnedZero':values.get('technical-client-result.json',{}).get('status')=='PASS_PRIVATE_NATIVE_CONNECTOR_BROWSER_RETURNED_ZERO',
- 'noRecordedFailure':not any('first-failure'in name or'cleanup-failure'in name for name in values),
+ 'noRecordedFailure':not any(name.endswith('-failure.json')for name in values),
  'newFrontendBytesRetained':archive_index is not None}
 success=all(success_checks.values())
 final={'schema':'v128-connector-owner-native-final-v1','runId':run,'attempt':1,'sourceCommit':os.environ['GITHUB_SHA'],

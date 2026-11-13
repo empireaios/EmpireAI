@@ -6,7 +6,7 @@ Arguments: runtime, private config directory, name, independently read source-ma
 SHA256, independently read prepared-runtime receipt SHA256.
 The provider timeout remains the independent outer stop. No public port is created.
 """
-import hashlib,json,os,pathlib,re,subprocess,sys
+import hashlib,json,os,pathlib,re,stat,subprocess,sys
 CONTROL=pathlib.Path(__file__).resolve().parent
 IMAGE='sha256:f28556a588b84f8256800a311943c204019fa5336cd10e5c99cb703f0df812e0'
 def docker(args):
@@ -17,6 +17,11 @@ def docker(args):
   error.diagnostic={'argv':['docker']+args,'exitCode':p.returncode,'stderr':p.stderr.decode(errors='replace')[:8192]}
   raise error
  return p.stdout
+def verify_empty_cache_mountpoint(folder):
+ for p in [folder,folder/'app',folder/'app/.next',folder/'app/.next/cache']:
+  s=p.lstat();assert stat.S_ISDIR(s.st_mode)and not p.is_symlink()and p.resolve(strict=True)==p,'FRONTEND_CACHE_MOUNTPOINT_TYPE'
+ cache=folder/'app/.next/cache'
+ assert not any(cache.iterdir())and cache.stat().st_mode&0o777==0o555,'FRONTEND_CACHE_MOUNTPOINT_NOT_EMPTY_OR_FROZEN'
 def main():
  assert len(sys.argv)==6
  root=pathlib.Path(sys.argv[1]);private=pathlib.Path(sys.argv[2]);name=sys.argv[3]
@@ -47,6 +52,7 @@ def main():
   'backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js',
   'backend/dist/runtime/commerce-runtime/governed/work8-connector-walkthrough.js.map'}
  assert (root/'evidence/connector-runtime-prepared.json').is_file()
+ verify_empty_cache_mountpoint(root/'connector-frontend')
  binds={root/'connector-frontend':'/frontend',root/'redis':'/redis',CONTROL:'/control',private:'/private',
   root/'app':'/retained-app',root/'connector-inputs':'/connector-inputs'}
  for pin in build['backendOverlays']:
@@ -73,6 +79,7 @@ def main():
   assert h['NetworkMode']=='none'and h['ReadonlyRootfs']and h['CapDrop']==['ALL']and not h['Privileged']and not h['PortBindings']
   assert h['Memory']==h['MemorySwap']==2147483648 and h['NanoCpus']==2000000000 and h['PidsLimit']==128
   assert h['SecurityOpt']==['no-new-privileges']and h['RestartPolicy']['Name']=='no'
+  assert h['Tmpfs']=={'/tmp':'rw,noexec,nosuid,nodev,size=134217728,mode=1777','/frontend/app/.next/cache':'rw,noexec,nosuid,nodev,size=67108864,mode=0700'}
   expected_mounts={dst:(str(src),False)for src,dst in binds.items()}
   expected_mounts.update({dst:(str(root/n),True)for n,dst in writable.items()})
   assert {m['Destination']:(m['Source'],m['RW'])for m in x['Mounts']if m['Type']=='bind'}==expected_mounts

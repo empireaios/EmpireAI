@@ -8,6 +8,19 @@ def sha(path):
     with pathlib.Path(path).open('rb')as f:return hashlib.file_digest(f,'sha256').hexdigest()
 def save(root,name,value):
     with(root/'evidence'/name).open('x')as f:json.dump(value,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+def prepare_empty_cache_mountpoint(folder):
+    # OCI cannot create a nested tmpfs mountpoint through a read-only bind.
+    # Stage only an empty directory; the complete verified file set is unchanged.
+    for p in [folder,folder/'app',folder/'app/.next']:
+        s=p.lstat();assert stat.S_ISDIR(s.st_mode)and not p.is_symlink()and p.resolve(strict=True)==p,'FRONTEND_CACHE_PARENT_TYPE'
+    cache=folder/'app/.next/cache';created=False
+    if not cache.exists()and not cache.is_symlink():
+        cache.mkdir(mode=0o555);created=True
+    s=cache.lstat()
+    assert stat.S_ISDIR(s.st_mode)and not cache.is_symlink()and cache.resolve(strict=True)==cache,'FRONTEND_CACHE_MOUNTPOINT_TYPE'
+    assert not any(cache.iterdir()),'FRONTEND_CACHE_MOUNTPOINT_NOT_EMPTY'
+    cache.chmod(0o555)
+    return {'path':'app/.next/cache','created':created,'empty':True,'mode':'0555','runtimeWriteScope':'EXISTING_BOUNDED_TMPFS_ONLY'}
 def verify_and_freeze(folder,rows):
     assert folder.resolve(strict=True)==folder and not folder.is_symlink()
     expected={r['path']:r for r in rows};assert len(expected)==len(rows)
@@ -39,6 +52,9 @@ def main():
         assert receipt['frontendBaseCommit']=='750483b3152f2c9c65a65b6381c8c94f081b9eb1'
         assert receipt['sourcePublicationCommit']==os.environ['GITHUB_SHA']
         assert receipt['sourceInputManifestSHA256']==sha(CONTROL/'frontend-build-inputs.json')
+        phase='stage-empty-frontend-cache-mountpoint'
+        cache_mountpoint=prepare_empty_cache_mountpoint(root/'connector-frontend')
+        phase='verify-complete-frontend-build'
         front_count=verify_and_freeze(root/'connector-frontend',receipt['frontendFiles'])
         browser_count=verify_and_freeze(root/'browser-deps',receipt['browserDependencyFiles'])
         archive=receipt['frontendArchive'];assert archive['path']=='connector-frontend.tar.gz'
@@ -93,6 +109,7 @@ def main():
           'status':'PASS_EXACT_NEW_BUILD_AND_RETAINED_SOURCE_PREPARATION',
           'buildManifestSHA256':sha(CONTROL/'connector-build-manifest.json'),
           'frontendBuildReceiptSHA256':sha(receipt_path),'frontendFilesIndependentlyReadBack':front_count,
+          'frontendCacheMountpoint':cache_mountpoint,
           'browserDependencyFilesIndependentlyReadBack':browser_count,'frontendArchive':archive,
           'backendOverlays':build['backendOverlays'],'sourceReceiptsReadOnly':True,
           'browserImage':BROWSER_IMAGE,'browserImageDigest':BROWSER_DIGEST,
