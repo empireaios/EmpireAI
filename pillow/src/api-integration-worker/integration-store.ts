@@ -1,1 +1,0 @@
-import type { ApiIntegrationBuildReport } from "./types.js"; export class IntegrationStore {private reports:ApiIntegrationBuildReport[]=[];save(report:ApiIntegrationBuildReport){this.reports.push(report);return report;}latest(){return this.reports.at(-1)??null;}list(){return [...this.reports];}}

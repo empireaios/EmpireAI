@@ -1,1 +1,0 @@
-import type { DeploymentWorkerEngine } from "./engine.js"; export class DeploymentWorkerController { constructor(readonly engine:DeploymentWorkerEngine){} getCockpitSnapshot(){return this.engine.getCockpitSnapshot()} }
