@@ -1,0 +1,64 @@
+name: Work 8 V126 private native owner-bound runtime
+on:
+  create:
+permissions:
+  contents: read
+concurrency:
+  group: work8-v126-native-private-20261113-a01
+  cancel-in-progress: false
+jobs:
+  native-private:
+    if: >-
+      github.repository == 'empireaios/EmpireAI' &&
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'work8/v126-native-private-20261113-a01' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      ACTIONS_STEP_DEBUG: 'false'
+      ACTIONS_RUNNER_DEBUG: 'false'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+          show-progress: false
+          lfs: false
+          submodules: false
+      - name: Admit exact source, single reservation and private owner binding
+        id: admit
+        timeout-minutes: 1
+        env:
+          EMPIREAI_WORK8_NATIVE_OWNER_EMAIL: ${{ secrets.EMPIREAI_WORK8_NATIVE_OWNER_EMAIL }}
+        run: python3 -B v126/native_private/admit_github.py
+      - name: Retrieve unchanged retained application bytes
+        timeout-minutes: 6
+        run: python3 -B v126/native_private/fetch_retained_raw.py "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/retained-input.zip"
+      - name: Verify retained image, Node, native source, frontend and private Redis
+        timeout-minutes: 9
+        run: sudo python3 -B v126/native_private/prepare_runtime.py "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/retained-input.zip" "$RUNNER_TEMP/v126-native-$GITHUB_RUN_ID/runtime"
+      - name: Provision private native credentials and execute finite technical session
+        id: native
+        timeout-minutes: 3
+        env:
+          EMPIREAI_WORK8_NATIVE_OWNER_EMAIL: ${{ secrets.EMPIREAI_WORK8_NATIVE_OWNER_EMAIL }}
+        run: sudo --preserve-env=EMPIREAI_WORK8_NATIVE_OWNER_EMAIL,RUNNER_TEMP,GITHUB_RUN_ID,GITHUB_SHA python3 -B v126/native_private/execute_github.py
+      - name: Terminate exact resources, remove credentials and verify final custody
+        id: seal
+        if: ${{ always() && steps.admit.outcome == 'success' }}
+        timeout-minutes: 2
+        run: sudo --preserve-env=RUNNER_TEMP,GITHUB_RUN_ID,GITHUB_SHA,GITHUB_OUTPUT python3 -B v126/native_private/seal_github.py
+      - name: Retain bounded private-source-safe execution evidence
+        if: ${{ always() && steps.seal.outputs.custody_ready == 'true' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v126-private-native-${{ github.run_id }}-1
+          path: ${{ runner.temp }}/v126-native-${{ github.run_id }}/publish/
+          retention-days: 7
+          compression-level: 6
+          overwrite: false
+          if-no-files-found: error
+          include-hidden-files: false

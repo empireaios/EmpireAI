@@ -1,0 +1,14 @@
+{
+  "schema": "v126-standing-technical-authority-reference-v1",
+  "campaign": "V116",
+  "ownerDirective": "V126",
+  "operationIdentity": "V126-GITHUB-NATIVE-PRIVATE-A01-20261113",
+  "ownerEmailSHA256": "a437be3d7f2e7927959c2be2040016464de75d69529d9abd197e47a8caa21267",
+  "scope": "New empty isolated runtime; delegated native authentication and PAUSED session CREATE; exact replay and projection; no actual owner click or business decision inferred.",
+  "notASignature": true,
+  "nativeApprovalsGranted": false,
+  "productionPermission": false,
+  "commerce": "LOCKED",
+  "pillow": "NOT_BORN",
+  "work9": "INACTIVE"
+}

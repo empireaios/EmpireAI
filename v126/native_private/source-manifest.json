@@ -1,0 +1,148 @@
+{
+  "schema": "v126-native-isolated-source-manifest-v1",
+  "files": [
+    {
+      "path": "admit_github.py",
+      "bytes": 3200,
+      "sha256": "dc6fa1099ccb262b775828e2a72f7af292242dd60061c813b86a6198ae68a469"
+    },
+    {
+      "path": "authority.json",
+      "bytes": 618,
+      "sha256": "c9e88dd5230d98ebc83961a0a761e0021dcbc5149bbdf276e558f2a1a9c20581"
+    },
+    {
+      "path": "configure_private.py",
+      "bytes": 2170,
+      "sha256": "5618bfa7f5fdd7a5b32f03a474a216e508dd64e63b10f4af0146e51550ac7c73"
+    },
+    {
+      "path": "delegated-session.mjs",
+      "bytes": 4872,
+      "sha256": "7ac4106d6073da43ef3df92d714d44a025e9f19c01778c378faa17201deb8192"
+    },
+    {
+      "path": "execute_github.py",
+      "bytes": 2196,
+      "sha256": "fbd878c9e8cdf7e8216444b00b139f11b25ba10386a2c9c51df4c2e1f9baf24f"
+    },
+    {
+      "path": "fetch-redis-dependencies.py",
+      "bytes": 4695,
+      "sha256": "e221d57f11ef1c6d905729ee01ca0907ddbced50611957d126186a2acc868e71"
+    },
+    {
+      "path": "fetch_retained_raw.py",
+      "bytes": 460,
+      "sha256": "71504df377eff815054ce0e204b64497946c0cb00eab2ac6703dad748134400c"
+    },
+    {
+      "path": "fresh-backend.mjs",
+      "bytes": 5651,
+      "sha256": "d5e7660761f535cba2b5310ccd911f22a96cad5c47266b05af0e00c6f4513da6"
+    },
+    {
+      "path": "fresh-scope.mjs",
+      "bytes": 1007,
+      "sha256": "73be88630b3105e88c3e22a090cbe01b1a53a827307b4971010bb05a0bc9e87e"
+    },
+    {
+      "path": "fresh-supervisor.mjs",
+      "bytes": 5043,
+      "sha256": "b29a042b642f41384cf708e45b7b663b21282f1614b4226e248dce8e2db347c6"
+    },
+    {
+      "path": "frontend-pins.json",
+      "bytes": 1303,
+      "sha256": "5aaa31c5a520437ae0da682b14adb39c23e7555ed2cbf8939762c7107095abd6"
+    },
+    {
+      "path": "launch_private.py",
+      "bytes": 5714,
+      "sha256": "a42e9c85f4d0308022f7e13b7c674280c1fc31cd09519dc6c0223dc1a5715418"
+    },
+    {
+      "path": "native-auth-handler-provenance.json",
+      "bytes": 1084,
+      "sha256": "b942dc785ff9175c30856f64db3b511a4ce897a92ff6d0eb86dd87f7f26d02f3"
+    },
+    {
+      "path": "native-source-pins.json",
+      "bytes": 7854,
+      "sha256": "95072a228b5a154fce8b25317deffa2c4095deb551fec982b97d93004db37675"
+    },
+    {
+      "path": "native-tier0-session-routes.mjs",
+      "bytes": 3069,
+      "sha256": "8e34791ae199c49e517d0fd903d999c5d519db7ce65a2ffcea6fd952e9af4a7d"
+    },
+    {
+      "path": "pinned-dependencies.json",
+      "bytes": 8494,
+      "sha256": "4718286af9c9a747f98da2197305271433a2a57505b9939f7bc34b64ce6bb87b"
+    },
+    {
+      "path": "prepare_runtime.py",
+      "bytes": 7008,
+      "sha256": "22aae136059bfe8fa415d498acf6a0a4407739e194c109c27e70e86f22fd63b9"
+    },
+    {
+      "path": "raw_blob_transport.py",
+      "bytes": 7441,
+      "sha256": "bb69dd7497ce847b7704dd79d6322e9538a2ee8b02c1182f4a0c0d64e1e4a048"
+    },
+    {
+      "path": "redis-abi-inputs.json",
+      "bytes": 5911,
+      "sha256": "2ab224fc27d46c81612b9c8a3dcb593eb4bc0901cec6e25d5893a5d03620544d"
+    },
+    {
+      "path": "reservation.json",
+      "bytes": 561,
+      "sha256": "5aca2735a1edb033267dfbb54b8ed875c7f24368ff5fd72d1a4d3de9209d1c18"
+    },
+    {
+      "path": "retained-blob-manifest.json",
+      "bytes": 8708,
+      "sha256": "7b8d9cfbef07c72fe97257acc5d5245459d670f77a57aaa1e39c47bacc64e658"
+    },
+    {
+      "path": "retained_current_packages.py",
+      "bytes": 17270,
+      "sha256": "e45e24497297805ad086dfff2048d9e5dc24b2c8918b55195affad217b773024"
+    },
+    {
+      "path": "seal_github.py",
+      "bytes": 7534,
+      "sha256": "7dfc600f739d5a758cdce47f73a99358d42ba36679b29751615c839b030786d2"
+    },
+    {
+      "path": "test-fresh-scope.mjs",
+      "bytes": 1671,
+      "sha256": "e0b35373913f67484b6687c8e70cdf534ccf45f3c7800c45c58b64f3ac7f1a30"
+    },
+    {
+      "path": "verify_final.py",
+      "bytes": 1123,
+      "sha256": "486818ab5c3481ba9d620d2becabede4993d131b781bfdc4792f2d783a983c49"
+    }
+  ],
+  "workflow": {
+    "path": ".github/workflows/work8-v126-native-private.yml",
+    "bytes": 2895,
+    "sha256": "56f4c246706e925007736976f69bc05415d37fb07187755907c188e5f4facbc0"
+  },
+  "noNativeAcceptanceClaimed": true,
+  "repositoryFiles": [
+    {
+      "path": "vercel.json",
+      "bytes": 912,
+      "sha256": "8bd45d43b6b6e924a15b1cfb8420658cc41a6885922bd736f76ff0d2d5dc6195"
+    },
+    {
+      "path": "empireai-web/vercel.json",
+      "bytes": 733,
+      "sha256": "70595c12807e73c79b1352f38ebc71698d84457e12daf405e038a89cf0b7f57a"
+    }
+  ]
+}
