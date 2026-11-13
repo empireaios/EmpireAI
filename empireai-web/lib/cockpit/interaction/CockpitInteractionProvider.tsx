@@ -40,7 +40,7 @@ type CockpitInteractionContextValue = CockpitInteractionState & {
 
 const InteractionContext = createContext<CockpitInteractionContextValue | null>(null);
 
-export function CockpitInteractionProvider({ children }: { children: ReactNode }) {
+export function CockpitInteractionProvider({ children, backgroundActive = true }: { children: ReactNode; backgroundActive?: boolean }) {
   const pathname = usePathname();
   const [state, setState] = useState<CockpitInteractionState>({
     open: false,
@@ -68,7 +68,10 @@ export function CockpitInteractionProvider({ children }: { children: ReactNode }
     }
   }, [pathname]);
 
-  useEffect(() => subscribeRead(refreshContext), [refreshContext]);
+  useEffect(() => {
+    if (!backgroundActive) return;
+    return subscribeRead(refreshContext);
+  }, [backgroundActive, refreshContext]);
 
   const ask = useCallback(
     async (intent: CockpitInteractionIntent, target?: CockpitInteractionTarget) => {

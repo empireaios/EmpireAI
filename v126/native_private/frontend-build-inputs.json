@@ -6,7 +6,7 @@
   "baseFileCount": 957,
   "baseTreeSHA256": "9d23fc8ba6e39bfaf5532b41d755d6826014c24ab22bdaec8afc639593f92974",
   "changedSourceFileCount": 959,
-  "changedSourceTreeSHA256": "374e49a1ea9bd86f0e0aac848db3bf93fd58ff5b72c7a53f6a60866f4c785c28",
+  "changedSourceTreeSHA256": "765e5471e72e5c6536a76a4c6a13c88c26c5eb7bccfd8a61d10072e859799ce7",
   "nodeSHA256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
   "npmVersion": "10.9.8",
   "npmFileCount": 1964,
@@ -45,8 +45,8 @@
     {
       "repositoryPath": "empireai-web/vercel.json",
       "frontendPath": "vercel.json",
-      "bytes": 1229,
-      "sha256": "b3a24149d636ecb90c8f5103fdceb29ac6ea1b080d36824b67214da7e08f3644",
+      "bytes": 1292,
+      "sha256": "f28563f910cd7c319bea19ee3f02a21c466e228893c85bf612e59476f698c13f",
       "scope": "PRESERVE_HISTORICAL_AND_NEW_BRANCH_DEPLOYMENT_SUPPRESSION"
     },
     {
@@ -55,6 +55,34 @@
       "scope": "SOURCE_BOUND_PRIVATE_MEDIA_REQUEST_GALLERY_ARCHIVE",
       "bytes": 15407,
       "sha256": "f072980367508c97e8f5188499b27bc7bbbae30b937ce76b645efc790755f852"
+    },
+    {
+      "repositoryPath": "empireai-web/lib/owner/finance-control.ts",
+      "frontendPath": "lib/owner/finance-control.ts",
+      "scope": "REVIEWED_A07_ORIGIN_AND_PASSIVE_PRODUCT_BACKGROUND_CORRECTION",
+      "bytes": 1915,
+      "sha256": "d7ad0887e054fee571cff07f3c0b148ae90d46735e807ab1c3ebd07cf569b22e"
+    },
+    {
+      "repositoryPath": "empireai-web/components/cockpit/shell/CockpitShell.tsx",
+      "frontendPath": "components/cockpit/shell/CockpitShell.tsx",
+      "scope": "REVIEWED_A07_ORIGIN_AND_PASSIVE_PRODUCT_BACKGROUND_CORRECTION",
+      "bytes": 1920,
+      "sha256": "b754b97a0c01f1af9506dd073be05bec134cc70973f6b67d56cf9f742bd66411"
+    },
+    {
+      "repositoryPath": "empireai-web/lib/cockpit/interaction/CockpitInteractionProvider.tsx",
+      "frontendPath": "lib/cockpit/interaction/CockpitInteractionProvider.tsx",
+      "scope": "REVIEWED_A07_ORIGIN_AND_PASSIVE_PRODUCT_BACKGROUND_CORRECTION",
+      "bytes": 4813,
+      "sha256": "b087923684816d26094f5ccdeddf73aa72e38a9a1cfbaf4a4979510b5d2c5945"
+    },
+    {
+      "repositoryPath": "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+      "frontendPath": "lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+      "scope": "REVIEWED_A07_ORIGIN_AND_PASSIVE_PRODUCT_BACKGROUND_CORRECTION",
+      "bytes": 32814,
+      "sha256": "86b5945cc8bd1b3a3fcc756fb1c6c43fee4a33fa92421f5c98628682baaabdc1"
     }
   ],
   "requiredPackageVersions": {
@@ -100,6 +128,12 @@
       "components/owner/work8/ConnectorMedia.tsx"
     ],
     "unavailableReadinessRemainsUnknown": true,
-    "positiveHealthFacadeAdded": false
+    "positiveHealthFacadeAdded": false,
+    "reviewedExistingSourceCorrections": [
+      "empireai-web/lib/owner/finance-control.ts",
+      "empireai-web/components/cockpit/shell/CockpitShell.tsx",
+      "empireai-web/lib/cockpit/interaction/CockpitInteractionProvider.tsx",
+      "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx"
+    ]
   }
 }

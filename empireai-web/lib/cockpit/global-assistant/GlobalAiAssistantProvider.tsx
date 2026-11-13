@@ -114,14 +114,14 @@ type GlobalAiAssistantContextValue = GlobalAiAssistantState & {
 const GlobalAiAssistantContext = createContext<GlobalAiAssistantContextValue | null>(null);
 const UNCONFIRMED_REQUEST_MESSAGE = "Pillow is unavailable. This instruction has not been confirmed as accepted or completed. No automatic repeat was attempted.";
 
-export function GlobalAiAssistantProvider({ children }: { children: ReactNode }) {
+export function GlobalAiAssistantProvider({ children, backgroundActive = true }: { children: ReactNode; backgroundActive?: boolean }) {
   const { user } = useAuth();
   // Remount on identity change: never render the previous owner's transcript,
   // context, active request or session for even one frame of the next account.
-  return <GlobalAiAssistantSession key={user ? `${user.id}:${user.workspaceId}` : "anonymous"}>{children}</GlobalAiAssistantSession>;
+  return <GlobalAiAssistantSession key={user ? `${user.id}:${user.workspaceId}` : "anonymous"} backgroundActive={backgroundActive}>{children}</GlobalAiAssistantSession>;
 }
 
-function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
+function GlobalAiAssistantSession({ children, backgroundActive }: { children: ReactNode; backgroundActive: boolean }) {
   const pathname = usePathname();
   const { user } = useAuth();
   const founderShell = useFounderShellOptional();
@@ -258,7 +258,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
   const historyOwnerId = user?.id;
   const historyWorkspaceId = user?.workspaceId;
   useEffect(() => {
-    if (!historyOwnerId) return;
+    if (!historyOwnerId || !backgroundActive) return;
     let cancelled = false;
     let running = false;
     const hydrate = async () => {
@@ -302,7 +302,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       window.removeEventListener("online", refresh);
       document.removeEventListener("visibilitychange", refresh);
     };
-  }, [markReady, markStarting, pathname, historyOwnerId, historyWorkspaceId]);
+  }, [markReady, markStarting, pathname, historyOwnerId, historyWorkspaceId, backgroundActive]);
 
   const refreshContext = useCallback(async () => {
     // Never share chat `loading` with background context refresh — that disabled Send
@@ -324,7 +324,10 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
     }
   }, [pathname, state.pageOverride, syncExecutiveAwareness]);
 
-  useEffect(() => subscribeRead(refreshContext), [refreshContext]);
+  useEffect(() => {
+    if (!backgroundActive) return;
+    return subscribeRead(refreshContext);
+  }, [backgroundActive, refreshContext]);
 
   useEffect(() => {
     if (state.context) {
@@ -468,7 +471,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
 
   // Slow recovery only after the initial bootstrap exhausted — never parallel with it.
   useEffect(() => {
-    if (!user || state.executiveReady || state.readinessPhase !== "delayed") return;
+    if (!backgroundActive || !user || state.executiveReady || state.readinessPhase !== "delayed") return;
     if (recoveryLoopActive.current) return;
     recoveryLoopActive.current = true;
     let cancelled = false;
@@ -488,7 +491,7 @@ function GlobalAiAssistantSession({ children }: { children: ReactNode }) {
       cancelled = true;
       recoveryLoopActive.current = false;
     };
-  }, [user, state.executiveReady, state.readinessPhase, ensureHostSession, markStarting]);
+  }, [user, state.executiveReady, state.readinessPhase, ensureHostSession, markStarting, backgroundActive]);
 
   const [attachedProducts,setAttachedProducts]=useState<AttachedProduct[]>([]);
   const productSelectionVersion=useRef(0);

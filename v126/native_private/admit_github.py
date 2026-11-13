@@ -4,7 +4,7 @@ CONTROL=pathlib.Path(__file__).resolve().parent
 assert os.environ['GITHUB_REPOSITORY']=='empireaios/EmpireAI'
 assert os.environ['GITHUB_EVENT_NAME']=='create'and os.environ['GITHUB_RUN_ATTEMPT']=='1'
 event=json.loads(pathlib.Path(os.environ['GITHUB_EVENT_PATH']).read_text())
-assert event['ref_type']=='branch'and event['ref']=='work8/v128-connector-media-native-20261113-a07'
+assert event['ref_type']=='branch'and event['ref']=='work8/v128-connector-media-native-20261113-a08'
 run=os.environ['GITHUB_RUN_ID'];assert run.isdigit()
 head=os.environ['GITHUB_SHA'];assert re.fullmatch('[a-f0-9]{40}',head)
 assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==head
@@ -26,7 +26,12 @@ assert {p['path']for p in manifest['applicationFiles']}=={
  'empireai-web/components/owner/work7/ConnectorSourceCandidates.tsx',
  'empireai-web/components/owner/work7/OwnerJourneys.tsx',
  'empireai-web/components/owner/work8/ConnectorMedia.tsx',
- 'empireai-web/lib/owner/runtime-identity.mjs','empireai-web/lib/owner/runtime-release-identity.test.ts'}
+ 'empireai-web/lib/owner/runtime-identity.mjs','empireai-web/lib/owner/runtime-release-identity.test.ts',
+ 'empireai-web/lib/owner/finance-control.ts',
+ 'empireai-web/components/cockpit/shell/CockpitShell.tsx',
+ 'empireai-web/lib/cockpit/interaction/CockpitInteractionProvider.tsx',
+ 'empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx',
+}
 for p in manifest['applicationFiles']:
  file=CONTROL.parents[1]/p['path'];assert file.is_file()and not file.is_symlink()
  b=file.read_bytes();assert len(b)==p['bytes']and hashlib.sha256(b).hexdigest()==p['sha256']
@@ -34,7 +39,7 @@ for p in manifest['files']:
  file=CONTROL/p['path'];assert file.is_file()and not file.is_symlink()
  b=file.read_bytes();assert len(b)==p['bytes']and hashlib.sha256(b).hexdigest()==p['sha256']
 r=json.loads((CONTROL/'reservation.json').read_text())
-assert r['operationIdentity']=='V128-CONNECTOR-MEDIA-NATIVE-A07-20261113'and r['status']=='RESERVED_IN_CANONICAL_LEDGER'
+assert r['operationIdentity']=='V128-CONNECTOR-MEDIA-NATIVE-A08-20261113'and r['status']=='RESERVED_IN_CANONICAL_LEDGER'
 assert r['cumulativeCeilingUSD']==1000 and r['maximumNewExposureUSD']==1
 assert type(r['expectedCountedExposureUSD'])in (int,float)and 0<r['expectedCountedExposureUSD']<=1000
 for key in ['savedLedgerSHA256','independentReadbackSHA256']:assert re.fullmatch('[a-f0-9]{64}',r[key]or'')

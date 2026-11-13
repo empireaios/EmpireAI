@@ -77,7 +77,7 @@ verify_pin(CONTROL.parents[1],manifest['workflow'])
 require({p['path']for p in manifest['repositoryFiles']}=={'vercel.json','empireai-web/vercel.json'},'REPOSITORY_GUARD_SET')
 for pin in manifest['repositoryFiles']:
  verify_pin(CONTROL.parents[1],pin)
- require(json.loads((CONTROL.parents[1]/pin['path']).read_bytes())['git']['deploymentEnabled']['work8/v128-connector-media-native-20261113-a07']is False,'DEPLOYMENT_NOT_DISABLED')
+ require(json.loads((CONTROL.parents[1]/pin['path']).read_bytes())['git']['deploymentEnabled']['work8/v128-connector-media-native-20261113-a08']is False,'DEPLOYMENT_NOT_DISABLED')
 for pin in manifest['applicationFiles']:verify_pin(CONTROL.parents[1],pin)
 for pin in manifest['files']:verify_pin(CONTROL,pin)
 publish=root/'private-final-evidence';require(not publish.exists(),'PRIVATE_BUNDLE_DESTINATION_NOT_FRESH');publish.mkdir(mode=0o700)

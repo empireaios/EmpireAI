@@ -3,13 +3,13 @@
   "files": [
     {
       "path": "admit_github.py",
-      "bytes": 4068,
-      "sha256": "2f6d9502812a158dff170d844f07edeb5af5c3d7637f37e91aa7f912e634c143"
+      "bytes": 4323,
+      "sha256": "4e7cbc0b6ba40f9d2977213a15188b5babb59fd4ba173c6cb77a7f37d1ab2813"
     },
     {
       "path": "authority.json",
-      "bytes": 1558,
-      "sha256": "23670b6dfec30b7c9b25f67f6069a04e43404a42db0466e9ef5ffac4dfdfd3ba"
+      "bytes": 1637,
+      "sha256": "ef1df40e7aa63d39db493e66067498d5ab73ecbf1c9641c01359e0c32a8973b7"
     },
     {
       "path": "browser-native-request.mjs",
@@ -29,7 +29,7 @@
     {
       "path": "configure_private.py",
       "bytes": 4392,
-      "sha256": "9eed40be72a5366c28d45552211a02e579c8ab65fae8c5eff20a043964105d66"
+      "sha256": "d671801198199f494019eb52a3c322741908b2a53a24080f3ae998893ac6fa6d"
     },
     {
       "path": "configure_walkthrough.mjs",
@@ -48,8 +48,8 @@
     },
     {
       "path": "connector-build-manifest.json",
-      "bytes": 6209,
-      "sha256": "4db96cc33dfc2ed12ca72da1149c8954a671af9d4afc4d446c321ddd53f4266f"
+      "bytes": 7305,
+      "sha256": "2a5cea658a636cc943f58281751117725fba704cc811bfbfc99ddc18fcfe219a"
     },
     {
       "path": "connector-cj-readback.json",
@@ -183,8 +183,8 @@
     },
     {
       "path": "frontend-build-inputs.json",
-      "bytes": 4530,
-      "sha256": "bf67ac6af156c4a4878383fba4649f98a04364074a7f6d8f125cb154e3610c3a"
+      "bytes": 6271,
+      "sha256": "0ae284fca8b31d8c502c4e7151e2e98da4a7c3a2637e6ec21ba0de6879f55a6e"
     },
     {
       "path": "frontend-pins.json",
@@ -274,7 +274,7 @@
     {
       "path": "reservation.json",
       "bytes": 570,
-      "sha256": "98b5fa9ff126cd4ac0a8362e8e901503427f797e9a10157fa2af5ec3e18adf01"
+      "sha256": "0c19e6121bec5a86afd72d30ef55feee0e016f50af42954b03ce6c027392f5e2"
     },
     {
       "path": "retained-blob-manifest.json",
@@ -289,7 +289,7 @@
     {
       "path": "seal_github.py",
       "bytes": 18453,
-      "sha256": "80a94928591c387699324e38c09aba9de0ee2a23c1d02bf9203ea1dfbd312ba2"
+      "sha256": "c938ef1c2336b4be40c442092d7cdaa210cbde2b286b7ada3e9ab4d06f3109b8"
     },
     {
       "path": "seal_media_custody.py",
@@ -320,19 +320,19 @@
   "workflow": {
     "path": ".github/workflows/work8-v126-native-private.yml",
     "bytes": 4655,
-    "sha256": "3696d30f54f94d5418030e7226797c24718c57f3627610b6aa6c41f29eab25a1"
+    "sha256": "ed0b5705ecd822591d4432083714d71f2b0b398f1e5dbbd1861c58bb07317659"
   },
   "noNativeAcceptanceClaimed": true,
   "repositoryFiles": [
     {
       "path": "vercel.json",
-      "bytes": 1408,
-      "sha256": "e4f7b02bb237ca4158b48de3e077ce70d7b4a8a6f2a7282f846166821912acd5"
+      "bytes": 1471,
+      "sha256": "6aad4c4a4afbe6ed51a05ab3271f8320d2f50aae42974ccfd07b268088585327"
     },
     {
       "path": "empireai-web/vercel.json",
-      "bytes": 1229,
-      "sha256": "b3a24149d636ecb90c8f5103fdceb29ac6ea1b080d36824b67214da7e08f3644"
+      "bytes": 1292,
+      "sha256": "f28563f910cd7c319bea19ee3f02a21c466e228893c85bf612e59476f698c13f"
     }
   ],
   "applicationFiles": [
@@ -380,6 +380,26 @@
       "path": "empireai-web/components/owner/work8/ConnectorMedia.tsx",
       "bytes": 15407,
       "sha256": "f072980367508c97e8f5188499b27bc7bbbae30b937ce76b645efc790755f852"
+    },
+    {
+      "path": "empireai-web/lib/owner/finance-control.ts",
+      "bytes": 1915,
+      "sha256": "d7ad0887e054fee571cff07f3c0b148ae90d46735e807ab1c3ebd07cf569b22e"
+    },
+    {
+      "path": "empireai-web/components/cockpit/shell/CockpitShell.tsx",
+      "bytes": 1920,
+      "sha256": "b754b97a0c01f1af9506dd073be05bec134cc70973f6b67d56cf9f742bd66411"
+    },
+    {
+      "path": "empireai-web/lib/cockpit/interaction/CockpitInteractionProvider.tsx",
+      "bytes": 4813,
+      "sha256": "b087923684816d26094f5ccdeddf73aa72e38a9a1cfbaf4a4979510b5d2c5945"
+    },
+    {
+      "path": "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+      "bytes": 32814,
+      "sha256": "86b5945cc8bd1b3a3fcc756fb1c6c43fee4a33fa92421f5c98628682baaabdc1"
     }
   ]
 }

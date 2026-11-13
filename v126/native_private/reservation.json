@@ -1,12 +1,12 @@
 {
   "schema": "v126-financial-launch-reservation-reference-v1",
-  "operationIdentity": "V128-CONNECTOR-MEDIA-NATIVE-A07-20261113",
+  "operationIdentity": "V128-CONNECTOR-MEDIA-NATIVE-A08-20261113",
   "status": "RESERVED_IN_CANONICAL_LEDGER",
-  "expectedCountedExposureUSD": 77,
+  "expectedCountedExposureUSD": 78,
   "cumulativeCeilingUSD": 1000,
   "maximumNewExposureUSD": 1,
-  "savedLedgerVersion": 72,
-  "savedLedgerSHA256": "1da1153682c2374d73bc6b1e736e06bb516fc2de2fc9f822144590f479ba79ed",
-  "independentReadbackSHA256": "1da1153682c2374d73bc6b1e736e06bb516fc2de2fc9f822144590f479ba79ed",
-  "gitPublicationIdentity": "work8/v128-connector-media-native-20261113-a07"
+  "savedLedgerVersion": 74,
+  "savedLedgerSHA256": "45203a47d1e03b0a30105d5f1905a5731395bb5df466457d15572100aaf639f9",
+  "independentReadbackSHA256": "45203a47d1e03b0a30105d5f1905a5731395bb5df466457d15572100aaf639f9",
+  "gitPublicationIdentity": "work8/v128-connector-media-native-20261113-a08"
 }

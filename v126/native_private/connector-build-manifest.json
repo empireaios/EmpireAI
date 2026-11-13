@@ -98,6 +98,26 @@
       "path": "empireai-web/components/owner/work8/ConnectorMedia.tsx",
       "bytes": 15407,
       "sha256": "f072980367508c97e8f5188499b27bc7bbbae30b937ce76b645efc790755f852"
+    },
+    {
+      "path": "empireai-web/lib/owner/finance-control.ts",
+      "bytes": 1915,
+      "sha256": "d7ad0887e054fee571cff07f3c0b148ae90d46735e807ab1c3ebd07cf569b22e"
+    },
+    {
+      "path": "empireai-web/components/cockpit/shell/CockpitShell.tsx",
+      "bytes": 1920,
+      "sha256": "b754b97a0c01f1af9506dd073be05bec134cc70973f6b67d56cf9f742bd66411"
+    },
+    {
+      "path": "empireai-web/lib/cockpit/interaction/CockpitInteractionProvider.tsx",
+      "bytes": 4813,
+      "sha256": "b087923684816d26094f5ccdeddf73aa72e38a9a1cfbaf4a4979510b5d2c5945"
+    },
+    {
+      "path": "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx",
+      "bytes": 32814,
+      "sha256": "86b5945cc8bd1b3a3fcc756fb1c6c43fee4a33fa92421f5c98628682baaabdc1"
     }
   ],
   "backendBuildReceiptSHA256": "89ad397665a7bd721746852d4af027742bc8ed045af289687a9b32d06fe127b1",
@@ -105,7 +125,7 @@
   "browserImageDigest": "mcr.microsoft.com/playwright@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
   "browserImageId": "sha256:fee853fafa59550d162cef52bca02d907694b44ebf6ef9fb075bcc0c65d8dedb",
   "wholeRowAccepted": false,
-  "frontendBuildInputsSHA256": "bf67ac6af156c4a4878383fba4649f98a04364074a7f6d8f125cb154e3610c3a",
+  "frontendBuildInputsSHA256": "0ae284fca8b31d8c502c4e7151e2e98da4a7c3a2637e6ec21ba0de6879f55a6e",
   "retainedFrontendSourceCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
   "retainedFrontendGitTree": "2b3e370898ddb170516ffa4c953064e23e8527c9",
   "qualifiedReferenceReconciliation": {
@@ -127,9 +147,15 @@
       "components/owner/work8/ConnectorMedia.tsx"
     ],
     "unavailableReadinessRemainsUnknown": true,
-    "positiveHealthFacadeAdded": false
+    "positiveHealthFacadeAdded": false,
+    "reviewedExistingSourceCorrections": [
+      "empireai-web/lib/owner/finance-control.ts",
+      "empireai-web/components/cockpit/shell/CockpitShell.tsx",
+      "empireai-web/lib/cockpit/interaction/CockpitInteractionProvider.tsx",
+      "empireai-web/lib/cockpit/global-assistant/GlobalAiAssistantProvider.tsx"
+    ]
   },
-  "expectedChangedFrontendSourceTreeSHA256": "374e49a1ea9bd86f0e0aac848db3bf93fd58ff5b72c7a53f6a60866f4c785c28",
+  "expectedChangedFrontendSourceTreeSHA256": "765e5471e72e5c6536a76a4c6a13c88c26c5eb7bccfd8a61d10072e859799ce7",
   "privateEvidenceCustody": {
     "wholeBundleEncrypted": true,
     "maximumPlaintextArchiveBytes": 262144000,
