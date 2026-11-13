@@ -1,12 +1,12 @@
 {
   "schema": "v126-financial-launch-reservation-reference-v1",
-  "operationIdentity": "V126-GITHUB-NATIVE-PRIVATE-A01-20261113",
+  "operationIdentity": "V126-GITHUB-NATIVE-PRIVATE-A02-20261113",
   "status": "RESERVED_IN_CANONICAL_LEDGER",
-  "expectedCountedExposureUSD": 69,
+  "expectedCountedExposureUSD": 70,
   "cumulativeCeilingUSD": 1000,
   "maximumNewExposureUSD": 1,
-  "savedLedgerVersion": 58,
-  "savedLedgerSHA256": "49220f4b2bdf79470c5d268b3cf9d884984712a18d3d99efcf797ad7f16ba3ae",
-  "independentReadbackSHA256": "49220f4b2bdf79470c5d268b3cf9d884984712a18d3d99efcf797ad7f16ba3ae",
-  "gitPublicationIdentity": "work8/v126-native-private-20261113-a01"
+  "savedLedgerVersion": 59,
+  "savedLedgerSHA256": "0145fcb48b208ac4fc52c7252d2a583a2f1b55e7d12c076c9af9d89d1da48579",
+  "independentReadbackSHA256": "0145fcb48b208ac4fc52c7252d2a583a2f1b55e7d12c076c9af9d89d1da48579",
+  "gitPublicationIdentity": "work8/v126-native-private-20261113-a02"
 }

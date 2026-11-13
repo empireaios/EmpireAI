@@ -48,7 +48,7 @@ require({p['path']for p in manifest['repositoryFiles']}=={'vercel.json','empirea
 for pin in manifest['repositoryFiles']:
  p=CONTROL.parents[1]/pin['path'];require(p.is_file()and not p.is_symlink(),'REPOSITORY_CONTROL_TYPE')
  b=p.read_bytes();require(len(b)==pin['bytes']and sha(b)==pin['sha256'],'CURRENT_REPOSITORY_CONTROL_MISMATCH')
- require(json.loads(b)['git']['deploymentEnabled']['work8/v126-native-private-20261113-a01']is False,'DOWNSTREAM_DEPLOYMENT_NOT_DISABLED')
+ require(json.loads(b)['git']['deploymentEnabled']['work8/v126-native-private-20261113-a02']is False,'DOWNSTREAM_DEPLOYMENT_NOT_DISABLED')
 for pin in manifest['files']:
  p=CONTROL/pin['path'];b=p.read_bytes();require(len(b)==pin['bytes']and sha(b)==pin['sha256'],'CURRENT_SOURCE_MISMATCH')
 publish=root/'publish';require(not publish.exists(),'PUBLISH_DESTINATION_NOT_FRESH');publish.mkdir(mode=0o755)

@@ -4,7 +4,7 @@ CONTROL=pathlib.Path(__file__).resolve().parent
 assert os.environ['GITHUB_REPOSITORY']=='empireaios/EmpireAI'
 assert os.environ['GITHUB_EVENT_NAME']=='create'and os.environ['GITHUB_RUN_ATTEMPT']=='1'
 event=json.loads(pathlib.Path(os.environ['GITHUB_EVENT_PATH']).read_text())
-assert event['ref_type']=='branch'and event['ref']=='work8/v126-native-private-20261113-a01'
+assert event['ref_type']=='branch'and event['ref']=='work8/v126-native-private-20261113-a02'
 run=os.environ['GITHUB_RUN_ID'];assert run.isdigit()
 head=os.environ['GITHUB_SHA'];assert re.fullmatch('[a-f0-9]{40}',head)
 assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==head
@@ -22,14 +22,14 @@ for p in manifest['files']:
  file=CONTROL/p['path'];assert file.is_file()and not file.is_symlink()
  b=file.read_bytes();assert len(b)==p['bytes']and hashlib.sha256(b).hexdigest()==p['sha256']
 r=json.loads((CONTROL/'reservation.json').read_text())
-assert r['operationIdentity']=='V126-GITHUB-NATIVE-PRIVATE-A01-20261113'and r['status']=='RESERVED_IN_CANONICAL_LEDGER'
+assert r['operationIdentity']=='V126-GITHUB-NATIVE-PRIVATE-A02-20261113'and r['status']=='RESERVED_IN_CANONICAL_LEDGER'
 assert r['cumulativeCeilingUSD']==1000 and r['maximumNewExposureUSD']==1
 assert type(r['expectedCountedExposureUSD'])in (int,float)and 0<r['expectedCountedExposureUSD']<=1000
 for key in ['savedLedgerSHA256','independentReadbackSHA256']:assert re.fullmatch('[a-f0-9]{64}',r[key]or'')
 assert type(r['savedLedgerVersion'])is int and r['savedLedgerVersion']>56
 assert r['gitPublicationIdentity']==event['ref']
 docker=json.loads(subprocess.check_output(['docker','info','--format','{{json .}}']))
-assert docker['MemoryLimit']and docker['PidsLimit']and docker['CPUCfsPeriod']and docker['CPUCfsQuota']
+assert docker['MemoryLimit']and docker['PidsLimit']and docker['CpuCfsPeriod']and docker['CpuCfsQuota']
 root=pathlib.Path(os.environ['RUNNER_TEMP'])/('v126-native-'+run);assert not root.exists();root.mkdir(mode=0o700)
 receipt={'schema':'v126-github-native-source-financial-admission-v1','runId':run,'attempt':1,'sourceCommit':head,
  'ownerPrivateBindingVerified':True,'ownerEmailDisclosed':False,'reservation':r,
