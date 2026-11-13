@@ -29,6 +29,44 @@ const row = value => { assert.ok(value && typeof value === 'object' && !Array.is
 const exact = (value, keys) => assert.deepEqual(Object.keys(value).sort(), [...keys].sort(), 'EXACT_FIELDS');
 const metadata = ({base64, ...asset}) => asset;
 
+// Preserve the previous email-presence policy without scanning each possible
+// starting position in a large base64 payload. Runs after separate @ characters
+// cannot overlap because @ is not a domain character, so the work is linear.
+export function containsPrivateEmail(encoded) {
+  const localCharacter = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]$/;
+  const domainCharacter = /^[A-Za-z0-9.-]$/;
+  const letter = /^[A-Za-z]$/;
+  for (let at = encoded.indexOf('@'); at !== -1; at = encoded.indexOf('@', at + 1)) {
+    if (at === 0 || !localCharacter.test(encoded[at - 1])) continue;
+    const start = at + 1;
+    for (let index = start; index < encoded.length && domainCharacter.test(encoded[index]); index++) {
+      if (encoded[index] === '.' && index > start && letter.test(encoded[index + 1] ?? '') && letter.test(encoded[index + 2] ?? '')) return true;
+    }
+  }
+  return false;
+}
+
+export function assertPrivateSafeEvidence(value, privateValues = []) {
+  const encoded = typeof value === 'string' ? value : JSON.stringify(value);
+  assert.ok(!privateValues.some(secret => encoded.includes(secret)), 'PRIVATE_VALUE_REFUSED');
+  assert.ok(!containsPrivateEmail(encoded), 'PRIVATE_EMAIL_REFUSED');
+  function scan(item) { if (Array.isArray(item)) { item.forEach(scan); return; } if (item && typeof item === 'object') for (const [key, child] of Object.entries(item)) { assert.ok(!['password', 'founderpassword', 'adminpassword', 'token', 'cookie', 'authorization', 'set-cookie', 'sessionsecret'].includes(key.toLowerCase()), 'PRIVATE_KEY_REFUSED'); scan(child); } }
+  if (typeof value !== 'string') scan(value);
+}
+
+// Record only bounded enum values and a pathname fingerprint. Request bodies,
+// query strings, URLs and exception messages must never enter this receipt.
+export function recordBlockedMutation(network, method, pathname, reasonCode, errorName) {
+  network.unexpectedMutationsBlocked++;
+  if (network.blockedMutationDiagnostics.length >= 16) return;
+  const methods = ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'CONNECT', 'TRACE'];
+  const reasons = ['METHOD_REFUSED', 'QUERY_REFUSED', 'MEDIA_COMMAND_COUNT_REFUSED', 'BODY_SIZE_REFUSED', 'MEDIA_COMMAND_ADMISSION_REFUSED', 'NON_MEDIA_MUTATION_REFUSED'];
+  const routeCategory = pathname === '/api/owner/commerce' ? 'OWNER_COMMERCE' : pathname === '/api/auth/login' ? 'AUTH_LOGIN' : pathname === '/api/auth/logout' ? 'AUTH_LOGOUT' : 'UNLISTED_ROUTE';
+  network.blockedMutationDiagnostics.push({method: methods.includes(method) ? method : 'OTHER', routeCategory,
+    pathnameSHA256: sha(pathname), reasonCode: reasons.includes(reasonCode) ? reasonCode : 'UNCLASSIFIED_MUTATION_REFUSED',
+    errorName: ['Error', 'AssertionError', 'TypeError', 'SyntaxError'].includes(errorName) ? errorName : 'Error'});
+}
+
 export function canonicalCandidate(projection, publicationCommit) {
   const {sourceAgeMs, freshness, providerExpiry, assessmentFreshnessAdmission, ...candidate} = row(projection);
   assert.ok(Number.isSafeInteger(sourceAgeMs) && sourceAgeMs >= 0);
@@ -112,14 +150,10 @@ async function main() {
   let expectedCommand = null, acceptedCandidate = null, acceptedPrincipal = null, proposedMedia = null;
   const commands = [], result = {schema: 'v128-connector-media-browser-observation-v1', status: 'FAIL', startedAtMs: started, inputActor: 'DELEGATED_TECHNICAL_OPERATOR', ownerActionObserved: false, ownerDecisionGranted: false, wholeRowAccepted: false, productionAccess: false, publicationActions: 0, ownerDecisionActions: 0, liveCommerce: 'LOCKED', pillow: 'NOT_BORN', applicationCommit: APPLICATION_COMMIT,
     artifactDisposition: 'PRIVATE_RUNTIME_OUTPUT_REQUIRES_REVIEWED_ENCRYPTION_BEFORE_PUBLICATION', views: [], nativeReads: [], independentReadMaximumBytesPerResponse: MAX_READ, independentReadTotalBytes: 0,
-    network: {mode: 'SHARED_EXACT_NATIVE_NONE_NAMESPACE', externalRequestsBlocked: 0, webSocketsBlocked: 0, unexpectedMutationsBlocked: 0}, browserStarted: false, browserClosed: false};
+    network: {mode: 'SHARED_EXACT_NATIVE_NONE_NAMESPACE', externalRequestsBlocked: 0, webSocketsBlocked: 0, unexpectedMutationsBlocked: 0, blockedMutationDiagnostics: []}, browserStarted: false, browserClosed: false};
   const bounded = () => assert.ok(!deadlineExpired && Date.now() < deadline, 'BROWSER_OPERATION_DEADLINE');
   function assertPrivateSafe(value) {
-    const encoded = typeof value === 'string' ? value : JSON.stringify(value);
-    assert.ok(!privateValues.some(secret => encoded.includes(secret)), 'PRIVATE_VALUE_REFUSED');
-    assert.ok(!/[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(encoded), 'PRIVATE_EMAIL_REFUSED');
-    function scan(item) { if (Array.isArray(item)) { item.forEach(scan); return; } if (item && typeof item === 'object') for (const [key, child] of Object.entries(item)) { assert.ok(!['password', 'founderpassword', 'adminpassword', 'token', 'cookie', 'authorization', 'set-cookie', 'sessionsecret'].includes(key.toLowerCase()), 'PRIVATE_KEY_REFUSED'); scan(child); } }
-    if (typeof value !== 'string') scan(value);
+    assertPrivateSafeEvidence(value, privateValues);
   }
   function saveJSON(name, value) {
     assert.match(name, /^connector-media-[a-z-]+\.json$/); assertPrivateSafe(value);
@@ -198,13 +232,16 @@ async function main() {
         try { url = new URL(request.url()); } catch { result.network.externalRequestsBlocked++; await route.abort('blockedbyclient'); return; }
         if (url.origin !== ORIGIN || url.username || url.password) { result.network.externalRequestsBlocked++; await route.abort('blockedbyclient'); return; }
         if (!['GET', 'HEAD'].includes(request.method())) {
+          let rejectionReason = 'METHOD_REFUSED';
           try {
-            assert.equal(request.method(), 'POST'); assert.equal(url.search, '');
+            assert.equal(request.method(), 'POST'); rejectionReason = 'QUERY_REFUSED'; assert.equal(url.search, '');
             if (url.pathname === '/api/owner/commerce') {
-              assert.ok(commands.length < 2); assert.ok(Buffer.byteLength(request.postData() ?? '') < 4096);
+              rejectionReason = 'MEDIA_COMMAND_COUNT_REFUSED'; assert.ok(commands.length < 2);
+              rejectionReason = 'BODY_SIZE_REFUSED'; assert.ok(Buffer.byteLength(request.postData() ?? '') < 4096);
+              rejectionReason = 'MEDIA_COMMAND_ADMISSION_REFUSED';
               commands.push(admitMediaCommand(request.postDataJSON(), expectedCommand)); expectedCommand = null;
-            } else assert.ok(['/api/auth/login', '/api/auth/logout'].includes(url.pathname), 'NON_MEDIA_MUTATION_REFUSED');
-          } catch { result.network.unexpectedMutationsBlocked++; await route.abort('blockedbyclient'); return; }
+            } else { rejectionReason = 'NON_MEDIA_MUTATION_REFUSED'; assert.ok(['/api/auth/login', '/api/auth/logout'].includes(url.pathname), 'NON_MEDIA_MUTATION_REFUSED'); }
+          } catch (error) { recordBlockedMutation(result.network, request.method(), url.pathname, rejectionReason, error.name); await route.abort('blockedbyclient'); return; }
         }
         await route.continue();
       });
@@ -230,8 +267,10 @@ async function main() {
             assert.equal(response.value.connectorMedia.availability, 'NOT_PREPARED');
           }
           assert.ok(ready, 'ACTUAL_PRINCIPAL_MEDIA_BINDING_NOT_READY'); view.before = verifyMedia(ready.value.connectorMedia, candidate, acceptedPrincipal, 0, commands);
+          phase = 'desktop-source-bound-readback-private-scan';
           assertPrivateSafe(ready.value); assertPrivateSafe(ready.raw.toString('utf8')); fs.writeFileSync(path.join(OUTPUT, 'connector-media-portfolio-before.json'), ready.raw, {flag: 'wx', mode: 0o600});
           view.beforeResponse = {...ready.receipt, path: 'connector-media-portfolio-before.json', completeResponseBody: true, privateValueScanPassed: true};
+          phase = 'desktop-reload-after-source-binding';
           await page.reload({waitUntil: 'domcontentloaded'}); await waitVersion(page, 0);
           const section = page.getByTestId('connector-media'); await section.getByTestId('connector-original-image').waitFor({state: 'visible'});
           await inspectImage(section.getByTestId('connector-original-image'), ready.value.connectorMedia.original[0]);

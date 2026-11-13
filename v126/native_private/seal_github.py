@@ -77,7 +77,7 @@ verify_pin(CONTROL.parents[1],manifest['workflow'])
 require({p['path']for p in manifest['repositoryFiles']}=={'vercel.json','empireai-web/vercel.json'},'REPOSITORY_GUARD_SET')
 for pin in manifest['repositoryFiles']:
  verify_pin(CONTROL.parents[1],pin)
- require(json.loads((CONTROL.parents[1]/pin['path']).read_bytes())['git']['deploymentEnabled']['work8/v128-connector-media-native-20261113-a06']is False,'DEPLOYMENT_NOT_DISABLED')
+ require(json.loads((CONTROL.parents[1]/pin['path']).read_bytes())['git']['deploymentEnabled']['work8/v128-connector-media-native-20261113-a07']is False,'DEPLOYMENT_NOT_DISABLED')
 for pin in manifest['applicationFiles']:verify_pin(CONTROL.parents[1],pin)
 for pin in manifest['files']:verify_pin(CONTROL,pin)
 publish=root/'private-final-evidence';require(not publish.exists(),'PRIVATE_BUNDLE_DESTINATION_NOT_FRESH');publish.mkdir(mode=0o700)
@@ -172,7 +172,8 @@ success_checks={
  'browserViewsPassed':media_passed and browser_result.get('status')==MEDIA_STATUS,
  'nativeRuntimeTerminated':runtime_end.get('status')=='TERMINATED_AFTER_NATIVE_RUNTIME_READY',
  'nativeChildrenDrained':bool(runtime_end.get('children'))and all(c.get('drain')=='CHILD_CLOSED'for c in runtime_end.get('children',[])),
- 'browserTerminated':browser_end.get('containerAbsent')is True and browser_end.get('exitCode')==0,
+ 'browserTerminated':browser_end.get('containerAbsent')is True,
+ 'browserExitedSuccessfully':browser_end.get('exitCode')==0,
  'buildContainersTerminated':build_end.get('allAbsent')is True,
  'exactPreparedComposition':values.get('connector-runtime-prepared.json',{}).get('status')=='PASS_EXACT_NEW_BUILD_AND_RETAINED_SOURCE_PREPARATION',
  'technicalClientReturnedZero':values.get('technical-client-result.json',{}).get('status')=='PASS_PRIVATE_NATIVE_CONNECTOR_BROWSER_RETURNED_ZERO',

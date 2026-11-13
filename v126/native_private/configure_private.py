@@ -21,7 +21,7 @@ adapter=next(p for p in build['backendOverlays']if p['destination']=='backend/di
 assert re.fullmatch('[a-f0-9]{64}',adapter['sha256'])
 publication=os.environ['GITHUB_SHA'];assert re.fullmatch('[a-f0-9]{40}',publication)
 operation=json.loads((control/'authority.json').read_text())['operationIdentity']
-assert operation=='V128-CONNECTOR-MEDIA-NATIVE-A06-20261113'
+assert operation=='V128-CONNECTOR-MEDIA-NATIVE-A07-20261113'
 owner=os.environ.get('EMPIREAI_WORK8_NATIVE_OWNER_EMAIL','').strip().lower()
 assert hashlib.sha256(owner.encode()).hexdigest()=='a437be3d7f2e7927959c2be2040016464de75d69529d9abd197e47a8caa21267','PRIVATE_OWNER_BINDING_REQUIRED'
 config={'mode':'PRIVATE_LOOPBACK','origin':'http://127.0.0.1:43117','founderEmail':owner,

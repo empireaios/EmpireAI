@@ -105,7 +105,7 @@
   "browserImageDigest": "mcr.microsoft.com/playwright@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac",
   "browserImageId": "sha256:fee853fafa59550d162cef52bca02d907694b44ebf6ef9fb075bcc0c65d8dedb",
   "wholeRowAccepted": false,
-  "frontendBuildInputsSHA256": "00f76779cdc13e1bf7c14f58d5420fc0e12e584a7332d8a890e6cc913cba2630",
+  "frontendBuildInputsSHA256": "bf67ac6af156c4a4878383fba4649f98a04364074a7f6d8f125cb154e3610c3a",
   "retainedFrontendSourceCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
   "retainedFrontendGitTree": "2b3e370898ddb170516ffa4c953064e23e8527c9",
   "qualifiedReferenceReconciliation": {
@@ -129,7 +129,7 @@
     "unavailableReadinessRemainsUnknown": true,
     "positiveHealthFacadeAdded": false
   },
-  "expectedChangedFrontendSourceTreeSHA256": "4747415129279e6684eb29295eee3e5ce810634e82413a2c04f577c495b863d1",
+  "expectedChangedFrontendSourceTreeSHA256": "374e49a1ea9bd86f0e0aac848db3bf93fd58ff5b72c7a53f6a60866f4c785c28",
   "privateEvidenceCustody": {
     "wholeBundleEncrypted": true,
     "maximumPlaintextArchiveBytes": 262144000,

@@ -6,7 +6,7 @@
   "baseFileCount": 957,
   "baseTreeSHA256": "9d23fc8ba6e39bfaf5532b41d755d6826014c24ab22bdaec8afc639593f92974",
   "changedSourceFileCount": 959,
-  "changedSourceTreeSHA256": "4747415129279e6684eb29295eee3e5ce810634e82413a2c04f577c495b863d1",
+  "changedSourceTreeSHA256": "374e49a1ea9bd86f0e0aac848db3bf93fd58ff5b72c7a53f6a60866f4c785c28",
   "nodeSHA256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
   "npmVersion": "10.9.8",
   "npmFileCount": 1964,
@@ -45,8 +45,8 @@
     {
       "repositoryPath": "empireai-web/vercel.json",
       "frontendPath": "vercel.json",
-      "bytes": 1166,
-      "sha256": "8b1f1190eb75a26f03f072de1dacdd6cecd8088f77f4c7b954bdd9444a95fe13",
+      "bytes": 1229,
+      "sha256": "b3a24149d636ecb90c8f5103fdceb29ac6ea1b080d36824b67214da7e08f3644",
       "scope": "PRESERVE_HISTORICAL_AND_NEW_BRANCH_DEPLOYMENT_SUPPRESSION"
     },
     {
