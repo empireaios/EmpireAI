@@ -4,12 +4,17 @@
     {
       "path": "admit_github.py",
       "bytes": 3934,
-      "sha256": "4dc294b955c5c0aafa940c31a45f796e2747faa437030854a7055264e1dbc030"
+      "sha256": "8be6023196d8ecc3d79c0682404ae7de9ae57dc80c466db3a433c7a3b7b9d1e7"
     },
     {
       "path": "authority.json",
       "bytes": 996,
-      "sha256": "95404f6858179423d9adc90f1860af936ec27a9c85c28a85575b53c0ac1cafde"
+      "sha256": "55838c142bb8e5e769e8ef985c045994765c0c29180d9566ab0294470c476fc0"
+    },
+    {
+      "path": "browser-native-request.mjs",
+      "bytes": 2542,
+      "sha256": "758414bcb1db53df5065945054efa6a1d483a7898f57aad4b7ee4d0b9d80d76c"
     },
     {
       "path": "build_connector_frontend.py",
@@ -19,7 +24,7 @@
     {
       "path": "configure_private.py",
       "bytes": 3537,
-      "sha256": "e8b1fe4807d975231ce74bf68557d1b1b45c3b51b5f2c65c1500c2c9809718f3"
+      "sha256": "2ed6a4cf9702c69ad9ee11c1a402d6b506f119fc33d34c594fae15ffcdc5839a"
     },
     {
       "path": "configure_walkthrough.mjs",
@@ -33,13 +38,13 @@
     },
     {
       "path": "connector-browser.mjs",
-      "bytes": 31617,
-      "sha256": "e6eacac350fd15f18d8faf161d3edc922033238680b329cb00a78b02bc3cb45c"
+      "bytes": 31971,
+      "sha256": "1e51d455b777a49d680a04962fb65e55c380fd0cb60ab0ab36b7761c9e0123d9"
     },
     {
       "path": "connector-build-manifest.json",
       "bytes": 5242,
-      "sha256": "966aaa789cf8d6490aec554b834bcfed0cddb3c888279a55e0ed48c8f0e30648"
+      "sha256": "e1e53aa7d3c25852b81cf374f3542fdcbdf5dcff0a891f51dac1ca39d7710c8e"
     },
     {
       "path": "connector-cj-readback.json",
@@ -159,7 +164,7 @@
     {
       "path": "frontend-build-inputs.json",
       "bytes": 4143,
-      "sha256": "d8b1226f8bf7cf9c303ff4bdc1bfe54d20c6177c08363a07e2240706530f6e59"
+      "sha256": "200a6940395ef33eeb618dab80ecbdf7752b9166f7cdde7c0120daa6eb476e81"
     },
     {
       "path": "frontend-pins.json",
@@ -234,7 +239,7 @@
     {
       "path": "reservation.json",
       "bytes": 570,
-      "sha256": "e5555290651beb285da1d2aee58544fb5245722e82d9d99c5011c045aa69b452"
+      "sha256": "8b03bf9aa0acb49d2bf9b82d3f617d2b9afe63d360274a670901c594f376c09d"
     },
     {
       "path": "retained-blob-manifest.json",
@@ -249,7 +254,7 @@
     {
       "path": "seal_github.py",
       "bytes": 15449,
-      "sha256": "b7c93ed44e9bd055d51e278b1a205cbd500165300de635c18b2085659e9ff46a"
+      "sha256": "4668c9453292f379b09b9808425104b9d077927ff7002381a4f97d2c418a85d3"
     },
     {
       "path": "test-fresh-scope.mjs",
@@ -265,19 +270,19 @@
   "workflow": {
     "path": ".github/workflows/work8-v126-native-private.yml",
     "bytes": 3652,
-    "sha256": "c69f13f546104ad41fcecd9c0852804ec13cae88b8e434051f58e92a1108229c"
+    "sha256": "d90ae2d01b0bde71b0437e37857cb6d2d4828b19933688b5f6ee2fd02bb37836"
   },
   "noNativeAcceptanceClaimed": true,
   "repositoryFiles": [
     {
       "path": "vercel.json",
-      "bytes": 1219,
-      "sha256": "79e330b77910f66b163f752320511ab597b49fd41d797528199f6d619ebf4733"
+      "bytes": 1282,
+      "sha256": "0a4a44d26fdf09d11d080dd013f0dc90c37d000d9bbf25c90f63ea906e742203"
     },
     {
       "path": "empireai-web/vercel.json",
-      "bytes": 1040,
-      "sha256": "c253e66cd2e85a0c15390732216b49fe6ce527e9d4ec5ac1f6d935e70096ad07"
+      "bytes": 1103,
+      "sha256": "58641ffcac40de63640d5739b26fc772f861f01781893ba59ee39b17ffcebccf"
     }
   ],
   "applicationFiles": [

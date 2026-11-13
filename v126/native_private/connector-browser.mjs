@@ -5,6 +5,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
+import {readBrowserNativeResponse} from './browser-native-request.mjs';
 
 const ORIGIN='http://127.0.0.1:43117';
 const OUTPUT='/evidence';
@@ -43,7 +44,7 @@ const result={schema:'v128-connector-owner-browser-observation-v1',status:'FAIL'
   wholeRowAccepted:false,productionAccess:false,historyImported:false,liveCommerce:'LOCKED',pillow:'NOT_BORN',
   applicationCommit:APPLICATION_COMMIT,
   artifactDisposition:'PRIVATE_RUNTIME_OUTPUT_REQUIRES_REVIEWED_ENCRYPTION_BEFORE_PUBLICATION',
-  views:[],network:{mode:'SHARED_EXACT_NATIVE_NONE_NAMESPACE',externalRequestsBlocked:0,webSocketsBlocked:0},
+  views:[],nativeReads:[],network:{mode:'SHARED_EXACT_NATIVE_NONE_NAMESPACE',externalRequestsBlocked:0,webSocketsBlocked:0},
   browserStarted:false,browserClosed:false};
 const require=createRequire('/browser-deps/package.json');
 
@@ -140,11 +141,19 @@ function canonicalWalkthrough(projection,candidate){
 async function hashFile(filename){
   const hash=createHash('sha256');for await(const chunk of fs.createReadStream(filename))hash.update(chunk);return hash.digest('hex');
 }
-async function readJSON(context,route,captureFilename=null){
+async function browserNativeRead(page,route,method='GET'){
+  bounded();
+  const response=await readBrowserNativeResponse(page,route,method);
+  assert.ok(result.nativeReads.length<16,'NATIVE_READ_RECEIPT_BOUND');
+  result.nativeReads.push({route,method,status:response.status,responseBytes:response.raw.length,
+    responseSHA256:sha(response.raw),transport:'AUTHENTICATED_BROWSER_FETCH'});
+  return response;
+}
+async function readJSON(page,route,captureFilename=null){
   bounded();assert.ok(route.startsWith('/api/')&&!route.includes('://'));
-  const response=await context.request.get(ORIGIN+route,{timeout:8000,maxRedirects:0});
-  assert.equal(response.status(),200,'AUTHENTICATED_NATIVE_READ_STATUS');
-  const raw=await response.body();assert.ok(raw.length<=4194304,'NATIVE_READ_BOUND');
+  const response=await browserNativeRead(page,route);
+  assert.equal(response.status,200,'AUTHENTICATED_NATIVE_READ_STATUS');
+  const raw=response.raw;assert.ok(raw.length<=4194304,'NATIVE_READ_BOUND');
   const text=raw.toString('utf8');assert.ok(Buffer.from(text,'utf8').equals(raw),'NATIVE_RESPONSE_UTF8');
   const value=JSON.parse(text);
   if(captureFilename!==null){
@@ -155,17 +164,17 @@ async function readJSON(context,route,captureFilename=null){
   }
   return value;
 }
-async function verifyPrincipal(context){
-  const me=await readJSON(context,'/api/auth/me');
+async function verifyPrincipal(page){
+  const me=await readJSON(page,'/api/auth/me');
   assert.equal(me.user.email,cfg.founderEmail);assert.equal(me.user.id,'usr_'+OWNER_SHA.slice(0,16));
   assert.equal(me.user.role,'founder');assert.equal(me.user.workspaceId,'ws_empire_1');
   return {id:me.user.id,role:me.user.role,workspaceId:me.user.workspaceId,emailSHA256:OWNER_SHA};
 }
-async function logout(context,view){
-  const response=await context.request.post(ORIGIN+'/api/auth/logout',{data:{},timeout:8000,maxRedirects:0});
-  view.logoutStatus=response.status();assert.equal(response.status(),200,'BROWSER_LOGOUT_STATUS');
-  const me=await context.request.get(ORIGIN+'/api/auth/me',{timeout:8000,maxRedirects:0});
-  view.postLogoutAuthStatus=me.status();assert.equal(me.status(),401,'BROWSER_IDENTITY_NOT_CLEARED');
+async function logout(page,view){
+  const response=await browserNativeRead(page,'/api/auth/logout','POST');
+  view.logoutStatus=response.status;assert.equal(response.status,200,'BROWSER_LOGOUT_STATUS');
+  const me=await browserNativeRead(page,'/api/auth/me');
+  view.postLogoutAuthStatus=me.status;assert.equal(me.status,401,'BROWSER_IDENTITY_NOT_CLEARED');
   view.browserIdentityCleared=true;
 }
 const timer=setTimeout(()=>{deadlineExpired=true;void browser?.close().catch(()=>{});},Math.max(1,deadline-Date.now()));
@@ -219,10 +228,10 @@ try{
       await page.locator('input[type="email"]').fill(cfg.founderEmail);
       await page.locator('input[type="password"]').fill(cfg.founderPassword);
       await Promise.all([page.waitForURL(url=>url.origin===ORIGIN&&url.pathname==='/cockpit/products'),page.locator('button[type="submit"]').click()]);
-      authenticated=true;view.nativePrincipal=await verifyPrincipal(context);
+      authenticated=true;view.nativePrincipal=await verifyPrincipal(page);
       phase=shape.name+'-native-source-projection';
       const article=page.getByTestId('connector-source-candidate');await article.waitFor({state:'visible'});assert.equal(await article.count(),1);
-      const capture=await readJSON(context,'/api/owner/commerce/portfolio?classification=REAL_READ_ONLY&page=1&pageSize=10','connector-portfolio-'+shape.name+'.json');
+      const capture=await readJSON(page,'/api/owner/commerce/portfolio?classification=REAL_READ_ONLY&page=1&pageSize=10','connector-portfolio-'+shape.name+'.json');
       const portfolio=capture.value;view.portfolioResponse=capture.receipt;
       assert.equal(portfolio.connectorSourceCandidates.availability,'RETAINED_AUTHENTICATED_CONNECTOR_SOURCE');
       assert.equal(portfolio.connectorSourceCandidates.grantsAuthority,false);assert.equal(portfolio.connectorSourceCandidates.candidates.length,1);
@@ -307,7 +316,7 @@ try{
       viewError=error;view.status='FAIL';view.failurePhase=phase;throw error;
     }finally{
       const precedingPhase=phase;let cleanupError=null;
-      if(authenticated){phase=shape.name+'-logout';try{await logout(context,view);}catch(error){view.cleanupFailure={name:error.name,messageSHA256:sha(String(error.message))};cleanupError=error;}}
+      if(authenticated){phase=shape.name+'-logout';try{await logout(page,view);}catch(error){view.cleanupFailure={name:error.name,messageSHA256:sha(String(error.message))};cleanupError=error;}}
       try{await context.close();view.contextClosed=true;activeContext=null;}catch(error){view.contextCleanupFailure={name:error.name,messageSHA256:sha(String(error.message))};cleanupError??=error;}
       if(viewError)phase=view.failurePhase;
       else if(cleanupError){view.status='FAIL_CLEANUP';throw cleanupError;}
