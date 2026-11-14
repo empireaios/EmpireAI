@@ -26,6 +26,7 @@ stop_requested = threading.Event()
 custody_logged = threading.Event()
 terminal_reason = None
 service_expiry_ms = None
+process_graph = None
 native_diagnostic_logged = False
 NATIVE_STAGES = frozenset(('BOOTSTRAP', 'RESTORE', 'REDIS', 'BACKEND', 'FRONTEND', 'READY'))
 NATIVE_REASONS = frozenset(('NATIVE_BOOTSTRAP_FAILED', 'CHILD_START_FAILURE', 'EARLY_CHILD_EXIT',
@@ -172,7 +173,7 @@ def open_native_work_directories():
 
 
 def main():
-    global terminal_reason, service_expiry_ms
+    global terminal_reason, service_expiry_ms, process_graph
     if os.geteuid() != 0:
         raise ValueError('HOST_ROOT_REQUIRED')
     spec = importlib.util.spec_from_file_location('a09_watchdog', CONTROL / 'host/root-watchdog.py')
@@ -182,6 +183,12 @@ def main():
     watchdog.timeout_argv(config, time.time_ns() // 1_000_000)
     expiry = config['expiresAtMs']
     service_expiry_ms = expiry
+    # Establish a clean, dedicated subreaper scope before any managed spawn.
+    # A process-group-only probe misses escaped descendants and orphan zombies.
+    spec = importlib.util.spec_from_file_location('a09_process_graph', CONTROL / 'host/process_graph.py')
+    process_graph = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(process_graph)
+    process_graph.enable_subreaper()
     signal.signal(signal.SIGTERM, signal_handler)
     signal.signal(signal.SIGINT, signal_handler)
     ingress = spawn('ingress', ['/usr/local/bin/node', str(CONTROL / 'host/bounded-ingress.mjs')], True)
@@ -247,22 +254,20 @@ def main():
 
 def stop_graph_and_cleanup():
     """No fresh lease, no custody wait, and no network operation."""
-    for name in tuple(children):
-        send(name, signal.SIGKILL)
-    for child in children.values():
-        try:
-            child.wait(timeout=0.1)
-        except subprocess.TimeoutExpired:
-            pass
-    stopped = True
-    for child in children.values():
-        try:
-            os.killpg(child.pid, 0)
-            stopped = False
-        except ProcessLookupError:
-            pass
-        except PermissionError:
-            stopped = False
+    # Leave at least one second of the original five-second kill grace for
+    # logical unlink. Adopted setsid descendants remain in the subreaper scope.
+    stop_remaining = 0.8
+    if service_expiry_ms is not None:
+        stop_remaining = min(stop_remaining, max(0, (service_expiry_ms + 3900 - time.time_ns() // 1_000_000) / 1000))
+    stopped = False
+    if process_graph is not None:
+        stopped = process_graph.stop_descendants(children, time.monotonic() + stop_remaining)
+        print(json.dumps(process_graph.last_stop_report), flush=True)
+    else:
+        # Pre-spawn setup failure cannot claim a proven process census. Signal
+        # any registered groups best-effort; cleanup status stays INCOMPLETE.
+        for name in tuple(children):
+            send(name, signal.SIGKILL)
     spec = importlib.util.spec_from_file_location('a09_terminal_cleanup', CONTROL / 'host/terminal-cleanup.py')
     cleanup = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(cleanup)

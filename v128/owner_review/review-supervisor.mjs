@@ -57,7 +57,14 @@ async function ready(port,timeout=15000){const deadline=Math.min(Date.now()+time
 function softSeal(){if(soft)return;soft=true;for(const row of children)if(row.label==='backend'&&!row.closed)row.p.kill('SIGUSR1');}
 async function finish(reason,terminalStage=stage,exitCode=null){if(finalizing)return;finalizing=true;softSeal();
  const hard=['HARD_DRAIN','ABSOLUTE_EXPIRY','INTERRUPTED'].includes(reason);
- if(!acknowledged&&hard)await new Promise(resolve=>setTimeout(resolve,4000));
+ // Root grants three seconds to the native supervisor before forced cleanup.
+ // A completed ciphertext export needs no extra custody delay. If export is
+ // still pending, leave time to stop and reap every native child inside that
+ // existing root grace instead of sleeping past it with live descendants.
+ if(!acknowledged&&!ciphertextLogComplete&&hard){
+  const until=Math.min(Date.now()+1500,cfg.expiresAtMs+1500);
+  while(!acknowledged&&!ciphertextLogComplete&&Date.now()<until&&children.some(row=>row.label==='backend'&&!row.closed))await new Promise(resolve=>setTimeout(resolve,25));
+ }
  if(!acknowledged&&!hard){
   const until=Math.min(Date.now()+80000,cfg.expiresAtMs);
   while(!acknowledged&&!ciphertextLogComplete&&Date.now()<until&&children.some(row=>row.label==='backend'&&!row.closed))await new Promise(resolve=>setTimeout(resolve,50));
@@ -65,6 +72,10 @@ async function finish(reason,terminalStage=stage,exitCode=null){if(finalizing)re
  for(const row of [...children].reverse())if(!row.closed)row.p.kill('SIGTERM');
  await new Promise(resolve=>setTimeout(resolve,250));
  for(const row of children)if(!row.closed)row.p.kill('SIGKILL');
+ // Node must observe child close/reaping before its own exit. Immediate exit
+ // after kill used to leave children for PID1 while root probed their group.
+ const reapUntil=Math.min(Date.now()+500,cfg.expiresAtMs+2600);
+ while(children.some(row=>!row.closed)&&Date.now()<reapUntil)await new Promise(resolve=>setTimeout(resolve,10));
  emitTerminal(terminalStage,reason,exitCode,acknowledged);
  process.exit(acknowledged?0:1);
 }

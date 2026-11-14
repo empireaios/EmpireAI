@@ -74,6 +74,7 @@ def verify_source_manifest():
         assert total <= 1024 * 1024 * 1024
         assert sha(path) == row['sha256'], 'SOURCE_PIN_MISMATCH'
     required = ['v128/owner_review/authority.json', 'v128/owner_review/reservation.json',
+                'v128/owner_review/host/root-watchdog.py', 'v128/owner_review/host/process_graph.py',
                 'v128/owner_review/host/root-supervisor.py', 'v128/owner_review/host/terminal-cleanup.py',
                 'v128/owner_review/host/root-preflight.py', 'v128/owner_review/native-diagnostics.mjs',
                 'vercel.json', 'empireai-web/vercel.json',

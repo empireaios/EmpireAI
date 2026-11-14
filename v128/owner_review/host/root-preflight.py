@@ -186,6 +186,7 @@ def main():
         '/control/owner_review/host/root-watchdog.py',
         '/control/owner_review/host/root-preflight.py',
         '/control/owner_review/host/root-supervisor.py',
+        '/control/owner_review/host/process_graph.py',
         '/control/owner_review/host/bounded-ingress.mjs',
         '/control/owner_review/review-transport.mjs',
         '/control/owner_review/review-supervisor.mjs',
