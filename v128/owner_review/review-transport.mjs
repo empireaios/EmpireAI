@@ -132,9 +132,23 @@ export function readStable(file,max,{privateInput=false,rootFixed=false,fixedUID
   const bytes=fs.readFileSync(fd);requireValue(bytes.length===before.size&&sameStat(before,fs.fstatSync(fd))&&sameStat(before,fs.lstatSync(absolute)),'INPUT_CHANGED');return bytes;
  }finally{fs.closeSync(fd);}
 }
-function directory(file,{uid=0,gid=1001,create=false}={}){
- if(create&&!fs.existsSync(file)){fs.mkdirSync(file,{mode:0o750});fs.chownSync(file,uid,gid);}
+export function directory(file,{uid=0,gid=1001,create=false}={}){
+ let created=false;
+ if(create&&!fs.existsSync(file)){
+  fs.mkdirSync(file,{mode:0o750});
+  const fd=fs.openSync(file,fs.constants.O_RDONLY|fs.constants.O_DIRECTORY|fs.constants.O_NOFOLLOW);
+  try{
+   fs.fchownSync(fd,uid,gid);
+   // PID1 deliberately supplies umask0077. Restore exact group traversal after
+   // creation so UID1001 can read the root-fixed0440 inputs, without write access.
+   fs.fchmodSync(fd,0o750);
+  }finally{fs.closeSync(fd);}
+  created=true;
+ }
  requireValue(fs.realpathSync(file)===file,'OUTPUT_DIRECTORY_REALPATH');const info=fs.lstatSync(file);requireValue(info.isDirectory()&&info.uid===uid&&(info.mode&0o022)===0,'OUTPUT_DIRECTORY_MODE');
+ if(created)requireValue(info.gid===gid&&(info.mode&0o7777)===0o750,'OUTPUT_DIRECTORY_EXACT_MODE');
+ // Existing root-owned parents remain unchanged, but must admit the app group.
+ requireValue(info.gid===gid?(info.mode&0o050)===0o050:(info.mode&0o005)===0o005,'OUTPUT_DIRECTORY_NATIVE_TRAVERSAL');
 }
 function exists(file){try{fs.lstatSync(file);return true;}catch(error){if(error.code==='ENOENT')return false;throw error;}}
 function syncDirectory(file){const fd=fs.openSync(file,fs.constants.O_RDONLY|fs.constants.O_DIRECTORY|fs.constants.O_NOFOLLOW);try{fs.fsyncSync(fd);}finally{fs.closeSync(fd);}}

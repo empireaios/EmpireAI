@@ -10,7 +10,6 @@ FROM scratch
 COPY --from=build --chown=0:0 /output/ /
 ENV PATH=/usr/local/bin:/usr/bin:/bin LANG=C.UTF-8 TZ=UTC NODE_ENV=production PYTHONDONTWRITEBYTECODE=1
 WORKDIR /control
-EXPOSE 8080
 USER 0:0
 STOPSIGNAL SIGTERM
-ENTRYPOINT ["/usr/bin/python3", "-I", "-B", "/control/owner_review/host/root-entry.py"]
+ENTRYPOINT ["/usr/bin/timeout", "--signal=TERM", "--kill-after=1s", "5s", "/usr/bin/python3", "-I", "-B", "-c", "print('PUBLIC_QUALIFICATION_TERMINAL', flush=True)"]

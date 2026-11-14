@@ -4,9 +4,9 @@
   "ownerDirective": "V130",
   "standingAuthorityId": "GRAND-KING-V112-MASTER-20261111",
   "standingAuthoritySHA256": "2e54ce38da8c021b0211351bd9524f3dc2ab99cc48466dc10a0465748a58fc66",
-  "operationIdentity": "V130-A10-PRIVATE-REVIEW-A01-20261114",
+  "operationIdentity": "V130-A10-PUBLIC-DIRECTORY-QUALIFICATION-Q01-20261114",
   "ownerEmailSHA256": "a437be3d7f2e7927959c2be2040016464de75d69529d9abd197e47a8caa21267",
-  "scope": "Publish reviewed source and establish one finite isolated Railway private owner-review session under the standing technical and cumulative financial authority. A manually adjudicated corrected build2 follows the terminal pre-runtime build1 failure under the same aggregate reservation and a separately verified new deployment window fixed once at attach, no longer than20minutes. The failed old deployment and its original expiry remain immutable; no automatic retry is authorized. Restore the authenticated A08 media version2 database and exact original/revised assets without replaying preparation or importing authentication. Present native EmpireAI comparison and history to the actual owner through manual native login with fresh privately delivered credentials. Permit one genuine owner's explicit acknowledgement, internal approval or rejection bound to the exact version, candidate and batch. No agent may perform or invent the personal review choice. Capture the actual resulting state in recipient-encrypted evidence with independent durable readback before closing the requirement. Maximum20minutes absolute lifetime, no restart or automatic retry, bounded resource and response limits, no persistent volume or production access. Preserve all previous accepted evidence and original criteria.",
+  "scope": "One public-only credentialless image-build qualification of the reviewed input/media directory correction, including real UID1001 access to public synthetic sentinels inside the build. The final image runs only the fixed PUBLIC_QUALIFICATION_TERMINAL marker and exits beneath a5second timeout plus1second forced-kill grace. No runtime listener, native application, private restore, owner credentials, retained private database or images, or owner review. No retry, production change, replacement private transfer, or additional reservation. The consumed private transfer grant remains exhausted.",
   "originalTargetPredicateIds": [
     "A10-05"
   ],
@@ -20,15 +20,11 @@
   "commerce": "LOCKED",
   "pillow": "NOT_BORN",
   "work9": "INACTIVE",
-  "explicitTransferAuthorizationSHA256": "b79e9197e51f8c5c9152a2c4d91d80b7f006f84533857145f95ae01491f3e811",
-  "explicitTransferAuthorizationScope": "Exact minimized A08 four-row database, exact original and revised images, and fresh isolated temporary review credentials only, within the owner-authorized destination and finite lease. Genuine personal media decision remains solely the owner's.",
-  "manualSuccessorId": "V130-A10-PRIVATE-REVIEW-A01-20261114.build2",
-  "manualBuildAttempt": 2,
-  "privateSessionAttempt": 1,
-  "maximumSuccessfulPrivateTransfers": 1,
-  "manualSuccessorFinancialGateSHA256": "532ca1381535b9903ccc0af2102c382627086afd1740986b924301cca4659a49",
-  "previousFailedDeploymentId": "e7d16214-cc83-4fcb-812f-510066c8a949",
-  "controlledSuccessorWindowReviewSHA256": "df5880179332c0a4c13a98da43672dcb07a000b4d877c7a33d44c9df0e68a226",
-  "newDeploymentExpiryBoundAtLaunch": true,
-  "priorAbsoluteExpiresAtMs": 1794619451652
+  "publicQualificationOnly": true,
+  "publicEngineeringAuthorityOnly": true,
+  "privateTransferAllowed": false,
+  "maximumPrivateTransfers": 0,
+  "ownerReviewAllowed": false,
+  "runtimeListenerAllowed": false,
+  "consumedPrivateTransferGrantNotReusable": true
 }

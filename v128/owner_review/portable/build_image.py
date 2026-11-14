@@ -42,13 +42,13 @@ def verify_source_manifest():
     assert manifest['schema'] == 'A09_REVIEW_SOURCE_MANIFEST_V1'
     assert manifest['selfExcluded'] is True
     expected = {
-        'operationIdentity': 'V130-A10-PRIVATE-REVIEW-A01-20261114',
-        'branch': 'work8/v130-media-owner-review-20261114-a01',
-        'parentCommit': '3cc0cca5b0a72775d9f38d1d71779c9b79bec495',
-        'parentTree': 'f7375d0fd85059c34760c58ff0462374bf565cad',
+        'operationIdentity': 'V130-A10-PUBLIC-DIRECTORY-QUALIFICATION-Q01-20261114',
+        'branch': 'work8/v130-public-directory-qualification-20261114-q01',
+        'parentCommit': '60127c4d0c5aa742d6f31bcf4b6b7736d6012e03',
+        'parentTree': 'e692a0a3221891e9a907202d6f6b1330c0482d89',
         'retainedApplicationCommit': '6c1e63ba20619ee480742fd87dc810ca93152e22',
         'retainedA08RunId': '43434940694',
-        'completeFrontendSourceSHA256': 'fd23e8c8aa5efba56886e568d9266cf64566263f0301c1f28da28e5caaa41bcc',
+        'completeFrontendSourceSHA256': '2828d23329b4ce1b41dff9f2c19678022713a0f32e3a98978f9c7bb1a3a83e2c',
         'completeFrontendFileCount': 962,
     }
     assert all(manifest.get(key) == value for key, value in expected.items()), 'EXACT_SOURCE_IDENTITY'

@@ -20,7 +20,7 @@ def require(value, code):
 
 
 def validate_admission(authority, reservation, operation):
-    require(operation == 'V130-A10-PRIVATE-REVIEW-A01-20261114', 'EXACT_A09_OPERATION')
+    require(operation == 'V130-A10-PUBLIC-DIRECTORY-QUALIFICATION-Q01-20261114', 'EXACT_A09_OPERATION')
     require(authority.get('schema') == 'A09_STANDING_TECHNICAL_AUTHORITY_REFERENCE_V1'
             and authority.get('operationIdentity') == operation
             and authority.get('standingAuthorityId') == 'GRAND-KING-V112-MASTER-20261111'
@@ -28,7 +28,9 @@ def validate_admission(authority, reservation, operation):
             and authority.get('ownerEmailSHA256') == 'a437be3d7f2e7927959c2be2040016464de75d69529d9abd197e47a8caa21267'
             and authority.get('originalTargetPredicateIds') == ['A10-05']
             and authority.get('ownerDirective') == 'V130'
-            and authority.get('explicitTransferAuthorizationSHA256') == 'b79e9197e51f8c5c9152a2c4d91d80b7f006f84533857145f95ae01491f3e811', 'EXACT_TECHNICAL_AUTHORITY')
+            and authority.get('publicQualificationOnly') is True
+            and authority.get('privateTransferAllowed') is False
+            and authority.get('maximumPrivateTransfers') == 0, 'EXACT_TECHNICAL_AUTHORITY')
     for key in ('nativeApprovalsGranted', 'personalOwnerActionDelegated',
                 'positiveApprovalRequired', 'productionPermission', 'businessPublicationPermission'):
         require(authority.get(key) is False, 'AUTHORITY_SCOPE_' + key)
@@ -38,14 +40,19 @@ def validate_admission(authority, reservation, operation):
             and authority.get('work9') == 'INACTIVE', 'AUTHORITY_LOCKS')
     require(reservation.get('schema') == 'A09_FINANCIAL_LAUNCH_RESERVATION_REFERENCE_V1'
             and reservation.get('operationIdentity') == operation
-            and reservation.get('status') == 'RESERVED_IN_CANONICAL_LEDGER', 'CANONICAL_RESERVATION_REQUIRED')
-    exact = {'cumulativeCeilingUSD': 1000, 'maximumNewExposureUSD': 5,
-             'maximumRuntimeSeconds': 1200, 'killGraceSeconds': 5, 'replicas': 1,
+            and reservation.get('status') == 'PREPARED_REQUIRES_EXACT_SOURCE_PROVIDER_AND_FINANCIAL_ADMISSION', 'CANONICAL_RESERVATION_REQUIRED')
+    exact = {'cumulativeCeilingUSD': 1000, 'maximumNewExposureUSD': 0,
+             'maximumRuntimeSeconds': 5, 'killGraceSeconds': 1, 'replicas': 1,
              'vCPUs': 1, 'memoryGB': 2, 'restartPolicyType': 'NEVER',
-             'provider': 'RAILWAY', 'gitPublicationIdentity': 'work8/v130-media-owner-review-20261114-a01'}
+             'provider': 'RAILWAY', 'gitPublicationIdentity': 'work8/v130-public-directory-qualification-20261114-q01'}
     for key, value in exact.items():
         require(reservation.get(key) == value and not isinstance(reservation.get(key), bool),
                 'EXACT_RESERVED_BOUND_' + key)
+    require(reservation.get('publicQualificationOnly') is True
+            and reservation.get('privateTransferAllowed') is False
+            and reservation.get('maximumPrivateTransfers') == 0
+            and reservation.get('additionalAllocationUSD') == 0
+            and reservation.get('aggregateHoldUSD') == 5, 'PUBLIC_ONLY_ZERO_ALLOCATION')
     amount = reservation.get('expectedCountedExposureUSD')
     require(type(amount) in (int, float) and math.isfinite(amount)
             and 5 <= amount <= 1000, 'CUMULATIVE_COUNTED_EXPOSURE')
