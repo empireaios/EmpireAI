@@ -24,9 +24,9 @@ def main():
  root=pathlib.Path(a.runtime_root).resolve();repo=pathlib.Path(a.repository).resolve();meta=pathlib.Path(a.metadata_directory).resolve();commit=a.publication_commit
  assert re.fullmatch('[a-f0-9]{40}',commit),'ACTUAL_PUBLICATION_COMMIT_REQUIRED'
  control=root/'control/owner_review';source=control/'source-manifest.json';assert source.is_file()and not source.is_symlink(),'FROZEN_SOURCE_MANIFEST_REQUIRED'
- authority=json.loads((control/'authority.json').read_bytes());reservation=json.loads((control/'reservation.json').read_bytes());assert authority['operationIdentity']==reservation['operationIdentity']=='V128-CONNECTOR-MEDIA-OWNER-REVIEW-A09-20261113'
- assert reservation['status']=='RESERVED_IN_CANONICAL_LEDGER'and reservation['savedLedgerVersion']==78 and re.fullmatch('[a-f0-9]{64}',reservation['savedLedgerSHA256']),'ACTUAL_SAVED_FINANCIAL_BINDING_REQUIRED'
- assert reservation['financialReservationId']=='V128-CONNECTOR-MEDIA-OWNER-REVIEW-A09-20261113.attempt2'and reservation['executionAttempt']==2,'EXACT_SUCCESSOR_FINANCIAL_RESERVATION_REQUIRED'
+ authority=json.loads((control/'authority.json').read_bytes());reservation=json.loads((control/'reservation.json').read_bytes());assert authority['operationIdentity']==reservation['operationIdentity']=='V130-A10-PRIVATE-REVIEW-A01-20261114'
+ assert reservation['status']=='RESERVED_IN_CANONICAL_LEDGER'and reservation['savedLedgerVersion']==81 and reservation['savedLedgerSHA256']=='332291ccf87163828800ba264b18e788d5fb182f353c08646b272ddc944c3aab' and reservation['independentReadbackSHA256']==reservation['savedLedgerSHA256'],'ACTUAL_SAVED_FINANCIAL_BINDING_REQUIRED'
+ assert reservation['financialReservationId']=='V130-A10-PRIVATE-REVIEW-A01-20261114'and reservation['executionAttempt']==1,'EXACT_SUCCESSOR_FINANCIAL_RESERVATION_REQUIRED'
  assert source.read_bytes()==(repo/'v128/owner_review/source-manifest.json').read_bytes(),'SOURCE_MANIFEST_COPY_IDENTITY'
  source_identity=json.loads(source.read_bytes());assert source_identity['schema']=='A09_REVIEW_SOURCE_MANIFEST_V1'and source_identity['retainedApplicationCommit']==APPLICATION
  assert sha(root/'usr/local/bin/node')==NODE

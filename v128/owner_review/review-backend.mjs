@@ -12,7 +12,7 @@ const sha=b=>createHash('sha256').update(b).digest('hex');
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const save=(p,v)=>fs.writeFileSync(p,JSON.stringify(v,null,2)+'\n',{flag:'wx',mode:0o400});
 const config=read('/private/review-bootstrap.json'),baseline=read(CONTROL+'/retained-a08-baseline.json');
-assert.equal(config.operationIdentity,'V128-CONNECTOR-MEDIA-OWNER-REVIEW-A09-20261113');
+assert.equal(config.operationIdentity,'V130-A10-PRIVATE-REVIEW-A01-20261114');
 assert.equal(config.origin,new URL(config.origin).origin);assert.ok(config.origin.startsWith('https://'));
 assert.equal(sha(config.founderEmail.trim().toLowerCase()),'a437be3d7f2e7927959c2be2040016464de75d69529d9abd197e47a8caa21267');
 for(const key of ['founderPassword','adminPassword','sessionSecret','exportToken'])assert.match(config[key],/^[A-Za-z0-9_-]{43,128}$/);

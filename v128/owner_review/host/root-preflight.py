@@ -20,13 +20,15 @@ def require(value, code):
 
 
 def validate_admission(authority, reservation, operation):
-    require(operation == 'V128-CONNECTOR-MEDIA-OWNER-REVIEW-A09-20261113', 'EXACT_A09_OPERATION')
+    require(operation == 'V130-A10-PRIVATE-REVIEW-A01-20261114', 'EXACT_A09_OPERATION')
     require(authority.get('schema') == 'A09_STANDING_TECHNICAL_AUTHORITY_REFERENCE_V1'
             and authority.get('operationIdentity') == operation
             and authority.get('standingAuthorityId') == 'GRAND-KING-V112-MASTER-20261111'
             and authority.get('standingAuthoritySHA256') == '2e54ce38da8c021b0211351bd9524f3dc2ab99cc48466dc10a0465748a58fc66'
             and authority.get('ownerEmailSHA256') == 'a437be3d7f2e7927959c2be2040016464de75d69529d9abd197e47a8caa21267'
-            and authority.get('originalTargetPredicateIds') == ['A10-05'], 'EXACT_TECHNICAL_AUTHORITY')
+            and authority.get('originalTargetPredicateIds') == ['A10-05']
+            and authority.get('ownerDirective') == 'V130'
+            and authority.get('explicitTransferAuthorizationSHA256') == 'b79e9197e51f8c5c9152a2c4d91d80b7f006f84533857145f95ae01491f3e811', 'EXACT_TECHNICAL_AUTHORITY')
     for key in ('nativeApprovalsGranted', 'personalOwnerActionDelegated',
                 'positiveApprovalRequired', 'productionPermission', 'businessPublicationPermission'):
         require(authority.get(key) is False, 'AUTHORITY_SCOPE_' + key)
@@ -40,7 +42,7 @@ def validate_admission(authority, reservation, operation):
     exact = {'cumulativeCeilingUSD': 1000, 'maximumNewExposureUSD': 5,
              'maximumRuntimeSeconds': 1200, 'killGraceSeconds': 5, 'replicas': 1,
              'vCPUs': 1, 'memoryGB': 2, 'restartPolicyType': 'NEVER',
-             'provider': 'RAILWAY', 'gitPublicationIdentity': 'work8/v128-media-owner-review-20261113-a09'}
+             'provider': 'RAILWAY', 'gitPublicationIdentity': 'work8/v130-media-owner-review-20261114-a01'}
     for key, value in exact.items():
         require(reservation.get(key) == value and not isinstance(reservation.get(key), bool),
                 'EXACT_RESERVED_BOUND_' + key)

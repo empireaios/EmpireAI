@@ -42,13 +42,13 @@ def verify_source_manifest():
     assert manifest['schema'] == 'A09_REVIEW_SOURCE_MANIFEST_V1'
     assert manifest['selfExcluded'] is True
     expected = {
-        'operationIdentity': 'V128-CONNECTOR-MEDIA-OWNER-REVIEW-A09-20261113',
-        'branch': 'work8/v128-media-owner-review-20261113-a09',
-        'parentCommit': 'ac95e4df9f1ffc342990c4153833a2a35951ee92',
-        'parentTree': '06549e6161661c73d0cdeee4b199de12730368f7',
+        'operationIdentity': 'V130-A10-PRIVATE-REVIEW-A01-20261114',
+        'branch': 'work8/v130-media-owner-review-20261114-a01',
+        'parentCommit': '2562a2de04e7565846739f517bb5bee43e5e9d36',
+        'parentTree': '6c3d16231c3a6f89360fab92a422d5fbaec0cb6e',
         'retainedApplicationCommit': '6c1e63ba20619ee480742fd87dc810ca93152e22',
         'retainedA08RunId': '43434940694',
-        'completeFrontendSourceSHA256': '12fc6f3a250693e6d9eef0ab597cbda477aa9e86a31cadaea1e3fc797e401209',
+        'completeFrontendSourceSHA256': 'fd23e8c8aa5efba56886e568d9266cf64566263f0301c1f28da28e5caaa41bcc',
         'completeFrontendFileCount': 962,
     }
     assert all(manifest.get(key) == value for key, value in expected.items()), 'EXACT_SOURCE_IDENTITY'
@@ -74,6 +74,7 @@ def verify_source_manifest():
         assert total <= 1024 * 1024 * 1024
         assert sha(path) == row['sha256'], 'SOURCE_PIN_MISMATCH'
     required = ['v128/owner_review/authority.json', 'v128/owner_review/reservation.json',
+                'v128/owner_review/host/root-supervisor.py', 'v128/owner_review/host/terminal-cleanup.py',
                 'v128/owner_review/host/root-preflight.py', 'vercel.json', 'empireai-web/vercel.json',
                 'v126/native_private/raw_blob_transport.py', 'v126/native_private/retained-blob-manifest.json']
     assert all(name in seen for name in required), 'CRITICAL_SOURCE_PIN_MISSING'

@@ -25,6 +25,7 @@ lock = threading.Lock()
 stop_requested = threading.Event()
 custody_logged = threading.Event()
 terminal_reason = None
+service_expiry_ms = None
 
 
 def event(kind, data=None):
@@ -104,9 +105,11 @@ def spawn(name, command, unprivileged):
 
 def send(name, signum):
     child = children.get(name)
-    if child and child.poll() is None:
+    if child and (signum == signal.SIGKILL or child.poll() is None):
         try:
             if signum == signal.SIGKILL:
+                # A supervisor can exit while descendants retain its process
+                # group. Reap that group even after its leader has exited.
                 os.killpg(child.pid, signum)
             else:
                 # The native supervisor seals before stopping Redis/frontend.
@@ -138,7 +141,7 @@ def open_native_work_directories():
 
 
 def main():
-    global terminal_reason
+    global terminal_reason, service_expiry_ms
     if os.geteuid() != 0:
         raise ValueError('HOST_ROOT_REQUIRED')
     spec = importlib.util.spec_from_file_location('a09_watchdog', CONTROL / 'host/root-watchdog.py')
@@ -147,6 +150,7 @@ def main():
     config = watchdog.checked_config()
     watchdog.timeout_argv(config, time.time_ns() // 1_000_000)
     expiry = config['expiresAtMs']
+    service_expiry_ms = expiry
     signal.signal(signal.SIGTERM, signal_handler)
     signal.signal(signal.SIGINT, signal_handler)
     ingress = spawn('ingress', ['/usr/local/bin/node', str(CONTROL / 'host/bounded-ingress.mjs')], True)
@@ -200,12 +204,43 @@ def main():
             time.sleep(0.02)
     # Retain the existing ingress only for backend's bounded read-only export.
     send('native', signal.SIGTERM)
-    drain_until = time.monotonic() + 4.4
+    # Reserve part of the existing five-second PID1 kill grace for group stop
+    # and bounded plaintext unlink. The immutable hard timeout is unchanged.
+    drain_until = time.monotonic() + 3.0
     while time.monotonic() < drain_until:
         if native is None or native.poll() is not None:
             break
         time.sleep(0.02)
     return 0
+
+
+def stop_graph_and_cleanup():
+    """No fresh lease, no custody wait, and no network operation."""
+    for name in tuple(children):
+        send(name, signal.SIGKILL)
+    for child in children.values():
+        try:
+            child.wait(timeout=0.1)
+        except subprocess.TimeoutExpired:
+            pass
+    stopped = True
+    for child in children.values():
+        try:
+            os.killpg(child.pid, 0)
+            stopped = False
+        except ProcessLookupError:
+            pass
+        except PermissionError:
+            stopped = False
+    spec = importlib.util.spec_from_file_location('a09_terminal_cleanup', CONTROL / 'host/terminal-cleanup.py')
+    cleanup = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(cleanup)
+    remaining = 1.0
+    if service_expiry_ms is not None:
+        remaining = min(remaining, max(0, (service_expiry_ms + 4900 - time.time_ns() // 1_000_000) / 1000))
+    return cleanup.cleanup_plaintext(deadline=time.monotonic() + remaining,
+                                     processes_stopped=stopped,
+                                     ciphertext_log_complete=custody_logged.is_set())
 
 
 if __name__ == '__main__':
@@ -215,13 +250,16 @@ if __name__ == '__main__':
     except Exception:
         terminal_reason = 'HOST_REFUSED'
     finally:
-        for name in tuple(children):
-            send(name, signal.SIGKILL)
-        for child in children.values():
-            try:
-                child.wait(timeout=0.1)
-            except subprocess.TimeoutExpired:
-                pass
+        try:
+            cleanup = stop_graph_and_cleanup()
+        except Exception:
+            cleanup = {'schema': 'A09_TERMINAL_PLAINTEXT_CLEANUP_V1',
+                       'status': 'INCOMPLETE', 'errors': ['CLEANUP_HOST_FAILURE'],
+                       'secureErasureClaimed': False, 'providerDeletionClaimed': False,
+                       'acceptanceClaimed': False}
+        if cleanup['status'] != 'COMPLETE_LOGICAL_UNLINK':
+            status = 78
+        print(json.dumps(cleanup), flush=True)
         print(json.dumps({'schema': 'A09_HOST_TERMINAL_V1', 'reason': terminal_reason,
                           'processOutputBytes': counts['bytes'],
                           'custodyLogBytes': counts['custodyBytes'],

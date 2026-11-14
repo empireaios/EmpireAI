@@ -8,6 +8,7 @@ before listeners; no stage accepts a duration or command from the app.
 import json
 import os
 import pathlib
+import resource
 import stat
 import time
 
@@ -55,6 +56,10 @@ def timeout_argv(config, now_ms):
 def main():
     require(os.geteuid() == 0, 'ROOT_WATCHDOG_REQUIRED')
     require(os.getpid() == 1, 'PID1_EXEC_REQUIRED')
+    # All preflight and app descendants inherit a zero hard core-dump limit.
+    # Failure is terminal before any child, listener, or private input exists.
+    resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
+    require(resource.getrlimit(resource.RLIMIT_CORE) == (0, 0), 'CORE_DUMP_LIMIT')
     # Public immutable setting is available before manifest checks. All later
     # stages use the same absolute deadline; no relative timer resets.
     config = {'expiresAtMs': int(os.environ.get('A09_EXPIRES_AT_MS', '0'))}
