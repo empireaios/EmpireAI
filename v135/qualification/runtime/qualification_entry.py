@@ -3,7 +3,7 @@
 import hashlib,json,os,pathlib,re,resource,stat,time
 CONTROL=pathlib.Path('/control/qualification')
 RUNTIME=pathlib.Path('/state/qualification')
-OP='V135-A10-DELIVERY-QUALIFICATION-A01-20261114'
+OP='V135-A10-DELIVERY-QUALIFICATION-A02-20261114'
 def require(ok,code):
     if not ok:raise ValueError(code)
 def main():

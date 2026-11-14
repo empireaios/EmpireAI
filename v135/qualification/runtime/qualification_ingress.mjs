@@ -11,8 +11,10 @@ export const LIMITS = Object.freeze({
   responseBytes: 64 * 1024 * 1024,
   requests: 1024,
   connections: 1024,
-  concurrentConnections: 16,
+  concurrentConnections: 64,
   concurrentRequests: 8,
+  pendingRequests: 24,
+  pendingTimeoutMs: 2_000,
   requestBodyBytes: 16 * 1024,
   requestHeaderBytes: 16 * 1024,
   upstreamResponseBytes: 4 * 1024 * 1024,
@@ -62,21 +64,37 @@ export function validateConfig(config) {
   return { origin, host: origin.host, config };
 }
 
-export function createBoundedIngress(config, onSeal = reason => {
-  process.stdout.write(JSON.stringify({ schema: 'V135_STAGE_A_INGRESS_SEAL_V1', reason }) + '\n');
-}) {
+export function createBoundedIngress(config, onSeal) {
   const checked = validateConfig(config);
   const counts = { responseBytes: 0, requests: 0, connections: 0,
-    concurrentRequests: 0, concurrentConnections: 0,
+    concurrentRequests: 0, concurrentConnections: 0, queuedRequests: 0,
+    peakConcurrentRequests: 0, peakQueuedRequests: 0, rejectedTransientRequests: 0,
+    rejectedTransientConnections: 0,
     draining: false, reason: null };
   const sockets = new Set();
+  const pending = [];
   let sealTimer;
   function seal(reason) {
     if (counts.draining) return;
     counts.draining = true;
     counts.reason = reason;
     // Qualification has no private export/restore exception while sealing.
-    onSeal(reason);
+    const diagnostic = { schema: 'V135_STAGE_A_INGRESS_SEAL_V1', reason,
+      atMs: Date.now(), responseBytes: counts.responseBytes, requests: counts.requests,
+      connections: counts.connections, peakConcurrentRequests: counts.peakConcurrentRequests,
+      peakQueuedRequests: counts.peakQueuedRequests,
+      rejectedTransientRequests: counts.rejectedTransientRequests,
+      rejectedTransientConnections: counts.rejectedTransientConnections };
+    if (onSeal) onSeal(reason);
+    else {
+      let diagnosticPersisted = false;
+      try {
+        fs.writeFileSync('/state/qualification/ingress-seal.json', JSON.stringify(diagnostic) + '\n', { flag: 'wx', mode: 0o400 });
+        diagnosticPersisted = true;
+      } catch { /* Report no filesystem contents or exception text. */ }
+      process.stdout.write(JSON.stringify({ ...diagnostic, diagnosticPersisted }) + '\n');
+    }
+    for (const entry of [...pending]) { forget(entry); entry.res.destroy(); }
     sealTimer = setTimeout(() => {
       server.close();
       for (const socket of sockets) socket.destroy();
@@ -115,19 +133,26 @@ export function createBoundedIngress(config, onSeal = reason => {
       'content-length': String(Buffer.byteLength(text)) });
     res.end(text);
   }
-  const server = http.createServer({ maxHeaderSize: LIMITS.requestHeaderBytes,
-    requestTimeout: LIMITS.requestTimeoutMs, headersTimeout: 5000,
-    keepAliveTimeout: 1 }, (req, res) => {
-    counts.requests++;
-    if (counts.requests > LIMITS.requests) { req.socket.destroy(); seal('REQUEST_BUDGET'); return; }
-    if (counts.concurrentRequests >= LIMITS.concurrentRequests) {
-      req.socket.destroy(); seal('REQUEST_CONCURRENCY'); return;
+  function forget(entry) {
+    const index = pending.indexOf(entry);
+    if (index < 0) return;
+    pending.splice(index, 1); counts.queuedRequests--;
+    clearTimeout(entry.timer);
+    entry.req.removeListener('aborted', entry.cancel);
+    entry.res.removeListener('close', entry.cancel);
+  }
+  function pump() {
+    while (!counts.draining && counts.concurrentRequests < LIMITS.concurrentRequests && pending.length) {
+      const entry = pending[0]; forget(entry);
+      if (!entry.req.aborted && !entry.res.destroyed) handle(entry.req, entry.res);
     }
+  }
+  function handle(req, res) {
     counts.concurrentRequests++;
+    counts.peakConcurrentRequests = Math.max(counts.peakConcurrentRequests, counts.concurrentRequests);
     let finished = false;
-    const finish = () => { if (!finished) { finished = true; counts.concurrentRequests--; } };
+    const finish = () => { if (!finished) { finished = true; counts.concurrentRequests--; queueMicrotask(pump); } };
     res.once('close', finish); res.once('finish', finish);
-    req.on('error', () => res.destroy()); res.on('error', () => req.destroy());
     if (req.headers.host !== checked.host || req.url?.includes('\\')
       || !req.url?.startsWith('/') || req.url.startsWith('//')) {
       reply(res, 400, 'Invalid request'); return;
@@ -220,6 +245,34 @@ export function createBoundedIngress(config, onSeal = reason => {
     upstream.on('drain', () => req.resume());
     req.on('end', () => upstream.end());
     res.on('close', () => upstream.destroy());
+  }
+  const server = http.createServer({ maxHeaderSize: LIMITS.requestHeaderBytes,
+    requestTimeout: LIMITS.requestTimeoutMs, headersTimeout: 5000,
+    keepAliveTimeout: 1 }, (req, res) => {
+    req.on('error', () => res.destroy()); res.on('error', () => req.destroy());
+    counts.requests++;
+    if (counts.requests > LIMITS.requests) { req.socket.destroy(); seal('REQUEST_BUDGET'); return; }
+    if (Date.now() >= config.expiresAtMs) seal('ABSOLUTE_EXPIRY');
+    if (counts.draining) { req.socket.destroy(); return; }
+    if (req.headers['transfer-encoding'] || Number(req.headers['content-length'] ?? 0) > LIMITS.requestBodyBytes) {
+      reply(res, 413, 'Request too large'); return;
+    }
+    if (counts.concurrentRequests < LIMITS.concurrentRequests) { handle(req, res); return; }
+    // Native pages legitimately request many build-pinned assets at once. Keep
+    // upstream concurrency fixed, queue briefly, and reject excess individually.
+    if (pending.length >= LIMITS.pendingRequests) {
+      counts.rejectedTransientRequests++; reply(res, 503, 'Qualification capacity reached'); return;
+    }
+    const entry = { req, res, timer: undefined, cancel: undefined };
+    entry.cancel = () => forget(entry);
+    entry.timer = setTimeout(() => {
+      forget(entry); counts.rejectedTransientRequests++;
+      if (!res.destroyed) reply(res, 503, 'Qualification queue deadline');
+    }, LIMITS.pendingTimeoutMs);
+    entry.timer.unref();
+    pending.push(entry); counts.queuedRequests++;
+    counts.peakQueuedRequests = Math.max(counts.peakQueuedRequests, counts.queuedRequests);
+    req.once('aborted', entry.cancel); res.once('close', entry.cancel);
   });
   server.on('connection', socket => {
     counts.connections++; counts.concurrentConnections++; sockets.add(socket);
@@ -227,8 +280,10 @@ export function createBoundedIngress(config, onSeal = reason => {
     socket.on('error', () => {});
     socket.once('close', () => { counts.concurrentConnections--; sockets.delete(socket); });
     socket.setTimeout(LIMITS.socketTimeoutMs, () => socket.destroy());
-    if (counts.connections > LIMITS.connections || counts.concurrentConnections > LIMITS.concurrentConnections) {
+    if (counts.connections > LIMITS.connections) {
       socket.destroy(); seal('CONNECTION_BUDGET');
+    } else if (counts.concurrentConnections > LIMITS.concurrentConnections) {
+      counts.rejectedTransientConnections++; socket.destroy();
     }
   });
   // Invalid parser input, upgrades and CONNECT never receive automatic responses.

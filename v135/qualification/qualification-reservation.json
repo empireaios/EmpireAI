@@ -1,11 +1,11 @@
 {
   "schema": "V135_STAGE_A_RESERVATION_V1",
   "status": "RESERVED_IN_CANONICAL_LEDGER",
-  "operationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A01-20261114",
+  "operationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A02-20261114",
   "cumulativeCeilingUSD": 1000,
-  "savedLedgerVersion": 95,
-  "savedLedgerSHA256": "282fcfdb9815211d5d6886def6f47df3043b16754a7f825ae418739414750ed5",
-  "independentReadbackSHA256": "282fcfdb9815211d5d6886def6f47df3043b16754a7f825ae418739414750ed5",
+  "savedLedgerVersion": 96,
+  "savedLedgerSHA256": "203207c7aa2dbd1ca003238c95867e832056e3bed343b1094b3f750b7cd7393b",
+  "independentReadbackSHA256": "203207c7aa2dbd1ca003238c95867e832056e3bed343b1094b3f750b7cd7393b",
   "financialReservationId": "V130-A10-PRIVATE-REVIEW-A01-20261114",
   "gitPublicationIdentity": "work8/v135-delivery-qualification-20261114-a01",
   "executionAttempt": 1,
@@ -24,5 +24,7 @@
   "countedUnsettledUSD": 93,
   "remainingUSD": 907,
   "existingAggregateHoldUSD": 5,
-  "financialBindingSHA256": "3d26a7431a07e32b8930eba28d6bb302d9c9842d6225ceaa7bd0dcc783a2a332"
+  "financialBindingSHA256": "563534d739740985b7286019a6be42100a70c90113e9036b9bfc6ea31ee5542a",
+  "manualCorrectedSuccessor": true,
+  "priorOperationTerminal": true
 }

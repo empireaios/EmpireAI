@@ -16,6 +16,22 @@ def child_exit_codes():
     return {name:child.poll()for name,child in children.items()}
 def require_children_running():
     require(all(code is None for code in child_exit_codes().values()),'MANAGED_CHILD_EXITED')
+def read_ingress_seal():
+    """Allowlist bounded numeric diagnostics only; never relay child output."""
+    path=STATE/'ingress-seal.json'
+    try:
+        fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)
+        with os.fdopen(fd,'rb')as f:
+            info=os.fstat(f.fileno())
+            require(stat.S_ISREG(info.st_mode)and info.st_nlink==1 and info.st_uid==1001 and info.st_size<=4096,'INVALID_SEAL_DIAGNOSTIC')
+            data=json.loads(f.read(4097))
+        reasons={'HTTP_RESPONSE_BYTE_BUDGET','REQUEST_BUDGET','ABSOLUTE_EXPIRY','UPSTREAM_RESPONSE_LIMIT','REQUEST_BODY_LIMIT','CONNECTION_BUDGET'}
+        require(data.get('schema')=='V135_STAGE_A_INGRESS_SEAL_V1'and data.get('reason')in reasons,'INVALID_SEAL_DIAGNOSTIC')
+        fields=['atMs','responseBytes','requests','connections','peakConcurrentRequests','peakQueuedRequests','rejectedTransientRequests','rejectedTransientConnections']
+        require(all(type(data.get(k))is int and 0<=data[k]<=2**53-1 for k in fields),'INVALID_SEAL_DIAGNOSTIC')
+        return {'status':'VALIDATED','reason':data['reason'],**{k:data[k]for k in fields}}
+    except FileNotFoundError:return {'status':'NOT_RECORDED'}
+    except Exception:return {'status':'INVALID_OR_UNREADABLE'}
 
 def main():
     global stop
@@ -72,6 +88,7 @@ def main():
                 except ProcessLookupError:pass
         time.sleep(.2)
         stopped=graph.stop_descendants(children,time.monotonic()+2.0)
+        ingress_seal=read_ingress_seal()
         if stopped:
             # Unlink only this fresh operation directory. Never follow a symlink.
             for base,dirs,files in os.walk(STATE,topdown=False,followlinks=False):
@@ -88,7 +105,7 @@ def main():
             try:STATE.rmdir()
             except OSError:cleanup_errors.append('ROOT_DIRECTORY_REMOVE_FAILED')
         else:cleanup_errors.append('PROCESS_GRAPH_STOP_UNPROVEN')
-        emit('V135_STAGE_A_TERMINAL_V1',operationIdentity=cfg['operationIdentity'],deploymentId=cfg['deploymentId'],stage=stage,outcome=outcome,failureClass=failure_class,childExitCodesAtFailure=failure_child_codes,childExitCodesAfterCleanup=child_exit_codes(),processGraph=graph.last_stop_report,logicalCleanup='COMPLETE'if stopped and not cleanup_errors else 'INCOMPLETE',removedFiles=removed,cleanupErrors=cleanup_errors,providerErasureClaimed=False,ownerDecisionPerformed=False)
+        emit('V135_STAGE_A_TERMINAL_V1',operationIdentity=cfg['operationIdentity'],deploymentId=cfg['deploymentId'],stage=stage,outcome=outcome,failureClass=failure_class,childExitCodesAtFailure=failure_child_codes,childExitCodesAfterCleanup=child_exit_codes(),ingressSeal=ingress_seal,processGraph=graph.last_stop_report,logicalCleanup='COMPLETE'if stopped and not cleanup_errors else 'INCOMPLETE',removedFiles=removed,cleanupErrors=cleanup_errors,providerErasureClaimed=False,ownerDecisionPerformed=False)
         return 0 if stopped and not cleanup_errors and outcome=='FIXED_QUALIFICATION_TERMINATION'else 1
 if __name__=='__main__':
     try:raise SystemExit(main())

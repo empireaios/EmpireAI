@@ -11,7 +11,7 @@ REPO=pathlib.Path('/repo'); WORK=pathlib.Path('/work'); OUTPUT=pathlib.Path('/ou
 BASE_COMMIT='348174a4a80fc1bd822fb9ffe7575eba0dc265c7'
 BASE_TREE='0711297c097680051b68f4716bbb70b13b3eb4aa'
 BASE_SOURCE='8e256e063ccd2e7d3f200406e4ccef047b1dbd542e62fbd6baa3da06f16fa35e'
-OPERATION='V135-A10-DELIVERY-QUALIFICATION-A01-20261114'
+OPERATION='V135-A10-DELIVERY-QUALIFICATION-A02-20261114'
 BRANCH='work8/v135-delivery-qualification-20261114-a01'
 BASE_IMAGE='sha256:e8c69d86735f6df3efa06b324694fe51f0422785f83a3bd463052636c2421944'
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
@@ -46,7 +46,7 @@ def validate_admission(authority,reservation,config,manifest):
     require(re.fullmatch(r'https://[a-z0-9-]+\.up\.railway\.app',dest['origin'])is not None,'EXACT_HTTPS_ORIGIN')
     require(reservation.get('schema')=='V135_STAGE_A_RESERVATION_V1'and reservation.get('status')=='RESERVED_IN_CANONICAL_LEDGER','SAVED_RESERVATION_REQUIRED')
     require(reservation.get('operationIdentity')==operation and reservation.get('cumulativeCeilingUSD')==1000,'EXACT_FINANCIAL_SCOPE')
-    require(type(reservation.get('savedLedgerVersion'))is int and reservation['savedLedgerVersion']>=95,'POST_V134_LEDGER_REQUIRED')
+    require(type(reservation.get('savedLedgerVersion'))is int and reservation['savedLedgerVersion']>=96,'POST_A01_LEDGER_REQUIRED')
     require(re.fullmatch('[a-f0-9]{64}',str(reservation.get('savedLedgerSHA256','')))is not None and reservation.get('independentReadbackSHA256')==reservation['savedLedgerSHA256'],'INDEPENDENT_LEDGER_READBACK')
     for name,value in {'executionAttempt':1,'buildAttempt':1,'maximumLaunches':1,'maximumPrivateTransfers':0,'automaticRetries':0,'leaseExtensions':0,'maximumRuntimeSeconds':1800,'killGraceSeconds':5,'replicas':1,'vCPUs':1,'memoryGB':2,'restartPolicyType':'NEVER'}.items():
         require(type(reservation.get(name))is type(value)and reservation[name]==value,'EXACT_FINANCIAL_LIMIT_'+name.upper())

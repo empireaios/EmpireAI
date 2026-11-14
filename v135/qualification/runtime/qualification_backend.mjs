@@ -9,7 +9,7 @@ const CONTROL='/control/qualification',STATE='/state/qualification';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const cfg=JSON.parse(fs.readFileSync(STATE+'/root-clock.json','utf8'));
 assert.equal(process.getuid(),1001);assert.equal(process.getgid(),1001);
-assert.equal(cfg.operationIdentity,'V135-A10-DELIVERY-QUALIFICATION-A01-20261114');
+assert.equal(cfg.operationIdentity,'V135-A10-DELIVERY-QUALIFICATION-A02-20261114');
 assert.equal(cfg.privateDataIncluded,false);assert.equal(cfg.ownerDecisionPermitted,false);
 assert.equal(new URL(cfg.origin).origin,cfg.origin);assert.ok(cfg.origin.startsWith('https://'));
 assert.ok(cfg.qualificationExpiresAtMs>Date.now());
