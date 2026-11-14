@@ -44,8 +44,8 @@ def verify_source_manifest():
     expected = {
         'operationIdentity': 'V133-A10-PRIVATE-REVIEW-A01-20261114',
         'branch': 'work8/v133-media-owner-review-20261114-a01',
-        'parentCommit': 'c7beead5fa691a46548576675ce50f01698dad92',
-        'parentTree': 'a51ad3884b39065edd2834d9caa16bca63667b80',
+        'parentCommit': '65ab9ae8e6f2beecf9e47bbb53a392f2505848af',
+        'parentTree': '795aa6bf9caba7803648e4ab49c5dce8c00e5628',
         'retainedApplicationCommit': '6c1e63ba20619ee480742fd87dc810ca93152e22',
         'retainedA08RunId': '43434940694',
         'completeFrontendSourceSHA256': 'f60f58b53f425954c8f0a6207963924eea243c805e764fd9d93ec036e7995f9f',

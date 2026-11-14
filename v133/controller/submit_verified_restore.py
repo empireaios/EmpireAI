@@ -48,6 +48,10 @@ def main():
     unique(ROOT/'authorization/private-submission-intent.json',(json.dumps(intent,indent=2)+'\n').encode())
     request=urllib.request.Request(ORIGIN+'/__review_transport/restore',data=encrypted,headers={'Content-Type':'application/json','Content-Length':str(len(encrypted)),'Accept':'application/json'},method='POST')
     try:
+        # Intent persistence may block; recheck the owner opportunity at the
+        # last possible boundary before the one private POST. Expiry consumes
+        # the intent but sends nothing and cannot be retried automatically.
+        require_transfer_window(gate['expiresAtMs'])
         with opener.open(request,timeout=20) as response:
             status=response.status;url=response.url;body=response.read(65537)
     except urllib.error.HTTPError as error:
