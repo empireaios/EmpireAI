@@ -1,9 +1,9 @@
 {
   "schema": "A09_REVIEW_SOURCE_MANIFEST_V1",
-  "operationIdentity": "V132-A10-PRIVATE-REVIEW-A01-20261114",
-  "branch": "work8/v132-media-owner-review-20261114-a01",
-  "parentCommit": "60127c4d0c5aa742d6f31bcf4b6b7736d6012e03",
-  "parentTree": "e692a0a3221891e9a907202d6f6b1330c0482d89",
+  "operationIdentity": "V133-A10-PRIVATE-REVIEW-A01-20261114",
+  "branch": "work8/v133-media-owner-review-20261114-a01",
+  "parentCommit": "c7beead5fa691a46548576675ce50f01698dad92",
+  "parentTree": "a51ad3884b39065edd2834d9caa16bca63667b80",
   "files": [
     {
       "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
@@ -87,8 +87,8 @@
     },
     {
       "path": "empireai-web/vercel.json",
-      "bytes": 1469,
-      "sha256": "cdc32e42f6c2f465a119138317ec2ef18c94769848a3f0745fcb45172b7657a4"
+      "bytes": 1528,
+      "sha256": "893a95db378a7936d31cabab2e386f3dd40efd18065677c94a9329071982b38f"
     },
     {
       "path": "v126/native_private/evidence-envelope-runtime-pin.json",
@@ -152,8 +152,8 @@
     },
     {
       "path": "v128/owner_review/authority.json",
-      "bytes": 2813,
-      "sha256": "ad77d9d9c79005b316f070d9588acd2fb19fc500ee79c9a1b507a7b795801bb6"
+      "bytes": 3180,
+      "sha256": "906e438b498be0194f7e2d8eb07edb049c8730800ea7fae8c73e5baefc507692"
     },
     {
       "path": "v128/owner_review/backend-build-receipt.json",
@@ -208,7 +208,7 @@
     {
       "path": "v128/owner_review/controller-transport-public-key.pem",
       "bytes": 113,
-      "sha256": "26cc28eaab817d611a144f54e502c1659cab7d9cee94cbec3bdda0018da90c10"
+      "sha256": "deb888f09d908992d4014d43e25c35617201e52445445e57ea4ee6e05275b7d1"
     },
     {
       "path": "v128/owner_review/controller_encrypt_review.mjs",
@@ -236,24 +236,29 @@
       "sha256": "84fc8d5b7ab096776a8faaa345ca50a6347c62d33dabd50aabe26aaa3fd27536"
     },
     {
+      "path": "v128/owner_review/host/process_graph.py",
+      "bytes": 9360,
+      "sha256": "f978a61bd72a8b2e787725097b33c38aaac11776a271455abfe0711aa277946e"
+    },
+    {
       "path": "v128/owner_review/host/root-entry.py",
       "bytes": 309,
       "sha256": "bed97535f519b34f0c35061b0fd8783fa13047c36cbef37a62c446444a3e60f7"
     },
     {
       "path": "v128/owner_review/host/root-preflight.py",
-      "bytes": 15254,
-      "sha256": "95622ed688211630ee06a8072f16ef48687b1e2e4a0fdcf4588d63fa5afc23a2"
+      "bytes": 15309,
+      "sha256": "a105ff614e3065f54c8d89d7677c3442409c09de959f02eb703cd259648c4e65"
     },
     {
       "path": "v128/owner_review/host/root-supervisor.py",
-      "bytes": 12695,
-      "sha256": "e35fed457474c73ea2567836fe4c1325cb24d1d5844edfe33de630526fd6dff3"
+      "bytes": 13473,
+      "sha256": "d8988d7fa456973d2ce69e3e47c24cb075612a61086430232dde9c94ce72cea3"
     },
     {
       "path": "v128/owner_review/host/root-watchdog.py",
-      "bytes": 3227,
-      "sha256": "ab803d8ff1b37b4512c28176b8d77a1d1a5d34e7971da479d679f5dafc206486"
+      "bytes": 6268,
+      "sha256": "d617dd1ddef6c41fb7d90b776751f9ecb9f4db0db9ede3047ae28006e7ba209c"
     },
     {
       "path": "v128/owner_review/host/terminal-cleanup.py",
@@ -307,8 +312,8 @@
     },
     {
       "path": "v128/owner_review/portable/build_image.py",
-      "bytes": 12266,
-      "sha256": "25d4bcb06f90209cb78e3f2729de34f09e0fa0562bab0a4df5ab25f88870bb5f"
+      "bytes": 12368,
+      "sha256": "7789861411d15548735af711c921893c1e09c7d199d066e182f137c64dce7083"
     },
     {
       "path": "v128/owner_review/portable/deny_build_network.py",
@@ -323,7 +328,7 @@
     {
       "path": "v128/owner_review/portable/generate_runtime_manifest.py",
       "bytes": 10454,
-      "sha256": "e5d0b0750ad720bd14fc947a313264626b229eb0e9363bf93a85bfe97dd360ac"
+      "sha256": "d78a16ac04206bf9265c47126fe2f845ea93288188cf977aa78fddaa49667af8"
     },
     {
       "path": "v128/owner_review/portable/host_image_smoke.py",
@@ -333,7 +338,7 @@
     {
       "path": "v128/owner_review/portable/prepare_frontend_source.py",
       "bytes": 3080,
-      "sha256": "fa073d0f91f05bd60d3331d1118f5d853f385e03a7fb32f076a102c3e47ad6db"
+      "sha256": "cba0b3b1d273a84f31440e1a0ac2725c261565e58f8921f120e7efa7fcbdd404"
     },
     {
       "path": "v128/owner_review/portable/railway.json",
@@ -352,8 +357,8 @@
     },
     {
       "path": "v128/owner_review/reservation.json",
-      "bytes": 1391,
-      "sha256": "203be673f49add5ec6ebdcf78f6b56e4bd94028731f58d6fe48d8f8dc49803e6"
+      "bytes": 1591,
+      "sha256": "3fbf575ddfad69e3c21357dce8705bfc26fca56f9d69ecfa8c671d30a278a85b"
     },
     {
       "path": "v128/owner_review/restore_review.py",
@@ -373,7 +378,7 @@
     {
       "path": "v128/owner_review/review-backend.mjs",
       "bytes": 13743,
-      "sha256": "ecca18188c0f1af2dc3441c1287259d4a3293998b93d5461b6a35dd0e456cce5"
+      "sha256": "ea08f73855d4e8ba53e9bccd6963377e0560404e2f5f11b8d55e0513448b5895"
     },
     {
       "path": "v128/owner_review/review-export.mjs",
@@ -387,13 +392,13 @@
     },
     {
       "path": "v128/owner_review/review-supervisor.mjs",
-      "bytes": 7463,
-      "sha256": "516967e2ed422595d732e94df0d5f3441e07d1ecd08728013235e99cdac5cc57"
+      "bytes": 8313,
+      "sha256": "e200a9cb20cd9e92cdc678e76c6ac6284b9261495e846eebb201b5222d02336f"
     },
     {
       "path": "v128/owner_review/review-transport.mjs",
       "bytes": 23762,
-      "sha256": "ebf1a1cfb25d966cc808ca588dc0ad9dfceaf4a0c7583c3fada830d030935f50"
+      "sha256": "1b9a5426578cc12548dfcb9d9e5b9d00f060c13024aabed6c36eef18520af2ac"
     },
     {
       "path": "v128/owner_review/seal_review.py",
@@ -401,14 +406,34 @@
       "sha256": "ca696c4baec20324455a06b34023e87b55d527924b2d58d7f1f562345619f267"
     },
     {
+      "path": "v133/controller/check_review_delivery.py",
+      "bytes": 5709,
+      "sha256": "fce308dd59b5348a59ae8f1dd260668dacf08a5b89e85e245176a05ffc6a2cd0"
+    },
+    {
+      "path": "v133/controller/private_owner_handoff.py",
+      "bytes": 12098,
+      "sha256": "82ca6e0a362e7fdf9a0919c1949a02c85242e6d800d3d9feb9c2aa22b37c3150"
+    },
+    {
+      "path": "v133/controller/review_window.py",
+      "bytes": 1165,
+      "sha256": "b6679cb69b9240a63d482764af27d2d8b02c563179b52575e4e7b20a054f8388"
+    },
+    {
+      "path": "v133/controller/submit_verified_restore.py",
+      "bytes": 5047,
+      "sha256": "07156f9c9dc95060847d9f187b0758381cbaa1337c2893fc08a1aae694599554"
+    },
+    {
       "path": "vercel.json",
-      "bytes": 1648,
-      "sha256": "4336230d855d5ec79bc40a9e89b877e6a8290fa5adf549fd807c67e1073fd92a"
+      "bytes": 1707,
+      "sha256": "c0fab2303aaa37698e9934191f6fda3be03c2a4c10951c65102c1e58f1653751"
     }
   ],
   "selfExcluded": true,
   "retainedApplicationCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
   "retainedA08RunId": "43434940694",
-  "completeFrontendSourceSHA256": "ae616150d925c3055ebcb0b4dc1143c098bcb1b74b9b64b6922925bb2ea3fac5",
+  "completeFrontendSourceSHA256": "f60f58b53f425954c8f0a6207963924eea243c805e764fd9d93ec036e7995f9f",
   "completeFrontendFileCount": 962
 }

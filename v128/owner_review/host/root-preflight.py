@@ -20,15 +20,15 @@ def require(value, code):
 
 
 def validate_admission(authority, reservation, operation):
-    require(operation == 'V132-A10-PRIVATE-REVIEW-A01-20261114', 'EXACT_A09_OPERATION')
+    require(operation == 'V133-A10-PRIVATE-REVIEW-A01-20261114', 'EXACT_A09_OPERATION')
     require(authority.get('schema') == 'A09_STANDING_TECHNICAL_AUTHORITY_REFERENCE_V1'
             and authority.get('operationIdentity') == operation
             and authority.get('standingAuthorityId') == 'GRAND-KING-V112-MASTER-20261111'
             and authority.get('standingAuthoritySHA256') == '2e54ce38da8c021b0211351bd9524f3dc2ab99cc48466dc10a0465748a58fc66'
             and authority.get('ownerEmailSHA256') == 'a437be3d7f2e7927959c2be2040016464de75d69529d9abd197e47a8caa21267'
             and authority.get('originalTargetPredicateIds') == ['A10-05']
-            and authority.get('ownerDirective') == 'V132'
-            and authority.get('explicitTransferAuthorizationSHA256') == '2dc55f3f8512067b8e5ea57631e3d82291567f1eb50c400113d169432873a16f', 'EXACT_TECHNICAL_AUTHORITY')
+            and authority.get('ownerDirective') == 'V134'
+            and authority.get('explicitTransferAuthorizationSHA256') == '34161e15de087f26f029c3eb380430c1eb3fa6a41c5e99de8073207ab02bda20', 'EXACT_TECHNICAL_AUTHORITY')
     for key in ('nativeApprovalsGranted', 'personalOwnerActionDelegated',
                 'positiveApprovalRequired', 'productionPermission', 'businessPublicationPermission'):
         require(authority.get(key) is False, 'AUTHORITY_SCOPE_' + key)
@@ -42,7 +42,7 @@ def validate_admission(authority, reservation, operation):
     exact = {'cumulativeCeilingUSD': 1000, 'maximumAggregateExposureUSD': 5,
              'maximumRuntimeSeconds': 1200, 'killGraceSeconds': 5, 'replicas': 1,
              'vCPUs': 1, 'memoryGB': 2, 'restartPolicyType': 'NEVER',
-             'provider': 'RAILWAY', 'gitPublicationIdentity': 'work8/v132-media-owner-review-20261114-a01'}
+             'provider': 'RAILWAY', 'gitPublicationIdentity': 'work8/v133-media-owner-review-20261114-a01'}
     for key, value in exact.items():
         require(reservation.get(key) == value and not isinstance(reservation.get(key), bool),
                 'EXACT_RESERVED_BOUND_' + key)
@@ -60,17 +60,17 @@ def validate_admission(authority, reservation, operation):
             and reservation.get('actualChargesStatus') == 'UNCONFIRMED', 'EXPOSURE_RECONCILIATION_STATUS')
 
     # Bind the new execution to the same existing aggregate hold, without a new allocation.
-    successor = {'savedLedgerVersion': 90, 'savedLedgerSHA256': '01a6291e667fb4184d6aeae89d7f1d073d1943be44a679acc897bc366ee07606', 'independentReadbackSHA256': '01a6291e667fb4184d6aeae89d7f1d073d1943be44a679acc897bc366ee07606', 'financialReservationId': 'V130-A10-PRIVATE-REVIEW-A01-20261114', 'executionAttempt': 1, 'buildAttempt': 1, 'privateSessionAttempt': 1, 'maximumSuccessfulPrivateTransfers': 1, 'maximumPrivateTransferAttempts': 1, 'automaticRetries': 0, 'leaseExtensions': 0, 'maximumAggregateExposureUSD': 5, 'additionalAllocationUSD': 0, 'financialGateSHA256': 'ac2d805b9c39c74189d65505a027f55c90bc436c71877de0c873abb89ea43c60', 'expectedCountedExposureUSD': 93, 'newDeploymentExpiryBoundAtLaunch': True}
+    successor = {'savedLedgerVersion': 93, 'savedLedgerSHA256': '0ae6aa69ceba54e418d6fd2e4ad669ed0e1ffef2ef876cc26849cdc943ab7b79', 'independentReadbackSHA256': '0ae6aa69ceba54e418d6fd2e4ad669ed0e1ffef2ef876cc26849cdc943ab7b79', 'financialReservationId': 'V130-A10-PRIVATE-REVIEW-A01-20261114', 'executionAttempt': 1, 'buildAttempt': 1, 'privateSessionAttempt': 1, 'maximumSuccessfulPrivateTransfers': 1, 'maximumPrivateTransferAttempts': 1, 'automaticRetries': 0, 'leaseExtensions': 0, 'maximumAggregateExposureUSD': 5, 'additionalAllocationUSD': 0, 'financialGateSHA256': 'b91d9a4cd1b92f89665bc3cab60023dab0f5c3b013815bf30800eb7eba2098cb', 'expectedCountedExposureUSD': 93, 'newDeploymentExpiryBoundAtLaunch': True}
     for key, value in successor.items():
         require(type(reservation.get(key)) is type(value) and reservation.get(key) == value,
-                'EXACT_V132_SUCCESSOR_BINDING_' + key)
+                'EXACT_V134_SUCCESSOR_BINDING_' + key)
     for key, value in {'maximumSuccessfulPrivateTransfers': 1, 'maximumPrivateTransferAttempts': 1,
                        'automaticRetries': 0, 'leaseExtensions': 0, 'additionalAllocationUSD': 0,
                        'maximumAggregateExposureUSD': 5, 'maximumRuntimeSeconds': 1200, 'killGraceSeconds': 5}.items():
         require(type(authority.get(key)) is int and authority.get(key) == value,
-                'EXACT_V132_TRANSFER_SCOPE_' + key)
-    require(authority.get('destination') == {'projectId': 'afedd0ad-ebc1-45c1-b4aa-9782b5251ca3', 'environmentId': 'dd4591b0-1d8e-4561-812d-33c03b9d9efa', 'serviceId': 'df5d6c1f-178f-41b6-8eb5-c7870f9f06d2', 'origin': 'https://a10-v132-owner-review-isolated-review.up.railway.app'}, 'EXACT_V132_AUTHORIZED_DESTINATION')
-    require(authority.get('financialGateSHA256') == reservation['financialGateSHA256'], 'EXACT_V132_FINANCIAL_GATE')
+                'EXACT_V134_TRANSFER_SCOPE_' + key)
+    require(authority.get('destination') == {'projectId': 'afedd0ad-ebc1-45c1-b4aa-9782b5251ca3', 'environmentId': 'dd4591b0-1d8e-4561-812d-33c03b9d9efa', 'serviceId': 'd1536bae-0d47-4e39-b3eb-aeefc2e70fd4', 'origin': 'https://a10-v133-owner-review-isolated-review.up.railway.app'}, 'EXACT_V134_AUTHORIZED_DESTINATION')
+    require(authority.get('financialGateSHA256') == reservation['financialGateSHA256'], 'EXACT_V134_FINANCIAL_GATE')
 
 
 def write_host_bootstrap(raw):
@@ -113,7 +113,7 @@ def main():
     require(re.fullmatch('[a-f0-9]{40}', source), 'FIXED_SOURCE_COMMIT')
     actual_source = os.environ.get('RAILWAY_GIT_COMMIT_SHA')
     require(not actual_source or actual_source == source, 'PROVIDER_SOURCE_MISMATCH')
-    require(origin == 'https://a10-v132-owner-review-isolated-review.up.railway.app', 'EXACT_V132_ORIGIN')
+    require(origin == 'https://a10-v133-owner-review-isolated-review.up.railway.app', 'EXACT_V134_ORIGIN')
     identity = {}
     for field, name in [('projectId', 'RAILWAY_PROJECT_ID'),
                         ('environmentId', 'RAILWAY_ENVIRONMENT_ID'),
@@ -132,7 +132,7 @@ def main():
                              'serviceId': 'A09_EXPECTED_SERVICE_ID'}[field]
             require(value == os.environ.get(expected_name), 'PROVIDER_EXPECTED_ID_' + field)
         if field in ('projectId', 'environmentId', 'serviceId'):
-            require(value == {'projectId': 'afedd0ad-ebc1-45c1-b4aa-9782b5251ca3', 'environmentId': 'dd4591b0-1d8e-4561-812d-33c03b9d9efa', 'serviceId': 'df5d6c1f-178f-41b6-8eb5-c7870f9f06d2', 'origin': 'https://a10-v132-owner-review-isolated-review.up.railway.app'}[field], 'EXACT_V132_DESTINATION_ID_' + field)
+            require(value == {'projectId': 'afedd0ad-ebc1-45c1-b4aa-9782b5251ca3', 'environmentId': 'dd4591b0-1d8e-4561-812d-33c03b9d9efa', 'serviceId': 'd1536bae-0d47-4e39-b3eb-aeefc2e70fd4', 'origin': 'https://a10-v133-owner-review-isolated-review.up.railway.app'}[field], 'EXACT_V134_DESTINATION_ID_' + field)
         identity[field] = value
     manifest_path = CONTROL / 'runtime-manifest.json'
     info = manifest_path.lstat()

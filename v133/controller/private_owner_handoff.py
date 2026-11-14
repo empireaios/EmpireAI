@@ -19,10 +19,10 @@ import sys
 from urllib.parse import urlsplit
 from review_window import require_owner_handoff_window
 
-REPLACEMENT_BINDINGS_COMPLETE = False
+REPLACEMENT_BINDINGS_COMPLETE = True
 
 OWNER_HASH = 'a437be3d7f2e7927959c2be2040016464de75d69529d9abd197e47a8caa21267'
-OPERATION = 'V132-A10-PRIVATE-REVIEW-A01-20261114'
+OPERATION = 'V133-A10-PRIVATE-REVIEW-A01-20261114'
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
@@ -117,8 +117,8 @@ def finalize(seed_path, binding_path, output_directory, now_ms=None):
         raise ValueError('OWNER_MISMATCH')
     if (binding['projectId'] != 'afedd0ad-ebc1-45c1-b4aa-9782b5251ca3' or
             binding['environmentId'] != 'dd4591b0-1d8e-4561-812d-33c03b9d9efa' or
-            binding['serviceId'] != 'df5d6c1f-178f-41b6-8eb5-c7870f9f06d2' or binding['origin'] != 'https://a10-v132-owner-review-isolated-review.up.railway.app'):
-        raise ValueError('EXACT_V132_DESTINATION_REQUIRED')
+            binding['serviceId'] != 'd1536bae-0d47-4e39-b3eb-aeefc2e70fd4' or binding['origin'] != 'https://a10-v133-owner-review-isolated-review.up.railway.app'):
+        raise ValueError('EXACT_V134_DESTINATION_REQUIRED')
     origin = binding['origin']
     url = urlsplit(origin)
     if (url.scheme != 'https' or url.username or url.password or url.port or
@@ -175,6 +175,12 @@ def finalize(seed_path, binding_path, output_directory, now_ms=None):
                'providerBindingSHA256': digest(binding_path.read_bytes()),
                'accessCardSHA256': digest(card), 'accessCardBytes': len(card),
                'credentialsPrinted': False, 'nativeLoginPerformed': False,
+               'claimsAsOfArtifactCreation': True,
+               'technicalAuthenticationStatusAtCreation': 'NOT_YET_VERIFIED',
+               'deploymentId': binding['deploymentId'],
+               'publicationCommit': binding['publicationCommit'],
+               'sourceManifestSHA256': binding['sourceManifestSHA256'],
+               'runtimeManifestSHA256': binding['runtimeManifestSHA256'],
                'ownerActionObserved': False, 'ownerApproval': False,
                'handoffDestination': 'OWNER_PRIVATE_CHATGPT_LIBRARY_FILE_ONLY',
                'publicSourceOrLogInclusionAllowed': False}

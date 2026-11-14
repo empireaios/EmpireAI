@@ -102,7 +102,13 @@ def enable_subreaper():
     if libc.prctl(37, ctypes.byref(actual), 0, 0, 0) != 0 or actual.value != 1:
         raise RuntimeError('SUBREAPER_READBACK_FAILED')
     probe = os.pidfd_open(me, 0)
-    os.close(probe)
+    try:
+        # Exercise the actual signaling syscall before private ingress exists.
+        # Signal zero is non-mutating and detects unavailable/denied pidfd
+        # signaling now, rather than first discovering it during cleanup.
+        signal.pidfd_send_signal(probe, 0, None, 0)
+    finally:
+        os.close(probe)
     _scope_pid, _scope_start, _baseline = me, mine['starttime'], baseline
     _enabled = True
     return {'subreaperEnabled': True, 'pidfdAvailable': True,

@@ -8,7 +8,7 @@ import {createHash,createPublicKey,generateKeyPairSync,randomBytes,verify,privat
 import {gunzipSync} from 'node:zlib';
 
 export const MAX_BYTES=2*1024*1024, MAX_KEY_BYTES=32768;
-export const OPERATION='V132-A10-PRIVATE-REVIEW-A01-20261114';
+export const OPERATION='V133-A10-PRIVATE-REVIEW-A01-20261114';
 export const ALGORITHM='Ed25519+RSA4096-OAEP-SHA256+AES256-GCM+gzip';
 export const FILES=['connector-media-native-store.sqlite','connector-media-original.jpg','connector-media-revised.png','private/review-bootstrap.json'];
 export const BINDING_FIELDS=['operationIdentity','provider','projectId','environmentId','serviceId','deploymentId','replicaId','origin','expiresAtMs','publicationCommit','sourceManifestSHA256','runtimeManifestSHA256','authoritySHA256','financialReservationSHA256'];
