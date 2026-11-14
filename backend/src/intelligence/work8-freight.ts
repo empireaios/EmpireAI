@@ -8,7 +8,7 @@ export function freightOptions(source:Row|null){
  if(!source||source.provider!=='CJ'||source.capabilityId!=='cj.freight'||source.endpoint!==cjFreightCurrencyContract.endpoint||!Array.isArray(source.facts?.response)||source.facts.response.length>100)return [];
  return source.facts.response.map((raw:unknown)=>{const r=raw&&typeof raw==='object'&&!Array.isArray(raw)?raw as Row:{};
  const contradiction=r.currency!==undefined&&r.currency!==null&&r.currency!=='USD';
- return {evidenceId:source.id,rowDigest:digest(raw),amount:money(r.logisticPrice),currency:contradiction?null:'USD',currencyBasis:contradiction?null:cjFreightCurrencyContract,service:text(r.logisticName),leadTime:text(r.logisticAging),currencyContradiction:contradiction};});
+ return {evidenceId:source.id,rowDigest:digest(raw),amount:money(r.logisticPrice),currency:contradiction?null:'USD',currencyBasis:contradiction?null:cjFreightCurrencyContract,service:text(r.logisticName),leadTime:text(r.logisticAging),currencyContradiction:contradiction,...(source.authenticity==='AUTHENTICATED_CONNECTOR'?{reportedEstimate:{scope:'COUNTRY_LEVEL_ONLY',baseFreight:money(r.logisticPrice),totalPostageFee:money(r.totalPostageFee),taxesFee:money(r.taxesFee),clearanceOperationFee:money(r.clearanceOperationFee),zeroReportedFeeIsTaxClearanceGuarantee:false,guaranteedArrival:null}}:{})};});
 }
 export function selectFreight(options:Row[],selection:Row|undefined){
  const matches=selection?options.filter(o=>o.evidenceId===selection.evidenceId&&o.rowDigest===selection.rowDigest):options.length===1?options:[];

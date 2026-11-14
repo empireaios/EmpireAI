@@ -50,6 +50,7 @@ export class IntelligenceStore{
    availability:!c.implemented||credentialPresent===false?'UNAVAILABLE':s?.failure?'DEGRADED':stale?'STALE':validRead?'AVAILABLE':'UNVERIFIED',
    lastVerifiedRead:s?.lastGoodAt??null,verifiedEndpoint:s?.endpoint??null,currentFailure:s?.failure??null,lastAttemptAt:s?.lastAttemptAt??null,grantsAuthority:false};});}
  evidence(workspace:string,e:Evidence){
+  if(e.authenticity==='AUTHENTICATED_CONNECTOR')throw Error('CONNECTOR_REQUIRES_SEPARATE_INTAKE');
   const observed=Date.parse(e.observedAt),retrieved=Date.parse(e.retrievedAt),expires=Date.parse(e.staleAfter);
   if(![observed,retrieved,expires].every(Number.isFinite)||observed>retrieved||retrieved>this.now()+60000||expires<=retrieved)throw Error('EVIDENCE_TIME');
   if(e.digest!==digest(e.facts)||e.grantsAuthority!==false)throw Error('EVIDENCE_PROVENANCE');
@@ -61,7 +62,7 @@ export class IntelligenceStore{
   // Match before LIMIT so unrelated traffic cannot starve a valid cache entry.
   return this.use(db=>decode(db.prepare(`SELECT body FROM objects WHERE workspace=? AND kind='evidence'
    AND json_extract(body,'$.capabilityId')=? AND json_extract(body,'$.subject')=?
-   AND json_extract(body,'$.authenticity')!='SYNTHETIC'
+   AND json_extract(body,'$.authenticity') NOT IN ('SYNTHETIC','AUTHENTICATED_CONNECTOR')
    AND julianday(json_extract(body,'$.staleAfter'))>julianday(?)
    AND julianday(json_extract(body,'$.observedAt'))<=julianday(?)
    ORDER BY updated DESC,id LIMIT 1`).get(workspace,capability,JSON.stringify(subject),new Date(this.now()).toISOString(),new Date(this.now()).toISOString())))??undefined;

@@ -1,7 +1,8 @@
 import {digest, type Evidence} from '../../../intelligence/model.js';
+import {verifyConnectorEvidence,type ConnectorImportReader} from '../../../intelligence/work8-connector-admission.js';
 
 /** Server-owned reader must be scoped to the authenticated workspace; never accept evidence bodies from a browser. */
-export type SavedSourceReader = (workspace: string, evidenceId: string) => Evidence | null;
+export type SavedSourceReader = ((workspace: string, evidenceId: string) => Evidence | null)&{connectorImport?:ConnectorImportReader};
 type RecordValue = Record<string, unknown>;
 export const cjVariantCurrencyContract={currency:'USD',endpoint:'/product/query',field:'variants[].variantSellPrice',source:'https://developers.cjdropshipping.com/en/api/api2/api/product.html',section:'1.5 Product Details(GET) / Variant',verifiedAt:'2026-10-10T21:42:51Z'} as const;
 const object = (v: unknown): RecordValue => v !== null && typeof v === 'object' && !Array.isArray(v) ? v as RecordValue : {};
@@ -10,7 +11,8 @@ const money = (v: unknown) => typeof v === 'number' && Number.isFinite(v) && v >
 const https = (v: unknown) => {try {const u=new URL(String(v));return u.protocol==='https:' && !u.username && !u.password ? u.href : null;}catch{return null;}};
 export function verifiedSavedSource(reader: SavedSourceReader, workspace: string, id: string, now: number) {
  const source=reader(workspace,id);
- if(!source || source.id!==id || source.authenticity!=='LIVE_PROVIDER' || source.grantsAuthority!==false || source.digest!==digest(source.facts)) throw Error('SOURCE_NOT_AUTHENTIC');
+ if(!source || source.id!==id || !['LIVE_PROVIDER','AUTHENTICATED_CONNECTOR'].includes(source.authenticity) || source.grantsAuthority!==false || source.digest!==digest(source.facts)) throw Error('SOURCE_NOT_AUTHENTIC');
+ if(source.authenticity==='AUTHENTICATED_CONNECTOR')verifyConnectorEvidence(source,workspace,reader.connectorImport,now);
  const observed=Date.parse(source.observedAt),retrieved=Date.parse(source.retrievedAt),expires=Date.parse(source.staleAfter);
  if(!Number.isFinite(now)||![observed,retrieved,expires].every(Number.isFinite)||observed>retrieved||retrieved>now||expires<=retrieved) throw Error('SOURCE_CHRONOLOGY_INVALID');
  return {source,freshness:expires<=now?'HISTORICAL' as const:'FRESH' as const};

@@ -1,13 +1,17 @@
 import type {DatabaseSync} from 'node:sqlite';
 import {digest,key,type Evidence} from '../../../intelligence/model.js';
 import type {IntelligenceStore} from '../../../intelligence/store.js';
-import {projectWork8Sources} from './work8-source-projection.js';
+import {projectWork8Sources,type SavedSourceReader} from './work8-source-projection.js';
+import {CONNECTOR_EVIDENCE_KIND,CONNECTOR_IMPORT_KIND} from '../../../intelligence/work8-connector-admission.js';
 
 type Status='QUEUED'|'RUNNING'|'TARGET_REACHED'|'SOURCE_EXHAUSTED';
-export type DiscoveryCheckpoint={id:string;workspace:string;day:string;timezone:'Asia/Singapore';classification:'RETAINED_AUTHENTIC_EVIDENCE_SCAN';target:100;sourceIds:string[];sourceDigests:string[];sourceEnvelopeDigests:string[];snapshotTruncated:boolean;cursor:number;fence:number;newCandidates:number;duplicateObservations:number;quarantinedObservations:number;status:Status;shortfall:number;qualified:0;pillowAssessments:0;ownerRecommendations:0;externalRefresh:false;paidInference:0;externalEffects:0;lastReceipt:string|null;updatedAt:string};
+export type DiscoveryCheckpoint={id:string;workspace:string;day:string;timezone:'Asia/Singapore';classification:'RETAINED_AUTHENTIC_EVIDENCE_SCAN'|'REVIEWED_CONNECTOR_EVIDENCE_SCAN';target:100;sourceIds:string[];sourceDigests:string[];sourceEnvelopeDigests:string[];snapshotTruncated:boolean;cursor:number;fence:number;newCandidates:number;duplicateObservations:number;quarantinedObservations:number;status:Status;shortfall:number;qualified:0;pillowAssessments:0;ownerRecommendations:0;externalRefresh:false;paidInference:0;externalEffects:0;lastReceipt:string|null;updatedAt:string};
 type TickReceipt={id:string;day:string;fence:number;previous:string|null;digest:string;checkpoint:DiscoveryCheckpoint;examined:Array<{sourceId:string;sourceDigest:string|null;sourceEnvelopeDigest:string|null;identityDigests:Array<{id:string;digest:string}>;newParentIds:string[];duplicateParentIds:string[];quarantined:Array<{productId:string|null;reason:string}>}>};
-const kinds={checkpoint:'work8_discovery_checkpoint',receipt:'work8_discovery_receipt',identity:'work8_discovery_identity'};
-function verifyDiscoveryIdentityLedger(db:DatabaseSync,workspace:string){
+type DiscoveryKinds={checkpoint:string;receipt:string;identity:string};
+const directKinds:DiscoveryKinds={checkpoint:'work8_discovery_checkpoint',receipt:'work8_discovery_receipt',identity:'work8_discovery_identity'};
+const connectorKinds:DiscoveryKinds={checkpoint:'work8_connector_discovery_checkpoint',receipt:'work8_connector_discovery_receipt',identity:'work8_connector_discovery_identity'};
+export type DiscoverySourceMode='DIRECT_PROVIDER'|'REVIEWED_CONNECTOR';
+function verifyDiscoveryIdentityLedger(db:DatabaseSync,workspace:string,kinds:DiscoveryKinds){
  const records=db.prepare("SELECT body FROM objects WHERE workspace=? AND kind=? ORDER BY json_extract(body,'$.day'),CAST(json_extract(body,'$.fence') AS INTEGER) LIMIT 10001").all(workspace,kinds.receipt);
  if(records.length>10000)throw Error('DISCOVERY_HISTORY_VERIFICATION_BOUND');
  const heads=new Map<string,TickReceipt>(),identities=new Map<string,string>();
@@ -35,27 +39,34 @@ function verifyDiscoveryIdentityLedger(db:DatabaseSync,workspace:string){
 const dayAt=(now:number)=>new Date(now+8*3600000).toISOString().slice(0,10);
 /** Uses existing IntelligenceStore transactional objects; it never acquires a provider or registers a schedule. */
 export class RetainedDiscoveryWorker {
- constructor(readonly store:IntelligenceStore){}
+ /** Operator-selected internal mode; no provider acquisition, public route or owner authority.
+  * Connector discovery remains separate from direct-acquisition checkpoints,
+  * identity counts and jobs. Its projection requires the existing closed
+  * reviewed-admission verifier and exact local import receipt. */
+ constructor(readonly store:IntelligenceStore,readonly sourceMode:DiscoverySourceMode='DIRECT_PROVIDER'){if(!['DIRECT_PROVIDER','REVIEWED_CONNECTOR'].includes(sourceMode))throw Error('DISCOVERY_SOURCE_MODE');}
+ private get kinds(){return this.sourceMode==='REVIEWED_CONNECTOR'?connectorKinds:directKinds;}
+ private get sourceKind(){return this.sourceMode==='REVIEWED_CONNECTOR'?CONNECTOR_EVIDENCE_KIND:'evidence';}
+ private get classification(){return this.sourceMode==='REVIEWED_CONNECTOR'?'REVIEWED_CONNECTOR_EVIDENCE_SCAN' as const:'RETAINED_AUTHENTIC_EVIDENCE_SCAN' as const;}
  start(workspace:string):DiscoveryCheckpoint{
   key.parse(workspace);const now=this.store.now(),day=dayAt(now),id='discovery:'+day;
   return this.store.use(db=>{db.exec('BEGIN IMMEDIATE');try{
-   verifyDiscoveryIdentityLedger(db,workspace);
-   const old=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,kinds.checkpoint,id);
+   verifyDiscoveryIdentityLedger(db,workspace,this.kinds);
+   const old=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,this.kinds.checkpoint,id);
    if(old){db.exec('COMMIT');return this.decodeCheckpoint(String(old.body),workspace,day);}
-   const rows=db.prepare("SELECT id,body FROM objects WHERE workspace=? AND kind='evidence' AND json_extract(body,'$.provider')='CJ' AND json_extract(body,'$.capabilityId') IN ('cj.catalog','cj.detail') ORDER BY updated DESC,id LIMIT 1001").all(workspace);
-   const selected=rows.slice(0,1000),state:DiscoveryCheckpoint={id,workspace,day,timezone:'Asia/Singapore',classification:'RETAINED_AUTHENTIC_EVIDENCE_SCAN',target:100,sourceIds:selected.map(r=>String(r.id)),sourceDigests:selected.map(r=>String(JSON.parse(String(r.body)).digest??'')),sourceEnvelopeDigests:selected.map(r=>digest(JSON.parse(String(r.body)))),snapshotTruncated:rows.length>1000,cursor:0,fence:0,newCandidates:0,duplicateObservations:0,quarantinedObservations:0,status:selected.length?'QUEUED':'SOURCE_EXHAUSTED',shortfall:100,qualified:0,pillowAssessments:0,ownerRecommendations:0,externalRefresh:false,paidInference:0,externalEffects:0,lastReceipt:null,updatedAt:new Date(now).toISOString()};
-   db.prepare('INSERT INTO objects VALUES(?,?,?,?,?)').run(workspace,kinds.checkpoint,id,now,JSON.stringify(state));db.exec('COMMIT');return state;
+   const rows=db.prepare("SELECT id,body FROM objects WHERE workspace=? AND kind=? AND json_extract(body,'$.provider')='CJ' AND json_extract(body,'$.capabilityId') IN ('cj.catalog','cj.detail') ORDER BY updated DESC,id LIMIT 1001").all(workspace,this.sourceKind);
+   const selected=rows.slice(0,1000),state:DiscoveryCheckpoint={id,workspace,day,timezone:'Asia/Singapore',classification:this.classification,target:100,sourceIds:selected.map(r=>String(r.id)),sourceDigests:selected.map(r=>String(JSON.parse(String(r.body)).digest??'')),sourceEnvelopeDigests:selected.map(r=>digest(JSON.parse(String(r.body)))),snapshotTruncated:rows.length>1000,cursor:0,fence:0,newCandidates:0,duplicateObservations:0,quarantinedObservations:0,status:selected.length?'QUEUED':'SOURCE_EXHAUSTED',shortfall:100,qualified:0,pillowAssessments:0,ownerRecommendations:0,externalRefresh:false,paidInference:0,externalEffects:0,lastReceipt:null,updatedAt:new Date(now).toISOString()};
+   db.prepare('INSERT INTO objects VALUES(?,?,?,?,?)').run(workspace,this.kinds.checkpoint,id,now,JSON.stringify(state));db.exec('COMMIT');return state;
   }catch(e){if(db.isTransaction)db.exec('ROLLBACK');throw e;}});
  }
- private decodeCheckpoint(body:string,workspace:string,day:string){const s=JSON.parse(body) as DiscoveryCheckpoint;if(s.workspace!==workspace||s.day!==day||s.target!==100||!Number.isInteger(s.fence)||!Number.isInteger(s.cursor)||s.cursor<0||s.cursor>s.sourceIds.length||s.sourceIds.length>1000||s.sourceIds.length!==s.sourceDigests.length||!Array.isArray(s.sourceEnvelopeDigests)||s.sourceIds.length!==s.sourceEnvelopeDigests.length)throw Error('DISCOVERY_CHECKPOINT_CORRUPT');return s;}
+ private decodeCheckpoint(body:string,workspace:string,day:string){const s=JSON.parse(body) as DiscoveryCheckpoint;if(s.workspace!==workspace||s.day!==day||s.classification!==this.classification||s.target!==100||!Number.isInteger(s.fence)||!Number.isInteger(s.cursor)||s.cursor<0||s.cursor>s.sourceIds.length||s.sourceIds.length>1000||s.sourceIds.length!==s.sourceDigests.length||!Array.isArray(s.sourceEnvelopeDigests)||s.sourceIds.length!==s.sourceEnvelopeDigests.length)throw Error('DISCOVERY_CHECKPOINT_CORRUPT');return s;}
  read(workspace:string,day=dayAt(this.store.now())):DiscoveryCheckpoint|null{
   key.parse(workspace);if(!/^\d{4}-\d{2}-\d{2}$/.test(day))throw Error('DISCOVERY_DAY_INVALID');
   return this.store.use(db=>{
    db.exec('BEGIN');try{
-   verifyDiscoveryIdentityLedger(db,workspace);
-   const checkpoint=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,kinds.checkpoint,'discovery:'+day);if(!checkpoint)return null;
+   verifyDiscoveryIdentityLedger(db,workspace,this.kinds);
+   const checkpoint=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,this.kinds.checkpoint,'discovery:'+day);if(!checkpoint)return null;
    const state=this.decodeCheckpoint(String(checkpoint.body),workspace,day);
-   const receipts=db.prepare("SELECT body FROM objects WHERE workspace=? AND kind=? AND json_extract(body,'$.day')=? ORDER BY CAST(json_extract(body,'$.fence') AS INTEGER)").all(workspace,kinds.receipt,day);
+   const receipts=db.prepare("SELECT body FROM objects WHERE workspace=? AND kind=? AND json_extract(body,'$.day')=? ORDER BY CAST(json_extract(body,'$.fence') AS INTEGER)").all(workspace,this.kinds.receipt,day);
    let previous:string|null=null,fence=0;
    for(const row of receipts){const r=JSON.parse(String(row.body)) as TickReceipt;const {digest:actual,...body}=r;if(r.fence!==++fence||r.previous!==previous||digest(body)!==actual)throw Error('DISCOVERY_RECEIPT_CORRUPT');previous=actual;}
    if(fence!==state.fence||previous!==state.lastReceipt)throw Error('DISCOVERY_CHECKPOINT_CORRUPT');
@@ -69,45 +80,54 @@ export class RetainedDiscoveryWorker {
   // Validate durable history before each mutation, including after a process restart.
   this.read(workspace,day);
   return this.store.use(db=>{db.exec('BEGIN IMMEDIATE');try{
-   verifyDiscoveryIdentityLedger(db,workspace);
-   const checkpoint=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,kinds.checkpoint,'discovery:'+day);if(!checkpoint)throw Error('DISCOVERY_NOT_STARTED');
+   verifyDiscoveryIdentityLedger(db,workspace,this.kinds);
+   const checkpoint=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,this.kinds.checkpoint,'discovery:'+day);if(!checkpoint)throw Error('DISCOVERY_NOT_STARTED');
    const state=this.decodeCheckpoint(String(checkpoint.body),workspace,day);
    const receiptId='discovery:'+day+':'+String(expectedFence+1);
-   const prior=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,kinds.receipt,receiptId);
+   const prior=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,this.kinds.receipt,receiptId);
    if(prior){const old=JSON.parse(String(prior.body)) as TickReceipt;db.exec('COMMIT');return {...old.checkpoint,lastReceipt:old.digest};}
    if(state.fence!==expectedFence)throw Error('DISCOVERY_FENCE_CONFLICT');
    if(state.status==='TARGET_REACHED'){db.exec('COMMIT');return state;}
    // Extend only the new receipt's snapshot. Previously committed batches and
    // their evidence-envelope bindings remain byte-for-byte immutable.
    const known=new Set(state.sourceIds);
-   const arrivals=db.prepare("SELECT id,body FROM objects WHERE workspace=? AND kind='evidence' AND json_extract(body,'$.provider')='CJ' AND json_extract(body,'$.capabilityId') IN ('cj.catalog','cj.detail') ORDER BY updated DESC,id LIMIT 1001").all(workspace).filter(r=>!known.has(String(r.id)));
+   const arrivals=db.prepare("SELECT id,body FROM objects WHERE workspace=? AND kind=? AND json_extract(body,'$.provider')='CJ' AND json_extract(body,'$.capabilityId') IN ('cj.catalog','cj.detail') ORDER BY updated DESC,id LIMIT 1001").all(workspace,this.sourceKind).filter(r=>!known.has(String(r.id)));
    const room=1000-state.sourceIds.length,wasTruncated=state.snapshotTruncated;state.snapshotTruncated=state.snapshotTruncated||arrivals.length>room;
    for(const arrival of arrivals.slice(0,room)){const source=JSON.parse(String(arrival.body));state.sourceIds.push(String(arrival.id));state.sourceDigests.push(String(source.digest??''));state.sourceEnvelopeDigests.push(digest(source));}
    if(state.cursor===state.sourceIds.length&&state.status==='SOURCE_EXHAUSTED'&&state.snapshotTruncated===wasTruncated){db.exec('COMMIT');return state;}
    const now=this.store.now(),examined:TickReceipt['examined']=[];
    for(let step=0;step<batchSize&&state.cursor<state.sourceIds.length&&state.newCandidates<state.target;step++){
     const sourceId=state.sourceIds[state.cursor]!,expectedDigest=state.sourceDigests[state.cursor]!,expectedEnvelopeDigest=state.sourceEnvelopeDigests[state.cursor++]!;
-    const raw=db.prepare("SELECT body FROM objects WHERE workspace=? AND kind='evidence' AND id=?").get(workspace,sourceId);
+    const raw=db.prepare("SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?").get(workspace,this.sourceKind,sourceId);
     const source=raw?JSON.parse(String(raw.body)) as Evidence:null;
     const result:TickReceipt['examined'][number]={sourceId,sourceDigest:source?.digest??null,sourceEnvelopeDigest:source?digest(source):null,identityDigests:[],newParentIds:[],duplicateParentIds:[],quarantined:[]};
     if(!source||source.digest!==expectedDigest||digest(source)!==expectedEnvelopeDigest){result.quarantined.push({productId:null,reason:'SNAPSHOT_SOURCE_MISSING_OR_CHANGED'});state.quarantinedObservations++;examined.push(result);continue;}
-    const projection=projectWork8Sources((w,id)=>w===workspace&&id===sourceId?source:null,workspace,[sourceId],now);
+    // A storage namespace cannot attest the transport. Require the connector
+    // discriminator before projection, whose direct-provider branch is separate.
+    if(this.sourceMode==='REVIEWED_CONNECTOR'&&source.authenticity!=='AUTHENTICATED_CONNECTOR'){result.quarantined.push({productId:null,reason:'CONNECTOR_SOURCE_AUTHENTICITY_REQUIRED'});state.quarantinedObservations++;examined.push(result);continue;}
+    const reader:SavedSourceReader=(w,id)=>w===workspace&&id===sourceId?source:null;
+    if(this.sourceMode==='REVIEWED_CONNECTOR')reader.connectorImport=(w,id)=>{
+     if(w!==workspace)return null;
+     const row=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,CONNECTOR_IMPORT_KIND,id);
+     return row?JSON.parse(String(row.body)):null;
+    };
+    const projection=projectWork8Sources(reader,workspace,[sourceId],now);
     for(const failure of projection.rejected){result.quarantined.push({productId:null,reason:failure.reason});state.quarantinedObservations++;}
     for(const product of projection.products){
      if(product.freshness!=='FRESH'){result.quarantined.push({productId:product.productId,reason:'SOURCE_EXPIRED'});state.quarantinedObservations++;continue;}
      const identityId='cj:'+product.productId;
-     const existing=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,kinds.identity,identityId);
+     const existing=db.prepare('SELECT body FROM objects WHERE workspace=? AND kind=? AND id=?').get(workspace,this.kinds.identity,identityId);
      if(existing){result.duplicateParentIds.push(product.productId);state.duplicateObservations++;continue;}
      if(state.newCandidates>=state.target)break;
      const candidate={id:identityId,productId:product.productId,provider:'CJ',firstObservedDay:day,sourceId,sourceDigest:source.digest,observedAt:source.observedAt,screening:'DEFERRED',reasons:product.reasons,pillowAssessment:null,ownerRecommendation:null,authority:'NONE',classification:'REAL_READ_ONLY'};
-     db.prepare('INSERT INTO objects VALUES(?,?,?,?,?)').run(workspace,kinds.identity,identityId,now,JSON.stringify(candidate));result.newParentIds.push(product.productId);result.identityDigests.push({id:identityId,digest:digest(candidate)});state.newCandidates++;
+     db.prepare('INSERT INTO objects VALUES(?,?,?,?,?)').run(workspace,this.kinds.identity,identityId,now,JSON.stringify(candidate));result.newParentIds.push(product.productId);result.identityDigests.push({id:identityId,digest:digest(candidate)});state.newCandidates++;
     }
     examined.push(result);
    }
    state.fence++;state.shortfall=state.target-state.newCandidates;state.status=state.newCandidates>=state.target?'TARGET_REACHED':state.cursor>=state.sourceIds.length?'SOURCE_EXHAUSTED':'RUNNING';state.updatedAt=new Date(now).toISOString();
    const body={id:receiptId,day,fence:state.fence,previous:state.lastReceipt,checkpoint:{...state},examined};const receipt:TickReceipt={...body,digest:digest(body)};state.lastReceipt=receipt.digest;
-   db.prepare('INSERT INTO objects VALUES(?,?,?,?,?)').run(workspace,kinds.receipt,receiptId,now,JSON.stringify(receipt));
-   db.prepare('UPDATE objects SET body=?,updated=? WHERE workspace=? AND kind=? AND id=?').run(JSON.stringify(state),now,workspace,kinds.checkpoint,state.id);
+   db.prepare('INSERT INTO objects VALUES(?,?,?,?,?)').run(workspace,this.kinds.receipt,receiptId,now,JSON.stringify(receipt));
+   db.prepare('UPDATE objects SET body=?,updated=? WHERE workspace=? AND kind=? AND id=?').run(JSON.stringify(state),now,workspace,this.kinds.checkpoint,state.id);
    db.exec('COMMIT');return state;
   }catch(e){if(db.isTransaction)db.exec('ROLLBACK');throw e;}});
  }

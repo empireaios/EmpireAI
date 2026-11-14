@@ -24,7 +24,7 @@ function toolSchema(schema:z.ZodTypeAny):Record<string,unknown>{
 export const investigationToolContract={version:2,authority:'READ_ONLY',atomic:false,job:toolSchema(jobSchema),limits:investigationLimits,timeoutMs:15000,evidenceReferences:'existing workspace evidence IDs',output:'durable jobs, evidence, rejectedJobs and evidence references',limitClassification:{queryCharacters:'ENGINEERING_CAPACITY; decompose longer research into bounded jobs',rounds:'ACCEPTANCE_ONLY_RESTRICTION; existing grant unchanged',modelCalls:'ACCEPTANCE_ONLY_RESTRICTION; no implicit additional inference',requestsPerRound:'MANDATORY_SAFETY; explicit grant request budget'}} as const;
 export type JobInput=z.infer<typeof jobSchema>;
 export type Eye=typeof eyes[number];
-export type Authenticity='LIVE_PROVIDER'|'INTERNAL_UNVERIFIED'|'SYNTHETIC';
+export type Authenticity='LIVE_PROVIDER'|'AUTHENTICATED_CONNECTOR'|'INTERNAL_UNVERIFIED'|'SYNTHETIC';
 export type Evidence={id:string;capabilityId:string;eye:Eye;provider:string;endpoint:string;subject:z.infer<typeof subjectSchema>;observedAt:string;retrievedAt:string;staleAfter:string;authenticity:Authenticity;digest:string;facts:Record<string,unknown>;jobId:string;quality:string[];lineage:string[];grantsAuthority:false};
 export type Capability={id:string;eye:Eye;provider:string;purpose:string;implemented:boolean;credentials:string[];ttlMs:number;cadenceMs:number;cost:{model:string;recurringUsd:number|null;perRequestUsd:number|null;units:number};limits:string;strengths:string[];limitations:string[];dependencies:string[];technicalWriteCapability:string;authority:'READ_ONLY';priority:string;strategyRef:string|null};
 const hour=3600000;
