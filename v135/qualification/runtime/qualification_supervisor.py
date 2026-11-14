@@ -22,13 +22,13 @@ def create_synthetic_owner_policy(cfg):
     authority_path=CONTROL/'qualification-authority.json'
     require(sha(authority_path)==cfg['authoritySHA256'],'EXACT_SYNTHETIC_AUTHORITY')
     authority=json.loads(authority_path.read_bytes())
-    require(authority.get('operationIdentity')==cfg['operationIdentity']=='V135-A10-DELIVERY-QUALIFICATION-A04-20261114'and authority.get('stage')=='A','EXACT_SYNTHETIC_OPERATION')
+    require(authority.get('operationIdentity')==cfg['operationIdentity']=='V135-A10-DELIVERY-QUALIFICATION-A05-20261114'and authority.get('stage')=='A','EXACT_SYNTHETIC_OPERATION')
     scope=authority.get('syntheticOperatorPolicyScope',{})
     for name,value in {'permitted':True,'mustBindExactAuthoritySHA256':True,'mustExpireAtImmutableRuntimeDeadline':True,'mustPreserveNativeGuard':True,'mustPreserveExternalWriteDeny':True,'privateA08Permitted':False,'ownerMediaDecisionPermitted':False,'productionMutationPermitted':False,'commerceActivationPermitted':False}.items():
         require(scope.get(name)is value,'EXACT_SYNTHETIC_POLICY_SCOPE')
     require(authority.get('privateDataTransferAuthorized')is False and authority.get('nativeOwnerDecisionAuthorized')is False and authority.get('productionPermission')is False,'NO_PRIVATE_POLICY_AUTHORITY')
     require(cfg['privateDataIncluded']is False and cfg['ownerDecisionPermitted']is False,'SYNTHETIC_POLICY_ONLY')
-    require(type(cfg['startedAtMs'])is int and type(cfg['qualificationExpiresAtMs'])is int and 0<cfg['qualificationExpiresAtMs']-cfg['startedAtMs']<=1800000 and cfg['qualificationExpiresAtMs']>time.time_ns()//1000000,'FINITE_SYNTHETIC_POLICY')
+    require(type(cfg['startedAtMs'])is int and type(cfg['qualificationExpiresAtMs'])is int and 0<cfg['qualificationExpiresAtMs']-cfg['startedAtMs']<=900000 and cfg['qualificationExpiresAtMs']>time.time_ns()//1000000,'FINITE_SYNTHETIC_POLICY')
     directory=STATE.lstat()
     require(stat.S_ISDIR(directory.st_mode)and not STATE.is_symlink()and directory.st_uid==0 and directory.st_gid==1001 and stat.S_IMODE(directory.st_mode)==0o1770,'PROTECTED_SYNTHETIC_POLICY_DIRECTORY')
     policy={'schema':1,'mode':'RELEASED','approvalSha256':cfg['authoritySHA256'],'expiresAt':datetime.datetime.fromtimestamp(cfg['qualificationExpiresAtMs']/1000,datetime.timezone.utc).isoformat(timespec='milliseconds').replace('+00:00','Z')}
@@ -72,7 +72,7 @@ def main():
     global stop
     require(os.geteuid()==0,'ROOT_SUPERVISOR_REQUIRED')
     cfg=json.loads((STATE/'root-clock.json').read_bytes());manifest=json.loads((CONTROL/'runtime-manifest.json').read_bytes())
-    require(cfg['qualificationExpiresAtMs']>time.time_ns()//1000000 and cfg['qualificationExpiresAtMs']-cfg['startedAtMs']==1800000,'FIXED_TECHNICAL_CLOCK')
+    require(cfg['qualificationExpiresAtMs']>time.time_ns()//1000000 and cfg['qualificationExpiresAtMs']-cfg['startedAtMs']==900000,'FIXED_TECHNICAL_CLOCK')
     require(cfg['privateDataIncluded'] is False and cfg['ownerDecisionPermitted'] is False,'NONOWNER_QUALIFICATION_ONLY')
     require(sha(CONTROL/'runtime-manifest.json')==cfg['runtimeManifestSHA256'],'EXACT_RUNTIME_MANIFEST')
     require(manifest['sourceCommit']==cfg['sourceCommit'],'EXACT_RUNTIME_SOURCE')
@@ -110,8 +110,8 @@ def main():
             os.chown(p,0,1001);p.chmod(0o440)
         smoke=json.loads((STATE/'startup-smoke.json').read_bytes())
         require(smoke.get('schema')=='V135_STAGE_A_NATIVE_STARTUP_SMOKE_V1'and smoke.get('status')=='PASS'and smoke.get('operationIdentity')==cfg['operationIdentity']and smoke.get('sourceCommit')==cfg['sourceCommit']and smoke.get('authoritySHA256')==cfg['authoritySHA256'],'NATIVE_STARTUP_SMOKE_BINDING')
-        require(all(smoke.get(key)is True for key in ['nativeLoginVerified','nativePrincipalVerified','nativePortfolioVerified','emptyMediaVerified','nativeComparablesUnavailableVerified','commerceWriteDenied','nativeLogoutVerified','revocationVerified']),'NATIVE_STARTUP_SMOKE_FAILED')
-        require(smoke.get('nativeComparablesStatusCode')==503 and smoke.get('nativeComparablesError')=='COMPARABLE_SOURCE_UNAVAILABLE','EXPECTED_DISABLED_COMPARABLES')
+        require(all(smoke.get(key)is True for key in ['nativeLoginVerified','nativePrincipalVerified','nativePortfolioVerified','emptyMediaVerified','nativeComparablesVerified','nativeComparablesEmptyVerified','commissioningDirectoryInitialized','commerceWriteDenied','nativeLogoutVerified','revocationVerified']),'NATIVE_STARTUP_SMOKE_FAILED')
+        require(type(smoke.get('nativeComparablesStatusCode'))is int and smoke['nativeComparablesStatusCode']==200 and smoke.get('nativeComparablesAvailability')=='RETAINED_SOURCE_READ'and 'nativeComparablesError'not in smoke and 'nativeComparablesUnavailableVerified'not in smoke,'EXPECTED_EMPTY_COMPARABLES_READ')
         require(smoke.get('buildOnly')is False and smoke.get('privateDataIncluded')is False and smoke.get('ownerDecisionPerformed')is False,'NATIVE_STARTUP_SMOKE_SCOPE')
         stage='FRONTEND';spawn('frontend',['/usr/local/bin/node','--max-old-space-size=768','/frontend/app/server.js'],{'HOSTNAME':'127.0.0.1','PORT':'43117','BRAIN_API_URL':'http://127.0.0.1:4000','NEXT_TELEMETRY_DISABLED':'1'},'/frontend/app');ready(43117,45)
         stage='INGRESS';spawn('ingress',['/usr/local/bin/node','--max-old-space-size=128',str(CONTROL/'qualification_ingress.mjs')]);ready(8080,15)

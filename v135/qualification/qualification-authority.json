@@ -2,18 +2,18 @@
   "schema": "V135_STAGE_A_TECHNICAL_AUTHORITY_V1",
   "ownerDirective": "V135",
   "stage": "A",
-  "operationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A04-20261114",
-  "recordedAtUTC": "2026-11-14T08:31:51.450305+00:00",
+  "operationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A05-20261114",
+  "recordedAtUTC": "2026-11-14T09:13:34.455215+00:00",
   "authorityType": "EXPLICIT_OWNER_TECHNICAL_QUALIFICATION_UNDER_EXISTING_STANDING_AUTHORITY",
-  "ownerAuthorityQuote": "This directive authorises technical correction, read-only recovery, local tests, safe isolated qualification and complete preparation within existing standing authority.",
-  "privateBoundaryQuote": "It does not silently authorise another private-data transfer to a new service.",
+  "ownerAuthorityQuote": "GRAND KING \u2014 V135 TERMINAL FAILURE RECOVERY AND PORTFOLIO-WIDE WORK 8 EXECUTION AUTHORISED UNDER EXISTING FINANCIAL AND SAFETY LIMITS.",
+  "privateBoundaryQuote": "Any subsequent genuine private transfer requires the applicable fresh, destination-specific authorisation.",
   "destination": {
     "projectId": "afedd0ad-ebc1-45c1-b4aa-9782b5251ca3",
     "environmentId": "dd4591b0-1d8e-4561-812d-33c03b9d9efa",
     "serviceId": "ac5db7e0-e328-46ac-8e96-820c6e1a88ce",
     "origin": "https://a10-v135-delivery-qualification-isolated-review.up.railway.app"
   },
-  "maximumRuntimeSeconds": 1800,
+  "maximumRuntimeSeconds": 900,
   "killGraceSeconds": 5,
   "maximumBuildSeconds": 900,
   "maximumLaunches": 1,
@@ -33,16 +33,16 @@
   "oldPrivateGrantsRemainConsumed": true,
   "qualifiedSyntheticFlowDoesNotEstablishA10Acceptance": true,
   "freshStageBApprovalRequired": true,
-  "currentSavedLedgerVersion": 97,
-  "currentSavedLedgerSHA256": "253d435e447b1cecd0690c5d75145711bd30ae0ea19ff637583b294df0f71a0d",
+  "currentSavedLedgerVersion": 98,
+  "currentSavedLedgerSHA256": "45b98e3907ee30158bed1307079efee016d3f0a58216222fdea23070416baf98",
   "freshLedgerAmendmentRequiredBeforeLaunch": true,
   "basePublicationCommit": "348174a4a80fc1bd822fb9ffe7575eba0dc265c7",
   "baseTree": "0711297c097680051b68f4716bbb70b13b3eb4aa",
   "branch": "work8/v135-delivery-qualification-20261114-a01",
-  "priorTechnicalOperation": "V135-A10-DELIVERY-QUALIFICATION-A03-20261114",
-  "priorTechnicalDeployment": "8eb40665-233f-486b-837e-a5dfc56b2f4c",
-  "priorTechnicalTerminal": "FAILED_BUILD_NATIVE_STARTUP_COMPARABLES; no hosted runtime or review clock; all four services zero running with no pending work; exact terminal evidence required before new launch",
-  "manualSuccessorReason": "Correct demonstrated overstrict ancillary comparables smoke expectation to exact native503 COMPARABLE_SOURCE_UNAVAILABLE while intelligence remains disabled; login/principal/portfolio passed before this test failed; preserve native code, guard and read-only controls",
+  "priorTechnicalOperation": "V135-A10-DELIVERY-QUALIFICATION-A04-20261114",
+  "priorTechnicalDeployment": "80e42ba4-8a8e-47e2-9746-bb92ac51252a",
+  "priorTechnicalTerminal": "Observed exact A04 fixed-expiry terminal; stopped descendant graph, complete logical cleanup, all prior running replicas zero; no provider erasure claim.",
+  "manualSuccessorReason": "Correct demonstrated missing synthetic commissioning parent directory before native IntelligenceStore opens its database; exact overlaid UID1001 native reproduction changes ENOENT/503 to strict empty retained-source 200. Restore original comparables success requirement. Preserve native application bytes, guard, read-only controls, fixed expiry and cleanup.",
   "automaticRetry": false,
   "syntheticOperatorPolicyScope": {
     "permitted": true,
@@ -56,5 +56,12 @@
     "productionMutationPermitted": false,
     "commerceActivationPermitted": false
   },
-  "predecessorRuntimeTerminalRequiredBeforeLaunch": true
+  "predecessorRuntimeTerminalRequiredBeforeLaunch": true,
+  "boundedCorrectedQualificationOnly": true,
+  "priorTechnicalTerminalEvidence": {
+    "path": "/workspace/scratch/888e1523fea9/financial/a04-final-logs.json",
+    "bytes": 5178,
+    "sha256": "9795725baa9ee8336f8e6e2e5b9c8cf8cd32b104f3dc54a01b4b24cbd563d147"
+  },
+  "priorTechnicalTerminalObservedAtUTC": "2026-11-14T09:25:33.850887+00:00"
 }

@@ -11,7 +11,7 @@ REPO=pathlib.Path('/repo'); WORK=pathlib.Path('/work'); OUTPUT=pathlib.Path('/ou
 BASE_COMMIT='348174a4a80fc1bd822fb9ffe7575eba0dc265c7'
 BASE_TREE='0711297c097680051b68f4716bbb70b13b3eb4aa'
 BASE_SOURCE='8e256e063ccd2e7d3f200406e4ccef047b1dbd542e62fbd6baa3da06f16fa35e'
-OPERATION='V135-A10-DELIVERY-QUALIFICATION-A04-20261114'
+OPERATION='V135-A10-DELIVERY-QUALIFICATION-A05-20261114'
 BRANCH='work8/v135-delivery-qualification-20261114-a01'
 BASE_IMAGE='sha256:e8c69d86735f6df3efa06b324694fe51f0422785f83a3bd463052636c2421944'
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
@@ -38,7 +38,7 @@ def validate_admission(authority,reservation,config,manifest):
     operation=authority.get('operationIdentity')
     require(operation==OPERATION,'EXACT_STAGE_A_OPERATION')
     require(authority.get('schema')=='V135_STAGE_A_TECHNICAL_AUTHORITY_V1'and authority.get('ownerDirective')=='V135'and authority.get('stage')=='A','FRESH_STAGE_A_AUTHORITY_REQUIRED')
-    for name,value in {'maximumRuntimeSeconds':1800,'killGraceSeconds':5,'maximumLaunches':1,'maximumPrivateTransfers':0,'automaticRetries':0,'leaseExtensions':0,'privateDataTransferAuthorized':False,'nativeOwnerDecisionAuthorized':False,'productionPermission':False}.items():
+    for name,value in {'maximumRuntimeSeconds':900,'killGraceSeconds':5,'maximumLaunches':1,'maximumPrivateTransfers':0,'automaticRetries':0,'leaseExtensions':0,'privateDataTransferAuthorized':False,'nativeOwnerDecisionAuthorized':False,'productionPermission':False}.items():
         require(type(authority.get(name))is type(value)and authority[name]==value,'STAGE_A_AUTHORITY_'+name.upper())
     dest=authority.get('destination');require(isinstance(dest,dict)and set(dest)=={'projectId','environmentId','serviceId','origin'},'EXACT_DESTINATION_FIELDS')
     for name in ['projectId','environmentId','serviceId']:require(isinstance(dest[name],str)and re.fullmatch('[a-f0-9-]{36}',dest[name]),'DESTINATION_ID')
@@ -46,13 +46,13 @@ def validate_admission(authority,reservation,config,manifest):
     require(re.fullmatch(r'https://[a-z0-9-]+\.up\.railway\.app',dest['origin'])is not None,'EXACT_HTTPS_ORIGIN')
     require(reservation.get('schema')=='V135_STAGE_A_RESERVATION_V1'and reservation.get('status')=='RESERVED_IN_CANONICAL_LEDGER','SAVED_RESERVATION_REQUIRED')
     require(reservation.get('operationIdentity')==operation and reservation.get('cumulativeCeilingUSD')==1000,'EXACT_FINANCIAL_SCOPE')
-    require(type(reservation.get('savedLedgerVersion'))is int and reservation['savedLedgerVersion']>=98,'POST_A03_LEDGER_REQUIRED')
+    require(type(reservation.get('savedLedgerVersion'))is int and reservation['savedLedgerVersion']>=99,'POST_A04_LEDGER_REQUIRED')
     require(re.fullmatch('[a-f0-9]{64}',str(reservation.get('savedLedgerSHA256','')))is not None and reservation.get('independentReadbackSHA256')==reservation['savedLedgerSHA256'],'INDEPENDENT_LEDGER_READBACK')
-    for name,value in {'executionAttempt':1,'buildAttempt':1,'maximumLaunches':1,'maximumPrivateTransfers':0,'automaticRetries':0,'leaseExtensions':0,'maximumRuntimeSeconds':1800,'killGraceSeconds':5,'replicas':1,'vCPUs':1,'memoryGB':2,'restartPolicyType':'NEVER'}.items():
+    for name,value in {'executionAttempt':1,'buildAttempt':1,'maximumLaunches':1,'maximumPrivateTransfers':0,'automaticRetries':0,'leaseExtensions':0,'maximumRuntimeSeconds':900,'killGraceSeconds':5,'replicas':1,'vCPUs':1,'memoryGB':2,'restartPolicyType':'NEVER'}.items():
         require(type(reservation.get(name))is type(value)and reservation[name]==value,'EXACT_FINANCIAL_LIMIT_'+name.upper())
     require(isinstance(reservation.get('financialReservationId'),str)and reservation['financialReservationId'],'RESERVATION_ID')
     require(config.get('schema')=='V135_STAGE_A_RUNTIME_CONFIG_V1'and config.get('operationIdentity')==operation and all(config.get(k)==v for k,v in dest.items()),'CONFIG_SCOPE')
-    require(config.get('privateDataIncluded')is False and config.get('ownerDecisionPermitted')is False and config.get('ownerReviewClockStarted')is False and config.get('maximumRuntimeSeconds')==1800 and config.get('killGraceSeconds')==5,'NO_PRIVATE_ACTIVATION')
+    require(config.get('privateDataIncluded')is False and config.get('ownerDecisionPermitted')is False and config.get('ownerReviewClockStarted')is False and config.get('maximumRuntimeSeconds')==900 and config.get('killGraceSeconds')==5,'NO_PRIVATE_ACTIVATION')
     require(manifest.get('schema')=='V135_STAGE_A_SOURCE_MANIFEST_V1'and manifest.get('operationIdentity')==operation and manifest.get('basePublicationCommit')==BASE_COMMIT and manifest.get('baseTree')==BASE_TREE and manifest.get('baseSourceManifestSHA256')==BASE_SOURCE,'SOURCE_ANCESTRY')
     require(manifest.get('selfExcluded')is True and manifest.get('privateInputsIncluded')is False,'PUBLIC_SOURCE_ONLY')
     require(reservation.get('gitPublicationIdentity')==manifest.get('branch')==BRANCH,'EXACT_STAGE_A_BRANCH')
@@ -181,9 +181,9 @@ def native_build_smoke(output, admission, publication, maximum_seconds):
                   'sourceCommit':publication,'authoritySHA256':cfg['authoritySHA256'],'buildOnly':True,
                   'privateDataIncluded':False,'ownerDecisionPerformed':False}
         require(all(type(receipt.get(name))is type(value)and receipt[name]==value for name,value in expected.items()),'NATIVE_SMOKE_EXACT_PUBLIC_RECEIPT')
-        checks=['nativeLoginVerified','nativePrincipalVerified','nativePortfolioVerified','emptyMediaVerified','nativeComparablesUnavailableVerified','commerceWriteDenied','nativeLogoutVerified','revocationVerified']
+        checks=['nativeLoginVerified','nativePrincipalVerified','nativePortfolioVerified','emptyMediaVerified','nativeComparablesVerified','nativeComparablesEmptyVerified','commissioningDirectoryInitialized','commerceWriteDenied','nativeLogoutVerified','revocationVerified']
         require(all(receipt.get(name)is True for name in checks),'NATIVE_SMOKE_ALL_NATIVE_PREDICATES')
-        require(type(receipt.get('nativeComparablesStatusCode'))is int and receipt['nativeComparablesStatusCode']==503 and receipt.get('nativeComparablesError')=='COMPARABLE_SOURCE_UNAVAILABLE','NATIVE_SMOKE_EXACT_COMPARABLES_UNAVAILABLE')
+        require(type(receipt.get('nativeComparablesStatusCode'))is int and receipt['nativeComparablesStatusCode']==200 and receipt.get('nativeComparablesAvailability')=='RETAINED_SOURCE_READ'and 'nativeComparablesError'not in receipt and 'nativeComparablesUnavailableVerified'not in receipt,'NATIVE_SMOKE_EXACT_EMPTY_COMPARABLES')
         require(time.monotonic()<deadline,'NATIVE_SMOKE_COMPLETION_DEADLINE');completed=True
     except Exception as error:
         code=str(error)if type(error)is ValueError and re.fullmatch('[A-Z_]+',str(error))else 'NATIVE_SMOKE_FAILURE'
@@ -218,11 +218,11 @@ def native_build_smoke(output, admission, publication, maximum_seconds):
               'processGraphStopped':bool(capability is not None and cleanup),'syntheticStateRemoved':True,'tempEmpty':True,
               'portsClosed':True,'privateDataIncluded':False,'ownerDecisionPerformed':False,'providerErasureClaimed':False}),flush=True)
     require(completed,'NATIVE_SMOKE_NOT_COMPLETED')
-    return {'schema':'V135_STAGE_A_A04_NATIVE_BUILD_SMOKE_V1','status':'PASS','operationIdentity':admission['operation'],
+    return {'schema':'V135_STAGE_A_A05_NATIVE_BUILD_SMOKE_V1','status':'PASS','operationIdentity':admission['operation'],
             'sourceCommit':publication,'sourceManifestSHA256':admission['sourceManifestSHA256'],
             'authoritySHA256':admission['config']['authoritySHA256'],'nativeLoginVerified':True,'nativePrincipalVerified':True,
-            'nativePortfolioVerified':True,'emptyMediaVerified':True,'nativeComparablesUnavailableVerified':True,
-            'nativeComparablesStatusCode':503,'nativeComparablesError':'COMPARABLE_SOURCE_UNAVAILABLE','commerceWriteDenied':True,
+            'nativePortfolioVerified':True,'emptyMediaVerified':True,'nativeComparablesVerified':True,'nativeComparablesEmptyVerified':True,'commissioningDirectoryInitialized':True,
+            'nativeComparablesStatusCode':200,'nativeComparablesAvailability':'RETAINED_SOURCE_READ','commerceWriteDenied':True,
             'nativeLogoutVerified':True,'revocationVerified':True,'syntheticStateRemoved':True,'processGraphStopped':True,
             'portsClosedAfterCleanup':True,'elapsedSeconds':round(time.monotonic()-started,3),'deadlineSeconds':maximum_seconds,
             'actualNativeApplicationStartedAtBuild':True,'providerDeploymentPerformed':False,'runtimeManifestFinalizedAtSmoke':False,
@@ -262,7 +262,7 @@ def qualify_output(repo,output,meta,admission,publication,receipts,build_started
         name='/'+p.relative_to(output).as_posix();require(not name.startswith(('/private/','/inputs/','/state/','/evidence/'))and not name.endswith(('.sqlite','.sqlite3','.db')),'NO_PRIVATE_RUNTIME_INPUT')
         rows.append(desc(p,name))
     require(0<len(rows)<=100000 and sum(x['bytes']for x in rows)<=1073741824,'RUNTIME_BOUND')
-    runtime={'schema':'V135_STAGE_A_RUNTIME_MANIFEST_V1','operationIdentity':admission['operation'],'sourceCommit':publication,'publicationCommit':publication,'sourceManifestSHA256':admission['sourceManifestSHA256'],'basePublicationCommit':BASE_COMMIT,'applicationCommit':extract['applicationCommit'],'nodeVersion':'v22.23.2','nodeSHA256':NODE_SHA,'staticAssetPaths':static,'files':rows,'privateDataIncluded':False,'privateIngressAvailable':False,'ownerReviewClockStarted':False,'maximumRuntimeSeconds':1800,'killGraceSeconds':5}
+    runtime={'schema':'V135_STAGE_A_RUNTIME_MANIFEST_V1','operationIdentity':admission['operation'],'sourceCommit':publication,'publicationCommit':publication,'sourceManifestSHA256':admission['sourceManifestSHA256'],'basePublicationCommit':BASE_COMMIT,'applicationCommit':extract['applicationCommit'],'nodeVersion':'v22.23.2','nodeSHA256':NODE_SHA,'staticAssetPaths':static,'files':rows,'privateDataIncluded':False,'privateIngressAvailable':False,'ownerReviewClockStarted':False,'maximumRuntimeSeconds':900,'killGraceSeconds':5}
     write_new(target/'runtime-manifest.json',runtime)
     return {'schema':'V135_STAGE_A_PUBLIC_RUNTIME_BUILD_COMPLETE_V1','status':'PASS_PUBLIC_RUNTIME_BUILT_REQUIRES_PROVIDER_QUALIFICATION','publicationCommit':publication,'operationIdentity':admission['operation'],'sourceManifestSHA256':admission['sourceManifestSHA256'],'runtimeManifestSHA256':sha(target/'runtime-manifest.json'),'buildProvenanceSHA256':sha(target/'build-provenance.json'),'runtimeFileCount':len(rows),'staticAssetPathCount':len(static),'nativeApplicationStarted':True,'nativeBuildSmoke':smoke,'privateDataTransferred':False,'ownerReviewPerformed':False}
 

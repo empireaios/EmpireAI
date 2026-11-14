@@ -1,6 +1,6 @@
 {
   "schema": "V135_STAGE_A_SOURCE_MANIFEST_V1",
-  "operationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A04-20261114",
+  "operationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A05-20261114",
   "branch": "work8/v135-delivery-qualification-20261114-a01",
   "basePublicationCommit": "348174a4a80fc1bd822fb9ffe7575eba0dc265c7",
   "baseTree": "0711297c097680051b68f4716bbb70b13b3eb4aa",
@@ -456,38 +456,38 @@
     },
     {
       "path": "v135/qualification/build/build_stage_a.py",
-      "bytes": 29071,
-      "sha256": "42fee77c5b0953ce66e5132677e2e8a47e260907cb14804571e348b99848be0f"
+      "bytes": 29282,
+      "sha256": "7604a81574593550468c0cf0c34f141ac267068f59480eeaa4500256c3c23d9a"
     },
     {
       "path": "v135/qualification/qualification-authority.json",
-      "bytes": 3245,
-      "sha256": "c8d9754c576991419c2ff96430de6963b658b309dc5149a76009e46577d43576"
+      "bytes": 3650,
+      "sha256": "7ed1d7f16f5f692f87ff62a86d86d85bae5a0c2204925f1008f4b3ac8b3ea648"
     },
     {
       "path": "v135/qualification/qualification-config.json",
-      "bytes": 907,
-      "sha256": "0a342a3b96119396c330877d964dd913b2e367709f0d45674320fdacdd9b95f8"
+      "bytes": 906,
+      "sha256": "9d46520da17708f77e228df70cf35e5144bc66dbc261d6f016203489fc7fad6f"
     },
     {
       "path": "v135/qualification/qualification-recipient-public.pem",
       "bytes": 800,
-      "sha256": "2cf79037f7449a88d809761c0943c83790af02e0a15f3f11e1dfa190a1fd7155"
+      "sha256": "c62847a139e609283a0d3b51a190392984fafee47e65f93481ba4bfd9e0369f2"
     },
     {
       "path": "v135/qualification/qualification-reservation.json",
-      "bytes": 1122,
-      "sha256": "29d7d05e9c2e4fbfb65b5709ca91e1b111aea20cfe69af8732904ceb34884b37"
+      "bytes": 1121,
+      "sha256": "7cd5ff9dddc4374f55e1a1c13f753e96c60314ae78c6ce1428769714ade6bebe"
     },
     {
       "path": "v135/qualification/runtime/qualification_backend.mjs",
-      "bytes": 13465,
-      "sha256": "eb8a48fb63410cd4b2ff3098d1992a915740e77b54746099aac6ed911ae196d9"
+      "bytes": 14769,
+      "sha256": "b00d65439842efd9db1569f99a1f51d6979366a312a69af98c31f1773c8cac56"
     },
     {
       "path": "v135/qualification/runtime/qualification_entry.py",
-      "bytes": 3799,
-      "sha256": "b7292ddf09c6856ed1c9d3bdafd93537fc8206eee69f8294d0cd95147a337dd1"
+      "bytes": 3796,
+      "sha256": "1d00205af3ae14429bbc8716e652edc4d1c46628c7ea93b2eb2f7f556d5dfdd8"
     },
     {
       "path": "v135/qualification/runtime/qualification_ingress.mjs",
@@ -496,8 +496,8 @@
     },
     {
       "path": "v135/qualification/runtime/qualification_supervisor.py",
-      "bytes": 13833,
-      "sha256": "b3eebccc24e162ba67075ac05fd6269f17c96ca3d7ae9760f9c7c832cd04a7e0"
+      "bytes": 14037,
+      "sha256": "ec8451eed8619b3355b0a1646ae3531ab730302dd0bfb0d67570075a16425f99"
     },
     {
       "path": "vercel.json",
@@ -505,11 +505,11 @@
       "sha256": "2db90c4c7732cd0de9215866d1bf4b9af0b6e4e8a8ef49da04704c2e83fc99f4"
     }
   ],
-  "parentPublicationCommit": "1cf4d0690ea1b5c74032ab59003358abd660ffab",
-  "parentTree": "59cbd5013e6f5901d12b653689944e1b0f487b51",
-  "predecessorOperationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A03-20261114",
-  "predecessorSourceManifestSHA256": "e3d8977a60a934c3f166136fac7f88682393d7f3661aa96e20fc55f70976cb88",
-  "manualSuccessorReason": "Recognize exact native COMPARABLE_SOURCE_UNAVAILABLE under deliberately disabled intelligence and prove bounded build cleanup; retain all native authorization checks",
+  "parentPublicationCommit": "a39d334443d33a1855e29c8de3586096076c2304",
+  "parentTree": "1652b8fd78e2096b11be1e72041b648ab9f9ff1c",
+  "predecessorOperationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A04-20261114",
+  "predecessorSourceManifestSHA256": "cc3cccd041ed5706f1bd1eb7d00da6f25f7b60a1ac71da837cff149e6f14096d",
+  "manualSuccessorReason": "Correct demonstrated missing synthetic commissioning parent directory before native IntelligenceStore opens its database; exact overlaid UID1001 native reproduction changes ENOENT/503 to strict empty retained-source 200. Restore original comparables success requirement. Preserve native application bytes, guard, read-only controls, fixed expiry and cleanup.",
   "automaticRetry": false,
   "predecessorSourceDeltas": [
     "v135/qualification/build/build_stage_a.py",
