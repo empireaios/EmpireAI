@@ -9,15 +9,23 @@ const CONTROL='/control/qualification',STATE='/state/qualification';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const cfg=JSON.parse(fs.readFileSync(STATE+'/root-clock.json','utf8'));
 assert.equal(process.getuid(),1001);assert.equal(process.getgid(),1001);
-assert.equal(cfg.operationIdentity,'V135-A10-DELIVERY-QUALIFICATION-A02-20261114');
+assert.equal(cfg.operationIdentity,'V135-A10-DELIVERY-QUALIFICATION-A03-20261114');
 assert.equal(cfg.privateDataIncluded,false);assert.equal(cfg.ownerDecisionPermitted,false);
 assert.equal(new URL(cfg.origin).origin,cfg.origin);assert.ok(cfg.origin.startsWith('https://'));
 assert.ok(cfg.qualificationExpiresAtMs>Date.now());
+if(cfg.buildOnly===true){assert.equal(cfg.deploymentId,'BUILD_SMOKE_NO_PROVIDER_DEPLOYMENT');assert.equal(cfg.runtimeManifestSHA256,null);assert.equal(cfg.runtimeManifestFinalized,false);}
+else assert.match(cfg.runtimeManifestSHA256,/^[a-f0-9]{64}$/);
+const policyPath=STATE+'/synthetic-owner-read-policy.json';
+assert.equal(process.env.EMPIRE_OWNER_WRITE_POLICY,policyPath);
+const stateInfo=fs.lstatSync(STATE);assert.ok(stateInfo.isDirectory()&&!stateInfo.isSymbolicLink());assert.equal(stateInfo.uid,0);assert.equal(stateInfo.gid,1001);assert.equal(stateInfo.mode&0o7777,0o1770);
+const policyFd=fs.openSync(policyPath,fs.constants.O_RDONLY|fs.constants.O_NOFOLLOW);
+let policy;try{const info=fs.fstatSync(policyFd);assert.ok(info.isFile());assert.equal(info.nlink,1);assert.equal(info.uid,0);assert.equal(info.gid,1001);assert.equal(info.mode&0o7777,0o440);assert.ok(info.size>0&&info.size<=4096);policy=JSON.parse(fs.readFileSync(policyFd,'utf8'));}finally{fs.closeSync(policyFd);}
+assert.deepEqual(Object.keys(policy).sort(),['approvalSha256','expiresAt','mode','schema']);assert.equal(policy.schema,1);assert.equal(policy.mode,'RELEASED');assert.equal(policy.approvalSha256,cfg.authoritySHA256);assert.match(policy.approvalSha256,/^[a-f0-9]{64}$/);assert.equal(Date.parse(policy.expiresAt),cfg.qualificationExpiresAtMs);
 const email='v135-qualification@example.invalid',password=randomBytes(48).toString('base64url'),admin=randomBytes(48).toString('base64url'),secret=randomBytes(48).toString('base64url');
 assert.notEqual(sha(email),'a437be3d7f2e7927959c2be2040016464de75d69529d9abd197e47a8caa21267');
 Object.assign(process.env,{NODE_ENV:'production',LOG_LEVEL:'error',HOST:'127.0.0.1',PORT:'4000',REDIS_URL:'redis://127.0.0.1:46379/0',REDIS_OPTIONAL:'false',DATABASE_PATH:STATE+'/commissioning/empireai-brain.db',RAILWAY_VOLUME_MOUNT_PATH:STATE,RAILWAY_GIT_COMMIT_SHA:'6c1e63ba20619ee480742fd87dc810ca93152e22',EMPIRE_RUNTIME_PROFILE:'LOCKED_COMMISSIONING_V1',EMPIRE_ENGINEERING_TEST_MODE:'true',FOUNDER_EMAIL:email,FOUNDER_PASSWORD:password,ADMIN_EMAIL:email,ADMIN_PASSWORD:admin,SESSION_SECRET:secret,SESSION_TTL_SECONDS:'600',CORS_ORIGIN:cfg.origin,INTELLIGENCE_ENABLED:'false',INTELLIGENCE_DISABLED:'true'});
-// Explicitly no EMPIRE_OWNER_WRITE_POLICY, media root, restored mode or real owner identity.
-for(const name of ['EMPIRE_OWNER_WRITE_POLICY','EMPIRE_CONNECTOR_MEDIA_ROOT','EMPIRE_CONNECTOR_OWNER_REVIEW_MODE'])assert.equal(process.env[name],undefined);
+// Finite operator policy only for this synthetic store; no private media or restoration.
+for(const name of ['EMPIRE_CONNECTOR_MEDIA_ROOT','EMPIRE_CONNECTOR_OWNER_REVIEW_MODE'])assert.equal(process.env[name],undefined);
 const require=createRequire('/app/backend/package.json'),Fastify=require('fastify'),cookie=require('@fastify/cookie'),cors=require('@fastify/cors');
 const load=p=>import('/app/backend/dist/'+p);
 const [{createTier0RedisClient,waitForRuntimeRedisReady},{SessionStore},{createAuthMiddleware},{registerTier0LoginRoute,createSharedSessionStoreGuard,registerTier0DurabilityErrorHandler},{probeRedisSessionStore},{installLockedCommissioning},{installCaptureHttpAdmission},{registerGovernedCommerce,productionCommerce},{registerExactNativeTier0SessionRoutes},{readConnectorMedia},{env}]=await Promise.all([
@@ -32,7 +40,8 @@ const sessions={get:t=>nativeSessions.get(t),destroy:t=>nativeSessions.destroy(t
 const authenticate=createAuthMiddleware(sessions),guard=createSharedSessionStoreGuard(()=>probeRedisSessionStore(redis,1500));
 const allowed=new Set(['POST /auth/login','POST /auth/logout','GET /auth/me','GET /api/owner/commerce/portfolio','GET /api/owner/commerce/comparables']);
 const app=Fastify({logger:false,bodyLimit:4096,requestTimeout:20000});
-app.addHook('preValidation',async(req,reply)=>{
+// Register before every native onRequest hook, so no write route can initialize state.
+app.addHook('onRequest',async(req,reply)=>{
  if(Date.now()>=cfg.qualificationExpiresAtMs)return reply.code(423).send({code:'QUALIFICATION_EXPIRED'});
  const target=new URL(req.url,cfg.origin);
  const readQueryAllowed=!target.search||(req.method==='GET'&&target.pathname==='/api/owner/commerce/portfolio'&&validPortfolioQuery(target.search));
@@ -47,6 +56,37 @@ await app.ready();
 const userId='usr_'+sha(email).slice(0,16),workspace='ws_empire_1';
 const empty=readConnectorMedia(productionCommerce().store.db,{workspace,owner:userId});
 assert.deepEqual(empty,{availability:'NOT_PREPARED',rights:'PRIVATE_FACTUAL_PREPARATION_ONLY'});
+// Use the real native Fastify routes and in-memory generated synthetic credentials.
+// No plaintext credential, cookie, response body or owner decision enters evidence.
+const smokeFail=code=>{
+ const codes=new Set(['NATIVE_STARTUP_JSON','NATIVE_STARTUP_LOGIN','NATIVE_STARTUP_COOKIE','NATIVE_STARTUP_PRINCIPAL','NATIVE_STARTUP_PORTFOLIO','NATIVE_STARTUP_EMPTY_MEDIA','NATIVE_STARTUP_COMPARABLES','NATIVE_STARTUP_WRITE_DENY','NATIVE_STARTUP_LOGOUT','NATIVE_STARTUP_REVOCATION']);
+ if(!codes.has(code))throw Error('NATIVE_STARTUP_INVALID_FAILURE_CODE');
+ try{fs.writeFileSync(STATE+'/startup-smoke-failure.json',JSON.stringify({schema:'V135_STAGE_A_NATIVE_STARTUP_FAILURE_V1',code})+'\n',{flag:'wx',mode:0o400});}catch{/* Never relay file contents or exception text. */}
+ throw Error(code);
+};
+const smokeCheck=(value,code)=>{if(!value)smokeFail(code);};
+const smokeJSON=response=>{try{return JSON.parse(response.body);}catch{smokeFail('NATIVE_STARTUP_JSON');}};
+const login=await app.inject({method:'POST',url:'/auth/login',payload:{email,password}});
+smokeCheck(login.statusCode===200,'NATIVE_STARTUP_LOGIN');
+const issued=Array.isArray(login.headers['set-cookie'])?login.headers['set-cookie']:[login.headers['set-cookie']];
+smokeCheck(issued.length>0&&issued.every(value=>typeof value==='string'&&value.includes('=')),'NATIVE_STARTUP_COOKIE');
+const smokeCookie=issued.map(value=>value.split(';')[0]).join('; '),smokeHeaders={cookie:smokeCookie};
+const me=await app.inject({method:'GET',url:'/auth/me',headers:smokeHeaders});
+const principal=smokeJSON(me).user;
+smokeCheck(me.statusCode===200&&principal?.id===userId&&principal.workspaceId===workspace&&principal.role==='founder'&&sha(principal.email.toLowerCase())===sha(email),'NATIVE_STARTUP_PRINCIPAL');
+const portfolio=await app.inject({method:'GET',url:'/api/owner/commerce/portfolio',headers:smokeHeaders});
+smokeCheck(portfolio.statusCode===200,'NATIVE_STARTUP_PORTFOLIO');
+smokeCheck(JSON.stringify(smokeJSON(portfolio).connectorMedia)===JSON.stringify(empty),'NATIVE_STARTUP_EMPTY_MEDIA');
+const comparables=await app.inject({method:'GET',url:'/api/owner/commerce/comparables',headers:smokeHeaders});
+smokeCheck(comparables.statusCode===200,'NATIVE_STARTUP_COMPARABLES');
+const denied=await app.inject({method:'POST',url:'/api/owner/commerce',headers:smokeHeaders,payload:{action:'QUALIFICATION_WRITE_DENY_PROBE'}});
+smokeCheck(denied.statusCode===423&&smokeJSON(denied).code==='OUTSIDE_READONLY_QUALIFICATION','NATIVE_STARTUP_WRITE_DENY');
+const logout=await app.inject({method:'POST',url:'/auth/logout',headers:smokeHeaders});
+smokeCheck(logout.statusCode===200||logout.statusCode===204,'NATIVE_STARTUP_LOGOUT');
+const revoked=await app.inject({method:'GET',url:'/auth/me',headers:smokeHeaders});
+smokeCheck(revoked.statusCode===401,'NATIVE_STARTUP_REVOCATION');
+const smokeReceipt={schema:'V135_STAGE_A_NATIVE_STARTUP_SMOKE_V1',status:'PASS',operationIdentity:cfg.operationIdentity,sourceCommit:cfg.sourceCommit,authoritySHA256:cfg.authoritySHA256,buildOnly:cfg.buildOnly===true,nativeLoginVerified:true,nativePrincipalVerified:true,nativePortfolioVerified:true,emptyMediaVerified:true,nativeComparablesVerified:true,commerceWriteDenied:true,nativeLogoutVerified:true,revocationVerified:true,privateDataIncluded:false,ownerDecisionPerformed:false};
+fs.writeFileSync(STATE+'/startup-smoke.json',JSON.stringify(smokeReceipt)+'\n',{flag:'wx',mode:0o400});
 const binding={purpose:'STAGE_A_SYNTHETIC_NONOWNER_QUALIFICATION_ONLY',operationIdentity:cfg.operationIdentity,origin:cfg.origin,sourceCommit:cfg.sourceCommit,projectId:cfg.projectId,environmentId:cfg.environmentId,serviceId:cfg.serviceId,deploymentId:cfg.deploymentId,qualificationExpiresAtMs:cfg.qualificationExpiresAtMs,qualificationSourceManifestSHA256:cfg.qualificationSourceManifestSHA256,nativeRuntimeManifestSHA256:cfg.runtimeManifestSHA256,emailSHA256:sha(email),expectedUserId:userId,workspaceId:workspace,instanceNonce:randomBytes(32).toString('base64url')};
 assert.match(binding.qualificationSourceManifestSHA256,/^[a-f0-9]{64}$/);
 const recipient=createPublicKey(fs.readFileSync(CONTROL+'/qualification-recipient-public.pem'));

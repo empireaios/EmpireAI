@@ -1,6 +1,6 @@
 {
   "schema": "V135_STAGE_A_SOURCE_MANIFEST_V1",
-  "operationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A02-20261114",
+  "operationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A03-20261114",
   "branch": "work8/v135-delivery-qualification-20261114-a01",
   "basePublicationCommit": "348174a4a80fc1bd822fb9ffe7575eba0dc265c7",
   "baseTree": "0711297c097680051b68f4716bbb70b13b3eb4aa",
@@ -456,38 +456,38 @@
     },
     {
       "path": "v135/qualification/build/build_stage_a.py",
-      "bytes": 17378,
-      "sha256": "a2ab784d3e132da06472bb0d789423c9acf7e3e26232a6071ca5fde527ed27ff"
+      "bytes": 28018,
+      "sha256": "a2560dddd139f4b271266aa18fef52be06dbda2203fc9cdfe536f58222c0fa3e"
     },
     {
       "path": "v135/qualification/qualification-authority.json",
-      "bytes": 2502,
-      "sha256": "2d44d7bfa421de1e10de010f287c180a7bb5d561cc84a432cd51a458f0d01694"
+      "bytes": 3195,
+      "sha256": "83b8bfbbc5e4877579e8cb86f7f393358cf9bcb1465477e6fab5ecbb77eb7876"
     },
     {
       "path": "v135/qualification/qualification-config.json",
       "bytes": 907,
-      "sha256": "7d873490562a122757c6741ba0c62d87c735b7422dc81e05c3d9dee0e657d286"
+      "sha256": "d64e268884bdb782150994bf6203a96ac74c40cde52e4ed201ea267ba0db22aa"
     },
     {
       "path": "v135/qualification/qualification-recipient-public.pem",
       "bytes": 800,
-      "sha256": "688b08e03dc153a0c70f1e1e90601ab2ac73db514659643885e4623fe079dcca"
+      "sha256": "fb5b70ff43817804dbb6dc0aeab82379aaf1d39d13b78813c0185b5cabec51a3"
     },
     {
       "path": "v135/qualification/qualification-reservation.json",
       "bytes": 1122,
-      "sha256": "cd280d2d9cae487386db65ee7c2f60ad3092476cb4f7e2bb18e652fe100db89f"
+      "sha256": "702aa4afd10f1ad8472f3617956635f0c34e6dc4dfd56d005cb2f8d2496f1bf8"
     },
     {
       "path": "v135/qualification/runtime/qualification_backend.mjs",
-      "bytes": 8472,
-      "sha256": "e87e968fe8bf8b1acdb643a15f432eddcb9325099619791826a522ef792f2872"
+      "bytes": 13269,
+      "sha256": "bf849524724191a740417ebe8614461c730aac56c2739ca6990cbc85a5c3e368"
     },
     {
       "path": "v135/qualification/runtime/qualification_entry.py",
       "bytes": 3799,
-      "sha256": "c8ccdd294cd81f26848014d3849750a4a6ac83e12f90e5960e5381132749df68"
+      "sha256": "c7f0d02ea0b98ee98a58f1f4cb0e79036e9fa9e36d03000675f0cea80ba407e1"
     },
     {
       "path": "v135/qualification/runtime/qualification_ingress.mjs",
@@ -496,8 +496,8 @@
     },
     {
       "path": "v135/qualification/runtime/qualification_supervisor.py",
-      "bytes": 8973,
-      "sha256": "5daff5f0ee7e82ebadb7ace716219dab586ba699d7a63ca4c6cd88d32cf8ea46"
+      "bytes": 13654,
+      "sha256": "9ac9ff14f42dc96fead21c07bd61b7adf08352a3e30847b4cc74c2899e2c13c1"
     },
     {
       "path": "vercel.json",
@@ -505,11 +505,11 @@
       "sha256": "2db90c4c7732cd0de9215866d1bf4b9af0b6e4e8a8ef49da04704c2e83fc99f4"
     }
   ],
-  "parentPublicationCommit": "7488d7e520ffceb146a266283c2944bd01ac4a6e",
-  "parentTree": "d9caa0af3199fc5c6281e02af871f39372226fa9",
-  "predecessorOperationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A01-20261114",
-  "predecessorSourceManifestSHA256": "ba950bd71013c7d0d17f48175c653cb2abfc5752331d32f4a0593cc677f48fa7",
-  "manualSuccessorReason": "Correct independently reproduced ingress global seal on normal native browser asset concurrency",
+  "parentPublicationCommit": "c8391386935a4d55ab60144169683b58d3fe4429",
+  "parentTree": "19f2a1042320f838ae11c720a8b1422c56e56e0a",
+  "predecessorOperationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A02-20261114",
+  "predecessorSourceManifestSHA256": "9f0cc6db23590ebd27a2c337bc7859a7488c4cf9d9c49137e95e675290ee9e69",
+  "manualSuccessorReason": "Correct demonstrated synthetic founder portfolio-read policy omission; retain exact native authorization checks",
   "automaticRetry": false,
   "predecessorSourceDeltas": [
     "v135/qualification/build/build_stage_a.py",
@@ -519,7 +519,6 @@
     "v135/qualification/qualification-reservation.json",
     "v135/qualification/runtime/qualification_backend.mjs",
     "v135/qualification/runtime/qualification_entry.py",
-    "v135/qualification/runtime/qualification_ingress.mjs",
     "v135/qualification/runtime/qualification_supervisor.py"
   ],
   "completeFrontendSourceChangedFromPredecessor": false
