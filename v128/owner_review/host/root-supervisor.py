@@ -26,6 +26,28 @@ stop_requested = threading.Event()
 custody_logged = threading.Event()
 terminal_reason = None
 service_expiry_ms = None
+native_diagnostic_logged = False
+NATIVE_STAGES = frozenset(('BOOTSTRAP', 'RESTORE', 'REDIS', 'BACKEND', 'FRONTEND', 'READY'))
+NATIVE_REASONS = frozenset(('NATIVE_BOOTSTRAP_FAILED', 'CHILD_START_FAILURE', 'EARLY_CHILD_EXIT',
+                          'HARD_DRAIN', 'ABSOLUTE_EXPIRY', 'INTERRUPTED',
+                          'EXACT_EXPORT_ACKNOWLEDGED', 'NATIVE_STARTUP_FAILED'))
+
+
+def project_native_terminal(item):
+    """Fail closed; never forward arbitrary strings, keys, errors or bodies."""
+    fields = {'schema', 'stage', 'reason', 'exitCode', 'controllerAcknowledged', 'acceptanceClaimed'}
+    if (not isinstance(item, dict) or set(item) != fields
+            or item.get('schema') != 'A09_NATIVE_SUPERVISOR_TERMINAL_V1'
+            or type(item.get('stage')) is not str or item['stage'] not in NATIVE_STAGES
+            or type(item.get('reason')) is not str or item['reason'] not in NATIVE_REASONS
+            or not (item.get('exitCode') is None or
+                    type(item['exitCode']) is int and 0 <= item['exitCode'] <= 255)
+            or type(item.get('controllerAcknowledged')) is not bool
+            or item.get('acceptanceClaimed') is not False):
+        return None
+    return {'schema': 'A09_NATIVE_SUPERVISOR_TERMINAL_V1',
+            'stage': item['stage'], 'reason': item['reason'], 'exitCode': item['exitCode'],
+            'controllerAcknowledged': item['controllerAcknowledged'], 'acceptanceClaimed': False}
 
 
 def event(kind, data=None):
@@ -41,6 +63,7 @@ def signal_handler(_signum, _frame):
 
 def relay(name, stream):
     """No arbitrary native/transport output is copied into provider logs."""
+    global native_diagnostic_logged
     buffer = bytearray()
     while True:
         raw = stream.read1(4096)
@@ -75,6 +98,14 @@ def relay(name, stream):
             schema = item.get('schema')
             if name == 'ingress' and schema == 'A09_HOST_SEAL_REQUEST_V1':
                 event('seal', 'INGRESS_BUDGET_OR_EXPIRY')
+            elif name == 'native' and schema == 'A09_NATIVE_SUPERVISOR_TERMINAL_V1':
+                projected = project_native_terminal(item)
+                if projected is not None:
+                    with lock:
+                        emit = not native_diagnostic_logged
+                        native_diagnostic_logged = True
+                    if emit:
+                        print(json.dumps(projected, separators=(',', ':')), flush=True)
             elif name == 'native' and schema in ('A09_CUSTODY_CIPHERTEXT_V1', 'A09_CUSTODY_INDEX_V1'):
                 with lock:
                     counts['custodyBytes'] += len(line) + 1

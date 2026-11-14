@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Credentialless image-build check of the actual root-to-UID1001 ingress graph.
 
-Only public synthetic host settings are created, then removed. Native services,
+Only public synthetic host settings and directory sentinels are created, then removed. Native services,
 transport, authentication, retained private inputs and owner actions never start.
 """
 import argparse
@@ -62,6 +62,28 @@ s=importlib.util.spec_from_file_location('exact_preflight','/control/owner_revie
 m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
 m.write_host_bootstrap(sys.stdin.buffer.read(4*1024*1024+1))
 """
+    synthetic_directories = [root / 'inputs/a08', root / 'private/media']
+    require(all(not path.exists() for path in synthetic_directories), 'FRESH_DIRECTORY_FIXTURES_REQUIRED')
+    directory_helper = """import fs from 'node:fs';
+import {directory} from '/control/owner_review/review-transport.mjs';
+for(const dir of ['/inputs/a08','/private/media']){
+ directory(dir,{create:true});
+ const fd=fs.openSync(dir+'/credentialless-sentinel',fs.constants.O_WRONLY|fs.constants.O_CREAT|fs.constants.O_EXCL|fs.constants.O_NOFOLLOW,0o600);
+ try{fs.writeFileSync(fd,'PUBLIC_SYNTHETIC_DIRECTORY_SENTINEL');fs.fchownSync(fd,0,1001);fs.fchmodSync(fd,0o440);}finally{fs.closeSync(fd);}
+}
+"""
+    directory_reader = """import os,pathlib
+assert os.getuid()==1001 and os.getgid()==1001
+for name in ('/inputs/a08','/private/media'):
+ directory=pathlib.Path(name)
+ assert (directory/'credentialless-sentinel').read_bytes()==b'PUBLIC_SYNTHETIC_DIRECTORY_SENTINEL'
+ try:
+  (directory/'unpermitted-write').write_bytes(b'MUST_NOT_WRITE')
+ except PermissionError:
+  pass
+ else:
+  raise AssertionError('NATIVE_DIRECTORY_WRITE_NOT_DENIED')
+"""
     child = None
     started = time.monotonic()
     try:
@@ -73,6 +95,21 @@ m.write_host_bootstrap(sys.stdin.buffer.read(4*1024*1024+1))
         require(info.st_uid == 0 and info.st_gid == 1001
                 and stat.S_IMODE(info.st_mode) == 0o440 and bootstrap.read_bytes() == raw,
                 'ACTUAL_ROOT_GROUP_BOOTSTRAP_READBACK')
+        prepared = subprocess.run(['/usr/local/bin/node', '--input-type=module', '-e', directory_helper],
+                                  stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                  env=env, preexec_fn=enter_image, timeout=5)
+        require(prepared.returncode == 0, 'EXACT_TRANSPORT_DIRECTORY_HELPER_FAILED')
+        for path in synthetic_directories:
+            info = path.stat()
+            require(info.st_uid == 0 and info.st_gid == 1001
+                    and stat.S_IMODE(info.st_mode) == 0o750, 'ACTUAL_ROOT_GROUP_DIRECTORY_READBACK')
+        read = subprocess.run(['/usr/bin/setpriv', '--reuid=1001', '--regid=1001',
+                               '--init-groups', '--no-new-privs', '--bounding-set=-all',
+                               '--inh-caps=-all', '--ambient-caps=-all',
+                               '/usr/bin/python3', '-I', '-B', '-c', directory_reader],
+                              stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                              env=env, preexec_fn=enter_image, timeout=5)
+        require(read.returncode == 0, 'ACTUAL_UID1001_INPUT_AND_MEDIA_READ_WRITE_FENCE')
         with socket.socket() as probe:
             require(probe.connect_ex(('127.0.0.1', 8080)) != 0, 'TEST_PORT_MUST_START_CLOSED')
         command = ['/usr/bin/setpriv', '--reuid=1001', '--regid=1001',
@@ -119,6 +156,9 @@ m.write_host_bootstrap(sys.stdin.buffer.read(4*1024*1024+1))
                   'inheritedUmask': '0077', 'bootstrapMode': '0440', 'bootstrapUID': 0,
                   'bootstrapGID': 1001, 'actualChildUID': 1001, 'actualChildGID': 1001,
                   'actualNoNewPrivileges': True, 'exactPreflightWriterUsed': True,
+                  'exactTransportDirectoryWriterUsed': True, 'syntheticDirectoryMode': '0750',
+                  'nativeUID1001InputAndMediaRead': True, 'nativeUID1001DirectoryWriteDenied': True,
+                  'transportSHA256': sha(control / 'review-transport.mjs'),
                   'fullFreshStaticAssetPathCount': len(manifest['staticAssetPaths']),
                   'nativeRouteCount': len(manifest['ingressRoutes']), 'healthStatus': status,
                   'portClosedAfterCleanup': True, 'runtimeManifestSHA256': sha(manifest_file),
@@ -131,6 +171,13 @@ m.write_host_bootstrap(sys.stdin.buffer.read(4*1024*1024+1))
         if child is not None and child.poll() is None:
             os.killpg(child.pid, signal.SIGKILL)
             child.wait(timeout=2)
+        for directory in synthetic_directories:
+            if directory.exists():
+                sentinel = directory / 'credentialless-sentinel'
+                if sentinel.exists():
+                    sentinel.unlink()
+                require(not any(directory.iterdir()), 'NO_UNEXPECTED_DIRECTORY_FIXTURE')
+                directory.rmdir()
         if bootstrap.exists():
             bootstrap.unlink()
         require(not any((root / 'private').iterdir()), 'NO_FIXTURE_LEFT_IN_IMAGE')

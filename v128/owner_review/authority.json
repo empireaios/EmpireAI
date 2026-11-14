@@ -1,12 +1,12 @@
 {
   "schema": "A09_STANDING_TECHNICAL_AUTHORITY_REFERENCE_V1",
   "campaign": "V116",
-  "ownerDirective": "V130",
+  "ownerDirective": "V132",
   "standingAuthorityId": "GRAND-KING-V112-MASTER-20261111",
   "standingAuthoritySHA256": "2e54ce38da8c021b0211351bd9524f3dc2ab99cc48466dc10a0465748a58fc66",
-  "operationIdentity": "V130-A10-PRIVATE-REVIEW-A01-20261114",
+  "operationIdentity": "V132-A10-PRIVATE-REVIEW-A01-20261114",
   "ownerEmailSHA256": "a437be3d7f2e7927959c2be2040016464de75d69529d9abd197e47a8caa21267",
-  "scope": "Publish reviewed source and establish one finite isolated Railway private owner-review session under the standing technical and cumulative financial authority. A manually adjudicated corrected build2 follows the terminal pre-runtime build1 failure under the same aggregate reservation and a separately verified new deployment window fixed once at attach, no longer than20minutes. The failed old deployment and its original expiry remain immutable; no automatic retry is authorized. Restore the authenticated A08 media version2 database and exact original/revised assets without replaying preparation or importing authentication. Present native EmpireAI comparison and history to the actual owner through manual native login with fresh privately delivered credentials. Permit one genuine owner's explicit acknowledgement, internal approval or rejection bound to the exact version, candidate and batch. No agent may perform or invent the personal review choice. Capture the actual resulting state in recipient-encrypted evidence with independent durable readback before closing the requirement. Maximum20minutes absolute lifetime, no restart or automatic retry, bounded resource and response limits, no persistent volume or production access. Preserve all previous accepted evidence and original criteria.",
+  "scope": "One explicitly authorized replacement encrypted private transfer to the freshly verified isolated V132 Railway successor, using the retained corrected source and four-row A08 version2 dataset with exact original/revised images. Fresh temporary least-privilege review credentials only. One finite20minute native review session plus5second forced-stop grace, no automatic retry or extension, under the reconciled existing USD5 aggregate obligation with zero additional allocation. Actual King personally performs the version-specific internal review; no model decision, external publication, production access or commerce activation. Independently retain encrypted evidence and verify cleanup and exact service deletion.",
   "originalTargetPredicateIds": [
     "A10-05"
   ],
@@ -20,15 +20,25 @@
   "commerce": "LOCKED",
   "pillow": "NOT_BORN",
   "work9": "INACTIVE",
-  "explicitTransferAuthorizationSHA256": "b79e9197e51f8c5c9152a2c4d91d80b7f006f84533857145f95ae01491f3e811",
+  "explicitTransferAuthorizationSHA256": "2dc55f3f8512067b8e5ea57631e3d82291567f1eb50c400113d169432873a16f",
   "explicitTransferAuthorizationScope": "Exact minimized A08 four-row database, exact original and revised images, and fresh isolated temporary review credentials only, within the owner-authorized destination and finite lease. Genuine personal media decision remains solely the owner's.",
-  "manualSuccessorId": "V130-A10-PRIVATE-REVIEW-A01-20261114.build2",
-  "manualBuildAttempt": 2,
   "privateSessionAttempt": 1,
   "maximumSuccessfulPrivateTransfers": 1,
-  "manualSuccessorFinancialGateSHA256": "532ca1381535b9903ccc0af2102c382627086afd1740986b924301cca4659a49",
-  "previousFailedDeploymentId": "e7d16214-cc83-4fcb-812f-510066c8a949",
-  "controlledSuccessorWindowReviewSHA256": "df5880179332c0a4c13a98da43672dcb07a000b4d877c7a33d44c9df0e68a226",
   "newDeploymentExpiryBoundAtLaunch": true,
-  "priorAbsoluteExpiresAtMs": 1794619451652
+  "executionAttempt": 1,
+  "buildAttempt": 1,
+  "maximumPrivateTransferAttempts": 1,
+  "automaticRetries": 0,
+  "leaseExtensions": 0,
+  "maximumRuntimeSeconds": 1200,
+  "killGraceSeconds": 5,
+  "maximumAggregateExposureUSD": 5,
+  "additionalAllocationUSD": 0,
+  "financialGateSHA256": "ac2d805b9c39c74189d65505a027f55c90bc436c71877de0c873abb89ea43c60",
+  "destination": {
+    "projectId": "afedd0ad-ebc1-45c1-b4aa-9782b5251ca3",
+    "environmentId": "dd4591b0-1d8e-4561-812d-33c03b9d9efa",
+    "serviceId": "df5d6c1f-178f-41b6-8eb5-c7870f9f06d2",
+    "origin": "https://a10-v132-owner-review-isolated-review.up.railway.app"
+  }
 }

@@ -19,14 +19,23 @@ def write_new(path,value):
  with path.open('xb')as f:f.write(raw)
  path.chmod(0o444);assert path.read_bytes()==raw;return raw
 
+def validate_build_admission(authority,reservation):
+ assert authority.get('operationIdentity')==reservation.get('operationIdentity')=='V132-A10-PRIVATE-REVIEW-A01-20261114','EXACT_V132_OPERATION'
+ assert authority.get('ownerDirective')=='V132'and authority.get('explicitTransferAuthorizationSHA256')=='2dc55f3f8512067b8e5ea57631e3d82291567f1eb50c400113d169432873a16f','EXACT_V132_GRANT'
+ expected={'status': 'RESERVED_IN_CANONICAL_LEDGER', 'gitPublicationIdentity': 'work8/v132-media-owner-review-20261114-a01', 'savedLedgerVersion': 90, 'savedLedgerSHA256': '01a6291e667fb4184d6aeae89d7f1d073d1943be44a679acc897bc366ee07606', 'independentReadbackSHA256': '01a6291e667fb4184d6aeae89d7f1d073d1943be44a679acc897bc366ee07606', 'financialReservationId': 'V130-A10-PRIVATE-REVIEW-A01-20261114', 'executionAttempt': 1, 'buildAttempt': 1, 'privateSessionAttempt': 1, 'maximumSuccessfulPrivateTransfers': 1, 'maximumPrivateTransferAttempts': 1, 'automaticRetries': 0, 'leaseExtensions': 0, 'maximumAggregateExposureUSD': 5, 'additionalAllocationUSD': 0, 'financialGateSHA256': 'ac2d805b9c39c74189d65505a027f55c90bc436c71877de0c873abb89ea43c60', 'expectedCountedExposureUSD': 93, 'maximumRuntimeSeconds': 1200, 'killGraceSeconds': 5, 'replicas': 1, 'vCPUs': 1, 'memoryGB': 2, 'restartPolicyType': 'NEVER', 'cumulativeCeilingUSD': 1000, 'newDeploymentExpiryBoundAtLaunch': True}
+ for key,value in expected.items():
+  assert type(reservation.get(key))is type(value)and reservation.get(key)==value,('EXACT_V132_FINANCIAL_BINDING',key)
+ for key,value in {'maximumSuccessfulPrivateTransfers':1,'maximumPrivateTransferAttempts':1,'automaticRetries':0,'leaseExtensions':0,'additionalAllocationUSD':0,'maximumAggregateExposureUSD':5,'maximumRuntimeSeconds':1200,'killGraceSeconds':5}.items():
+  assert type(authority.get(key))is int and authority.get(key)==value,('EXACT_V132_SCOPE',key)
+ assert authority.get('destination')=={'projectId': 'afedd0ad-ebc1-45c1-b4aa-9782b5251ca3', 'environmentId': 'dd4591b0-1d8e-4561-812d-33c03b9d9efa', 'serviceId': 'df5d6c1f-178f-41b6-8eb5-c7870f9f06d2', 'origin': 'https://a10-v132-owner-review-isolated-review.up.railway.app'},'EXACT_V132_DESTINATION'
+ assert authority.get('financialGateSHA256')==reservation['financialGateSHA256'],'EXACT_V132_FINANCIAL_GATE'
+
 def main():
  p=argparse.ArgumentParser();p.add_argument('--runtime-root',required=True);p.add_argument('--repository',required=True);p.add_argument('--metadata-directory',required=True);p.add_argument('--publication-commit',required=True);a=p.parse_args()
  root=pathlib.Path(a.runtime_root).resolve();repo=pathlib.Path(a.repository).resolve();meta=pathlib.Path(a.metadata_directory).resolve();commit=a.publication_commit
  assert re.fullmatch('[a-f0-9]{40}',commit),'ACTUAL_PUBLICATION_COMMIT_REQUIRED'
  control=root/'control/owner_review';source=control/'source-manifest.json';assert source.is_file()and not source.is_symlink(),'FROZEN_SOURCE_MANIFEST_REQUIRED'
- authority=json.loads((control/'authority.json').read_bytes());reservation=json.loads((control/'reservation.json').read_bytes());assert authority['operationIdentity']==reservation['operationIdentity']=='V130-A10-PRIVATE-REVIEW-A01-20261114'
- assert reservation['status']=='RESERVED_IN_CANONICAL_LEDGER'and reservation['savedLedgerVersion']==84 and reservation['savedLedgerSHA256']=='78f75c87b50707067ae8718f19ef219b063f8262c6112e14ba069ce5fa0a29de' and reservation['independentReadbackSHA256']==reservation['savedLedgerSHA256'],'ACTUAL_SAVED_FINANCIAL_BINDING_REQUIRED'
- assert reservation['financialReservationId']=='V130-A10-PRIVATE-REVIEW-A01-20261114'and reservation['executionAttempt']==2 and reservation['buildAttempt']==2 and reservation['privateSessionAttempt']==1 and reservation['maximumSuccessfulPrivateTransfers']==1 and reservation['manualSuccessorId']=='V130-A10-PRIVATE-REVIEW-A01-20261114.build2' and reservation['priorAbsoluteExpiresAtMs']==1794619451652 and reservation['newDeploymentExpiryBoundAtLaunch']is True and reservation['previousFailedDeploymentId']=='e7d16214-cc83-4fcb-812f-510066c8a949' and reservation['controlledSuccessorWindowReviewSHA256']=='df5880179332c0a4c13a98da43672dcb07a000b4d877c7a33d44c9df0e68a226' and reservation['additionalAllocationUSD']==0,'EXACT_SUCCESSOR_FINANCIAL_RESERVATION_REQUIRED'
+ authority=json.loads((control/'authority.json').read_bytes());reservation=json.loads((control/'reservation.json').read_bytes());validate_build_admission(authority,reservation)
  assert source.read_bytes()==(repo/'v128/owner_review/source-manifest.json').read_bytes(),'SOURCE_MANIFEST_COPY_IDENTITY'
  source_identity=json.loads(source.read_bytes());assert source_identity['schema']=='A09_REVIEW_SOURCE_MANIFEST_V1'and source_identity['retainedApplicationCommit']==APPLICATION
  assert sha(root/'usr/local/bin/node')==NODE

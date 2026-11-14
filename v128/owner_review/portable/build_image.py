@@ -42,13 +42,13 @@ def verify_source_manifest():
     assert manifest['schema'] == 'A09_REVIEW_SOURCE_MANIFEST_V1'
     assert manifest['selfExcluded'] is True
     expected = {
-        'operationIdentity': 'V130-A10-PRIVATE-REVIEW-A01-20261114',
-        'branch': 'work8/v130-media-owner-review-20261114-a01',
-        'parentCommit': '3cc0cca5b0a72775d9f38d1d71779c9b79bec495',
-        'parentTree': 'f7375d0fd85059c34760c58ff0462374bf565cad',
+        'operationIdentity': 'V132-A10-PRIVATE-REVIEW-A01-20261114',
+        'branch': 'work8/v132-media-owner-review-20261114-a01',
+        'parentCommit': '60127c4d0c5aa742d6f31bcf4b6b7736d6012e03',
+        'parentTree': 'e692a0a3221891e9a907202d6f6b1330c0482d89',
         'retainedApplicationCommit': '6c1e63ba20619ee480742fd87dc810ca93152e22',
         'retainedA08RunId': '43434940694',
-        'completeFrontendSourceSHA256': 'fd23e8c8aa5efba56886e568d9266cf64566263f0301c1f28da28e5caaa41bcc',
+        'completeFrontendSourceSHA256': 'ae616150d925c3055ebcb0b4dc1143c098bcb1b74b9b64b6922925bb2ea3fac5',
         'completeFrontendFileCount': 962,
     }
     assert all(manifest.get(key) == value for key, value in expected.items()), 'EXACT_SOURCE_IDENTITY'
@@ -75,7 +75,8 @@ def verify_source_manifest():
         assert sha(path) == row['sha256'], 'SOURCE_PIN_MISMATCH'
     required = ['v128/owner_review/authority.json', 'v128/owner_review/reservation.json',
                 'v128/owner_review/host/root-supervisor.py', 'v128/owner_review/host/terminal-cleanup.py',
-                'v128/owner_review/host/root-preflight.py', 'vercel.json', 'empireai-web/vercel.json',
+                'v128/owner_review/host/root-preflight.py', 'v128/owner_review/native-diagnostics.mjs',
+                'vercel.json', 'empireai-web/vercel.json',
                 'v126/native_private/raw_blob_transport.py', 'v126/native_private/retained-blob-manifest.json']
     assert all(name in seen for name in required), 'CRITICAL_SOURCE_PIN_MISSING'
     return {'sourceManifestSHA256': sha(manifest_path), 'sourceFileCount': len(rows),

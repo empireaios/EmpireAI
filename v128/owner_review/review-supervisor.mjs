@@ -5,8 +5,14 @@ import fs from 'node:fs';
 import net from 'node:net';
 import {spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
+import {projectNativeTerminal} from './native-diagnostics.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const CONTROL='/control/owner_review',started=Date.now();
+function emitTerminal(stage,reason,exitCode,acknowledged){
+ const record=projectNativeTerminal(stage,reason,exitCode,acknowledged);
+ if(record)fs.writeSync(1,JSON.stringify(record)+'\n');
+}
+function bootstrap(){
 assert.equal(process.getuid(),1001);assert.equal(process.getgid(),1001);
 for(const key of ['NODE_OPTIONS','NODE_PATH','LD_PRELOAD','LD_LIBRARY_PATH'])assert.ok(!process.env[key],'UNTRUSTED_RUNTIME_ENV');
 function json(file,max){const s=fs.lstatSync(file);assert(s.isFile()&&!s.isSymbolicLink()&&s.nlink===1&&s.size<=max);return JSON.parse(fs.readFileSync(file,'utf8'));}
@@ -18,8 +24,14 @@ assert.equal(runtime.applicationCommit,'6c1e63ba20619ee480742fd87dc810ca93152e22
 assert.equal(sha(fs.readFileSync(CONTROL+'/source-manifest.json')),cfg.sourceManifestSHA256);
 assert(!fs.existsSync('/state/review'),'RESTORE_TARGET_ALREADY_EXISTS');
 assert(!fs.existsSync('/state/review-export'),'EXPORT_TARGET_ALREADY_EXISTS');
+return cfg;
+}
+let cfg;
+try{cfg=bootstrap();}catch{emitTerminal('BOOTSTRAP','NATIVE_BOOTSTRAP_FAILED',null,false);process.exit(1);}
 const env={PATH:'/usr/local/bin:/usr/bin:/bin',HOME:'/tmp',LANG:'C.UTF-8',TZ:'UTC',NODE_ENV:'production'};
 const children=[];let finalizing=false,soft=false,acknowledged=false,ciphertextLogComplete=false;
+let stage='RESTORE',phaseExitCode=null;
+const childStages=Object.freeze({restore:'RESTORE',redis:'REDIS',backend:'BACKEND',frontend:'FRONTEND'});
 function child(label,binary,args,extra={},cwd='/'){
  const p=spawn(binary,args,{cwd,env:{...env,...extra},stdio:['ignore','pipe','pipe','ipc']});const row={label,p,closed:false,exitCode:null};children.push(row);
  let pending='',bytes=0;
@@ -33,9 +45,9 @@ function child(label,binary,args,extra={},cwd='/'){
   }
  });
  let errorBytes=0;p.stderr.on('data',b=>{errorBytes+=b.length;if(errorBytes>1024*1024)p.kill('SIGKILL');});
- p.on('error',()=>void finish('CHILD_START_FAILURE'));
+ p.on('error',()=>void finish('CHILD_START_FAILURE',childStages[label],null));
  p.on('message',message=>{if(label==='backend'&&message?.type==='ciphertext-log-complete'&&/^[a-f0-9]{64}$/.test(message.exportSHA256))ciphertextLogComplete=true;});
- p.on('close',code=>{row.closed=true;row.exitCode=code;if(!finalizing&&label!=='restore')void finish('EARLY_CHILD_EXIT');});
+ p.on('close',code=>{row.closed=true;row.exitCode=code;if(!finalizing&&label!=='restore')void finish('EARLY_CHILD_EXIT',childStages[label],code);});
  return row;
 }
 async function ready(port,timeout=15000){const deadline=Math.min(Date.now()+timeout,cfg.expiresAtMs-90000);while(Date.now()<deadline){
@@ -43,7 +55,7 @@ async function ready(port,timeout=15000){const deadline=Math.min(Date.now()+time
  await new Promise(resolve=>setTimeout(resolve,50));
 }throw Error('NATIVE_READINESS_DEADLINE');}
 function softSeal(){if(soft)return;soft=true;for(const row of children)if(row.label==='backend'&&!row.closed)row.p.kill('SIGUSR1');}
-async function finish(reason){if(finalizing)return;finalizing=true;softSeal();
+async function finish(reason,terminalStage=stage,exitCode=null){if(finalizing)return;finalizing=true;softSeal();
  const hard=['HARD_DRAIN','ABSOLUTE_EXPIRY','INTERRUPTED'].includes(reason);
  if(!acknowledged&&hard)await new Promise(resolve=>setTimeout(resolve,4000));
  if(!acknowledged&&!hard){
@@ -53,7 +65,7 @@ async function finish(reason){if(finalizing)return;finalizing=true;softSeal();
  for(const row of [...children].reverse())if(!row.closed)row.p.kill('SIGTERM');
  await new Promise(resolve=>setTimeout(resolve,250));
  for(const row of children)if(!row.closed)row.p.kill('SIGKILL');
- process.stdout.write(JSON.stringify({schema:'A09_NATIVE_SUPERVISOR_TERMINAL_V1',reason,controllerAcknowledged:acknowledged,acceptanceClaimed:false})+'\n');
+ emitTerminal(terminalStage,reason,exitCode,acknowledged);
  process.exit(acknowledged?0:1);
 }
 process.on('SIGUSR1',softSeal);process.on('SIGTERM',()=>void finish('HARD_DRAIN'));process.on('SIGINT',()=>void finish('INTERRUPTED'));
@@ -63,9 +75,13 @@ setTimeout(()=>void finish('ABSOLUTE_EXPIRY'),Math.max(1,cfg.expiresAtMs-Date.no
 try{
  const restored=child('restore','/usr/local/bin/python3',[CONTROL+'/restore_review.py','--source','/inputs/a08','--target','/state/review','--receipt','/evidence/restore-readonly.json','--manifest',CONTROL+'/retained-a08-baseline.json']);
  const restoreTimer=setTimeout(()=>restored.p.kill('SIGKILL'),5000);
- const exit=await new Promise(resolve=>restored.p.on('close',resolve));clearTimeout(restoreTimer);assert.equal(exit,0,'RESTORE_FAILED');
+ const exit=await new Promise(resolve=>restored.p.on('close',resolve));clearTimeout(restoreTimer);phaseExitCode=exit;assert.equal(exit,0,'RESTORE_FAILED');
+ stage='REDIS';phaseExitCode=null;
  child('redis','/usr/bin/redis-server',['--bind','127.0.0.1','--port','46379','--save','','--appendonly','no','--protected-mode','yes','--maxmemory','33554432','--maxmemory-policy','noeviction']);await ready(46379);
+ stage='BACKEND';
  child('backend','/usr/local/bin/node',['--max-old-space-size=512',CONTROL+'/review-backend.mjs']);await ready(4000);await ready(4001);
+ stage='FRONTEND';
  child('frontend','/usr/local/bin/node',['--max-old-space-size=768','/frontend/app/server.js'],{HOSTNAME:'127.0.0.1',PORT:'43117',BRAIN_API_URL:'http://127.0.0.1:4000',NEXT_TELEMETRY_DISABLED:'1',EMPIRE_CONNECTOR_OWNER_REVIEW_MODE:'RESTORED_A08_V2',EMPIRE_OWNER_REVIEW_ORIGIN:cfg.origin},'/frontend/app');await ready(43117,30000);
+ stage='READY';
  process.stdout.write(JSON.stringify({schema:'A09_NATIVE_REVIEW_READY_V1',reviewClosesAtMs:cfg.expiresAtMs-90000,hardExpiresAtMs:cfg.expiresAtMs,restoredVersion:2,ownerAuthenticated:false,ownerActionObserved:false,acceptanceClaimed:false})+'\n');
-}catch{await finish('NATIVE_STARTUP_FAILED');}
+}catch{await finish('NATIVE_STARTUP_FAILED',stage,phaseExitCode);}

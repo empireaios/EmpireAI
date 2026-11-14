@@ -18,7 +18,7 @@ for pin in current['overlays']:
  p=repo/pin['repositoryPath'];data=repo_bytes(pin['repositoryPath']);sha=hashlib.sha256(data).hexdigest()
  if pin['repositoryPath']not in changes+['empireai-web/vercel.json']:assert len(data)==pin['bytes']and sha==pin['sha256']
  pin.update(bytes=len(data),sha256=sha);target=source/pin['frontendPath'];target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
-assert json.loads((source/'vercel.json').read_bytes())['git']['deploymentEnabled']['work8/v130-media-owner-review-20261114-a01']is False
+assert json.loads((source/'vercel.json').read_bytes())['git']['deploymentEnabled']['work8/v132-media-owner-review-20261114-a01']is False
 final=tree(source);assert len(final)==962 and len(current['overlays'])==13
 assert hashlib.sha256((source/'package-lock.json').read_bytes()).hexdigest()==pins['packageLockSHA256']
 current.update(schema='A09_COMPLETE_FRONTEND_SOURCE_BUILD_INPUTS_V1',changedSourceFileCount=len(final),changedSourceTreeSHA256=digest_rows(final),

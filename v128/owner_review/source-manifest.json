@@ -1,9 +1,9 @@
 {
   "schema": "A09_REVIEW_SOURCE_MANIFEST_V1",
-  "operationIdentity": "V130-A10-PRIVATE-REVIEW-A01-20261114",
-  "branch": "work8/v130-media-owner-review-20261114-a01",
-  "parentCommit": "3cc0cca5b0a72775d9f38d1d71779c9b79bec495",
-  "parentTree": "f7375d0fd85059c34760c58ff0462374bf565cad",
+  "operationIdentity": "V132-A10-PRIVATE-REVIEW-A01-20261114",
+  "branch": "work8/v132-media-owner-review-20261114-a01",
+  "parentCommit": "60127c4d0c5aa742d6f31bcf4b6b7736d6012e03",
+  "parentTree": "e692a0a3221891e9a907202d6f6b1330c0482d89",
   "files": [
     {
       "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
@@ -87,8 +87,8 @@
     },
     {
       "path": "empireai-web/vercel.json",
-      "bytes": 1410,
-      "sha256": "d7e173fc8886c0854010809ccb7eeaeabf61137c746ef797cefa4943d470c06d"
+      "bytes": 1469,
+      "sha256": "cdc32e42f6c2f465a119138317ec2ef18c94769848a3f0745fcb45172b7657a4"
     },
     {
       "path": "v126/native_private/evidence-envelope-runtime-pin.json",
@@ -152,8 +152,8 @@
     },
     {
       "path": "v128/owner_review/authority.json",
-      "bytes": 3202,
-      "sha256": "d59d7b5272122817d21a733ff15536c925d7db71dd9f1ed2fb46886ecc448da8"
+      "bytes": 2813,
+      "sha256": "ad77d9d9c79005b316f070d9588acd2fb19fc500ee79c9a1b507a7b795801bb6"
     },
     {
       "path": "v128/owner_review/backend-build-receipt.json",
@@ -208,7 +208,7 @@
     {
       "path": "v128/owner_review/controller-transport-public-key.pem",
       "bytes": 113,
-      "sha256": "93024791d21801bd3f416221417d88d5fb069be787592e8987e0affee6f6530c"
+      "sha256": "26cc28eaab817d611a144f54e502c1659cab7d9cee94cbec3bdda0018da90c10"
     },
     {
       "path": "v128/owner_review/controller_encrypt_review.mjs",
@@ -242,13 +242,13 @@
     },
     {
       "path": "v128/owner_review/host/root-preflight.py",
-      "bytes": 12819,
-      "sha256": "5a1c6daa8303d7738ccf83bcfe7371facab8e184d7c9387b622a4ef53160aa11"
+      "bytes": 15254,
+      "sha256": "95622ed688211630ee06a8072f16ef48687b1e2e4a0fdcf4588d63fa5afc23a2"
     },
     {
       "path": "v128/owner_review/host/root-supervisor.py",
-      "bytes": 10769,
-      "sha256": "49dce902a33612ef41e38f41af0c8bc641e0af1f1a4815b2410c0fcb8a26fd99"
+      "bytes": 12695,
+      "sha256": "e35fed457474c73ea2567836fe4c1325cb24d1d5844edfe33de630526fd6dff3"
     },
     {
       "path": "v128/owner_review/host/root-watchdog.py",
@@ -274,6 +274,11 @@
       "path": "v128/owner_review/host/test_watchdog.py",
       "bytes": 1199,
       "sha256": "e3bfca415a82a99f472ba9b1f1933fdf370d90c1d356fe1a19c036cdd51ed956"
+    },
+    {
+      "path": "v128/owner_review/native-diagnostics.mjs",
+      "bytes": 888,
+      "sha256": "d6b2ff6f888e9bb5fc3cfe5259bfff96aabf0607fdfd9d739c9b865bca98186b"
     },
     {
       "path": "v128/owner_review/native-tier0-session-routes.mjs",
@@ -302,8 +307,8 @@
     },
     {
       "path": "v128/owner_review/portable/build_image.py",
-      "bytes": 12206,
-      "sha256": "40393f41e46628cfea83d77d547416f8fd8b7298c5ebd91947588348b8f65e81"
+      "bytes": 12266,
+      "sha256": "25d4bcb06f90209cb78e3f2729de34f09e0fa0562bab0a4df5ab25f88870bb5f"
     },
     {
       "path": "v128/owner_review/portable/deny_build_network.py",
@@ -317,18 +322,18 @@
     },
     {
       "path": "v128/owner_review/portable/generate_runtime_manifest.py",
-      "bytes": 9331,
-      "sha256": "0c715e56165bae9d28b50b665f8496edbc955aba6cb830dc39212abc73737222"
+      "bytes": 10454,
+      "sha256": "e5d0b0750ad720bd14fc947a313264626b229eb0e9363bf93a85bfe97dd360ac"
     },
     {
       "path": "v128/owner_review/portable/host_image_smoke.py",
-      "bytes": 7503,
-      "sha256": "e050cfe6c74ecd010d5ffdd91f8652609880633730877a8cb52c02f62ddda7a1"
+      "bytes": 10428,
+      "sha256": "869b266b14c936a3c1e19a5b4e70d88209fa5494388acf67c8d9a36eb9d689f4"
     },
     {
       "path": "v128/owner_review/portable/prepare_frontend_source.py",
       "bytes": 3080,
-      "sha256": "b9c68fa412684b42f2aa9e6186dd14e1956891a6aaaa10d4cd4d0e78609d5b34"
+      "sha256": "fa073d0f91f05bd60d3331d1118f5d853f385e03a7fb32f076a102c3e47ad6db"
     },
     {
       "path": "v128/owner_review/portable/railway.json",
@@ -347,8 +352,8 @@
     },
     {
       "path": "v128/owner_review/reservation.json",
-      "bytes": 1381,
-      "sha256": "740d2dd1cf56a1db0756227743fd7f848e8ae57722b48204fc01b83df71a0e1c"
+      "bytes": 1391,
+      "sha256": "203be673f49add5ec6ebdcf78f6b56e4bd94028731f58d6fe48d8f8dc49803e6"
     },
     {
       "path": "v128/owner_review/restore_review.py",
@@ -368,7 +373,7 @@
     {
       "path": "v128/owner_review/review-backend.mjs",
       "bytes": 13743,
-      "sha256": "3f39118561a108f56d108f76ee77f5d4b986ac1218ad75899ef5f3679940dbe1"
+      "sha256": "ecca18188c0f1af2dc3441c1287259d4a3293998b93d5461b6a35dd0e456cce5"
     },
     {
       "path": "v128/owner_review/review-export.mjs",
@@ -382,13 +387,13 @@
     },
     {
       "path": "v128/owner_review/review-supervisor.mjs",
-      "bytes": 6799,
-      "sha256": "7575ffc0ce4790d24458d421681bd3c2f3e2ceee62b69a155e94589272a05a19"
+      "bytes": 7463,
+      "sha256": "516967e2ed422595d732e94df0d5f3441e07d1ecd08728013235e99cdac5cc57"
     },
     {
       "path": "v128/owner_review/review-transport.mjs",
-      "bytes": 23082,
-      "sha256": "9098a172450f3dc7d8e88b474712feea476c24cfd3e597f3417dbe9e58639c30"
+      "bytes": 23762,
+      "sha256": "ebf1a1cfb25d966cc808ca588dc0ad9dfceaf4a0c7583c3fada830d030935f50"
     },
     {
       "path": "v128/owner_review/seal_review.py",
@@ -397,13 +402,13 @@
     },
     {
       "path": "vercel.json",
-      "bytes": 1589,
-      "sha256": "92a5a4a44c85aa2a49c480a0502952e51c5136fdc9e2e3d841a5270816550083"
+      "bytes": 1648,
+      "sha256": "4336230d855d5ec79bc40a9e89b877e6a8290fa5adf549fd807c67e1073fd92a"
     }
   ],
   "selfExcluded": true,
   "retainedApplicationCommit": "6c1e63ba20619ee480742fd87dc810ca93152e22",
   "retainedA08RunId": "43434940694",
-  "completeFrontendSourceSHA256": "fd23e8c8aa5efba56886e568d9266cf64566263f0301c1f28da28e5caaa41bcc",
+  "completeFrontendSourceSHA256": "ae616150d925c3055ebcb0b4dc1143c098bcb1b74b9b64b6922925bb2ea3fac5",
   "completeFrontendFileCount": 962
 }
