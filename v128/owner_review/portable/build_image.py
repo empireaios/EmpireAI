@@ -44,8 +44,8 @@ def verify_source_manifest():
     expected = {
         'operationIdentity': 'V130-A10-PRIVATE-REVIEW-A01-20261114',
         'branch': 'work8/v130-media-owner-review-20261114-a01',
-        'parentCommit': '2562a2de04e7565846739f517bb5bee43e5e9d36',
-        'parentTree': '6c3d16231c3a6f89360fab92a422d5fbaec0cb6e',
+        'parentCommit': '3cc0cca5b0a72775d9f38d1d71779c9b79bec495',
+        'parentTree': 'f7375d0fd85059c34760c58ff0462374bf565cad',
         'retainedApplicationCommit': '6c1e63ba20619ee480742fd87dc810ca93152e22',
         'retainedA08RunId': '43434940694',
         'completeFrontendSourceSHA256': 'fd23e8c8aa5efba56886e568d9266cf64566263f0301c1f28da28e5caaa41bcc',
@@ -84,6 +84,7 @@ def verify_source_manifest():
 
 def run(label, argv, timeout):
     # Build commands receive no provider or owner credential environment.
+    # Bounded failure tails therefore contain only public credentialless build output.
     env = {'PATH': '/usr/local/bin:/usr/bin:/bin', 'LANG': 'C.UTF-8', 'TZ': 'UTC',
            'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONUNBUFFERED': '1'}
     start = time.monotonic()
@@ -93,7 +94,10 @@ def run(label, argv, timeout):
     selector = selectors.DefaultSelector()
     selector.register(child.stdout, selectors.EVENT_READ)
     total = 0
+    tail = b''
+    failure = None
     log = WORK / (label + '.log')
+    print(json.dumps({'stage': label, 'status': 'STARTED', 'deadlineSeconds': timeout}), flush=True)
     try:
         with log.open('xb') as stream:
             while selector.get_map():
@@ -108,17 +112,34 @@ def run(label, argv, timeout):
                     if total > 32 * 1024 * 1024:
                         raise ValueError('BUILD_STAGE_OUTPUT_BOUND_' + label)
                     stream.write(raw)
+                    tail = (tail + raw)[-16384:]
         if child.wait(timeout=2) != 0:
             raise ValueError('BUILD_STAGE_FAILED_' + label)
+    except BaseException as error:
+        failure = error
     finally:
         selector.close()
-        if child.poll() is None:
-            os.killpg(child.pid, signal.SIGKILL)
+        # A failed stage may have live descendants even after its leader exited.
+        # Never skip process-group termination merely because poll() has a value.
+        if failure is not None or child.poll() is None:
+            try:
+                os.killpg(child.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
             child.wait(timeout=2)
-    receipt = {'stage': label, 'elapsedSeconds': round(time.monotonic() - start, 3),
-               'exitCode': child.returncode, 'logBytes': total, 'logSHA256': sha(log)}
+        child.stdout.close()
+    receipt = {'stage': label, 'status': 'FAILED' if failure is not None else 'PASS',
+               'elapsedSeconds': round(time.monotonic() - start, 3),
+               'exitCode': child.returncode, 'logBytes': log.stat().st_size if log.exists() else 0,
+               'logSHA256': sha(log) if log.exists() else None}
+    if failure is not None:
+        receipt.update(errorType=type(failure).__name__,
+                       publicBuildOutputTail=tail.decode('utf-8', errors='replace'),
+                       tailMaximumBytes=16384, credentialEnvironmentInherited=False)
     (D / ('image-build-' + label + '.json')).write_text(json.dumps(receipt, indent=2) + '\n')
     print(json.dumps(receipt), flush=True)
+    if failure is not None:
+        raise failure
     return receipt
 
 

@@ -110,6 +110,8 @@ def main():
         pattern = '[A-Za-z0-9_-]{1,128}' if field == 'replicaId' else \
             '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}'
         require(re.fullmatch(pattern, value), 'PROVIDER_ID_' + field)
+        if field == 'deploymentId':
+            require(value != 'e7d16214-cc83-4fcb-812f-510066c8a949', 'NEW_SUCCESSOR_DEPLOYMENT_REQUIRED')
         if field in ('projectId', 'environmentId', 'serviceId'):
             expected_name = {'projectId': 'A09_EXPECTED_PROJECT_ID',
                              'environmentId': 'A09_EXPECTED_ENVIRONMENT_ID',

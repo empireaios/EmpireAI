@@ -36,7 +36,7 @@ def command(argv,seconds,name,extra=None):
  receipt={'command':argv,'exitCode':p.returncode,'elapsedSeconds':round(time.monotonic()-start,3),'logSHA256':h(raw),'logBytes':len(raw)}
  (work/(name+'.json')).write_text(json.dumps(receipt,indent=2)+'\n')
  if failure:
-  print(json.dumps({'phase':name,**receipt,'safeOutputTail':raw[-8192:].decode(errors='replace')}));raise failure
+  print(json.dumps({'phase':name,**receipt,'safeOutputTail':raw[-8192:].decode(errors='replace')}),flush=True);raise failure
  return raw
 command([str(node),'--version'],10,'node-version');assert (work/'node-version.log').read_text().strip()=='v22.23.2'
 command([str(node),str(npm),'--version'],10,'npm-version');assert (work/'npm-version.log').read_text().strip()==pins['npmVersion']

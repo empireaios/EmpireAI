@@ -2,8 +2,8 @@
   "schema": "A09_REVIEW_SOURCE_MANIFEST_V1",
   "operationIdentity": "V130-A10-PRIVATE-REVIEW-A01-20261114",
   "branch": "work8/v130-media-owner-review-20261114-a01",
-  "parentCommit": "2562a2de04e7565846739f517bb5bee43e5e9d36",
-  "parentTree": "6c3d16231c3a6f89360fab92a422d5fbaec0cb6e",
+  "parentCommit": "3cc0cca5b0a72775d9f38d1d71779c9b79bec495",
+  "parentTree": "f7375d0fd85059c34760c58ff0462374bf565cad",
   "files": [
     {
       "path": "backend/src/runtime/commerce-runtime/governed/runtime.ts",
@@ -152,8 +152,8 @@
     },
     {
       "path": "v128/owner_review/authority.json",
-      "bytes": 2311,
-      "sha256": "10eb3a02413de9587199ce7baaf8cd17bcd2916512c0db25257977699fb4ba74"
+      "bytes": 3202,
+      "sha256": "d59d7b5272122817d21a733ff15536c925d7db71dd9f1ed2fb46886ecc448da8"
     },
     {
       "path": "v128/owner_review/backend-build-receipt.json",
@@ -242,8 +242,8 @@
     },
     {
       "path": "v128/owner_review/host/root-preflight.py",
-      "bytes": 12677,
-      "sha256": "0cdde745c670e8ad93ab2faa9dbac9f0bde5dd0935f3e38d25ad8bd0de8bf397"
+      "bytes": 12819,
+      "sha256": "5a1c6daa8303d7738ccf83bcfe7371facab8e184d7c9387b622a4ef53160aa11"
     },
     {
       "path": "v128/owner_review/host/root-supervisor.py",
@@ -297,13 +297,13 @@
     },
     {
       "path": "v128/owner_review/portable/build_frontend_portable.py",
-      "bytes": 5622,
-      "sha256": "e52fba8749fcb4d255490f87543e35fce9b6088d3b724b4f09d6b8fe7e30e3cf"
+      "bytes": 5633,
+      "sha256": "61e2b2feb021b0b1b9db314b7fbdac21fe31b00a0766ce5fe77661f65a1b71e0"
     },
     {
       "path": "v128/owner_review/portable/build_image.py",
-      "bytes": 11128,
-      "sha256": "f9816efef7b27255360e3a6efffb6a710b658229b81d1e83431d189e4fbd516a"
+      "bytes": 12206,
+      "sha256": "40393f41e46628cfea83d77d547416f8fd8b7298c5ebd91947588348b8f65e81"
     },
     {
       "path": "v128/owner_review/portable/deny_build_network.py",
@@ -317,8 +317,8 @@
     },
     {
       "path": "v128/owner_review/portable/generate_runtime_manifest.py",
-      "bytes": 8737,
-      "sha256": "1be5ba0d83b36070908a7ffe81a45a17844f65253255f820501ad5b564d6b1a1"
+      "bytes": 9331,
+      "sha256": "0c715e56165bae9d28b50b665f8496edbc955aba6cb830dc39212abc73737222"
     },
     {
       "path": "v128/owner_review/portable/host_image_smoke.py",
@@ -347,8 +347,8 @@
     },
     {
       "path": "v128/owner_review/reservation.json",
-      "bytes": 914,
-      "sha256": "fb921a9d86486a4f27d613a56ec4dcd75bde42ad9c129ec1efe1d896e29b0cba"
+      "bytes": 1381,
+      "sha256": "740d2dd1cf56a1db0756227743fd7f848e8ae57722b48204fc01b83df71a0e1c"
     },
     {
       "path": "v128/owner_review/restore_review.py",
