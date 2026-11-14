@@ -37,7 +37,24 @@ const freightAdmission={...detailAdmission,
  factsDigest:'ddf17d34aefac4614fdec3bc5332c601a176ca2d67cc61f58632da933ef3003a',
  sourceOperation:'V135-CONNECTOR-NATIVE-CJ-FREIGHT-01',readStartedAtUTC:'2026-11-14T09:31:22.820Z',readFinishedAtUTC:'2026-11-14T09:31:26.819Z'
 }as const;
-const admissions=[detailAdmission,inventoryAdmission,freightAdmission]as const;
+// Exact V139 observations retained at the recorded times for independently
+// reviewed admission. Existing admissions and expiry bounds remain unchanged.
+const v139DetailAdmission={...detailAdmission,
+ rawReceiptSHA256:'b5f4cf8eccf58a9a246586e3586cf607259f3b626efe649cdbbcf2651e721af2',
+ factsDigest:'a91e04b797f6a95809513455a6fe62b5ae795d069f0791aef6a6313036f9f673',
+ sourceOperation:'V139-CONNECTOR-CJ-DETAIL-01',readStartedAtUTC:'2026-11-14T12:48:13.002Z',readFinishedAtUTC:'2026-11-14T12:48:16.420Z'
+}as const;
+const v139InventoryAdmission={...inventoryAdmission,
+ rawReceiptSHA256:'45b5de4e20a9e6e2833d5da85537753046999eb46b111d3ff26360c2104d5aa6',
+ factsDigest:'cc45707c761d7d73326bda8e6579b1b1a223c937d8d512a5ce75eeb04f8f7f8a',
+ sourceOperation:'V139-CONNECTOR-CJ-INVENTORY-01',readStartedAtUTC:'2026-11-14T12:50:22.357Z',readFinishedAtUTC:'2026-11-14T12:50:25.258Z'
+}as const;
+const v139FreightAdmission={...freightAdmission,
+ rawReceiptSHA256:'0cc2c2319ea2c1f887d06b970ee65af8b2addbdc3dfaf2b613fa2de251e5e757',
+ factsDigest:'38b92ecd91aeec6aebadb76fff592eac26dc1db6c4f40369997e8877f8125d9c',
+ sourceOperation:'V139-CONNECTOR-CJ-FREIGHT-01',readStartedAtUTC:'2026-11-14T12:50:22.357Z',readFinishedAtUTC:'2026-11-14T12:50:25.872Z'
+}as const;
+const admissions=[detailAdmission,inventoryAdmission,freightAdmission,v139DetailAdmission,v139InventoryAdmission,v139FreightAdmission]as const;
 function admissionFor(rawSHA:string){const a=admissions.find(a=>a.rawReceiptSHA256===rawSHA);need(a,'CONNECTOR_UNREVIEWED_ADMISSION');return a;}
 const sha=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
 function need(ok:unknown,code:string):asserts ok {if(!ok)throw Error(code);}
