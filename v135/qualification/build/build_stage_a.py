@@ -11,7 +11,7 @@ REPO=pathlib.Path('/repo'); WORK=pathlib.Path('/work'); OUTPUT=pathlib.Path('/ou
 BASE_COMMIT='348174a4a80fc1bd822fb9ffe7575eba0dc265c7'
 BASE_TREE='0711297c097680051b68f4716bbb70b13b3eb4aa'
 BASE_SOURCE='8e256e063ccd2e7d3f200406e4ccef047b1dbd542e62fbd6baa3da06f16fa35e'
-OPERATION='V135-A10-DELIVERY-QUALIFICATION-A03-20261114'
+OPERATION='V135-A10-DELIVERY-QUALIFICATION-A04-20261114'
 BRANCH='work8/v135-delivery-qualification-20261114-a01'
 BASE_IMAGE='sha256:e8c69d86735f6df3efa06b324694fe51f0422785f83a3bd463052636c2421944'
 NODE_SHA='3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327'
@@ -46,7 +46,7 @@ def validate_admission(authority,reservation,config,manifest):
     require(re.fullmatch(r'https://[a-z0-9-]+\.up\.railway\.app',dest['origin'])is not None,'EXACT_HTTPS_ORIGIN')
     require(reservation.get('schema')=='V135_STAGE_A_RESERVATION_V1'and reservation.get('status')=='RESERVED_IN_CANONICAL_LEDGER','SAVED_RESERVATION_REQUIRED')
     require(reservation.get('operationIdentity')==operation and reservation.get('cumulativeCeilingUSD')==1000,'EXACT_FINANCIAL_SCOPE')
-    require(type(reservation.get('savedLedgerVersion'))is int and reservation['savedLedgerVersion']>=97,'POST_A02_LEDGER_REQUIRED')
+    require(type(reservation.get('savedLedgerVersion'))is int and reservation['savedLedgerVersion']>=98,'POST_A03_LEDGER_REQUIRED')
     require(re.fullmatch('[a-f0-9]{64}',str(reservation.get('savedLedgerSHA256','')))is not None and reservation.get('independentReadbackSHA256')==reservation['savedLedgerSHA256'],'INDEPENDENT_LEDGER_READBACK')
     for name,value in {'executionAttempt':1,'buildAttempt':1,'maximumLaunches':1,'maximumPrivateTransfers':0,'automaticRetries':0,'leaseExtensions':0,'maximumRuntimeSeconds':1800,'killGraceSeconds':5,'replicas':1,'vCPUs':1,'memoryGB':2,'restartPolicyType':'NEVER'}.items():
         require(type(reservation.get(name))is type(value)and reservation[name]==value,'EXACT_FINANCIAL_LIMIT_'+name.upper())
@@ -181,8 +181,9 @@ def native_build_smoke(output, admission, publication, maximum_seconds):
                   'sourceCommit':publication,'authoritySHA256':cfg['authoritySHA256'],'buildOnly':True,
                   'privateDataIncluded':False,'ownerDecisionPerformed':False}
         require(all(type(receipt.get(name))is type(value)and receipt[name]==value for name,value in expected.items()),'NATIVE_SMOKE_EXACT_PUBLIC_RECEIPT')
-        checks=['nativeLoginVerified','nativePrincipalVerified','nativePortfolioVerified','emptyMediaVerified','nativeComparablesVerified','commerceWriteDenied','nativeLogoutVerified','revocationVerified']
+        checks=['nativeLoginVerified','nativePrincipalVerified','nativePortfolioVerified','emptyMediaVerified','nativeComparablesUnavailableVerified','commerceWriteDenied','nativeLogoutVerified','revocationVerified']
         require(all(receipt.get(name)is True for name in checks),'NATIVE_SMOKE_ALL_NATIVE_PREDICATES')
+        require(type(receipt.get('nativeComparablesStatusCode'))is int and receipt['nativeComparablesStatusCode']==503 and receipt.get('nativeComparablesError')=='COMPARABLE_SOURCE_UNAVAILABLE','NATIVE_SMOKE_EXACT_COMPARABLES_UNAVAILABLE')
         require(time.monotonic()<deadline,'NATIVE_SMOKE_COMPLETION_DEADLINE');completed=True
     except Exception as error:
         code=str(error)if type(error)is ValueError and re.fullmatch('[A-Z_]+',str(error))else 'NATIVE_SMOKE_FAILURE'
@@ -211,11 +212,17 @@ def native_build_smoke(output, admission, publication, maximum_seconds):
         require(cleanup,'NATIVE_SMOKE_DESCENDANT_STOP_UNPROVEN')
         require(not state.exists()and not any((output/'tmp').iterdir()),'NATIVE_SMOKE_SYNTHETIC_STATE_REMOVED')
         require(closed(46379)and closed(4000),'NATIVE_SMOKE_PORTS_CLOSED_AFTER_CLEANUP')
+        print(json.dumps({'schema':'V135_STAGE_A_NATIVE_BUILD_SMOKE_CLEANUP_V1','status':'SUCCESS','operationIdentity':admission['operation'],
+              'publicationCommit':publication,'sourceManifestSHA256':admission['sourceManifestSHA256'],'nativeSmokeCompleted':completed,
+              'managedChildrenStarted':len(children),'processGraphStatus':'VERIFIED_STOPPED'if capability is not None else 'NO_CHILDREN_STARTED',
+              'processGraphStopped':bool(capability is not None and cleanup),'syntheticStateRemoved':True,'tempEmpty':True,
+              'portsClosed':True,'privateDataIncluded':False,'ownerDecisionPerformed':False,'providerErasureClaimed':False}),flush=True)
     require(completed,'NATIVE_SMOKE_NOT_COMPLETED')
-    return {'schema':'V135_STAGE_A_A03_NATIVE_BUILD_SMOKE_V1','status':'PASS','operationIdentity':admission['operation'],
+    return {'schema':'V135_STAGE_A_A04_NATIVE_BUILD_SMOKE_V1','status':'PASS','operationIdentity':admission['operation'],
             'sourceCommit':publication,'sourceManifestSHA256':admission['sourceManifestSHA256'],
             'authoritySHA256':admission['config']['authoritySHA256'],'nativeLoginVerified':True,'nativePrincipalVerified':True,
-            'nativePortfolioVerified':True,'emptyMediaVerified':True,'nativeComparablesVerified':True,'commerceWriteDenied':True,
+            'nativePortfolioVerified':True,'emptyMediaVerified':True,'nativeComparablesUnavailableVerified':True,
+            'nativeComparablesStatusCode':503,'nativeComparablesError':'COMPARABLE_SOURCE_UNAVAILABLE','commerceWriteDenied':True,
             'nativeLogoutVerified':True,'revocationVerified':True,'syntheticStateRemoved':True,'processGraphStopped':True,
             'portsClosedAfterCleanup':True,'elapsedSeconds':round(time.monotonic()-started,3),'deadlineSeconds':maximum_seconds,
             'actualNativeApplicationStartedAtBuild':True,'providerDeploymentPerformed':False,'runtimeManifestFinalizedAtSmoke':False,

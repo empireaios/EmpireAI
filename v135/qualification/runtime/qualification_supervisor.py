@@ -22,7 +22,7 @@ def create_synthetic_owner_policy(cfg):
     authority_path=CONTROL/'qualification-authority.json'
     require(sha(authority_path)==cfg['authoritySHA256'],'EXACT_SYNTHETIC_AUTHORITY')
     authority=json.loads(authority_path.read_bytes())
-    require(authority.get('operationIdentity')==cfg['operationIdentity']=='V135-A10-DELIVERY-QUALIFICATION-A03-20261114'and authority.get('stage')=='A','EXACT_SYNTHETIC_OPERATION')
+    require(authority.get('operationIdentity')==cfg['operationIdentity']=='V135-A10-DELIVERY-QUALIFICATION-A04-20261114'and authority.get('stage')=='A','EXACT_SYNTHETIC_OPERATION')
     scope=authority.get('syntheticOperatorPolicyScope',{})
     for name,value in {'permitted':True,'mustBindExactAuthoritySHA256':True,'mustExpireAtImmutableRuntimeDeadline':True,'mustPreserveNativeGuard':True,'mustPreserveExternalWriteDeny':True,'privateA08Permitted':False,'ownerMediaDecisionPermitted':False,'productionMutationPermitted':False,'commerceActivationPermitted':False}.items():
         require(scope.get(name)is value,'EXACT_SYNTHETIC_POLICY_SCOPE')
@@ -110,7 +110,8 @@ def main():
             os.chown(p,0,1001);p.chmod(0o440)
         smoke=json.loads((STATE/'startup-smoke.json').read_bytes())
         require(smoke.get('schema')=='V135_STAGE_A_NATIVE_STARTUP_SMOKE_V1'and smoke.get('status')=='PASS'and smoke.get('operationIdentity')==cfg['operationIdentity']and smoke.get('sourceCommit')==cfg['sourceCommit']and smoke.get('authoritySHA256')==cfg['authoritySHA256'],'NATIVE_STARTUP_SMOKE_BINDING')
-        require(all(smoke.get(key)is True for key in ['nativeLoginVerified','nativePrincipalVerified','nativePortfolioVerified','emptyMediaVerified','nativeComparablesVerified','commerceWriteDenied','nativeLogoutVerified','revocationVerified']),'NATIVE_STARTUP_SMOKE_FAILED')
+        require(all(smoke.get(key)is True for key in ['nativeLoginVerified','nativePrincipalVerified','nativePortfolioVerified','emptyMediaVerified','nativeComparablesUnavailableVerified','commerceWriteDenied','nativeLogoutVerified','revocationVerified']),'NATIVE_STARTUP_SMOKE_FAILED')
+        require(smoke.get('nativeComparablesStatusCode')==503 and smoke.get('nativeComparablesError')=='COMPARABLE_SOURCE_UNAVAILABLE','EXPECTED_DISABLED_COMPARABLES')
         require(smoke.get('buildOnly')is False and smoke.get('privateDataIncluded')is False and smoke.get('ownerDecisionPerformed')is False,'NATIVE_STARTUP_SMOKE_SCOPE')
         stage='FRONTEND';spawn('frontend',['/usr/local/bin/node','--max-old-space-size=768','/frontend/app/server.js'],{'HOSTNAME':'127.0.0.1','PORT':'43117','BRAIN_API_URL':'http://127.0.0.1:4000','NEXT_TELEMETRY_DISABLED':'1'},'/frontend/app');ready(43117,45)
         stage='INGRESS';spawn('ingress',['/usr/local/bin/node','--max-old-space-size=128',str(CONTROL/'qualification_ingress.mjs')]);ready(8080,15)

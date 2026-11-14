@@ -1,6 +1,6 @@
 {
   "schema": "V135_STAGE_A_RUNTIME_CONFIG_V1",
-  "operationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A03-20261114",
+  "operationIdentity": "V135-A10-DELIVERY-QUALIFICATION-A04-20261114",
   "projectId": "afedd0ad-ebc1-45c1-b4aa-9782b5251ca3",
   "environmentId": "dd4591b0-1d8e-4561-812d-33c03b9d9efa",
   "serviceId": "ac5db7e0-e328-46ac-8e96-820c6e1a88ce",
@@ -10,8 +10,8 @@
   "ownerReviewClockStarted": false,
   "maximumRuntimeSeconds": 1800,
   "killGraceSeconds": 5,
-  "authoritySHA256": "83b8bfbbc5e4877579e8cb86f7f393358cf9bcb1465477e6fab5ecbb77eb7876",
-  "reservationSHA256": "702aa4afd10f1ad8472f3617956635f0c34e6dc4dfd56d005cb2f8d2496f1bf8",
-  "recipientPublicPEMSHA256": "fb5b70ff43817804dbb6dc0aeab82379aaf1d39d13b78813c0185b5cabec51a3",
-  "recipientSPKISHA256": "b851d68c87c76dd3f91d1d25d59ec4253c4906d4d54b985f017b47c9379fbb4e"
+  "authoritySHA256": "c8d9754c576991419c2ff96430de6963b658b309dc5149a76009e46577d43576",
+  "reservationSHA256": "29d7d05e9c2e4fbfb65b5709ca91e1b111aea20cfe69af8732904ceb34884b37",
+  "recipientPublicPEMSHA256": "2cf79037f7449a88d809761c0943c83790af02e0a15f3f11e1dfa190a1fd7155",
+  "recipientSPKISHA256": "662a002c4e1a7c875056a15e18b7db32f6acde8252bcb4caffb73c0c67786967"
 }
